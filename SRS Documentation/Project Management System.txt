@@ -1,0 +1,23 @@
+                  Title : Project Management System.
+
+Document : System Requirement Specification Document.
+Title    : Online Project Management System.
+
+Objective: 
+          1.The Online Project Management System Web Application is inteded to provide a 
+            sutaible solution for Project Manager and Project team members to creating,
+            assigning,completing,updating and finding daily Time Sheet of team members working process.
+          2.The ability for manager is to create daily tasks,assigning tasks to team members,
+            cheaking timesheet of employees,cheaking updates of tasks from employees,also have ability of
+            updating tasks, deleting tasks,deleting team members from projects etc.
+          3.The ability for team members is to complete tasks which will assigned by project manager and update 
+            task status and aslo have a ability to update their daily time sheet.  
+          4.Time sheet management is also provided for recording the amount of team members time spent on allocated job.
+            Time sheet management is conventional method of calculating team members performance was done by tabular format using a 
+            excel sheet etc.   
+          5.At begning, the time sheet was used in fields of payroll calculation and account management.
+          6.From time sheet start date and end date of the project can be rrecorded and these statistics can be later used for accounting,
+            payrole, billing of client, tracking, estimation and calcutate hours of team members. 
+
+Purpose  :
+          1.  
