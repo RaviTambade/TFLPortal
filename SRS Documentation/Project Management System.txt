@@ -20,4 +20,24 @@ Objective:
             payrole, billing of client, tracking, estimation and calcutate hours of team members. 
 
 Purpose  :
-          1.  
+          1.This documentation specifies the System Requirements Specification(SRS) for the Project Management System(PMS).
+            It describes the scope of system,both functional and non-functional requirements for the software,design constraints and system interfaces.
+          2.The main purpose of Project Management system is to manage overall things which will be done while project developement.
+          3.In this process we can controll the team managers,team members of project, also we can manage or follows time sheet of Team members.
+          4.From these Project Management System manager can define daily tasks for team members on these running project and get updates from members about project, and know their time period
+            which will working on these project.
+
+Scope    : 
+          1.The Project Management System addresses the management of software projects.It provides framework for organizing and managing resources in such a way that these resources deliver all the
+            work required to complete a software projects within defined scope,time and cost constraints.
+          2.The system applies only to the management of software projects and is tool that facilities decision
+            making ; the PMS does not make decisions.
+          3.The SRS describes only required functionality of PMS, not the functionality of external systems like 
+            data storage, change management or virsion contrl system.
+          4.The Project Management System Provides an interface for both Managers and team members in industry to use to track daily ststus of project and time sheet of members which will be working on these project.
+          5.The system will allow for management of team members timesheet working in any IT firms.
+            Team members will be able to log in and look at their own timesheets,while administrator will able to override worked hours values.
+          6.Each User,Manager,Team members have different user interfaces.
+          7.The Project manager interface will allow for entering/creating new taskas,provide time period for task,editing previous tasks, deleting tasks,searching tasks,finding timesheet of team members and finding status
+            of tasks and project status.Also have a authority to assigning and deleting team members from project.
+          8.The team member interface will allow to search task which will be assigned by project manager and aslo have action methods to upload status of project and update their own time sheets of project working. 
