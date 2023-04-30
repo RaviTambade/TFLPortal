@@ -41,3 +41,15 @@ Scope    :
           7.The Project manager interface will allow for entering/creating new taskas,provide time period for task,editing previous tasks, deleting tasks,searching tasks,finding timesheet of team members and finding status
             of tasks and project status.Also have a authority to assigning and deleting team members from project.
           8.The team member interface will allow to search task which will be assigned by project manager and aslo have action methods to upload status of project and update their own time sheets of project working. 
+
+Overall Description :
+   Current Solution :
+                     As for the moment every team leader is using a specific software product or no software at all, for maintaining the project schedule, to organize the tasks of the project and to physically store 
+                     the all project data.
+   Product Perspective:
+                     1.PMS it a standalone system that provides functionality described in the Product functions section. Itincludes all subsystems needed to fulfil these software requirements. In addition, 
+                       the PMS hasinterfaces to the external systems, such Version Control System, Change Management and Bug Tracking System and Payroll System. These interfaces shall be implemented according to 
+                       available industry standards and shall be independent from a specific external system.
+                     2.We have to distinguish a Data Storage System (DSS) from all other external systems in that way, thatData Storage System enables normal functioning of PMS and is therefore essential.
+                       PMS stores all itsdata in the DSS and hence has to maintain the connection to it. PMS shall access the data storage system through standard interface (JDBC, ODBS, ADO etc).
+                     
