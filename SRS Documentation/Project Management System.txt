@@ -100,6 +100,11 @@ Functional Requirements :
                               • The system will allow to register a new Employee.
                               • The system will allow existing employee or manager to log-on their account.
                               • The system will provide general help information.
+                              • Log In
+                                     Input: The user inputs his/her username and password and selects to log in.
+                                     Action: The system will verify the user information with the database.
+                                     Output: The system will redirect the user to the appropriate menu page
+                                     Notes: The user login information may or may not conform to Trinity Authentication System.
            ➢ Manager Interface : (UI02)
                               • The system will allow to create new tasks.
                               • The system will allow to manage tasks.
@@ -183,5 +188,16 @@ Functional Requirements :
                               • Their are 3 options available like starting, in progress, completed.
                               • Also there are 2 buttons available one is update and other back.
                               • From update button employee can update there task status.
+          ➢ Both Project Manager and Employee :
+                              • View Timesheet
+                                        Input: The user selects to view a timesheet
+                                        Action: The system will retrieve database values for the selected timesheet and will create a table representing the time worked.
+                                        Output: The system will display a table of time worked.
+                                        Notes: Administrators will be able to select from all employees’ timesheets.
+                                        Employees will only be able to view their own timesheet.
+                                        Priority: Essential
+
+
+
 
 
