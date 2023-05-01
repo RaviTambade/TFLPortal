@@ -12,6 +12,8 @@ CREATE TABLE project_manager(pm_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,proj_
 CREATE TABLE client(client_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,clt_name VARCHAR(50),clt_address VARCHAR(200),clt_details VARCHAR(200));
 CREATE TABLE on_project(on_project_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,proj_id INT NOT NULL, CONSTRAINT fk_projid FOREIGN KEY (proj_id) REFERENCES project(proj_id)ON UPDATE CASCADE  ON DELETE CASCADE,client_id INT NOT NULL, CONSTRAINT fk_clientid FOREIGN KEY (client_id) REFERENCES client(client_id)ON UPDATE CASCADE  ON DELETE CASCADE);
 
+
+
 /* Trigger for user insertion after employee insertion */ 
 DELIMITER //
 CREATE TRIGGER insert_employee AFTER INSERT ON employees 
@@ -67,9 +69,20 @@ INSERT INTO team_member(team_id,emp_id,role_id)VALUES(3,10,2);
 INSERT INTO team_member(team_id,emp_id,role_id)VALUES(3,12,4);
 
 
+INSERT INTO project(proj_name,planned_startDate,planend_endDate,actual_startDate,actual_endDate,proj_desc)VALUES('Online Meeting Sheduling','2021-02-01','2021-03-01','2021-02-02','2021-03-03','Compeny requirement want to organize meetins online');
+
+INSERT INTO project_manager(proj_id,user_id)VALUES(1,11);
+
+INSERT INTO client(clt_name,clt_address,clt_details)VALUES('Vishwambhar Kapare','Pune RajguruNagar','Client want to create online meeting portal for their compeny');
+
+INSERT INTO on_project(proj_id,client_id)VALUES(1,1);
 
 select * from employees;
 select * from users;
 select * from team;
 select * from role;
 select * from team_member;
+select * from project;
+select * from project_manager;
+select * from client;
+select * from on_project;
