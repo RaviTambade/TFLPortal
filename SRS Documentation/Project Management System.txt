@@ -54,13 +54,13 @@ Overall Description :
                        PMS stores all itsdata in the DSS and hence has to maintain the connection to it. PMS shall access the data storage system through standard interface (JDBC, ODBS, ADO etc).
                      
 User Characteristics :
-                             There are two kind of users Admin as user and Employee is also user
-                   Admin User 
+                             There are two kind of users Admin/Project Manager as user and Employee/Team Member is also user
+                   Admin User/Project Manager 
                              Override timesheets value
                              View timesheets values.
                              Add/Remove employees.
                              Update database with values.
-                   Employees User
+                   Employees User/Team Mamber
                              View timesheets value.
                              Finalize time worked 
                              Clock-in and clock-out
