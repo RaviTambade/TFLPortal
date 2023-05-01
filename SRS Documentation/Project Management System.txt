@@ -249,6 +249,43 @@ Non-Functional Requirements :
                               • Employee data will be backed up periodically to ensure safety of data using 
                                 incremental back up strategy.
 
+Design :
+          ➢ The system must be programming in Object Oriented language, in this case we will 
+             using c# (.net).
+          ➢ The SQL database must be attached to the system.
+
+Process :
+         ➢ Start up :
+                   • Three Options Manager / Employee / New Register.
+                   • Employee & Manager is for login using id, password.
+                   • New Registration Required All fields of Employee & Manager Table
+.
+         ➢ Manager :
+                   • First enter into manager page using login option.
+                   • Manager alloy’s to create tasks and assigns to existing employees.
+                   • Manager also allows to generate deadline for task competitions using 
+                     starting date and end date.
+                   • Manager Interface are allow to finding ang team members timesheet which will be working on certain project, and fine 
+                     how much time utilize on project working by team member / employee.
+                   • Project Manager have also their own Timesheet for their working.
+                   • Manager also allows to edit previous tasks.
+                   • Manager also allows to delete certain tasks
+.        ➢ Employee :
+                   • Employee first enter into Employee page using login option.
+                   • Employee has Dashboard first option , in dashboard there was description
+                     about task management system and also gives some Rules for completing 
+                     certain tasks.
+                   • Again Employee have one more option Like Update task.
+                   • In this Update tasks there are some data present which would be task give 
+                     by manager to this employee.
+                   • In this page employee have one option "update" to set the status of task.
+                   • From this update option employee update the status of task like 
+                     Not start/ in progress/ completed.
+                   • Then Employe have a Time Sheet where employe can fill ther time working on project for counting their working houres
+                     by manager for their salery amount counting. 
+                   • and the last Employee have one more option Logout.
+
+
 
 
 
