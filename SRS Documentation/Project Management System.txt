@@ -197,6 +197,58 @@ Functional Requirements :
                                         Employees will only be able to view their own timesheet.
                                         Priority: Essential
 
+Non-Functional Requirements :
+                    ➢ Security :
+                              • Only Higher Manager will able see all employee records.
+                              • One employee should not be able to modify other employee details.
+                              • Employee will be able to modify their own personal details.
+                              • Each employee will be to access the system through his username and 
+                                password process. 
+                    ➢ Reliability:
+                              • The system will backup task data, employee data, manager data on regular 
+                                basis and keep system operational, continuous updates are maintained.
+                    ➢ Availability :
+                              • Uptime : 24*7 available
+                    ➢ Maintainability :
+                              • A Commercial database software will be used to maintain System data 
+                                Persistence.
+                              • A readymade Web Server will be installed to host Test Management System 
+                                (Web Site) to management server capabilities.
+                              • IT operations team will easily monitor and configure System using 
+                                Administrative tools provided by Servers.
+                    ➢ Portability :
+                              • PDA: Portable Device Application.
+                              • System will provide portable User Interface ( HTML, CSS, JS) through users 
+                                will be able to access the Task Management System.
+                              • System can be deployed to server to any OS, Cloud (Azure or AWS or GCP)
+                   ➢ Accessibility :
+                              • Only PMS Employee and Manager will be able to access the portal after 
+                                authentication.
+                              • Manager Representatives will be able to view daily, weekly, monthly, annual 
+                                task data through customized dashboard.
+                   ➢ Modularity :
+                              • System will designed and developed using reusable, independent or 
+                                dependent on scenarios in the form of modules.
+                              • These modules will be loosely coupled and highly cohesive. System will 
+                                contain all the Details of Employee, Tasks, and Managers.
+                   ➢ Scalability :
+                              • System assesses the highest workloads under which the system will still 
+                                meet the performance requirements.
+                              • There are two ways to enable your system scale as the workloads get higher:
+                              • horizontal and vertical scaling. Horizontal scaling is provided by adding more 
+                                machines to the pool of servers.
+                              • Vertical scaling is achieved by adding more CPU and RAM to the existing 
+                                machines.
+                   ➢ Safety :
+                              • Task Management System portal will be secure from malicious attack, 
+                                fishing.
+                              • Employee Management System functionalities are protected from outside 
+                                with proper firewall configuration.
+                              • Employee Management System will be always kept updated with latest anti 
+                                virus software.
+                              • Employee data will be backed up periodically to ensure safety of data using 
+                                incremental back up strategy.
+
 
 
 
