@@ -94,3 +94,46 @@ Specific Requirements:
         Communications Interfaces
 	                  Postman tool
 	                  Web browser
+
+Functional Requirements :
+           ➢ User Registration and Login : (UI01)
+                              • The system will allow to register a new Employee.
+                              • The system will allow existing employee or manager to log-on their account.
+                              • The system will provide general help information.
+           ➢ Manager Interface : (UI02)
+                              • The system will allow to create new tasks.
+                              • The system will allow to manage tasks.
+                              • The system will allow to edit task.
+                              • The system will allow to delete task.
+                              • The system will allow to delete employee. 
+          ➢ Create Task Interface : (UI02.1)
+                              • This create task contain one form which have parameter like select 
+                                employee, description of task, starting date, end date and create button.
+                              • This field create a task and assign to a existing employee.
+          ➢ Manage Task Interface : (UI02.2)
+                              • Manage task contain one form which have parameter like select employee, 
+                                 description of task, starting date and end date, and also there was two action 
+                                 methods available 1st was edit and 2nd was delete.
+                              • The process of delete function is to delete the task.
+                              • Edit action contain again one form to edit existing task. 
+          ➢ Edit Interface : (UI02.2.1)
+                              • Edit interface contain again one form .
+                              • This form have all parameters of create task form , but in this interface we 
+                                can edit previous/existing tasks.
+          ➢ Employee Interface : (UI03)
+                              • The system gives information and define some rules for employee in 
+                                dashboard field.
+                              • The system contain again Update task Option.
+                              • The system will allow Logout Employee.
+          ➢ Dashboard Information : (UI03.1) 
+                              • Dashboard contain Information and rules for employees.
+          ➢ Update task Interface : (UI03.2)
+                              • Update task interface contain one form where employee can update
+                                their task working process which will starting , not working or completed etc.
+                              • There will one update option available ,from this update option employee 
+                                update their task working condition.
+          ➢ Employee Update Interface : (UI03.2.1)
+                              • In update interface update form available.
+                              • Their are 3 options available like starting, in progress, completed.
+                              • Also there are 2 buttons available one is update and other back.
+                              • From update button employee can update there task status.
