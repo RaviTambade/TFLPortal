@@ -285,6 +285,24 @@ Process :
                      by manager for their salery amount counting. 
                    • and the last Employee have one more option Logout.
 
+Benefits of Project : 
+                   • From this task management project communication between employee and 
+                     manager will be reduces.
+                   • So that purpose employee and manager have save their time for another 
+                     work.
+                   • Manager can create so many working task and assign directly to any 
+                     employee by sitting in our own office. 
+                   • Employee can get their task on her process which will assign bay manager to 
+                     him.
+                   • and then employee start working on this and update their task working 
+                     status simultaneously
+                   • Employee can fill their timesheet and update then manager can get information directly of project status.
+                   • Also from timesheet Manager can easily counting working hours of employee for payment process.
+                   • . Manager can get feedback directly on their port.
+                   • From this above project the working process will get more connection 
+                     between employee and manager.
+                   • and also increase efficiency of working.
+
 
 
 
