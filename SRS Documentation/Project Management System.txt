@@ -53,3 +53,44 @@ Overall Description :
                      2.We have to distinguish a Data Storage System (DSS) from all other external systems in that way, thatData Storage System enables normal functioning of PMS and is therefore essential.
                        PMS stores all itsdata in the DSS and hence has to maintain the connection to it. PMS shall access the data storage system through standard interface (JDBC, ODBS, ADO etc).
                      
+User Characteristics :
+                             There are two kind of users Admin as user and Employee is also user
+                   Admin User 
+                             Override timesheets value
+                             View timesheets values.
+                             Add/Remove employees.
+                             Update database with values.
+                   Employees User
+                             View timesheets value.
+                             Finalize time worked 
+                             Clock-in and clock-out
+
+Specific Requirements:
+
+        External Interfaces:
+                     The interface for the Timesheet System will be split among the user group. Administrator will be able to log in and have a screen that allows them
+                        	Override timesheet values
+	                        View timesheet values
+	                        Add/Remove Employees
+	                        Update database with values.
+        Employees will be able to log in and view a screen that allows them to: 
+                                View projects and tasks assigned them.       
+	                        View timesheet values
+	                        Finalize time worked
+	                        Clock in and clock out.
+        Requirements User Interfaces
+	                         Admin/Project manager
+                      	         Employee
+        Hardware Interfaces
+	                  Processor: Intel Core i5
+	                  RAM: Min 4 GB 
+	                  Hard Disk: 1TB
+
+        Software Interfaces 
+	                  Operating system: Windows 10 
+	                  Technology Used: Asp.Net Core, HTTP server, IIS Server
+	                  Database: My SQL 
+	                  Tools used: Vs Code
+        Communications Interfaces
+	                  Postman tool
+	                  Web browser
