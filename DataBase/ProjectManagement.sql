@@ -12,6 +12,8 @@ CREATE TABLE project_manager(pm_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,proj_
 CREATE TABLE client(client_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,clt_name VARCHAR(50),clt_address VARCHAR(200),clt_details VARCHAR(200));
 CREATE TABLE on_project(on_project_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,proj_id INT NOT NULL, CONSTRAINT fk_projid FOREIGN KEY (proj_id) REFERENCES project(proj_id)ON UPDATE CASCADE  ON DELETE CASCADE,client_id INT NOT NULL, CONSTRAINT fk_clientid FOREIGN KEY (client_id) REFERENCES client(client_id)ON UPDATE CASCADE  ON DELETE CASCADE);
 
+CREATE TABLE task(task_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,task_name VARCHAR(50),proj_id INT NOT NULL, CONSTRAINT fk_proidd FOREIGN KEY (proj_id) REFERENCES project(proj_id)ON UPDATE CASCADE  ON DELETE CASCADE,description VARCHAR(200),start_date DATETIME,end_date DATETIME);
+
 
 
 /* Trigger for user insertion after employee insertion */ 
@@ -77,6 +79,8 @@ INSERT INTO client(clt_name,clt_address,clt_details)VALUES('Vishwambhar Kapare',
 
 INSERT INTO on_project(proj_id,client_id)VALUES(1,1);
 
+INSERT INTO task(task_name,proj_id,description,start_date,end_date)VALUES('Meeting Sheduling',1,'please arrange the meeting sheduling prosess quickly','2021-02-01','2021-02-03');
+
 select * from employees;
 select * from users;
 select * from team;
@@ -86,3 +90,4 @@ select * from project;
 select * from project_manager;
 select * from client;
 select * from on_project;
+select * from task;
