@@ -80,6 +80,7 @@ INSERT INTO project_manager(proj_id,user_id)VALUES(2,12);
 
 
 INSERT INTO client(clt_name,clt_address,clt_details)VALUES('Vishwambhar Kapare','Pune RajguruNagar','Client want to create online meeting portal for their compeny');
+INSERT INTO client(clt_name,clt_address,clt_details)VALUES('Rajat Pisal','Kolhapur','Client want to create online Interview Sheduling Project');
 
 INSERT INTO on_project(proj_id,client_id)VALUES(1,1);
 
