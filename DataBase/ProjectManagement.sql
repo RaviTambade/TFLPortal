@@ -73,8 +73,10 @@ INSERT INTO team_member(team_id,emp_id,role_id)VALUES(3,12,4);
 
 
 INSERT INTO project(proj_name,planned_startDate,planend_endDate,actual_startDate,actual_endDate,proj_desc)VALUES('Online Meeting Sheduling','2021-02-01','2021-03-01','2021-02-02','2021-03-03','Compeny requirement want to organize meetins online');
+INSERT INTO project(proj_name,planned_startDate,planend_endDate,actual_startDate,actual_endDate,proj_desc)VALUES('Online Interview Sheduling','2022-05-10','2022-05-12','2022-05-10','2022-05-13','We want to argent hiring of new employeess for new projects');
 
 INSERT INTO project_manager(proj_id,user_id)VALUES(1,11);
+
 
 INSERT INTO client(clt_name,clt_address,clt_details)VALUES('Vishwambhar Kapare','Pune RajguruNagar','Client want to create online meeting portal for their compeny');
 
