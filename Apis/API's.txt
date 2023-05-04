@@ -13,4 +13,18 @@ Users :
 
        ** User automatically inserted when employee is inserted by trigger procedure
 
+Employees :
+          1. api/employees/getallemployees  - retrieve data of all employees  
+                                            - authorization Incharge only
+
+          2. api/employees/GetEmployee/{id} - retrieve data of employee by their id
+                                            - authorization Incharge, project managers
+
+          3. api/employees/UpdateEmployee/{id} - Update data of employee by their id -fromBody Employee's data
+                                              -authorization Incharge only
  
+          4. api/employees/Insertemployee  - Insert data of employee  -fromBody Employee's data 
+                                          - authorization Incharge only
+
+          5. api/employees/deleteEmployee/{id} - delete data of employee by their id 
+                                               - authorization Incharge only
