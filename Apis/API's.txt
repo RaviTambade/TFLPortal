@@ -39,6 +39,6 @@ Team :
         4. api/team/insertteam/{id}  - Insert data of team -fromBody team data 
                                      - authorization Incharge only
         5. api/team/deleteteam/{id}  - delete data of teamby their id 
-                                     - authorization Incharge only
+                                     - authorization Incharge onlyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
 
 
