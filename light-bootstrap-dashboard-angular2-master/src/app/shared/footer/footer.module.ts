@@ -10,3 +10,15 @@ import { FooterComponent } from './footer.component';
 })
 
 export class FooterModule {}
+
+
+
+/* @NgModule({
+    imports: [ RouterModule, CommonModule ],
+    declarations: [ FooterComponent ],
+    exports: [ FooterComponent ]
+})
+
+export class FooterModule {}
+
+*/
