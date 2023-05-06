@@ -105,8 +105,8 @@ export class HomeComponent implements OnInit {
         }]
       ];
       this.activityChartLegendItems = [
-        { title: 'Tesla Model S', imageClass: 'fa fa-circle text-info' },
-        { title: 'BMW 5 Series', imageClass: 'fa fa-circle text-danger' }
+        { title: 'Android ', imageClass: 'fa fa-circle text-info' },
+        { title: 'Desktop', imageClass: 'fa fa-circle text-danger' }
       ];
 
 
