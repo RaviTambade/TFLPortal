@@ -1,0 +1,207 @@
+
+Authentication Service:
+
+ 
+1]
+Url  : http:localhost:portnumber/api/users/getallusers
+Mehtod : GET
+Return : json object of all users
+Body   : Null
+Header : List of users
+Authentication : Admin and Employee only
+
+2]
+Url  :http:localhost:portnumber/api/users/getuser/{id}
+id   :User Id
+Method :GET
+Return :json object of user
+Body   :Null
+Header :User Details
+Authentication : Admin and Employee only
+
+
+3] 
+Url  :http:localhost:portnumber/api/users/insertuser
+Method :POST
+Return :True or False
+Body   :  {
+            "email":"",
+            "contactNumber":"",
+            "password":""
+          }
+
+Header :Add new User
+Authentication :
+
+[ When new employee inserted his details that time user automatically inserted in user tables by trigger]
+
+
+
+4] 
+Url  :http:localhost:portnumber/api/users/updateuser/{id}
+id   :User Id 
+Method :PUT
+Return :True or False
+Body   :  { "id" :"",
+            "email":"",
+            "contactNumber":"",
+            "password":""
+          }
+
+Header :Update User Details
+Authentication :
+
+
+5] 
+Url  :http:localhost:portnumber/api/users/Deleteuser/{id}
+id   :User Id 
+Method :Delete
+Return :True or False
+Body   : Null
+Header :Delete User
+Authentication :
+
+[Employees Service ]
+
+1]
+Url  : http:localhost:portnumber/api/employees/getallemployees
+Mehtod : GET
+Return : json object of all employees
+Body   : Null
+Header : List of employees
+Authentication : Admin and Employee only
+
+2]
+Url  :http:localhost:portnumber/api/employees/getemployee/{id}
+id   :Employee Id
+Method :GET
+Return :Json object of employeee
+Body   :Null
+Header :Employee Details
+Authentication : Admin and Employee only
+
+
+3] 
+Url  :http:localhost:portnumber/api/employees/insertemployee
+Method :POST
+Return :True or False
+Body   :  { "firstName":"",
+            "lastName":"",
+            "BirthDate":"",
+            "HireDate":"",
+            "contactNumber":"",
+            "email":"",
+            "password":""
+          }
+
+Header :Add new Employee
+Authentication :
+
+
+4] 
+Url  :http:localhost:portnumber/api/employees/updateemployee/{id}
+id   :employee Id 
+Method :PUT
+Return :True or False
+Body   :   { 
+            "id":"",
+            "firstName":"",
+            "lastName":"",
+            "BirthDate":"",
+            "HireDate":"",
+            "contactNumber":"",
+            "email":"",
+            "password":""
+          }
+
+Header :Update Employee Details
+Authentication :
+
+
+5] 
+Url  :http:localhost:portnumber/api/employees/Deleteemployee/{id}
+id   :Employee Id 
+Method :Delete
+Return :True or False
+Body   : Null
+Header :Delete employee
+Authentication :
+
+
+
+[Team]
+
+
+1]
+Url  : http:localhost:portnumber/api/teams/getallteams
+Mehtod : GET
+Return : json object of all teams
+Body   : Null
+Header : List of teams
+Authentication : Admin and Employee only
+
+2]
+Url  :http:localhost:portnumber/api/teams/getteam/{id}
+id   :Team Id
+Method :GET
+Return :Json object of team
+Body   :Null
+Header :Team Details
+Authentication : Admin and Employee only
+
+
+3] 
+Url  :http:localhost:portnumber/api/teams/insertteam
+Method :POST
+Return :True or False
+Body   :  { 
+           "TeamName":"",            
+          }
+
+Header :Add new Team
+Authentication :
+
+
+4] 
+Url  :http:localhost:portnumber/api/teams/updateteam/{id}
+id   :Team Id 
+Method :PUT
+Return :True or False
+Body   :   { 
+            "Team id":"",
+            "TeamName":"",
+          }
+
+Header :Update Team Details
+Authentication :
+
+
+5] 
+Url  :http:localhost:portnumber/api/teams/Deleteteam/{id}
+id   :Team Id 
+Method :Delete
+Return :True or False
+Body   : Null
+Header :Delete team
+Authentication :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
