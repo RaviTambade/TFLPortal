@@ -550,7 +550,7 @@ Authentication : Admin and Employee only
 
 2)
 Url  :http:localhost:portnumber/api/tasks/gettask/{id}
-id   : Task Id Id
+id   : Task Id
 Method :GET
 Return :Json object of Task
 Body   :Null
@@ -602,6 +602,65 @@ Authentication :
 
 
 
+
+[Assigned]
+
+
+1)
+Url  : http:localhost:portnumber/api/assigns/getallassignes
+Mehtod : GET
+Return : json object of all assigns
+Body   : Null
+Header : List of assigns
+Authentication : Admin and Employee only
+
+2)
+Url  :http:localhost:portnumber/api/assigns/getassign/{id}
+id   : Assign Id
+Method :GET
+Return :Json object of Assign
+Body   :Null
+Header :Assign Details
+Authentication : Admin and Employee only
+
+
+3)
+Url  :http:localhost:portnumber/api/assigns/insertassign
+Method :POST
+Return :True or False
+Body   :  {
+           "taskId":"",
+           "emp_id":"",
+           "role_id":"",
+          }
+Header :Add new Assign
+Authentication :
+
+
+4) 
+Url  :http:localhost:portnumber/api/assigns/updateassign/{id}
+id   :Assign Id 
+Method :PUT
+Return :True or False
+Body   :   { 
+           "assignId":"',
+           "taskId":"",
+           "emp_id":"",
+           "role_id":""
+          }
+
+Header :Update Assign Details
+Authentication :
+
+
+5) 
+Url  :http:localhost:portnumber/api/assigns/deleteassign/{id}
+id   :Assign Id 
+Method :Delete
+Return :True or False
+Body   : Null
+Header :Delete assign
+Authentication :
 
 
 
