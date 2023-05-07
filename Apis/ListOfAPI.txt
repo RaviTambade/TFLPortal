@@ -450,7 +450,7 @@ Body   :  {
            "address":"",
            "details":""          
           }
-Header :Add new lient
+Header :Add new Client
 Authentication :
 
 
@@ -477,6 +477,64 @@ Method :Delete
 Return :True or False
 Body   : Null
 Header :Delete Client
+Authentication :
+
+
+[On Project]
+
+
+1)
+Url  : http:localhost:portnumber/api/Onprojects/getalloprojects
+Mehtod : GET
+Return : json object of all OnProjects
+Body   : Null
+Header : List of OnProjects
+Authentication : Admin and Employee only
+
+2)
+Url  :http:localhost:portnumber/api/onprojects/getonproject/{id}
+id   : On Project Id
+Method :GET
+Return :Json object of On Project
+Body   :Null
+Header :On Projects Details
+Authentication : Admin and Employee only
+
+
+3)
+Url  :http:localhost:portnumber/api/OnProjects/insertOnProject
+Method :POST
+Return :True or False
+Body   :  {
+           "proj_id":"",
+           "client_id":""          
+          }
+Header :Add new On Project
+Authentication :
+
+
+4) 
+Url  :http:localhost:portnumber/api/onprojects/updateonproject/{id}
+id   :On Project Id 
+Method :PUT
+Return :True or False
+Body   :   {
+            "on_project_id":"",
+            "proj_id":"",
+           "client_id":""
+          }
+
+Header :Update On-Projects Details
+Authentication :
+
+
+5) 
+Url  :http:localhost:portnumber/api/onprojects/deleteonproject/{id}
+id   :On-project Id 
+Method :Delete
+Return :True or False
+Body   : Null
+Header :Delete On-Project
 Authentication :
 
 
