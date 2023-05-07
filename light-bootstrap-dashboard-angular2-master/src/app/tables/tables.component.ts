@@ -15,7 +15,8 @@ export class TablesComponent implements OnInit {
     public tableData2: TableData;
     public tableData3: TableData;
     public tableData4: TableData;
- 
+    public tableData5: TableData;
+    
     constructor() { }
 
   ngOnInit() {
@@ -53,11 +54,6 @@ export class TablesComponent implements OnInit {
         ]
     };
 
-
-
-
-
-
     this.tableData4 = {
       headerRow: [ 'Id', 'Project Name','Planed Start Date ','Planed End Date','Actual Start Date', 'Actual End Date ','Description'],
       dataRows: [
@@ -68,7 +64,14 @@ export class TablesComponent implements OnInit {
   };
 
 
+  this.tableData5 = {
+    headerRow: [ 'Id', 'Task Name','Project Id','Description','Start Date','End Date'],
+    dataRows: [
+        ['1', 'Meeting Scheduling','1','Please arrange the meeting scheduling process quickly','2021-02-01','2021-02-03'],
+        ['1', 'interview Scheduling','2','Please arrange the interview scheduling process quickly','2022-05-08','2022-05-09']
 
+    ]
+};
 
   }
 
