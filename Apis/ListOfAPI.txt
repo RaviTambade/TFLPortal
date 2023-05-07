@@ -537,6 +537,69 @@ Body   : Null
 Header :Delete On-Project
 Authentication :
 
+[Task]
+
+
+1)
+Url  : http:localhost:portnumber/api/tasks/getalltasks
+Mehtod : GET
+Return : json object of all Tasks
+Body   : Null
+Header : List of Tasks
+Authentication : Admin and Employee only
+
+2)
+Url  :http:localhost:portnumber/api/tasks/gettask/{id}
+id   : Task Id Id
+Method :GET
+Return :Json object of Task
+Body   :Null
+Header :Tasks Details
+Authentication : Admin and Employee only
+
+
+3)
+Url  :http:localhost:portnumber/api/tasks/inserttask
+Method :POST
+Return :True or False
+Body   :  {
+           "taskName":"",
+           "proj_id":"",
+           "description":"",
+           "start_Date":"",
+           "end_Date":""          
+          }
+Header :Add new Task
+Authentication :
+
+
+4) 
+Url  :http:localhost:portnumber/api/tasks/updatetasks/{id}
+id   :Task Id 
+Method :PUT
+Return :True or False
+Body   :   {
+           "task_id" :" ",
+           "taskName":"",
+           "proj_id":"",
+           "description":"",
+           "start_Date":"",
+           "end_Date":""  
+          }
+
+Header :Update Task Details
+Authentication :
+
+
+5) 
+Url  :http:localhost:portnumber/api/tasks/deletetask/{id}
+id   :Task Id 
+Method :Delete
+Return :True or False
+Body   : Null
+Header :Delete Task
+Authentication :
+
 
 
 
