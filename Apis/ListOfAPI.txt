@@ -364,6 +364,73 @@ Header :Delete Project
 Authentication :
 
 
+[Project Manager]
+
+
+1)
+Url  : http:localhost:portnumber/api/projectmanagers/getallprojectmanager
+Mehtod : GET
+Return : json object of all Projects
+Body   : Null
+Header : List of Projects
+Authentication : Admin and Employee only
+
+2)
+Url  :http:localhost:portnumber/api/projects/getproject/{id}
+id   : Project Id
+Method :GET
+Return :Json object of Project
+Body   :Null
+Header :Project Details
+Authentication : Admin and Employee only
+
+
+3)
+Url  :http:localhost:portnumber/api/projects/insertproject
+Method :POST
+Return :True or False
+Body   :  {
+           "project_name":"",
+           "planed_startDate":"", 
+           "planed_endDate":"", 
+           "actual_startDate":"",
+           "actual_endDate":"",
+           "Description":""            
+          }
+Header :Add new Project
+Authentication :
+
+
+4) 
+Url  :http:localhost:portnumber/api/projects/updatproject/{id}
+id   :Project Id 
+Method :PUT
+Return :True or False
+Body   :   {
+           "Proj_id":" ",
+           "project_name":"",
+           "planed_startDate":"", 
+           "planed_endDate":"", 
+           "actual_startDate":"",
+           "actual_endDate":"",
+           "Description":""
+          }
+
+Header :Update Project Details
+Authentication :
+
+
+5) 
+Url  :http:localhost:portnumber/api/projects/deleteprojects/{id}
+id   :Projects Id 
+Method :Delete
+Return :True or False
+Body   : Null
+Header :Delete Project
+Authentication :
+
+
+
 
 
 
