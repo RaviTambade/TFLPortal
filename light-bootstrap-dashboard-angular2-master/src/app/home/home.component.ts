@@ -60,7 +60,7 @@ export class HomeComponent implements OnInit {
         lineSmooth: Chartist.Interpolation.simple({
           divisor: 3
         }),
-        showLine: true,
+        showLine: false,
         showPoint: true,
       };
       this.hoursChartResponsive = [
