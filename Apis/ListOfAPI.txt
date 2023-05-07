@@ -420,6 +420,65 @@ Body   : Null
 Header :Delete Project Manager
 Authentication :
 
+[Client]
+
+
+1)
+Url  : http:localhost:portnumber/api/clients/getallclients
+Mehtod : GET
+Return : json object of all Clients
+Body   : Null
+Header : List of Clients
+Authentication : Admin and Employee only
+
+2)
+Url  :http:localhost:portnumber/api/Clients/getclient/{id}
+id   : Client Id
+Method :GET
+Return :Json object of Client
+Body   :Null
+Header :Client Details
+Authentication : Admin and Employee only
+
+
+3)
+Url  :http:localhost:portnumber/api/clients/insertclient
+Method :POST
+Return :True or False
+Body   :  {
+           "name":"",
+           "address":"",
+           "details":""          
+          }
+Header :Add new lient
+Authentication :
+
+
+4) 
+Url  :http:localhost:portnumber/api/clients/updatclient/{id}
+id   :Client Id 
+Method :PUT
+Return :True or False
+Body   :   {
+            "client_id":"",
+            "name":"",
+            "address":"",
+            "details":"" 
+          }
+
+Header :Update Client Details
+Authentication :
+
+
+5) 
+Url  :http:localhost:portnumber/api/clients/deleteclient/{id}
+id   :Client Id 
+Method :Delete
+Return :True or False
+Body   : Null
+Header :Delete Client
+Authentication :
+
 
 
 
