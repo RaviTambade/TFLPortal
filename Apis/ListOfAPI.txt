@@ -1,10 +1,11 @@
+
 Authentication Service:
 
  
 1)
 Url  : http:localhost:portnumber/api/users/getallusers
 Mehtod : GET
-Return : json object of all user
+Return : json object of all users
 Body   : Null
 Header : List of users
 Authentication : Admin and Employee only
@@ -279,8 +280,8 @@ Method :PUT
 Return :True or False
 Body   :   { 
               "team_member_id":"",
-              "team_id":""
-              "emp_id":"" 
+              "team_id":"",
+              "emp_id":"" ,
               "role_id":"" 
           }
 
@@ -296,6 +297,72 @@ Return :True or False
 Body   : Null
 Header :Delete Team Member
 Authentication :
+
+
+[Project]
+
+1)
+Url  : http:localhost:portnumber/api/projects/getallprojects
+Mehtod : GET
+Return : json object of all Projects
+Body   : Null
+Header : List of Projects
+Authentication : Admin and Employee only
+
+2)
+Url  :http:localhost:portnumber/api/projects/getproject/{id}
+id   : Project Id
+Method :GET
+Return :Json object of Project
+Body   :Null
+Header :Project Details
+Authentication : Admin and Employee only
+
+
+3)
+Url  :http:localhost:portnumber/api/projects/insertproject
+Method :POST
+Return :True or False
+Body   :  {
+           "project_name":"",
+           "planed_startDate":"", 
+           "planed_endDate":"", 
+           "actual_startDate":"",
+           "actual_endDate":"",
+           "Description":""            
+          }
+Header :Add new Project
+Authentication :
+
+
+4) 
+Url  :http:localhost:portnumber/api/projects/updatproject/{id}
+id   :Project Id 
+Method :PUT
+Return :True or False
+Body   :   {
+           "Proj_id":" ",
+           "project_name":"",
+           "planed_startDate":"", 
+           "planed_endDate":"", 
+           "actual_startDate":"",
+           "actual_endDate":"",
+           "Description":""
+          }
+
+Header :Update Project Details
+Authentication :
+
+
+5) 
+Url  :http:localhost:portnumber/api/projects/deleteprojects/{id}
+id   :Projects Id 
+Method :Delete
+Return :True or False
+Body   : Null
+Header :Delete Project
+Authentication :
+
 
 
 
