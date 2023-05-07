@@ -1,11 +1,10 @@
-
 Authentication Service:
 
  
 1)
 Url  : http:localhost:portnumber/api/users/getallusers
 Mehtod : GET
-Return : json object of all users
+Return : json object of all user
 Body   : Null
 Header : List of users
 Authentication : Admin and Employee only
@@ -187,7 +186,6 @@ Authentication :
 
 [Role]
 
-
 1)
 Url  : http:localhost:portnumber/api/roles/getallroles
 Mehtod : GET
@@ -241,6 +239,63 @@ Body   : Null
 Header :Delete role
 Authentication :
 
+[Team_member]
+
+1)
+Url  : http:localhost:portnumber/api/teammembers/getallteammembers
+Mehtod : GET
+Return : json object of all team members
+Body   : Null
+Header : List of team members
+Authentication : Admin and Employee only
+
+2)
+Url  :http:localhost:portnumber/api/teammembers/getteammember/{id}
+id   :team member Id
+Method :GET
+Return :Json object of team member
+Body   :Null
+Header :Team Member Details
+Authentication : Admin and Employee only
+
+
+3)
+Url  :http:localhost:portnumber/api/teammembers/insertteammember
+Method :POST
+Return :True or False
+Body   :  {
+           "team_id":""
+           "emp_id":"" 
+           "role_id":""          
+          }
+Header :Add new Team Members
+Authentication :
+
+
+4) 
+Url  :http:localhost:portnumber/api/teammembers/updatteammember/{id}
+id   :Team Member Id 
+Method :PUT
+Return :True or False
+Body   :   { 
+              "team_member_id":"",
+              "team_id":""
+              "emp_id":"" 
+              "role_id":"" 
+          }
+
+Header :Update Team Members Details
+Authentication :
+
+
+5) 
+Url  :http:localhost:portnumber/api/teammembers/Deleteteammember/{id}
+id   :Team Member Id 
+Method :Delete
+Return :True or False
+Body   : Null
+Header :Delete Team Member
+Authentication :
 
 
 
