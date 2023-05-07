@@ -14,8 +14,9 @@ export class TablesComponent implements OnInit {
     public tableData1: TableData;
     public tableData2: TableData;
     public tableData3: TableData;
-
-  constructor() { }
+    public tableData4: TableData;
+ 
+    constructor() { }
 
   ngOnInit() {
       this.tableData1 = {
@@ -51,6 +52,21 @@ export class TablesComponent implements OnInit {
           
         ]
     };
+
+
+
+
+
+
+    this.tableData4 = {
+      headerRow: [ 'Id', 'Project Name','Planed Start Date ','Planed End Date','Actual Start Date', 'Actual End Date ','Description'],
+      dataRows: [
+          ['1', 'Online Meeting Scheduling','2021-02-01','2021-03-01','2021-02-02','2021-03-03', 'Compeny requirement want to organize meetins online'],
+          ['2', 'Online Interview Scheduling','2022-05-10','2022-05-12','2022-05-10','2022-05-13', 'We want to argent hiring of new employees for new projects']
+
+      ]
+  };
+
 
 
 
