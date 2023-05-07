@@ -2,7 +2,7 @@
 Authentication Service:
 
  
-1]
+1)
 Url  : http:localhost:portnumber/api/users/getallusers
 Mehtod : GET
 Return : json object of all users
@@ -10,7 +10,7 @@ Body   : Null
 Header : List of users
 Authentication : Admin and Employee only
 
-2]
+2)
 Url  :http:localhost:portnumber/api/users/getuser/{id}
 id   :User Id
 Method :GET
@@ -20,7 +20,7 @@ Header :User Details
 Authentication : Admin and Employee only
 
 
-3] 
+3) 
 Url  :http:localhost:portnumber/api/users/insertuser
 Method :POST
 Return :True or False
@@ -37,7 +37,7 @@ Authentication :
 
 
 
-4] 
+4) 
 Url  :http:localhost:portnumber/api/users/updateuser/{id}
 id   :User Id 
 Method :PUT
@@ -52,7 +52,7 @@ Header :Update User Details
 Authentication :
 
 
-5] 
+5) 
 Url  :http:localhost:portnumber/api/users/Deleteuser/{id}
 id   :User Id 
 Method :Delete
@@ -63,7 +63,7 @@ Authentication :
 
 [Employees Service ]
 
-1]
+1)
 Url  : http:localhost:portnumber/api/employees/getallemployees
 Mehtod : GET
 Return : json object of all employees
@@ -71,7 +71,7 @@ Body   : Null
 Header : List of employees
 Authentication : Admin and Employee only
 
-2]
+2)
 Url  :http:localhost:portnumber/api/employees/getemployee/{id}
 id   :Employee Id
 Method :GET
@@ -81,7 +81,7 @@ Header :Employee Details
 Authentication : Admin and Employee only
 
 
-3] 
+3)
 Url  :http:localhost:portnumber/api/employees/insertemployee
 Method :POST
 Return :True or False
@@ -98,7 +98,7 @@ Header :Add new Employee
 Authentication :
 
 
-4] 
+4)
 Url  :http:localhost:portnumber/api/employees/updateemployee/{id}
 id   :employee Id 
 Method :PUT
@@ -118,7 +118,7 @@ Header :Update Employee Details
 Authentication :
 
 
-5] 
+5) 
 Url  :http:localhost:portnumber/api/employees/Deleteemployee/{id}
 id   :Employee Id 
 Method :Delete
@@ -132,7 +132,7 @@ Authentication :
 [Team]
 
 
-1]
+1)
 Url  : http:localhost:portnumber/api/teams/getallteams
 Mehtod : GET
 Return : json object of all teams
@@ -140,7 +140,7 @@ Body   : Null
 Header : List of teams
 Authentication : Admin and Employee only
 
-2]
+2)
 Url  :http:localhost:portnumber/api/teams/getteam/{id}
 id   :Team Id
 Method :GET
@@ -150,7 +150,7 @@ Header :Team Details
 Authentication : Admin and Employee only
 
 
-3] 
+3) 
 Url  :http:localhost:portnumber/api/teams/insertteam
 Method :POST
 Return :True or False
@@ -162,7 +162,7 @@ Header :Add new Team
 Authentication :
 
 
-4] 
+4) 
 Url  :http:localhost:portnumber/api/teams/updateteam/{id}
 id   :Team Id 
 Method :PUT
@@ -176,7 +176,7 @@ Header :Update Team Details
 Authentication :
 
 
-5] 
+5) 
 Url  :http:localhost:portnumber/api/teams/Deleteteam/{id}
 id   :Team Id 
 Method :Delete
@@ -185,6 +185,61 @@ Body   : Null
 Header :Delete team
 Authentication :
 
+[Role]
+
+
+1)
+Url  : http:localhost:portnumber/api/roles/getallroles
+Mehtod : GET
+Return : json object of all roles
+Body   : Null
+Header : List of roles
+Authentication : Admin and Employee only
+
+2)
+Url  :http:localhost:portnumber/api/roles/getroles/{id}
+id   :Role Id
+Method :GET
+Return :Json object of role
+Body   :Null
+Header :Role Details
+Authentication : Admin and Employee only
+
+
+3)
+Url  :http:localhost:portnumber/api/roles/insertrole
+Method :POST
+Return :True or False
+Body   :  { 
+           "RoleName":""          
+          }
+
+Header :Add new Role
+Authentication :
+
+
+4) 
+Url  :http:localhost:portnumber/api/roles/updaterole/{id}
+id   :role Id 
+Method :PUT
+Return :True or False
+Body   :   { 
+            "Role id":"",
+            "RoleName":"",
+          }
+
+Header :Update role Details
+Authentication :
+
+
+5) 
+Url  :http:localhost:portnumber/api/roles/Deleterole/{id}
+id   :Role Id 
+Method :Delete
+Return :True or False
+Body   : Null
+Header :Delete role
+Authentication :
 
 
 
