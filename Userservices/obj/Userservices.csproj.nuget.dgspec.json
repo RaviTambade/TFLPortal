@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GIthub\\SelfProject\\ProjectManagementSystem\\Userservices\\Userservices.csproj": {}
+    "E:\\Projects\\ProjectManagementSystem\\Userservices\\Userservices.csproj": {}
   },
   "projects": {
-    "D:\\GIthub\\SelfProject\\ProjectManagementSystem\\Userservices\\Userservices.csproj": {
+    "E:\\Projects\\ProjectManagementSystem\\Userservices\\Userservices.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GIthub\\SelfProject\\ProjectManagementSystem\\Userservices\\Userservices.csproj",
+        "projectUniqueName": "E:\\Projects\\ProjectManagementSystem\\Userservices\\Userservices.csproj",
         "projectName": "Userservices",
-        "projectPath": "D:\\GIthub\\SelfProject\\ProjectManagementSystem\\Userservices\\Userservices.csproj",
-        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "D:\\GIthub\\SelfProject\\ProjectManagementSystem\\Userservices\\obj\\",
+        "projectPath": "E:\\Projects\\ProjectManagementSystem\\Userservices\\Userservices.csproj",
+        "packagesPath": "C:\\Users\\Rajat\\.nuget\\packages\\",
+        "outputPath": "E:\\Projects\\ProjectManagementSystem\\Userservices\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Rajat\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -72,7 +70,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
