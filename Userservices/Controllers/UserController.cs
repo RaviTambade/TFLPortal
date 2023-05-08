@@ -67,4 +67,22 @@ public class UsersController : ControllerBase
 
         return status;
     }
+
+
+   [HttpPost]
+   [Route("ValidateUser")]
+   public bool ValidateUser(Credential user){
+    bool status =_service.ValidateUser(user);
+    if(status==true){
+        Console.WriteLine("user is valid");
+    }
+    else{
+           Console.WriteLine("Invalid User");              
+        }
+    return status;
+   }
+
 }
+
+
+

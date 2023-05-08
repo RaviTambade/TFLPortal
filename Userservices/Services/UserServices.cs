@@ -22,4 +22,6 @@ public class UserService : IUserServices
 
     public bool DeleteUser(int id)=>_repo.DeleteUser(id);
 
+    public bool ValidateUser(Credential user)=>_repo.ValidateUser(user);
+
 }
