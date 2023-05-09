@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "D:\\GIthub\\SelfProject\\ProjectManagementSystem\\Userservices\\Userservices.csproj": {}
   },
   "projects": {
@@ -16,6 +17,22 @@
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+=======
+    "D:\\Projects\\ProjectManagementSystem\\Userservices\\Userservices.csproj": {}
+  },
+  "projects": {
+    "D:\\Projects\\ProjectManagementSystem\\Userservices\\Userservices.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\ProjectManagementSystem\\Userservices\\Userservices.csproj",
+        "projectName": "Userservices",
+        "projectPath": "D:\\Projects\\ProjectManagementSystem\\Userservices\\Userservices.csproj",
+        "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\ProjectManagementSystem\\Userservices\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> 3076e23ffb672d129befba44836c705fd8e895f5
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -72,7 +89,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+>>>>>>> 3076e23ffb672d129befba44836c705fd8e895f5
         }
       }
     }
