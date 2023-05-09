@@ -12,7 +12,8 @@ import { SidebarModule } from './sidebar/sidebar.module';
 import { AppComponent } from './app.component';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './authenticate/login/login.component';
+import { AuthenticateModule } from './authenticate/authenticate.module';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { LoginComponent } from './login/login.component';
     NavbarModule,
     FooterModule,
     SidebarModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AuthenticateModule
   ],
   declarations: [
     AppComponent,
