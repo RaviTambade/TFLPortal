@@ -2155,19 +2155,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Rajat\\.nuget\\packages\\": {}
+    "C:\\Users\\Asus\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Projects\\ProjectManagementSystem\\Userservices\\Userservices.csproj",
+      "projectUniqueName": "D:\\Projects\\ProjectManagementSystem\\Userservices\\Userservices.csproj",
       "projectName": "Userservices",
-      "projectPath": "E:\\Projects\\ProjectManagementSystem\\Userservices\\Userservices.csproj",
-      "packagesPath": "C:\\Users\\Rajat\\.nuget\\packages\\",
-      "outputPath": "E:\\Projects\\ProjectManagementSystem\\Userservices\\obj\\",
+      "projectPath": "D:\\Projects\\ProjectManagementSystem\\Userservices\\Userservices.csproj",
+      "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
+      "outputPath": "D:\\Projects\\ProjectManagementSystem\\Userservices\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Rajat\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -2223,7 +2223,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }
