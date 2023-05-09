@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticateServiceService } from '../authenticate-service.service';
-import { Credential} from '../Credential';
-
+import {LoginserviceService} from '../login-service.service';
+import { Credential} from '../credential';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +12,8 @@ export class LoginComponent implements OnInit {
                       password:''}
   status : boolean  | undefined
  
-  constructor(private svc : AuthenticateServiceService) {}
+  constructor(private svc : LoginserviceService) {}
+  
   
   ngOnInit() {
     
@@ -38,3 +38,4 @@ export class LoginComponent implements OnInit {
   
   
 } 
+

@@ -12,9 +12,7 @@ import { SidebarModule } from './sidebar/sidebar.module';
 import { AppComponent } from './app.component';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { LoginComponent } from './authenticate/login/login.component';
-import { AuthenticateModule } from './authenticate/authenticate.module';
-
+import { LoginComponent } from './login/login.component';
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -25,7 +23,7 @@ import { AuthenticateModule } from './authenticate/authenticate.module';
     FooterModule,
     SidebarModule,
     AppRoutingModule,
-    AuthenticateModule
+   
   ],
   declarations: [
     AppComponent,
