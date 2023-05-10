@@ -1,40 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Users } from '../users';
 import { LoginserviceService } from '../login-service.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
+  providers:[ LoginserviceService ]
 })
-export class RegisterComponent implements OnInit {
-  user : Users ={email:'',
-                password:'',
-                contactNumber:''}
-  status : boolean  | undefined
-
-  constructor(private svc : LoginserviceService) { }
-
-  ngOnInit() {
-
+export class RegisterComponent   {
+  user: Users = {
+    email: '',
+    contactNumber:'',
+    password: ''
   }
+  confirmPassword: any;
 
-  Register(user:Users){
-    console.log(user);
-    this.svc.Register(user).subscribe((response)=>{
-      this.status = response;
-      console.log(response);
-      
-      if(response){
-        alert("Registration sucessfull")
-        window.location.reload();
-      }
-      else
-      {
-        alert("Registration failed")
-      }
-    })
+  registered: boolean =false;
 
+  constructor(private svc: LoginserviceService) { }
+
+  onRegister( form:any) {
+    if(this.user.email=='' || this.user.password==''){
+      alert("please give valid email or password")
+      return;
+    }
+    if(this.user.password.length < 8 || this.confirmPassword.length < 8){
+      alert("password should be minimum 8 characters ")
+      return;
+    }
+
+    if (this.user.password === this.confirmPassword) {
+      this.svc.Register(form).subscribe((response) => {
+        this.registered = response;
+        console.log(response);
+        alert("User Registered successfully")
+      })
+    }
+    else{
+      alert("password dosen't match")
+    }
   }
 
 }
