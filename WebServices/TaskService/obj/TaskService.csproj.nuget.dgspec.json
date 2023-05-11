@@ -47,6 +47,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
+            },
+            "mysql.data": {
+              "target": "Package",
+              "version": "[8.0.33, )"
             }
           },
           "imports": [
