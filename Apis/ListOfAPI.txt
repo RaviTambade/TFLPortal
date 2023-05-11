@@ -61,6 +61,76 @@ Body   : Null
 Header :Delete User
 Authentication :
 
+
+
+Accounts:
+
+ 
+1)
+Url  : http:localhost:portnumber/api/accounts/getallaccounts
+Mehtod : GET
+Return : json object of all users
+Body   : Null
+Header : List of Accounts
+Authentication : Admin and Employee only
+
+2)
+Url  :http:localhost:portnumber/api/accounts/getaccount/{id}
+id   :Account Id
+Method :GET
+Return :json object of user
+Body   :Null
+Header :Account Details
+Authentication : Admin and Employee only
+
+
+3) 
+Url  :http:localhost:portnumber/api/accounts/insertaccount
+Method :POST
+Return :True or False
+Body   :  {
+            "account no":"",
+            "ifsc code":"",
+            "register date":"",
+            "balance":"",
+          }
+
+Header :Add new account
+Authentication :
+
+
+
+4) 
+Url  :http:localhost:portnumber/api/accounts/updateaccount/{id}
+id   :Account Id 
+Method :PUT
+Return :True or False
+Body   :  { 
+           "id" :"",
+           "account no":"",
+            "ifsc code":"",
+            "register date":"",
+            "balance":"",
+          }
+
+Header :Update User Details
+Authentication :
+
+
+5) 
+Url  :http:localhost:portnumber/api/accounts/Deletaccount/{id}
+id   :Account Id 
+Method :Delete
+Return :True or False
+Body   : Null
+Header :Delete Account
+Authentication :
+
+
+
+
+
+
 [Employees Service ]
 
 1)
@@ -662,6 +732,70 @@ Body   : Null
 Header :Delete assign
 Authentication :
 
+
+
+[Pay Role Cycle]
+
+
+1)
+Url  : http:localhost:portnumber/api/payrolecycles/getall
+Mehtod : GET
+Return : json object of all payrole cycles
+Body   : Null
+Header : List of payrole cycles
+Authentication : Admin and Employee only
+
+2)
+Url  :http:localhost:portnumber/api/payrolecycles/getpayrolecycles/{id}
+id   : Payrolecycle  Id
+Method :GET
+Return :Json object of Payrole cycles
+Body   :Null
+Header :Payrole cycles  Details
+Authentication : Admin and Employee only
+
+
+3)
+Url  :http:localhost:portnumber/api/payrolecycles/insertpayrolecycle
+Method :POST
+Return :True or False
+Body   :  {
+           "payroll_cycle_year":"",
+           "payroll_cycle_number":"",
+           "start_date":"",
+           "end_date":"",
+           "deposit_date":""
+          }
+Header :Add new PayRoleCycle
+Authentication :
+
+
+4) 
+Url  :http:localhost:portnumber/api/payrolecycles/updatepayrolecycle/{id}
+id   :payrolecycle Id 
+Method :PUT
+Return :True or False
+Body   :   { 
+           "payrolecycleId":"',
+           "payroll_cycle_year":"",
+           "payroll_cycle_number":"",
+           "start_date":"",
+           "end_date":"",
+           "deposit_date":""
+          }
+
+Header :Update Payrole cycles Details
+Authentication :
+
+
+5) 
+Url  :http:localhost:portnumber/api/payrolecycles/deletepayrolecycle/{id}
+id   :Payrole cycle Id 
+Method :Delete
+Return :True or False
+Body   : Null
+Header :Delete payrole cycle
+Authentication :
 
 
 

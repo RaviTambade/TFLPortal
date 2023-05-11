@@ -13,9 +13,9 @@ builder.Services.AddCors();
 
 
 
+
 builder.Services.AddTransient<IEmployeeRepository,EmployeeRepository>();
 builder.Services.AddTransient<IEmployeesService,EmployeeService>();
-
 
 
 
@@ -32,7 +32,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
 app.UseHttpsRedirection();
+app.UseCors(x => x.AllowAnyOrigin()
+                  .AllowAnyMethod()
+                  .AllowAnyHeader());
 
 app.UseAuthorization();
 app.UseCors(x => x.AllowAnyOrigin()

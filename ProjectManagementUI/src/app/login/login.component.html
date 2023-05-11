@@ -1,132 +1,55 @@
-<!-- <div class="main-content">
-  <div class="container-fluid"> -->
+<div class="main-content ">
+  <div class="tex">
+  <div class="container-fluid">
 
-<div class="header bg-gradient-danger py-7 py-lg-8">
-    <div class="container">
-      <div class="header-body text-center mb-7">
-        <div class="row justify-content-center">
-          <div class="col-lg-5 col-md-6">
-            <h1 class="text-white">Welcome!</h1>
-            <p class="text-lead text-light">Use these awesome forms to login or create new account in your project for free.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- <div class="separator separator-bottom separator-skew zindex-100">
-      <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
-      </svg>
-    </div> -->
-  </div>
-  <!-- Page content  -->
-  <div class="container mt--8 pb-5">
-    <div class="row d-flex justify-content-center">
-      <div class="col-lg-5 col-md-7">
-        <div class="card bg-secondary shadow border-0">
-          <div class="card-header bg-transparent pb-5">
-            <div class="text-muted text-center mt-2 mb-3"><h2>SignIn</h2></div>
-            <div class="btn-wrapper text-center">
-              <!-- <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
-                <span class="btn-inner--icon"><img src="../assets/img/icons/common/github.svg"></span>
-                <span class="btn-inner--text">Github</span>
-              </a> -->
-              <!-- <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
-                <span class="btn-inner--icon"><img src="../assets/img/icons/common/google.svg"></span>
-                <span class="btn-inner--text">Google</span>
-              </a> -->
-            </div>
-          </div>
-          <div class="card-body px-lg-5 py-lg-5">
-            <!-- <div class="text-center text-muted mb-4">
-              <small>Or sign in with credentials</small>
-            </div> -->
+          <div class="header bg-gradient-danger py-7 py-lg-8">
             
-            <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm.value)">
-              <div class="form-group mb-3"> 
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+              <div class="container t">
+                <div class="header-body text-center mb-7">
+                  <div class="row justify-content-center">
+                    <div class="col-lg-5 col-md-6">
+                      <h1 class="text-white">Welcome!</h1>
+                      <p class="text-lead text-light">Use these awesome forms to login in your project.</p>
+                    </div>
                   </div>
-                  <input type="text" class="form-control" id="email" placeholder="Email" name="email" [(ngModel)]="user.email">
                 </div>
               </div>
-              <div class="form-group">
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+             
+            </div>
+            <!-- Page content  -->
+            <div class="container text-center" style="color: aqua;" >
+              <div class="row justify-content-center">
+                <div class="col-md-6">
+                  <div class="card" style="color:black">
+                  <div class="loginBox text-center">
+                    <img class="user" src="https://i.ibb.co/yVGxFPR/2.png" height="100px" width="100px">
+                    <h3>Sign in here</h3>
+                    <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm.value)">
+                      <div class="inputBox">
+                        <input id="email" type="text" name="Email" placeholder="Email" [(ngModel)]="user.email">  
+                      </div>
+                      <br>
+                      <div>
+                      <input id="pass" type="password" name="Password" placeholder="Password" [(ngModel)]="user.password">
+                      </div>
+                      <br>
+                      <button type="button" class="btn btn-primary my-4" type="submit">Sign In </button>
+                      <div class="row mt-3">
+                        <div class="col-8">
+                          <a href="javascript:void(0)" class="text-light"><small>Forgot password? /</small></a>
+                          <span> 
+                            <a href="javascript:void(0)" class="text-light"><small>Create new account</small></a>
+                        </span>
+                        </div>
+                      </div>
+                    </form>
                   </div>
-                  <input type="password" class="form-control" id="pass" placeholder="Password" name="password"  [(ngModel)]="user.password">
                 </div>
               </div>
-              <div class="custom-control custom-control-alternative custom-checkbox align-items-center">
-                <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
-                <label class="custom-control-label" for=" customCheckLogin">
-                  <span class="text-muted">Remember me</span>
-                </label>
-              </div>
-              <div class="text-center">
-                <button type="button" class="btn btn-primary my-4" type="submit" >Sign in</button>
-                <!-- <a href="#!" class="btn btn-info">Sign in</a>  -->
-              </div>
+            </div>
+          </div>
+            
+    
+    </div>
+</div>
 
-            </form>
-          </div>
-        </div>
-        <div class="row mt-3">
-          <div class="col-6">
-            <a href="javascript:void(0)" class="text-light"><small>Forgot password?</small></a>
-          </div>
-          <div class="col-6 text-right">
-            <a href="javascript:void(0)" class="text-light"><small>Create new account</small></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  
-  <!-- 
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-        <div class="card border-0 shadow rounded-3 my-5">
-          <div class="card-body p-4 p-sm-5">
-            <h5 class="card-title  text-center mb-5  fs-5">Sign In</h5>
-            <form  #loginForm="ngForm" (ngSubmit)="onLogin(loginForm.value)">
-              <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="username" placeholder="name@example.com" name="email" [(ngModel)]="user.email">
-                <label for="username">Email</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="pass" placeholder="Password" name="password" [(ngModel)]="user.password">
-                <label for="password">Password</label>
-              </div>
-        
-              <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
-                <label class="form-check-label" for="rememberPasswordCheck">
-                  Remember password
-                </label>
-              </div>
-              <div class="d-grid">
-                <button class="btn btn-success  fw-bold" style="color: inherit; text-decoration:none;display: block;" type="submit" >Sign in</button>
-              </div>
-              <div class="row justify-content-md-end " style="text-align: right;">
-                <a [routerLink]="['/register']" ><small class="text-muted">Forgot Password?</small></a>
-            </div>
-              <hr class="my-4">
-               <div class="d-grid">
-                <button class="btn btn-success fw-bold" >
-                  <a [routerLink]="['/register']" style="color: inherit; text-decoration:none;display: block;">  Create a New Account </a>
-               </button>
-              </div>
-            </form>
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <router-outlet></router-outlet> -->
-<!-- </div>
-</div> -->
