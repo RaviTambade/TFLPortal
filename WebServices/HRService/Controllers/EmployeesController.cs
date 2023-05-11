@@ -11,9 +11,9 @@ namespace employees.Controllers;
 public class EmployeesController : ControllerBase
 {
 
-    private readonly EmployeeService _service;
+    private readonly IEmployeesService _service;
 
-    public EmployeesController(EmployeeService service)
+    public EmployeesController(IEmployeesService service)
     {
         _service = service;
     }

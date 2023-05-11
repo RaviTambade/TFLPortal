@@ -22,7 +22,7 @@ export class LoginserviceService {
   }
 
   getProjects():Observable<Projects[]>{
-    let url = "http://localhost:5204/api/projects/getallprojects";
+    let url = "http://localhost:5294/api/projects/getall";
     return this.http.get<Projects[]>(url);
   }
 

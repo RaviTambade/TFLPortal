@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+builder.Services.AddCors();
 
 builder.Services.AddTransient<IProjectsRepository,ProjectsRepository>();
 builder.Services.AddTransient<IProjectsService,ProjectService>();
@@ -27,6 +28,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(x => x.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
 
 app.UseAuthorization();
 

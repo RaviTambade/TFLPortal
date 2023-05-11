@@ -23,6 +23,7 @@ public class EmployeeRepository : IEmployeeRepository
             MySqlCommand command=new MySqlCommand();
             command.CommandText="SELECT * FROM employees";
             command.Connection= connection;
+            connection.Open();
             MySqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
@@ -147,7 +148,7 @@ public class EmployeeRepository : IEmployeeRepository
           MySqlConnection con = new MySqlConnection();
           con.ConnectionString=_conString;
           try{
-            string query = "UPDATE employees SET empfirst_name=@EmpFirstName, emplast_name=@EmpLastName, birth_date=@BirthDate, hire_date=@HireDate, contact_number=@ContactNumber, email=@Email, password=@Password, photo=@Photo, reports_to=@ReportsTo, account_number=@AccountNumber, dept_id=@DeptId WHERE employee_id=@EmployeeId";   
+            string query = "UPDATE employees SET empfirst_name=@EmpFirstName, emplast_name=@EmpLastName, birth_date=@BirthDate, hire_date=@HireDate, contact_number=@ContactNumber, email=@Email, password=@Password,  account_number=@AccountNumber WHERE emp_id=@EmployeeId";   
              Console.WriteLine(query);
              con.Open();
              MySqlCommand command=new MySqlCommand(query,con) ;
