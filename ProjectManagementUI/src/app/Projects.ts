@@ -2,10 +2,10 @@ export class Projects{
     constructor(
                 public projId:number,
                 public projName:string,
-                public plannedStartDate:Date,
-                public plannedEndDate:Date,
+                public planedStartDate:Date,
+                public planedEndDate:Date,
                 public actualStartDate:Date,
                 public actualEndDate:Date,
-                public projDesc:string)
+                public description:string)
                 {}
 }

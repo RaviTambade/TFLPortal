@@ -8,6 +8,7 @@ import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { ProjectsComponent } from 'app/projects/projects.component';
+import { IconsComponent } from 'app/icons/icons.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: HomeComponent },
@@ -18,5 +19,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'projects',       component: ProjectsComponent },
     { path: 'maps',           component: MapsComponent },
     { path: 'notifications',  component: NotificationsComponent },
+    { path: 'icons',          component: IconsComponent },
     { path: 'upgrade',        component: UpgradeComponent },
 ];
