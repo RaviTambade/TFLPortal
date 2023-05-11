@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bankingservice", "Bankingse
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamServices", "TeamServices\TeamServices.csproj", "{ED704ADB-FD29-4930-89FD-362929412CC0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projectservices", "Projectservices\Projectservices.csproj", "{B7E67723-B828-4033-B2DC-F876BADBFF00}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{ED704ADB-FD29-4930-89FD-362929412CC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED704ADB-FD29-4930-89FD-362929412CC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED704ADB-FD29-4930-89FD-362929412CC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7E67723-B828-4033-B2DC-F876BADBFF00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7E67723-B828-4033-B2DC-F876BADBFF00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7E67723-B828-4033-B2DC-F876BADBFF00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7E67723-B828-4033-B2DC-F876BADBFF00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
