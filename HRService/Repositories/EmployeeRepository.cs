@@ -11,7 +11,7 @@ public class EmployeeRepository : IEmployeeRepository
   private string _conString;
 
   public EmployeeRepository(IConfiguration configuration){
-      _configuration= configuration;
+       _configuration= configuration;
       _conString=this._configuration.GetConnectionString("DefaultConnection");
 
   }
