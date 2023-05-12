@@ -12,6 +12,9 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProjectsComponent } from './projects/projects.component';
+import { HRModuleModule } from './hrmodule/hrmodule.module';
+
+
 
 @NgModule({
   imports: [
@@ -23,6 +26,9 @@ import { ProjectsComponent } from './projects/projects.component';
     FooterModule,
     SidebarModule,
     AppRoutingModule,
+    HRModuleModule
+   
+   
    
   ],
   declarations: [
@@ -30,7 +36,9 @@ import { ProjectsComponent } from './projects/projects.component';
     AdminLayoutComponent,
     LoginComponent,
     RegisterComponent,
-    ProjectsComponent
+    ProjectsComponent,
+   
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
