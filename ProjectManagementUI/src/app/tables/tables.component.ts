@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Projects } from 'app/Projects';
+//import { Projects } from 'app/projects/Projects';
 import { LoginserviceService } from 'app/login-service.service'; 
 
 declare interface TableData {
@@ -19,16 +19,16 @@ export class TablesComponent implements OnInit {
     public tableData4: TableData;
     public tableData5: TableData;
 
-    projects :Projects[] |undefined;
+    //projects :Projects[] |undefined;
     
     constructor(private svc :LoginserviceService) { }
 
   ngOnInit() {
 
-    this.svc.getProjects().subscribe((response)=>{
-        this.projects=response;
-        console.log(response);
-      });
+    // this.svc.getProjects().subscribe((response)=>{
+    //     this.projects=response;
+    //     console.log(response);
+    //   });
 
 
       this.tableData1 = {
