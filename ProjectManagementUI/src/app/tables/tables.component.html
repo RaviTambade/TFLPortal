@@ -82,30 +82,16 @@
             </div>
 
             
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">All Projects</h4>
-                                <p class="category">Here is all Projects of our company</p>
-                            </div>
-                            <div class="content table-responsive table-full-width">
-                                <table class="table table-hover table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th *ngFor="let cell of tableData4.headerRow">{{ cell }}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let row of tableData4.dataRows">
-                                            <td *ngFor="let cell of row">{{cell}}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div *ngFor = "let project of projects">
+                <p><label>Project Id :</label>{{ project.projId }}</p>
+                <p><label>Project Name :</label>{{ project.projName }}</p>
+                <p><label>Planned Start Date :</label>{{ project.plannedStartDate }}</p>
+                <p><label>Planned End Date :</label>{{ project.plannedEndDate }}</p>
+                <p><label>Actual Start Date :</label>{{ project.actualStartDate }}</p>
+                <p><label>Actual End Date :</label>{{ project.actualEndDate }}</p>
+                <p><label>Description :</label>{{ project.projDesc }}</p>
+                <hr/>
+            </div>  
 
                 
 

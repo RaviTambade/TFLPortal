@@ -1,0 +1,49 @@
+<div class="main-content">
+    <div class="container-fluid">
+       
+                        
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="header">
+                                    <b><h4 class="title">All Employees</h4></b>
+                                    <p class="category">Here is all Employees of Compeny</p>
+                                </div>
+                                <div class="content table-responsive table-full-width">
+                                    <table class="table table-hover table-striped ">
+                                        <thead>
+                                            <tr>
+                                                <th>Employee Id</th>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Birth Date</th>
+                                                <th>Hire Date</th>
+                                                <th>Contact Number</th>
+                                                <th>Email</th>
+                                                <th>Password</th>
+                                                <th>Account Number</th>
+                                            </tr>
+                                        </thead> 
+                                        <tbody>   
+                                            <tr *ngFor="let employee of employees">
+                                                <td >{{ employee.id }}</td>
+                                                <td >{{ employee.firstName }}</td>
+                                                <td >{{ employee.lastName }}</td>
+                                                <td >{{ employee.birthDate }}</td>
+                                                <td >{{ employee.hireDate }}</td>
+                                                <td >{{ employee.contactNumber }}</td>
+                                                <td >{{ employee.email }}</td>
+                                                <td >{{ employee.password }}</td>
+                                                <td >{{ employee.accountNumber }}</td>
+                                            </tr>
+                                        </tbody>       
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+            
+    
+   </div>
+</div>

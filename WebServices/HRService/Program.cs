@@ -1,5 +1,5 @@
 using HRService.Repositories;
-using  HRService.Repositories.Interfaces;
+using HRService.Repositories.Interfaces;
 using HRService.Services;
 using HRService.Services.Interfaces;
 
@@ -10,8 +10,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddCors();
-
-
 
 
 builder.Services.AddTransient<IEmployeeRepository,EmployeeRepository>();
