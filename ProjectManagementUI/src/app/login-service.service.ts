@@ -21,7 +21,7 @@ export class LoginserviceService {
     return this.http.post<Users>(url,user);
   }
 
-  getProjects():Observable<Projects[]>{
+  public getProjects():Observable<Projects[]>{
     let url = "http://localhost:5294/api/projects/getall";
     return this.http.get<Projects[]>(url);
   }
