@@ -11,8 +11,9 @@ import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { ProjectsComponent } from './projects/projects.component';
 import { HRModuleModule } from './hrmodule/hrmodule.module';
+
+
 
 
 
@@ -26,7 +27,10 @@ import { HRModuleModule } from './hrmodule/hrmodule.module';
     FooterModule,
     SidebarModule,
     AppRoutingModule,
-    HRModuleModule
+    HRModuleModule,
+   
+    
+  
    
    
    
@@ -36,7 +40,7 @@ import { HRModuleModule } from './hrmodule/hrmodule.module';
     AdminLayoutComponent,
     LoginComponent,
     RegisterComponent,
-    ProjectsComponent,
+    
    
     
   ],
