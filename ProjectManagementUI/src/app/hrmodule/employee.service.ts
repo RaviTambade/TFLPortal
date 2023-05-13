@@ -15,5 +15,11 @@ export class EmployeeService {
     return this.http.get<Employee[]>(url);
   }
 
+  public insert(employee:Employee):Observable<any>{
+    let url = "http://localhost:5230/api/employees/InsertEmployee";
+    return this.http.post<Employee>(url,employee);
+  }
+
+
   
 }

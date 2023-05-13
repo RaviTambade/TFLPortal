@@ -14,13 +14,14 @@ export const ROUTES: RouteInfo[] = [
     //{ path: '/login', title: 'login',  icon:'pe-7s-news-paper', class: '' },
     //{ path: '/register', title: 'Register',  icon:'pe-7s-science', class: '' },
 
-    //{ path: '/get-employees', title: 'Employees',  icon:'pe-7s-study', class: '' },
+    { path: '/get-employees', title: 'Employees',  icon:'pe-7s-study', class: '' },
     { path: '/insert-employees', title: 'Insert Employees',  icon:'pe-7s-study', class: '' },
 
 
     { path: '/getall-projects', title: 'Projects',  icon:'pe-7s-study', class: '' },
     { path: '/get-project-by-id', title: 'Get Project',  icon:'pe-7s-study', class: '' },
     { path: '/insert-prject', title: 'Add Project',  icon:'pe-7s-study', class: '' },
+    { path: '/update-project', title: 'Update Project',  icon:'pe-7s-study', class: '' },
 
     
     { path: '/maps', title: 'Maps',  icon:'pe-7s-map-marker', class: '' },

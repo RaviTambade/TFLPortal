@@ -13,6 +13,7 @@ import { InsertEmployeeComponent } from 'app/hrmodule/insert-employee/insert-emp
 import { GetallProjectsComponent } from 'app/projects/getall-projects/getall-projects.component';
 import { GetProjectByIdComponent } from 'app/projects/get-project-by-id/get-project-by-id.component'; 
 import { InsertPrjectComponent } from 'app/projects/insert-prject/insert-prject.component';
+import { UpdateProjectComponent } from 'app/projects/update-project/update-project.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',           component: HomeComponent },
@@ -28,6 +29,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'getall-projects',     component: GetallProjectsComponent },
     { path: 'get-project-by-id',   component: GetProjectByIdComponent},
     { path: 'insert-prject',       component: InsertPrjectComponent  },
+    { path: 'update-project',      component:UpdateProjectComponent },
 
     
     { path: 'maps',                component: MapsComponent },

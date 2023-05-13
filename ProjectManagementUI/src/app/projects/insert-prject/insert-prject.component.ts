@@ -13,10 +13,10 @@ export class InsertPrjectComponent {
     
     projId : 0,
     projName: '',
-    planedStartDate: new Date(),
-    planedEndDate: new Date(),
-    actualStartDate: new Date(),
-    actualEndDate: new Date(),
+    planedStartDate: '',
+    planedEndDate: '',
+    actualStartDate: '',
+    actualEndDate: '',
     description: ''
   };
 
@@ -37,6 +37,6 @@ export class InsertPrjectComponent {
     )
   }
 
- 
+   
 
 }

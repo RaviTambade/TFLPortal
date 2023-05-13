@@ -44,10 +44,10 @@ public class ProjectsRepository : IProjectsRepository
                 {
                     ProjId = projId,
                     ProjName=projName,
-                    PlanedStartDate=planedStartDate,
-                    PlanedEndDate=planedEndDate,
-                    ActualStartDate=actualStartDate,
-                    ActualEndDate=actualEndDate,
+                    PlanedStartDate=planedStartDate.ToShortDateString(),
+                    PlanedEndDate=planedEndDate.ToShortDateString(),
+                    ActualStartDate=actualStartDate.ToShortDateString(),
+                    ActualEndDate=actualEndDate.ToShortDateString(),
                     Description=description
 
                 };
@@ -92,10 +92,10 @@ public class ProjectsRepository : IProjectsRepository
                 {
                     ProjId = projectId,
                     ProjName = projName,
-                    PlanedStartDate = planedStartDate,
-                    PlanedEndDate = planedEndDate,
-                    ActualStartDate = actualStartDate,
-                    ActualEndDate= actualEndDate,
+                    PlanedStartDate = planedStartDate.ToShortDateString(),
+                    PlanedEndDate = planedEndDate.ToShortDateString(),
+                    ActualStartDate = actualStartDate.ToShortDateString(),
+                    ActualEndDate= actualEndDate.ToShortDateString(),
                     Description=description
                 };
             }

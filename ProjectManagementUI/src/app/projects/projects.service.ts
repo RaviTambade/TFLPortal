@@ -25,6 +25,15 @@ export class ProjectsService {
     return this.http.post<Projects>(url,project);
   }
 
+  public update(project:Projects):Observable<any>{
+    let url="http://localhost:5294/api/projects/update/"
+  return this.http.put<any>(url,project);
+}
+
+delete(projId:number):Observable<any>{
+  let url="http://localhost:5294/api/projects/delete/"+projId;
+  return this.http.delete<any>(url);
+}
 
 
 }

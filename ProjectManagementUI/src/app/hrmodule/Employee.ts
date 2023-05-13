@@ -2,10 +2,10 @@ export class Employee{
     constructor(
                 public id:number,
                 public firstName:string,
-                public lastName:Date,
-                public birthDate:Date,
-                public hireDate:Date,
-                public contactNumber:Date,
+                public lastName:string,
+                public birthDate:string,
+                public hireDate:string,
+                public contactNumber:string,
                 public email:string,
                 public password:string,
                 public accountNumber:string)

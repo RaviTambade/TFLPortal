@@ -6,10 +6,10 @@ public class Projects {
 
     public int ProjId{get;set;}
     public string? ProjName{get;set;}
-    public DateTime PlanedStartDate{get;set;}
-    public DateTime PlanedEndDate{get;set;}
-    public DateTime ActualStartDate{get;set;}
-    public DateTime ActualEndDate{get;set;}
+    public string? PlanedStartDate{get;set;}
+    public string? PlanedEndDate{get;set;}
+    public string? ActualStartDate{get;set;}
+    public string? ActualEndDate{get;set;}
     public string? Description{get;set;}
 
 
