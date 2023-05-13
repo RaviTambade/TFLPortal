@@ -20,6 +20,8 @@ export const ROUTES: RouteInfo[] = [
 
     { path: '/getall-projects', title: 'Projects',  icon:'pe-7s-study', class: '' },
     { path: '/get-project-by-id', title: 'Get Project',  icon:'pe-7s-study', class: '' },
+    { path: '/insert-prject', title: 'Add Project',  icon:'pe-7s-study', class: '' },
+
     
     { path: '/maps', title: 'Maps',  icon:'pe-7s-map-marker', class: '' },
     { path: '/notifications', title: 'Notifications',  icon:'pe-7s-bell', class: '' },

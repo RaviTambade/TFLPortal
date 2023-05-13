@@ -1,0 +1,32 @@
+
+<h2><p>insert-prject works!</p></h2>
+
+<h3>Insert Employee</h3>
+
+<div *ngIf="project">
+    <form #insertForm="ngForm" (ngSubmit)="insertEmployee(insertForm.value)">
+       
+        <p><label><b>Project Name :</b></label><input type="text" name="firstname" #empFirstName="ngModel" [(ngModel)]="project.projName"></p>
+        <p><label><b>Planned Start Date :</b></label><input type="text" name="lastname" #empLastName="ngModel" [(ngModel)]="project.planedStartDate"></p>
+        <p><label><b>Planned End date :</b></label><input type="text" name="birthdate" #birthDate="ngModel" [(ngModel)]="project.planedEndDate"></p>
+        <p><label><b>Actual Start Date :</b></label><input type="text" name="hiredate" #hireDate="ngModel" [(ngModel)]="project.actualStartDate"></p>
+        <p><label><b>Actual End Date :</b></label><input type="text" name="contactnumber" #contactNumber="ngModel" [(ngModel)]="project.actualEndDate"></p>
+        <p><label><b>Description :</b></label><input type="text" name="email" #email="ngModel" [(ngModel)]="project.description"></p>
+       
+        
+
+
+
+        <button type="submit">Insert</button>
+    </form>
+ 
+       <div *ngIf="status">
+           <p>Project Inserted Successfully</p>
+       </div>      
+
+       <div *ngIf="status == false">
+           <p>Please insert valid information</p>
+       </div>
+
+
+</div>
