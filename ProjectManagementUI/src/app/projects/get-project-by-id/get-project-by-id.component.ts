@@ -28,15 +28,22 @@ export class GetProjectByIdComponent implements OnInit {
   }
 
   getProject(id:any){
+  // if(this.project==this.projId){
     this.svc.getProjectById(id).subscribe((response) =>{
       this.project = response;
       console.log(response);
-      this.sendProject.emit({project:this.project});
+      this.sendProject.emit({project:this.project});  
     })
+
+  // }else{
+  //   alert("Account not Fount");
+  // }
+    
   }
 
   receiveEmployee($event:any){
     this.project=$event.project;
   }
+
 
 }

@@ -20,6 +20,11 @@ export class ProjectsService {
     return this.http.get<Projects>(url);
   }
 
+  public insert(project:Projects):Observable<any>{
+    let url = "http://localhost:5294/api/projects/addproject";
+    return this.http.post<Projects>(url,project);
+  }
+
 
 
 }
