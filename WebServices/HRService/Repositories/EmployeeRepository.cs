@@ -80,7 +80,7 @@ public class EmployeeRepository : IEmployeeRepository
                 string firstname = reader["empfirst_name"].ToString();
                 string lastname = reader["emplast_name"].ToString();
                 DateTime birthdate = Convert.ToDateTime(reader["birth_date"].ToString());
-                DateTime hiredate = Convert.ToDateTime(reader["hire_date"].ToString());
+                DateTime hiredate =  Convert.ToDateTime(reader["hire_date"].ToString());
                 string contactNumber=reader["contact_number"].ToString();
                 string email = reader["email"].ToString();
                 string password = reader["password"].ToString(); 

@@ -50,7 +50,7 @@ public class EmployeesController : ControllerBase
     }
 
     [HttpPut]
-    [Route("updateEmployee/{id}")]
+    [Route("updateEmployee")]
 
     public bool UpdateEmployee(Employee emp)
     {

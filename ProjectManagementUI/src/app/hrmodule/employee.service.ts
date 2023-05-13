@@ -15,10 +15,22 @@ export class EmployeeService {
     return this.http.get<Employee[]>(url);
   }
 
+  public getById(empId:number):Observable<Employee>{
+    let url="http://localhost:5230/api/employees/getbyid/"+empId;
+    return this.http.get<Employee>(url);
+  }
+
   public insert(employee:Employee):Observable<any>{
     let url = "http://localhost:5230/api/employees/InsertEmployee";
     return this.http.post<Employee>(url,employee);
   }
+
+  updateEmployee(employee:Employee):Observable<any>{
+    let url = "http://localhost:5230/api/employees/updateEmployee";
+    return this.http.put<any>(url,employee);
+  }
+
+
 
 
   

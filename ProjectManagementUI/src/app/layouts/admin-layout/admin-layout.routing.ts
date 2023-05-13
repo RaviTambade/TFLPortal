@@ -11,9 +11,10 @@ import { IconsComponent } from 'app/icons/icons.component';
 import { GetEmployeesComponent } from 'app/hrmodule/get-employees/get-employees.component';
 import { InsertEmployeeComponent } from 'app/hrmodule/insert-employee/insert-employee.component';
 import { GetallProjectsComponent } from 'app/projects/getall-projects/getall-projects.component';
-import { GetProjectByIdComponent } from 'app/projects/get-project-by-id/get-project-by-id.component'; 
 import { InsertPrjectComponent } from 'app/projects/insert-prject/insert-prject.component';
-import { UpdateProjectComponent } from 'app/projects/update-project/update-project.component';
+import { EmployeedetailsComponent } from 'app/hrmodule/employeedetails/employeedetails.component';
+import { UpdateemployeeComponent } from 'app/hrmodule/updateemployee/updateemployee.component';
+
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',           component: HomeComponent },
@@ -24,12 +25,14 @@ export const AdminLayoutRoutes: Routes = [
 
     { path: 'get-employees',       component: GetEmployeesComponent },
     { path: 'insert-employees',    component: InsertEmployeeComponent},
+    { path: 'employeedetails',     component: EmployeedetailsComponent},
+    { path: 'updateemployee',      component: UpdateemployeeComponent},
+   
 
 
     { path: 'getall-projects',     component: GetallProjectsComponent },
-    { path: 'get-project-by-id',   component: GetProjectByIdComponent},
     { path: 'insert-prject',       component: InsertPrjectComponent  },
-    { path: 'update-project',      component:UpdateProjectComponent },
+    
 
     
     { path: 'maps',                component: MapsComponent },

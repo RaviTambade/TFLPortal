@@ -1,0 +1,45 @@
+
+<app-get-employee [employeeId]="employeeId" (sendEmployee)="receiveEmployee($event)"></app-get-employee>
+
+<div  *ngIf="employee && employee.id !=0">
+  <table>
+      <tr>
+          <td><label>First Name :</label></td>
+          <td><input type="text" name="firstName" #firstName="ngModel" [(ngModel)]="employee.firstName"></td>
+      </tr>
+      <tr>
+        <td><label>Last Name :</label></td>
+        <td><input type="text" name="lastName" #lastName="ngModel" [(ngModel)]="employee.lastName"></td>
+    </tr>
+    <tr>
+        <td><label>Birth Date :</label></td>
+        <td><input type="text" name="birthDate" #birthDate="ngModel" [(ngModel)]="employee.birthDate"></td>
+    </tr>
+    <tr>
+        <td><label>Hire Date :</label></td>
+        <td><input type="text" name="hireDate" #hireDate="ngModel" [(ngModel)]="employee.hireDate"></td>
+    </tr>
+    <tr>
+        <td><label>Contact Number :</label></td>
+        <td><input type="text" name="contactNumber" #contactNumber="ngModel" [(ngModel)]="employee.contactNumber"></td>
+    </tr>
+    <tr>
+        <td><label>Email :</label></td>
+        <td><input type="email" name="email" #email="ngModel" [(ngModel)]="employee.email"></td>
+    </tr>
+    <tr>
+        <td><label>Password :</label></td>
+        <td><input type="password" name="password" #password="ngModel" [(ngModel)]="employee.password"></td>
+    </tr>
+    <tr>
+        <td><label>Account Number :</label></td>
+        <td><input type="text" name="accountNumber" #accountNumber="ngModel" [(ngModel)]="employee.accountNumber"></td>
+    </tr>
+
+
+
+      <tr>
+          <button (click)="updateEmployee()">Update</button>
+      </tr>
+  </table>   
+  </div>

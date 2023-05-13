@@ -12,6 +12,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HRModuleModule } from './hrmodule/hrmodule.module';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -40,6 +41,7 @@ import { HRModuleModule } from './hrmodule/hrmodule.module';
     AdminLayoutComponent,
     LoginComponent,
     RegisterComponent,
+    
     
    
     
