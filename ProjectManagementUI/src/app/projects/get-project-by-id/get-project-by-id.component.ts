@@ -35,4 +35,8 @@ export class GetProjectByIdComponent implements OnInit {
     })
   }
 
+  receiveEmployee($event:any){
+    this.project=$event.project;
+  }
+
 }
