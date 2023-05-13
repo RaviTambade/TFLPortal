@@ -49,7 +49,7 @@ namespace ProjectsService.Controllers
 
         // //[Authorize(Roles = Role.Admin)]
         [HttpPut]
-        [Route("update/{id}")]
+        [Route("update")]
         public bool Update(Projects project)
         {
             bool status = _projectsrv.Update(project);

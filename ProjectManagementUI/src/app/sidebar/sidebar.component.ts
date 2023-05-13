@@ -20,13 +20,13 @@ export const ROUTES: RouteInfo[] = [
     // { path: '/employeedetails', title: 'Employee Details',  icon:'pe-7s-study', class: '' },
     // { path: '/updateemployee', title: 'Update Employee',  icon:'pe-7s-study', class: '' },
    
-
-
+    
     { path: '/getall-projects', title: 'Projects List',  icon:'pe-7s-study', class: '' },
     { path: '/insert-prject', title: 'Add Project',  icon:'pe-7s-study', class: '' },
-   
+    { path: '/projectdetails', title: 'Project Details',  icon:'pe-7s-study', class: '' },
+    { path: '/updateproject', title: 'Update Employee',  icon:'pe-7s-study', class: '' },
 
-    
+   
     { path: '/maps', title: 'Maps',  icon:'pe-7s-map-marker', class: '' },
     { path: '/notifications', title: 'Notifications',  icon:'pe-7s-bell', class: '' },
     {path : '/icons', title:'Icons', icon: 'pe-7s-look', class:''},

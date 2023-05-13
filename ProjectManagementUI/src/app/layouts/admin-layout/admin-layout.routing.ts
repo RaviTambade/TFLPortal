@@ -14,6 +14,8 @@ import { GetallProjectsComponent } from 'app/projects/getall-projects/getall-pro
 import { InsertPrjectComponent } from 'app/projects/insert-prject/insert-prject.component';
 import { EmployeedetailsComponent } from 'app/hrmodule/employeedetails/employeedetails.component';
 import { UpdateemployeeComponent } from 'app/hrmodule/updateemployee/updateemployee.component';
+import { ProjectdetailsComponent } from 'app/projects/projectdetails/projectdetails.component';
+import { UpdateprojectComponent } from 'app/projects/updateproject/updateproject.component';
 
 
 export const AdminLayoutRoutes: Routes = [
@@ -32,6 +34,8 @@ export const AdminLayoutRoutes: Routes = [
 
     { path: 'getall-projects',     component: GetallProjectsComponent },
     { path: 'insert-prject',       component: InsertPrjectComponent  },
+    { path: 'projectdetails',      component: ProjectdetailsComponent},
+    { path: 'updateproject',       component: UpdateprojectComponent},
     
 
     
