@@ -25,4 +25,22 @@ export class ProjectdetailsComponent implements OnInit {
     })
   }
 
+
+  deleteProject(){
+    console.log(this.project.projId);
+    this.svc.delete(this.project.projId).subscribe(
+      (data)=>{
+        this.project=data;
+        if(data){
+          alert("Project Deleted Successfully");
+        }
+        else{
+          {alert("Error")}
+        }
+        console.log(data);
+      }
+    )
+
+  }
+
 }

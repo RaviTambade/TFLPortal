@@ -12,7 +12,8 @@
     <p><label>Email :</label>{{ employee.email }}</p>
     <p><label>Password :</label>{{ employee.password }}</p>
     <p><label>Account Number :</label>{{ employee.accountNumber }}</p>
-
+    
+    <button type="submit" (click)="deleteEmployee(employee.id)">Delete</button>
 
     <hr/>
   <div *ngIf=" theater && theater.id==0 ">

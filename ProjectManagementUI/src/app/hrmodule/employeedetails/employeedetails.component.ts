@@ -13,6 +13,8 @@ export class EmployeedetailsComponent implements OnInit {
 
   employee : Employee | undefined;
   employeeId : number | undefined;
+  status: boolean |undefined;
+  
   
 
   ngOnInit(): void {
@@ -24,5 +26,28 @@ export class EmployeedetailsComponent implements OnInit {
       console.log(response);
     })
   }
+
+ 
+
+  deleteEmployee(){
+    console.log(this.employee.id);
+    this.svc.deleteEmployee(this.employee.id).subscribe(
+      (data)=>{
+        this.employee=data;
+        if(data){
+          alert("Employee Deleted Successfully");
+        }
+        else{
+          {alert("Error")}
+        }
+        console.log(data);
+      }
+    )
+
+  }
+   
+
+
+
 
 }

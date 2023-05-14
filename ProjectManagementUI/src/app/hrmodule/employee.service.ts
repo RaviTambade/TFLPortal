@@ -30,8 +30,11 @@ export class EmployeeService {
     return this.http.put<any>(url,employee);
   }
 
+  public deleteEmployee(employeeId:number):Observable<Employee>{
+    let url = "http://localhost:5230/api/employees/DeleteEmployee/"+ employeeId;
+    return this.http.delete<Employee>(url);
+  }
 
-
-
+  
   
 }
