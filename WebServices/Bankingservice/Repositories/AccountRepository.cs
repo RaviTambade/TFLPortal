@@ -42,7 +42,7 @@ public class AccountRepository : IAccountRepository
                     AccountId = accountId,
                     AccountNumber = accountNumber,
                     IFSCCode = ifscCode,
-                    RegisterDate = registerDate,
+                    RegisterDate = registerDate.ToShortDateString(),
                     Balance = accountBalance
                 };
                 accounts.Add(account);
@@ -85,7 +85,7 @@ public class AccountRepository : IAccountRepository
                     AccountId = accountid,
                     AccountNumber = accountNumber,
                     IFSCCode = ifscCode,
-                    RegisterDate = registerDate,
+                    RegisterDate = registerDate.ToShortDateString(),
                     Balance = accountBalance
                 };
             }
