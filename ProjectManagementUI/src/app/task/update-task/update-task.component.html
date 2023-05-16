@@ -1,0 +1,34 @@
+<p>update-task works!</p>
+
+<app-gettask [taskId]="taskId" (sendTask)="receiveTask($event)"></app-gettask>
+
+<div  *ngIf="task && task.taskId !=0">
+  <table>
+   <tr>
+          <td><label>Project Id :</label></td>
+          <td><input type="number" name="Project Id" #taskName="ngModel" [(ngModel)]="task.projectId"></td>
+      </tr>
+
+      <tr>
+          <td><label>Task Name :</label></td>
+          <td><input type="text" name="TaskName" #taskName="ngModel" [(ngModel)]="task.taskName"></td>
+      </tr>
+      <tr>
+        <td><label>Start Date :</label></td>
+        <td><input type="text" name="psDate" #psDate="ngModel" [(ngModel)]="task.startDate"></td>
+    </tr>
+    <tr>
+        <td><label> End Date :</label></td>
+        <td><input type="text" name="peDate" #peDate="ngModel" [(ngModel)]="task.endDate"></td>
+    </tr>
+    <tr>
+        <td><label>Description :</label></td>
+        <td><input type="email" name="description" #description="ngModel" [(ngModel)]="task.description"></td>
+    </tr>
+   
+
+      <tr>
+          <button (click)="updateTask()">Update</button>
+      </tr>
+  </table>   
+  </div>
