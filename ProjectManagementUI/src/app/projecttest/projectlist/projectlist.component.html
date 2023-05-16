@@ -1,0 +1,22 @@
+<div>
+  <div>
+    <h2 >Projects</h2>
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <div class="d-grid">
+        <select
+          (change)="changeProject($event)"
+          formControlName="projectName">
+          <option value="">Choose Project</option>
+          <option *ngFor="let project of projects" [ngValue]="project">
+            {{ project }}
+          </option>
+        </select>
+        <!-- error block -->
+        <div  *ngIf="isSubmitted && projectName?.invalid">
+          <sup>*</sup>Please provide project name
+        </div>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

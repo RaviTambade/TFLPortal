@@ -1,0 +1,20 @@
+<p>accountdetails works!</p>
+
+<input type="number" [(ngModel)]="accountId"/>
+<button (click)="getAccount(accountId)">Search</button>
+
+<div *ngIf="account && account.accountId !=0">
+    <p><label>Account Id :</label>{{ account.accountId }}</p>
+    <p><label>Account number :</label>{{ account.accountNumber }}</p>
+    <p><label>IFSC Code :</label>{{ account.ifscCode }}</p>
+    <p><label>Register Date :</label>{{ account.registerDate }}</p>
+    <p><label>Balance :</label>{{ account.balance }}</p>
+  
+    
+    <button type="submit" (click)="deleteAccount(account.accountId)">Delete</button>
+
+    <hr/>
+  <div *ngIf=" account && account.accountId==0 ">
+    <p>Account not Found</p>
+</div>
+  </div>

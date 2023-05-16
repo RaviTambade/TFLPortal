@@ -57,7 +57,7 @@ namespace BankingService.Controllers
         }
         //[Authorize(Roles = Role.Admin)]
         [HttpPut]
-        [Route("update/{id}")]
+        [Route("update")]
         public bool Update(Account account)
         {
             bool status = _accountsrv.Update(account);

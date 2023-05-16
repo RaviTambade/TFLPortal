@@ -17,6 +17,10 @@ import { UpdateemployeeComponent } from 'app/hrmodule/updateemployee/updateemplo
 import { ProjectdetailsComponent } from 'app/projects/projectdetails/projectdetails.component';
 import { UpdateprojectComponent } from 'app/projects/updateproject/updateproject.component';
 import { AccountlistComponent } from 'app/account/accountlist/accountlist.component';
+import { AddaccountComponent } from 'app/account/addaccount/addaccount.component';
+import { AccountdetailsComponent } from 'app/account/accountdetails/accountdetails.component';
+import { UpdateaccountComponent } from 'app/account/updateaccount/updateaccount.component';
+
 
 
 export const AdminLayoutRoutes: Routes = [
@@ -38,7 +42,11 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'projectdetails',      component: ProjectdetailsComponent},
     { path: 'updateproject',       component: UpdateprojectComponent},
 
-    { path: 'accountlist',       component: AccountlistComponent},
+    { path: 'accountlist',        component: AccountlistComponent},
+    { path: 'addaccount',         component: AddaccountComponent},
+    { path: 'accountdetails',     component: AccountdetailsComponent},
+    { path: 'updateaccount',      component: UpdateaccountComponent},
+    
     
 
     

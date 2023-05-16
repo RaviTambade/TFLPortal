@@ -13,6 +13,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HRModuleModule } from './hrmodule/hrmodule.module';
 import { DatePipe } from '@angular/common';
+import { ProjecttestModule } from './projecttest/projecttest.module';
+import { ProjectlistComponent } from './projecttest/projectlist/projectlist.component';
 
 
 
@@ -29,11 +31,7 @@ import { DatePipe } from '@angular/common';
     SidebarModule,
     AppRoutingModule,
     HRModuleModule,
-   
-    
-  
-   
-   
+    ProjecttestModule
    
   ],
   declarations: [
@@ -41,10 +39,7 @@ import { DatePipe } from '@angular/common';
     AdminLayoutComponent,
     LoginComponent,
     RegisterComponent,
-    
-    
    
-    
   ],
   providers: [],
   bootstrap: [AppComponent]
