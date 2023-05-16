@@ -1,0 +1,29 @@
+<p>insert-task works!</p>
+
+
+
+
+<div *ngIf="task">
+    <form #insertForm="ngForm" (ngSubmit)="insertTask(insertForm.value)">
+        <p><label><b>Project Id :</b></label><input type=number name="projectId" #taskName="ngModel" [(ngModel)]="task.projectId"></p>
+        <p><label><b>Task Name :</b></label><input type="text" name="taskName" #taskName="ngModel" [(ngModel)]="task.taskName"></p>
+        <p><label><b>Start Date :</b></label><input type="text" name="startDate" #startDate="ngModel" [(ngModel)]="task.startDate"></p>
+        <p><label><b>End date :</b></label><input type="text" name="endDate" #endDate="ngModel" [(ngModel)]="task.endDate"></p>
+        <p><label><b>Description :</b></label><input type="text" name="description" #description="ngModel" [(ngModel)]="task.description"></p>
+       
+        
+                                                                        
+
+
+        <button type="submit">Insert</button>
+
+
+        <div *ngIf="status">
+            <p>Task Inserted Successfully</p>
+        </div>      
+ 
+        <div *ngIf="status == false">
+            <p>Please insert valid information</p>
+        </div>
+    </form>
+ 

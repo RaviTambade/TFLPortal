@@ -1,0 +1,6 @@
+<p>search works!</p>
+
+<app-gettask (sendTask)="receiveTask($event)"></app-gettask>
+<div *ngIf="task">
+<aap-getall-task-list [task]="task"></aap-getall-task-list>
+</div>
