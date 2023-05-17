@@ -1,5 +1,15 @@
 <h2>Details Component</h2>
-<p *ngIf="message">
+<!-- <p *ngIf="message">
     {{message|json}}
-</p>
+</p> -->
 <hr/>
+
+<div *ngFor="let project of projects">
+    <p>Project name : {{project.name}}</p>
+    <p>Project Id :{{project.id}}</p>
+    <p>Start Date :{{project.stddate}}</p>
+    <p>End Date :{{project.enddate}}</p>
+    <p>Description {{project.description}}</p>
+    <p>Employee Id : {{project.empId}}</p> 
+    <hr>
+</div>

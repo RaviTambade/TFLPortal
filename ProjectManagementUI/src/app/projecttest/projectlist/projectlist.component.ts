@@ -10,7 +10,13 @@ import { ProjectService } from '../project.service';
 export class ProjectlistComponent  {
 
   isSubmitted = false;
-  projects : any = ['Online Coading' , 'Online Testing', 'Audit Processing', 'Quality inspection','Online Meeting']; 
+  projects  = [
+      'Online coading',
+      'Online testing',
+      'Arrange Online Meeting',
+      'Audit Processing',
+      'Quality Inspection',
+  ];
 
   constructor(public fb : FormBuilder,private svc : ProjectService) { }
 
