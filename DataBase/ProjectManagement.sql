@@ -176,11 +176,12 @@ INSERT INTO task(task_name,proj_id,description,start_date,end_date)VALUES('Meeti
 INSERT INTO assigned(task_id,emp_id)VALUES(1,1);
 
 select * from accounts;
-select * from employees;
+
 select * from users;
 select * from team ;
 select * from roles;
 select * from userrols;
+select * from employees;
 select * from team_member where team_id=1;
 select * from projects;
 select * from project_manager;
@@ -195,13 +196,12 @@ select * from payrollCycles;
 SELECT  projects.proj_name, projects.startDate,projects.endDate,projects.proj_desc, employees.empfirst_name, employees.emplast_name
 FROM projects
 INNER JOIN employees ON employees.emp_id = projects.emp_id
-INNER JOIN userrols ON userrols.role_id = projects.emp_id
+
+
+
+-- SELECT customers.first_name, customers.last_name, reservations.number_of_seats, reservations.reservation_date, seat_reserved.seat_id, seat_reserved.reservation_id, screens.id
+-- FROM reservations
+-- INNER JOIN customers ON customers.id = reservations.cust_id
 -- INNER JOIN seat_reserved ON seat_reserved.reservation_id = reservations.id
 -- INNER JOIN screens ON screens.id = reservations.screen_id;
-
-SELECT customers.first_name, customers.last_name, reservations.number_of_seats, reservations.reservation_date, seat_reserved.seat_id, seat_reserved.reservation_id, screens.id
-FROM reservations
-INNER JOIN customers ON customers.id = reservations.cust_id
-INNER JOIN seat_reserved ON seat_reserved.reservation_id = reservations.id
-INNER JOIN screens ON screens.id = reservations.screen_id;
 
