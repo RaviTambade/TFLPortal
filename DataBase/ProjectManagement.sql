@@ -1,17 +1,19 @@
 CREATE DATABASE PMS;
 USE PMS;
 
+drop database pms;
 
-CREATE TABLE users(user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, email VARCHAR(50) UNIQUE NOT NULL,contact_number VARCHAR(20), password VARCHAR(50) NOT NULL);
+CREATE TABLE users(user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, email VARCHAR(50) UNIQUE NOT NULL, password VARCHAR(50) NOT NULL);
 CREATE TABLE accounts(account_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,account_number VARCHAR(25) UNIQUE, ifsc_code VARCHAR(50) ,register_date DATETIME ,balance DOUBLE);
 CREATE TABLE employees(emp_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, empfirst_name VARCHAR (50),emplast_name VARCHAR(50),birth_date DATETIME,hire_date DATETIME,contact_number VARCHAR(20),account_number VARCHAR(25) NOT NULL UNIQUE ,CONSTRAINT fk_account_no1 FOREIGN KEY(account_number) REFERENCES accounts(account_number) ON UPDATE CASCADE ON DELETE CASCADE, user_id int NOT NULL UNIQUE ,CONSTRAINT fk_user_id FOREIGN KEY(user_id) REFERENCES users(user_id) ON UPDATE CASCADE ON DELETE CASCADE); 
 CREATE TABLE team(team_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, team_name VARCHAR (50)UNIQUE);
-CREATE TABLE role(role_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,role_name varchar (50));
+CREATE TABLE roles(role_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,role_name varchar (50));
+CREATE TABLE userrols(userrole_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, emp_id INT NOT NULL,CONSTRAINT fk_emp_id1 FOREIGN KEY(emp_id) REFERENCES employees(emp_id) ON UPDATE CASCADE ON DELETE CASCADE,   role_id INT NOT NULL,CONSTRAINT fk_role_id FOREIGN KEY(role_id) REFERENCES roles(role_id) ON UPDATE CASCADE ON DELETE CASCADE);
 CREATE TABLE project(proj_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,proj_name VARCHAR(100),startDate DATETIME NOT NULL,endDate DATETIME NOT NULL,proj_desc VARCHAR(255),  emp_id INT NOT NULL,CONSTRAINT fk_emp_id FOREIGN KEY(emp_id) REFERENCES employees(emp_id) ON UPDATE CASCADE ON DELETE CASCADE);
 CREATE TABLE client(client_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,clt_name VARCHAR(50),clt_address VARCHAR(200),clt_details VARCHAR(200),account_number VARCHAR(25) NOT NULL UNIQUE ,CONSTRAINT fk_account_no2 FOREIGN KEY(account_number) REFERENCES accounts(account_number) ON UPDATE CASCADE ON DELETE CASCADE);
 CREATE TABLE on_project(on_project_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,proj_id INT NOT NULL, CONSTRAINT fk_projid FOREIGN KEY (proj_id) REFERENCES project(proj_id)ON UPDATE CASCADE  ON DELETE CASCADE,client_id INT NOT NULL, CONSTRAINT fk_clientid FOREIGN KEY (client_id) REFERENCES client(client_id)ON UPDATE CASCADE  ON DELETE CASCADE);
 CREATE TABLE task(task_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,task_name VARCHAR(50),proj_id INT NOT NULL, CONSTRAINT fk_proidd FOREIGN KEY (proj_id) REFERENCES project(proj_id)ON UPDATE CASCADE  ON DELETE CASCADE,description VARCHAR(200),start_date DATETIME,end_date DATETIME);
-CREATE TABLE assigned(assign_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,task_id INT NOT NULL, CONSTRAINT fk_taskid FOREIGN KEY (task_id) REFERENCES task(task_id)ON UPDATE CASCADE  ON DELETE CASCADE,emp_id INT NOT NULL, CONSTRAINT fk_empidd FOREIGN KEY (emp_id) REFERENCES employees(emp_id)ON UPDATE CASCADE  ON DELETE CASCADE,role_id INT NOT NULL, CONSTRAINT fk_roleidd FOREIGN KEY (role_id) REFERENCES role(role_id)ON UPDATE CASCADE  ON DELETE CASCADE);
+CREATE TABLE assigned(assign_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,task_id INT NOT NULL, CONSTRAINT fk_taskid FOREIGN KEY (task_id) REFERENCES task(task_id)ON UPDATE CASCADE  ON DELETE CASCADE,emp_id INT NOT NULL, CONSTRAINT fk_empidd FOREIGN KEY (emp_id) REFERENCES employees(emp_id)ON UPDATE CASCADE  ON DELETE CASCADE);
 CREATE TABLE payrollCycles(payroll_cycle_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,payroll_cycle_year DATETIME,payroll_cycle_number INT NOT NULL,start_date DATETIME,end_date  DATETIME,deposit_date DATETIME);
 CREATE TABLE timesheets(timesheet_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,start_date DATETIME,
                         week1_monday VARCHAR(10),week1_tuesday VARCHAR(10),week1_wednesday VARCHAR(10),week1_thursday VARCHAR(10),week1_friday VARCHAR(10),week1_saturday VARCHAR(10), week1_sunday VARCHAR(10),
@@ -26,15 +28,29 @@ CREATE TABLE timesheets(timesheet_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,sta
                         
 
 /* Trigger for user insertion after employee insertion */ 
-DELIMITER //
-CREATE TRIGGER insert_employee AFTER INSERT ON employees 
-FOR EACH ROW 
-BEGIN 
-    DECLARE userId INT;
-	INSERT INTO users(email,contact_number,password)VALUES (NEW.email,NEW.contact_number,NEW.password);
-    SELECT user_id INTO userId FROM users where email=NEW.email;
-END //
-DELIMITER ;
+-- DELIMITER //
+-- CREATE TRIGGER insert_employee AFTER INSERT ON employees 
+-- FOR EACH ROW 
+-- BEGIN 
+--     DECLARE userId INT;
+-- 	INSERT INTO users(email,password)VALUES (NEW.email,NEW.contact_number,NEW.password);
+--     SELECT user_id INTO userId FROM users where email=NEW.email;
+-- END //
+-- DELIMITER ;
+
+INSERT INTO users(email,password)VALUES('Rushi@12345','RC@12345');
+INSERT INTO users(email,password)VALUES('Akshay@12345','AK@12345');
+INSERT INTO users(email,password)VALUES('Rohit@12345','RG@12345');
+INSERT INTO users(email,password)VALUES('Shubham@12345','ST@12345');
+INSERT INTO users(email,password)VALUES('Abhay@12345','AN@12345');
+INSERT INTO users(email,password)VALUES('Sahil@12345','SM@12345');
+INSERT INTO users(email,password)VALUES('Pragati@12345','PB@12345');
+INSERT INTO users(email,password)VALUES('Akash@12345','Aks@12345');
+INSERT INTO users(email,password)VALUES('Vedant@12345','VY@12345');
+INSERT INTO users(email,password)VALUES('Rmangavle@12345','RM@12345');
+INSERT INTO users(email,password)VALUES('RaviT@12345','RT@12345');
+INSERT INTO users(email,password)VALUES('ShubhamN@12345','SN@12345');
+INSERT INTO users(email,password)VALUES('SAM@12345','SC@12345');
 
 INSERT INTO accounts(account_number,ifsc_code,register_date,balance) VALUES( '1001','MAHB0000286','2023-03-01 12:40:40',22555);
 INSERT INTO accounts(account_number,ifsc_code,register_date,balance) VALUES( '1002','MAHB0000286','2023-03-01 12:40:40',22555);
@@ -58,22 +74,22 @@ INSERT INTO accounts(account_number,ifsc_code,register_date,balance) VALUES( '10
 INSERT INTO accounts(account_number,ifsc_code,register_date,balance) VALUES( '1020','UBIN0000286','2021-08-04 07-40-35',25000);
 INSERT INTO accounts(account_number,ifsc_code,register_date,balance) VALUES( '1021','UBIN0000286','2021-08-04 07-40-35',25000);
 INSERT INTO accounts(account_number,ifsc_code,register_date,balance) VALUES( '1022','UBIN0000286','2021-08-04 07-40-35',25000);
-INSERT INTO accounts(account_number,ifsc_code,register_date,balance) VALUES( '1027','UBIN0000286','2021-08-04 07-40-35',25000);
+INSERT INTO accounts(account_number,ifsc_code,register_date,balance) VALUES( '1023','UBIN0000286','2021-08-04 07-40-35',25000);
 
 
-INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,email,password,account_number) VALUES('Rushikesh','Chikane','1998-05-19','2023-02-01','7038548505','Rushi@12345','RC@12345','1001');
-INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,email,password,account_number) VALUES('Akshay','Tanpure','1998-05-11','2023-02-02','7038548506','Akshay@12345','AK@12345','1002');
-INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,email,password,account_number) VALUES('Rohit','Gore','1998-05-20','2023-02-11','7038548507','Rohit@12345','RG@12345','1003');
-INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,email,password,account_number) VALUES('Shubham','Teli','1998-05-29','2023-02-21','7038548515','Shubham@12345','ST@12345','1004');
-INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,email,password,account_number) VALUES('Abhay','Navale','1999-05-19','2021-02-01','7038548525','Abhay@12345','AN@12345','1005');
-INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,email,password,account_number) VALUES('Sahil','Mankar','1996-05-19','2023-05-05','7038548513','Sahil@12345','SM@12345','1006');
-INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,email,password,account_number) VALUES('Pragati','Bangar','1997-05-19','2023-02-01','7038548595','Pragati@12345','PB@12345','1007');
-INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,email,password,account_number) VALUES('Akash','Ajab','1995-05-29','2021-05-01','7038548516','Akash@12345','Aks@12345','1008');
-INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,email,password,account_number) VALUES('Vedant','Yadav','1996-05-14','2023-02-07','7038548515','Vedant@12345','VY@12345','1009');
-INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,email,password,account_number) VALUES('Rohit','Mangavale','1998-05-19','2023-02-01','7038548505','Rmangavle@12345','RM@12345','1010');
-INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,email,password,account_number) VALUES('Ravi','Tambade','1975-05-19','1994-02-01','7038548501','RaviT@12345','RT@12345','1011');
-INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,email,password,account_number) VALUES('Shubham','Navale','1994-05-19','2020-02-01','7038548502','ShubhamN@12345','SN@12345','1012');
-INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,email,password,account_number) VALUES('Samruddhi','Chavan','1996-03-15','2021-02-05','7038548504','SAM@12345','SC@12345','1013');
+INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,account_number,user_id) VALUES('Rushikesh','Chikane','1998-05-19','2023-02-01','7038548505','1001',1);
+INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,account_number,user_id) VALUES('Akshay','Tanpure','1998-05-11','2023-02-02','7038548506','1002',2);
+INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,account_number,user_id) VALUES('Rohit','Gore','1998-05-20','2023-02-11','7038548507','1003',3);
+INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,account_number,user_id) VALUES('Shubham','Teli','1998-05-29','2023-02-21','7038548515','1004',4);
+INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,account_number,user_id) VALUES('Abhay','Navale','1999-05-19','2021-02-01','7038548525','1005',5);
+INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,account_number,user_id) VALUES('Sahil','Mankar','1996-05-19','2023-05-05','7038548513','1006',6);
+INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,account_number,user_id) VALUES('Pragati','Bangar','1997-05-19','2023-02-01','7038548595','1007',7);
+INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,account_number,user_id) VALUES('Akash','Ajab','1995-05-29','2021-05-01','7038548516','1008',8);
+INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,account_number,user_id) VALUES('Vedant','Yadav','1996-05-14','2023-02-07','7038548515','1009',9);
+INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,account_number,user_id) VALUES('Rohit','Mangavale','1998-05-19','2023-02-01','7038548505','1010',10);
+INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,account_number,user_id) VALUES('Ravi','Tambade','1975-05-19','1994-02-01','7038548501','1011',11);
+INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,account_number,user_id) VALUES('Shubham','Navale','1994-05-19','2020-02-01','7038548502','1012',12);
+INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,account_number,user_id) VALUES('Samruddhi','Chavan','1996-03-15','2021-02-05','7038548504','1013',13);
 
 INSERT INTO payrollCycles(payroll_cycle_year,payroll_cycle_number,start_date,end_date,deposit_date)VALUES('2022-05-19',12,'2022-05-19','2023-05-19','2022-05-25');
 INSERT INTO payrollCycles(payroll_cycle_year,payroll_cycle_number,start_date,end_date,deposit_date)VALUES('2022-04-22',12,'2022-05-15','2023-05-22','2022-05-16');
@@ -85,17 +101,45 @@ INSERT INTO team(team_name)VALUES('alpha-1');
 INSERT INTO team(team_name)VALUES('alpha-2');
 INSERT INTO team(team_name)VALUES('alpha-3');
 
-INSERT INTO role(role_name)VALUES('Developer');
-INSERT INTO role(role_name)VALUES('Consultant');
-INSERT INTO role(role_name)VALUES('Tester');
-INSERT INTO role(role_name)VALUES('Manager');
 
 
 
-INSERT INTO project(proj_name,planned_startDate,planend_endDate,actual_startDate,actual_endDate,proj_desc,team_member_id)VALUES('Meeting Sheduling','2021-02-01','2021-03-01','2021-02-02','2021-03-03','Compeny requirement want to organize meetins online',1);
-INSERT INTO project(proj_name,planned_startDate,planend_endDate,actual_startDate,actual_endDate,proj_desc,team_member_id)VALUES('Interview Sheduling','2022-05-10','2022-05-12','2022-05-10','2022-05-13','We want to argent hiring of new employeess for new projects',2);
-INSERT INTO project(proj_name,planned_startDate,planend_endDate,actual_startDate,actual_endDate,proj_desc,team_member_id)VALUES('Audit Sheduling On Testing','2022-03-18','2021-04-09','2020-07-12','2021-10-16','We want to Aodit Our Testing Process',13);
-INSERT INTO project(proj_name,planned_startDate,planend_endDate,actual_startDate,actual_endDate,proj_desc,team_member_id)VALUES('Audit Shedulin on Coading','2020-01-19','2020-01-10','2020-09-15','2020-06-10','We want to Audit our Coading rocess',15);
+INSERT INTO roles(role_name)VALUES('Developer');
+INSERT INTO roles(role_name)VALUES('Consultant');
+INSERT INTO roles(role_name)VALUES('Tester');
+INSERT INTO roles(role_name)VALUES('Manager');
+
+INSERT INTO userrols(emp_id,role_id)VALUES(1,1);
+INSERT INTO userrols(emp_id,role_id)VALUES(2,1);
+INSERT INTO userrols(emp_id,role_id)VALUES(3,1);
+INSERT INTO userrols(emp_id,role_id)VALUES(4,2);
+INSERT INTO userrols(emp_id,role_id)VALUES(5,2);
+INSERT INTO userrols(emp_id,role_id)VALUES(6,2);
+INSERT INTO userrols(emp_id,role_id)VALUES(7,3);
+INSERT INTO userrols(emp_id,role_id)VALUES(8,3);
+INSERT INTO userrols(emp_id,role_id)VALUES(9,3);
+INSERT INTO userrols(emp_id,role_id)VALUES(10,4);
+INSERT INTO userrols(emp_id,role_id)VALUES(11,4);
+INSERT INTO userrols(emp_id,role_id)VALUES(12,4);
+
+
+
+INSERT INTO project(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Meeting Sheduling','2021-02-02','2021-03-03','Compeny requirement want to organize meetins online',1);
+INSERT INTO project(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Meeting Sheduling','2021-02-02','2021-03-03','Compeny requirement want to organize meetins online',2);
+INSERT INTO project(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Meeting Sheduling','2021-02-02','2021-03-03','Compeny requirement want to organize meetins online',3);
+
+
+INSERT INTO project(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Interview Sheduling','2022-05-10','2022-05-13','We want to argent hiring of new employeess for new projects',4);
+INSERT INTO project(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Interview Sheduling','2022-05-10','2022-05-13','We want to argent hiring of new employeess for new projects',5);
+INSERT INTO project(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Interview Sheduling','2022-05-10','2022-05-13','We want to argent hiring of new employeess for new projects',6);
+
+INSERT INTO project(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Audit Sheduling On Testing','2020-07-12','2021-10-16','We want to Aodit Our Testing Process',7);
+INSERT INTO project(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Audit Sheduling On Testing','2020-07-12','2021-10-16','We want to Aodit Our Testing Process',8);
+INSERT INTO project(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Audit Sheduling On Testing','2020-07-12','2021-10-16','We want to Aodit Our Testing Process',9);
+
+INSERT INTO project(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Audit Shedulin on Coading','2020-09-15','2020-06-10','We want to Audit our Coading rocess',10);
+INSERT INTO project(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Audit Shedulin on Coading','2020-09-15','2020-06-10','We want to Audit our Coading rocess',11);
+INSERT INTO project(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Audit Shedulin on Coading','2020-09-15','2020-06-10','We want to Audit our Coading rocess',12);
   
 
 INSERT INTO timesheets(start_date,week1_monday,week1_tuesday,week1_wednesday,week1_thursday,week1_friday,week1_saturday, week1_sunday,
@@ -129,16 +173,13 @@ INSERT INTO on_project(proj_id,client_id)VALUES(1,2);
 
 INSERT INTO task(task_name,proj_id,description,start_date,end_date)VALUES('Meeting Sheduling',1,'please arrange the meeting sheduling prosess quickly','2021-02-01','2021-02-03');
 
-INSERT INTO assigned(task_id,emp_id,role_id)VALUES(1,1,1);
+INSERT INTO assigned(task_id,emp_id)VALUES(1,1);
 
 select * from accounts;
 select * from employees;
 select * from users;
 select * from team ;
 select * from role;
--- Master table of role and employee    
-select * from team_member;
-
 select * from team_member where team_id=1;
 select * from project;
 select * from project_manager;
