@@ -9,10 +9,10 @@ CREATE TABLE employees(emp_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, empfirst_
 CREATE TABLE team(team_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, team_name VARCHAR (50)UNIQUE);
 CREATE TABLE roles(role_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,role_name varchar (50));
 CREATE TABLE userrols(userrole_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, emp_id INT NOT NULL,CONSTRAINT fk_emp_id1 FOREIGN KEY(emp_id) REFERENCES employees(emp_id) ON UPDATE CASCADE ON DELETE CASCADE,   role_id INT NOT NULL,CONSTRAINT fk_role_id FOREIGN KEY(role_id) REFERENCES roles(role_id) ON UPDATE CASCADE ON DELETE CASCADE);
-CREATE TABLE project(proj_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,proj_name VARCHAR(100),startDate DATETIME NOT NULL,endDate DATETIME NOT NULL,proj_desc VARCHAR(255),  emp_id INT NOT NULL,CONSTRAINT fk_emp_id FOREIGN KEY(emp_id) REFERENCES employees(emp_id) ON UPDATE CASCADE ON DELETE CASCADE);
+CREATE TABLE projects(proj_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,proj_name VARCHAR(100),startDate DATETIME NOT NULL,endDate DATETIME NOT NULL,proj_desc VARCHAR(255),  emp_id INT NOT NULL,CONSTRAINT fk_emp_id FOREIGN KEY(emp_id) REFERENCES employees(emp_id) ON UPDATE CASCADE ON DELETE CASCADE);
 CREATE TABLE client(client_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,clt_name VARCHAR(50),clt_address VARCHAR(200),clt_details VARCHAR(200),account_number VARCHAR(25) NOT NULL UNIQUE ,CONSTRAINT fk_account_no2 FOREIGN KEY(account_number) REFERENCES accounts(account_number) ON UPDATE CASCADE ON DELETE CASCADE);
-CREATE TABLE on_project(on_project_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,proj_id INT NOT NULL, CONSTRAINT fk_projid FOREIGN KEY (proj_id) REFERENCES project(proj_id)ON UPDATE CASCADE  ON DELETE CASCADE,client_id INT NOT NULL, CONSTRAINT fk_clientid FOREIGN KEY (client_id) REFERENCES client(client_id)ON UPDATE CASCADE  ON DELETE CASCADE);
-CREATE TABLE task(task_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,task_name VARCHAR(50),proj_id INT NOT NULL, CONSTRAINT fk_proidd FOREIGN KEY (proj_id) REFERENCES project(proj_id)ON UPDATE CASCADE  ON DELETE CASCADE,description VARCHAR(200),start_date DATETIME,end_date DATETIME);
+CREATE TABLE on_project(on_project_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,proj_id INT NOT NULL, CONSTRAINT fk_projid FOREIGN KEY (proj_id) REFERENCES projects(proj_id)ON UPDATE CASCADE  ON DELETE CASCADE,client_id INT NOT NULL, CONSTRAINT fk_clientid FOREIGN KEY (client_id) REFERENCES client(client_id)ON UPDATE CASCADE  ON DELETE CASCADE);
+CREATE TABLE task(task_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,task_name VARCHAR(50),proj_id INT NOT NULL, CONSTRAINT fk_proidd FOREIGN KEY (proj_id) REFERENCES projects(proj_id)ON UPDATE CASCADE  ON DELETE CASCADE,description VARCHAR(200),start_date DATETIME,end_date DATETIME);
 CREATE TABLE assigned(assign_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,task_id INT NOT NULL, CONSTRAINT fk_taskid FOREIGN KEY (task_id) REFERENCES task(task_id)ON UPDATE CASCADE  ON DELETE CASCADE,emp_id INT NOT NULL, CONSTRAINT fk_empidd FOREIGN KEY (emp_id) REFERENCES employees(emp_id)ON UPDATE CASCADE  ON DELETE CASCADE);
 CREATE TABLE payrollCycles(payroll_cycle_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,payroll_cycle_year DATETIME,payroll_cycle_number INT NOT NULL,start_date DATETIME,end_date  DATETIME,deposit_date DATETIME);
 CREATE TABLE timesheets(timesheet_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,start_date DATETIME,
@@ -20,7 +20,8 @@ CREATE TABLE timesheets(timesheet_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,sta
                         week2_monday VARCHAR(10),week2_tuesday VARCHAR(10),week2_wednesday VARCHAR(10),week2_thursday VARCHAR(10),week2_friday VARCHAR(10),week2_saturday VARCHAR(10),week2_sunday VARCHAR(10),
                         week3_monday VARCHAR(10),week3_tuesday VARCHAR(10),week3_wednesday VARCHAR(10),week3_thursday VARCHAR(10),week3_friday VARCHAR(10),week3_saturday VARCHAR(10),week3_sunday VARCHAR(10),
                         week4_monday VARCHAR(10),week4_tuesday VARCHAR(10),week4_wednesday VARCHAR(10),week4_thursday VARCHAR(10),week4_friday VARCHAR(10),week4_saturday VARCHAR(10),week4_sunday VARCHAR(10),
-                        emp_id INT NOT NULL, CONSTRAINT fk_emp_Id2 FOREIGN KEY(emp_id) REFERENCES employees(emp_id) ON UPDATE CASCADE ON DELETE CASCADE,proj_id INT NOT NULL, CONSTRAINT fk_project_Id2 FOREIGN KEY(proj_id) REFERENCES project(proj_id) ON UPDATE CASCADE ON DELETE CASCADE,
+                        emp_id INT NOT NULL, CONSTRAINT fk_emp_Id2 FOREIGN KEY(emp_id) REFERENCES employees(emp_id) ON UPDATE CASCADE ON DELETE CASCADE,
+                        proj_id INT NOT NULL, CONSTRAINT fk_project_Id2 FOREIGN KEY(proj_id) REFERENCES projects(proj_id) ON UPDATE CASCADE ON DELETE CASCADE,
                         payroll_cycle_id INT NOT NULL , CONSTRAINT payroll_cycle_Id3 FOREIGN KEY(payroll_cycle_Id) REFERENCES payrollCycles(payroll_cycle_Id) ON UPDATE CASCADE ON DELETE CASCADE,
                         notes VARCHAR(255));
                         
@@ -124,22 +125,21 @@ INSERT INTO userrols(emp_id,role_id)VALUES(12,4);
 
 
 
-INSERT INTO project(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Meeting Sheduling','2021-02-02','2021-03-03','Compeny requirement want to organize meetins online',1);
-INSERT INTO project(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Meeting Sheduling','2021-02-02','2021-03-03','Compeny requirement want to organize meetins online',2);
-INSERT INTO project(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Meeting Sheduling','2021-02-02','2021-03-03','Compeny requirement want to organize meetins online',3);
+INSERT INTO projects(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Meeting Sheduling','2021-02-02','2021-03-03','Compeny requirement want to organize meetins online',1);
+INSERT INTO projects(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Meeting Sheduling','2021-02-02','2021-03-03','Compeny requirement want to organize meetins online',2);
+INSERT INTO projects(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Meeting Sheduling','2021-02-02','2021-03-03','Compeny requirement want to organize meetins online',3);
 
+INSERT INTO projects(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Interview Sheduling','2022-05-10','2022-05-13','We want to argent hiring of new employeess for new projects',4);
+INSERT INTO projects(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Interview Sheduling','2022-05-10','2022-05-13','We want to argent hiring of new employeess for new projects',5);
+INSERT INTO projects(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Interview Sheduling','2022-05-10','2022-05-13','We want to argent hiring of new employeess for new projects',6);
 
-INSERT INTO project(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Interview Sheduling','2022-05-10','2022-05-13','We want to argent hiring of new employeess for new projects',4);
-INSERT INTO project(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Interview Sheduling','2022-05-10','2022-05-13','We want to argent hiring of new employeess for new projects',5);
-INSERT INTO project(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Interview Sheduling','2022-05-10','2022-05-13','We want to argent hiring of new employeess for new projects',6);
+INSERT INTO projects(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Audit Sheduling On Testing','2020-07-12','2021-10-16','We want to Aodit Our Testing Process',7);
+INSERT INTO projects(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Audit Sheduling On Testing','2020-07-12','2021-10-16','We want to Aodit Our Testing Process',8);
+INSERT INTO projects(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Audit Sheduling On Testing','2020-07-12','2021-10-16','We want to Aodit Our Testing Process',9);
 
-INSERT INTO project(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Audit Sheduling On Testing','2020-07-12','2021-10-16','We want to Aodit Our Testing Process',7);
-INSERT INTO project(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Audit Sheduling On Testing','2020-07-12','2021-10-16','We want to Aodit Our Testing Process',8);
-INSERT INTO project(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Audit Sheduling On Testing','2020-07-12','2021-10-16','We want to Aodit Our Testing Process',9);
-
-INSERT INTO project(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Audit Shedulin on Coading','2020-09-15','2020-06-10','We want to Audit our Coading rocess',10);
-INSERT INTO project(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Audit Shedulin on Coading','2020-09-15','2020-06-10','We want to Audit our Coading rocess',11);
-INSERT INTO project(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Audit Shedulin on Coading','2020-09-15','2020-06-10','We want to Audit our Coading rocess',12);
+INSERT INTO projects(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Audit Shedulin on Coading','2020-09-15','2020-06-10','We want to Audit our Coading rocess',10);
+INSERT INTO projects(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Audit Shedulin on Coading','2020-09-15','2020-06-10','We want to Audit our Coading rocess',11);
+INSERT INTO projects(proj_name,startDate,endDate,proj_desc,emp_id)VALUES('Audit Shedulin on Coading','2020-09-15','2020-06-10','We want to Audit our Coading rocess',12);
   
 
 INSERT INTO timesheets(start_date,week1_monday,week1_tuesday,week1_wednesday,week1_thursday,week1_friday,week1_saturday, week1_sunday,
@@ -179,9 +179,10 @@ select * from accounts;
 select * from employees;
 select * from users;
 select * from team ;
-select * from role;
+select * from roles;
+select * from userrols;
 select * from team_member where team_id=1;
-select * from project;
+select * from projects;
 select * from project_manager;
 select * from client;
 select * from on_project;
@@ -190,25 +191,17 @@ select * from assigned;
 select * from timesheets;
 select * from payrollCycles;
 
--- SELECT project.proj_id,project.proj_name,project.actual_startDate,project.actual_endDate,project.proj_desc,team_member.emp_id
--- from project
--- inner join team_member on  team_member.team_member_id =project.team_member_id
--- inner join team_member on  team_member.emp_id = employees.emp_id
--- where  project.proj_name = "Meeting Sheduling";
--- 			
--- SELECT movie_producers.id, movie_producers.title, reservations.number_of_seats, reservations.price, reservations.reservation_date, customers.id
--- FROM reservations
--- INNER JOIN customers ON customers.id = reservations.cust_id
--- INNER JOIN seats ON seats.id = reservations.seat_id
--- INNER JOIN screens ON screens.id = seats.screen_id
--- INNER JOIN movie_producers ON movie_producers.id = screens.movie_id;
+-- Project Details Query For BOL  
+SELECT  projects.proj_name, projects.startDate,projects.endDate,projects.proj_desc, employees.empfirst_name, employees.emplast_name
+FROM projects
+INNER JOIN employees ON employees.emp_id = projects.emp_id
+INNER JOIN userrols ON userrols.role_id = projects.emp_id
+-- INNER JOIN seat_reserved ON seat_reserved.reservation_id = reservations.id
+-- INNER JOIN screens ON screens.id = reservations.screen_id;
 
--- CREATE TABLE reservations(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
---                             cust_id INT NOT NULL, 
---                             CONSTRAINT fk_cust_id FOREIGN KEY(cust_id) REFERENCES customers(id) ON UPDATE CASCADE ON DELETE CASCADE,
---                             reservation_date DATETIME,
---                             screen_id INT NOT NULL, 
---                             CONSTRAINT fk_screen_id1 FOREIGN KEY(screen_id) REFERENCES screens(id) ON UPDATE CASCADE ON DELETE CASCADE,
---                             number_of_seats INT NOT NULL, 
---                             price DOUBLE,     
---                             total_amount DOUBLE AS (number_of_seats * price));
+SELECT customers.first_name, customers.last_name, reservations.number_of_seats, reservations.reservation_date, seat_reserved.seat_id, seat_reserved.reservation_id, screens.id
+FROM reservations
+INNER JOIN customers ON customers.id = reservations.cust_id
+INNER JOIN seat_reserved ON seat_reserved.reservation_id = reservations.id
+INNER JOIN screens ON screens.id = reservations.screen_id;
+
