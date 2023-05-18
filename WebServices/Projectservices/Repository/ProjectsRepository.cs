@@ -25,7 +25,7 @@ public class ProjectsRepository : IProjectsRepository
         con.ConnectionString = _conString;
         try
         {
-            string query = "SELECT * FROM project";
+            string query = "SELECT * FROM projects";
             MySqlCommand command = new MySqlCommand(query, con);
             con.Open();
             MySqlDataReader reader = command.ExecuteReader();
@@ -34,21 +34,20 @@ public class ProjectsRepository : IProjectsRepository
             {
                 int projId = int.Parse(reader["proj_id"].ToString());
                 string? projName = reader["proj_name"].ToString();
-                DateTime planedStartDate = DateTime.Parse(reader["planned_startDate"].ToString());
-                DateTime planedEndDate = DateTime.Parse(reader["planend_endDate"].ToString());
-                DateTime actualStartDate = DateTime.Parse(reader["actual_startDate"].ToString());
-                DateTime actualEndDate = DateTime.Parse(reader["actual_endDate"].ToString());
+                DateTime startDate = DateTime.Parse(reader["startDate"].ToString());
+                DateTime endDate = DateTime.Parse(reader["endDate"].ToString());
                 string description = reader["proj_desc"].ToString();
+                int empId = int.Parse(reader["emp_id"].ToString());
+
                 
                 Projects project = new Projects
                 {
                     ProjId = projId,
                     ProjName=projName,
-                    PlanedStartDate=planedStartDate.ToShortDateString(),
-                    PlanedEndDate=planedEndDate.ToShortDateString(),
-                    ActualStartDate=actualStartDate.ToShortDateString(),
-                    ActualEndDate=actualEndDate.ToShortDateString(),
-                    Description=description
+                    StartDate=startDate.ToShortDateString(),
+                    EndDate = endDate.ToShortDateString(),
+                    Description=description,
+                    EmpId = empId
 
                 };
                 projects.Add(project);
@@ -73,7 +72,7 @@ public class ProjectsRepository : IProjectsRepository
         con.ConnectionString = _conString;
         try
         {
-            string query = "SELECT * FROM project where proj_id =@projectId";
+            string query = "SELECT * FROM projects where proj_id =@projectId";
             MySqlCommand command = new MySqlCommand(query, con);
             command.Parameters.AddWithValue("@projectId", projId);
             con.Open();
@@ -81,22 +80,20 @@ public class ProjectsRepository : IProjectsRepository
             if (reader.Read())
             {
 
-               int projectId = int.Parse(reader["proj_id"].ToString());
+                int projectId = int.Parse(reader["proj_id"].ToString());
                 string? projName = reader["proj_name"].ToString();
-                DateTime planedStartDate = DateTime.Parse(reader["planned_startDate"].ToString());
-                DateTime planedEndDate = DateTime.Parse(reader["planend_endDate"].ToString());
-                DateTime actualStartDate = DateTime.Parse(reader["actual_startDate"].ToString());
-                DateTime actualEndDate = DateTime.Parse(reader["actual_endDate"].ToString());
+                DateTime startDate = DateTime.Parse(reader["startDate"].ToString());
+                DateTime endDate = DateTime.Parse(reader["endDate"].ToString());
                 string description = reader["proj_desc"].ToString();
+                int empId = int.Parse(reader["emp_id"].ToString());
                 project = new Projects
                 {
                     ProjId = projectId,
                     ProjName = projName,
-                    PlanedStartDate = planedStartDate.ToShortDateString(),
-                    PlanedEndDate = planedEndDate.ToShortDateString(),
-                    ActualStartDate = actualStartDate.ToShortDateString(),
-                    ActualEndDate= actualEndDate.ToShortDateString(),
-                    Description=description
+                    StartDate = startDate.ToShortDateString(),
+                    EndDate= endDate.ToShortDateString(),
+                    Description=description,
+                    EmpId = empId
                 };
             }
             reader.Close();
@@ -120,14 +117,13 @@ public class ProjectsRepository : IProjectsRepository
         con.ConnectionString = _conString;
         try
         {
-            string query = "INSERT INTO project(proj_name,planned_startDate,planend_endDate,actual_startDate,actual_endDate,proj_desc) VALUES(@projname,@planedstartdate,@planedenddate,@actualstartdate,@actualenddate,@projdesc)";
+            string query = "INSERT INTO projects(proj_name,startDate,endDate,proj_desc,emp_id) VALUES(@projname,@startdate,@enddate,@projdesc,@empid)";
             MySqlCommand command = new MySqlCommand(query, con);
             command.Parameters.AddWithValue("@projname", project.ProjName);
-            command.Parameters.AddWithValue("@planedstartdate", project.PlanedStartDate);
-            command.Parameters.AddWithValue("@planedenddate", project.PlanedEndDate);
-            command.Parameters.AddWithValue("@actualstartdate", project.ActualStartDate);
-            command.Parameters.AddWithValue("@actualenddate", project.ActualEndDate);
+            command.Parameters.AddWithValue("@startdate", project.StartDate);
+            command.Parameters.AddWithValue("@enddate", project.EndDate);
             command.Parameters.AddWithValue("@projdesc", project.Description);
+            command.Parameters.AddWithValue("@empid", project.EmpId);
 
             con.Open();
              int rowsAffected=command.ExecuteNonQuery();
@@ -154,14 +150,13 @@ public class ProjectsRepository : IProjectsRepository
         con.ConnectionString = _conString;
         try
         {
-            string query = "Update project SET proj_name =@projname, planned_startDate =@planedstartdate, planend_endDate=@planedenddate,actual_startDate=@actualstartdate,actual_endDate=@actualenddate,proj_desc=@projdesc WHERE proj_id=@projId";
+            string query = "Update projects SET proj_name =@projname, startDate=@startdate,endDate=@enddate,proj_desc=@projdesc,emp_id=@empid WHERE proj_id=@projId";
             MySqlCommand command = new MySqlCommand(query, con);
              command.Parameters.AddWithValue("@projname", project.ProjName);
-            command.Parameters.AddWithValue("@planedstartdate", project.PlanedStartDate);
-            command.Parameters.AddWithValue("@planedenddate", project.PlanedEndDate);
-            command.Parameters.AddWithValue("@actualstartdate", project.ActualStartDate);
-            command.Parameters.AddWithValue("@actualenddate", project.ActualEndDate);
+            command.Parameters.AddWithValue("@startdate", project.StartDate);
+            command.Parameters.AddWithValue("@enddate", project.EndDate);
             command.Parameters.AddWithValue("@projdesc", project.Description);
+            command.Parameters.AddWithValue("@empid", project.EmpId);
             command.Parameters.AddWithValue("@projId", project.ProjId);
             con.Open();
              int rowsAffected=command.ExecuteNonQuery();
@@ -187,7 +182,7 @@ public class ProjectsRepository : IProjectsRepository
         con.ConnectionString = _conString;
         try
         {
-            string query = "DELETE  FROM project WHERE proj_id=@projectId";
+            string query = "DELETE  FROM projects WHERE proj_id=@projectId";
             MySqlCommand command = new MySqlCommand(query, con);
             command.Parameters.AddWithValue("@projectId", projId);
             con.Open();
