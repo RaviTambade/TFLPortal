@@ -202,4 +202,83 @@ public class ProjectsRepository : IProjectsRepository
         return status;
 
     }
+
+  public List<Projects> GetByProject(string projectName)
+    {
+        List<Projects> projects = new List<Projects>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _conString;
+        try
+        {
+            string query = "SELECT * FROM projects WHERE proj_name=@projectName";
+            connection.Open();
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@projectName",projectName);
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                int id = int.Parse(reader["proj_id"].ToString());
+                string? projName = reader["proj_name"].ToString();
+                DateTime startDate = DateTime.Parse(reader["startDate"].ToString());
+                DateTime endDate = DateTime.Parse(reader["endDate"].ToString());
+                string description = reader["proj_desc"].ToString();
+                int teamId = int.Parse(reader["team_id"].ToString());
+
+                Projects project = new Projects
+                {
+                   ProjId = id,
+                    ProjName = projName,
+                    StartDate = startDate.ToShortDateString(),
+                    EndDate= endDate.ToShortDateString(),
+                    Description=description,
+                    TeamId = teamId
+                };
+                projects.Add(project);
+            }
+            reader.Close();
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            connection.Close();
+        }
+        return projects;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

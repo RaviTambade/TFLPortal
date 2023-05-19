@@ -19,6 +19,7 @@ import { ProjectdetailsComponent } from './projectdetails/projectdetails.compone
     CommonModule,
     FormsModule,
     ReactiveFormsModule
+    
   ]
 })
 export class ProjecttestModule { }

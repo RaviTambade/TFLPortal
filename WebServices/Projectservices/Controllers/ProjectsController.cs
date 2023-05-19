@@ -38,6 +38,16 @@ namespace ProjectsService.Controllers
 
 
 
+        [HttpGet]
+        [Route("getproject/{projectName}")]
+        public List<Projects> GetByProject(string projectName)
+        {
+            List<Projects> projects = _projectsrv.GetByProject(projectName);
+            return projects;
+        }
+
+
+
         // //[Authorize(Roles = Role.Admin)]
         [HttpPost]
         [Route("addproject")]

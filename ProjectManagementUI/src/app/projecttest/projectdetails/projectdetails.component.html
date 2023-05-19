@@ -2,14 +2,21 @@
 <!-- <p *ngIf="message">
     {{message|json}}
 </p> -->
-<hr/>
+ <hr/>
 
 <div *ngFor="let project of projects">
-    <p>Project name : {{project.name}}</p>
-    <p>Project Id :{{project.id}}</p>
-    <p>Start Date :{{project.stddate}}</p>
-    <p>End Date :{{project.enddate}}</p>
+    <p>Project name : {{project.projName}}</p>
+    <p>Project Id :{{project.projId}}</p>
+    <p>Start Date :{{project.startDate}}</p>
+    <p>End Date :{{project.endDate}}</p>
     <p>Description {{project.description}}</p>
-    <p>Employee Id : {{project.empId}}</p> 
+    <p>Team Id : {{project.teamId}}</p> 
     <hr>
-</div>
+</div> 
+
+
+
+
+
+
+
