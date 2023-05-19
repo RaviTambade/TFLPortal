@@ -21,15 +21,15 @@ export const ROUTES: RouteInfo[] = [
     // { path: '/updateemployee', title: 'Update Employee',  icon:'pe-7s-study', class: '' },
    
 
-    // { path: '/getall-projects', title: 'Projects List',  icon:'pe-7s-study', class: '' },
-    // { path: '/insert-prject', title: 'Add Project',  icon:'pe-7s-study', class: '' },
-    // { path: '/projectdetails', title: 'Project Details',  icon:'pe-7s-study', class: '' },
-    // { path: '/updateproject', title: 'Update Employee',  icon:'pe-7s-study', class: '' },
+    { path: '/getall-projects', title: 'Projects List',  icon:'pe-7s-study', class: '' },
+    { path: '/insert-prject', title: 'Add Project',  icon:'pe-7s-study', class: '' },
+    { path: '/projectdetails', title: 'Project Details',  icon:'pe-7s-study', class: '' },
+    { path: '/updateproject', title: 'Update Employee',  icon:'pe-7s-study', class: '' },
 
-    { path: '/accountlist', title: 'Accounts List',  icon:'pe-7s-study', class: '' },
-    { path: '/addaccount', title: 'Add Accounts',  icon:'pe-7s-study', class: '' },
-    { path: '/accountdetails', title: 'Account Details',  icon:'pe-7s-study', class: '' },
-    { path: '/updateaccount', title: 'Update Account ',  icon:'pe-7s-study', class: '' },
+    // { path: '/accountlist', title: 'Accounts List',  icon:'pe-7s-study', class: '' },
+    // { path: '/addaccount', title: 'Add Accounts',  icon:'pe-7s-study', class: '' },
+    // { path: '/accountdetails', title: 'Account Details',  icon:'pe-7s-study', class: '' },
+    // { path: '/updateaccount', title: 'Update Account ',  icon:'pe-7s-study', class: '' },
     
 
    

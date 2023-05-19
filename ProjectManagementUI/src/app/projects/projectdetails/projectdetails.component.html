@@ -5,11 +5,10 @@
 <div *ngIf="project && project.projId !=0">
     <p><label>Project Id :</label>{{ project.projId }}</p>
     <p><label>Project Name :</label>{{ project.projName }}</p>
-    <p><label>Planed Start Date :</label>{{ project.planedStartDate }}</p>
-    <p><label>Planed End date :</label>{{ project.planedEndDate }}</p>
-    <p><label>Actual Start Date :</label>{{ project.actualStartDate }}</p>
-    <p><label>Actual End Date :</label>{{ project.actualEndDate }}</p>
+    <p><label>Start Date :</label>{{ project.startDate }}</p>
+    <p><label>End Date :</label>{{ project.endDate }}</p>
     <p><label>Description :</label>{{ project.description }}</p>
+    <p><label>Description :</label>{{ project.teamId }}</p>
       
     <button type="submit" (click)="deleteProject(project.projId)">Delete</button>
     <hr/>

@@ -8,25 +8,21 @@
           <td><label>Project Name :</label></td>
           <td><input type="text" name="projectName" #projectName="ngModel" [(ngModel)]="project.projName"></td>
       </tr>
-      <tr>
-        <td><label>Planed Start Date :</label></td>
-        <td><input type="text" name="psDate" #psDate="ngModel" [(ngModel)]="project.planedStartDate"></td>
-    </tr>
     <tr>
-        <td><label>Planed End Date :</label></td>
-        <td><input type="text" name="peDate" #peDate="ngModel" [(ngModel)]="project.planedEndDate"></td>
-    </tr>
-    <tr>
-        <td><label>Actual Start Date :</label></td>
-        <td><input type="text" name="asDate" #asDate="ngModel" [(ngModel)]="project.actualStartDate"></td>
+        <td><label>Start Date :</label></td>
+        <td><input type="text" name="startDate" #startDate="ngModel" [(ngModel)]="project.startDate"></td>
     </tr>
     <tr>
         <td><label>Actual End Date :</label></td>
-        <td><input type="text" name="aeDate" #aeDate="ngModel" [(ngModel)]="project.actualEndDate"></td>
+        <td><input type="text" name="endDate" #endDate="ngModel" [(ngModel)]="project.endDate"></td>
     </tr>
     <tr>
         <td><label>Description :</label></td>
-        <td><input type="email" name="description" #description="ngModel" [(ngModel)]="project.description"></td>
+        <td><input type="text" name="description" #description="ngModel" [(ngModel)]="project.description"></td>
+    </tr>
+    <tr>
+        <td><label>Working Team :</label></td>
+        <td><input type="text" name="teamId" #teamId="ngModel" [(ngModel)]="project.teamId"></td>
     </tr>
    
 

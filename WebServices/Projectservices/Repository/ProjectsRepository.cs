@@ -37,7 +37,7 @@ public class ProjectsRepository : IProjectsRepository
                 DateTime startDate = DateTime.Parse(reader["startDate"].ToString());
                 DateTime endDate = DateTime.Parse(reader["endDate"].ToString());
                 string description = reader["proj_desc"].ToString();
-                int empId = int.Parse(reader["emp_id"].ToString());
+                int teamId = int.Parse(reader["team_id"].ToString());
 
                 
                 Projects project = new Projects
@@ -47,7 +47,7 @@ public class ProjectsRepository : IProjectsRepository
                     StartDate=startDate.ToShortDateString(),
                     EndDate = endDate.ToShortDateString(),
                     Description=description,
-                    EmpId = empId
+                    TeamId = teamId
 
                 };
                 projects.Add(project);
@@ -85,7 +85,7 @@ public class ProjectsRepository : IProjectsRepository
                 DateTime startDate = DateTime.Parse(reader["startDate"].ToString());
                 DateTime endDate = DateTime.Parse(reader["endDate"].ToString());
                 string description = reader["proj_desc"].ToString();
-                int empId = int.Parse(reader["emp_id"].ToString());
+                int teamId = int.Parse(reader["team_id"].ToString());
                 project = new Projects
                 {
                     ProjId = projectId,
@@ -93,7 +93,7 @@ public class ProjectsRepository : IProjectsRepository
                     StartDate = startDate.ToShortDateString(),
                     EndDate= endDate.ToShortDateString(),
                     Description=description,
-                    EmpId = empId
+                    TeamId = teamId
                 };
             }
             reader.Close();
@@ -117,13 +117,13 @@ public class ProjectsRepository : IProjectsRepository
         con.ConnectionString = _conString;
         try
         {
-            string query = "INSERT INTO projects(proj_name,startDate,endDate,proj_desc,emp_id) VALUES(@projname,@startdate,@enddate,@projdesc,@empid)";
+            string query = "INSERT INTO projects(proj_name,startDate,endDate,proj_desc,team_id) VALUES(@projname,@startdate,@enddate,@projdesc,@teamid)";
             MySqlCommand command = new MySqlCommand(query, con);
             command.Parameters.AddWithValue("@projname", project.ProjName);
             command.Parameters.AddWithValue("@startdate", project.StartDate);
             command.Parameters.AddWithValue("@enddate", project.EndDate);
             command.Parameters.AddWithValue("@projdesc", project.Description);
-            command.Parameters.AddWithValue("@empid", project.EmpId);
+            command.Parameters.AddWithValue("@teamid", project.TeamId);
 
             con.Open();
              int rowsAffected=command.ExecuteNonQuery();
@@ -150,13 +150,13 @@ public class ProjectsRepository : IProjectsRepository
         con.ConnectionString = _conString;
         try
         {
-            string query = "Update projects SET proj_name =@projname, startDate=@startdate,endDate=@enddate,proj_desc=@projdesc,emp_id=@empid WHERE proj_id=@projId";
+            string query = "Update projects SET proj_name =@projname, startDate=@startdate,endDate=@enddate,proj_desc=@projdesc,team_id=@teamid WHERE proj_id=@projId";
             MySqlCommand command = new MySqlCommand(query, con);
              command.Parameters.AddWithValue("@projname", project.ProjName);
             command.Parameters.AddWithValue("@startdate", project.StartDate);
             command.Parameters.AddWithValue("@enddate", project.EndDate);
             command.Parameters.AddWithValue("@projdesc", project.Description);
-            command.Parameters.AddWithValue("@empid", project.EmpId);
+            command.Parameters.AddWithValue("@teamid", project.TeamId);
             command.Parameters.AddWithValue("@projId", project.ProjId);
             con.Open();
              int rowsAffected=command.ExecuteNonQuery();

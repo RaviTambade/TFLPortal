@@ -4,16 +4,11 @@
     <form #insertForm="ngForm" (ngSubmit)="insertProject(insertForm.value)">
        
         <p><label><b>Project Name :</b></label><input type="text" name="projName" #projName="ngModel" [(ngModel)]="project.projName"></p>
-        <p><label><b>Planned Start Date :</b></label><input type="text" name="planedStartDate" #planedStartDate="ngModel" [(ngModel)]="project.planedStartDate"></p>
-        <p><label><b>Planned End date :</b></label><input type="text" name="planedEndDate" #planedEndDate="ngModel" [(ngModel)]="project.planedEndDate"></p>
-        <p><label><b>Actual Start Date :</b></label><input type="text" name="actualStartDate" #actualStartDate="ngModel" [(ngModel)]="project.actualStartDate"></p>
-        <p><label><b>Actual End Date :</b></label><input type="text" name="actualEndDate" #actualEndDate="ngModel" [(ngModel)]="project.actualEndDate"></p>
+        <p><label><b>Start Date :</b></label><input type="text" name="startDate" #startDate="ngModel" [(ngModel)]="project.startDate"></p>
+        <p><label><b>End Date :</b></label><input type="text" name="endDate" #endDate="ngModel" [(ngModel)]="project.endDate"></p>
         <p><label><b>Description :</b></label><input type="text" name="description" #description="ngModel" [(ngModel)]="project.description"></p>
+        <p><label><b>Working Team :</b></label><input type="text" name="teamId" #teamId="ngModel" [(ngModel)]="project.teamId"></p>
        
-        
-                                                                        
-
-
         <button type="submit">Insert</button>
 
 

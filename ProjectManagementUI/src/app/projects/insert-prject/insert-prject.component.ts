@@ -13,11 +13,10 @@ export class InsertPrjectComponent {
     
     projId : 0,
     projName: '',
-    planedStartDate: '',
-    planedEndDate: '',
-    actualStartDate: '',
-    actualEndDate: '',
-    description: ''
+    startDate: '',
+    endDate: '',
+    description: '',
+    teamId:0
   };
 
   status : boolean |undefined;
@@ -31,6 +30,19 @@ export class InsertPrjectComponent {
       (response)=>{
       this.status=response;
       console.log(response);
+      if(response){
+
+        alert("Account Inserted successfully");
+        
+        window.location.reload();
+        
+        }
+        
+        else{
+        
+        alert("error")
+        
+       }
     },(error)=>{
       this.status=false;
     }

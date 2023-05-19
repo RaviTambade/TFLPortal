@@ -9,7 +9,7 @@ public class Projects {
     public string? StartDate{get;set;}
     public string? EndDate{get;set;}
     public string? Description{get;set;}
-    public int EmpId{get;set;}
+    public int TeamId{get;set;}
 
 
 }
