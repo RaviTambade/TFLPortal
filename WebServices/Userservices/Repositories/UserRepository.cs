@@ -68,7 +68,7 @@ public class UserRepository : IUserRepository
                 int id = Int32.Parse(reader["user_id"].ToString());
                 string email = reader["email"].ToString();
                 string password = reader["password"].ToString();
-                string contactNumber = reader["contact_number"].ToString();
+                
 
 
                 User user = new User
@@ -76,7 +76,7 @@ public class UserRepository : IUserRepository
                     UserId = id,
                     Email = email,
                     Password = password,
-                    ContactNumber = contactNumber,
+                 
                 };
 
                 users.Add(user);
@@ -117,14 +117,14 @@ public class UserRepository : IUserRepository
 
                 string email = reader["email"].ToString();
                 string password = reader["password"].ToString();
-                string contactNumber = reader["contact_number"].ToString();
+                
 
                 user = new User()
                 {
                     UserId = id,
                     Email = email,
                     Password = password,
-                    ContactNumber = contactNumber
+                    
 
                 };
             }
@@ -155,11 +155,11 @@ public class UserRepository : IUserRepository
 
         try
         {
-            string query = "Insert into users(email,password,contact_number) values (@email,@password,@contact_number)";
+            string query = "Insert into users(email,password) values (@email,@password)";
             MySqlCommand cmd = new MySqlCommand(query, con);
             cmd.Parameters.AddWithValue("@email", user.Email);
             cmd.Parameters.AddWithValue("@password", user.Password);
-            cmd.Parameters.AddWithValue("@contact_number", user.ContactNumber);
+
             con.Open();
             int rowsaffected = cmd.ExecuteNonQuery();
             if (rowsaffected > 0)
@@ -193,12 +193,11 @@ public class UserRepository : IUserRepository
         connection.ConnectionString = _conString;
         try
         {
-            string query = "UPDATE users SET email=@email,password=@password,contact_number=@contact_number WHERE user_id=@userId";
+            string query = "UPDATE users SET email=@email,password=@password WHERE user_id=@userId";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@userId", user.UserId);
             command.Parameters.AddWithValue("@email", user.Email);
             command.Parameters.AddWithValue("@password", user.Password);
-            command.Parameters.AddWithValue("@contact_number", user.ContactNumber);
             connection.Open();
             int rowsaffected = command.ExecuteNonQuery();
             if (rowsaffected > 0)

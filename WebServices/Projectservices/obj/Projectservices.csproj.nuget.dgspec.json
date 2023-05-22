@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\imp\\ProjectManagementSystem\\WebServices\\Projectservices\\Projectservices.csproj": {}
+    "D:\\Projects\\ProjectManagementSystem\\WebServices\\Projectservices\\Projectservices.csproj": {}
   },
   "projects": {
-    "D:\\imp\\ProjectManagementSystem\\WebServices\\Projectservices\\Projectservices.csproj": {
+    "D:\\Projects\\ProjectManagementSystem\\WebServices\\Projectservices\\Projectservices.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\imp\\ProjectManagementSystem\\WebServices\\Projectservices\\Projectservices.csproj",
+        "projectUniqueName": "D:\\Projects\\ProjectManagementSystem\\WebServices\\Projectservices\\Projectservices.csproj",
         "projectName": "Projectservices",
-        "projectPath": "D:\\imp\\ProjectManagementSystem\\WebServices\\Projectservices\\Projectservices.csproj",
-        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "D:\\imp\\ProjectManagementSystem\\WebServices\\Projectservices\\obj\\",
+        "projectPath": "D:\\Projects\\ProjectManagementSystem\\WebServices\\Projectservices\\Projectservices.csproj",
+        "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\ProjectManagementSystem\\WebServices\\Projectservices\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -72,7 +70,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
