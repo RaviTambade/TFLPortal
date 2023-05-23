@@ -56,9 +56,10 @@ public class UserRepository : IUserRepository
         //you can add custom Claims here
         claims.Add(new Claim("user_id", user.Id.ToString()));
         List<string> roles = await GetRolesOfUser(user.Id);
+        foreach(var role in roles ){ Console.WriteLine(role);}
         foreach (string role in roles)
         {
-            claims.Add(new Claim("Roles", role));
+            claims.Add(new Claim("Role", role));
         }
         return claims;
     }
@@ -111,7 +112,7 @@ public class UserRepository : IUserRepository
         con.ConnectionString = _conString;
         try
         {
-            string query = "SELECT role_name from roles where role_id in  (select role_id from user_roles where user_id=@userId)";
+            string query = "select roles.role_name from user_roles inner join roles on user_roles.role_id =roles.role_id where user_roles.user_id=@userId;";
             Console.WriteLine(query);
             await con.OpenAsync();
             MySqlCommand cmd = new MySqlCommand(query, con);
@@ -120,7 +121,7 @@ public class UserRepository : IUserRepository
             while (await reader.ReadAsync())
             {
                 string roleName = reader["role_name"].ToString();
-                // Console.WriteLine(roleName);
+                 Console.WriteLine(roleName);
                 roles.Add(roleName);
             }
             await reader.CloseAsync();
