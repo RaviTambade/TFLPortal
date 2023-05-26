@@ -14,6 +14,8 @@ builder.Services.AddCors();
 builder.Services.AddTransient<IProjectsRepository,ProjectsRepository>();
 builder.Services.AddTransient<IProjectsService,ProjectService>();
 
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

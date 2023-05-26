@@ -1,72 +1,75 @@
 using PMS.Models;
 using PMS.Services.Interfaces;
-using PMS.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
-namespace TeamMember.Controllers;
+namespace TeamService.Controllers;
 
 [ApiController]
 [Route("/api/[controller]")]
-public class TeamMemberController : ControllerBase
+public class TeamMembersController : ControllerBase
 {
 
-    private readonly ITeamService _service;
+    private readonly ITeamMemberService _service;
 
-    public TeamsController(ITeamService service)
+    public TeamMembersController(ITeamMemberService service)
     {
         _service = service;
     }
 
     [HttpGet]
     [Route("getall")]
-    public IEnumerable<Team> GetAllTeams()
+    public IEnumerable<TeamMember> GetAllTeamMembers()
     {
 
-        List<Team> teams = _service.GetAll();
+        List<TeamMember> teammembers = _service.GetAll();
 
-        return teams;
+        return teammembers;
 
     }
 
-    [HttpGet]
-    [Route("getbyid/{id}")]
-    public Team GetById(int id)
-    {
-        Team team = _service.GetById(id);
+    // [HttpGet]
+    // [Route("getbyid/{id}")]
+    // public Team GetById(int id)
+    // {
+    //     Team team = _service.GetById(id);
 
 
-        return team;
-    }
+    //     return team;
+    // }
 
-    [HttpPost]
-    [Route("InsertTeam")]
-    public bool InsertTeam(Team team)
-    {
-        bool status = _service.Insert(team);
-
-
-        return status;
-    }
-
-    [HttpPut]
-    [Route("updateTeam/{id}")]
-
-    public bool UpdateTeam(Team team)
-    {
-        bool status = _service.Update(team);
-
-        return status;
-    }
+    // [HttpPost]
+    // [Route("InsertTeam")]
+    // public bool InsertTeam(Team team)
+    // {
+    //     bool status = _service.Insert(team);
 
 
-    [HttpDelete]
-    [Route("DeleteTeam/{id}")]
-    public bool DeleteTeam(int id)
-    {
-        bool status = _service.Delete(id);
+    //     return status;
+    // }
 
-        return status;
-    }
+    // [HttpPut]
+    // [Route("updateTeam/{id}")]
+
+    // public bool UpdateTeam(Team team)
+    // {
+    //     bool status = _service.Update(team);
+
+    //     return status;
+    // }
+
+
+    // [HttpDelete]
+    // [Route("DeleteTeam/{id}")]
+    // public bool DeleteTeam(int id)
+    // {
+    //     bool status = _service.Delete(id);
+
+    //     return status;
+    // }
 
 
    
 }
+
+
+
