@@ -8,9 +8,9 @@ public interface IProjectsRepository
 
     Project GetById(int projId);
 
-    public List<Project> GetByProject(string projectName);
+    //public List<Project> GetByProject(string projectName);
     bool Insert(Project projects);
     bool Update(Project projects);
     bool Delete(int projId);
-
+    List<Project> GetByProject(DateTime fromdate, DateTime todate);
 }

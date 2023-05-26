@@ -35,17 +35,6 @@ namespace ProjectsService.Controllers
         }
 
 
-
-        // [HttpGet]
-        // [Route("/ongoingprojects/{fromdate}/{todate}")]
-        // public List<Projects> GetAllByProject(fromdate  , todate  )
-        // {
-        //     List<Projects> projects = _projectsrv.GetByProject(projectName);
-        //     return projects;
-        // }
-
-
-
         // //[Authorize(Roles = Role.Admin)]
         [HttpPost]
         public bool Insert([FromBody] Project project)
@@ -69,6 +58,23 @@ namespace ProjectsService.Controllers
         {
             bool status = _projectsrv.Delete(id);
             return status;
+        }
+
+
+        // [HttpGet]
+        // [Route("/ongoingprojects/{fromdate}/{todate}")]
+        // public List<Project> GetAllByProject(fromdate  , todate)
+        // {
+        //     List<Project> project = _projectsrv.GetByProject(projectName);
+        //     return project;
+        // }
+
+        [HttpGet]
+        [Route("/ongoingprojects/{fromdate}/{todate}")]
+        public List<Project> GetByProject(DateTime fromdate, DateTime todate)
+        {
+        List<Project> projects = _projectsrv.GetByProject(fromdate, todate);
+        return projects;
         }
         
     }
