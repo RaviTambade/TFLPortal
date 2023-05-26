@@ -12,12 +12,12 @@ public ProjectService(IProjectsRepository repo){
     this._repo=repo;
 
 }
-public List<Projects> GetAll()=>_repo.GetAll();
+public List<Project> GetAll()=>_repo.GetAll();
 
-public List<Projects> GetByProject(string projectName) => _repo.GetByProject(projectName);
-public Projects GetById(int projectId)=>_repo.GetById(projectId);
- public bool Insert(Projects project)=>_repo.Insert(project);
- public bool Update(Projects project)=>_repo.Update(project);
+public List<Project> GetByProject(string projectName) => _repo.GetByProject(projectName);
+public Project GetById(int projectId)=>_repo.GetById(projectId);
+ public bool Insert(Project project)=>_repo.Insert(project);
+ public bool Update(Project project)=>_repo.Update(project);
  public bool Delete(Int32  projectId)=>_repo.Delete(projectId);
 
 }

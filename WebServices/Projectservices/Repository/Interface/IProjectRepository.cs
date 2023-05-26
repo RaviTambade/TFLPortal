@@ -4,13 +4,13 @@ namespace ProjectAPI.Repository.Interface;
 public interface IProjectsRepository
 {
 
-    List<Projects> GetAll();
+    List<Project> GetAll();
 
-    Projects GetById(int projId);
+    Project GetById(int projId);
 
-    public List<Projects> GetByProject(string projectName);
-    bool Insert(Projects projects);
-    bool Update(Projects projects);
+    public List<Project> GetByProject(string projectName);
+    bool Insert(Project projects);
+    bool Update(Project projects);
     bool Delete(int projId);
 
 }
