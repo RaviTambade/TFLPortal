@@ -6,12 +6,12 @@ public interface ITeamMemberRepository{
  
      List<TeamMember> GetAll();
 
-    //  TeamMember GetById(int id);
+      TeamMember GetById(int id);
 
-    //  bool Insert(TeamMember task);
+      bool Insert(TeamMember task);
 
-    //  bool Update(TeamMember task);
+      bool Update(TeamMember task);
 
-    //  bool Delete(int id);
+      bool Delete(int id);
      
  }

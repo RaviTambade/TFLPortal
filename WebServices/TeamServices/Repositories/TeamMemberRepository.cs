@@ -61,133 +61,136 @@ public class TeamMemberRepository : ITeamMemberRepository
         }
         return teammembers;
     }
+    public TeamMember GetById(int Id)
+    {
+        TeamMember teamMember = new TeamMember();
+        MySqlConnection con = new MySqlConnection();
+        con.ConnectionString = _conString;
+        try
+        {
+            string query = "SELECT * FROM team_members where team_member_id =@teammemberid";
+            MySqlCommand command = new MySqlCommand(query, con);
+            command.Parameters.AddWithValue("@teammemberid", Id);
+            con.Open();
+            MySqlDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+            {
 
-    
-
-    // public Team GetById(int teamId)
-    // {
-    //     Team team = new Team();
-    //     MySqlConnection con = new MySqlConnection();
-    //     con.ConnectionString = _conString;
-    //     try
-    //     {
-    //         string query = "SELECT * FROM team where team_id =@teamId";
-    //         MySqlCommand command = new MySqlCommand(query, con);
-    //         command.Parameters.AddWithValue("@teamId", teamId);
-    //         con.Open();
-    //         MySqlDataReader reader = command.ExecuteReader();
-    //         if (reader.Read())
-    //         {
-
-    //             int Id = int.Parse(reader["team_id"].ToString());
-    //             string teamName = reader["team_name"].ToString();
-    //             team = new Team
-    //             {
-    //                 TeamId = Id,
-    //                 TeamName = teamName
-    //             };
-    //         }
-    //         reader.Close();
-    //     }
-    //     catch (Exception e)
-    //     {
-    //         throw e;
-    //     }
-    //     finally
-    //     {
-    //         con.Close();
-    //     }
-    //     return team;
-    // }
-
-    // public bool Insert(Team team)
-    // {
-
-    //     bool status = false;
-    //     MySqlConnection con = new MySqlConnection();
-    //     con.ConnectionString = _conString;
-    //     try
-    //     {
-    //         string query = "INSERT INTO team(team_name) VALUES (@teamname)";
-    //         MySqlCommand command = new MySqlCommand(query, con);
-    //         command.Parameters.AddWithValue("@teamname", team.TeamName);
-
-    //         con.Open();
-    //          int rowsAffected=command.ExecuteNonQuery();
-    //         if(rowsAffected >0){
-    //          status=true;
-    //         }
-    //     }
-    //     catch (Exception e)
-    //     {
-    //         throw e;
-    //     }
-    //     finally
-    //     {
-    //         con.Close();
-    //     }
-    //     return status;
-
-    // }
+                int id = int.Parse(reader["team_member_id"].ToString());
+                int empId = int.Parse(reader["emp_id"].ToString());
+                int roleId = int.Parse(reader["role_id"].ToString());
+                int teamId = int.Parse(reader["team_id"].ToString());
 
 
+                teamMember = new TeamMember
+                {
+                    Id=id,
+                    EmpId=empId,
+                    RoleId=roleId,
+                    TeamId=teamId
+                };
+            }
+            reader.Close();
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            con.Close();
+        }
+        return teamMember;
+    }
+    public bool Insert(TeamMember teamMember)
+    {
 
-    // public bool Update(Team team)
-    // {
-    //     bool status = false;
-    //     MySqlConnection con = new MySqlConnection();
-    //     con.ConnectionString = _conString;
-    //     try
-    //     {
-    //         string query = "Update team SET team_name =@teamName  WHERE team_id=@teamId";
-    //         MySqlCommand command = new MySqlCommand(query, con);
-    //         command.Parameters.AddWithValue("@teamId", team.TeamId);
-    //         command.Parameters.AddWithValue("@teamName", team.TeamName);
+        bool status = false;
+        MySqlConnection con = new MySqlConnection();
+        con.ConnectionString = _conString;
+        try
+        {
+            string query = "INSERT INTO team_members(team_id,emp_id,role_id) VALUES (@teamId,@empId,@roleId)";
+            MySqlCommand command = new MySqlCommand(query, con);
+            command.Parameters.AddWithValue("@teamId", teamMember.TeamId);
+            command.Parameters.AddWithValue("@empId", teamMember.EmpId);
+            command.Parameters.AddWithValue("@roleId", teamMember.RoleId);
 
-    //         con.Open();
-    //          int rowsAffected=command.ExecuteNonQuery();
-    //         if(rowsAffected >0){
-    //          status=true;
-    //         }
-    //     }
-    //     catch (Exception e)
-    //     {
-    //         throw e;
-    //     }
-    //     finally
-    //     {
-    //         con.Close();
-    //     }
-    //     return status;
+            con.Open();
+             int rowsAffected=command.ExecuteNonQuery();
+            if(rowsAffected >0){
+             status=true;
+            }
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            con.Close();
+        }
+        return status;
 
-    // }
+    }
+    public bool Update(TeamMember teamMember)
+    {
+        bool status = false;
+        MySqlConnection con = new MySqlConnection();
+        con.ConnectionString = _conString;
+        try
+        {
+            string query = "Update team_members SET team_id =@teamid, emp_id=@empid, role_id=@roleid  WHERE team_member_id=@teammemberid";
+            MySqlCommand command = new MySqlCommand(query, con);
+            command.Parameters.AddWithValue("@teammemberid", teamMember.Id);
+            command.Parameters.AddWithValue("@teamId", teamMember.TeamId);
+            command.Parameters.AddWithValue("@empid", teamMember.EmpId);
+            command.Parameters.AddWithValue("@roleid", teamMember.RoleId);
+
+            con.Open();
+             int rowsAffected=command.ExecuteNonQuery();
+            if(rowsAffected >0){
+             status=true;
+            }
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            con.Close();
+        }
+        return status;
+
+    }
 
 
-    // public bool Delete(int teamId)
-    // {
-    //     bool status = false;
-    //     MySqlConnection con = new MySqlConnection();
-    //     con.ConnectionString = _conString;
-    //     try
-    //     {
-    //         string query = "DELETE  FROM team WHERE team_id=@TeamId";
-    //         MySqlCommand command = new MySqlCommand(query, con);
-    //         command.Parameters.AddWithValue("@TeamId", teamId);
-    //         con.Open();
-    //          int rowsAffected=command.ExecuteNonQuery();
-    //         if(rowsAffected >0){
-    //          status=true;
-    //         }
-    //     }
-    //     catch (Exception e)
-    //     {
-    //         throw e;
-    //     }
-    //     finally
-    //     {
-    //         con.Close();
-    //     }
-    //     return status;
+    public bool Delete(int Id)
+    {
+        bool status = false;
+        MySqlConnection con = new MySqlConnection();
+        con.ConnectionString = _conString;
+        try
+        {
+            string query = "DELETE  FROM team_members WHERE team_member_id=@teammemberid";
+            MySqlCommand command = new MySqlCommand(query, con);
+            command.Parameters.AddWithValue("@teammemberid", Id);
+            con.Open();
+             int rowsAffected=command.ExecuteNonQuery();
+            if(rowsAffected >0){
+             status=true;
+            }
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            con.Close();
+        }
+        return status;
 
-    // }
+    }
 }
