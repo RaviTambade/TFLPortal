@@ -21,16 +21,15 @@ namespace ProjectsService.Controllers
         }
 
         [HttpGet]
-        [Route("getall")]
-        public IEnumerable<Projects> GetAllAccount()
+        public IEnumerable<Project> GetAll()
         {
             List<Projects> projects = _projectsrv.GetAll();
             return projects;
         }
 
         [HttpGet]
-        [Route("getprojectsdetails/{id}")]
-        public Projects GetById(int id)
+        [Route("/{id}")]
+        public Project GetById(int id)
         {
             Projects project = _projectsrv.GetById(id);
             return project;
@@ -39,8 +38,8 @@ namespace ProjectsService.Controllers
 
 
         [HttpGet]
-        [Route("getproject/{projectName}")]
-        public List<Projects> GetByProject(string projectName)
+        [Route("/ongoingprojects/{fromdate}/{todate}")]
+        public List<Projects> GetAllByProject(fromdate  , todate  )
         {
             List<Projects> projects = _projectsrv.GetByProject(projectName);
             return projects;
@@ -50,7 +49,7 @@ namespace ProjectsService.Controllers
 
         // //[Authorize(Roles = Role.Admin)]
         [HttpPost]
-        [Route("addproject")]
+    
         public bool Insert([FromBody] Projects project)
         {
             bool status = _projectsrv.Insert(project);
