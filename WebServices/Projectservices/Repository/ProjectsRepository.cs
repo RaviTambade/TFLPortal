@@ -213,10 +213,10 @@ public class ProjectsRepository : IProjectsRepository
             string query = "SELECT * FROM projects WHERE startDate BETWEEN @fromdate AND @todate;";
 
             connection.Open();
-            MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@fromdate", fromdate);
-            command.Parameters.AddWithValue("@todate", todate);
-            MySqlDataReader reader = command.ExecuteReader();
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@fromdate", fromdate);
+            cmd.Parameters.AddWithValue("@todate", todate);
+            MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
                 int id = int.Parse(reader["proj_id"].ToString());

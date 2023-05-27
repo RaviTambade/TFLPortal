@@ -69,8 +69,8 @@ namespace ProjectsService.Controllers
         //     return project;
         // }
 
-        [HttpGet]
-        [Route("/ongoingprojects/{fromdate}/{todate}")]
+        [HttpGet ("/{fromdate}/{todate}")]
+       // [Route("/ongoingprojects/{fromdate}/{todate}")]
         public List<Project> GetByProject(DateTime fromdate, DateTime todate)
         {
         List<Project> projects = _projectsrv.GetByProject(fromdate, todate);

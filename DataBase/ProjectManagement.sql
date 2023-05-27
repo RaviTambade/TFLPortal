@@ -186,8 +186,11 @@ select * from timesheets;
 select * from payrollCycles;
 
 
+1)Finding role of employeess whose working on Project
 select roles.role_name from user_roles inner join roles on user_roles.role_id =roles.role_id where user_roles.user_id=12;
 
-
-
+2)Finding projects startDatd is in between fromdate to todate 
+SELECT *
+FROM projects
+WHERE startDate BETWEEN '2022-01-01' AND '2022-12-31';
 

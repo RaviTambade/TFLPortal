@@ -20,6 +20,6 @@ public Project GetById(int projectId)=>_repo.GetById(projectId);
  public bool Update(Project project)=>_repo.Update(project);
  public bool Delete(Int32  projectId)=>_repo.Delete(projectId);
 
- public Project GetByProject(DateTime fromdate, DateTime todate)=>_repo.GetByProject(DateTime fromdate, DateTime todate);
+public List<Project> GetByProject(DateTime fromdate, DateTime todate)=>_repo.GetByProject(fromdate,  todate);
 
 }
