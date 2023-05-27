@@ -58,7 +58,7 @@ public class UserRepository : IUserRepository
         List<string> roles = await GetRolesOfUser(user.Id);
         foreach (string role in roles)
         {
-            claims.Add(new Claim("Roles", role));
+            claims.Add(new Claim("Role", role));
         }
         return claims;
     }
