@@ -33,9 +33,8 @@ public class EmployeeRepository : IEmployeeRepository
                 DateTime birthdate = Convert.ToDateTime(reader["birth_date"].ToString());
                 DateTime hiredate = Convert.ToDateTime(reader["hire_date"].ToString());
                 string contact=reader["contact_number"].ToString();
-                string email = reader["email"].ToString();
-                string password = reader["password"].ToString();
                 string accountNo = reader["account_number"].ToString();
+                int userId = Int32.Parse(reader["user_id"].ToString());
                
                Employee employee = new Employee
                 {
@@ -45,9 +44,8 @@ public class EmployeeRepository : IEmployeeRepository
                     BirthDate=birthdate.ToShortDateString(),
                     HireDate=hiredate.ToShortDateString(),
                     ContactNumber=contact,
-                    Email=email,
-                    Password=password,
                     AccountNumber=accountNo,
+                    UserId= userId
                 };
                 employees.Add(employee);
             }
@@ -81,10 +79,9 @@ public class EmployeeRepository : IEmployeeRepository
                 string lastname = reader["emplast_name"].ToString();
                 DateTime birthdate = Convert.ToDateTime(reader["birth_date"].ToString());
                 DateTime hiredate =  Convert.ToDateTime(reader["hire_date"].ToString());
-                string contactNumber=reader["contact_number"].ToString();
-                string email = reader["email"].ToString();
-                string password = reader["password"].ToString(); 
+                string contactNumber=reader["contact_number"].ToString(); 
                 string accountNo = reader["account_number"].ToString();
+                int userId = Int32.Parse(reader["user_id"].ToString());
         
                 employee = new Employee
                   {
@@ -94,9 +91,8 @@ public class EmployeeRepository : IEmployeeRepository
                     BirthDate=birthdate.ToShortDateString(),
                     HireDate=hiredate.ToShortDateString(),
                     ContactNumber=contactNumber,
-                    Email=email,
-                    Password=password,
                     AccountNumber=accountNo,
+                    UserId=userId
                     
               };
               reader.Close();
@@ -116,8 +112,8 @@ public class EmployeeRepository : IEmployeeRepository
           MySqlConnection con = new MySqlConnection();
           con.ConnectionString=_conString;
           try{
-              string query =$"INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,email,password,account_number)VALUES"+
-                                                  "(@EmpFirstName,@EmpLastName,@BirthDate,@HireDate,@ContactNumber,@Email,@Password,@AccountNumber)";
+              string query =$"INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,account_number,user_id)VALUES"+
+                                                  "(@EmpFirstName,@EmpLastName,@BirthDate,@HireDate,@ContactNumber,@AccountNumber,@userId)";
              Console.WriteLine(query);
              con.Open();
              MySqlCommand command=new MySqlCommand(query,con) ;
@@ -126,9 +122,8 @@ public class EmployeeRepository : IEmployeeRepository
              command.Parameters.AddWithValue("@BirthDate",emp.BirthDate);
              command.Parameters.AddWithValue("@HireDate",emp.HireDate);
              command.Parameters.AddWithValue("@ContactNumber",emp.ContactNumber);
-             command.Parameters.AddWithValue("@Email",emp.Email);
-             command.Parameters.AddWithValue("@Password",emp.Password);
              command.Parameters.AddWithValue("@AccountNumber",emp.AccountNumber);
+             command.Parameters.AddWithValue("@userId",emp.UserId);
          
              command.ExecuteNonQuery(); 
              status=true;              
@@ -148,7 +143,7 @@ public class EmployeeRepository : IEmployeeRepository
           MySqlConnection con = new MySqlConnection();
           con.ConnectionString=_conString;
           try{
-            string query = "UPDATE employees SET empfirst_name=@EmpFirstName, emplast_name=@EmpLastName, birth_date=@BirthDate, hire_date=@HireDate, contact_number=@ContactNumber, email=@Email, password=@Password,  account_number=@AccountNumber WHERE emp_id=@EmployeeId";   
+            string query = "UPDATE employees SET empfirst_name=@EmpFirstName, emplast_name=@EmpLastName, birth_date=@BirthDate, hire_date=@HireDate, contact_number=@ContactNumber,  account_number=@AccountNumber, user_id=@userId  WHERE emp_id=@EmployeeId";   
              Console.WriteLine(query);
              con.Open();
              MySqlCommand command=new MySqlCommand(query,con) ;
@@ -158,9 +153,9 @@ public class EmployeeRepository : IEmployeeRepository
              command.Parameters.AddWithValue("@BirthDate",emp.BirthDate);
              command.Parameters.AddWithValue("@HireDate",emp.HireDate);
              command.Parameters.AddWithValue("@ContactNumber",emp.ContactNumber);
-             command.Parameters.AddWithValue("@Email",emp.Email);
-             command.Parameters.AddWithValue("@Password",emp.Password.ToString());
              command.Parameters.AddWithValue("@AccountNumber",emp.AccountNumber);
+             command.Parameters.AddWithValue("@userId",emp.UserId);
+
              command.ExecuteNonQuery();               
              status=true;
           }catch(Exception e )

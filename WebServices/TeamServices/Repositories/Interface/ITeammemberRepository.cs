@@ -1,14 +1,17 @@
 using PMS.Models;
 
 namespace PMS.Repositories.Interfaces;
+ 
 public interface ITeamMemberRepository{
+ 
+     List<TeamMember> GetAll();
 
-    List<TeamMember> GetAll();
+      TeamMember GetById(int id);
 
-     TeamMember GetById(int teamId);
+      bool Insert(TeamMember task);
 
-     bool Insert(TeamMember teamMember);
-     bool Update(TeamMember teamMember);
-     bool Delete(TeamMember teamMember);
-   
-}
+      bool Update(TeamMember task);
+
+      bool Delete(int id);
+     
+ }

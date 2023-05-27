@@ -2,6 +2,10 @@ using TeamService.Repositories;
 using  TeamService.Repositories.Interfaces;
 using TeamService.Services;
 using TeamService.Services.Interfaces;
+using PMS.Repositories.Interfaces;
+using PMS.Repositories;
+using PMS.Services.Interfaces;
+using PMS.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +16,9 @@ builder.Services.AddCors();
 
 builder.Services.AddTransient<ITeamRepository,TeamRepository>();
 builder.Services.AddTransient<ITeamService,TeamServices>();
+
+builder.Services.AddTransient<ITeamMemberRepository,TeamMemberRepository>();
+builder.Services.AddTransient<ITeamMemberService,TeamMemberService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

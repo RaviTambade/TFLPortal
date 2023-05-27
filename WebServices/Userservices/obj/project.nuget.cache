@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "xThv/Uk8/GEAjy5gbJObuKsEd7FTzuWQ+je42mMOAM/u7T4d8H1X5BSu7/1IXmGNxuYtWIwmQiS1A6QznjwiZA==",
+=======
+  "dgSpecHash": "pIP9xLp9IP5F0DWdhOjShWpUpMM8axZdaahtvocsAZGJBNIeVN4vM38mCqZqXvAES3xY3s8WuIUyTHYC/bWHyA==",
+>>>>>>> 47a344780e8c75a78a027ee3e48dbcdb71d0a156
   "success": true,
   "projectFilePath": "D:\\imp\\ProjectManagementSystemNew\\WebServices\\Userservices\\Userservices.csproj",
   "expectedPackageFiles": [

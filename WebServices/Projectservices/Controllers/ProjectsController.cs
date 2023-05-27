@@ -20,47 +20,32 @@ namespace ProjectsService.Controllers
             _projectsrv = projectsrv;
         }
 
-        [HttpGet]
-        [Route("getall")]
-        public IEnumerable<Projects> GetAllAccount()
+        [HttpGet("/GetAll")]
+        public IEnumerable<Project> GetAll()
         {
-            List<Projects> projects = _projectsrv.GetAll();
+            List<Project> projects = _projectsrv.GetAll();
             return projects;
         }
 
-        [HttpGet]
-        [Route("getprojectsdetails/{id}")]
-        public Projects GetById(int id)
+        [HttpGet ("/{id}")]
+        public Project GetById(int id)
         {
-            Projects project = _projectsrv.GetById(id);
+            Project project = _projectsrv.GetById(id);
             return project;
         }
 
 
-
-        [HttpGet]
-        [Route("getproject/{projectName}")]
-        public List<Projects> GetByProject(string projectName)
-        {
-            List<Projects> projects = _projectsrv.GetByProject(projectName);
-            return projects;
-        }
-
-
-
         // //[Authorize(Roles = Role.Admin)]
         [HttpPost]
-        [Route("addproject")]
-        public bool Insert([FromBody] Projects project)
+        public bool Insert([FromBody] Project project)
         {
             bool status = _projectsrv.Insert(project);
             return status;
         }
 
         // //[Authorize(Roles = Role.Admin)]
-        [HttpPut]
-        [Route("update")]
-        public bool Update(Projects project)
+        [HttpPut ("/{id}")]
+        public bool Update(Project project)
         {
             bool status = _projectsrv.Update(project);
             return status;
@@ -68,12 +53,28 @@ namespace ProjectsService.Controllers
 
 
         // //[Authorize(Roles = Role.Admin)]
-        [HttpDelete]
-        [Route("delete/{id}")]
+        [HttpDelete ("/{id}")]
         public bool Delete(int id)
         {
             bool status = _projectsrv.Delete(id);
             return status;
+        }
+
+
+        // [HttpGet]
+        // [Route("/ongoingprojects/{fromdate}/{todate}")]
+        // public List<Project> GetAllByProject(fromdate  , todate)
+        // {
+        //     List<Project> project = _projectsrv.GetByProject(projectName);
+        //     return project;
+        // }
+
+        [HttpGet ("/{fromdate}/{todate}")]
+       // [Route("/ongoingprojects/{fromdate}/{todate}")]
+        public List<Project> GetByProject(DateTime fromdate, DateTime todate)
+        {
+        List<Project> projects = _projectsrv.GetByProject(fromdate, todate);
+        return projects;
         }
         
     }

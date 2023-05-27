@@ -18,9 +18,9 @@ public class ProjectsRepository : IProjectsRepository
         _configuration = configuration;
         _conString = this._configuration.GetConnectionString("DefaultConnection");
     }
-    public List<Projects> GetAll()
+    public List<Project> GetAll()
     {
-        List<Projects> projects = new List<Projects>();
+        List<Project> projects = new List<Project>();
         MySqlConnection con = new MySqlConnection();
         con.ConnectionString = _conString;
         try
@@ -29,7 +29,7 @@ public class ProjectsRepository : IProjectsRepository
             MySqlCommand command = new MySqlCommand(query, con);
             con.Open();
             MySqlDataReader reader = command.ExecuteReader();
-            
+
             while (reader.Read())
             {
                 int projId = int.Parse(reader["proj_id"].ToString());
@@ -39,14 +39,14 @@ public class ProjectsRepository : IProjectsRepository
                 string description = reader["proj_desc"].ToString();
                 int teamId = int.Parse(reader["team_id"].ToString());
 
-                
-                Projects project = new Projects
+
+                Project project = new Project
                 {
-                    ProjId = projId,
-                    ProjName=projName,
-                    StartDate=startDate.ToShortDateString(),
+                    Id = projId,
+                    Name = projName,
+                    StartDate = startDate.ToShortDateString(),
                     EndDate = endDate.ToShortDateString(),
-                    Description=description,
+                    Description = description,
                     TeamId = teamId
 
                 };
@@ -64,10 +64,9 @@ public class ProjectsRepository : IProjectsRepository
         }
         return projects;
     }
-
-    public Projects GetById(int projId)
+    public Project GetById(int projId)
     {
-        Projects project = new Projects();
+        Project project = new Project();
         MySqlConnection con = new MySqlConnection();
         con.ConnectionString = _conString;
         try
@@ -86,13 +85,13 @@ public class ProjectsRepository : IProjectsRepository
                 DateTime endDate = DateTime.Parse(reader["endDate"].ToString());
                 string description = reader["proj_desc"].ToString();
                 int teamId = int.Parse(reader["team_id"].ToString());
-                project = new Projects
+                project = new Project
                 {
-                    ProjId = projectId,
-                    ProjName = projName,
+                    Id = projectId,
+                    Name = projName,
                     StartDate = startDate.ToShortDateString(),
-                    EndDate= endDate.ToShortDateString(),
-                    Description=description,
+                    EndDate = endDate.ToShortDateString(),
+                    Description = description,
                     TeamId = teamId
                 };
             }
@@ -108,8 +107,7 @@ public class ProjectsRepository : IProjectsRepository
         }
         return project;
     }
-
-    public bool Insert(Projects project)
+    public bool Insert(Project project)
     {
 
         bool status = false;
@@ -119,16 +117,17 @@ public class ProjectsRepository : IProjectsRepository
         {
             string query = "INSERT INTO projects(proj_name,startDate,endDate,proj_desc,team_id) VALUES(@projname,@startdate,@enddate,@projdesc,@teamid)";
             MySqlCommand command = new MySqlCommand(query, con);
-            command.Parameters.AddWithValue("@projname", project.ProjName);
+            command.Parameters.AddWithValue("@projname", project.Name);
             command.Parameters.AddWithValue("@startdate", project.StartDate);
             command.Parameters.AddWithValue("@enddate", project.EndDate);
             command.Parameters.AddWithValue("@projdesc", project.Description);
             command.Parameters.AddWithValue("@teamid", project.TeamId);
 
             con.Open();
-             int rowsAffected=command.ExecuteNonQuery();
-            if(rowsAffected >0){
-             status=true;
+            int rowsAffected = command.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                status = true;
             }
         }
         catch (Exception e)
@@ -142,8 +141,7 @@ public class ProjectsRepository : IProjectsRepository
         return status;
 
     }
-
-    public bool Update(Projects project)
+    public bool Update(Project project)
     {
         bool status = false;
         MySqlConnection con = new MySqlConnection();
@@ -152,16 +150,17 @@ public class ProjectsRepository : IProjectsRepository
         {
             string query = "Update projects SET proj_name =@projname, startDate=@startdate,endDate=@enddate,proj_desc=@projdesc,team_id=@teamid WHERE proj_id=@projId";
             MySqlCommand command = new MySqlCommand(query, con);
-             command.Parameters.AddWithValue("@projname", project.ProjName);
+            command.Parameters.AddWithValue("@projname", project.Name);
             command.Parameters.AddWithValue("@startdate", project.StartDate);
             command.Parameters.AddWithValue("@enddate", project.EndDate);
             command.Parameters.AddWithValue("@projdesc", project.Description);
             command.Parameters.AddWithValue("@teamid", project.TeamId);
-            command.Parameters.AddWithValue("@projId", project.ProjId);
+            command.Parameters.AddWithValue("@projId", project.Id);
             con.Open();
-             int rowsAffected=command.ExecuteNonQuery();
-            if(rowsAffected >0){
-             status=true;
+            int rowsAffected = command.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                status = true;
             }
         }
         catch (Exception e)
@@ -174,8 +173,8 @@ public class ProjectsRepository : IProjectsRepository
         }
         return status;
 
-     }
-    public bool Delete(Int32 projId)
+    }
+    public bool Delete(Int32 Id)
     {
         bool status = false;
         MySqlConnection con = new MySqlConnection();
@@ -184,11 +183,12 @@ public class ProjectsRepository : IProjectsRepository
         {
             string query = "DELETE  FROM projects WHERE proj_id=@projectId";
             MySqlCommand command = new MySqlCommand(query, con);
-            command.Parameters.AddWithValue("@projectId", projId);
+            command.Parameters.AddWithValue("@projectId", Id);
             con.Open();
-             int rowsAffected=command.ExecuteNonQuery();
-            if(rowsAffected >0){
-             status=true;
+            int rowsAffected = command.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                status = true;
             }
         }
         catch (Exception e)
@@ -203,34 +203,36 @@ public class ProjectsRepository : IProjectsRepository
 
     }
 
-  public List<Projects> GetByProject(string projectName)
+    public List<Project> GetByProject(DateTime fromdate, DateTime todate)
     {
-        List<Projects> projects = new List<Projects>();
+        List<Project> projects = new List<Project>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _conString;
         try
         {
-            string query = "SELECT * FROM projects WHERE proj_name=@projectName";
+            string query = "SELECT * FROM projects WHERE startDate BETWEEN @fromdate AND @todate;";
+
             connection.Open();
-            MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@projectName",projectName);
-            MySqlDataReader reader = command.ExecuteReader();
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@fromdate", fromdate);
+            cmd.Parameters.AddWithValue("@todate", todate);
+            MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
                 int id = int.Parse(reader["proj_id"].ToString());
-                string? projName = reader["proj_name"].ToString();
-                DateTime startDate = DateTime.Parse(reader["startDate"].ToString());
+                string projName = reader["proj_name"].ToString();
+                DateTime startdate = DateTime.Parse(reader["startDate"].ToString());
                 DateTime endDate = DateTime.Parse(reader["endDate"].ToString());
                 string description = reader["proj_desc"].ToString();
                 int teamId = int.Parse(reader["team_id"].ToString());
 
-                Projects project = new Projects
+                Project project = new Project
                 {
-                   ProjId = id,
-                    ProjName = projName,
-                    StartDate = startDate.ToShortDateString(),
-                    EndDate= endDate.ToShortDateString(),
-                    Description=description,
+                    Id = id,
+                    Name = projName,
+                    StartDate = startdate.ToShortDateString(),
+                    EndDate = endDate.ToShortDateString(),
+                    Description = description,
                     TeamId = teamId
                 };
                 projects.Add(project);
@@ -248,37 +250,5 @@ public class ProjectsRepository : IProjectsRepository
         return projects;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
 }

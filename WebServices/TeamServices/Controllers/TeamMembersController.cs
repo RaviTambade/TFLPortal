@@ -1,72 +1,65 @@
 using PMS.Models;
 using PMS.Services.Interfaces;
-using PMS.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
-namespace TeamMember.Controllers;
+namespace TeamService.Controllers;
 
 [ApiController]
 [Route("/api/[controller]")]
-public class TeamMemberController : ControllerBase
+public class TeamMembersController : ControllerBase
 {
 
-    private readonly ITeamService _service;
+    private readonly ITeamMemberService _service;
 
-    public TeamsController(ITeamService service)
+    public TeamMembersController(ITeamMemberService service)
     {
         _service = service;
     }
 
     [HttpGet]
     [Route("getall")]
-    public IEnumerable<Team> GetAllTeams()
+    public IEnumerable<TeamMember> GetAllTeamMembers()
     {
-
-        List<Team> teams = _service.GetAll();
-
-        return teams;
-
+        List<TeamMember> teammembers = _service.GetAll();
+        return teammembers;
     }
 
     [HttpGet]
     [Route("getbyid/{id}")]
-    public Team GetById(int id)
+    public TeamMember GetById(int id)
     {
-        Team team = _service.GetById(id);
-
-
-        return team;
+        TeamMember teammember = _service.GetById(id);
+        return teammember;
     }
 
     [HttpPost]
-    [Route("InsertTeam")]
-    public bool InsertTeam(Team team)
+    [Route("Insert")]
+    public bool Insert(TeamMember teamMember)
     {
-        bool status = _service.Insert(team);
-
-
+        bool status = _service.Insert(teamMember);
         return status;
     }
 
     [HttpPut]
-    [Route("updateTeam/{id}")]
-
-    public bool UpdateTeam(Team team)
+    [Route("update/{id}")]
+    public bool UpdateTeam(TeamMember teamMember)
     {
-        bool status = _service.Update(team);
-
+        bool status = _service.Update(teamMember);
         return status;
     }
 
 
     [HttpDelete]
-    [Route("DeleteTeam/{id}")]
-    public bool DeleteTeam(int id)
+    [Route("Delete/{id}")]
+    public bool Delete(int id)
     {
         bool status = _service.Delete(id);
-
         return status;
     }
 
 
    
 }
+
+
+
