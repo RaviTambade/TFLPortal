@@ -19,7 +19,7 @@ public class ProjectsRepository : IProjectsRepository
         _conString = this._configuration.GetConnectionString("DefaultConnection");
     }
 
-    
+
     public List<Project> GetAll()
     {
         List<Project> projects = new List<Project>();
@@ -204,7 +204,7 @@ public class ProjectsRepository : IProjectsRepository
         return status;
 
     }
-    public List<Project> GetByProject(DateTime fromdate, DateTime todate)
+    public List<Project> GetByProject(Date date)
     {
         List<Project> projects = new List<Project>();
         MySqlConnection connection = new MySqlConnection();
@@ -215,8 +215,8 @@ public class ProjectsRepository : IProjectsRepository
 
             connection.Open();
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@fromdate", fromdate);
-            cmd.Parameters.AddWithValue("@todate", todate);
+            cmd.Parameters.AddWithValue("@fromdate", date.FromDate);
+            cmd.Parameters.AddWithValue("@todate", date.ToDate);
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
