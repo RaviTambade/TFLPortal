@@ -51,7 +51,7 @@ public class UserRepository : IUserRepository
 
     }
 
-    public List<User> GetAllUsers()
+    public List<User> GetAll()
     {
         List<User> users = new List<User>();
         MySqlConnection connection = new MySqlConnection();
@@ -65,7 +65,7 @@ public class UserRepository : IUserRepository
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                int id = Int32.Parse(reader["user_id"].ToString());
+                int id = Int32.Parse(reader["id"].ToString());
                 string email = reader["email"].ToString();
                 string password = reader["password"].ToString();
                 
@@ -98,7 +98,7 @@ public class UserRepository : IUserRepository
         return users;
     }
 
-    public User GetById(int id)
+    public User Get(int id)
     {
 
         User user = new User();
@@ -107,7 +107,7 @@ public class UserRepository : IUserRepository
         try
         {
 
-            string query = "select * from users where user_id =" + id;
+            string query = "select * from users where id =" + id;
             MySqlCommand cmd = new MySqlCommand(query, connection);
             connection.Open();
             MySqlDataReader reader = cmd.ExecuteReader();
@@ -146,7 +146,7 @@ public class UserRepository : IUserRepository
     }
 
 
-    public bool InsertUser(User user)
+    public bool Insert(User user)
     {
 
         bool status = false;
@@ -185,7 +185,7 @@ public class UserRepository : IUserRepository
 
     }
 
-    public bool UpdateUser(User user)
+    public bool Update(User user)
     {
 
         bool status = false;
@@ -193,7 +193,7 @@ public class UserRepository : IUserRepository
         connection.ConnectionString = _conString;
         try
         {
-            string query = "UPDATE users SET email=@email,password=@password WHERE user_id=@userId";
+            string query = "UPDATE users SET email=@email,password=@password WHERE id=@userId";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@userId", user.UserId);
             command.Parameters.AddWithValue("@email", user.Email);
@@ -223,7 +223,7 @@ public class UserRepository : IUserRepository
     }
 
 
-    public bool DeleteUser(int id)
+    public bool Delete(int id)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
@@ -231,7 +231,7 @@ public class UserRepository : IUserRepository
         try
         {
 
-            string query = "delete from users where user_id=@userId";
+            string query = "delete from users where id=@userId";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@userId", id);
             connection.Open();

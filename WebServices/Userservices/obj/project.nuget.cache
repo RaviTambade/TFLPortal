@@ -1,12 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
-  "dgSpecHash": "xThv/Uk8/GEAjy5gbJObuKsEd7FTzuWQ+je42mMOAM/u7T4d8H1X5BSu7/1IXmGNxuYtWIwmQiS1A6QznjwiZA==",
-=======
-  "dgSpecHash": "pIP9xLp9IP5F0DWdhOjShWpUpMM8axZdaahtvocsAZGJBNIeVN4vM38mCqZqXvAES3xY3s8WuIUyTHYC/bWHyA==",
->>>>>>> 47a344780e8c75a78a027ee3e48dbcdb71d0a156
+  "dgSpecHash": "iPKO8G/xDsu+kEEOVhQ9UhZTVn5vyn4pxOnacYAb6cHh1b9c7iimiNIhYZ6Ww3d5rbsvH18rG+7PXD8fl2BOtw==",
   "success": true,
-  "projectFilePath": "D:\\imp\\ProjectManagementSystemNew\\WebServices\\Userservices\\Userservices.csproj",
+  "projectFilePath": "D:\\imp\\PMS\\PMSApp\\WebServices\\Userservices\\Userservices.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\google.protobuf\\3.21.9\\google.protobuf.3.21.9.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\k4os.compression.lz4\\1.3.5\\k4os.compression.lz4.1.3.5.nupkg.sha512",
@@ -46,5 +42,12 @@
     "C:\\Users\\user\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\imp\\PMS\\PMSApp\\WebServices\\Userservices\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
