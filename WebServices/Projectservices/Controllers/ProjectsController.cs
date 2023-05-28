@@ -36,7 +36,8 @@ namespace ProjectsService.Controllers
 
 
         // //[Authorize(Roles = Role.Admin)]
-        [HttpPost]
+        [HttpPost ("/insert")]
+        //[Route("insert")]
         public bool Insert([FromBody] Project project)
         {
             bool status = _projectsrv.Insert(project);
@@ -71,7 +72,7 @@ namespace ProjectsService.Controllers
 
         [HttpGet ("/{fromdate}/{todate}")]
        // [Route("/ongoingprojects/{fromdate}/{todate}")]
-        public List<Project> GetByProject(DateTime fromdate, DateTime todate)
+        public List<Project> GetByProject([FromBody] DateTime fromdate, DateTime todate)
         {
         List<Project> projects = _projectsrv.GetByProject(fromdate, todate);
         return projects;
