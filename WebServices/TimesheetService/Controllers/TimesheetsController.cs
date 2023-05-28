@@ -28,42 +28,38 @@ public class TimesheetController : ControllerBase
 
     }
 
-    [HttpGet]
-    [Route("getbyid/{id}")]
-    public Timesheet GetById(int id)
+    [HttpGet ("timesheet/{id}")]
+    public Timesheet Get(int id)
     {
-        Timesheet user = _service.GetById(id);
+        Timesheet user = _service.Get(id);
 
 
         return user;
     }
 
-    [HttpPost]
-    [Route("InsertTimesheet")]
-    public bool InsertTimesheet(Timesheet timesheet)
+    [HttpPost ("timesheet")]
+    public bool Insert(Timesheet timesheet)
     {
-        bool status = _service.InsertTimesheet(timesheet);
+        bool status = _service.Insert(timesheet);
 
 
         return status;
     }
 
-    [HttpPut]
-    [Route("updateTimesheet/{id}")]
+    [HttpPut ("timesheet/{id}")]
 
-    public bool UpdateTimesheet(Timesheet timesheets)
+    public bool Update(Timesheet timesheets)
     {
-        bool status = _service.UpdateTimesheet(timesheets);
+        bool status = _service.Update(timesheets);
 
         return status;
     }
 
 
-    [HttpDelete]
-    [Route("DeleteTimesheet/{id}")]
-    public bool DeleteTimesheet(int id)
+    [HttpDelete ("timesheet/{id}")]
+    public bool Delete(int id)
     {
-        bool status = _service.DeleteTimesheet(id);
+        bool status = _service.Delete(id);
 
         return status;
     }

@@ -14,13 +14,13 @@ public class TImeSheetService : ITimeSheetServices
     }
     public List<Timesheet> GetAll()=>_repo.GetAll();
 
-    public Timesheet GetById(int id)=>_repo.GetById(id);
+    public Timesheet Get(int id)=>_repo.Get(id);
 
-    public bool InsertTimesheet(Timesheet timesheet)=>_repo.InsertTimesheet(timesheet);
+    public bool Insert(Timesheet timesheet)=>_repo.Insert(timesheet);
 
-    public bool UpdateTimesheet(Timesheet timesheet)=>_repo.UpdateTimesheet(timesheet);
+    public bool Update(Timesheet timesheet)=>_repo.Update(timesheet);
 
-    public bool DeleteTimesheet(int id)=>_repo.DeleteTimesheet(id);
+    public bool Delete(int id)=>_repo.Delete(id);
 
  
 

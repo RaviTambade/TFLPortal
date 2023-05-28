@@ -34,44 +34,44 @@ public class TimesheetRepository : ITimeSheetRepository
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                int id = Int32.Parse(reader["timesheet_id"].ToString());
-                DateTime startdate = Convert.ToDateTime(reader["start_date"].ToString());
+                int id = Int32.Parse(reader["id"].ToString());
+                DateTime startdate = Convert.ToDateTime(reader["startdate"].ToString());
 
-                string week1Monday = reader["week1_monday"].ToString();
-                string week1Tuesday = reader["week1_tuesday"].ToString();
-                string week1Wednesday = reader["week1_wednesday"].ToString();
-                string week1Thursday= reader["week1_thursday"].ToString();
-                string week1Friday = reader["week1_friday"].ToString();
-                string week1Saturday = reader["week1_saturday"].ToString();
-                string week1Sunday = reader["week1_sunday"].ToString();
+                string week1Monday = reader["week1monday"].ToString();
+                string week1Tuesday = reader["week1tuesday"].ToString();
+                string week1Wednesday = reader["week1wednesday"].ToString();
+                string week1Thursday= reader["week1thursday"].ToString();
+                string week1Friday = reader["week1friday"].ToString();
+                string week1Saturday = reader["week1saturday"].ToString();
+                string week1Sunday = reader["week1sunday"].ToString();
 
-                string week2Monday = reader["week2_monday"].ToString();
-                string week2Tuesday = reader["week2_tuesday"].ToString();
-                string week2Wednesday = reader["week2_wednesday"].ToString();
-                string week2Thursday= reader["week2_thursday"].ToString();
-                string week2Friday = reader["week2_friday"].ToString();
-                string week2Saturday = reader["week2_saturday"].ToString();
-                string week2Sunday = reader["week2_sunday"].ToString();
+                string week2Monday = reader["week2monday"].ToString();
+                string week2Tuesday = reader["week2tuesday"].ToString();
+                string week2Wednesday = reader["week2wednesday"].ToString();
+                string week2Thursday= reader["week2thursday"].ToString();
+                string week2Friday = reader["week2friday"].ToString();
+                string week2Saturday = reader["week2saturday"].ToString();
+                string week2Sunday = reader["week2sunday"].ToString();
 
-                string week3Monday = reader["week3_monday"].ToString();
-                string week3Tuesday = reader["week3_tuesday"].ToString();
-                string week3Wednesday = reader["week3_wednesday"].ToString();
-                string week3Thursday= reader["week3_thursday"].ToString();
-                string week3Friday = reader["week3_friday"].ToString();
-                string week3Saturday = reader["week3_saturday"].ToString();
-                string week3Sunday = reader["week3_sunday"].ToString();
+                string week3Monday = reader["week3monday"].ToString();
+                string week3Tuesday = reader["week3tuesday"].ToString();
+                string week3Wednesday = reader["week3wednesday"].ToString();
+                string week3Thursday= reader["week3thursday"].ToString();
+                string week3Friday = reader["week3friday"].ToString();
+                string week3Saturday = reader["week3saturday"].ToString();
+                string week3Sunday = reader["week3sunday"].ToString();
 
-                string week4Monday = reader["week4_monday"].ToString();
-                string week4Tuesday = reader["week4_tuesday"].ToString();
-                string week4Wednesday = reader["week4_wednesday"].ToString();
-                string week4Thursday= reader["week4_thursday"].ToString();
-                string week4Friday = reader["week4_friday"].ToString();
-                string week4Saturday = reader["week4_saturday"].ToString();
-                string week4Sunday = reader["week4_sunday"].ToString();
+                string week4Monday = reader["week4monday"].ToString();
+                string week4Tuesday = reader["week4tuesday"].ToString();
+                string week4Wednesday = reader["week4wednesday"].ToString();
+                string week4Thursday= reader["week4thursday"].ToString();
+                string week4Friday = reader["week4friday"].ToString();
+                string week4Saturday = reader["week4saturday"].ToString();
+                string week4Sunday = reader["week4sunday"].ToString();
                
-               int employeeId = Int32.Parse(reader["emp_id"].ToString());
-               int projectId = Int32.Parse(reader["proj_id"].ToString());
-               int payrollcycleId = Int32.Parse(reader["payroll_cycle_id"].ToString());
+               int employeeId = Int32.Parse(reader["empid"].ToString());
+               int projectId = Int32.Parse(reader["projectid"].ToString());
+               int payrollcycleId = Int32.Parse(reader["payrollcycleid"].ToString());
                string notes = reader["notes"].ToString();
                 
                 Timesheet timesheet = new Timesheet
@@ -137,7 +137,7 @@ public class TimesheetRepository : ITimeSheetRepository
         return timesheets;
     }
 
-    public Timesheet GetById(int id)
+    public Timesheet Get(int id)
     {
 
         Timesheet timesheet = new Timesheet();
@@ -146,57 +146,54 @@ public class TimesheetRepository : ITimeSheetRepository
         try
         {
 
-            string query = "select * from timesheets where timesheet_Id =" + id;
+            string query = "select * from timesheets where id =" + id;
             MySqlCommand cmd = new MySqlCommand(query, connection);
             Console.WriteLine(query);
             connection.Open();
             MySqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
+                int timesheetid = Int32.Parse(reader["id"].ToString());
+                DateTime startdate = Convert.ToDateTime(reader["startdate"].ToString());
+                string week1Monday = reader["week1monday"].ToString();
+                string week1Tuesday = reader["week1tuesday"].ToString();
+                string week1Wednesday = reader["week1wednesday"].ToString();
+                string week1Thursday= reader["week1thursday"].ToString();
+                string week1Friday = reader["week1friday"].ToString();
+                string week1Saturday = reader["week1saturday"].ToString();
+                string week1Sunday = reader["week1sunday"].ToString();
 
-                int timesheetId = Int32.Parse(reader["timesheet_id"].ToString());
-                DateTime startdate = Convert.ToDateTime(reader["start_date"].ToString());
+                string week2Monday = reader["week2monday"].ToString();
+                string week2Tuesday = reader["week2tuesday"].ToString();
+                string week2Wednesday = reader["week2wednesday"].ToString();
+                string week2Thursday= reader["week2thursday"].ToString();
+                string week2Friday = reader["week2friday"].ToString();
+                string week2Saturday = reader["week2saturday"].ToString();
+                string week2Sunday = reader["week2sunday"].ToString();
 
-                string week1Monday = reader["week1_monday"].ToString();
-                string week1Tuesday = reader["week1_tuesday"].ToString();
-                string week1Wednesday = reader["week1_wednesday"].ToString();
-                string week1Thursday= reader["week1_thursday"].ToString();
-                string week1Friday = reader["week1_friday"].ToString();
-                string week1Saturday = reader["week1_saturday"].ToString();
-                string week1Sunday = reader["week1_sunday"].ToString();
+                string week3Monday = reader["week3monday"].ToString();
+                string week3Tuesday = reader["week3tuesday"].ToString();
+                string week3Wednesday = reader["week3wednesday"].ToString();
+                string week3Thursday= reader["week3thursday"].ToString();
+                string week3Friday = reader["week3friday"].ToString();
+                string week3Saturday = reader["week3saturday"].ToString();
+                string week3Sunday = reader["week3sunday"].ToString();
 
-                string week2Monday = reader["week2_monday"].ToString();
-                string week2Tuesday = reader["week2_tuesday"].ToString();
-                string week2Wednesday = reader["week2_wednesday"].ToString();
-                string week2Thursday= reader["week2_thursday"].ToString();
-                string week2Friday = reader["week2_friday"].ToString();
-                string week2Saturday = reader["week2_saturday"].ToString();
-                string week2Sunday = reader["week2_sunday"].ToString();
-
-                string week3Monday = reader["week3_monday"].ToString();
-                string week3Tuesday = reader["week3_tuesday"].ToString();
-                string week3Wednesday = reader["week3_wednesday"].ToString();
-                string week3Thursday= reader["week3_thursday"].ToString();
-                string week3Friday = reader["week3_friday"].ToString();
-                string week3Saturday = reader["week3_saturday"].ToString();
-                string week3Sunday = reader["week3_sunday"].ToString();
-
-                string week4Monday = reader["week4_monday"].ToString();
-                string week4Tuesday = reader["week4_tuesday"].ToString();
-                string week4Wednesday = reader["week4_wednesday"].ToString();
-                string week4Thursday= reader["week4_thursday"].ToString();
-                string week4Friday = reader["week4_friday"].ToString();
-                string week4Saturday = reader["week4_saturday"].ToString();
-                string week4Sunday = reader["week4_sunday"].ToString();
+                string week4Monday = reader["week4monday"].ToString();
+                string week4Tuesday = reader["week4tuesday"].ToString();
+                string week4Wednesday = reader["week4wednesday"].ToString();
+                string week4Thursday= reader["week4thursday"].ToString();
+                string week4Friday = reader["week4friday"].ToString();
+                string week4Saturday = reader["week4saturday"].ToString();
+                string week4Sunday = reader["week4sunday"].ToString();
                
-               int employeeId = Int32.Parse(reader["emp_id"].ToString());
-               int projectId = Int32.Parse(reader["proj_id"].ToString());
-               int payrollcycleId = Int32.Parse(reader["payroll_cycle_id"].ToString());
+               int employeeId = Int32.Parse(reader["empid"].ToString());
+               int projectId = Int32.Parse(reader["projectid"].ToString());
+               int payrollcycleId = Int32.Parse(reader["payrollcycleid"].ToString());
                string notes = reader["notes"].ToString();
-
                 timesheet = new Timesheet()
                 {
-                TimesheetId= timesheetId,
+                TimesheetId= timesheetid,
                 StartDate=startdate,
                 Week1MonDay=week1Monday,
                 Week1TuesDay=week1Tuesday,
@@ -214,7 +211,7 @@ public class TimesheetRepository : ITimeSheetRepository
                 Week2SaturDay=week2Saturday,
                 Week2SunDay=week2Sunday,
 
-                 Week3MonDay=week3Monday,
+                Week3MonDay=week3Monday,
                 Week3TuesDay=week1Tuesday,
                 Week3WednesDay=week3Wednesday,
                 Week3ThursDay=week3Thursday,
@@ -255,7 +252,7 @@ public class TimesheetRepository : ITimeSheetRepository
     }
 
 
-    public bool InsertTimesheet(Timesheet timesheet)
+    public bool Insert(Timesheet timesheet)
     {
 
         bool status = false;
@@ -264,7 +261,7 @@ public class TimesheetRepository : ITimeSheetRepository
 
         try
         {
-            string query = $"Insert into timesheets(start_date,week1_monday,week1_tuesday,week1_wednesday,week1_thursday,week1_friday,week1_saturday,week1_sunday,week2_monday,week2_tuesday,week2_wednesday,week2_thursday,week2_friday,week2_saturday,week2_sunday,week3_monday,week3_tuesday,week3_wednesday,week3_thursday,week3_friday,week3_saturday, week3_sunday,week4_monday,week4_tuesday,week4_wednesday,week4_thursday,week4_friday,week4_saturday,week4_sunday,emp_id,proj_id,payroll_cycle_id,notes) values"+"(@startdate,@week1monday, @week1tuesday,@week1wedneday,@week1thursday,@week1friday,@week1saturday,@week1sunday,@week2monday,@week2tuesday,@week2wedneday,@week2thursday,@week2friday,@week2saturday, @week2sunday,@week3monday,@week3tuesday,@week3wedneday,@week3thursday,@week3friday,@week3saturday,@week3sunday,@week4monday, @week4tuesday,@week4wedneday,@week4thursday,@week4friday,@week4saturday,@week4sunday,@employeeId,@projectId,@payrollcycleId,@notes)";
+            string query = $"Insert into timesheets(startdate,week1monday,week1tuesday,week1wednesday,week1thursday,week1friday,week1saturday,week1sunday,week2monday,week2tuesday,week2wednesday,week2thursday,week2friday,week2saturday,week2sunday,week3monday,week3tuesday,week3wednesday,week3thursday,week3friday,week3saturday, week3sunday,week4monday,week4tuesday,week4wednesday,week4thursday,week4friday,week4saturday,week4sunday,empid,projectid,payrollcycleid,notes) values"+"(@startdate,@week1monday, @week1tuesday,@week1wedneday,@week1thursday,@week1friday,@week1saturday,@week1sunday,@week2monday,@week2tuesday,@week2wedneday,@week2thursday,@week2friday,@week2saturday, @week2sunday,@week3monday,@week3tuesday,@week3wedneday,@week3thursday,@week3friday,@week3saturday,@week3sunday,@week4monday, @week4tuesday,@week4wedneday,@week4thursday,@week4friday,@week4saturday,@week4sunday,@employeeId,@projectId,@payrollcycleId,@notes)";
             MySqlCommand cmd = new MySqlCommand(query, con);
             cmd.Parameters.AddWithValue("@startdate", timesheet.StartDate);
             cmd.Parameters.AddWithValue("@week1monday", timesheet.Week1MonDay);
@@ -328,7 +325,7 @@ public class TimesheetRepository : ITimeSheetRepository
 
     }
 
-    public bool UpdateTimesheet(Timesheet timesheet)
+    public bool Update(Timesheet timesheet)
     {
 
         bool status = false;
@@ -336,7 +333,7 @@ public class TimesheetRepository : ITimeSheetRepository
         connection.ConnectionString = _conString;
         try
         {
-            string query = "UPDATE timesheets SET start_date=@startdate,week1_monday=@week1monday ,week1_tuesday=@week1tuesday,week1_wednesday=@week1wedneday ,week1_thursday=@week1thursday ,week1_friday=@week1friday ,week1_saturday=@week1saturday, week1_sunday=@week1sunday ,week2_monday=@week2monday ,week2_tuesday=@week2tuesday,week2_wednesday=@week2wedneday ,week2_thursday=@week2thursday ,week2_friday=@week2friday ,week2_saturday=@week2saturday, week2_sunday=@week2sunday,week3_monday=@week3monday ,week3_tuesday=@week3tuesday,week3_wednesday=@week3wedneday ,week3_thursday=@week3thursday ,week3_friday=@week3friday ,week3_saturday=@week3saturday, week3_sunday=@week3sunday,week4_monday=@week4monday ,week4_tuesday=@week4tuesday,week4_wednesday=@week4wedneday ,week4_thursday=@week4thursday ,week4_friday=@week4friday ,week4_saturday=@week4saturday, week4_sunday=@week4sunday,emp_id=@employeeId ,proj_id=@projectId ,payroll_cycle_id=@payrollcycleId ,notes =@notes  WHERE timesheet_id=@timesheetId";
+            string query = "UPDATE timesheets SET startdate=@startdate,week1monday=@week1monday ,week1tuesday=@week1tuesday,week1wednesday=@week1wedneday ,week1thursday=@week1thursday ,week1friday=@week1friday ,week1saturday=@week1saturday, week1sunday=@week1sunday ,week2monday=@week2monday ,week2tuesday=@week2tuesday,week2wednesday=@week2wedneday ,week2thursday=@week2thursday ,week2friday=@week2friday ,week2saturday=@week2saturday, week2sunday=@week2sunday,week3monday=@week3monday ,week3tuesday=@week3tuesday,week3wednesday=@week3wedneday ,week3thursday=@week3thursday ,week3friday=@week3friday ,week3saturday=@week3saturday, week3sunday=@week3sunday,week4monday=@week4monday ,week4tuesday=@week4tuesday,week4wednesday=@week4wedneday ,week4thursday=@week4thursday ,week4friday=@week4friday ,week4saturday=@week4saturday, week4sunday=@week4sunday,empid=@employeeId ,projectid=@projectId ,payrollcycleid=@payrollcycleId ,notes =@notes  WHERE id=@timesheetId";
             MySqlCommand cmd = new MySqlCommand(query, connection);
               cmd.Parameters.AddWithValue("@timesheetId", timesheet.TimesheetId);
                 cmd.Parameters.AddWithValue("@startdate", timesheet.StartDate);
@@ -401,7 +398,7 @@ public class TimesheetRepository : ITimeSheetRepository
     }
 
 
-    public bool DeleteTimesheet(int id)
+    public bool Delete(int id)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
@@ -409,7 +406,7 @@ public class TimesheetRepository : ITimeSheetRepository
         try
         {
 
-            string query = "delete from timesheets where timesheet_id=@timesheet_id";
+            string query = "delete from timesheets where id=@timesheet_id";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@timesheet_id", id);
             connection.Open();

@@ -9,12 +9,12 @@ public interface ITimeSheetRepository{
      
      List<Timesheet> GetAll();
 
-     Timesheet GetById(int id);
+     Timesheet Get(int id);
 
-     bool InsertTimesheet(Timesheet timesheet);
+     bool Insert(Timesheet timesheet);
 
-     bool UpdateTimesheet(Timesheet timesheet);
+     bool Update(Timesheet timesheet);
 
-     bool DeleteTimesheet(int id);
+     bool Delete(int id);
      
  }
