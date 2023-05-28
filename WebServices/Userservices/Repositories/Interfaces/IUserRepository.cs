@@ -7,14 +7,14 @@ public interface IUserRepository{
 
      public bool ValidateUser(Credential user);
      
-     List<User> GetAllUsers();
+     List<User> GetAll();
 
-     User GetById(int id);
+     User Get(int id);
 
-     bool InsertUser(User user);
+     bool Insert(User user);
 
-     bool UpdateUser(User user);
+     bool Update(User user);
 
-     bool DeleteUser(int id);
+     bool Delete(int id);
      
  }

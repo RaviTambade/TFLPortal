@@ -17,60 +17,54 @@ public class UsersController : ControllerBase
         _service = service;
     }
 
-    [HttpGet]
-    [Route("getall")]
+    [HttpGet ("getall")]
     public IEnumerable<User> GetAll()
     {
 
-        List<User> users = _service.GetAllUsers();
+        List<User> users = _service.GetAll();
 
         return users;
 
     }
 
-    [HttpGet]
-    [Route("getbyid/{id}")]
-    public User GetById(int id)
+    [HttpGet ("get/{id}")]
+    public User Get(int id)
     {
-        User user = _service.GetById(id);
+        User user = _service.Get(id);
 
 
         return user;
     }
 
-    [HttpPost]
-    [Route("InsertUser")]
-    public bool InsertUser(User user)
+    [HttpPost("User")]
+    public bool Insert(User user)
     {
-        bool status = _service.InsertUser(user);
+        bool status = _service.Insert(user);
 
 
         return status;
     }
 
-    [HttpPut]
-    [Route("updateUser/{id}")]
+    [HttpPut ("User/{id}")]
 
-    public bool UpdateUser(User user)
+    public bool Update(User user)
     {
-        bool status = _service.UpdateUser(user);
+        bool status = _service.Update(user);
 
         return status;
     }
 
 
-    [HttpDelete]
-    [Route("DeleteUser/{id}")]
-    public bool DeleteUser(int id)
+    [HttpDelete ("User/{id}")]
+    public bool Delete(int id)
     {
-        bool status = _service.DeleteUser(id);
+        bool status = _service.Delete(id);
 
         return status;
     }
 
 
-   [HttpPost]
-   [Route("ValidateUser")]
+   [HttpPost ("ValidateUser")]
    public bool ValidateUser(Credential user){
     bool status =_service.ValidateUser(user);
     if(status==true){

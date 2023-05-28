@@ -12,15 +12,15 @@ public class UserService : IUserServices
     public UserService(IUserRepository repo){
         _repo=repo;
     }
-    public List<User> GetAllUsers()=>_repo.GetAllUsers();
+    public List<User> GetAll()=>_repo.GetAll();
 
-    public User GetById(int id)=>_repo.GetById(id);
+    public User Get(int id)=>_repo.Get(id);
 
-    public bool InsertUser(User user)=>_repo.InsertUser(user);
+    public bool Insert(User user)=>_repo.Insert(user);
 
-    public bool UpdateUser(User user)=>_repo.UpdateUser(user);
+    public bool Update(User user)=>_repo.Update(user);
 
-    public bool DeleteUser(int id)=>_repo.DeleteUser(id);
+    public bool Delete(int id)=>_repo.Delete(id);
 
     public bool ValidateUser(Credential user)=>_repo.ValidateUser(user);
 

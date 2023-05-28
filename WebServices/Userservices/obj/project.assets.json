@@ -2155,23 +2155,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\user\\.nuget\\packages\\": {}
+    "C:\\Users\\user\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\imp\\ProjectManagementSystemNew\\WebServices\\Userservices\\Userservices.csproj",
+      "projectUniqueName": "D:\\imp\\PMS\\PMSApp\\WebServices\\Userservices\\Userservices.csproj",
       "projectName": "Userservices",
-      "projectPath": "D:\\imp\\ProjectManagementSystemNew\\WebServices\\Userservices\\Userservices.csproj",
+      "projectPath": "D:\\imp\\PMS\\PMSApp\\WebServices\\Userservices\\Userservices.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "D:\\imp\\ProjectManagementSystemNew\\WebServices\\Userservices\\obj\\",
+      "outputPath": "D:\\imp\\PMS\\PMSApp\\WebServices\\Userservices\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-<<<<<<< HEAD
         "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-        "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> 47a344780e8c75a78a027ee3e48dbcdb71d0a156
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2179,10 +2180,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-<<<<<<< HEAD
-=======
         "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
->>>>>>> 47a344780e8c75a78a027ee3e48dbcdb71d0a156
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2233,12 +2231,16 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
-=======
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
->>>>>>> 47a344780e8c75a78a027ee3e48dbcdb71d0a156
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\imp\\PMS\\PMSApp\\WebServices\\Userservices\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
