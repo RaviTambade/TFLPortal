@@ -2160,11 +2160,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\ProjectManagementSystem\\WebServices\\Projectservices\\Projectservices.csproj",
+      "projectUniqueName": "D:\\Projects\\PMSApp\\WebServices\\Projectservices\\Projectservices.csproj",
       "projectName": "Projectservices",
-      "projectPath": "D:\\Projects\\ProjectManagementSystem\\WebServices\\Projectservices\\Projectservices.csproj",
+      "projectPath": "D:\\Projects\\PMSApp\\WebServices\\Projectservices\\Projectservices.csproj",
       "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\ProjectManagementSystem\\WebServices\\Projectservices\\obj\\",
+      "outputPath": "D:\\Projects\\PMSApp\\WebServices\\Projectservices\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",

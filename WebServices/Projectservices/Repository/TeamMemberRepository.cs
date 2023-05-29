@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using TeamService.Models;
+using PMS.Models;
 using PMS.Repositories.Interfaces;
 using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
-using PMS.Models;
+
 
 namespace PMS.Repositories;
 public class TeamMemberRepository : ITeamMemberRepository
@@ -26,17 +26,17 @@ public class TeamMemberRepository : ITeamMemberRepository
         con.ConnectionString = _conString;
         try
         {
-            string query = "SELECT * FROM team_members";
+            string query = "SELECT * FROM teammembers";
             MySqlCommand command = new MySqlCommand(query, con);
             con.Open();
             MySqlDataReader reader = command.ExecuteReader();
             
             while (reader.Read())
             {
-                int id = int.Parse(reader["team_member_id"].ToString());
-                int empId = int.Parse(reader["emp_id"].ToString());
-                int roleId = int.Parse(reader["role_id"].ToString());
-                int teamId = int.Parse(reader["team_id"].ToString());
+                int id = int.Parse(reader["id"].ToString());
+                int empId = int.Parse(reader["empid"].ToString());
+                int roleId = int.Parse(reader["roleid"].ToString());
+                int teamId = int.Parse(reader["teamid"].ToString());
                 
                 TeamMember teammember = new TeamMember
                 {
@@ -68,7 +68,7 @@ public class TeamMemberRepository : ITeamMemberRepository
         con.ConnectionString = _conString;
         try
         {
-            string query = "SELECT * FROM team_members where team_member_id =@teammemberid";
+            string query = "SELECT * FROM teammembers where id =@teammemberid";
             MySqlCommand command = new MySqlCommand(query, con);
             command.Parameters.AddWithValue("@teammemberid", Id);
             con.Open();
@@ -76,10 +76,10 @@ public class TeamMemberRepository : ITeamMemberRepository
             if (reader.Read())
             {
 
-                int id = int.Parse(reader["team_member_id"].ToString());
-                int empId = int.Parse(reader["emp_id"].ToString());
-                int roleId = int.Parse(reader["role_id"].ToString());
-                int teamId = int.Parse(reader["team_id"].ToString());
+                int id = int.Parse(reader["id"].ToString());
+                int empId = int.Parse(reader["empid"].ToString());
+                int roleId = int.Parse(reader["roleid"].ToString());
+                int teamId = int.Parse(reader["teamid"].ToString());
 
 
                 teamMember = new TeamMember
@@ -110,7 +110,7 @@ public class TeamMemberRepository : ITeamMemberRepository
         con.ConnectionString = _conString;
         try
         {
-            string query = "INSERT INTO team_members(team_id,emp_id,role_id) VALUES (@teamId,@empId,@roleId)";
+            string query = "INSERT INTO teammembers(teamid,empid,roleid) VALUES (@teamId,@empId,@roleId)";
             MySqlCommand command = new MySqlCommand(query, con);
             command.Parameters.AddWithValue("@teamId", teamMember.TeamId);
             command.Parameters.AddWithValue("@empId", teamMember.EmpId);
@@ -140,7 +140,7 @@ public class TeamMemberRepository : ITeamMemberRepository
         con.ConnectionString = _conString;
         try
         {
-            string query = "Update team_members SET team_id =@teamid, emp_id=@empid, role_id=@roleid  WHERE team_member_id=@teammemberid";
+            string query = "Update teammembers SET teamid =@teamid, empid=@empid, roleid=@roleid  WHERE id=@teammemberid";
             MySqlCommand command = new MySqlCommand(query, con);
             command.Parameters.AddWithValue("@teammemberid", teamMember.Id);
             command.Parameters.AddWithValue("@teamId", teamMember.TeamId);
@@ -164,8 +164,6 @@ public class TeamMemberRepository : ITeamMemberRepository
         return status;
 
     }
-
-
     public bool Delete(int Id)
     {
         bool status = false;
@@ -173,7 +171,7 @@ public class TeamMemberRepository : ITeamMemberRepository
         con.ConnectionString = _conString;
         try
         {
-            string query = "DELETE  FROM team_members WHERE team_member_id=@teammemberid";
+            string query = "DELETE  FROM teammembers WHERE id=@teammemberid";
             MySqlCommand command = new MySqlCommand(query, con);
             command.Parameters.AddWithValue("@teammemberid", Id);
             con.Open();

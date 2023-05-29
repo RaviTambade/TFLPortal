@@ -1,5 +1,5 @@
 -- DROP DATABASE PMS;
--- CREATE DATABASE PMS;
+CREATE DATABASE PMS;
 USE PMS;
 
 
@@ -170,7 +170,7 @@ INSERT INTO tasks(name,projectid,description,startdate,enddate)VALUES('Meeting S
 
 INSERT INTO assigned(taskid,empid,roleid)VALUES(1,1,1);
 
-USE PMS;
+
 
 select * from employees;
 select * from users;
@@ -178,7 +178,6 @@ select * from teams ;
 select * from roles;
 select * from userroles;
 select * from teammembers;
-
 select * from projects;
 select * from projectmanager;
 select * from clients;
@@ -188,6 +187,8 @@ select * from assigned;
 select * from timesheets;
 select * from payrollCycles;
 
-
+-- 1)Finding role name of employee from roles table 
 select roles.rolename from userroles inner join roles on userroles.roleid =roles.id where userroles.userid=12;
+
+-- 2)Finding running projects between from date and to date
 SELECT * FROM projects WHERE startDate BETWEEN @fromdate AND @todate;

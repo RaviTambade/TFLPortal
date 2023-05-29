@@ -2,6 +2,10 @@ using ProjectAPI.Repository;
 using ProjectAPI.Repository.Interface;
 using ProjectAPI.Service;
 using ProjectAPI.Service.Interface;
+using PMS.Repositories.Interfaces;
+using PMS.Repositories;
+using PMS.Services.Interfaces;
+using PMS.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +17,9 @@ builder.Services.AddCors();
 
 builder.Services.AddTransient<IProjectsRepository,ProjectsRepository>();
 builder.Services.AddTransient<IProjectsService,ProjectService>();
+
+builder.Services.AddTransient<ITeamMemberRepository,TeamMemberRepository>();
+builder.Services.AddTransient<ITeamMemberService,TeamMemberService>();
 
 
 

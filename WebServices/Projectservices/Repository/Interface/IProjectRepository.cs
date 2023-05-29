@@ -12,5 +12,5 @@ public interface IProjectsRepository
     bool Insert(Project projects);
     bool Update(Project projects);
     bool Delete(int projId);
-    List<Project> GetByProject(DateTime fromdate, DateTime todate);
+    List<Project> GetByProject(Date date);
 }

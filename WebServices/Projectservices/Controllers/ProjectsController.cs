@@ -20,14 +20,14 @@ namespace ProjectsService.Controllers
             _projectsrv = projectsrv;
         }
 
-        [HttpGet("/GetAll")]
+        [HttpGet("/Projects")]
         public IEnumerable<Project> GetAll()
         {
             List<Project> projects = _projectsrv.GetAll();
             return projects;
         }
 
-        [HttpGet ("/{id}")]
+        [HttpGet ("/Projects/{id}")]
         public Project GetById(int id)
         {
             Project project = _projectsrv.GetById(id);
@@ -36,7 +36,8 @@ namespace ProjectsService.Controllers
 
 
         // //[Authorize(Roles = Role.Admin)]
-        [HttpPost]
+        [HttpPost ("/projects")]
+        //[Route("insert")]
         public bool Insert([FromBody] Project project)
         {
             bool status = _projectsrv.Insert(project);
@@ -44,7 +45,7 @@ namespace ProjectsService.Controllers
         }
 
         // //[Authorize(Roles = Role.Admin)]
-        [HttpPut ("/{id}")]
+        [HttpPut ("/Projects/{id}")]
         public bool Update(Project project)
         {
             bool status = _projectsrv.Update(project);
@@ -53,7 +54,7 @@ namespace ProjectsService.Controllers
 
 
         // //[Authorize(Roles = Role.Admin)]
-        [HttpDelete ("/{id}")]
+        [HttpDelete ("/Projects/{id}")]
         public bool Delete(int id)
         {
             bool status = _projectsrv.Delete(id);
@@ -69,13 +70,13 @@ namespace ProjectsService.Controllers
         //     return project;
         // }
 
-        [HttpGet ("/{fromdate}/{todate}")]
+        [HttpPost("/Projects/betweendates")]
        // [Route("/ongoingprojects/{fromdate}/{todate}")]
-        public List<Project> GetByProject(DateTime fromdate, DateTime todate)
+        public List<Project> GetByProject([FromBody] Date date)
         {
-        List<Project> projects = _projectsrv.GetByProject(fromdate, todate);
-        return projects;
-        }
+            List<Project> projects = _projectsrv.GetByProject(date);
+            return projects;
+            }
         
     }
     
