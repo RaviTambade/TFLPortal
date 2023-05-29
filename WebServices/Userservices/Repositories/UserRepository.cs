@@ -24,13 +24,13 @@ public class UserRepository : IUserRepository
         MySqlConnection connection = new MySqlConnection(_conString);
         try
         {
-            MySqlCommand command = new MySqlCommand();
-            command.CommandText = "SELECT EXISTS(SELECT * FROM users where email=@email and password=@password)";
-            command.Connection = connection;
-            command.Parameters.AddWithValue("@email", user.Email);
-            command.Parameters.AddWithValue("@password", user.Password);
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.CommandText = "SELECT EXISTS(SELECT * FROM users where email=@email and password=@password)";
+            cmd.Connection = connection;
+            cmd.Parameters.AddWithValue("@email", user.Email);
+            cmd.Parameters.AddWithValue("@password", user.Password);
             connection.Open();
-            MySqlDataReader reader = command.ExecuteReader();
+            MySqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
             if ((Int64)reader[0] == 1)
             {
@@ -194,12 +194,12 @@ public class UserRepository : IUserRepository
         try
         {
             string query = "UPDATE users SET email=@email,password=@password WHERE id=@userId";
-            MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@userId", user.UserId);
-            command.Parameters.AddWithValue("@email", user.Email);
-            command.Parameters.AddWithValue("@password", user.Password);
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@userId", user.UserId);
+            cmd.Parameters.AddWithValue("@email", user.Email);
+            cmd.Parameters.AddWithValue("@password", user.Password);
             connection.Open();
-            int rowsaffected = command.ExecuteNonQuery();
+            int rowsaffected = cmd.ExecuteNonQuery();
             if (rowsaffected > 0)
             {
                 status = true;
@@ -232,10 +232,10 @@ public class UserRepository : IUserRepository
         {
 
             string query = "delete from users where id=@userId";
-            MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@userId", id);
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@userId", id);
             connection.Open();
-            int rowsaffected = command.ExecuteNonQuery();
+            int rowsaffected = cmd.ExecuteNonQuery();
             if (rowsaffected > 0)
             {
                 status = true;
