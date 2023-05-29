@@ -1,29 +1,87 @@
--- DROP DATABASE PMS;
+DROP DATABASE PMS;
 CREATE DATABASE PMS;
 USE PMS;
 
 
-CREATE TABLE users(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, email VARCHAR(50) UNIQUE NOT NULL, password VARCHAR(50) NOT NULL);
-CREATE TABLE accounts(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,accountnumber VARCHAR(25) UNIQUE, ifsccode VARCHAR(50) ,registerdate DATETIME ,balance DOUBLE);
-CREATE TABLE employees(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, firstname VARCHAR (50),lastname VARCHAR(50),birthdate DATETIME,hiredate DATETIME,contactnumber VARCHAR(20),accountnumber VARCHAR(25) NOT NULL UNIQUE ,CONSTRAINT fk_account_no1 FOREIGN KEY(accountnumber) REFERENCES accounts(accountnumber) ON UPDATE CASCADE ON DELETE CASCADE,userid INT NOT NULL UNIQUE ,CONSTRAINT fk_user_id FOREIGN KEY(userid) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE); 
-CREATE TABLE teams(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, teamname VARCHAR (50)UNIQUE);
-CREATE TABLE roles(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,rolename varchar (50));
+CREATE TABLE users(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+                   email VARCHAR(50) UNIQUE NOT NULL,
+                   password VARCHAR(50) NOT NULL);
+                   
+CREATE TABLE accounts(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+				 accountnumber VARCHAR(25) UNIQUE, 
+                     ifsccode VARCHAR(50) ,
+                     registerdate DATETIME ,
+                     balance DOUBLE);
+                     
+CREATE TABLE employees(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+                      firstname VARCHAR (50),
+                      lastname VARCHAR(50),
+                      birthdate DATETIME,
+                      hiredate DATETIME,
+                      contactnumber VARCHAR(20),
+                      accountnumber VARCHAR(25) NOT NULL UNIQUE ,
+                      CONSTRAINT fk_account_no1 FOREIGN KEY(accountnumber) REFERENCES accounts(accountnumber) ON UPDATE CASCADE ON DELETE CASCADE,
+                      userid INT NOT NULL UNIQUE ,CONSTRAINT fk_user_id FOREIGN KEY(userid) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE); 
 
+CREATE TABLE roles(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                   rolename varchar (50));
+                   
 CREATE TABLE userroles(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-					   userid INT NOT NULL, 
+		     	   userid INT NOT NULL, 
                        CONSTRAINT fk_user_id2 FOREIGN KEY(userid) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE,
                        roleid INT NOT NULL,
                        CONSTRAINT fk_role_id2 FOREIGN KEY(roleid) REFERENCES roles(id) ON UPDATE CASCADE ON DELETE CASCADE);
 
-
-CREATE TABLE teammembers(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, teamid INT NOT NULL, CONSTRAINT fk_teamid FOREIGN KEY (teamid) REFERENCES teams(id)ON UPDATE CASCADE  ON DELETE CASCADE ,roleid INT NOT NULL, CONSTRAINT fk_roleid FOREIGN KEY (roleid) REFERENCES roles(id)ON UPDATE CASCADE  ON DELETE CASCADE,empid INT NOT NULL, CONSTRAINT fk_emp_Id4 FOREIGN KEY(empid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE);
-CREATE TABLE projects(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,name VARCHAR(100),startdate DATETIME NOT NULL,enddate DATETIME NOT NULL,description VARCHAR(255),teamid INT NOT NULL, CONSTRAINT fk_teamId1 FOREIGN KEY (teamid) REFERENCES teams(id)ON UPDATE CASCADE  ON DELETE CASCADE);
-CREATE TABLE projectmanager(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,projectid INT NOT NULL, CONSTRAINT fk_proid FOREIGN KEY (projectid) REFERENCES projects(id)ON UPDATE CASCADE  ON DELETE CASCADE,userid INT NOT NULL, CONSTRAINT fk_userid FOREIGN KEY (userid) REFERENCES users(id)ON UPDATE CASCADE  ON DELETE CASCADE);
-CREATE TABLE clients(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,name VARCHAR(50),address VARCHAR(200),details VARCHAR(200),accountnumber VARCHAR(25) NOT NULL UNIQUE ,CONSTRAINT fk_account_no2 FOREIGN KEY(accountnumber) REFERENCES accounts(accountnumber) ON UPDATE CASCADE ON DELETE CASCADE);
-CREATE TABLE onproject(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,projectid INT NOT NULL, CONSTRAINT fk_projid FOREIGN KEY (projectid) REFERENCES projects(id)ON UPDATE CASCADE  ON DELETE CASCADE,clientid INT NOT NULL, CONSTRAINT fk_clientid FOREIGN KEY (clientid) REFERENCES clients(id)ON UPDATE CASCADE  ON DELETE CASCADE);
-CREATE TABLE tasks(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,name VARCHAR(50),projectid INT NOT NULL, CONSTRAINT fk_proidd FOREIGN KEY (projectid) REFERENCES projects(id)ON UPDATE CASCADE  ON DELETE CASCADE,description VARCHAR(200),startdate DATETIME,enddate DATETIME);
-CREATE TABLE assigned(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,taskid INT NOT NULL, CONSTRAINT fk_taskid FOREIGN KEY (taskid) REFERENCES tasks(id)ON UPDATE CASCADE  ON DELETE CASCADE,empid INT NOT NULL, CONSTRAINT fk_empidd FOREIGN KEY (empid) REFERENCES employees(id)ON UPDATE CASCADE  ON DELETE CASCADE,roleid INT NOT NULL, CONSTRAINT fk_roleidd FOREIGN KEY (roleid) REFERENCES roles(id)ON UPDATE CASCADE  ON DELETE CASCADE);
-CREATE TABLE payrollCycles(id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,payrollcycleyear DATETIME,payrollcyclenumber INT NOT NULL,startdate DATETIME,enddate  DATETIME,depositdate DATETIME);
+CREATE TABLE projects(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                     title VARCHAR(100),
+                     startdate DATETIME NOT NULL,
+                     enddate DATETIME NOT NULL,
+                     description VARCHAR(255));
+                     
+CREATE TABLE projectmembers(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                            projectid INT NOT NULL, 
+                            CONSTRAINT fk_proid FOREIGN KEY (projectid) REFERENCES projects(id)ON UPDATE CASCADE  ON DELETE CASCADE,
+                            empid INT NOT NULL, 
+                            CONSTRAINT fk_emp_Id4 FOREIGN KEY(empid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE );
+                            
+CREATE TABLE clients(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                    fullname VARCHAR(50),
+                    address VARCHAR(200),
+                    details VARCHAR(200),
+                    accountnumber VARCHAR(25) NOT NULL UNIQUE ,
+                    CONSTRAINT fk_account_no2 FOREIGN KEY(accountnumber) REFERENCES accounts(accountnumber) ON UPDATE CASCADE ON DELETE CASCADE);
+                    
+CREATE TABLE onproject(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                      projectid INT NOT NULL, 
+                      CONSTRAINT fk_projid FOREIGN KEY (projectid) REFERENCES projects(id)ON UPDATE CASCADE  ON DELETE CASCADE,
+                      clientid INT NOT NULL, 
+                      CONSTRAINT fk_clientid FOREIGN KEY (clientid) REFERENCES clients(id)ON UPDATE CASCADE  ON DELETE CASCADE);
+                      
+CREATE TABLE tasks(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                  title VARCHAR(50),
+                  projectid INT NOT NULL, 
+                  CONSTRAINT fk_proidd FOREIGN KEY (projectid) REFERENCES projects(id)ON UPDATE CASCADE  ON DELETE CASCADE,
+                  description VARCHAR(200),
+                  startdate DATETIME,
+                  enddate DATETIME);
+                  
+CREATE TABLE assigned(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                     taskid INT NOT NULL, 
+                     CONSTRAINT fk_taskid FOREIGN KEY (taskid) REFERENCES tasks(id)ON UPDATE CASCADE  ON DELETE CASCADE,
+                     empid INT NOT NULL, 
+                     CONSTRAINT fk_empidd FOREIGN KEY (empid) REFERENCES employees(id)ON UPDATE CASCADE  ON DELETE CASCADE,
+                     roleid INT NOT NULL, 
+                     CONSTRAINT fk_roleidd FOREIGN KEY (roleid) REFERENCES roles(id)ON UPDATE CASCADE  ON DELETE CASCADE);
+                     
+CREATE TABLE payrollCycles(id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                           payrollcycleyear DATETIME,
+                           payrollcyclenumber INT NOT NULL,
+                           startdate DATETIME,
+                           enddate  DATETIME,
+                           accountnumber VARCHAR(25) NOT NULL UNIQUE ,
+                           CONSTRAINT fk_account_no3 FOREIGN KEY(accountnumber) REFERENCES accounts(accountnumber) ON UPDATE CASCADE ON DELETE CASCADE,
+                           depositdate DATETIME);
+                           
 CREATE TABLE timesheets(id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,startdate DATETIME,
                         week1monday VARCHAR(10),week1tuesday VARCHAR(10),week1wednesday VARCHAR(10),week1thursday VARCHAR(10),week1friday VARCHAR(10),week1saturday VARCHAR(10), week1sunday VARCHAR(10),
                         week2monday VARCHAR(10),week2tuesday VARCHAR(10),week2wednesday VARCHAR(10),week2thursday VARCHAR(10),week2friday VARCHAR(10),week2saturday VARCHAR(10),week2sunday VARCHAR(10),
@@ -86,14 +144,10 @@ INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,accoun
 INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,accountnumber,userid) VALUES('Shubham','Navale','1994-05-19','2020-02-01','7038548502','1012',12);
 INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,accountnumber,userid) VALUES('Samruddhi','Chavan','1996-03-15','2021-02-05','7038548504','1013',13);
 
-INSERT INTO payrollCycles(payrollcycleyear,payrollcyclenumber,startdate,enddate,depositdate)VALUES('2022-05-19',12,'2022-05-19','2023-05-19','2022-05-25');
-INSERT INTO payrollCycles(payrollcycleyear,payrollcyclenumber,startdate,enddate,depositdate)VALUES('2022-04-22',12,'2022-05-15','2023-05-22','2022-05-16');
-INSERT INTO payrollCycles(payrollcycleyear,payrollcyclenumber,startdate,enddate,depositdate)VALUES('2022-05-19',12,'2022-05-19','2023-05-19','2022-05-25');         
+INSERT INTO payrollCycles(payrollcycleyear,payrollcyclenumber,startdate,enddate,accountnumber,depositdate)VALUES('2022-05-19',12,'2022-05-19','2023-05-19','1014','2022-05-25');
+INSERT INTO payrollCycles(payrollcycleyear,payrollcyclenumber,startdate,enddate,accountnumber,depositdate)VALUES('2022-04-22',12,'2022-05-15','2023-05-22','1015','2022-05-16');
+INSERT INTO payrollCycles(payrollcycleyear,payrollcyclenumber,startdate,enddate,accountnumber,depositdate)VALUES('2022-05-19',12,'2022-05-19','2023-05-19','1016','2022-05-25');         
 
-
-INSERT INTO teams(teamname)VALUES('alpha-1');
-INSERT INTO teams(teamname)VALUES('alpha-2');
-INSERT INTO teams(teamname)VALUES('alpha-3');
 
 INSERT INTO roles(rolename)VALUES('Developer');
 INSERT INTO roles(rolename)VALUES('Consultant');
@@ -114,26 +168,28 @@ INSERT INTO userroles(userid,roleid) VALUES (10,4);
 INSERT INTO userroles(userid,roleid) VALUES (11,4);
 INSERT INTO userroles(userid,roleid) VALUES (12,4);
 
-INSERT INTO teammembers(teamid,empid,roleid)VALUES(1,1,1);
-INSERT INTO teammembers(teamid,empid,roleid)VALUES(1,2,1);
-INSERT INTO teammembers(teamid,empid,roleid)VALUES(1,3,3);
-INSERT INTO teammembers(teamid,empid,roleid)VALUES(1,4,3);
-INSERT INTO teammembers(teamid,empid,roleid)VALUES(1,13,2);
-INSERT INTO teammembers(teamid,empid,roleid)VALUES(1,11,4);
-INSERT INTO teammembers(teamid,empid,roleid)VALUES(2,5,1);
-INSERT INTO teammembers(teamid,empid,roleid)VALUES(2,6,1);
-INSERT INTO teammembers(teamid,empid,roleid)VALUES(2,7,3);
-INSERT INTO teammembers(teamid,empid,roleid)VALUES(2,8,3);
-INSERT INTO teammembers(teamid,empid,roleid)VALUES(2,12,4);
-INSERT INTO teammembers(teamid,empid,roleid)VALUES(3,1,1);
-INSERT INTO teammembers(teamid,empid,roleid)VALUES(3,5,1);
-INSERT INTO teammembers(teamid,empid,roleid)VALUES(3,7,3);
-INSERT INTO teammembers(teamid,empid,roleid)VALUES(3,8,3);
-INSERT INTO teammembers(teamid,empid,roleid)VALUES(3,10,4);
 
-INSERT INTO projects(name,startdate,enddate,description,teamid)VALUES('Online Meeting Sheduling','2021-02-02','2021-03-03','Compeny requirement want to organize meetins online',1);
-INSERT INTO projects(name,startdate,enddate,description,teamid)VALUES('Online Interview Sheduling','2022-05-10','2022-05-13','We want to argent hiring of new employeess for new projects',2);
-INSERT INTO projects(name,startdate,enddate,description,teamid)VALUES('MockTesting Sheduling','2021-02-02','2021-03-03','Compeny requirement want to organize meetins online',3);
+INSERT INTO projects(title,startdate,enddate,description)VALUES('PMSAPP','2021-02-02','2021-03-03','Project Management System App');
+INSERT INTO projects(title,startdate,enddate,description)VALUES('OTBMAPP','2022-05-10','2022-05-13','Online Ticket Booking management System App');
+INSERT INTO projects(title,startdate,enddate,description)VALUES('IMSAPP','2021-02-02','2021-03-03','Inventry Management System App');
+
+
+INSERT INTO projectmembers(projectid,empid)VALUES(1,1);
+INSERT INTO projectmembers(projectid,empid)VALUES(1,2);
+INSERT INTO projectmembers(projectid,empid)VALUES(1,3);
+INSERT INTO projectmembers(projectid,empid)VALUES(1,4);
+INSERT INTO projectmembers(projectid,empid)VALUES(1,13);
+INSERT INTO projectmembers(projectid,empid)VALUES(1,11);
+INSERT INTO projectmembers(projectid,empid)VALUES(2,5);
+INSERT INTO projectmembers(projectid,empid)VALUES(2,6);
+INSERT INTO projectmembers(projectid,empid)VALUES(2,7);
+INSERT INTO projectmembers(projectid,empid)VALUES(2,8);
+INSERT INTO projectmembers(projectid,empid)VALUES(2,12);
+INSERT INTO projectmembers(projectid,empid)VALUES(3,1);
+INSERT INTO projectmembers(projectid,empid)VALUES(3,5);
+INSERT INTO projectmembers(projectid,empid)VALUES(3,7);
+INSERT INTO projectmembers(projectid,empid)VALUES(3,8);
+INSERT INTO projectmembers(projectid,empid)VALUES(3,10);
 
 
 INSERT INTO timesheets(startdate,week1monday,week1tuesday,week1wednesday,week1thursday,week1friday,week1saturday, week1sunday,
@@ -157,16 +213,14 @@ INSERT INTO timesheets(startdate,week1monday,week1tuesday,week1wednesday,week1th
                                      '1:05:54','5:45:33','6:12:43','4:55:27','6:42:19','6:17:25','4:18:29',
                                       1,1,1,'remaining work in process');
 
-INSERT INTO projectmanager(projectid,userid)VALUES(1,11);
-INSERT INTO projectmanager(projectid,userid)VALUES(2,12);
-INSERT INTO projectmanager(projectid,userid)VALUES(3,12);
 
-INSERT INTO clients(name,address,details,accountnumber)VALUES('Vishwambhar Kapare','Pune RajguruNagar','Client want to create online meeting portal for their compeny','1001');
-INSERT INTO clients(name,address,details,accountnumber)VALUES('Rajat Pisal','Kolhapur','Client want to create online Interview Sheduling Project','1002');
+
+INSERT INTO clients(fullname,address,details,accountnumber)VALUES('Vishwambhar Kapare','Pune RajguruNagar','Client want to create online meeting portal for their compeny','1001');
+INSERT INTO clients(fullname,address,details,accountnumber)VALUES('Rajat Pisal','Kolhapur','Client want to create online Interview Sheduling Project','1002');
 
 INSERT INTO onproject(projectid,clientid)VALUES(1,2);
 
-INSERT INTO tasks(name,projectid,description,startdate,enddate)VALUES('Meeting Sheduling',1,'please arrange the meeting sheduling prosess quickly','2021-02-01','2021-02-03');
+INSERT INTO tasks(title,projectid,description,startdate,enddate)VALUES('Meeting Sheduling',1,'please arrange the meeting sheduling prosess quickly','2021-02-01','2021-02-03');
 
 INSERT INTO assigned(taskid,empid,roleid)VALUES(1,1,1);
 
@@ -177,9 +231,8 @@ select * from users;
 select * from teams ;
 select * from roles;
 select * from userroles;
-select * from teammembers;
+select * from projectmembers;
 select * from projects;
-select * from projectmanager;
 select * from clients;
 select * from onproject;
 select * from tasks;

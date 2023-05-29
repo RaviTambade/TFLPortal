@@ -16,7 +16,7 @@ public class TeamMembersController : ControllerBase
         _service = service;
     }
 
-    [HttpGet ("/TeamMembers")]
+    [HttpGet ("TeamMembers")]
     //[Route("getall")]
     public IEnumerable<TeamMember> GetAllTeamMembers()
     {
@@ -24,7 +24,7 @@ public class TeamMembersController : ControllerBase
         return teammembers;
     }
 
-    [HttpGet ("/TeamMembers/{id}")]
+    [HttpGet ("{id}")]
     //[Route("getbyid/{id}")]
     public TeamMember GetById(int id)
     {
@@ -32,7 +32,7 @@ public class TeamMembersController : ControllerBase
         return teammember;
     }
 
-    [HttpPost ("/TeamMembers")]
+    [HttpPost ("TeamMember")]
     //[Route("Insert")]
     public bool Insert(TeamMember teamMember)
     {
@@ -40,7 +40,7 @@ public class TeamMembersController : ControllerBase
         return status;
     }
 
-    [HttpPut ("/TeamMembers/{id}")]
+    [HttpPut ("{id}")]
     //[Route("update/{id}")]
     public bool UpdateTeam(TeamMember teamMember)
     {
@@ -49,7 +49,7 @@ public class TeamMembersController : ControllerBase
     }
 
 
-    [HttpDelete ("/TeamMembers/{id}")]
+    [HttpDelete ("{id}")]
     //[Route("Delete/{id}")]
     public bool Delete(int id)
     {
