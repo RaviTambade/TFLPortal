@@ -27,18 +27,18 @@ public class ClientRepository : IClientRepository
         connection.ConnectionString = _conString;
         try
         {
-            string query = "select * from client";
+            string query = "select * from clients";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             connection.Open();
 
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                int id = Int32.Parse(reader["client_id"].ToString());
-                string clientName = reader["clt_name"].ToString();
-                string clientAddress = reader["clt_address"].ToString();
-                string clientdetails = reader["clt_details"].ToString();
-                string accountNumber = reader["account_number"].ToString();
+                int id = Int32.Parse(reader["id"].ToString());
+                string clientName = reader["name"].ToString();
+                string clientAddress = reader["address"].ToString();
+                string clientdetails = reader["details"].ToString();
+                string accountNumber = reader["accountnumber"].ToString();
                 Client client = new Client
                 {
                    ClientId=id,
@@ -68,7 +68,7 @@ public class ClientRepository : IClientRepository
         return clients;
     }
 
-    public Client GetById(int id)
+    public Client Get(int id)
     {
 
         Client client = new Client();
@@ -77,18 +77,18 @@ public class ClientRepository : IClientRepository
         try
         {
 
-            string query = "select * from client where client_id =" + id;
+            string query = "select * from clients where id =" + id;
             MySqlCommand cmd = new MySqlCommand(query, connection);
             connection.Open();
             MySqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
 
-                int clientid = Int32.Parse(reader["client_id"].ToString());
-                string clientName = reader["clt_name"].ToString();
-                string clientAddress = reader["clt_address"].ToString();
-                string clientdetails = reader["clt_details"].ToString();
-                string accountNumber = reader["account_number"].ToString();
+                int clientid = Int32.Parse(reader["id"].ToString());
+                string clientName = reader["name"].ToString();
+                string clientAddress = reader["address"].ToString();
+                string clientdetails = reader["details"].ToString();
+                string accountNumber = reader["accountnumber"].ToString();
         
 
                 client = new Client()
@@ -118,7 +118,7 @@ public class ClientRepository : IClientRepository
     }
 
 
-    public bool InsertClient(Client client)
+    public bool Insert(Client client)
     {
 
         bool status = false;
@@ -127,7 +127,7 @@ public class ClientRepository : IClientRepository
 
         try
         {
-            string query = "Insert into client(clt_name,clt_address,clt_details,account_number) values (@clientName,@clientaddress,@clientdetails,@accountnumber)";
+            string query = "Insert into clients(name,address,details,accountnumber) values (@clientName,@clientaddress,@clientdetails,@accountnumber)";
             MySqlCommand cmd = new MySqlCommand(query, con);
             cmd.Parameters.AddWithValue("@clientName", client.ClientName);
             cmd.Parameters.AddWithValue("@clientaddress", client.ClientAddress);
@@ -158,7 +158,7 @@ public class ClientRepository : IClientRepository
 
     }
 
-    public bool UpdateClient(Client client)
+    public bool Update(Client client)
     {
 
         bool status = false;
@@ -166,15 +166,15 @@ public class ClientRepository : IClientRepository
         connection.ConnectionString = _conString;
         try
         {
-            string query = "UPDATE client SET clt_name=@clientName,clt_address =@clientaddress,clt_details=@clientdetails,account_number=@accountnumber WHERE client_id=@clientId";
-            MySqlCommand command = new MySqlCommand(query, connection); 
-            command.Parameters.AddWithValue("@clientId", client.ClientId);
-            command.Parameters.AddWithValue("@clientName", client.ClientName);
-            command.Parameters.AddWithValue("@clientaddress", client.ClientAddress);
-            command.Parameters.AddWithValue("@clientdetails", client.ClientDetails);
-            command.Parameters.AddWithValue("@accountnumber", client.AccountNumber);
+            string query = "UPDATE clients SET name=@clientName,address =@clientaddress,details=@clientdetails,accountnumber=@accountnumber WHERE id=@clientId";
+            MySqlCommand cmd = new MySqlCommand(query, connection); 
+            cmd.Parameters.AddWithValue("@clientId", client.ClientId);
+            cmd.Parameters.AddWithValue("@clientName", client.ClientName);
+            cmd.Parameters.AddWithValue("@clientaddress", client.ClientAddress);
+            cmd.Parameters.AddWithValue("@clientdetails", client.ClientDetails);
+            cmd.Parameters.AddWithValue("@accountnumber", client.AccountNumber);
              connection.Open();
-            int rowsaffected = command.ExecuteNonQuery();
+            int rowsaffected = cmd.ExecuteNonQuery();
             if (rowsaffected > 0)
             {
                 status = true;
@@ -198,7 +198,7 @@ public class ClientRepository : IClientRepository
     }
 
 
-    public bool DeleteClient(int id)
+    public bool Delete(int id)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
@@ -206,11 +206,11 @@ public class ClientRepository : IClientRepository
         try
         {
 
-            string query = "delete from client where client_id=@clientId";
-            MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@clientId", id);
+            string query = "delete from clients where id=@clientId";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@clientId", id);
             connection.Open();
-            int rowsaffected = command.ExecuteNonQuery();
+            int rowsaffected = cmd.ExecuteNonQuery();
             if (rowsaffected > 0)
             {
                 status = true;

@@ -14,13 +14,13 @@ public class ClientServices : IClientServices
     }
     public List<Client> GetAll()=>_repo.GetAll();
 
-    public Client GetById(int id)=>_repo.GetById(id);
+    public Client Get(int id)=>_repo.Get(id);
 
-    public bool InsertClient(Client client)=>_repo.InsertClient(client);
+    public bool Insert(Client client)=>_repo.Insert(client);
 
-    public bool UpdateClient(Client client)=>_repo.UpdateClient(client);
+    public bool Update(Client client)=>_repo.Update(client);
 
-    public bool DeleteClient(int id)=>_repo.DeleteClient(id);
+    public bool Delete(int id)=>_repo.Delete(id);
 
 
 }

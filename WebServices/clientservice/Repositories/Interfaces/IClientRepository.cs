@@ -8,12 +8,12 @@ public interface IClientRepository{
      
      List<Client> GetAll();
 
-     Client GetById(int id);
+     Client Get(int id);
 
-     bool InsertClient(Client client);
+     bool Insert(Client client);
 
-     bool UpdateClient(Client client);
+     bool Update(Client client);
 
-     bool DeleteClient(int id);
+     bool Delete(int id);
      
  }
