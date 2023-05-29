@@ -28,42 +28,38 @@ public class ClientController : ControllerBase
 
     }
 
-    [HttpGet]
-    [Route("getbyid/{id}")]
-    public Client GetById(int id)
+    [HttpGet("get/{id}")]
+    public Client Get(int id)
     {
-        Client client = _service.GetById(id);
+        Client client = _service.Get(id);
 
 
         return client;
     }
 
-    [HttpPost]
-    [Route("InsertClient")]
-    public bool InsertClient(Client client)
+    [HttpPost("Client")]
+    public bool Insert(Client client)
     {
-        bool status = _service.InsertClient(client);
+        bool status = _service.Insert(client);
 
 
         return status;
     }
 
-    [HttpPut]
-    [Route("updateClient/{id}")]
+    [HttpPut("/{id}")]
 
-    public bool UpdateClient(Client role)
+    public bool Update(Client role)
     {
-        bool status = _service.UpdateClient(role);
+        bool status = _service.Update(role);
 
         return status;
     }
 
 
-    [HttpDelete]
-    [Route("DeleteClient/{id}")]
-    public bool DeleteClient(int id)
+    [HttpDelete ("/{id}")]
+    public bool Delete(int id)
     {
-        bool status = _service.DeleteClient(id);
+        bool status = _service.Delete(id);
 
         return status;
     }

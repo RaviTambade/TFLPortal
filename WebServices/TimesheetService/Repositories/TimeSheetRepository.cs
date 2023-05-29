@@ -407,10 +407,10 @@ public class TimesheetRepository : ITimeSheetRepository
         {
 
             string query = "delete from timesheets where id=@timesheet_id";
-            MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@timesheet_id", id);
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@timesheet_id", id);
             connection.Open();
-            int rowsaffected = command.ExecuteNonQuery();
+            int rowsaffected = cmd.ExecuteNonQuery();
             if (rowsaffected > 0)
             {
                 status = true;
