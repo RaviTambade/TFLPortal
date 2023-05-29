@@ -45,7 +45,7 @@ public class UsersController : ControllerBase
         return status;
     }
 
-    [HttpPut ("User/{id}")]
+    [HttpPut ("/{id}")]
 
     public bool Update(User user)
     {
@@ -55,7 +55,7 @@ public class UsersController : ControllerBase
     }
 
 
-    [HttpDelete ("User/{id}")]
+    [HttpDelete ("/{id}")]
     public bool Delete(int id)
     {
         bool status = _service.Delete(id);
