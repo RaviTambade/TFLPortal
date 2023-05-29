@@ -110,7 +110,7 @@ public class ProjectMemberRepository : IProjectMemberRepository
         {
             string query = "INSERT INTO projectmembers(projectid,empid) VALUES (@projectId,@empId)";
             MySqlCommand command = new MySqlCommand(query, con);
-            command.Parameters.AddWithValue("@projectIdamId", projectMember.ProjectId);
+            command.Parameters.AddWithValue("@projectId", projectMember.ProjectId);
             command.Parameters.AddWithValue("@empId", projectMember.EmpId);
             
 
