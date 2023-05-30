@@ -34,18 +34,18 @@ public class TaskRepository : ITaskRepository
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                int taskid = Int32.Parse(reader["task_id"].ToString());
-                 int projectid = Int32.Parse(reader["proj_id"].ToString());
-                string taskName = reader["task_name"].ToString();
+                int taskid = Int32.Parse(reader["id"].ToString());
+                 int projectid = Int32.Parse(reader["projectid"].ToString());
+                string title = reader["title"].ToString();
                 string description = reader["description"].ToString();
-                DateTime startdate = Convert.ToDateTime(reader["start_date"].ToString());
-                DateTime enddate = Convert.ToDateTime(reader["end_date"].ToString());
+                DateTime startdate = Convert.ToDateTime(reader["startdate"].ToString());
+                DateTime enddate = Convert.ToDateTime(reader["enddate"].ToString());
 
                 Tasks task = new Tasks
                 {
-                    TaskId = taskid,
+                    Id = taskid,
                     ProjectId = projectid,
-                    TaskName = taskName,
+                    Title = title,
                     Description = description,
                     StartDate=startdate,
                     EndDate=enddate
@@ -69,7 +69,6 @@ public class TaskRepository : ITaskRepository
 
         return tasks;
     }
-
     public Tasks GetById(int id)
     {
 
@@ -79,26 +78,26 @@ public class TaskRepository : ITaskRepository
         try
         {
 
-            string query = "select * from task where task_id =" + id;
+            string query = "select * from task where id =" + id;
             MySqlCommand cmd = new MySqlCommand(query, connection);
             connection.Open();
             MySqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
 
-                 int taskid = Int32.Parse(reader["task_id"].ToString());
-                 int projectid = Int32.Parse(reader["proj_id"].ToString());
-                string taskName = reader["task_name"].ToString();
+                 int taskid = Int32.Parse(reader["id"].ToString());
+                 int projectid = Int32.Parse(reader["projectid"].ToString());
+                string title = reader["title"].ToString();
                 string description = reader["description"].ToString();
-                DateTime startdate = Convert.ToDateTime(reader["start_date"].ToString());
-                DateTime enddate = Convert.ToDateTime(reader["end_date"].ToString());
+                DateTime startdate = Convert.ToDateTime(reader["startdate"].ToString());
+                DateTime enddate = Convert.ToDateTime(reader["enddate"].ToString());
                 
               
                    task = new Tasks()
                 {
-                    TaskId = taskid,
+                    Id = taskid,
                     ProjectId = projectid,
-                    TaskName = taskName,
+                    Title = title,
                     Description = description,
                     StartDate=startdate,
                     EndDate=enddate
@@ -120,9 +119,6 @@ public class TaskRepository : ITaskRepository
     
         return task;
     }
-
-
-
     public bool Insert(Tasks tasks)
     {
 
@@ -132,11 +128,11 @@ public class TaskRepository : ITaskRepository
 
         try
         {
-            string query = "Insert into task(task_id,proj_id,task_name,description,start_date,end_date) values (@taskid,@projectid,@taskname,@decription,@startdate,@enddate)";
+            string query = "Insert into task(id,projectid,title,description,startdate,enddate) values (@taskid,@projectid,@title,@decription,@startdate,@enddate)";
             MySqlCommand cmd = new MySqlCommand(query, con);
-            cmd.Parameters.AddWithValue("@taskid", tasks.TaskId);
+            cmd.Parameters.AddWithValue("@taskid", tasks.Id);
             cmd.Parameters.AddWithValue("@projectid", tasks.ProjectId);
-            cmd.Parameters.AddWithValue("@taskname", tasks.TaskName);
+            cmd.Parameters.AddWithValue("@title", tasks.Title);
             cmd.Parameters.AddWithValue("@decription", tasks.Description);
             cmd.Parameters.AddWithValue("@startdate", tasks.StartDate);
             cmd.Parameters.AddWithValue("@enddate", tasks.EndDate);
@@ -164,7 +160,6 @@ public class TaskRepository : ITaskRepository
         return status;
 
     }
-
     public bool Update(Tasks tasks)
     {
 
@@ -173,11 +168,11 @@ public class TaskRepository : ITaskRepository
         connection.ConnectionString = _conString;
         try
         {
-            string query = "UPDATE task SET proj_id=@projectid,task_name=@taskname,description =@description,start_date=@startdate,end_date=@enddate WHERE task_id=@taskId";
+            string query = "UPDATE task SET projectid=@projectid,title=@title,description =@description,startdate=@startdate,enddate=@enddate WHERE id=@taskId";
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@taskId", tasks.TaskId);
+            cmd.Parameters.AddWithValue("@taskId", tasks.Id);
             cmd.Parameters.AddWithValue("@projectid", tasks.ProjectId);
-            cmd.Parameters.AddWithValue("@taskname", tasks.TaskName);
+            cmd.Parameters.AddWithValue("@title", tasks.Title);
             cmd.Parameters.AddWithValue("@description", tasks.Description);
             cmd.Parameters.AddWithValue("@startdate", tasks.StartDate);
             cmd.Parameters.AddWithValue("@enddate", tasks.EndDate);
@@ -204,8 +199,6 @@ public class TaskRepository : ITaskRepository
         }
         return status;
     }
-
-
     public bool Delete(int id)
     {
         bool status = false;
@@ -214,7 +207,7 @@ public class TaskRepository : ITaskRepository
         try
         {
 
-            string query = "delete from task where task_id=@taskId";
+            string query = "delete from task where id=@taskId";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@taskId", id);
             connection.Open();

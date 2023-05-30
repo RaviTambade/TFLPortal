@@ -30,21 +30,21 @@ public class ProjectMemberRepository : IProjectMemberRepository
             MySqlCommand command = new MySqlCommand(query, con);
             con.Open();
             MySqlDataReader reader = command.ExecuteReader();
-            
+
             while (reader.Read())
             {
                 int id = int.Parse(reader["id"].ToString());
                 int projectId = int.Parse(reader["projectid"].ToString());
                 int empId = int.Parse(reader["empid"].ToString());
-               
-                
+
+
                 ProjectMember projectmember = new ProjectMember
                 {
 
-                    Id= id,
-                    ProjectId=projectId,
-                    EmpId=empId
-                    
+                    Id = id,
+                    ProjectId = projectId,
+                    EmpId = empId
+
                 };
                 projectmembers.Add(projectmember);
             }
@@ -82,10 +82,10 @@ public class ProjectMemberRepository : IProjectMemberRepository
 
                 projectMember = new ProjectMember
                 {
-                    Id= id,
-                    ProjectId=projectId,
-                    EmpId=empId
-                    
+                    Id = id,
+                    ProjectId = projectId,
+                    EmpId = empId
+
                 };
             }
             reader.Close();
@@ -112,12 +112,13 @@ public class ProjectMemberRepository : IProjectMemberRepository
             MySqlCommand command = new MySqlCommand(query, con);
             command.Parameters.AddWithValue("@projectId", projectMember.ProjectId);
             command.Parameters.AddWithValue("@empId", projectMember.EmpId);
-            
+
 
             con.Open();
-             int rowsAffected=command.ExecuteNonQuery();
-            if(rowsAffected >0){
-             status=true;
+            int rowsAffected = command.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                status = true;
             }
         }
         catch (Exception e)
@@ -143,11 +144,12 @@ public class ProjectMemberRepository : IProjectMemberRepository
             command.Parameters.AddWithValue("@projectmemberid", projectMember.Id);
             command.Parameters.AddWithValue("@projectid", projectMember.ProjectId);
             command.Parameters.AddWithValue("@empid", projectMember.EmpId);
-           
+
             con.Open();
-             int rowsAffected=command.ExecuteNonQuery();
-            if(rowsAffected >0){
-             status=true;
+            int rowsAffected = command.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                status = true;
             }
         }
         catch (Exception e)
@@ -172,9 +174,10 @@ public class ProjectMemberRepository : IProjectMemberRepository
             MySqlCommand command = new MySqlCommand(query, con);
             command.Parameters.AddWithValue("@projectmembers", Id);
             con.Open();
-             int rowsAffected=command.ExecuteNonQuery();
-            if(rowsAffected >0){
-             status=true;
+            int rowsAffected = command.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                status = true;
             }
         }
         catch (Exception e)
