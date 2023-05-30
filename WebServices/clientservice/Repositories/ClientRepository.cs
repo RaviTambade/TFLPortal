@@ -35,7 +35,7 @@ public class ClientRepository : IClientRepository
             while (reader.Read())
             {
                 int id = Int32.Parse(reader["id"].ToString());
-                string clientName = reader["name"].ToString();
+                string clientName = reader["title"].ToString();
                 string clientAddress = reader["address"].ToString();
                 string clientdetails = reader["details"].ToString();
                 string accountNumber = reader["accountnumber"].ToString();
@@ -85,7 +85,7 @@ public class ClientRepository : IClientRepository
             {
 
                 int clientid = Int32.Parse(reader["id"].ToString());
-                string clientName = reader["name"].ToString();
+                string clientName = reader["title"].ToString();
                 string clientAddress = reader["address"].ToString();
                 string clientdetails = reader["details"].ToString();
                 string accountNumber = reader["accountnumber"].ToString();
@@ -127,7 +127,7 @@ public class ClientRepository : IClientRepository
 
         try
         {
-            string query = "Insert into clients(name,address,details,accountnumber) values (@clientName,@clientaddress,@clientdetails,@accountnumber)";
+            string query = "Insert into clients(title,address,details,accountnumber) values (@clientName,@clientaddress,@clientdetails,@accountnumber)";
             MySqlCommand cmd = new MySqlCommand(query, con);
             cmd.Parameters.AddWithValue("@clientName", client.ClientName);
             cmd.Parameters.AddWithValue("@clientaddress", client.ClientAddress);
@@ -166,7 +166,7 @@ public class ClientRepository : IClientRepository
         connection.ConnectionString = _conString;
         try
         {
-            string query = "UPDATE clients SET name=@clientName,address =@clientaddress,details=@clientdetails,accountnumber=@accountnumber WHERE id=@clientId";
+            string query = "UPDATE clients SET title=@clientName,address =@clientaddress,details=@clientdetails,accountnumber=@accountnumber WHERE id=@clientId";
             MySqlCommand cmd = new MySqlCommand(query, connection); 
             cmd.Parameters.AddWithValue("@clientId", client.ClientId);
             cmd.Parameters.AddWithValue("@clientName", client.ClientName);
