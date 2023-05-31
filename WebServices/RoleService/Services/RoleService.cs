@@ -12,15 +12,15 @@ public class RoleServices : IRoleServices
     public RoleServices(IRoleRepository repo){
         _repo=repo;
     }
-    public List<Role> GetAllRoles()=>_repo.GetAllRoles();
+    public List<Role> GetAll()=>_repo.GetAll();
 
-    public Role GetById(int id)=>_repo.GetById(id);
+    public Role Get(int id)=>_repo.Get(id);
 
-    public bool InsertRole(Role role)=>_repo.InsertRole(role);
+    public bool Insert(Role role)=>_repo.Insert(role);
 
-    public bool UpdateRole(Role role)=>_repo.UpdateRole(role);
+    public bool Update(Role role)=>_repo.Update(role);
 
-    public bool DeleteRole(int id)=>_repo.DeleteRole(id);
+    public bool Delete(int id)=>_repo.Delete(id);
 
 
 }

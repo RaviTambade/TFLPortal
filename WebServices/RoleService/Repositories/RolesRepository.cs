@@ -19,22 +19,22 @@ public class RoleRepository : IRoleRepository
     }
 
 
-    public List<Role> GetAllRoles()
+    public List<Role> GetAll()
     {
         List<Role> roles = new List<Role>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _conString;
         try
         {
-            string query = "select * from role";
+            string query = "select * from roles";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             connection.Open();
 
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                int id = Int32.Parse(reader["role_id"].ToString());
-                string roleName = reader["role_name"].ToString();
+                int id = Int32.Parse(reader["id"].ToString());
+                string roleName = reader["rolename"].ToString();
              
 
                 Role role = new Role
@@ -63,7 +63,7 @@ public class RoleRepository : IRoleRepository
         return roles;
     }
 
-    public Role GetById(int id)
+    public Role Get(int id)
     {
 
         Role role = new Role();
@@ -72,7 +72,7 @@ public class RoleRepository : IRoleRepository
         try
         {
 
-            string query = "select * from role where role_id =" + id;
+            string query = "select * from roles where id =" + id;
             MySqlCommand cmd = new MySqlCommand(query, connection);
             connection.Open();
             MySqlDataReader reader = cmd.ExecuteReader();
@@ -80,7 +80,7 @@ public class RoleRepository : IRoleRepository
             {
 
 
-                string roleName = reader["role_name"].ToString();
+                string roleName = reader["rolename"].ToString();
              
 
                 role = new Role()
@@ -108,7 +108,7 @@ public class RoleRepository : IRoleRepository
     }
 
 
-    public bool InsertRole(Role role)
+    public bool Insert(Role role)
     {
 
         bool status = false;
@@ -117,7 +117,7 @@ public class RoleRepository : IRoleRepository
 
         try
         {
-            string query = "Insert into role(role_name) values (@roleName)";
+            string query = "Insert into roles (rolename) values (@roleName)";
             MySqlCommand cmd = new MySqlCommand(query, con);
             cmd.Parameters.AddWithValue("@roleName", role.RoleName);
        
@@ -146,7 +146,7 @@ public class RoleRepository : IRoleRepository
 
     }
 
-    public bool UpdateRole(Role role)
+    public bool Update(Role role)
     {
 
         bool status = false;
@@ -154,12 +154,12 @@ public class RoleRepository : IRoleRepository
         connection.ConnectionString = _conString;
         try
         {
-            string query = "UPDATE role SET role_name=@roleName WHERE role_id=@roleId";
-            MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@roleId", role.RoleId);
-            command.Parameters.AddWithValue("@roleName", role.RoleName);
+            string query = "UPDATE roles SET rolename=@roleName WHERE id=@roleId";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@roleId", role.RoleId);
+            cmd.Parameters.AddWithValue("@roleName", role.RoleName);
             connection.Open();
-            int rowsaffected = command.ExecuteNonQuery();
+            int rowsaffected = cmd.ExecuteNonQuery();
             if (rowsaffected > 0)
             {
                 status = true;
@@ -183,7 +183,7 @@ public class RoleRepository : IRoleRepository
     }
 
 
-    public bool DeleteRole(int id)
+    public bool Delete(int id)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
@@ -191,11 +191,11 @@ public class RoleRepository : IRoleRepository
         try
         {
 
-            string query = "delete from role where role_id=@roleId";
-            MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@roleId", id);
+            string query = "delete from roles where id=@roleId";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@roleId", id);
             connection.Open();
-            int rowsaffected = command.ExecuteNonQuery();
+            int rowsaffected = cmd.ExecuteNonQuery();
             if (rowsaffected > 0)
             {
                 status = true;
