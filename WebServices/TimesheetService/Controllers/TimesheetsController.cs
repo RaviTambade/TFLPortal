@@ -46,7 +46,7 @@ public class TimesheetController : ControllerBase
         return status;
     }
 
-    [HttpPut ("/{id}")]
+    [HttpPut ("{id}")]
 
     public bool Update(Timesheet timesheets)
     {
@@ -56,7 +56,7 @@ public class TimesheetController : ControllerBase
     }
 
 
-    [HttpDelete ("/{id}")]
+    [HttpDelete ("{id}")]
     public bool Delete(int id)
     {
         bool status = _service.Delete(id);
