@@ -20,14 +20,14 @@ namespace ProjectsService.Controllers
             _projectsrv = projectsrv;
         }
 
-        [HttpGet("/Projects")]
+        [HttpGet("Projects")]
         public IEnumerable<Project> GetAll()
         {
             List<Project> projects = _projectsrv.GetAll();
             return projects;
         }
 
-        [HttpGet ("/Projects/{id}")]
+        [HttpGet ("{id}")]
         public Project GetById(int id)
         {
             Project project = _projectsrv.GetById(id);
@@ -36,7 +36,7 @@ namespace ProjectsService.Controllers
 
 
         // //[Authorize(Roles = Role.Admin)]
-        [HttpPost ("/projects")]
+        [HttpPost ("projects")]
         //[Route("insert")]
         public bool Insert([FromBody] Project project)
         {
@@ -45,7 +45,7 @@ namespace ProjectsService.Controllers
         }
 
         // //[Authorize(Roles = Role.Admin)]
-        [HttpPut ("/Projects/{id}")]
+        [HttpPut ("{id}")]
         public bool Update(Project project)
         {
             bool status = _projectsrv.Update(project);
@@ -54,7 +54,7 @@ namespace ProjectsService.Controllers
 
 
         // //[Authorize(Roles = Role.Admin)]
-        [HttpDelete ("/Projects/{id}")]
+        [HttpDelete ("{id}")]
         public bool Delete(int id)
         {
             bool status = _projectsrv.Delete(id);
@@ -70,7 +70,7 @@ namespace ProjectsService.Controllers
         //     return project;
         // }
 
-        [HttpPost("/Projects/betweendates")]
+        [HttpPost("betweendates")]
        // [Route("/ongoingprojects/{fromdate}/{todate}")]
         public List<Project> GetByProject([FromBody] Date date)
         {

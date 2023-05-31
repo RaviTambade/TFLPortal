@@ -35,21 +35,20 @@ public class ProjectsRepository : IProjectsRepository
             while (reader.Read())
             {
                 int projId = int.Parse(reader["id"].ToString());
-                string? projName = reader["name"].ToString();
+                string? title = reader["title"].ToString();
                 DateTime startDate = DateTime.Parse(reader["startDate"].ToString());
                 DateTime endDate = DateTime.Parse(reader["endDate"].ToString());
                 string description = reader["description"].ToString();
-                int teamId = int.Parse(reader["teamid"].ToString());
+                
 
 
                 Project project = new Project
                 {
                     Id = projId,
-                    Name = projName,
+                    Title = title,
                     StartDate = startDate.ToShortDateString(),
                     EndDate = endDate.ToShortDateString(),
                     Description = description,
-                    TeamId = teamId
 
                 };
                 projects.Add(project);
@@ -82,19 +81,19 @@ public class ProjectsRepository : IProjectsRepository
             {
 
                 int projectId = int.Parse(reader["id"].ToString());
-                string? projName = reader["name"].ToString();
+                string? title = reader["title"].ToString();
                 DateTime startDate = DateTime.Parse(reader["startDate"].ToString());
                 DateTime endDate = DateTime.Parse(reader["endDate"].ToString());
                 string description = reader["description"].ToString();
-                int teamId = int.Parse(reader["teamid"].ToString());
+                
                 project = new Project
                 {
                     Id = projectId,
-                    Name = projName,
+                    Title = title,
                     StartDate = startDate.ToShortDateString(),
                     EndDate = endDate.ToShortDateString(),
                     Description = description,
-                    TeamId = teamId
+                    
                 };
             }
             reader.Close();
@@ -117,13 +116,12 @@ public class ProjectsRepository : IProjectsRepository
         con.ConnectionString = _conString;
         try
         {
-            string query = "INSERT INTO projects(name,startDate,endDate,description,teamid) VALUES(@projname,@startdate,@enddate,@projdesc,@teamid)";
+            string query = "INSERT INTO projects(title,startDate,endDate,description) VALUES(@projtitle,@startdate,@enddate,@projdesc)";
             MySqlCommand command = new MySqlCommand(query, con);
-            command.Parameters.AddWithValue("@projname", project.Name);
+            command.Parameters.AddWithValue("@projtitle", project.Title);
             command.Parameters.AddWithValue("@startdate", project.StartDate);
             command.Parameters.AddWithValue("@enddate", project.EndDate);
             command.Parameters.AddWithValue("@projdesc", project.Description);
-            command.Parameters.AddWithValue("@teamid", project.TeamId);
 
             con.Open();
             int rowsAffected = command.ExecuteNonQuery();
@@ -150,13 +148,12 @@ public class ProjectsRepository : IProjectsRepository
         con.ConnectionString = _conString;
         try
         {
-            string query = "Update projects SET name =@projname, startDate=@startdate,endDate=@enddate,description=@projdesc,teamid=@teamid WHERE id=@projId";
+            string query = "Update projects SET title =@projtitle, startDate=@startdate,endDate=@enddate,description=@projdesc WHERE id=@projId";
             MySqlCommand command = new MySqlCommand(query, con);
-            command.Parameters.AddWithValue("@projname", project.Name);
+            command.Parameters.AddWithValue("@projtitle", project.Title);
             command.Parameters.AddWithValue("@startdate", project.StartDate);
             command.Parameters.AddWithValue("@enddate", project.EndDate);
             command.Parameters.AddWithValue("@projdesc", project.Description);
-            command.Parameters.AddWithValue("@teamid", project.TeamId);
             command.Parameters.AddWithValue("@projId", project.Id);
             con.Open();
             int rowsAffected = command.ExecuteNonQuery();
@@ -221,20 +218,20 @@ public class ProjectsRepository : IProjectsRepository
             while (reader.Read())
             {
                 int id = int.Parse(reader["id"].ToString());
-                string projName = reader["name"].ToString();
+                string projtitle = reader["title"].ToString();
                 DateTime startdate = DateTime.Parse(reader["startDate"].ToString());
                 DateTime endDate = DateTime.Parse(reader["endDate"].ToString());
                 string description = reader["description"].ToString();
-                int teamId = int.Parse(reader["teamid"].ToString());
+                
 
                 Project project = new Project
                 {
                     Id = id,
-                    Name = projName,
+                    Title = projtitle,
                     StartDate = startdate.ToShortDateString(),
                     EndDate = endDate.ToShortDateString(),
                     Description = description,
-                    TeamId = teamId
+                
                 };
                 projects.Add(project);
             }

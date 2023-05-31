@@ -18,8 +18,8 @@ builder.Services.AddCors();
 builder.Services.AddTransient<IProjectsRepository,ProjectsRepository>();
 builder.Services.AddTransient<IProjectsService,ProjectService>();
 
-builder.Services.AddTransient<ITeamMemberRepository,TeamMemberRepository>();
-builder.Services.AddTransient<ITeamMemberService,TeamMemberService>();
+builder.Services.AddTransient<IProjectMemberRepository,ProjectMemberRepository>();
+builder.Services.AddTransient<IProjectMemberService,ProjectMemberService>();
 
 
 

@@ -8,46 +8,45 @@ using MySql.Data.MySqlClient;
 
 
 namespace PMS.Repositories;
-public class TeamMemberRepository : ITeamMemberRepository
+public class ProjectMemberRepository : IProjectMemberRepository
 {
 
     private IConfiguration _configuration;
     private string _conString;
 
-    public TeamMemberRepository(IConfiguration configuration)
+    public ProjectMemberRepository(IConfiguration configuration)
     {
         _configuration = configuration;
         _conString = this._configuration.GetConnectionString("DefaultConnection");
     }
-    public List<TeamMember> GetAll()
+    public List<ProjectMember> GetAll()
     {
-        List<TeamMember> teammembers = new List<TeamMember>();
+        List<ProjectMember> projectmembers = new List<ProjectMember>();
         MySqlConnection con = new MySqlConnection();
         con.ConnectionString = _conString;
         try
         {
-            string query = "SELECT * FROM teammembers";
+            string query = "SELECT * FROM projectmembers";
             MySqlCommand command = new MySqlCommand(query, con);
             con.Open();
             MySqlDataReader reader = command.ExecuteReader();
-            
+
             while (reader.Read())
             {
                 int id = int.Parse(reader["id"].ToString());
+                int projectId = int.Parse(reader["projectid"].ToString());
                 int empId = int.Parse(reader["empid"].ToString());
-                int roleId = int.Parse(reader["roleid"].ToString());
-                int teamId = int.Parse(reader["teamid"].ToString());
-                
-                TeamMember teammember = new TeamMember
+
+
+                ProjectMember projectmember = new ProjectMember
                 {
 
-                    Id= id,
-                    EmpId=empId,
-                    RoleId=roleId,
-                    TeamId = teamId
-                    
+                    Id = id,
+                    ProjectId = projectId,
+                    EmpId = empId
+
                 };
-                teammembers.Add(teammember);
+                projectmembers.Add(projectmember);
             }
             reader.Close();
         }
@@ -59,35 +58,34 @@ public class TeamMemberRepository : ITeamMemberRepository
         {
             con.Close();
         }
-        return teammembers;
+        return projectmembers;
     }
-    public TeamMember GetById(int Id)
+    public ProjectMember GetById(int Id)
     {
-        TeamMember teamMember = new TeamMember();
+        ProjectMember projectMember = new ProjectMember();
         MySqlConnection con = new MySqlConnection();
         con.ConnectionString = _conString;
         try
         {
-            string query = "SELECT * FROM teammembers where id =@teammemberid";
+            string query = "SELECT * FROM projectmembers where id =@projectmembers";
             MySqlCommand command = new MySqlCommand(query, con);
-            command.Parameters.AddWithValue("@teammemberid", Id);
+            command.Parameters.AddWithValue("@projectmembers", Id);
             con.Open();
             MySqlDataReader reader = command.ExecuteReader();
             if (reader.Read())
             {
 
                 int id = int.Parse(reader["id"].ToString());
+                int projectId = int.Parse(reader["projectid"].ToString());
                 int empId = int.Parse(reader["empid"].ToString());
-                int roleId = int.Parse(reader["roleid"].ToString());
-                int teamId = int.Parse(reader["teamid"].ToString());
 
 
-                teamMember = new TeamMember
+                projectMember = new ProjectMember
                 {
-                    Id=id,
-                    EmpId=empId,
-                    RoleId=roleId,
-                    TeamId=teamId
+                    Id = id,
+                    ProjectId = projectId,
+                    EmpId = empId
+
                 };
             }
             reader.Close();
@@ -100,9 +98,9 @@ public class TeamMemberRepository : ITeamMemberRepository
         {
             con.Close();
         }
-        return teamMember;
+        return projectMember;
     }
-    public bool Insert(TeamMember teamMember)
+    public bool Insert(ProjectMember projectMember)
     {
 
         bool status = false;
@@ -110,16 +108,17 @@ public class TeamMemberRepository : ITeamMemberRepository
         con.ConnectionString = _conString;
         try
         {
-            string query = "INSERT INTO teammembers(teamid,empid,roleid) VALUES (@teamId,@empId,@roleId)";
+            string query = "INSERT INTO projectmembers(projectid,empid) VALUES (@projectId,@empId)";
             MySqlCommand command = new MySqlCommand(query, con);
-            command.Parameters.AddWithValue("@teamId", teamMember.TeamId);
-            command.Parameters.AddWithValue("@empId", teamMember.EmpId);
-            command.Parameters.AddWithValue("@roleId", teamMember.RoleId);
+            command.Parameters.AddWithValue("@projectId", projectMember.ProjectId);
+            command.Parameters.AddWithValue("@empId", projectMember.EmpId);
+
 
             con.Open();
-             int rowsAffected=command.ExecuteNonQuery();
-            if(rowsAffected >0){
-             status=true;
+            int rowsAffected = command.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                status = true;
             }
         }
         catch (Exception e)
@@ -133,24 +132,24 @@ public class TeamMemberRepository : ITeamMemberRepository
         return status;
 
     }
-    public bool Update(TeamMember teamMember)
+    public bool Update(ProjectMember projectMember)
     {
         bool status = false;
         MySqlConnection con = new MySqlConnection();
         con.ConnectionString = _conString;
         try
         {
-            string query = "Update teammembers SET teamid =@teamid, empid=@empid, roleid=@roleid  WHERE id=@teammemberid";
+            string query = "Update projectmembers SET projectid =@projectid, empid=@empid  WHERE id=@projectmemberid";
             MySqlCommand command = new MySqlCommand(query, con);
-            command.Parameters.AddWithValue("@teammemberid", teamMember.Id);
-            command.Parameters.AddWithValue("@teamId", teamMember.TeamId);
-            command.Parameters.AddWithValue("@empid", teamMember.EmpId);
-            command.Parameters.AddWithValue("@roleid", teamMember.RoleId);
+            command.Parameters.AddWithValue("@projectmemberid", projectMember.Id);
+            command.Parameters.AddWithValue("@projectid", projectMember.ProjectId);
+            command.Parameters.AddWithValue("@empid", projectMember.EmpId);
 
             con.Open();
-             int rowsAffected=command.ExecuteNonQuery();
-            if(rowsAffected >0){
-             status=true;
+            int rowsAffected = command.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                status = true;
             }
         }
         catch (Exception e)
@@ -171,13 +170,14 @@ public class TeamMemberRepository : ITeamMemberRepository
         con.ConnectionString = _conString;
         try
         {
-            string query = "DELETE  FROM teammembers WHERE id=@teammemberid";
+            string query = "DELETE  FROM projectmembers WHERE id=@projectmembers";
             MySqlCommand command = new MySqlCommand(query, con);
-            command.Parameters.AddWithValue("@teammemberid", Id);
+            command.Parameters.AddWithValue("@projectmembers", Id);
             con.Open();
-             int rowsAffected=command.ExecuteNonQuery();
-            if(rowsAffected >0){
-             status=true;
+            int rowsAffected = command.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                status = true;
             }
         }
         catch (Exception e)
