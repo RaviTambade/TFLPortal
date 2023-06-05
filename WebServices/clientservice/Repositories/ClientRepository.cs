@@ -1,22 +1,22 @@
-using PMS.Models;
-using PMS.Repositories.Interfaces;
-using System.Collections.Generic;
-using MySql.Data.MySqlClient;
+// using PMS.Models;
+// using PMS.Repositories.Interfaces;
+// using System.Collections.Generic;
+// using MySql.Data.MySqlClient;
 
-namespace PMS.Repositories;
+// namespace PMS.Repositories;
 
-public class ClientRepository : IClientRepository
-{
+// public class ClientRepository : IClientRepository
+// {
 
 
-    private IConfiguration _configuration;
-    private string _conString;
+//     private IConfiguration _configuration;
+//     private string _conString;
 
-    public ClientRepository(IConfiguration configuration)
-    {
-        _configuration = configuration;
-        _conString = this._configuration.GetConnectionString("DefaultConnection");
-    }
+//     public ClientRepository(IConfiguration configuration)
+//     {
+//         _configuration = configuration;
+//         _conString = this._configuration.GetConnectionString("DefaultConnection");
+//     }
 
 
 
