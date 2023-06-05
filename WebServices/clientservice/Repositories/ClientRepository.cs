@@ -20,53 +20,53 @@
 
 
 
-    public List<Client> GetAll()
-    {
-        List<Client> clients = new List<Client>();
-        MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _conString;
-        try
-        {
-            string query = "select * from clients";
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            connection.Open();
+//     public List<Client> GetAll()
+//     {
+//         List<Client> clients = new List<Client>();
+//         MySqlConnection connection = new MySqlConnection();
+//         connection.ConnectionString = _conString;
+//         try
+//         {
+//             string query = "select * from clients";
+//             MySqlCommand cmd = new MySqlCommand(query, connection);
+//             connection.Open();
 
-            MySqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                int id = Int32.Parse(reader["id"].ToString());
-                string clientName = reader["title"].ToString();
-                string clientAddress = reader["address"].ToString();
-                string clientdetails = reader["details"].ToString();
-                string accountNumber = reader["accountnumber"].ToString();
-                Client client = new Client
-                {
-                   ClientId=id,
-                   ClientName=clientName,
-                   ClientAddress=clientAddress,
-                   ClientDetails=clientdetails,
-                   AccountNumber=accountNumber
+//             MySqlDataReader reader = cmd.ExecuteReader();
+//             while (reader.Read())
+//             {
+//                 int id = Int32.Parse(reader["id"].ToString());
+//                 string clientName = reader["title"].ToString();
+//                 string clientAddress = reader["address"].ToString();
+//                 string clientdetails = reader["details"].ToString();
+//                 string accountNumber = reader["accountnumber"].ToString();
+//                 Client client = new Client
+//                 {
+//                    ClientId=id,
+//                    ClientName=clientName,
+//                    ClientAddress=clientAddress,
+//                    ClientDetails=clientdetails,
+//                    AccountNumber=accountNumber
                  
-                };
+//                 };
 
-                clients.Add(client);
+//                 clients.Add(client);
 
-            }
-            reader.Close();
-        }
-        catch (Exception ee)
-        {
-            throw ee;
-        }
+//             }
+//             reader.Close();
+//         }
+//         catch (Exception ee)
+//         {
+//             throw ee;
+//         }
 
-        finally
-        {
-            connection.Close();
-        }
+//         finally
+//         {
+//             connection.Close();
+//         }
 
 
-        return clients;
-    }
+//         return clients;
+//     }
 
     public Client Get(int id)
     {
