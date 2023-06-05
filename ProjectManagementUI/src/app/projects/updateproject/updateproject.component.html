@@ -1,32 +1,26 @@
-<p>updateproject works!</p>
 
 <app-getproject [projectId]="projectId" (sendProject)="receiveProject($event)"></app-getproject>
 
-<div  *ngIf="project && project.projId !=0">
+<div  *ngIf="project && project.id !=0">
   <table>
       <tr>
-          <td><label>Project Name :</label></td>
-          <td><input type="text" name="projectName" #projectName="ngModel" [(ngModel)]="project.projName"></td>
+          <td><label>Project Title :</label></td>
+          <td><input type="text" name="title" #title="ngModel" [(ngModel)]="project.title"></td>
       </tr>
     <tr>
         <td><label>Start Date :</label></td>
         <td><input type="text" name="startDate" #startDate="ngModel" [(ngModel)]="project.startDate"></td>
     </tr>
     <tr>
-        <td><label>Actual End Date :</label></td>
+        <td><label>End Date :</label></td>
         <td><input type="text" name="endDate" #endDate="ngModel" [(ngModel)]="project.endDate"></td>
     </tr>
     <tr>
         <td><label>Description :</label></td>
         <td><input type="text" name="description" #description="ngModel" [(ngModel)]="project.description"></td>
     </tr>
-    <tr>
-        <td><label>Working Team :</label></td>
-        <td><input type="text" name="teamId" #teamId="ngModel" [(ngModel)]="project.teamId"></td>
-    </tr>
    
-
-      <tr>
+  <tr>
           <button (click)="updateProject()">Update</button>
       </tr>
   </table>   

@@ -48,8 +48,8 @@ namespace ProjectsService.Controllers
         }
 
         // //[Authorize(Roles = Role.Admin)]
-        //http://localhost:5294/api/projects/5
-        [HttpPut ("{id}")]
+        // http://localhost:5294/api/projects/project
+        [HttpPut ("project")]
         public bool Update(Project project)
         {
             bool status = _projectsrv.Update(project);

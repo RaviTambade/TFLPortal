@@ -3,7 +3,7 @@
 <div *ngIf="project">
     <form #insertForm="ngForm" (ngSubmit)="insertProject(insertForm.value)">
        
-        <p><label><b>Project Name :</b></label><input type="text" name="projName" #projName="ngModel" [(ngModel)]="project.projName"></p>
+        <p><label><b>Project Title :</b></label><input type="text" name="title" #title="ngModel" [(ngModel)]="project.title"></p>
         <p><label><b>Start Date :</b></label><input type="text" name="startDate" #startDate="ngModel" [(ngModel)]="project.startDate"></p>
         <p><label><b>End Date :</b></label><input type="text" name="endDate" #endDate="ngModel" [(ngModel)]="project.endDate"></p>
         <p><label><b>Description :</b></label><input type="text" name="description" #description="ngModel" [(ngModel)]="project.description"></p>

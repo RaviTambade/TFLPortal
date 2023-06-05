@@ -15,21 +15,19 @@
                                         <thead>
                                             <tr>
                                                 <th>Project Id</th>
-                                                <th>Project Name</th>
+                                                <th>Project Title</th>
                                                 <th>Start Date</th>
                                                 <th>End Date</th>
                                                 <th>Project Description</th>
-                                                <th>Working Team</th>
                                             </tr>
                                         </thead> 
                                         <tbody>   
                                             <tr *ngFor="let project of projects">
-                                                <td >{{ project.projId }}</td>
-                                                <td >{{ project.projName }}</td>
+                                                <td >{{ project.id }}</td>
+                                                <td >{{ project.title }}</td>
                                                 <td >{{ project.startDate }}</td>
                                                 <td >{{ project.endDate }}</td>
                                                 <td >{{ project.description }}</td>
-                                                <td>{{ project.teamId }}</td>
                                             </tr>
                                         </tbody>       
                                     </table>

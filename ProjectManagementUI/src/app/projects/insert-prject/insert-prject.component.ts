@@ -10,13 +10,11 @@ import { ProjectsService } from '../projects.service';
 export class InsertPrjectComponent {
  
   project : Projects = {
-    
-    projId : 0,
-    projName: '',
+    id: 0,
+    title: '',
     startDate: '',
     endDate: '',
     description: ''
-  
   };
 
   status : boolean |undefined;

@@ -11,12 +11,12 @@ export class ProjectsService {
   constructor(private http:HttpClient) { }
 
   public getProjects():Observable<Projects[]>{
-    let url= "http://localhost:5294/api/projects/getall";
+    let url= "http://localhost:5294/api/projects/projects";
     return this.http.get<Projects[]>(url);
   }
 
   public getProjectById(projId:number):Observable<Projects>{
-    let url = "http://localhost:5294/api/projects/getprojectsdetails/"+projId;
+    let url = "http://localhost:5294/api/projects/"+projId;
     return this.http.get<Projects>(url);
   }
 
@@ -26,12 +26,12 @@ export class ProjectsService {
   }
 
   public update(project:Projects):Observable<any>{
-    let url="http://localhost:5294/api/projects/update/"
+    let url="http://localhost:5294/api/projects/project"
   return this.http.put<any>(url,project);
 }
 
 delete(projId:number):Observable<any>{
-  let url="http://localhost:5294/api/projects/delete/"+projId;
+  let url="http://localhost:5294/api/projects/"+projId;
   return this.http.delete<any>(url);
 }
 

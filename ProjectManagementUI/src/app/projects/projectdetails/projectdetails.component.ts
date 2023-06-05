@@ -27,8 +27,8 @@ export class ProjectdetailsComponent implements OnInit {
 
 
   deleteProject(){
-    console.log(this.project.projId);
-    this.svc.delete(this.project.projId).subscribe(
+    console.log(this.project.id);
+    this.svc.delete(this.project.id).subscribe(
       (data)=>{
         this.project=data;
         if(data){
