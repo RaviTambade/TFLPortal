@@ -15,8 +15,8 @@ export class InsertPrjectComponent {
     projName: '',
     startDate: '',
     endDate: '',
-    description: '',
-    
+    description: ''
+  
   };
 
   status : boolean |undefined;
@@ -31,11 +31,17 @@ export class InsertPrjectComponent {
       this.status=response;
       console.log(response);
       if(response){
-        alert("Project Inserted successfully");
+
+        alert("Account Inserted successfully");
+        
         window.location.reload();
+        
         }
+        
         else{
+        
         alert("error")
+        
        }
     },(error)=>{
       this.status=false;

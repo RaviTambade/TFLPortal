@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VLoF/k0xBK8T3L/9BW4ZMlSLmxW/ZqX+yljUpD9j7e8o2mt19rA4iVMDzmkB7v29fOIYmNNRvM3WyhJOn7V6Jw==",
+  "dgSpecHash": "nZEfGJoeaGMobeBBQKOWL7O1R3AqdDELnCSlG/sng0XZ8BQLqsFqvw8HLiH9Ypou1KgohoA0MY6jiC28vKccZw==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\ProjectManagementSystem\\WebServices\\TaskService\\TaskService.csproj",
+  "projectFilePath": "D:\\Projects\\PMSApp\\WebServices\\TaskService\\TaskService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Asus\\.nuget\\packages\\google.protobuf\\3.21.9\\google.protobuf.3.21.9.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\k4os.compression.lz4\\1.3.5\\k4os.compression.lz4.1.3.5.nupkg.sha512",

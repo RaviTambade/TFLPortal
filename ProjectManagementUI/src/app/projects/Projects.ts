@@ -4,6 +4,7 @@ export class Projects{
                 public projName:string,
                 public startDate:string,
                 public endDate:string,
-                public description:string )
+                public description:string,
+                )
                 {}
 }

@@ -1,25 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\ProjectManagementSystem\\WebServices\\TaskService\\TaskService.csproj": {}
+    "D:\\Projects\\PMSApp\\WebServices\\TaskService\\TaskService.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\ProjectManagementSystem\\WebServices\\TaskService\\TaskService.csproj": {
+    "D:\\Projects\\PMSApp\\WebServices\\TaskService\\TaskService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\ProjectManagementSystem\\WebServices\\TaskService\\TaskService.csproj",
+        "projectUniqueName": "D:\\Projects\\PMSApp\\WebServices\\TaskService\\TaskService.csproj",
         "projectName": "TaskService",
-        "projectPath": "D:\\Projects\\ProjectManagementSystem\\WebServices\\TaskService\\TaskService.csproj",
+        "projectPath": "D:\\Projects\\PMSApp\\WebServices\\TaskService\\TaskService.csproj",
         "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\ProjectManagementSystem\\WebServices\\TaskService\\obj\\",
+        "outputPath": "D:\\Projects\\PMSApp\\WebServices\\TaskService\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -70,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

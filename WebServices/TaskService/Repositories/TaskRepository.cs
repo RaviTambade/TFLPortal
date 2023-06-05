@@ -27,7 +27,7 @@ public class TaskRepository : ITaskRepository
         connection.ConnectionString = _conString;
         try
         {
-            string query = "select * from task";
+            string query = "select * from tasks";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             connection.Open();
 
@@ -78,7 +78,7 @@ public class TaskRepository : ITaskRepository
         try
         {
 
-            string query = "select * from task where id =" + id;
+            string query = "select * from tasks where id =" + id;
             MySqlCommand cmd = new MySqlCommand(query, connection);
             connection.Open();
             MySqlDataReader reader = cmd.ExecuteReader();
@@ -128,7 +128,7 @@ public class TaskRepository : ITaskRepository
 
         try
         {
-            string query = "Insert into task(id,projectid,title,description,startdate,enddate) values (@taskid,@projectid,@title,@decription,@startdate,@enddate)";
+            string query = "Insert into tasks(id,projectid,title,description,startdate,enddate) values (@taskid,@projectid,@title,@decription,@startdate,@enddate)";
             MySqlCommand cmd = new MySqlCommand(query, con);
             cmd.Parameters.AddWithValue("@taskid", tasks.Id);
             cmd.Parameters.AddWithValue("@projectid", tasks.ProjectId);
@@ -168,7 +168,7 @@ public class TaskRepository : ITaskRepository
         connection.ConnectionString = _conString;
         try
         {
-            string query = "UPDATE task SET projectid=@projectid,title=@title,description =@description,startdate=@startdate,enddate=@enddate WHERE id=@taskId";
+            string query = "UPDATE tasks SET projectid=@projectid,title=@title,description =@description,startdate=@startdate,enddate=@enddate WHERE id=@taskId";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@taskId", tasks.Id);
             cmd.Parameters.AddWithValue("@projectid", tasks.ProjectId);
@@ -207,7 +207,7 @@ public class TaskRepository : ITaskRepository
         try
         {
 
-            string query = "delete from task where id=@taskId";
+            string query = "delete from tasks where id=@taskId";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@taskId", id);
             connection.Open();

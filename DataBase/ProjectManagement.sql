@@ -107,6 +107,7 @@ INSERT INTO users(email,password)VALUES('RaviT@12345','RT@12345');
 INSERT INTO users(email,password)VALUES('ShubhamN@12345','SN@12345');
 INSERT INTO users(email,password)VALUES('SAM@12345','SC@12345');
 INSERT INTO users(email,password)VALUES('KBhapkar@12345','KB@12345');
+INSERT INTO users(email,password)VALUES('RohitJ@12345','Ro@12345');
 
 INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1001','MAHB0000286','2023-03-01 12:40:40',22555);
 INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1002','MAHB0000286','2023-03-01 12:40:40',22555);
@@ -132,6 +133,7 @@ INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1021'
 INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1022','UBIN0000286','2021-08-04 07-40-35',25000);
 INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1023','UBIN0000286','2021-08-04 07-40-35',25000);
 INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1025','UBIN0000286','2021-08-04 07-40-35',25000);
+INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1026','UBIN0000286','2021-08-04 07-40-35',25000);
 
 INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,accountnumber,userid) VALUES('Rushikesh','Chikane','1998-05-19','2023-02-01','7038548505','1001',1);
 INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,accountnumber,userid) VALUES('Akshay','Tanpure','1998-05-11','2023-02-02','7038548506','1002',2);

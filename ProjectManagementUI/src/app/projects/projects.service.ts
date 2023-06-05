@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Projects } from './Projects';
-import { ProjectMember } from './ProjectMember';
 
 @Injectable({
   providedIn: 'root'
@@ -35,18 +34,6 @@ delete(projId:number):Observable<any>{
   let url="http://localhost:5294/api/projects/delete/"+projId;
   return this.http.delete<any>(url);
 }
-
-public insertProjectmember(projectmember:ProjectMember):Observable<any>{
-  let url ="http://localhost:5294/api/ProjectMembers/ProjectMember";
-  return this.http.post<ProjectMember>(url,projectmember);
-}
-
-
-
-
-
-
-
 
 
 }

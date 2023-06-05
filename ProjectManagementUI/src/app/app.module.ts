@@ -1,6 +1,5 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
@@ -15,6 +14,10 @@ import { HRModuleModule } from './hrmodule/hrmodule.module';
 import { DatePipe } from '@angular/common';
 import { ProjecttestModule } from './projecttest/projecttest.module';
 import { ProjectlistComponent } from './projecttest/projectlist/projectlist.component';
+import { takeLast } from 'rxjs';
+import { InsertTaskComponent } from './task/insert-task/insert-task.component';
+import { TaskModule } from './task/task.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -23,7 +26,6 @@ import { ProjectlistComponent } from './projecttest/projectlist/projectlist.comp
 @NgModule({
   imports: [
     BrowserAnimationsModule,
-    FormsModule,
     RouterModule,
     HttpClientModule,
     NavbarModule,
@@ -31,7 +33,9 @@ import { ProjectlistComponent } from './projecttest/projectlist/projectlist.comp
     SidebarModule,
     AppRoutingModule,
     HRModuleModule,
-    ProjecttestModule
+    ProjecttestModule,
+    TaskModule,
+    FormsModule
    
   ],
   declarations: [
@@ -40,6 +44,7 @@ import { ProjectlistComponent } from './projecttest/projectlist/projectlist.comp
     LoginComponent,
     RegisterComponent,
    
+ 
   ],
   providers: [],
   bootstrap: [AppComponent]
