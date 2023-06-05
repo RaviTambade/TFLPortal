@@ -15,8 +15,8 @@ export const ROUTES: RouteInfo[] = [
     //{ path: '/login', title: 'login',  icon:'pe-7s-news-paper', class: '' },
     //{ path: '/register', title: 'Register',  icon:'pe-7s-science', class: '' },
 
-     //{ path: '/get-employees', title: 'All Employees',  icon:'pe-7s-study', class: '' },
-     //{ path: '/insert-employees', title: 'Add Employees',  icon:'pe-7s-study', class: '' },
+    //  { path: '/get-employees', title: 'All Employees',  icon:'pe-7s-study', class: '' },
+    //  { path: '/insert-employees', title: 'Add Employees',  icon:'pe-7s-study', class: '' },
     // { path: '/employeedetails', title: 'Employee Details',  icon:'pe-7s-study', class: '' },
     // { path: '/updateemployee', title: 'Update Employee',  icon:'pe-7s-study', class: '' },
    
@@ -24,7 +24,8 @@ export const ROUTES: RouteInfo[] = [
     { path: '/getall-projects', title: 'Projects List',  icon:'pe-7s-study', class: '' },
     { path: '/insert-prject', title: 'Add Project',  icon:'pe-7s-study', class: '' },
     { path: '/projectdetails', title: 'Project Details',  icon:'pe-7s-study', class: '' },
-    { path: '/updateproject', title: 'Update Employee',  icon:'pe-7s-study', class: '' },
+    { path: '/updateproject', title: 'Update Project',  icon:'pe-7s-study', class: '' },
+    { path: '/insert-projectmember', title: 'Insert Project Member',  icon:'pe-7s-study', class: '' },
 
     // { path: '/accountlist', title: 'Accounts List',  icon:'pe-7s-study', class: '' },
     // { path: '/addaccount', title: 'Add Accounts',  icon:'pe-7s-study', class: '' },

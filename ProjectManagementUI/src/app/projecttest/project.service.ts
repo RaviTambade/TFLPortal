@@ -5,6 +5,12 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProjectService {
+  insertprojectmember(form: any) {
+    throw new Error('Method not implemented.');
+  }
+  insertProjectMember(form: any) {
+    throw new Error('Method not implemented.');
+  }
   private subject = new Subject<any>();
 
   

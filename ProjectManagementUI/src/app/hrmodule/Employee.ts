@@ -6,8 +6,7 @@ export class Employee{
                 public birthDate:string,
                 public hireDate:string,
                 public contactNumber:string,
-                public email:string,
-                public password:string,
-                public accountNumber:string)
+                public accountNumber:string,
+                public userId:number)
                 {}
 }

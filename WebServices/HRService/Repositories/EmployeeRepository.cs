@@ -27,14 +27,14 @@ public class EmployeeRepository : IEmployeeRepository
             MySqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                int id = Int32.Parse(reader["emp_id"].ToString());
-                string firstname = reader["empfirst_name"].ToString();
-                string lastname = reader["emplast_name"].ToString();
-                DateTime birthdate = Convert.ToDateTime(reader["birth_date"].ToString());
-                DateTime hiredate = Convert.ToDateTime(reader["hire_date"].ToString());
-                string contact=reader["contact_number"].ToString();
-                string accountNo = reader["account_number"].ToString();
-                int userId = Int32.Parse(reader["user_id"].ToString());
+                int id = Int32.Parse(reader["empid"].ToString());
+                string firstname = reader["empfirstname"].ToString();
+                string lastname = reader["emplastname"].ToString();
+                DateTime birthdate = Convert.ToDateTime(reader["birthdate"].ToString());
+                DateTime hiredate = Convert.ToDateTime(reader["hiredate"].ToString());
+                string contact=reader["contactnumber"].ToString();
+                string accountNo = reader["accountnumber"].ToString();
+                int userId = Int32.Parse(reader["userid"].ToString());
                
                Employee employee = new Employee
                 {
@@ -67,21 +67,21 @@ public class EmployeeRepository : IEmployeeRepository
           MySqlConnection connection=new MySqlConnection(_conString);
           try{
               MySqlCommand command=new MySqlCommand();
-              command.CommandText="SELECT * FROM employees where emp_id=@employeeId";
+              command.CommandText="SELECT * FROM employees where id=@employeeId";
               command.Connection=connection;
               command.Parameters.AddWithValue("@employeeId",Id);
               connection.Open();
               MySqlDataReader reader = command.ExecuteReader();
               if (reader.Read())
               {
-                int id = Int32.Parse(reader["emp_id"].ToString());
-                string firstname = reader["empfirst_name"].ToString();
-                string lastname = reader["emplast_name"].ToString();
-                DateTime birthdate = Convert.ToDateTime(reader["birth_date"].ToString());
-                DateTime hiredate =  Convert.ToDateTime(reader["hire_date"].ToString());
-                string contactNumber=reader["contact_number"].ToString(); 
-                string accountNo = reader["account_number"].ToString();
-                int userId = Int32.Parse(reader["user_id"].ToString());
+                int id = Int32.Parse(reader["empid"].ToString());
+                string firstname = reader["empfirstname"].ToString();
+                string lastname = reader["emplastname"].ToString();
+                DateTime birthdate = Convert.ToDateTime(reader["birthdate"].ToString());
+                DateTime hiredate =  Convert.ToDateTime(reader["hiredate"].ToString());
+                string contactNumber=reader["contactnumber"].ToString(); 
+                string accountNo = reader["accountnumber"].ToString();
+                int userId = Int32.Parse(reader["userid"].ToString());
         
                 employee = new Employee
                   {
@@ -112,7 +112,7 @@ public class EmployeeRepository : IEmployeeRepository
           MySqlConnection con = new MySqlConnection();
           con.ConnectionString=_conString;
           try{
-              string query =$"INSERT INTO employees(empfirst_name,emplast_name,birth_date,hire_date,contact_number,account_number,user_id)VALUES"+
+              string query =$"INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,accountnumber,userid)VALUES"+
                                                   "(@EmpFirstName,@EmpLastName,@BirthDate,@HireDate,@ContactNumber,@AccountNumber,@userId)";
              Console.WriteLine(query);
              con.Open();
@@ -143,7 +143,7 @@ public class EmployeeRepository : IEmployeeRepository
           MySqlConnection con = new MySqlConnection();
           con.ConnectionString=_conString;
           try{
-            string query = "UPDATE employees SET empfirst_name=@EmpFirstName, emplast_name=@EmpLastName, birth_date=@BirthDate, hire_date=@HireDate, contact_number=@ContactNumber,  account_number=@AccountNumber, user_id=@userId  WHERE emp_id=@EmployeeId";   
+            string query = "UPDATE employees SET empfirstname=@EmpFirstName, emplastname=@EmpLastName, birthdate=@BirthDate, hiredate=@HireDate, contactnumber=@ContactNumber,  accountnumber=@AccountNumber, userid=@userId  WHERE id=@EmployeeId";   
              Console.WriteLine(query);
              con.Open();
              MySqlCommand command=new MySqlCommand(query,con) ;
@@ -172,7 +172,7 @@ public class EmployeeRepository : IEmployeeRepository
           MySqlConnection con = new MySqlConnection();
           con.ConnectionString=_conString;
           try{
-            string query = "DELETE FROM employees WHERE emp_id=@employeeId";
+            string query = "DELETE FROM employees WHERE id=@employeeId";
              MySqlCommand command=new MySqlCommand(query,con) ;
              command.Parameters.AddWithValue("@employeeId",Id);
              con.Open();

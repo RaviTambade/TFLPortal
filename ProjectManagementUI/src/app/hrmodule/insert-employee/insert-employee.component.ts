@@ -16,9 +16,8 @@ export class InsertEmployeeComponent implements OnInit {
     birthDate: '',
     hireDate: '',
     contactNumber: '',
-    email: '',
-    password: '',
-    accountNumber: ''
+    accountNumber: '',
+    userId:0
   };
 
   status:boolean|undefined;

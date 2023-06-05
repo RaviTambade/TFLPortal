@@ -20,6 +20,7 @@ import { AccountlistComponent } from 'app/account/accountlist/accountlist.compon
 import { AddaccountComponent } from 'app/account/addaccount/addaccount.component';
 import { AccountdetailsComponent } from 'app/account/accountdetails/accountdetails.component';
 import { UpdateaccountComponent } from 'app/account/updateaccount/updateaccount.component';
+import { InsertProjectteammemberComponent } from 'app/projects/insert-projectteammember/insert-projectteammember.component';
 
 
 
@@ -41,6 +42,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'insert-prject',       component: InsertPrjectComponent  },
     { path: 'projectdetails',      component: ProjectdetailsComponent},
     { path: 'updateproject',       component: UpdateprojectComponent},
+    { path: 'insert-projectmember',component: InsertProjectteammemberComponent},
 
     { path: 'accountlist',        component: AccountlistComponent},
     { path: 'addaccount',         component: AddaccountComponent},
