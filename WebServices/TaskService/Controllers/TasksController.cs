@@ -1,4 +1,3 @@
-
 using PMS.Models;
 using PMS.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +16,7 @@ public class TaskController : ControllerBase
         _service = service;
     }
 
-    [HttpGet("getall")]
+    [HttpGet ("getall")]
     public IEnumerable<Tasks> GetAll()
     {
 
@@ -27,7 +26,7 @@ public class TaskController : ControllerBase
 
     }
 
-    [HttpGet("get/{id}")]
+    [HttpGet ("get/{id}")]
     public Tasks GetById(int id)
     {
         Tasks task = _service.GetById(id);
@@ -36,7 +35,7 @@ public class TaskController : ControllerBase
         return task;
     }
 
-    [HttpPost("task")]
+    [HttpPost ("task")]
     public bool Insert(Tasks task)
     {
         bool status = _service.Insert(task);
@@ -45,7 +44,7 @@ public class TaskController : ControllerBase
         return status;
     }
 
-    [HttpPut("{id}")]
+    [HttpPut ("id")]
 
     public bool Update(Tasks task)
     {
@@ -55,7 +54,7 @@ public class TaskController : ControllerBase
     }
 
 
-    [HttpDelete("{id}")]
+    [HttpDelete ("id")]
     public bool Delete(int id)
     {
         bool status = _service.Delete(id);

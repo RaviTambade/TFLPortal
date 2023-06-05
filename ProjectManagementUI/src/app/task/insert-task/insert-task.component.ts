@@ -12,6 +12,7 @@ export class InsertTaskComponent {
   task : Task = {
     
     taskId : 0,
+    projectId:0,
     taskName: '',
     startDate: '',
     endDate: '',
@@ -51,5 +52,3 @@ export class InsertTaskComponent {
    
 
 }
-
-
