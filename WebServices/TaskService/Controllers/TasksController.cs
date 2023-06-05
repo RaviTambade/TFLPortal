@@ -17,7 +17,11 @@ public class TaskController : ControllerBase
         _service = service;
     }
 
+<<<<<<< HEAD
+    [HttpGet ("getall")]
+=======
     [HttpGet("getall")]
+>>>>>>> 5585513fea03976cc5c07705413e392be7d34990
     public IEnumerable<Tasks> GetAll()
     {
 
@@ -27,7 +31,11 @@ public class TaskController : ControllerBase
 
     }
 
+<<<<<<< HEAD
+    [HttpGet ("get/{id}")]
+=======
     [HttpGet("get/{id}")]
+>>>>>>> 5585513fea03976cc5c07705413e392be7d34990
     public Tasks GetById(int id)
     {
         Tasks task = _service.GetById(id);
@@ -36,7 +44,11 @@ public class TaskController : ControllerBase
         return task;
     }
 
+<<<<<<< HEAD
+    [HttpPost ("task")]
+=======
     [HttpPost("task")]
+>>>>>>> 5585513fea03976cc5c07705413e392be7d34990
     public bool Insert(Tasks task)
     {
         bool status = _service.Insert(task);
@@ -45,7 +57,11 @@ public class TaskController : ControllerBase
         return status;
     }
 
+<<<<<<< HEAD
+    [HttpPut ("id")]
+=======
     [HttpPut("{id}")]
+>>>>>>> 5585513fea03976cc5c07705413e392be7d34990
 
     public bool Update(Tasks task)
     {
@@ -55,7 +71,11 @@ public class TaskController : ControllerBase
     }
 
 
+<<<<<<< HEAD
+    [HttpDelete ("id")]
+=======
     [HttpDelete("{id}")]
+>>>>>>> 5585513fea03976cc5c07705413e392be7d34990
     public bool Delete(int id)
     {
         bool status = _service.Delete(id);
@@ -65,6 +85,3 @@ public class TaskController : ControllerBase
 
 
 }
-
-
-

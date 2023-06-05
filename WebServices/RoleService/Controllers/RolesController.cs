@@ -17,53 +17,48 @@ public class RoleController : ControllerBase
         _service = service;
     }
 
-    [HttpGet]
-    [Route("getall")]
+    [HttpGet ("getall")]
     public IEnumerable<Role> GetAll()
     {
 
-        List<Role> roles = _service.GetAllRoles();
+        List<Role> roles = _service.GetAll();
 
         return roles;
 
     }
 
-    [HttpGet]
-    [Route("getbyid/{id}")]
+    [HttpGet("get/{id}")]
     public Role GetById(int id)
     {
-        Role role = _service.GetById(id);
+        Role role = _service.Get(id);
 
 
         return role;
     }
 
-    [HttpPost]
-    [Route("InsertRole")]
-    public bool InsertRole(Role role)
+    [HttpPost("Role")]
+    public bool Insert(Role role)
     {
-        bool status = _service.InsertRole(role);
+        bool status = _service.Insert(role);
 
 
         return status;
     }
 
-    [HttpPut]
-    [Route("updateRole/{id}")]
+    [HttpPut  ("{id}")]
 
-    public bool UpdateRole(Role role)
+    public bool Update(Role role)
     {
-        bool status = _service.UpdateRole(role);
+        bool status = _service.Update(role);
 
         return status;
     }
 
 
-    [HttpDelete]
-    [Route("DeleteRole/{id}")]
-    public bool DeleteRole(int id)
+    [HttpDelete  ("{id}")]
+    public bool Delete(int id)
     {
-        bool status = _service.DeleteRole(id);
+        bool status = _service.Delete(id);
 
         return status;
     }

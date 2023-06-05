@@ -6,14 +6,14 @@ public interface IRoleRepository{
 
 
      
-     List<Role> GetAllRoles();
+     List<Role> GetAll();
 
-     Role GetById(int id);
+     Role Get(int id);
 
-     bool InsertRole(Role role);
+     bool Insert(Role role);
 
-     bool UpdateRole(Role role);
+     bool Update (Role role);
 
-     bool DeleteRole(int id);
+     bool Delete(int id);
      
  }
