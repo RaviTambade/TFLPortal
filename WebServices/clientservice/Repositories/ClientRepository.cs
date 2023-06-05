@@ -68,54 +68,54 @@
 //         return clients;
 //     }
 
-    public Client Get(int id)
-    {
+//     public Client Get(int id)
+//     {
 
-        Client client = new Client();
-        MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _conString;
-        try
-        {
+//         Client client = new Client();
+//         MySqlConnection connection = new MySqlConnection();
+//         connection.ConnectionString = _conString;
+//         try
+//         {
 
-            string query = "select * from clients where id =" + id;
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            connection.Open();
-            MySqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
-            {
+//             string query = "select * from clients where id =" + id;
+//             MySqlCommand cmd = new MySqlCommand(query, connection);
+//             connection.Open();
+//             MySqlDataReader reader = cmd.ExecuteReader();
+//             if (reader.Read())
+//             {
 
-                int clientid = Int32.Parse(reader["id"].ToString());
-                string clientName = reader["title"].ToString();
-                string clientAddress = reader["address"].ToString();
-                string clientdetails = reader["details"].ToString();
-                string accountNumber = reader["accountnumber"].ToString();
+//                 int clientid = Int32.Parse(reader["id"].ToString());
+//                 string clientName = reader["title"].ToString();
+//                 string clientAddress = reader["address"].ToString();
+//                 string clientdetails = reader["details"].ToString();
+//                 string accountNumber = reader["accountnumber"].ToString();
         
 
-                client = new Client()
-                {
-                   ClientId=clientid,
-                   ClientName=clientName,
-                   ClientAddress=clientAddress,
-                   ClientDetails=clientdetails,
-                   AccountNumber=accountNumber
-                };
-            }
-            reader.Close();
-        }
-        catch (Exception ee)
-        {
+//                 client = new Client()
+//                 {
+//                    ClientId=clientid,
+//                    ClientName=clientName,
+//                    ClientAddress=clientAddress,
+//                    ClientDetails=clientdetails,
+//                    AccountNumber=accountNumber
+//                 };
+//             }
+//             reader.Close();
+//         }
+//         catch (Exception ee)
+//         {
 
-            throw ee;
+//             throw ee;
 
-        }
+//         }
 
-        finally
-        {
-            connection.Close();
-        }
+//         finally
+//         {
+//             connection.Close();
+//         }
 
-        return client;
-    }
+//         return client;
+//     }
 
 
     public bool Insert(Client client)
