@@ -118,114 +118,114 @@
 //     }
 
 
-    public bool Insert(Client client)
-    {
+//     public bool Insert(Client client)
+//     {
 
-        bool status = false;
-        MySqlConnection con = new MySqlConnection();
-        con.ConnectionString = _conString;
+//         bool status = false;
+//         MySqlConnection con = new MySqlConnection();
+//         con.ConnectionString = _conString;
 
-        try
-        {
-            string query = "Insert into clients(title,address,details,accountnumber) values (@clientName,@clientaddress,@clientdetails,@accountnumber)";
-            MySqlCommand cmd = new MySqlCommand(query, con);
-            cmd.Parameters.AddWithValue("@clientName", client.ClientName);
-            cmd.Parameters.AddWithValue("@clientaddress", client.ClientAddress);
-            cmd.Parameters.AddWithValue("@clientdetails", client.ClientDetails);
-            cmd.Parameters.AddWithValue("@accountnumber", client.AccountNumber);
-            con.Open();
-            int rowsaffected = cmd.ExecuteNonQuery();
-            if (rowsaffected > 0)
-            {
+//         try
+//         {
+//             string query = "Insert into clients(title,address,details,accountnumber) values (@clientName,@clientaddress,@clientdetails,@accountnumber)";
+//             MySqlCommand cmd = new MySqlCommand(query, con);
+//             cmd.Parameters.AddWithValue("@clientName", client.ClientName);
+//             cmd.Parameters.AddWithValue("@clientaddress", client.ClientAddress);
+//             cmd.Parameters.AddWithValue("@clientdetails", client.ClientDetails);
+//             cmd.Parameters.AddWithValue("@accountnumber", client.AccountNumber);
+//             con.Open();
+//             int rowsaffected = cmd.ExecuteNonQuery();
+//             if (rowsaffected > 0)
+//             {
 
-                status = true;
-            }
-        }
+//                 status = true;
+//             }
+//         }
 
-        catch (Exception ee)
-        {
+//         catch (Exception ee)
+//         {
 
-            throw ee;
-        }
+//             throw ee;
+//         }
 
-        finally
-        {
+//         finally
+//         {
 
-            con.Close();
-        }
+//             con.Close();
+//         }
 
-        return status;
+//         return status;
 
-    }
+//     }
 
-    public bool Update(Client client)
-    {
+//     public bool Update(Client client)
+//     {
 
-        bool status = false;
-        MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _conString;
-        try
-        {
-            string query = "UPDATE clients SET title=@clientName,address =@clientaddress,details=@clientdetails,accountnumber=@accountnumber WHERE id=@clientId";
-            MySqlCommand cmd = new MySqlCommand(query, connection); 
-            cmd.Parameters.AddWithValue("@clientId", client.ClientId);
-            cmd.Parameters.AddWithValue("@clientName", client.ClientName);
-            cmd.Parameters.AddWithValue("@clientaddress", client.ClientAddress);
-            cmd.Parameters.AddWithValue("@clientdetails", client.ClientDetails);
-            cmd.Parameters.AddWithValue("@accountnumber", client.AccountNumber);
-             connection.Open();
-            int rowsaffected = cmd.ExecuteNonQuery();
-            if (rowsaffected > 0)
-            {
-                status = true;
-            }
+//         bool status = false;
+//         MySqlConnection connection = new MySqlConnection();
+//         connection.ConnectionString = _conString;
+//         try
+//         {
+//             string query = "UPDATE clients SET title=@clientName,address =@clientaddress,details=@clientdetails,accountnumber=@accountnumber WHERE id=@clientId";
+//             MySqlCommand cmd = new MySqlCommand(query, connection); 
+//             cmd.Parameters.AddWithValue("@clientId", client.ClientId);
+//             cmd.Parameters.AddWithValue("@clientName", client.ClientName);
+//             cmd.Parameters.AddWithValue("@clientaddress", client.ClientAddress);
+//             cmd.Parameters.AddWithValue("@clientdetails", client.ClientDetails);
+//             cmd.Parameters.AddWithValue("@accountnumber", client.AccountNumber);
+//              connection.Open();
+//             int rowsaffected = cmd.ExecuteNonQuery();
+//             if (rowsaffected > 0)
+//             {
+//                 status = true;
+//             }
 
-        }
+//         }
 
-        catch (Exception ee)
-        {
+//         catch (Exception ee)
+//         {
 
-            throw ee;
+//             throw ee;
 
-        }
+//         }
 
-        finally
-        {
+//         finally
+//         {
 
-            connection.Close();
-        }
-        return status;
-    }
+//             connection.Close();
+//         }
+//         return status;
+//     }
 
 
-    public bool Delete(int id)
-    {
-        bool status = false;
-        MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _conString;
-        try
-        {
+//     public bool Delete(int id)
+//     {
+//         bool status = false;
+//         MySqlConnection connection = new MySqlConnection();
+//         connection.ConnectionString = _conString;
+//         try
+//         {
 
-            string query = "delete from clients where id=@clientId";
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@clientId", id);
-            connection.Open();
-            int rowsaffected = cmd.ExecuteNonQuery();
-            if (rowsaffected > 0)
-            {
-                status = true;
-            }
-        }
-        catch (Exception ee)
-        {
+//             string query = "delete from clients where id=@clientId";
+//             MySqlCommand cmd = new MySqlCommand(query, connection);
+//             cmd.Parameters.AddWithValue("@clientId", id);
+//             connection.Open();
+//             int rowsaffected = cmd.ExecuteNonQuery();
+//             if (rowsaffected > 0)
+//             {
+//                 status = true;
+//             }
+//         }
+//         catch (Exception ee)
+//         {
 
-            throw ee;
-        }
+//             throw ee;
+//         }
 
-        finally
-        {
-            connection.Close();
-        }
-        return status;
-    }
-}
+//         finally
+//         {
+//             connection.Close();
+//         }
+//         return status;
+//     }
+// }
