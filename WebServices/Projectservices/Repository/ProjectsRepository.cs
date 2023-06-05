@@ -39,9 +39,6 @@ public class ProjectsRepository : IProjectsRepository
                 DateTime startDate = DateTime.Parse(reader["startDate"].ToString());
                 DateTime endDate = DateTime.Parse(reader["endDate"].ToString());
                 string description = reader["description"].ToString();
-                
-
-
                 Project project = new Project
                 {
                     Id = projId,
@@ -49,7 +46,6 @@ public class ProjectsRepository : IProjectsRepository
                     StartDate = startDate.ToShortDateString(),
                     EndDate = endDate.ToShortDateString(),
                     Description = description,
-
                 };
                 projects.Add(project);
             }
@@ -85,7 +81,7 @@ public class ProjectsRepository : IProjectsRepository
                 DateTime startDate = DateTime.Parse(reader["startDate"].ToString());
                 DateTime endDate = DateTime.Parse(reader["endDate"].ToString());
                 string description = reader["description"].ToString();
-                
+
                 project = new Project
                 {
                     Id = projectId,
@@ -93,7 +89,7 @@ public class ProjectsRepository : IProjectsRepository
                     StartDate = startDate.ToShortDateString(),
                     EndDate = endDate.ToShortDateString(),
                     Description = description,
-                    
+
                 };
             }
             reader.Close();
@@ -110,7 +106,6 @@ public class ProjectsRepository : IProjectsRepository
     }
     public bool Insert(Project project)
     {
-
         bool status = false;
         MySqlConnection con = new MySqlConnection();
         con.ConnectionString = _conString;
@@ -122,7 +117,6 @@ public class ProjectsRepository : IProjectsRepository
             command.Parameters.AddWithValue("@startdate", project.StartDate);
             command.Parameters.AddWithValue("@enddate", project.EndDate);
             command.Parameters.AddWithValue("@projdesc", project.Description);
-
             con.Open();
             int rowsAffected = command.ExecuteNonQuery();
             if (rowsAffected > 0)
@@ -139,7 +133,6 @@ public class ProjectsRepository : IProjectsRepository
             con.Close();
         }
         return status;
-
     }
     public bool Update(Project project)
     {
@@ -171,7 +164,6 @@ public class ProjectsRepository : IProjectsRepository
             con.Close();
         }
         return status;
-
     }
     public bool Delete(Int32 Id)
     {
@@ -199,7 +191,6 @@ public class ProjectsRepository : IProjectsRepository
             con.Close();
         }
         return status;
-
     }
     public List<Project> GetByProject(Date date)
     {
@@ -209,7 +200,6 @@ public class ProjectsRepository : IProjectsRepository
         try
         {
             string query = "SELECT * FROM projects WHERE startDate BETWEEN @fromdate AND @todate;";
-
             connection.Open();
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@fromdate", date.FromDate);
@@ -222,8 +212,6 @@ public class ProjectsRepository : IProjectsRepository
                 DateTime startdate = DateTime.Parse(reader["startDate"].ToString());
                 DateTime endDate = DateTime.Parse(reader["endDate"].ToString());
                 string description = reader["description"].ToString();
-                
-
                 Project project = new Project
                 {
                     Id = id,
@@ -231,7 +219,6 @@ public class ProjectsRepository : IProjectsRepository
                     StartDate = startdate.ToShortDateString(),
                     EndDate = endDate.ToShortDateString(),
                     Description = description,
-                
                 };
                 projects.Add(project);
             }
@@ -248,5 +235,5 @@ public class ProjectsRepository : IProjectsRepository
         return projects;
     }
 
-  
+
 }

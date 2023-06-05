@@ -19,7 +19,8 @@ namespace ProjectsService.Controllers
         {
             _projectsrv = projectsrv;
         }
-
+        
+        //http://localhost:5294/api/projects/projects
         [HttpGet("Projects")]
         public IEnumerable<Project> GetAll()
         {
@@ -27,6 +28,7 @@ namespace ProjectsService.Controllers
             return projects;
         }
 
+        //http://localhost:5294/api/projects/1
         [HttpGet ("{id}")]
         public Project GetById(int id)
         {
@@ -36,6 +38,7 @@ namespace ProjectsService.Controllers
 
 
         // //[Authorize(Roles = Role.Admin)]
+        //http://localhost:5294/api/projects/projects
         [HttpPost ("projects")]
         //[Route("insert")]
         public bool Insert([FromBody] Project project)
@@ -45,6 +48,7 @@ namespace ProjectsService.Controllers
         }
 
         // //[Authorize(Roles = Role.Admin)]
+        //http://localhost:5294/api/projects/5
         [HttpPut ("{id}")]
         public bool Update(Project project)
         {
@@ -54,6 +58,7 @@ namespace ProjectsService.Controllers
 
 
         // //[Authorize(Roles = Role.Admin)]
+        //http://localhost:5294/api/projects/5
         [HttpDelete ("{id}")]
         public bool Delete(int id)
         {
@@ -62,14 +67,7 @@ namespace ProjectsService.Controllers
         }
 
 
-        // [HttpGet]
-        // [Route("/ongoingprojects/{fromdate}/{todate}")]
-        // public List<Project> GetAllByProject(fromdate  , todate)
-        // {
-        //     List<Project> project = _projectsrv.GetByProject(projectName);
-        //     return project;
-        // }
-
+        //http://localhost:5294/api/projects/betweendates  // frombody {"fromdate":"2022/01/01","todate": "2022/12/12"}
         [HttpPost("betweendates")]
        // [Route("/ongoingprojects/{fromdate}/{todate}")]
         public List<Project> GetByProject([FromBody] Date date)

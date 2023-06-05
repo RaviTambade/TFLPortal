@@ -15,7 +15,8 @@ public class ProjectMembersController : ControllerBase
     {
         _service = service;
     }
-
+   
+    //http://localhost:5294/api/ProjectMembers/ProjectMembers
     [HttpGet ("ProjectMembers")]
     //[Route("getall")]
     public IEnumerable<ProjectMember> GetAllTeamMembers()
@@ -24,6 +25,7 @@ public class ProjectMembersController : ControllerBase
         return projectmembers;
     }
 
+    //http://localhost:5294/api/ProjectMembers/1
     [HttpGet ("{id}")]
     //[Route("getbyid/{id}")]
     public ProjectMember GetById(int id)
@@ -32,6 +34,7 @@ public class ProjectMembersController : ControllerBase
         return projectmember;
     }
 
+    //http://localhost:5294/api/ProjectMembers/ProjectMember
     [HttpPost ("ProjectMember")]
     //[Route("Insert")]
     public bool Insert(ProjectMember projectMember)
@@ -39,7 +42,8 @@ public class ProjectMembersController : ControllerBase
         bool status = _service.Insert(projectMember);
         return status;
     }
-
+    
+    //http://localhost:5294/api/ProjectMembers/17
     [HttpPut ("{id}")]
     //[Route("update/{id}")]
     public bool Update(ProjectMember projectMember)
@@ -48,7 +52,7 @@ public class ProjectMembersController : ControllerBase
         return status;
     }
 
-
+    //http://localhost:5294/api/ProjectMembers/17
     [HttpDelete ("{id}")]
     //[Route("Delete/{id}")]
     public bool Delete(int id)

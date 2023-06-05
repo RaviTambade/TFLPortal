@@ -2,7 +2,7 @@
 <div *ngIf="task">
     <form #insertForm="ngForm" (ngSubmit)="insertTask(insertForm.value)">
        
-        <p><label><b>Task Name :</b></label><input type="text" name="projName" #projName="ngModel" [(ngModel)]="task.taskName"></p>
+        <p><label><b>Task Name :</b></label><input type="text" name="projName" #projName="ngModel" [(ngModel)]="task.title"></p>
         <p><label><b>Project Id :</b></label><input type="number" name="projectId" #projName="ngModel" [(ngModel)]="task.projectId"></p>
         <p><label><b>Start Date :</b></label><input type="text" name="startDate" #startDate="ngModel" [(ngModel)]="task.startDate"></p>
         <p><label><b>End Date :</b></label><input type="text" name="endDate" #endDate="ngModel" [(ngModel)]="task.endDate"></p>

@@ -13,7 +13,7 @@ export class InsertTaskComponent {
     
     taskId : 0,
     projectId:0,
-    taskName: '',
+    title: '',
     startDate: '',
     endDate: '',
     description: '',

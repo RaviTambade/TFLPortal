@@ -18,7 +18,7 @@ public class TaskServices : ITaskServices
 
     public bool Insert(Tasks tasks)=>_repo.Insert(tasks);
 
-    public bool Update(Tasks tasks)=>_repo.Update(tasks);
+    public bool Update(Tasks task)=>_repo.Update(task);
 
     public bool Delete(int id)=>_repo.Delete(id);
 

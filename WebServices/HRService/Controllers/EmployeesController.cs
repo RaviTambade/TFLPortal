@@ -17,9 +17,9 @@ public class EmployeesController : ControllerBase
     {
         _service = service;
     }
-
-    [HttpGet]
-    [Route("getall")]
+    
+    // http://localhost:5230/api/employees/employees
+    [HttpGet ("employees")]
     public IEnumerable<Employee> GetAll()
     {
 
@@ -28,9 +28,9 @@ public class EmployeesController : ControllerBase
         return employees;
 
     }
-
-    [HttpGet]
-    [Route("getbyid/{id}")]
+   
+    // http://localhost:5230/api/employees/2
+    [HttpGet ("{id}")] 
     public Employee GetById(int id)
     {
         Employee employees = _service.GetById(id);
@@ -39,8 +39,8 @@ public class EmployeesController : ControllerBase
         return employees;
     }
 
-    [HttpPost]
-    [Route("InsertEmployee")]
+    // http://localhost:5230/api/employees/employee
+    [HttpPost ("Employee")]
     public bool InsertUser(Employee employees)
     {
         bool status = _service.Insert(employees);
@@ -49,9 +49,8 @@ public class EmployeesController : ControllerBase
         return status;
     }
 
-    [HttpPut]
-    [Route("updateEmployee")]
-
+    //http://localhost:5230/api/employees/employee
+    [HttpPut ("Employee")]
     public bool UpdateEmployee(Employee emp)
     {
         bool status = _service.Update(emp);
@@ -59,9 +58,8 @@ public class EmployeesController : ControllerBase
         return status;
     }
 
-
-    [HttpDelete]
-    [Route("DeleteEmployee/{id}")]
+    // http://localhost:5230/api/employees/12
+    [HttpDelete ("{id}")]
     public bool DeleteEmployee(int id)
     {
         bool status = _service.Delete(id);

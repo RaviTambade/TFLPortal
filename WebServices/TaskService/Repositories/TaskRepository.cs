@@ -47,8 +47,8 @@ public class TaskRepository : ITaskRepository
                     ProjectId = projectid,
                     Title = title,
                     Description = description,
-                    StartDate=startdate,
-                    EndDate=enddate
+                    StartDate=startdate.ToShortDateString(),
+                    EndDate=enddate.ToShortDateString()
                 };
 
                 tasks.Add(task);
@@ -99,8 +99,8 @@ public class TaskRepository : ITaskRepository
                     ProjectId = projectid,
                     Title = title,
                     Description = description,
-                    StartDate=startdate,
-                    EndDate=enddate
+                    StartDate=startdate.ToShortDateString(),
+                    EndDate=enddate.ToShortDateString()
                 };
             }
             reader.Close();
@@ -121,11 +121,9 @@ public class TaskRepository : ITaskRepository
     }
     public bool Insert(Tasks tasks)
     {
-
         bool status = false;
         MySqlConnection con = new MySqlConnection();
         con.ConnectionString = _conString;
-
         try
         {
             string query = "Insert into tasks(id,projectid,title,description,startdate,enddate) values (@taskid,@projectid,@title,@decription,@startdate,@enddate)";
@@ -140,65 +138,54 @@ public class TaskRepository : ITaskRepository
             int rowsaffected = cmd.ExecuteNonQuery();
             if (rowsaffected > 0)
             {
-
                 status = true;
             }
         }
-
         catch (Exception ee)
         {
-
             throw ee;
         }
-
         finally
         {
-
             con.Close();
         }
-
         return status;
-
     }
-    public bool Update(Tasks tasks)
-    {
 
+    public bool Update(Tasks task)
+    {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _conString;
         try
         {
-            string query = "UPDATE tasks SET projectid=@projectid,title=@title,description =@description,startdate=@startdate,enddate=@enddate WHERE id=@taskId";
+            string query = "UPDATE tasks SET title =@title ,description=@description ,startdate=@startdate,enddate=@enddate  WHERE id=@taskId";
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@taskId", tasks.Id);
-            cmd.Parameters.AddWithValue("@projectid", tasks.ProjectId);
-            cmd.Parameters.AddWithValue("@title", tasks.Title);
-            cmd.Parameters.AddWithValue("@description", tasks.Description);
-            cmd.Parameters.AddWithValue("@startdate", tasks.StartDate);
-            cmd.Parameters.AddWithValue("@enddate", tasks.EndDate);
+            cmd.Parameters.AddWithValue("@taskId", task.Id);
+            cmd.Parameters.AddWithValue("@projectid", task.ProjectId);
+            cmd.Parameters.AddWithValue("@title", task.Title);
+            cmd.Parameters.AddWithValue("@description", task.Description);
+            cmd.Parameters.AddWithValue("@startdate", task.StartDate);
+            cmd.Parameters.AddWithValue("@enddate", task.EndDate);
             connection.Open();
             int rowsaffected = cmd.ExecuteNonQuery();
             if (rowsaffected > 0)
             {
                 status = true;
             }
-
         }
-
         catch (Exception ee)
         {
-
             throw ee;
-
         }
-
         finally
         {
-
             connection.Close();
         }
         return status;
     }
+
+
     public bool Delete(int id)
     {
         bool status = false;

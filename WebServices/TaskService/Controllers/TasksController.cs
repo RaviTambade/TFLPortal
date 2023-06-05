@@ -16,6 +16,8 @@ public class TaskController : ControllerBase
         _service = service;
     }
 
+
+    //http://localhost:5034/api/Task/getall
     [HttpGet ("getall")]
     public IEnumerable<Tasks> GetAll()
     {
@@ -26,6 +28,7 @@ public class TaskController : ControllerBase
 
     }
 
+     //http://localhost:5034/api/task/get/1
     [HttpGet ("get/{id}")]
     public Tasks GetById(int id)
     {
@@ -35,6 +38,7 @@ public class TaskController : ControllerBase
         return task;
     }
 
+    //http://localhost:5034/api/task/task
     [HttpPost ("task")]
     public bool Insert(Tasks task)
     {
@@ -43,18 +47,17 @@ public class TaskController : ControllerBase
 
         return status;
     }
-
-    [HttpPut ("id")]
-
+    
+    //http://localhost:5034/api/task/1
+    [HttpPut ("{id}")]
     public bool Update(Tasks task)
     {
         bool status = _service.Update(task);
-
         return status;
     }
 
-
-    [HttpDelete ("id")]
+    //http://localhost:5034/api/task/1
+    [HttpDelete ("{id}")]
     public bool Delete(int id)
     {
         bool status = _service.Delete(id);

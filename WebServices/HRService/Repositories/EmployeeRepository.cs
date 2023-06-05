@@ -27,9 +27,9 @@ public class EmployeeRepository : IEmployeeRepository
             MySqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                int id = Int32.Parse(reader["empid"].ToString());
-                string firstname = reader["empfirstname"].ToString();
-                string lastname = reader["emplastname"].ToString();
+                int id = Int32.Parse(reader["id"].ToString());
+                string firstname = reader["firstname"].ToString();
+                string lastname = reader["lastname"].ToString();
                 DateTime birthdate = Convert.ToDateTime(reader["birthdate"].ToString());
                 DateTime hiredate = Convert.ToDateTime(reader["hiredate"].ToString());
                 string contact=reader["contactnumber"].ToString();
@@ -74,9 +74,9 @@ public class EmployeeRepository : IEmployeeRepository
               MySqlDataReader reader = command.ExecuteReader();
               if (reader.Read())
               {
-                int id = Int32.Parse(reader["empid"].ToString());
-                string firstname = reader["empfirstname"].ToString();
-                string lastname = reader["emplastname"].ToString();
+                int id = Int32.Parse(reader["id"].ToString());
+                string firstname = reader["firstname"].ToString();
+                string lastname = reader["lastname"].ToString();
                 DateTime birthdate = Convert.ToDateTime(reader["birthdate"].ToString());
                 DateTime hiredate =  Convert.ToDateTime(reader["hiredate"].ToString());
                 string contactNumber=reader["contactnumber"].ToString(); 
@@ -143,7 +143,7 @@ public class EmployeeRepository : IEmployeeRepository
           MySqlConnection con = new MySqlConnection();
           con.ConnectionString=_conString;
           try{
-            string query = "UPDATE employees SET empfirstname=@EmpFirstName, emplastname=@EmpLastName, birthdate=@BirthDate, hiredate=@HireDate, contactnumber=@ContactNumber,  accountnumber=@AccountNumber, userid=@userId  WHERE id=@EmployeeId";   
+            string query = "UPDATE employees SET firstname=@EmpFirstName, lastname=@EmpLastName, birthdate=@BirthDate, hiredate=@HireDate, contactnumber=@ContactNumber,  accountnumber=@AccountNumber, userid=@userId  WHERE id=@EmployeeId";   
              Console.WriteLine(query);
              con.Open();
              MySqlCommand command=new MySqlCommand(query,con) ;
