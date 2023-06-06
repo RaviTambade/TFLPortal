@@ -48,15 +48,6 @@ export class ProjectlistComponent implements OnInit {
   //       }
   // }
 
-
-
-
-
-
-
-
-
-
   isSubmitted = false;
   projects  = ['Online Meeting Sheduling','Online Interview Sheduling','MockTesting Sheduling'];
 

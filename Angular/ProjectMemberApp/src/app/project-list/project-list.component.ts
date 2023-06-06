@@ -17,8 +17,7 @@ export class ProjectListComponent {
   message: string|undefined;
    
   project : any| undefined;
-  name:string|undefined;
- 
+  name:string|undefined; 
 
   constructor(public fb : FormBuilder,private svc : ProjectService) { }
 
@@ -53,10 +52,10 @@ export class ProjectListComponent {
 
 
   ngOnInit(): void {
-  
     this.subscription = this.svc.getData().subscribe((response) =>{
       this.name = response.name;
       this.project = response.data;
+      localStorage.setItem('id',response.id);
       console.log(this.name);
       console.log(response);
     })
@@ -66,6 +65,8 @@ export class ProjectListComponent {
     if(this.subscription != undefined)
     this.subscription.unsubscribe();
   }
+
+ 
 
 }
 
