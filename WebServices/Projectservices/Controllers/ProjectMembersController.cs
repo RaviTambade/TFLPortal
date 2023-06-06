@@ -33,6 +33,15 @@ public class ProjectMembersController : ControllerBase
         ProjectMember projectmember = _service.GetById(id);
         return projectmember;
     }
+   
+     //http://localhost:5294/api/ProjectMembers/project/1
+     [HttpGet ("project/{projectId}")]
+    //[Route("getbyid/{id}")]
+    public IEnumerable<ProjectMemberInfo> Get(int projectId)
+    {
+        List<ProjectMemberInfo> projectmembers = _service.Get(projectId);
+        return projectmembers;
+    }
 
     //http://localhost:5294/api/ProjectMembers/ProjectMember
     [HttpPost ("ProjectMember")]

@@ -104,6 +104,50 @@ public class ProjectsRepository : IProjectsRepository
         }
         return project;
     }
+
+    public Project Get(string name)
+    {
+        Project project = new Project();
+        MySqlConnection con = new MySqlConnection();
+        con.ConnectionString = _conString;
+        try
+        {
+            string query = "SELECT * FROM projects where title =@title";
+            MySqlCommand command = new MySqlCommand(query, con);
+            command.Parameters.AddWithValue("@title", name);
+            con.Open();
+            MySqlDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+
+                int projectId = int.Parse(reader["id"].ToString());
+                string? title = reader["title"].ToString();
+                DateTime startDate = DateTime.Parse(reader["startDate"].ToString());
+                DateTime endDate = DateTime.Parse(reader["endDate"].ToString());
+                string description = reader["description"].ToString();
+
+                project = new Project
+                {
+                    Id = projectId,
+                    Title = title,
+                    StartDate = startDate.ToShortDateString(),
+                    EndDate = endDate.ToShortDateString(),
+                    Description = description,
+
+                };
+            }
+            reader.Close();
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            con.Close();
+        }
+        return project;
+    }
     public bool Insert(Project project)
     {
         bool status = false;

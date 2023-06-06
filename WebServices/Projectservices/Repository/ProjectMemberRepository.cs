@@ -100,6 +100,47 @@ public class ProjectMemberRepository : IProjectMemberRepository
         }
         return projectMember;
     }
+
+
+    public List<ProjectMemberInfo> Get(int projectId)
+    {
+       List<ProjectMemberInfo> projectMembers = new List<ProjectMemberInfo>();
+        MySqlConnection con = new MySqlConnection();
+        con.ConnectionString = _conString;
+        try
+        {
+            string query = "SELECT e.id, e.firstname, e.lastname FROM employees e INNER JOIN projectmembers pm ON e.id = pm.empid WHERE pm.projectid =@projectId;";
+            MySqlCommand command = new MySqlCommand(query, con);
+            command.Parameters.AddWithValue("@projectId", projectId);
+            con.Open();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                int id = int.Parse(reader["id"].ToString());
+                string firstname = reader["firstname"].ToString();
+                string lastname = reader["lastname"].ToString();
+               ProjectMemberInfo projectMember = new ProjectMemberInfo
+                {
+                    EmpId=id,
+                   FirstName=firstname,
+                   LastName= lastname
+                };
+                projectMembers.Add(projectMember);
+            }
+            reader.Close();
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            con.Close();
+        }
+        return projectMembers;
+    }
+
+
     public bool Insert(ProjectMember projectMember)
     {
 

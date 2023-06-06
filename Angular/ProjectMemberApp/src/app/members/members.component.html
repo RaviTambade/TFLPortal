@@ -1,0 +1,8 @@
+
+
+<input type="number" [(ngModel)]="projectId">
+<button (click)="getProjectMembers(projectId)">Search</button>
+
+<div *ngFor="let member of members">
+    <p><label>{{member.empId }} {{member.firstName}} {{member.lastName}}</label></p>
+</div> 

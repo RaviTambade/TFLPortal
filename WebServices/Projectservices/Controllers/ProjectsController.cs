@@ -36,6 +36,14 @@ namespace ProjectsService.Controllers
             return project;
         }
 
+        //http://localhost:5294/api/projects/project/PMSAPP
+       [HttpGet ("project/{name}")]
+        public Project Get(string name)
+        {
+            Project project = _projectsrv.Get(name);
+            return project;
+        }
+
 
         // //[Authorize(Roles = Role.Admin)]
         //http://localhost:5294/api/projects/projects
