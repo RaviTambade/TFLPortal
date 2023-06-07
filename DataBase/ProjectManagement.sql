@@ -232,7 +232,6 @@ INSERT INTO assigned(taskid,empid,roleid)VALUES(1,1,1);
 
 select * from employees;
 select * from users;
-select * from teams ;
 select * from roles;
 select * from userroles;
 select * from projectmembers;
