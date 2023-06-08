@@ -1,0 +1,23 @@
+<table class="table align-middle mb-0 bg-white">
+
+    <thead class="bg-light">
+      <tr>
+       <th>Project Id</th>
+       <th>Title</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let project of projects" >
+        <td>
+          <div class="d-flex align-items-center">
+            <div class="ms-3">
+              <p class="fw-bold mb-1">{{ project.id }}</p>
+            </div>
+          </div>
+        </td>
+        <td>
+         <p class="fw-normal mb-1">{{ project.title }}</p>
+        </td>
+
+        <button type="button" class="btn btn-link btn-sm btn-rounded">Edit</button>
+       </tr>

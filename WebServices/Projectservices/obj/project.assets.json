@@ -2155,24 +2155,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Rajat\\.nuget\\packages\\": {}
+    "C:\\Users\\Asus\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Projects\\PMSAPP\\WebServices\\Projectservices\\Projectservices.csproj",
+      "projectUniqueName": "D:\\Projects\\PMSApp\\WebServices\\Projectservices\\Projectservices.csproj",
       "projectName": "Projectservices",
-      "projectPath": "E:\\Projects\\PMSAPP\\WebServices\\Projectservices\\Projectservices.csproj",
-      "packagesPath": "C:\\Users\\Rajat\\.nuget\\packages\\",
-      "outputPath": "E:\\Projects\\PMSAPP\\WebServices\\Projectservices\\obj\\",
+      "projectPath": "D:\\Projects\\PMSApp\\WebServices\\Projectservices\\Projectservices.csproj",
+      "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
+      "outputPath": "D:\\Projects\\PMSApp\\WebServices\\Projectservices\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Rajat\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2223,7 +2226,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }
