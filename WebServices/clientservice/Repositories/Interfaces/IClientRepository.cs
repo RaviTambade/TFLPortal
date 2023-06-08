@@ -1,19 +1,19 @@
-// using PMS.Models;
+using PMS.Models;
 
-// namespace PMS.Repositories.Interfaces;
+namespace PMS.Repositories.Interfaces;
  
-// public interface IClientRepository{
+public interface IClientRepository{
 
 
      
-//      List<Client> GetAll();
+     List<Client> GetAll();
 
-//      Client Get(int id);
+     Client Get(int id);
 
-//      bool Insert(Client client);
+     bool Insert(Client client);
 
-//      bool Update(Client client);
+     bool Update(Client client);
 
-//      bool Delete(int id);
+     bool Delete(int id);
      
-//  }
+ }
