@@ -8,6 +8,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MembersComponent } from './members/members.component';
 import { ProjectgridComponent } from './projectgrid/projectgrid.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { SortedListComponent } from './sorted-list/sorted-list.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { PaginationComponent } from './pagination/pagination.component';
     MembersComponent,
     ProjectgridComponent,
     PaginationComponent,
+    SortedListComponent,
     
   ],
   imports: [
