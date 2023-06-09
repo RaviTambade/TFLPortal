@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\PMSApp\\WebServices\\Projectservices\\Projectservices.csproj": {}
+    "D:\\Rushikesh\\Projects\\PMSApp\\WebServices\\Projectservices\\Projectservices.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\PMSApp\\WebServices\\Projectservices\\Projectservices.csproj": {
+    "D:\\Rushikesh\\Projects\\PMSApp\\WebServices\\Projectservices\\Projectservices.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\PMSApp\\WebServices\\Projectservices\\Projectservices.csproj",
+        "projectUniqueName": "D:\\Rushikesh\\Projects\\PMSApp\\WebServices\\Projectservices\\Projectservices.csproj",
         "projectName": "Projectservices",
-        "projectPath": "D:\\Projects\\PMSApp\\WebServices\\Projectservices\\Projectservices.csproj",
+        "projectPath": "D:\\Rushikesh\\Projects\\PMSApp\\WebServices\\Projectservices\\Projectservices.csproj",
         "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\PMSApp\\WebServices\\Projectservices\\obj\\",
+        "outputPath": "D:\\Rushikesh\\Projects\\PMSApp\\WebServices\\Projectservices\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",

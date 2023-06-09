@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MembersComponent } from './members/members.component';
 import { ProjectgridComponent } from './projectgrid/projectgrid.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { ProjectgridComponent } from './projectgrid/projectgrid.component';
     ProjectListComponent,
     MembersComponent,
     ProjectgridComponent,
+    PaginationComponent,
     
   ],
   imports: [
