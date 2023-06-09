@@ -4,11 +4,12 @@
       <tr>
        <th>Project Id</th>
        <th>Title</th>
-       <th>   </th>
+       <th>Project StartDate</th>
+       <th>Project EndDate</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let project of projects" >
+      <tr *ngFor="let project of selectedProjects" >
         <td>
           <div class="d-flex align-items-center">
             <div class="ms-3">
@@ -20,5 +21,17 @@
          <p class="fw-normal mb-1">{{ project.title }}</p>
         </td>
 
+        <td>
+          <p class="fw-normal mb-1">{{ project.startDate }}</p>
+         </td>
+
+         <td>
+          <p class="fw-normal mb-1">{{ project.endDate }}</p>
+         </td>
+ 
+ 
+
         <button type="button" class="btn btn-link btn-sm btn-rounded">Edit</button>
        </tr>
+
+       <button (click)="onPrevious()"><<</button><button (click)="onNext()">>></button>
