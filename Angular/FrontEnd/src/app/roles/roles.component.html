@@ -1,0 +1,44 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+                <h3>Roles</h3>
+                <div class="d-grid">
+                  <select
+                    (change)="change($event)"
+                    formControlName="roleName">
+                    <option disabled>Choose Role</option>
+                    <option *ngFor="let role of roles">
+                      {{ role }}
+                    </option>
+                  </select>
+                  <!-- error block --> 
+                  <div  *ngIf="isSubmitted && roleName?.invalid">
+                    <sup>*</sup>Please provide Role name
+                  </div>
+                  <button type="submit" >Submit</button>
+                </div>
+              </form>
+        </div>
+    </div>
+
+    <ol   type="number">    
+    <div *ngFor="let employee of employees">
+        <li>
+          <p>Employee ID :{{employee.id}}</p>
+          <p>Name :{{employee.firstName}} {{employee.lastName}}</p>
+          <p>Birth Date :{{employee.birthDate}}</p>
+          <p>Hire Date :{{employee.hireDate}}</p>
+          <p> Contact number :{{employee.contactNumber}}</p>
+          <p>Account Number :{{employee.accountNumber}}</p>
+        </li>
+        
+        <hr/>
+  </div>
+</ol>
+
+</div>
+
+
+
+ 

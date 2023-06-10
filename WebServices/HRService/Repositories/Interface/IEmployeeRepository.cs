@@ -7,4 +7,5 @@ public interface IEmployeeRepository
     bool Insert(Employee emp);
     bool Update(Employee emp);
     bool Delete(int empId);
+    List<Employee> GetByRole(string role);
 }

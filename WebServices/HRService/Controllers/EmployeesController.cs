@@ -67,5 +67,13 @@ public class EmployeesController : ControllerBase
         return status;
     }
 
+    //http://localhost:5230/api/employees/role/manager
+    [HttpGet ("role/{role}")] 
+    public List<Employee> GetByRole(string role)
+    {
+        List<Employee> employees = _service.GetByRole(role);
+        return employees;
+    }
+
 
 }

@@ -20,5 +20,7 @@ public class EmployeeService : IEmployeesService
     public  bool Update(Employee emp)=> _repo.Update(emp);
     public  bool Delete(int id)=> _repo.Delete(id);
 
+    public List<Employee> GetByRole(string role) => _repo.GetByRole(role);
+
 }
 

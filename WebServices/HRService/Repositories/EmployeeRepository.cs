@@ -187,5 +187,52 @@ public class EmployeeRepository : IEmployeeRepository
           }
           return status;
    }
-   }
+
+        public List<Employee> GetByRole(string role)
+        {
+          List<Employee> employees =new List<Employee>();
+          MySqlConnection connection=new MySqlConnection(_conString);
+          try{
+              MySqlCommand command=new MySqlCommand();
+              command.CommandText="SELECT e.id, e.firstname, e.lastname, e.birthdate, e.hiredate, e.contactnumber, e.accountnumber FROM employees e JOIN userroles ur ON e.userid = ur.userid JOIN roles r ON ur.roleid = r.id WHERE r.rolename=@role";
+              command.Connection=connection;
+              command.Parameters.AddWithValue("@role",role);
+              connection.Open();
+              MySqlDataReader reader = command.ExecuteReader();
+              while (reader.Read())
+              {
+                int id = Int32.Parse(reader["id"].ToString());
+                string firstname = reader["firstname"].ToString();
+                string lastname = reader["lastname"].ToString();
+                DateTime birthdate = Convert.ToDateTime(reader["birthdate"].ToString());
+                DateTime hiredate =  Convert.ToDateTime(reader["hiredate"].ToString());
+                string contactNumber=reader["contactnumber"].ToString(); 
+                string accountNo = reader["accountnumber"].ToString();
+        
+                Employee employee = new Employee
+                  {
+                    Id=id, 
+                    FirstName=firstname,
+                    LastName=lastname,
+                    BirthDate=birthdate.ToShortDateString(),
+                    HireDate=hiredate.ToShortDateString(),
+                    ContactNumber=contactNumber,
+                    AccountNumber=accountNo,    
+                 };
+                 employees.Add(employee);
+              }
+              reader.Close();
+          }    
+          catch(Exception e){
+              throw e;
+          }
+          finally{
+              connection.Close();
+          }
+          return employees;
+            
+        }
+    }
+
+   
 }
