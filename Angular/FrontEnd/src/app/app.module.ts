@@ -9,6 +9,7 @@ import { MembersComponent } from './members/members.component';
 import { ProjectgridComponent } from './projectgrid/projectgrid.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { SortedListComponent } from './sorted-list/sorted-list.component';
+import { CheckBoxComponent } from './check-box/check-box.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SortedListComponent } from './sorted-list/sorted-list.component';
     ProjectgridComponent,
     PaginationComponent,
     SortedListComponent,
+    CheckBoxComponent,
     
   ],
   imports: [
