@@ -11,8 +11,6 @@ export class AppService {
 
   constructor(private http : HttpClient) { }
 
-
-
   sendData(data:any){
     let role = data.roleName;
     switch(role){
@@ -56,8 +54,6 @@ export class AppService {
   getData(): Observable<any> {
     return this.subject.asObservable();
   }
-
-
 
 }
 

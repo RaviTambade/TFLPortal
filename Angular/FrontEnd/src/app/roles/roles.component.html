@@ -12,7 +12,6 @@
                       {{ role }}
                     </option>
                   </select>
-                  <!-- error block --> 
                   <div  *ngIf="isSubmitted && roleName?.invalid">
                     <sup>*</sup>Please provide Role name
                   </div>
@@ -23,19 +22,19 @@
     </div>
 
     <ol   type="number">    
-    <div *ngFor="let employee of employees">
-        <li>
-          <p>Employee ID :{{employee.id}}</p>
-          <p>Name :{{employee.firstName}} {{employee.lastName}}</p>
-          <p>Birth Date :{{employee.birthDate}}</p>
-          <p>Hire Date :{{employee.hireDate}}</p>
-          <p> Contact number :{{employee.contactNumber}}</p>
-          <p>Account Number :{{employee.accountNumber}}</p>
-        </li>
-        
-        <hr/>
-  </div>
-</ol>
+        <div *ngFor="let employee of employees">
+            <li>
+              <p>Employee ID :{{employee.id}}</p>
+              <p>Name :{{employee.firstName}} {{employee.lastName}}</p>
+              <p>Birth Date :{{employee.birthDate}}</p>
+              <p>Hire Date :{{employee.hireDate}}</p>
+              <p> Contact number :{{employee.contactNumber}}</p>
+              <p>Account Number :{{employee.accountNumber}}</p>
+            </li>
+            
+            <hr/>
+      </div>
+    </ol>
 
 </div>
 

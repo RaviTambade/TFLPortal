@@ -13,9 +13,11 @@ export class ProjectgridComponent implements OnInit {
   endPosition: number = 1;
   selectedProjects: any[] | undefined;
   size: number = 5;
+
   constructor(private svc: ProjectService) {
     this.projects = [];
   }
+  
   ngOnInit(): void {
     this.svc.getAllProjects().subscribe(
       (response) => {
