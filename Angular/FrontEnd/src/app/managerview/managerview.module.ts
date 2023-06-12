@@ -17,7 +17,7 @@ const routes : Routes=
   {path: 'home', component:HomeComponent},
    
   {path: 'projectlist', component : ProjectListComponent},
-  {path: 'detail', component : DetailComponent},
+  {path: 'details/:id', component : DetailComponent},
   {path: 'add', component : AddComponent},
   {path: 'update', component : UpdateComponent},
   
