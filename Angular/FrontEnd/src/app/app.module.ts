@@ -11,6 +11,9 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { SortedListComponent } from './sorted-list/sorted-list.component';
 import { CheckBoxComponent } from './check-box/check-box.component';
 import { RolesComponent } from './roles/roles.component';
+import { RouterContainerComponent } from './managerview/router-container/router-container.component';
+import { RouterModule } from '@angular/router';
+import { ManagerviewModule } from './managerview/managerview.module';
 
 @NgModule({
   declarations: [
@@ -23,13 +26,16 @@ import { RolesComponent } from './roles/roles.component';
     CheckBoxComponent,
     RolesComponent,
     
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ManagerviewModule
+    
   
     
   ],
