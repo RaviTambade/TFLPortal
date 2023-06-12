@@ -1,1 +1,7 @@
-<p>project-list works!</p>
+<div *ngFor="let project of projects" >
+<table>
+    <td> {{ project.id }} </td> 
+   <button >{{project.title}}</button>  
+
+</table>
+</div>
