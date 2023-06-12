@@ -8,10 +8,14 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AddComponent } from './projects/add/add.component';
 import { EmployeeListComponent } from './employees/employee-list/employee-list.component';
+import { HomeComponent } from './home/home.component';
 
 
 const routes : Routes=
 [
+  {path: '' , redirectTo:'home', pathMatch:'full'},
+  {path: 'home', component:HomeComponent},
+   
   {path: 'projectlist', component : ProjectListComponent},
   {path: 'detail', component : DetailComponent},
   {path: 'add', component : AddComponent},
@@ -29,7 +33,8 @@ const routes : Routes=
     RouterContainerComponent,
     SignInComponent,
     AddComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    HomeComponent
   ],
   exports:[RouterContainerComponent],
   imports: [
