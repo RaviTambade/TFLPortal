@@ -5,8 +5,6 @@ namespace PMS.Repositories.Interfaces;
 public interface ITimeSheetRepository{
 
 
-
-     
      List<Timesheet> GetAll();
 
      Timesheet Get(int id);
