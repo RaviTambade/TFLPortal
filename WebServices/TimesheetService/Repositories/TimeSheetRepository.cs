@@ -38,20 +38,20 @@ public class TimesheetRepository : ITimeSheetRepository
                 int id = Int32.Parse(reader["id"].ToString());
                 DateTime starttime = Convert.ToDateTime(reader["starttime"].ToString());
                 DateTime endtime = Convert.ToDateTime(reader["endtime"].ToString());
-      
-               int employeeId = Int32.Parse(reader["empid"].ToString());
-               int projectId = Int32.Parse(reader["projectid"].ToString());
-               int taskId = Int32.Parse(reader["projectid"].ToString());
-               
+
+                int employeeId = Int32.Parse(reader["empid"].ToString());
+                int projectId = Int32.Parse(reader["projectid"].ToString());
+                int taskId = Int32.Parse(reader["projectid"].ToString());
+
                 Timesheet timesheet = new Timesheet
                 {
 
-                TimesheetId= id,
-                Starttime=starttime,
-                Endtime=endtime,
-                EmployeeId =employeeId,
-                ProjectId=projectId,
-                TaskId=taskId
+                    TimesheetId = id,
+                    Starttime = starttime,
+                    Endtime = endtime,
+                    EmployeeId = employeeId,
+                    ProjectId = projectId,
+                    TaskId = taskId
                 };
 
                 timesheets.Add(timesheet);
@@ -90,24 +90,24 @@ public class TimesheetRepository : ITimeSheetRepository
             MySqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
-            
+
                 int timesheetid = Int32.Parse(reader["id"].ToString());
                 DateTime starttime = Convert.ToDateTime(reader["starttime"].ToString());
                 DateTime endtime = Convert.ToDateTime(reader["endtime"].ToString());
-      
-               int employeeId = Int32.Parse(reader["empid"].ToString());
-               int projectId = Int32.Parse(reader["projectid"].ToString());
-               int taskId = Int32.Parse(reader["projectid"].ToString());
-               
-                 timesheet = new Timesheet
+
+                int employeeId = Int32.Parse(reader["empid"].ToString());
+                int projectId = Int32.Parse(reader["projectid"].ToString());
+                int taskId = Int32.Parse(reader["projectid"].ToString());
+
+                timesheet = new Timesheet
                 {
 
-                TimesheetId= timesheetid,
-                Starttime=starttime,
-                Endtime=endtime,
-                EmployeeId =employeeId,
-                ProjectId=projectId,
-                TaskId=taskId
+                    TimesheetId = timesheetid,
+                    Starttime = starttime,
+                    Endtime = endtime,
+                    EmployeeId = employeeId,
+                    ProjectId = projectId,
+                    TaskId = taskId
                 };
 
             }
@@ -135,7 +135,7 @@ public class TimesheetRepository : ITimeSheetRepository
 
 
 
-  public bool Insert(Timesheet timesheet)
+    public bool Insert(Timesheet timesheet)
     {
 
         bool status = false;
@@ -144,9 +144,9 @@ public class TimesheetRepository : ITimeSheetRepository
 
         try
         {
-            string query = $"Insert into timesheets(empid,projectid,taskid,starttime,endtime) values"+"(@employeeId,@projectId,@taskid,@starttime,@endtime)";
+            string query = $"Insert into timesheets(empid,projectid,taskid,starttime,endtime) values" + "(@employeeId,@projectId,@taskid,@starttime,@endtime)";
             MySqlCommand cmd = new MySqlCommand(query, con);
-           
+
             cmd.Parameters.AddWithValue("@employeeId", timesheet.EmployeeId);
             cmd.Parameters.AddWithValue("@projectId", timesheet.ProjectId);
             cmd.Parameters.AddWithValue("@taskid", timesheet.TaskId);
@@ -252,6 +252,59 @@ public class TimesheetRepository : ITimeSheetRepository
         return status;
     }
 
+    public List<TimesheetsDetail> GetAllDetails()
+    {
+        List<TimesheetsDetail> timesheetsDetail = new List<TimesheetsDetail>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _conString;
+        try
+        {
+            string query = "SELECT ts.id, e.firstname, e.lastname, p.title AS project_title, t.title AS task_title ,ts.starttime,ts.endtime FROM Timesheets ts INNER JOIN employees e ON ts.empid = e.id INNER JOIN projects p ON ts.projectid = p.id INNER JOIN tasks t ON ts.taskid = t.id ";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            connection.Open();
+
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                int id = Int32.Parse(reader["id"].ToString());
+                DateTime starttime = Convert.ToDateTime(reader["starttime"].ToString());
+                DateTime endtime = Convert.ToDateTime(reader["endtime"].ToString());
+                string empFirstName= reader["firstname"].ToString();
+                string empLastName= reader["lastname"].ToString();
+                string projTitle=   reader["project_title"].ToString();
+                string taskTitle= reader["task_title"].ToString();
+
+            
+                TimesheetsDetail timesheets = new TimesheetsDetail
+                {
+
+                    TimesheetId = id,
+                    Starttime = starttime,
+                    Endtime = endtime,
+                    EmpFirstName=empFirstName,
+                    EmpLastName=empLastName,
+                    ProjectTitle=projTitle,
+                    TaskTitle=taskTitle
+                };
+
+                timesheetsDetail.Add(timesheets);
+
+            }
+            reader.Close();
+        }
+        catch (Exception ee)
+        {
+            throw ee;
+        }
+
+        finally
+        {
+            connection.Close();
+        }
+        return timesheetsDetail;
+
+    }
+
 
 
 
@@ -306,12 +359,12 @@ public class TimesheetRepository : ITimeSheetRepository
     //             string week4Friday = reader["week4friday"].ToString();
     //             string week4Saturday = reader["week4saturday"].ToString();
     //             string week4Sunday = reader["week4sunday"].ToString();
-               
+
     //            int employeeId = Int32.Parse(reader["empid"].ToString());
     //            int projectId = Int32.Parse(reader["projectid"].ToString());
     //            int payrollcycleId = Int32.Parse(reader["payrollcycleid"].ToString());
     //            string notes = reader["notes"].ToString();
-                
+
     //             Timesheet timesheet = new Timesheet
     //             {
 
@@ -348,12 +401,12 @@ public class TimesheetRepository : ITimeSheetRepository
     //             Week4FriDay=week4Friday,
     //             Week4SaturDay=week4Saturday,
     //             Week4SunDay=week4Sunday,
-                
+
     //             EmployeeId =employeeId,
     //             ProjectId=projectId,
     //             PayRollCycleId=payrollcycleId,
     //             Notes=notes
-         
+
     //             };
 
     //             timesheets.Add(timesheet);
@@ -430,7 +483,7 @@ public class TimesheetRepository : ITimeSheetRepository
     //             string week4Friday = reader["week4friday"].ToString();
     //             string week4Saturday = reader["week4saturday"].ToString();
     //             string week4Sunday = reader["week4sunday"].ToString();
-               
+
     //            int employeeId = Int32.Parse(reader["empid"].ToString());
     //            int projectId = Int32.Parse(reader["projectid"].ToString());
     //            int payrollcycleId = Int32.Parse(reader["payrollcycleid"].ToString());
@@ -470,7 +523,7 @@ public class TimesheetRepository : ITimeSheetRepository
     //             Week4FriDay=week4Friday,
     //             Week4SaturDay=week4Saturday,
     //             Week4SunDay=week4Sunday,
-                
+
     //             EmployeeId =employeeId,
     //             ProjectId=projectId,
     //             PayRollCycleId=payrollcycleId,
@@ -606,5 +659,5 @@ public class TimesheetRepository : ITimeSheetRepository
 
 
 
-    
+
 }

@@ -9,6 +9,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddComponent } from './projects/add/add.component';
 import { EmployeeListComponent } from './employees/employee-list/employee-list.component';
 import { HomeComponent } from './home/home.component';
+import { TimesheetListComponent } from './timesheets/timesheet-list/timesheet-list.component';
+import { AddTimesheetComponent } from './timesheets/add-timesheet/add-timesheet.component';
+
 
 
 const routes : Routes=
@@ -20,6 +23,8 @@ const routes : Routes=
   {path: 'details/:id', component : DetailComponent},
   {path: 'add', component : AddComponent},
   {path: 'update', component : UpdateComponent},
+
+  {path: 'timesheetlist' , component:TimesheetListComponent},
   
   {path: 'employeelist',component:EmployeeListComponent}
 ];
@@ -34,7 +39,9 @@ const routes : Routes=
     SignInComponent,
     AddComponent,
     EmployeeListComponent,
-    HomeComponent
+    HomeComponent,
+    TimesheetListComponent,
+    AddTimesheetComponent,
   ],
   exports:[RouterContainerComponent],
   imports: [

@@ -1,0 +1,18 @@
+<p>timesheet-list works!</p>
+<div *ngFor="let timesheet of timesheets">
+    <table>
+        <td> {{ timesheet.timesheetId }} </td>
+        <!-- <button (click)="goToProject(project.id)">{{project.title}}</button>   -->
+        <td> {{ timesheet.empFirstName }} </td>
+        <td> {{ timesheet.empLastName }} </td>
+        <td> {{ timesheet.projectTitle }} </td>
+        <td> {{ timesheet.taskTitle }} </td>
+        <td> {{ timesheet.starttime }} </td>
+        <td> {{ timesheet.endtime }} </td>
+       
+    </table>
+    <hr>
+</div>
+<button type="submit">Add</button>
+
+

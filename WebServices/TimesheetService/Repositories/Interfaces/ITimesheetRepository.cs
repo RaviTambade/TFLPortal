@@ -14,5 +14,6 @@ public interface ITimeSheetRepository{
      bool Update(Timesheet timesheet);
 
      bool Delete(int id);
-     
+
+     List<TimesheetsDetail>GetAllDetails();     
  }

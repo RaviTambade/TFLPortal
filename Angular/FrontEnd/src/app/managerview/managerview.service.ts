@@ -17,7 +17,11 @@ export class ManagerviewService {
   getProjectById(projectId:number):Observable<Project>{
     let url = "http://localhost:5294/api/projects/"+projectId;
     return this.http.get<Project>(url);
+  }
 
+  getAllTimesheets():Observable<any>{
+    let url = "http://localhost:5161/api/Timesheet/getallDetails";
+    return this.http.get<any>(url);
   }
 
 }

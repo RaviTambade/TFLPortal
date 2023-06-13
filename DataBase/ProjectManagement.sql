@@ -263,3 +263,11 @@ select roles.rolename from userroles inner join roles on userroles.roleid =roles
 
 -- 2)Finding running projects between from date and to date
 SELECT * FROM projects WHERE startDate BETWEEN @fromdate AND @todate;
+
+-- select * from timesheets with details
+SELECT ts.id, e.firstname, e.lastname, p.title AS project_title, t.title AS task_title ,ts.starttime,ts.endtime
+FROM Timesheets ts
+INNER JOIN employees e ON ts.empid = e.id
+INNER JOIN projects p ON ts.projectid = p.id
+INNER JOIN tasks t ON ts.taskid = t.id;
+-- WHERE ts.id = 1;
