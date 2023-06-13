@@ -15,9 +15,7 @@ export class ManagerviewService {
   }
   
   getProjectById(projectId:number):Observable<Project>{
-
     let url = "http://localhost:5294/api/projects/"+projectId;
-
     return this.http.get<Project>(url);
 
   }
