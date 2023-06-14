@@ -17,6 +17,7 @@ public class TimesheetController : ControllerBase
         _service = service;
     }
 
+    //
     [HttpGet]
     [Route("getall")]
     public IEnumerable<Timesheet> GetAll()
@@ -24,7 +25,8 @@ public class TimesheetController : ControllerBase
         List<Timesheet> timesheets = _service.GetAll();
         return timesheets;
     }
-
+    
+    //http://localhost:5161/api/Timesheet/get/2
     [HttpGet("Get/{id}")]
     public Timesheet Get(int id)
     {
@@ -38,13 +40,11 @@ public class TimesheetController : ControllerBase
     public bool Insert(Timesheet timesheet)
     {
         bool status = _service.Insert(timesheet);
-
-
         return status;
     }
-
+    
+    //http://localhost:5161/api/Timesheet/2
     [HttpPut("{id}")]
-
     public bool Update(Timesheet timesheets)
     {
         bool status = _service.Update(timesheets);
@@ -52,21 +52,19 @@ public class TimesheetController : ControllerBase
         return status;
     }
 
-
+    //http://localhost:5161/api/Timesheet/2
     [HttpDelete("{id}")]
     public bool Delete(int id)
     {
         bool status = _service.Delete(id);
-
         return status;
     }
 
-    //http://localhost:5161/api/Timesheet/getallDetails
-    [HttpGet]
-    [Route("getallDetails")]
-    public IEnumerable<TimesheetsDetail> GetAllDetails()
+    //http://localhost:5161/api/Timesheet/2
+    [HttpGet ("{empid}")]
+    public IEnumerable<TimesheetsDetail> GetAllDetails(int empid)
     {
-        List<TimesheetsDetail> timesheets = _service.GetAllDetails();
+        List<TimesheetsDetail> timesheets = _service.GetAllDetails(empid);
         return timesheets;
     }
 

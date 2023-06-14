@@ -5,8 +5,8 @@ export class Timesheet {
                 public empLastName:string,
                 public projectTitle:string,
                 public taskTitle:string,
-                public starttime:string,
-                public endtime:string  
+                public fromtime:string,
+                public totime:string  
                 )
                 {}
 }

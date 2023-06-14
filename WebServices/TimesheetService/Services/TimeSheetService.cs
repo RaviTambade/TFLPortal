@@ -22,5 +22,5 @@ public class TImeSheetService : ITimeSheetServices
 
     public bool Delete(int id)=>_repo.Delete(id);
 
-    public List<TimesheetsDetail> GetAllDetails()=> _repo.GetAllDetails();
+    public List<TimesheetsDetail> GetAllDetails(int empid)=> _repo.GetAllDetails(empid);
 }

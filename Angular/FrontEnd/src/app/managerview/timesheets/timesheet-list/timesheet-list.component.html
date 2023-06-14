@@ -1,19 +1,36 @@
-<p>timesheet-list works!</p>
-
-<div *ngFor="let timesheet of timesheets">
+<div>
     <table>
-        <td> {{ timesheet.timesheetId }} </td>
-        <!-- <button (click)="goToProject(project.id)">{{project.title}}</button>   -->
-        <td> {{ timesheet.empFirstName }} </td>
-        <td> {{ timesheet.empLastName }} </td>
-        <td> {{ timesheet.projectTitle }} </td>
-        <td> {{ timesheet.taskTitle }} </td>
-        <td> {{ timesheet.starttime }} </td>
-        <td> {{ timesheet.endtime }} </td>
-       
+        <thead>
+            <th>TimeSheet Id :</th>
+            <th>Name :</th>
+            <th>Project Title :</th>
+            <th>Task Title :</th>
+            <th>Start Time :</th>
+            <th>End Time :</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let timesheet of timesheets">
+                <th scope="row">{{ timesheet.timesheetId }}</th>
+                <th>{{timesheet.empFirstName}}{{timesheet.empLastName}}</th>
+                <td> {{ timesheet.projectTitle }} </td>
+                <td> {{ timesheet.taskTitle }} </td>
+                <td> {{ timesheet.fromtime }} </td>
+                <td> {{ timesheet.totime }} </td>
+                <!-- <td><button (click)="onSelecte(movie.id)">Details</button></td> -->
+                <td><button (click)="OnEdit(timesheet.timesheetId)">Edit</button></td>
+                <td><button (click)="OnDelete(timesheet.timesheetId)">Remove</button></td>
+            </tr>
+        </tbody>
     </table>
-    <hr>
-</div>
-<button (click)="goToTimesheet()">Add</button>
+ </div> 
+
+
+  
+
+
+
+
+
+
 
 

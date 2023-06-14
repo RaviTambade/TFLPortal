@@ -38,8 +38,9 @@ public class TaskRepository : ITaskRepository
                  int projectid = Int32.Parse(reader["projectid"].ToString());
                 string title = reader["title"].ToString();
                 string description = reader["description"].ToString();
-                DateTime startdate = Convert.ToDateTime(reader["startdate"].ToString());
-                DateTime enddate = Convert.ToDateTime(reader["enddate"].ToString());
+                DateTime date = Convert.ToDateTime(reader["date"].ToString());
+                DateTime fromtime = Convert.ToDateTime(reader["fromtime"].ToString());
+                DateTime totime = Convert.ToDateTime(reader["totime"].ToString());
 
                 Tasks task = new Tasks
                 {
@@ -47,8 +48,9 @@ public class TaskRepository : ITaskRepository
                     ProjectId = projectid,
                     Title = title,
                     Description = description,
-                    StartDate=startdate.ToShortDateString(),
-                    EndDate=enddate.ToShortDateString()
+                    Date=date.ToShortDateString(),
+                    FromTime=fromtime.ToShortTimeString(),
+                    ToTime=totime.ToShortTimeString()
                 };
 
                 tasks.Add(task);
@@ -71,13 +73,11 @@ public class TaskRepository : ITaskRepository
     }
     public Tasks GetById(int id)
     {
-
         Tasks task = new Tasks();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _conString;
         try
         {
-
             string query = "select * from tasks where id =" + id;
             MySqlCommand cmd = new MySqlCommand(query, connection);
             connection.Open();
@@ -89,8 +89,9 @@ public class TaskRepository : ITaskRepository
                  int projectid = Int32.Parse(reader["projectid"].ToString());
                 string title = reader["title"].ToString();
                 string description = reader["description"].ToString();
-                DateTime startdate = Convert.ToDateTime(reader["startdate"].ToString());
-                DateTime enddate = Convert.ToDateTime(reader["enddate"].ToString());
+                DateTime date = Convert.ToDateTime(reader["date"].ToString());
+                DateTime fromtime = Convert.ToDateTime(reader["fromtime"].ToString());
+                 DateTime totime = Convert.ToDateTime(reader["totime"].ToString());
                 
               
                    task = new Tasks()
@@ -99,8 +100,9 @@ public class TaskRepository : ITaskRepository
                     ProjectId = projectid,
                     Title = title,
                     Description = description,
-                    StartDate=startdate.ToShortDateString(),
-                    EndDate=enddate.ToShortDateString()
+                    Date=date.ToShortDateString(),
+                    FromTime=fromtime.ToShortTimeString(),
+                    ToTime=totime.ToShortTimeString()
                 };
             }
             reader.Close();
@@ -126,14 +128,15 @@ public class TaskRepository : ITaskRepository
         con.ConnectionString = _conString;
         try
         {
-            string query = "Insert into tasks(id,projectid,title,description,startdate,enddate) values (@taskid,@projectid,@title,@decription,@startdate,@enddate)";
+            string query = "Insert into tasks(id,projectid,title,description,date,fromtime,totime) values (@taskid,@projectid,@title,@decription,@date,@fromtime,@totime)";
             MySqlCommand cmd = new MySqlCommand(query, con);
             cmd.Parameters.AddWithValue("@taskid", tasks.Id);
             cmd.Parameters.AddWithValue("@projectid", tasks.ProjectId);
             cmd.Parameters.AddWithValue("@title", tasks.Title);
             cmd.Parameters.AddWithValue("@decription", tasks.Description);
-            cmd.Parameters.AddWithValue("@startdate", tasks.StartDate);
-            cmd.Parameters.AddWithValue("@enddate", tasks.EndDate);
+            cmd.Parameters.AddWithValue("@date", tasks.Date);
+            cmd.Parameters.AddWithValue("@fromtime", tasks.FromTime);
+            cmd.Parameters.AddWithValue("@totime", tasks.ToTime);
             con.Open();
             int rowsaffected = cmd.ExecuteNonQuery();
             if (rowsaffected > 0)
@@ -159,14 +162,15 @@ public class TaskRepository : ITaskRepository
         connection.ConnectionString = _conString;
         try
         {
-            string query = "UPDATE tasks SET title =@title ,description=@description ,startdate=@startdate,enddate=@enddate  WHERE id=@taskId";
+            string query = "UPDATE tasks SET title =@title ,description=@description ,date=@date,fromtime=@fromtime,totime=@totime  WHERE id=@taskId";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@taskId", task.Id);
             cmd.Parameters.AddWithValue("@projectid", task.ProjectId);
             cmd.Parameters.AddWithValue("@title", task.Title);
             cmd.Parameters.AddWithValue("@description", task.Description);
-            cmd.Parameters.AddWithValue("@startdate", task.StartDate);
-            cmd.Parameters.AddWithValue("@enddate", task.EndDate);
+            cmd.Parameters.AddWithValue("@date", task.Date);
+            cmd.Parameters.AddWithValue("@fromtime", task.FromTime);
+            cmd.Parameters.AddWithValue("@totime", task.ToTime);
             connection.Open();
             int rowsaffected = cmd.ExecuteNonQuery();
             if (rowsaffected > 0)

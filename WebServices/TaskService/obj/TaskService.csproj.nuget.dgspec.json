@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\PMSApp\\WebServices\\TaskService\\TaskService.csproj": {}
+    "D:\\Rushikesh\\Projects\\PMSApp\\WebServices\\TaskService\\TaskService.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\PMSApp\\WebServices\\TaskService\\TaskService.csproj": {
+    "D:\\Rushikesh\\Projects\\PMSApp\\WebServices\\TaskService\\TaskService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\PMSApp\\WebServices\\TaskService\\TaskService.csproj",
+        "projectUniqueName": "D:\\Rushikesh\\Projects\\PMSApp\\WebServices\\TaskService\\TaskService.csproj",
         "projectName": "TaskService",
-        "projectPath": "D:\\Projects\\PMSApp\\WebServices\\TaskService\\TaskService.csproj",
+        "projectPath": "D:\\Rushikesh\\Projects\\PMSApp\\WebServices\\TaskService\\TaskService.csproj",
         "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\PMSApp\\WebServices\\TaskService\\obj\\",
+        "outputPath": "D:\\Rushikesh\\Projects\\PMSApp\\WebServices\\TaskService\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
