@@ -1,1 +1,42 @@
-<p>add-timesheet works!</p>
+<p>add Timesheet</p>
+
+<form #insertForm ="ngForm"
+      (ngSubmit)="addTimesheet(insertForm.value)">
+<table>
+    <tr>
+        <td><label>ProjectId</label></td>
+        <td><input type="number" name="employeeId"  [(ngModel)]="timesheetInfo.empId"></td>
+    </tr>
+    <tr>
+        <td><label>Task Id</label></td>
+        <td><input type="number" name="projectId"  [(ngModel)]="timesheetInfo.projectId"></td>
+    </tr>  
+    <tr>
+        <td><label>Employee Id</label></td>
+        <td><input type="number" name="taskId"  [(ngModel)]="timesheetInfo.taskId"></td>
+    </tr>
+   
+    <tr>
+        <td><label>Start Time</label></td>
+        <td><input type="text" name="starttime"  [(ngModel)]="timesheetInfo.starttime"></td> 
+    </tr>
+
+    <tr>
+        <td><label>End Time</label></td>
+        <td><input type="text" name="endtime"  [(ngModel)]="timesheetInfo.endtime"></td> 
+    </tr>
+
+    <tr>
+        <button type="submit" >Submit</button>
+    </tr>
+</table>    
+</form>
+
+
+<div *ngIf="status">
+    <p>TimeSheet inserted successfully</p>
+</div>
+
+<div *ngIf="status==false">
+    <p>error while inserting timesheet</p>
+</div>

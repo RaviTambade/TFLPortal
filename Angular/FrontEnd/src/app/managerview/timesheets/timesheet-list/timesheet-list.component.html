@@ -1,4 +1,5 @@
 <p>timesheet-list works!</p>
+
 <div *ngFor="let timesheet of timesheets">
     <table>
         <td> {{ timesheet.timesheetId }} </td>
@@ -13,6 +14,6 @@
     </table>
     <hr>
 </div>
-<button type="submit">Add</button>
+<button (click)="goToTimesheet()">Add</button>
 
 

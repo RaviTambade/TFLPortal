@@ -72,8 +72,6 @@ public class TimesheetRepository : ITimeSheetRepository
     }
 
 
-
-
     public Timesheet Get(int id)
     {
 
@@ -127,11 +125,6 @@ public class TimesheetRepository : ITimeSheetRepository
 
         return timesheet;
     }
-
-
-
-
-
 
 
 
@@ -307,11 +300,7 @@ public class TimesheetRepository : ITimeSheetRepository
 
 
 
-
-
-
-
-    // public List<Timesheet> GetAll()
+     // public List<Timesheet> GetAll()
     // {
     //     List<Timesheet> timesheets = new List<Timesheet>();
     //     MySqlConnection connection = new MySqlConnection();

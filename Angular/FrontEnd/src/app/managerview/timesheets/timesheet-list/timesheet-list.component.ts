@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ManagerviewService } from '../../managerview.service';
 import { Timesheet } from '../timesheet';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-timesheet-list',
+  selector: 'timesheetlist',
   templateUrl: './timesheet-list.component.html',
   styleUrls: ['./timesheet-list.component.css']
 })
@@ -11,7 +12,7 @@ export class TimesheetListComponent implements OnInit{
 
   timesheets :Timesheet[]|undefined;
   
-  constructor (private svc: ManagerviewService){}
+  constructor (private svc: ManagerviewService,private router:Router,private route:ActivatedRoute){}
   ngOnInit(): void {
     this.svc.getAllTimesheets().subscribe(
       (response) => {
@@ -19,5 +20,8 @@ export class TimesheetListComponent implements OnInit{
         console.log(this.timesheets);
       })
   }
-
+  
+  goToTimesheet(): void {
+    this.router.navigate(['./addtimesheet']);
+  }
 }

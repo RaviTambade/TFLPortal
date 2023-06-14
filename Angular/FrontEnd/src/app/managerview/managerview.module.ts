@@ -11,6 +11,7 @@ import { EmployeeListComponent } from './employees/employee-list/employee-list.c
 import { HomeComponent } from './home/home.component';
 import { TimesheetListComponent } from './timesheets/timesheet-list/timesheet-list.component';
 import { AddTimesheetComponent } from './timesheets/add-timesheet/add-timesheet.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -25,7 +26,7 @@ const routes : Routes=
   {path: 'update', component : UpdateComponent},
 
   {path: 'timesheetlist' , component:TimesheetListComponent},
-  
+  {path: 'addtimesheet', component : AddTimesheetComponent},
   {path: 'employeelist',component:EmployeeListComponent}
 ];
 
@@ -46,6 +47,8 @@ const routes : Routes=
   exports:[RouterContainerComponent],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ]
 })
