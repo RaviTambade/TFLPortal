@@ -1,72 +1,72 @@
 
-using PMS.Models;
-using PMS.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
+// using PMS.Models;
+// using PMS.Services.Interfaces;
+// using Microsoft.AspNetCore.Mvc;
 
-namespace clients.Controllers;
+// namespace clients.Controllers;
 
-[ApiController]
-[Route("/api/[controller]")]
-public class ClientController : ControllerBase
-{
+// [ApiController]
+// [Route("/api/[controller]")]
+// public class ClientController : ControllerBase
+// {
 
-    private readonly IClientServices _service;
+//     private readonly IClientServices _service;
 
-    public ClientController(IClientServices service)
-    {
-        _service = service;
-    }
+//     public ClientController(IClientServices service)
+//     {
+//         _service = service;
+//     }
 
-    [HttpGet]
-    [Route("getall")]
-    public IEnumerable<Client> GetAll()
-    {
+//     [HttpGet]
+//     [Route("getall")]
+//     public IEnumerable<Client> GetAll()
+//     {
 
-        List<Client> client = _service.GetAll();
+//         List<Client> client = _service.GetAll();
 
-        return client;
+//         return client;
 
-    }
+//     }
 
-    [HttpGet("get/{id}")]
-    public Client Get(int id)
-    {
-        Client client = _service.Get(id);
-
-
-        return client;
-    }
-
-    [HttpPost("Client")]
-    public bool Insert(Client client)
-    {
-        bool status = _service.Insert(client);
+//     [HttpGet("get/{id}")]
+//     public Client Get(int id)
+//     {
+//         Client client = _service.Get(id);
 
 
-        return status;
-    }
+//         return client;
+//     }
 
-    [HttpPut("/{id}")]
-
-    public bool Update(Client role)
-    {
-        bool status = _service.Update(role);
-
-        return status;
-    }
+//     [HttpPost("Client")]
+//     public bool Insert(Client client)
+//     {
+//         bool status = _service.Insert(client);
 
 
-    [HttpDelete ("/{id}")]
-    public bool Delete(int id)
-    {
-        bool status = _service.Delete(id);
+//         return status;
+//     }
 
-        return status;
-    }
+//     [HttpPut("/{id}")]
+
+//     public bool Update(Client role)
+//     {
+//         bool status = _service.Update(role);
+
+//         return status;
+//     }
+
+
+//     [HttpDelete ("/{id}")]
+//     public bool Delete(int id)
+//     {
+//         bool status = _service.Delete(id);
+
+//         return status;
+//     }
 
 
 
-}
+// }
 
 
 
