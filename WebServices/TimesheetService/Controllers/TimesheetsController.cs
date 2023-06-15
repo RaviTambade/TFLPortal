@@ -61,7 +61,7 @@ public class TimesheetController : ControllerBase
     }
 
     //http://localhost:5161/api/Timesheet/2
-    [HttpGet ("{empid}/{date}")]
+    [HttpGet ("{empid}/{theDate}")]
     public IEnumerable<TimesheetsDetail> GetAllDetails(int empid,string theDate)
     {
         List<TimesheetsDetail> timesheets = _service.GetAllDetails(empid,theDate);

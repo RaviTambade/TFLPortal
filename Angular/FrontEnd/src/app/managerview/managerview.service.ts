@@ -21,7 +21,7 @@ export class ManagerviewService {
   }
 
   getAllTimesheets(id :any,date:string):Observable<any>{
-    let url = "http://localhost:5161/api/Timesheet/"+id/+date;
+    let url = "http://localhost:5161/api/Timesheet/"+id+"/"+date;
     return this.http.get<any>(url,id);
   }
 

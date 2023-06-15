@@ -215,6 +215,7 @@ public class TimesheetRepository : ITimeSheetRepository
 
     public List<TimesheetsDetail> GetAllDetails(int empid,string theDate)
     {
+        Console.WriteLine(theDate);
         List<TimesheetsDetail> timesheetsDetail = new List<TimesheetsDetail>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _conString;
