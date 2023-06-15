@@ -1,47 +1,63 @@
 <h1>Timesheet</h1>
-  <div *ngIf="employee">
-    <label><b>Name : {{employee.firstName}}{{employee.lastName}}</b></label>
-  </div>
-  <br>
-  <div>
-    <label>Date :<input type="date" [(ngModel)]="date"></label>
-    <button (click)="onSubmit()">Search</button>
-  </div>
+<div *ngIf="employee">
+  <label><b>Name : {{employee.firstName}}{{employee.lastName}}</b></label>
+</div>
+<br>
+<div>
+  <label>Date :<input type="date" [(ngModel)]="date"></label>
+  <button (click)="onSubmit()">Search</button>
+</div>
 
 
 <div>
-    <table>
-        <thead>
-            <th>TimeSheet Id :</th>
-            <th>Project Title :</th>
-            <th>Task Title :</th>
-            <th>Date :</th>
-            <th>Start Time :</th>
-            <th>End Time :</th>
-        </thead>
-        <tbody>
-            <tr *ngFor="let timesheet of timesheets">
-                <th scope="row">{{ timesheet.timesheetId }}</th>
-                <td> {{ timesheet.projectTitle }} </td>
-                <td> {{ timesheet.taskTitle }} </td>
-                <td>{{timesheet.date | date: 'yyyy/MM/dd'}}</td>
-                <td> {{ timesheet.fromtime }} </td>
-                <td> {{ timesheet.totime }} </td>
-                <!-- <td><button (click)="onSelecte(movie.id)">Details</button></td> -->
-                <td><button (click)="OnEdit(timesheet.timesheetId)">Edit</button></td>
-                <td><button (click)="OnDelete(timesheet.timesheetId)">Remove</button></td>
-            </tr>
-        </tbody>
-    </table>
- </div> 
-<button (click)="goToTimesheet()">Add</button>
+  <table>
+    <thead>
+      <th>TimeSheet Id :</th>
+      <th>Project Title :</th>
+      <th>Task Title :</th>
+      <th>Date :</th>
+      <th>Start Time :</th>
+      <th>End Time :</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let timesheet of timesheets">
+        <th scope="row">{{ timesheet.timesheetId }}</th>
+        <td> {{ timesheet.projectTitle }} </td>
+        <td> {{ timesheet.taskTitle }} </td>
+        <td>{{timesheet.date | date: 'yyyy/MM/dd'}}</td>
+        <td> {{ timesheet.fromtime }} </td>
+        <td> {{ timesheet.totime }} </td>
+        <!-- <td><button (click)="onSelecte(movie.id)">Details</button></td> -->
+        <td><button (click)="OnEdit(timesheet.timesheetId)">Edit</button></td>
+        <td><button (click)="OnDelete(timesheet.timesheetId)">Remove</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-  
+<hr>
+<h2>New Time Sheet :</h2>
+
+<h4>Projects:</h4>
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmitt()">
+  <div class="d-grid">
+    <select (change)="changeProject($event)" formControlName="selectedProject">
+      <option value="">Choose Project</option>
+      <option *ngFor="let project of projects" [ngValue]="project">
+        {{ project }}
+      </option>
+    </select>
+    <!-- error block -->
+    <div *ngIf="isSubmitted && selectedProject?.invalid">
+      <sup>*</sup>Please provide Project title
+    </div>
+  </div>
+</form>
+<hr>
+<div *ngIf="project">
+  <p>Project Id : {{project.id}}</p>
+  <p>Project Name : {{project.title}}</p>
+</div>
 
 
-
-
-
-
-
-
+<button (click)="goToTimesheet()">Save</button>
