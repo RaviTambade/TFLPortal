@@ -5,8 +5,8 @@ export class TimesheetInfo
                 public taskId:number,
                 public projectId:number,
                 public empId:number,
-                public starttime:string,
-                public endtime:string  
+                public fromtime:string,
+                public totime:string  
                 )
                 {}
 }

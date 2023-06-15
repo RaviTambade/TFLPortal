@@ -14,8 +14,8 @@ export class AddTimesheetComponent implements OnInit {
     projectId: 0,
     taskId: 0,
     empId: 0,
-    starttime: '',
-    endtime: '',
+    fromtime: '',
+    totime: '',
     timesheetId: 0
   }
 status:boolean   | undefined

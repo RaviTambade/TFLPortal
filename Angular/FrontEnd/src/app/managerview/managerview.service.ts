@@ -20,24 +20,29 @@ export class ManagerviewService {
     return this.http.get<Project>(url);
   }
 
-  getAllTimesheets(id :any):Observable<any>{
-    let url = "http://localhost:5161/api/Timesheet/"+id;
+  getAllTimesheets(id :any,date:string):Observable<any>{
+    let url = "http://localhost:5161/api/Timesheet/"+id/+date;
     return this.http.get<any>(url,id);
   }
 
-  public addTimesheet(timesheet:Timesheet):Observable<any>{
+   addTimesheet(timesheet:Timesheet):Observable<any>{
     let url = "http://localhost:5161/api/Timesheet/timesheet";
     return this.http.post<Timesheet>(url,timesheet);
   }
 
-  public updateTimesheet(theSheet=Timesheet):Observable<any>{
+   updateTimesheet(theSheet=Timesheet):Observable<any>{
     let url = "http://localhost:5161/api/Timesheet/";
     return this.http.put<Timesheet>(url,theSheet);
   }
 
-  public deleteTimesheet(id:any):Observable<any>{
+   deleteTimesheet(id:any):Observable<any>{
     let url="http://localhost:5161/api/Timesheet/"+id;
     return this.http.delete<Timesheet>(url);
   }
+
+   getEmployee(id:any):Observable<any>{
+    let url ="http://localhost:5230/api/employees/"+id;
+    return this.http.get<any>(url,id);
+   }
 
 }

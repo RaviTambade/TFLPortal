@@ -44,7 +44,7 @@ public class TimesheetRepository : ITimeSheetRepository
                 {
 
                     TimesheetId = id,
-                    Date = date.ToShortDateString(),
+                    Date = date,
                     FromTime = fromtime.ToShortTimeString(),
                     Totime = totime.ToShortTimeString(),
                     EmployeeId = employeeId,
@@ -96,7 +96,7 @@ public class TimesheetRepository : ITimeSheetRepository
                 timesheet = new Timesheet
                 {
                     TimesheetId = Id,
-                    Date = date.ToShortDateString(),
+                    Date = date,
                     FromTime = fromtime.ToShortTimeString(),
                     Totime = totime.ToShortTimeString(),
                     EmployeeId = employeeId,
@@ -213,17 +213,18 @@ public class TimesheetRepository : ITimeSheetRepository
         return status;
     }
 
-    public List<TimesheetsDetail> GetAllDetails(int empid)
+    public List<TimesheetsDetail> GetAllDetails(int empid,string theDate)
     {
         List<TimesheetsDetail> timesheetsDetail = new List<TimesheetsDetail>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _conString;
         try
         {
-            string query = "SELECT ts.id, e.firstname, e.lastname, p.title AS projecttitle, t.title AS tasktitle ,ts.date,ts.fromtime,ts.totime FROM Timesheets ts INNER JOIN employees e ON ts.empid = e.id INNER JOIN projects p ON ts.projectid = p.id INNER JOIN tasks t ON ts.taskid = t.id WHERE ts.empid=@empid  ";
+            string query = "SELECT ts.id, e.firstname, e.lastname, p.title AS projecttitle, t.title AS tasktitle ,ts.date,ts.fromtime,ts.totime FROM Timesheets ts INNER JOIN employees e ON ts.empid = e.id INNER JOIN projects p ON ts.projectid = p.id INNER JOIN tasks t ON ts.taskid = t.id WHERE ts.empid=@empid && ts.date=@date ";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             connection.Open();
             cmd.Parameters.AddWithValue("@empid",empid);
+            cmd.Parameters.AddWithValue("@date",theDate);
             
 
             MySqlDataReader reader = cmd.ExecuteReader();
@@ -241,7 +242,7 @@ public class TimesheetRepository : ITimeSheetRepository
                 TimesheetsDetail timesheets = new TimesheetsDetail
                 {
                     TimesheetId = id,
-                    Date=date.ToShortDateString(),
+                    Date=date,
                     Fromtime = fromtime.ToShortTimeString(),
                     Totime = totime.ToShortTimeString(),
                     EmpFirstName=empFirstName,

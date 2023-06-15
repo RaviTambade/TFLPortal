@@ -61,10 +61,10 @@ public class TimesheetController : ControllerBase
     }
 
     //http://localhost:5161/api/Timesheet/2
-    [HttpGet ("{empid}")]
-    public IEnumerable<TimesheetsDetail> GetAllDetails(int empid)
+    [HttpGet ("{empid}/{date}")]
+    public IEnumerable<TimesheetsDetail> GetAllDetails(int empid,string theDate)
     {
-        List<TimesheetsDetail> timesheets = _service.GetAllDetails(empid);
+        List<TimesheetsDetail> timesheets = _service.GetAllDetails(empid,theDate);
         return timesheets;
     }
 
