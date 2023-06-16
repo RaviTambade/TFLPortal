@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ManagerviewService } from '../../managerview.service';
 import { Timesheet } from '../timesheet';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'timesheetlist',
@@ -16,7 +18,18 @@ export class TimesheetListComponent implements OnInit {
   timesheetId: any;
   employee:any;
 
-  constructor(private svc: ManagerviewService, private router: Router, private route: ActivatedRoute) { 
+  isSubmitted = false;
+  projects = ['PMSAPP', 'OTBMAPP', 'IMSAPP'];
+
+  subscription: Subscription | undefined;
+  message: string | undefined;
+
+  project: any | undefined;
+  name: string | undefined;
+
+  
+
+  constructor(private svc: ManagerviewService, private router: Router, private route: ActivatedRoute,public fb: FormBuilder) { 
     this.date='';
   }
   ngOnInit(): void {
@@ -34,6 +47,15 @@ export class TimesheetListComponent implements OnInit {
         console.log(this.employee);
       }
      )
+
+     ///////////
+     this.subscription = this.svc.getData().subscribe((response) => {
+      this.name = response.name;
+      this.project = response.data;
+      localStorage.setItem('id', response.id);
+      console.log(this.name);
+      console.log(response);
+    })
   }
 
   onSubmit(){
@@ -57,12 +79,10 @@ export class TimesheetListComponent implements OnInit {
     )
   }
 
-
-
-
   goToTimesheet(): void {
     this.router.navigate(['./timesheet']);
   }
+<<<<<<< HEAD
   
   onDetails(timesheetId:any)
   {
@@ -70,3 +90,51 @@ export class TimesheetListComponent implements OnInit {
   }
  }
 
+=======
+  goToAddTimesheet(id:any): void {
+    this.router.navigate(['./detailtimesheet', id]);
+  }
+
+  
+
+/////////////////////////////////////////////////////////////////////
+
+registrationForm = this.fb.group({
+  selectedProject: [' ', [Validators.required]],
+});
+
+changeProject(e: any) {
+  this.selectedProject?.setValue(e.target.value, {
+    onlySelf: true,
+  });
+}
+
+//Access formcontrols getter
+
+get selectedProject() {
+  return this.registrationForm.get('selectedProject');
+}
+
+onSubmitt(): void {
+  console.log(this.registrationForm);
+  this.isSubmitted = true;
+  if (!this.registrationForm.valid) {
+    false;
+  }
+  else {
+    console.log(JSON.stringify(this.registrationForm.value));
+    this.svc.sendProject(this.registrationForm.value);
+  }
+}
+
+ngOnDestroy() {
+  if (this.subscription != undefined)
+    this.subscription.unsubscribe();
+}
+
+
+
+
+
+}
+>>>>>>> caed191d6421f848df89ff57917e4649b33c7d47

@@ -1,4 +1,4 @@
---  DROP DATABASE PMS;
+-- DROP DATABASE PMS;
 CREATE DATABASE PMS;
 USE PMS;
 
@@ -62,8 +62,9 @@ CREATE TABLE tasks(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                   projectid INT NOT NULL, 
                   CONSTRAINT fk_projectid FOREIGN KEY (projectid) REFERENCES projects(id)ON UPDATE CASCADE  ON DELETE CASCADE,
                   description VARCHAR(200),
-                  startdate DATETIME,
-                  enddate DATETIME);
+                  date DATETIME,
+                  fromtime TIME,
+                  totime TIME);
                   
 CREATE TABLE assigned(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                      taskid INT NOT NULL, 
@@ -93,8 +94,9 @@ CREATE TABLE payrollCycles(id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 --                         notes VARCHAR(255));
 --     
  CREATE TABLE Timesheets (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                         starttime DATETIME,
-                         endtime DATETIME,
+                         date DATETIME,
+                         fromtime TIME,
+                         totime TIME,
                          empid INT NOT NULL, CONSTRAINT fk_emp_Id5 FOREIGN KEY(empid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
                          projectid INT NOT NULL, CONSTRAINT fk_project_Id2 FOREIGN KEY(projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
                          taskid INT NOT NULL, CONSTRAINT fk_task_Id2 FOREIGN KEY(taskid) REFERENCES tasks(id) ON UPDATE CASCADE ON DELETE CASCADE);
@@ -204,11 +206,33 @@ INSERT INTO projectmembers(projectid,empid)VALUES(3,7);
 INSERT INTO projectmembers(projectid,empid)VALUES(3,8);
 INSERT INTO projectmembers(projectid,empid)VALUES(3,10);
 
-INSERT INTO tasks(title,projectid,description,startdate,enddate)VALUES('Meeting Sheduling',1,'please arrange the meeting sheduling prosess quickly','2021-02-01','2021-02-03');
-INSERT INTO tasks(title,projectid,description,startdate,enddate)VALUES('Seminar Sheduling',2,'please arrange the meeting sheduling prosess quickly','2021-02-01','2021-02-03');
+INSERT INTO tasks(title,projectid,description,date,fromtime,totime)VALUES('Meeting Sheduling',1,'please arrange the meeting sheduling prosess quickly','2021-02-01','09:00:00', '11:00:00');
+INSERT INTO tasks(title,projectid,description,date,fromtime,totime)VALUES('Seminar Sheduling',2,'please arrange the meeting sheduling prosess quickly','2021-02-01','11:00:00', '01:30:00');
 
-INSERT INTO timesheets(empid,projectid,taskid,starttime,endtime)VALUES(1,1,1,'2021-02-02','2021-02-03');
-INSERT INTO timesheets(empid,projectid,taskid,starttime,endtime)VALUES(2,2,2,'2021-02-04','2021-02-05');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(1,1,1,'2023-06-13 ','10:00:00', '11:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,2,2,'2023-06-13 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,3,1,'2023-06-13 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2023-06-13 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(1,3,1,'2023-06-13 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2023-06-13 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,1,2,'2021-06-13 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,1,2,'2022-06-13 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,1,2,'2021-06-13 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(4,1,2,'2021-06-13 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(4,1,2,'2021-06-13 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(5,1,2,'2021-06-13 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(5,1,2,'2021-06-13 ','11:00:00', '12:00:00');
+
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2021-06-13 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2021-06-13 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2020-06-13 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2020-06-14 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2020-06-15 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2029-05-13 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2019-06-14 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2020-06-14 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2020-06-14 ','11:00:00', '12:00:00');
+
 
 
 -- INSERT INTO timesheets(startdate,week1monday,week1tuesday,week1wednesday,week1thursday,week1friday,week1saturday, week1sunday,
@@ -251,9 +275,10 @@ select * from projectmembers;
 select * from projects;
 select * from clients;
 select * from onproject;
-select * from tasks;
 select * from assigned;
 select * from timesheets;
+select * from projects;
+select * from tasks;
 select * from payrollCycles;
 
 
@@ -265,9 +290,9 @@ select roles.rolename from userroles inner join roles on userroles.roleid =roles
 SELECT * FROM projects WHERE startDate BETWEEN @fromdate AND @todate;
 
 -- select * from timesheets with details
-SELECT ts.id, e.firstname, e.lastname, p.title AS project_title, t.title AS task_title ,ts.starttime,ts.endtime
+SELECT ts.id, e.firstname, e.lastname, p.title AS projecttitle, t.title AS tasktitle ,ts.date,ts.fromtime,ts.totime
 FROM Timesheets ts
 INNER JOIN employees e ON ts.empid = e.id
 INNER JOIN projects p ON ts.projectid = p.id
-INNER JOIN tasks t ON ts.taskid = t.id;
--- WHERE ts.id = 1;
+INNER JOIN tasks t ON ts.taskid = t.id
+WHERE  ts.empid=3;
