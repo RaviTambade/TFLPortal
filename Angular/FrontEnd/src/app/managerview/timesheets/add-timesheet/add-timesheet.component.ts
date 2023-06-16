@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ManagerviewService } from '../../managerview.service';
 import { Timesheet } from '../timesheet';
 import { TimesheetInfo } from '../timesheetInfo';
+import { Project } from 'src/app/project';
+import { Task } from '../../Task';
+import { Employee } from 'src/app/employee';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'addtimesheet',
@@ -10,40 +14,71 @@ import { TimesheetInfo } from '../timesheetInfo';
 })
 export class AddTimesheetComponent implements OnInit {
 
-  timesheetInfo : TimesheetInfo ={
-    projectId: 0,
-    taskId: 0,
-    empId: 0,
-    fromtime: '',
-    totime: '',
-    timesheetId: 0
+  timesheetInfo: TimesheetInfo | any;
+  projects: Project[] | any;
+  tasks: Task[] | any;
+  employees: Employee[] | any;
+
+
+
+  status: boolean | undefined
+
+
+
+
+
+  constructor(private svc: ManagerviewService, private router: Router) {
+    this.timesheetInfo = {
+      projectId: 0,
+      taskId: 0,
+      employeeId: 0,
+      date: '',
+      fromtime: '',
+      totime: '',
+      timesheetId: 0
+    }
+
   }
-status:boolean   | undefined
+  ngOnInit(): void {
 
-model= {
-"projectId":0,
-"taskId":0,
-"empId":0,
-"starttime": "yy-mm-dd hh-mm-ss",
-"endtime":"yy-mm-dd hh-mm-ss",
-};
+    this.svc.getAllProjects().subscribe((response) => {
+      this.projects = response;
+      console.log(response);
+    });
+
+    this.svc.getAllTasks().subscribe((response) => {
+      this.tasks = response;
+      console.log(response);
+    });
+
+    this.svc.getAllEmployees().subscribe((response) => {
+      this.employees = response;
+      console.log(response);
+    });
+
+
+  };
 
 
 
-constructor(private svc:ManagerviewService){
+  addTimesheet(form:any): void {
+    console.log(form);
+    this.svc.addTimesheet(form).subscribe((response) => {
+      this.status = response;
+      console.log(response);
+      if (response) {
+        alert("Timesheet added successfully")
+        this.router.navigate(['/timesheetlist']);
+      }
+      else {
+        alert("Check the form again ....")
+      }
+    })
+  }
 
-}
- ngOnInit(): void {
 
-}
-addTimesheet(form:any){
-this.svc.addTimesheet(form).subscribe(
-(res)=>{
-this.status = res;
-console.log(res);
-}
-);
-}
+
+
 }
 
 

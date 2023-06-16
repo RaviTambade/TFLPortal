@@ -124,7 +124,7 @@ public class TimesheetRepository : ITimeSheetRepository
         con.ConnectionString = _conString;
         try
         {
-            string query = $"Insert into timesheets(empid,projectid,taskid,date,fromtime,totime) values" + "(@employeeId,@projectId,@taskid,@date,@fromtime,@totime)";
+            string query = $"Insert into timesheets(empid,projectid,taskid,date,fromtime,totime) values (@employeeId,@projectId,@taskid,@date,@fromtime,@totime)";
             MySqlCommand cmd = new MySqlCommand(query, con);
 
             cmd.Parameters.AddWithValue("@employeeId", timesheet.EmployeeId);

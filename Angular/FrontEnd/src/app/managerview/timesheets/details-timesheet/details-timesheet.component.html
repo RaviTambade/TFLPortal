@@ -1,8 +1,8 @@
 <gettimesheet [timesheetId]= "timesheetId" (sendTimesheet)="reciveTimesheet($event)" hidden></gettimesheet>
 
 <div *ngIf="timesheet && timesheet.timesheetId !=0">
-<input type ="number"[(ngModel)]="timesheetId">
-<button (click) = "getById(timesheetId)"> get Details</button>
+<!-- <input type ="number"[(ngModel)]="timesheetId">
+<button (click) = "getById(timesheetId)"> get Details</button> -->
 <div *ngIf = "timesheet">
     <th scope="row">TimesheetId :{{timesheet.timesheetId }}</th><br>
     <td> Project Title:{{timesheet.projectTitle }} </td> <br>

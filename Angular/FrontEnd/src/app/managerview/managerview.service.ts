@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Project } from '../project';
 import { Timesheet } from './timesheets/timesheet';
+import { TimesheetInfo } from './timesheets/timesheetInfo';
 
 @Injectable({
   providedIn: 'root'
@@ -31,9 +32,9 @@ export class ManagerviewService {
     return this.http.get<any>(url,timesheetid);
   }
 
-   addTimesheet(timesheet:Timesheet):Observable<any>{
+   addTimesheet(timesheet:TimesheetInfo):Observable<any>{
     let url = "http://localhost:5161/api/Timesheet/timesheet";
-    return this.http.post<Timesheet>(url,timesheet);
+    return this.http.post<TimesheetInfo>(url,timesheet);
   }
 
    updateTimesheet(theSheet=Timesheet):Observable<any>{
@@ -50,6 +51,16 @@ export class ManagerviewService {
     let url ="http://localhost:5230/api/employees/"+id;
     return this.http.get<any>(url,id);
    }
+
+   getAllEmployees():Observable<any>{
+    let url = "http://localhost:5230/api/employees/employees";
+    return this.http.get<any>(url);
+  }
+
+   getAllTasks():Observable<any>{
+    let url = "http://localhost:5034/api/Task/getall";
+    return this.http.get<any>(url);
+  }
 
 
 ////////////////////////////////////////////////////

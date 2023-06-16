@@ -33,7 +33,7 @@ export class TimesheetListComponent implements OnInit {
     this.date='';
   }
   ngOnInit(): void {
-    this.timesheetId = this.route.snapshot.paramMap.get('timesheetId');
+    this.timesheetId = this.route.snapshot.paramMap.get('timesheetId',);
     console.log(this.timesheetId);
     this.svc.getAllTimesheets(this.id,this.date).subscribe(
       (response) => {
@@ -80,9 +80,8 @@ export class TimesheetListComponent implements OnInit {
   }
 
   goToTimesheet(): void {
-    this.router.navigate(['./timesheet']);
+    this.router.navigate(['./addtimesheet']);
   }
-<<<<<<< HEAD
   
   onDetails(timesheetId:any)
   {
@@ -90,51 +89,3 @@ export class TimesheetListComponent implements OnInit {
   }
  }
 
-=======
-  goToAddTimesheet(id:any): void {
-    this.router.navigate(['./detailtimesheet', id]);
-  }
-
-  
-
-/////////////////////////////////////////////////////////////////////
-
-registrationForm = this.fb.group({
-  selectedProject: [' ', [Validators.required]],
-});
-
-changeProject(e: any) {
-  this.selectedProject?.setValue(e.target.value, {
-    onlySelf: true,
-  });
-}
-
-//Access formcontrols getter
-
-get selectedProject() {
-  return this.registrationForm.get('selectedProject');
-}
-
-onSubmitt(): void {
-  console.log(this.registrationForm);
-  this.isSubmitted = true;
-  if (!this.registrationForm.valid) {
-    false;
-  }
-  else {
-    console.log(JSON.stringify(this.registrationForm.value));
-    this.svc.sendProject(this.registrationForm.value);
-  }
-}
-
-ngOnDestroy() {
-  if (this.subscription != undefined)
-    this.subscription.unsubscribe();
-}
-
-
-
-
-
-}
->>>>>>> caed191d6421f848df89ff57917e4649b33c7d47

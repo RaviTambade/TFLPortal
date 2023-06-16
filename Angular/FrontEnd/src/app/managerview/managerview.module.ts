@@ -32,12 +32,7 @@ const routes : Routes=
   {path: 'timesheetlist' , component:TimesheetListComponent},
   {path: 'addtimesheet', component : AddTimesheetComponent},
   {path:'edittimesheet/:id', component:EditComponent},
-<<<<<<< HEAD
   {path:'detailstimesheet/:id', component:DetailsTimesheetComponent},
-=======
- 
-
->>>>>>> caed191d6421f848df89ff57917e4649b33c7d47
 
   {path: 'employeelist',component:EmployeeListComponent}
 ];
@@ -56,12 +51,8 @@ const routes : Routes=
     TimesheetListComponent,
     AddTimesheetComponent,
     EditComponent,
-<<<<<<< HEAD
     DetailsTimesheetComponent,
     GetTimesheetComponent,
-=======
-    
->>>>>>> caed191d6421f848df89ff57917e4649b33c7d47
   ],
   exports:[RouterContainerComponent],
   imports: [
