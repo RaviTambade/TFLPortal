@@ -13,6 +13,7 @@ import { TimesheetListComponent } from './timesheets/timesheet-list/timesheet-li
 import { AddTimesheetComponent } from './timesheets/add-timesheet/add-timesheet.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditComponent } from './timesheets/edit/edit.component';
+import { DetailsTimesheetComponent } from './timesheets/details-timesheet/details-timesheet.component';
 
 
 
@@ -29,6 +30,7 @@ const routes : Routes=
   {path: 'timesheetlist' , component:TimesheetListComponent},
   {path: 'addtimesheet', component : AddTimesheetComponent},
   {path:'edittimesheet/:id', component:EditComponent},
+  {path: 'detailtimesheet/:id' , component:DetailsTimesheetComponent},
 
 
   {path: 'employeelist',component:EmployeeListComponent}
@@ -48,6 +50,7 @@ const routes : Routes=
     TimesheetListComponent,
     AddTimesheetComponent,
     EditComponent,
+    DetailsTimesheetComponent,
   ],
   exports:[RouterContainerComponent],
   imports: [

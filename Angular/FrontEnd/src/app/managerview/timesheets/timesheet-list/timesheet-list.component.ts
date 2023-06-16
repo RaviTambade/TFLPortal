@@ -82,6 +82,11 @@ export class TimesheetListComponent implements OnInit {
   goToTimesheet(): void {
     this.router.navigate(['./addtimesheet']);
   }
+  goToAddTimesheet(id:any): void {
+    this.router.navigate(['./detailtimesheet', id]);
+  }
+
+  
 
 /////////////////////////////////////////////////////////////////////
 
