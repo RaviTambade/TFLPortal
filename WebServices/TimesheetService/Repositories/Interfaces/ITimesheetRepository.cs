@@ -10,5 +10,6 @@ public interface ITimeSheetRepository{
      bool Insert(Timesheet timesheet);
      bool Update(Timesheet timesheet);
      bool Delete(int id);
-     List<TimesheetsDetail>GetAllDetails(int empid,string theDate);     
+     List<TimesheetsDetail>GetAllDetails(int empid,string theDate);  
+     TimesheetsDetail GetDetails(int empid);    
  }

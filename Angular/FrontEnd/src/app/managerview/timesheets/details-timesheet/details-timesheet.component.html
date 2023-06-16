@@ -1,0 +1,24 @@
+<gettimesheet [timesheetId]= "timesheetId" (sendTimesheet)="reciveTimesheet($event)" hidden></gettimesheet>
+
+<div *ngIf="timesheet && timesheet.timesheetId !=0">
+<input type ="number"[(ngModel)]="timesheetId">
+<button (click) = "getById(timesheetId)"> get Details</button>
+<div *ngIf = "timesheet">
+    <th scope="row">TimesheetId :{{timesheet.timesheetId }}</th><br>
+    <td> Project Title:{{timesheet.projectTitle }} </td> <br>
+    <td> Task Title :{{ timesheet.taskTitle }} </td><br>
+    <td>Date:{{timesheet.date | date: 'yyyy/MM/dd'}}</td><br>
+    <td>From Time: {{ timesheet.fromtime }} </td><br>
+    <td> To Time :{{ timesheet.totime }} </td><br>
+<button type="submit" (click)="onUpdateClick(timesheet.timesheetId)">Update</button>
+|
+<button  type="submit" (click)="delete()">Delete</button>
+<p> </p>
+
+<hr>
+
+ <div *ngIf="timesheet && timesheet.timesheetId ==0">
+     <p>timesheet Details not Fount</p>
+ </div>
+
+</div>

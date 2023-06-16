@@ -266,6 +266,58 @@ public class TimesheetRepository : ITimeSheetRepository
         return timesheetsDetail;
     }
 
+public TimesheetsDetail GetDetails(int timesheetId)
+    {
+     
+       TimesheetsDetail  timesheetsDetail = new TimesheetsDetail();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _conString;
+        try
+        {
+            string query = "SELECT ts.id, e.firstname, e.lastname, p.title AS projecttitle, t.title AS tasktitle ,ts.date,ts.fromtime,ts.totime FROM Timesheets ts INNER JOIN employees e ON ts.empid = e.id INNER JOIN projects p ON ts.projectid = p.id INNER JOIN tasks t ON ts.taskid = t.id WHERE ts.id=@timesheetId";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            connection.Open();
+            cmd.Parameters.AddWithValue("@timesheetId",timesheetId);
+            // cmd.Parameters.AddWithValue("@date",theDate);
+            
+
+            MySqlDataReader reader = cmd.ExecuteReader();
+            if(reader.Read())
+            {
+                int id = Int32.Parse(reader["id"].ToString());
+                DateTime date = Convert.ToDateTime(reader["date"].ToString());
+                DateTime fromtime = Convert.ToDateTime(reader["fromtime"].ToString());
+                DateTime totime = Convert.ToDateTime(reader["totime"].ToString());
+                string empFirstName= reader["firstname"].ToString();
+                string empLastName= reader["lastname"].ToString();
+                string projTitle=   reader["projecttitle"].ToString();
+                string taskTitle= reader["tasktitle"].ToString();
+
+                 timesheetsDetail = new TimesheetsDetail
+                {
+                    TimesheetId = id,
+                    Date=date,
+                    Fromtime = fromtime.ToShortTimeString(),
+                    Totime = totime.ToShortTimeString(),
+                    EmpFirstName=empFirstName,
+                    EmpLastName=empLastName,
+                    ProjectTitle=projTitle,
+                    TaskTitle=taskTitle
+                };
+     
+            }
+            reader.Close();
+        }
+        catch (Exception ee)
+        {
+            throw ee;
+        }
+        finally
+        {
+            connection.Close();
+        }
+        return timesheetsDetail;
+    }
 
 
 

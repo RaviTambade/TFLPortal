@@ -20,9 +20,14 @@ export class ManagerviewService {
     return this.http.get<Project>(url);
   }
 
-  getAllTimesheets(id :any,date:string):Observable<any>{
+    getAllTimesheets(id :any,date:string):Observable<any>{
     let url = "http://localhost:5161/api/Timesheet/"+id+"/"+date;
     return this.http.get<any>(url,id);
+  }
+
+  getTimesheet(timesheetid :any):Observable<any>{
+    let url = "http://localhost:5161/api/Timesheet/getdetails/"+timesheetid;
+    return this.http.get<any>(url,timesheetid);
   }
 
    addTimesheet(timesheet:Timesheet):Observable<any>{

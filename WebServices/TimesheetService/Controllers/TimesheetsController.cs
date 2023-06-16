@@ -68,6 +68,16 @@ public class TimesheetController : ControllerBase
         return timesheets;
     }
 
+
+     //http://localhost:5161/api/Timesheet/get
+    [HttpGet ("Getdetails/{timesheetId}")]
+    public TimesheetsDetail GetDetails(int timesheetId)
+    {
+        TimesheetsDetail timesheets = _service.GetDetails(timesheetId);
+        return timesheets;
+    }
+
+
 }
 
 
