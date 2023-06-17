@@ -1,41 +1,67 @@
-<p>edit works!</p>
+ <p>edit works!</p>
+ <gettimesheet [timesheetId]="timesheetId" (sendTimesheet)="reciveTimesheet($event)" hidden></gettimesheet> 
 
-<!-- <div class="main-content">
+ <form #insertForm ="ngForm" (ngSubmit)="updateTimesheet(insertForm.value)">
+  <table>
+     <tr>
+        <td><label><b>Timesheet Id:</b></label></td>
+        <td><input type="timesheetId" name="timesheetId" [(ngModel)]="timesheetInfo.timesheetId"></td>
+    </tr>
 
-    <div class="container-fluid">
- 
-        <form #insertForm="ngForm" (ngSubmit)="insertScreen(insertForm.value)">
- 
-            <div class="mb-3">
- 
-                <label><b>Movie Id :</b></label>  
- 
-                <select   class="form-control form-control-lg form-select" name="movieId" [(ngModel)]="screen.movieId" required>
- 
-                  <option *ngFor="let movie of movies" [ngValue]="movie.id">{{ movie.title | titlecase}}</option>
- 
-                </select> <br>
- 
-                <label><b>Theater Id :</b></label>
- 
-                <select   class="form-control form-control-lg form-select" name="theaterId" [(ngModel)]="screen.theaterId" required>
- 
-                  <option *ngFor="let theater of theaters" [ngValue]="theater.id">{{ theater.name | titlecase}}</option>
- 
-                </select>
- 
-                <br>
- 
-                <label><b>Show Timing :</b></label> <input type="text" name="showTiming" [(ngModel)]="screen.showTiming"> <br>
- 
-                 <label><b>Available Seats :</b></label> <input type="number" name="availableSeats" [(ngModel)]="screen.availableSeats"> <br>
- 
-                <button type="submit" class="btn btn-success">Insert</button>
- 
-            </div>
- 
-        </form>
- 
-    </div>
- 
- </div> -->
+   
+      <tr>
+          <td><label><b>Project :</b></label></td>
+          <select name="projectId" [(ngModel)]="timesheetInfo.projectId" required>
+              <option *ngFor="let project of projects" [value]="project.id">{{ project.title }}</option>
+          </select>
+      </tr>
+      <tr>
+          <td><label><b>Task Id :</b></label></td>
+          <select name="taskId" [(ngModel)]="timesheetInfo.taskId" required>
+              <option *ngFor="let task of tasks" [value]="task.id">{{task.title}}</option>
+          </select>
+      </tr>
+      <tr>
+          <td><label><b>Employee Id :</b></label></td>
+          <select name="employeeId" [(ngModel)]="timesheetInfo.employeeId" required>
+              <option *ngFor="let employee of employees" [value]="employee.id">{{ employee.firstName }}{{employee.lastName }}</option>
+          </select>
+      </tr>
+      <tr>
+          <td><label><b>Date :</b></label></td>
+          <td><input type="text" name="date" [(ngModel)]="timesheetInfo.date"></td>
+      </tr>
+
+
+      <tr>
+          <td><label><b>Start Time :</b></label></td>
+          <td><input type="time" name="fromtime" [(ngModel)]="timesheetInfo.fromtime"></td>
+      </tr>
+
+      <tr>
+          <td><label><b>End Time :</b></label></td>
+          <td><input type="time" name="totime" [(ngModel)]="timesheetInfo.totime"></td>
+      </tr>
+
+      <tr>
+          <button type="submit" >Submit</button>
+      </tr>
+  </table>
+</form>
+
+
+<div *ngIf="status">
+  <p>TimeSheet updated successfully</p>
+</div>
+
+<div *ngIf="status==false">
+  <p>error while updating timesheet</p>
+</div> 
+
+
+
+
+
+
+
+

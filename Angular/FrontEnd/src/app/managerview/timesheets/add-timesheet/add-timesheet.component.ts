@@ -58,9 +58,6 @@ export class AddTimesheetComponent implements OnInit {
 
 
   };
-
-
-
   addTimesheet(form:any): void {
     console.log(form);
     this.svc.addTimesheet(form).subscribe((response) => {

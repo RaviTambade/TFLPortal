@@ -37,9 +37,9 @@ export class ManagerviewService {
     return this.http.post<TimesheetInfo>(url,timesheet);
   }
 
-   updateTimesheet(theSheet=Timesheet):Observable<any>{
-    let url = "http://localhost:5161/api/Timesheet/";
-    return this.http.put<Timesheet>(url,theSheet);
+   updateTimesheet(id:any):Observable<any>{
+    let url = "http://localhost:5161/api/Timesheet/"+id;
+    return this.http.put<Timesheet>(url,id);
   }
 
    deleteTimesheet(id:any):Observable<any>{
