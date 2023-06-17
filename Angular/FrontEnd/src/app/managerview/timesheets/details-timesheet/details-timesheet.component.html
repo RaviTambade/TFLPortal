@@ -4,12 +4,12 @@
 <!-- <input type ="number"[(ngModel)]="timesheetId">
 <button (click) = "getById(timesheetId)"> get Details</button> -->
 <div *ngIf = "timesheet">
-    <th scope="row">TimesheetId :{{timesheet.timesheetId }}</th><br>
-    <td> Project Title:{{timesheet.projectTitle }} </td> <br>
-    <td> Task Title :{{ timesheet.taskTitle }} </td><br>
-    <td>Date:{{timesheet.date | date: 'yyyy/MM/dd'}}</td><br>
-    <td>From Time: {{ timesheet.fromtime }} </td><br>
-    <td> To Time :{{ timesheet.totime }} </td><br>
+    <th scope="row"><b>TimesheetId :</b>{{timesheet.timesheetId }}</th><br>
+    <td><b>Project Title:</b>{{timesheet.projectTitle }} </td> <br>
+    <td> <b>Task Title :</b>{{ timesheet.taskTitle }} </td><br>
+    <td><b>Date:</b>{{timesheet.date | date: 'yyyy/MM/dd'}}</td><br>
+    <td><b>From Time:</b> {{ timesheet.fromtime }} </td><br>
+    <td><b> To Time :</b>{{ timesheet.totime }} </td><br>
 <button type="submit" (click)="onUpdateClick(timesheet.timesheetId)">Update</button>
 |
 <button  type="submit" (click)="delete()">Delete</button>

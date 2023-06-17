@@ -3,41 +3,36 @@
 <form #insertForm ="ngForm" (ngSubmit)="addTimesheet(insertForm.value)">
     <table>
         <tr>
-            <td><label>Project :</label></td>
+            <td><label><b>Project :</b></label></td>
             <select name="projectId" [(ngModel)]="timesheetInfo.projectId" required>
                 <option *ngFor="let project of projects" [value]="project.id">{{ project.title }}</option>
             </select>
         </tr>
         <tr>
-            <td><label>Task Id :</label></td>
+            <td><label><b>Task Id :</b></label></td>
             <select name="taskId" [(ngModel)]="timesheetInfo.taskId" required>
                 <option *ngFor="let task of tasks" [value]="task.id">{{task.title}}</option>
             </select>
-
-            <!-- <td><label>Task Id: :</label></td>
-            <td><input type="number" name="taskId" [(ngModel)]="timesheetInfo.taskId"></td> -->
         </tr>
         <tr>
-            <td><label>Employee Id :</label></td>
+            <td><label><b>Employee Id :</b></label></td>
             <select name="employeeId" [(ngModel)]="timesheetInfo.employeeId" required>
                 <option *ngFor="let employee of employees" [value]="employee.id">{{ employee.firstName }}{{employee.lastName }}</option>
             </select>
-            <!-- <td><label>Employee Id: :</label></td>
-            <td><input type="number" name="employeeId" [(ngModel)]="timesheetInfo.employeeId"></td> -->
         </tr>
         <tr>
-            <td><label>Date :</label></td>
+            <td><label><b>Date :</b></label></td>
             <td><input type="text" name="date" [(ngModel)]="timesheetInfo.date"></td>
         </tr>
 
 
         <tr>
-            <td><label>Start Time :</label></td>
+            <td><label><b>Start Time :</b></label></td>
             <td><input type="time" name="fromtime" [(ngModel)]="timesheetInfo.fromtime"></td>
         </tr>
 
         <tr>
-            <td><label>End Time :</label></td>
+            <td><label><b>End Time :</b></label></td>
             <td><input type="time" name="totime" [(ngModel)]="timesheetInfo.totime"></td>
         </tr>
 
