@@ -26,7 +26,6 @@ export class GetTimesheetComponent implements OnInit {
 
 }
 
-
   getTimesheetById(id: any) {
     this.svc.getTimesheet(id).subscribe((response) => {
       this.timesheet = response;

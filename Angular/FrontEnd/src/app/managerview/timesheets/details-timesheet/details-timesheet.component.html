@@ -1,24 +1,24 @@
-<gettimesheet [timesheetId]= "timesheetId" (sendTimesheet)="reciveTimesheet($event)" hidden></gettimesheet>
+<gettimesheet [timesheetId]="timesheetId" (sendTimesheet)="reciveTimesheet($event)" hidden></gettimesheet>
 
 <div *ngIf="timesheet && timesheet.timesheetId !=0">
-<!-- <input type ="number"[(ngModel)]="timesheetId">
-<button (click) = "getById(timesheetId)"> get Details</button> -->
-<div *ngIf = "timesheet">
-    <th scope="row"><b>TimesheetId :</b>{{timesheet.timesheetId }}</th><br>
-    <td><b>Project Title:</b>{{timesheet.projectTitle }} </td> <br>
-    <td> <b>Task Title :</b>{{ timesheet.taskTitle }} </td><br>
-    <td><b>Date:</b>{{timesheet.date | date: 'yyyy/MM/dd'}}</td><br>
-    <td><b>From Time:</b> {{ timesheet.fromtime }} </td><br>
-    <td><b> To Time :</b>{{ timesheet.totime }} </td><br>
-<button type="submit" (click)="onUpdateClick(timesheet.timesheetId)">Update</button>
-|
-<button  type="submit" (click)="delete()">Delete</button>
-<p> </p>
+    <!-- <input type ="number"[(ngModel)]="timesheetId">
+    <button (click) = "getById(timesheetId)"> get Details</button> -->
+    <div *ngIf="timesheet">
+        <th scope="row"><b>TimesheetId :</b>{{timesheet.timesheetId }}</th><br>
+        <td><b>Project Title:</b>{{timesheet.projectTitle }} </td> <br>
+        <td> <b>Task Title :</b>{{ timesheet.taskTitle }} </td><br>
+        <td><b>Date:</b>{{timesheet.date | date: 'yyyy/MM/dd'}}</td><br>
+        <td><b>From Time:</b> {{ timesheet.fromtime }} </td><br>
+        <td><b> To Time :</b>{{ timesheet.totime }} </td><br>
+        <button type="submit" (click)="onUpdateClick(timesheet.timesheetId)">Update</button>
+        |
+        <button type="submit" (click)="delete()">Delete</button>
+        <p> </p>
 
-<hr>
+        <hr>
 
- <div *ngIf="timesheet && timesheet.timesheetId ==0">
-     <p>timesheet Details not Fount</p>
- </div>
+        <div *ngIf="timesheet && timesheet.timesheetId ==0">
+            <p>timesheet Details not Fount</p>
+        </div>
 
-</div>
+    </div>
