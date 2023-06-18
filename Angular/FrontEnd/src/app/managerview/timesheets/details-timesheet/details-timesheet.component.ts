@@ -57,7 +57,8 @@ export class DetailsTimesheetComponent {
 
   }
 
-    onUpdateClick(timesheetId:any)  {
+    onUpdateClick(timesheetId:number)  {
+      console.log(timesheetId);
       this.router.navigate(['./edittimesheet', timesheetId]);
     }
 }

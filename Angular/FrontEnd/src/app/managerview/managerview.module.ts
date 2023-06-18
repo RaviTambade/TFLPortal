@@ -31,7 +31,7 @@ const routes : Routes=
 
   {path: 'timesheetlist' , component:TimesheetListComponent},
   {path: 'addtimesheet', component : AddTimesheetComponent},
-  {path:'edittimesheet/:id', component:EditComponent},
+  {path:'edittimesheet/:timesheetId', component:EditComponent},
   {path:'detailstimesheet/:id', component:DetailsTimesheetComponent},
 
   {path: 'employeelist',component:EmployeeListComponent}

@@ -38,37 +38,37 @@ export class EditComponent {
 
 
   ngOnInit(): void {
-
-
-    this.svc.getAllProjects().subscribe((response) => {
-      this.projects = response;
-      console.log(response);
-    });
-
-    this.svc.getAllTasks().subscribe((response) => {
-      this.tasks = response;
-      console.log(response);
-    });
-
-    this.svc.getAllEmployees().subscribe((response) => {
-      this.employees = response;
-      console.log(response);
-    });
-    
-
     this.route.paramMap.subscribe((params) => {
-      this.timesheetId = params.get('id');
-    })
-  }
-  getById(timesheetId: any): void {
-    this.svc.getTimesheet(timesheetId).subscribe(
-      (res) => {
-        this.timesheet = res;
-        console.log(res);
-      }
-    )
+      this.timesheetId = params.get('timesheetId');
+     console.log(this.timesheetId);
+    });
 
-  };
+    this.svc.getTimesheet(this.timesheetId).subscribe(
+      (res) => {
+        this.timesheetInfo = res;
+        console.log(this.timesheetInfo);
+      });
+
+      
+      this.svc.getAllProjects().subscribe((response) => {
+        this.projects = response;
+        console.log(response);
+      });
+  
+      this.svc.getAllTasks().subscribe((response) => {
+        this.tasks = response;
+        console.log(response);
+      });
+  
+      this.svc.getAllEmployees().subscribe((response) => {
+        this.employees = response;
+        console.log(response);
+      });
+       
+
+
+
+};
 
   reciveTimesheet($event: any) {
     this.timesheet = $event.timesheet;
