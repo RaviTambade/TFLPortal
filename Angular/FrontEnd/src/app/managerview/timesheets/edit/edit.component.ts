@@ -13,14 +13,12 @@ import { Timesheet } from '../timesheet';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent {
-  @Input() timesheet: Timesheet | any;
+
   timesheetId: any | undefined;
   timesheetInfo: TimesheetInfo | any;
   projects: Project[] | any;
   tasks: Task[] | any;
   employees: Employee[] | any;
-  id : any|undefined;
-
 
   status: boolean | undefined
 
@@ -33,14 +31,14 @@ export class EditComponent {
       fromtime: '',
       totime: '',
       timesheetId: 0
-    }
+    };
   }
 
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.timesheetId = params.get('timesheetId');
-     console.log(this.timesheetId);
+      console.log(this.timesheetId);
     });
 
     this.svc.getTimesheet(this.timesheetId).subscribe(
@@ -49,32 +47,25 @@ export class EditComponent {
         console.log(this.timesheetInfo);
       });
 
-      
-      this.svc.getAllProjects().subscribe((response) => {
-        this.projects = response;
-        console.log(response);
-      });
-  
-      this.svc.getAllTasks().subscribe((response) => {
-        this.tasks = response;
-        console.log(response);
-      });
-  
-      this.svc.getAllEmployees().subscribe((response) => {
-        this.employees = response;
-        console.log(response);
-      });
-       
+    this.svc.getAllProjects().subscribe((response) => {
+      this.projects = response;
+      console.log(response);
+    });
 
+    this.svc.getAllTasks().subscribe((response) => {
+      this.tasks = response;
+      console.log(response);
+    });
 
+    this.svc.getAllEmployees().subscribe((response) => {
+      this.employees = response;
+      console.log(response);
+    });
 
-};
-
-  reciveTimesheet($event: any) {
-    this.timesheet = $event.timesheet;
   };
 
-  updateTimesheet(form :any): void {
+
+  updateTimesheet(form: any): void {
     this.svc.updateTimesheet(form).subscribe((response) => {
       this.status = response;
       console.log(response);
@@ -88,7 +79,7 @@ export class EditComponent {
     })
   };
 
-  
+
 
 
 

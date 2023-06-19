@@ -1,10 +1,10 @@
-<h1>Timesheet</h1>
+<h1>Task Sheet</h1>
 <div *ngIf="employee">
   <label><b>Name : {{employee.firstName}}{{employee.lastName}}</b></label>
 </div>
 <br>
 <div>
-  <label><b>Date:</b>Date :<input type="date" [(ngModel)]="date " ></label>
+  <label><b>Date :</b><input type="date" [(ngModel)]="date " ></label>
   <button (click)="onSubmit()">Search</button>
 </div>
 <div>
@@ -28,10 +28,8 @@
  </div> 
 
 <hr>
-<h2>New Time Sheet :</h2>
+<h2>Enter New Task :</h2>
 
 <addtimesheet></addtimesheet>
 
-
-<!-- <button (click)="goToTimesheet()">Add Timesheet</button> -->
 <hr>

@@ -30,7 +30,7 @@ const routes : Routes=
   {path: 'update', component : UpdateComponent},
 
   {path: 'timesheetlist' , component:TimesheetListComponent},
-  {path: 'addtimesheet', component : AddTimesheetComponent},
+  {path: 'addtimesheet/:id', component : AddTimesheetComponent},
   {path:'edittimesheet/:timesheetId', component:EditComponent},
   {path:'detailstimesheet/:id', component:DetailsTimesheetComponent},
 

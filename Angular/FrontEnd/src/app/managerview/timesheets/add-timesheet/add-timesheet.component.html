@@ -1,4 +1,4 @@
-<p>add Timesheet</p>
+
 
 <form #insertForm ="ngForm" (ngSubmit)="addTimesheet(insertForm.value)">
     <table>
@@ -16,13 +16,15 @@
         </tr>
         <tr>
             <td><label><b>Employee Id :</b></label></td>
-            <select name="employeeId" [(ngModel)]="timesheetInfo.employeeId" required>
+            <td><input type="number" name="employeeId" [value]="" [(ngModel)]="timesheetInfo.employeeId"></td>
+           
+            <!-- <select name="employeeId" [(ngModel)]="timesheetInfo.employeeId" required>
                 <option *ngFor="let employee of employees" [value]="employee.id">{{ employee.firstName }}{{employee.lastName }}</option>
-            </select>
+            </select> -->
         </tr>
         <tr>
             <td><label><b>Date :</b></label></td>
-            <td><input type="text" name="date" [(ngModel)]="timesheetInfo.date"></td>
+            <td><input type="date" name="date" [(ngModel)]="timesheetInfo.date"></td>
         </tr>
 
 

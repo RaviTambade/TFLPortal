@@ -65,42 +65,42 @@ export class ManagerviewService {
 
 ////////////////////////////////////////////////////
 
-sendProject(data:any){
-  let name = data.selectedProject;
-  console.log("Service is called");
-  console.log(name);
+// sendProject(data:any){
+//   let name = data.selectedProject;
+//   console.log("Service is called");
+//   console.log(name);
 
-  switch(name){
-    case "PMSAPP":{
-      let url = "http://localhost:5294/api/projects/project/"+name;
-      this.http.get(url).subscribe((data) =>{
-        console.log(data);
-        this.subject.next({data,name});
-      });
-      break;
-    }
-    case "OTBMAPP":{
-      let url = "http://localhost:5294/api/projects/project/"+name;
-      this.http.get(url).subscribe((data) =>{
-        console.log(data);
-        this.subject.next({data,name});
-      });
-      break;
-    }
-    case "IMSAPP":{
-      let url = "http://localhost:5294/api/projects/project/"+name;
-      this.http.get(url).subscribe((data) =>{
-        console.log(data);
-        this.subject.next({data,name});
-      });
-      break;
-    }
-  }
-}
+//   switch(name){
+//     case "PMSAPP":{
+//       let url = "http://localhost:5294/api/projects/project/"+name;
+//       this.http.get(url).subscribe((data) =>{
+//         console.log(data);
+//         this.subject.next({data,name});
+//       });
+//       break;
+//     }
+//     case "OTBMAPP":{
+//       let url = "http://localhost:5294/api/projects/project/"+name;
+//       this.http.get(url).subscribe((data) =>{
+//         console.log(data);
+//         this.subject.next({data,name});
+//       });
+//       break;
+//     }
+//     case "IMSAPP":{
+//       let url = "http://localhost:5294/api/projects/project/"+name;
+//       this.http.get(url).subscribe((data) =>{
+//         console.log(data);
+//         this.subject.next({data,name});
+//       });
+//       break;
+//     }
+//   }
+// }
 
 
-getData(): Observable<any>{
-  return this.subject.asObservable();
-}
+// getData(): Observable<any>{
+//   return this.subject.asObservable();
+// }
 
 }

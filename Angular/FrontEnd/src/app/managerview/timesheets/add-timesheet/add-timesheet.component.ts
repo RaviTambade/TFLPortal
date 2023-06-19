@@ -5,7 +5,7 @@ import { TimesheetInfo } from '../timesheetInfo';
 import { Project } from 'src/app/project';
 import { Task } from '../../Task';
 import { Employee } from 'src/app/employee';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'addtimesheet',
@@ -18,16 +18,14 @@ export class AddTimesheetComponent implements OnInit {
   projects: Project[] | any;
   tasks: Task[] | any;
   employees: Employee[] | any;
+  timesheetId: any | undefined;
 
+  
 
 
   status: boolean | undefined
 
-
-
-
-
-  constructor(private svc: ManagerviewService, private router: Router) {
+  constructor(private svc: ManagerviewService, private router: Router,private route: ActivatedRoute) {
     this.timesheetInfo = {
       projectId: 0,
       taskId: 0,
@@ -40,6 +38,9 @@ export class AddTimesheetComponent implements OnInit {
 
   }
   ngOnInit(): void {
+    this.route.paramMap.subscribe((params)=>{
+      this.timesheetId=params.get('id')
+    })
 
     this.svc.getAllProjects().subscribe((response) => {
       this.projects = response;
