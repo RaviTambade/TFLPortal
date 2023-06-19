@@ -1,5 +1,3 @@
-<gettimesheet [timesheetId]="timesheetId" (sendTimesheet)="reciveTimesheet($event)" hidden></gettimesheet>
-
 <div *ngIf="timesheet && timesheet.timesheetId !=0">
     <div *ngIf="timesheet">
         <th scope="row"><b>TimesheetId :</b>{{timesheet.timesheetId }}</th><br>

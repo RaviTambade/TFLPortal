@@ -19,10 +19,6 @@ export class AddTimesheetComponent implements OnInit {
   tasks: Task[] | any;
   employees: Employee[] | any;
   timesheetId: any | undefined;
-
-  
-
-
   status: boolean | undefined
 
   constructor(private svc: ManagerviewService, private router: Router,private route: ActivatedRoute) {
@@ -34,12 +30,12 @@ export class AddTimesheetComponent implements OnInit {
       fromtime: '',
       totime: '',
       timesheetId: 0
-    }
+    };
 
   }
   ngOnInit(): void {
     this.route.paramMap.subscribe((params)=>{
-      this.timesheetId=params.get('id')
+      this.timesheetId=params.get('timesheetId')
     })
 
     this.svc.getAllProjects().subscribe((response) => {
@@ -59,6 +55,7 @@ export class AddTimesheetComponent implements OnInit {
 
 
   };
+
   addTimesheet(form:any): void {
     console.log(form);
     this.svc.addTimesheet(form).subscribe((response) => {
@@ -72,7 +69,7 @@ export class AddTimesheetComponent implements OnInit {
         alert("Check the form again ....")
       }
     })
-  }
+  };
 
 
 
