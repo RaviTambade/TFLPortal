@@ -65,6 +65,7 @@ export class ManagerviewService {
 
   ////////////////////////////////////////////////////
 
+<<<<<<< HEAD
   sendProject(data: any) {
     let name = data.selectedProject;
     console.log("Service is called");
@@ -102,5 +103,44 @@ export class ManagerviewService {
   getData(): Observable<any> {
     return this.subject.asObservable();
   }
+=======
+// sendProject(data:any){
+//   let name = data.selectedProject;
+//   console.log("Service is called");
+//   console.log(name);
+
+//   switch(name){
+//     case "PMSAPP":{
+//       let url = "http://localhost:5294/api/projects/project/"+name;
+//       this.http.get(url).subscribe((data) =>{
+//         console.log(data);
+//         this.subject.next({data,name});
+//       });
+//       break;
+//     }
+//     case "OTBMAPP":{
+//       let url = "http://localhost:5294/api/projects/project/"+name;
+//       this.http.get(url).subscribe((data) =>{
+//         console.log(data);
+//         this.subject.next({data,name});
+//       });
+//       break;
+//     }
+//     case "IMSAPP":{
+//       let url = "http://localhost:5294/api/projects/project/"+name;
+//       this.http.get(url).subscribe((data) =>{
+//         console.log(data);
+//         this.subject.next({data,name});
+//       });
+//       break;
+//     }
+//   }
+// }
+
+
+// getData(): Observable<any>{
+//   return this.subject.asObservable();
+// }
+>>>>>>> c4e131afcf8772fd53b71ed3dd07ac993cc3afdf
 
 }

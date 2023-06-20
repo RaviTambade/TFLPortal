@@ -5,7 +5,7 @@ import { TimesheetInfo } from '../timesheetInfo';
 import { Project } from 'src/app/project';
 import { Task } from '../../Task';
 import { Employee } from 'src/app/employee';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'addtimesheet',
@@ -18,10 +18,17 @@ export class AddTimesheetComponent implements OnInit {
   projects: Project[] | any;
   tasks: Task[] | any;
   employees: Employee[] | any;
+<<<<<<< HEAD
 
   status: boolean | undefined
 
   constructor(private svc: ManagerviewService, private router: Router) {
+=======
+  timesheetId: any | undefined;
+  status: boolean | undefined
+
+  constructor(private svc: ManagerviewService, private router: Router,private route: ActivatedRoute) {
+>>>>>>> c4e131afcf8772fd53b71ed3dd07ac993cc3afdf
     this.timesheetInfo = {
       projectId: 0,
       taskId: 0,
@@ -30,10 +37,13 @@ export class AddTimesheetComponent implements OnInit {
       fromtime: '',
       totime: '',
       timesheetId: 0
-    }
+    };
 
   }
   ngOnInit(): void {
+    this.route.paramMap.subscribe((params)=>{
+      this.timesheetId=params.get('timesheetId')
+    })
 
     this.svc.getAllProjects().subscribe((response) => {
       this.projects = response;
@@ -51,7 +61,12 @@ export class AddTimesheetComponent implements OnInit {
     });
 
   };
+<<<<<<< HEAD
   addTimesheet(form: any): void {
+=======
+
+  addTimesheet(form:any): void {
+>>>>>>> c4e131afcf8772fd53b71ed3dd07ac993cc3afdf
     console.log(form);
     this.svc.addTimesheet(form).subscribe((response) => {
       this.status = response;
@@ -64,7 +79,15 @@ export class AddTimesheetComponent implements OnInit {
         alert("Check the form again ....")
       }
     })
+<<<<<<< HEAD
   }
+=======
+  };
+
+
+
+
+>>>>>>> c4e131afcf8772fd53b71ed3dd07ac993cc3afdf
 }
 
 

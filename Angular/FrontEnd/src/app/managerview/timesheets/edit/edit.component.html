@@ -1,14 +1,20 @@
+<<<<<<< HEAD
 - <p>edit works!</p>
 <gettimesheet [timesheetId]="timesheetId" (sendTimesheet)="reciveTimesheet($event)" hidden></gettimesheet>
 
+=======
+>>>>>>> c4e131afcf8772fd53b71ed3dd07ac993cc3afdf
 <form #insertForm="ngForm" (ngSubmit)="updateTimesheet(insertForm.value)">
     <table>
         <tr>
             <td><label><b>Timesheet Id:</b></label></td>
             <td><input type="timesheetId" name="timesheetId" [(ngModel)]="timesheetInfo.timesheetId"></td>
         </tr>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> c4e131afcf8772fd53b71ed3dd07ac993cc3afdf
         <tr>
             <td><label><b>Project :</b></label></td>
             <select name="projectId" [(ngModel)]="timesheetInfo.projectId" required>
@@ -32,6 +38,7 @@
             <td><label><b>Date :</b></label></td>
             <td><input type="text" name="date" [(ngModel)]="timesheetInfo.date"></td>
         </tr>
+<<<<<<< HEAD
 
 
         <tr>
@@ -46,6 +53,18 @@
 
         <tr>
             <button type="submit">Submit</button>
+=======
+        <tr>
+            <td><label><b>From Time :</b></label></td>
+            <td><input type="text" name="fromtime" [(ngModel)]="timesheetInfo.fromtime"></td>
+        </tr>
+        <tr>
+            <td><label><b>To Time :</b></label></td>
+            <td><input type="text" name="totime" [(ngModel)]="timesheetInfo.totime"></td>
+        </tr>
+        <tr>
+            <button type="submit">Update</button>
+>>>>>>> c4e131afcf8772fd53b71ed3dd07ac993cc3afdf
         </tr>
     </table>
 </form>

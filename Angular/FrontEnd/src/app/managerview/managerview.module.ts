@@ -24,10 +24,17 @@ const routes: Routes =
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
 
+<<<<<<< HEAD
     { path: 'projectlist', component: ProjectListComponent },
     { path: 'details/:id', component: DetailComponent },
     { path: 'add', component: AddComponent },
     { path: 'update', component: UpdateComponent },
+=======
+  {path: 'timesheetlist' , component:TimesheetListComponent},
+  {path: 'addtimesheet/:timesheetId', component : AddTimesheetComponent},
+  {path:'edittimesheet/:timesheetId', component:EditComponent},
+  {path:'detailstimesheet/:timesheetId', component:DetailsTimesheetComponent},
+>>>>>>> c4e131afcf8772fd53b71ed3dd07ac993cc3afdf
 
     { path: 'timesheetlist', component: TimesheetListComponent },
     { path: 'addtimesheet', component: AddTimesheetComponent },

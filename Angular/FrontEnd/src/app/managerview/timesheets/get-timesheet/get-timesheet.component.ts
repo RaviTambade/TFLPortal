@@ -13,6 +13,7 @@ export class GetTimesheetComponent implements OnInit {
   @Output() sendTimesheet = new EventEmitter();
   constructor(private svc: ManagerviewService) { }
 
+<<<<<<< HEAD
   ngOnInit(): void {
     if (this.timesheetId != undefined) {
       this.svc.getTimesheet(this.timesheetId).subscribe((response) => {
@@ -23,6 +24,20 @@ export class GetTimesheetComponent implements OnInit {
       })
     }
   }
+=======
+
+  ngOnInit(): void {
+    if (this.timesheetId != undefined) {
+      this.svc.getTimesheet(this.timesheetId).subscribe((response) => {
+        this.timesheet = response;
+        this.sendTimesheet.emit({ timesheet: this.timesheet });
+        console.log(this.timesheet)
+      })
+    };
+
+  }
+
+>>>>>>> c4e131afcf8772fd53b71ed3dd07ac993cc3afdf
   getTimesheetById(id: any) {
     this.svc.getTimesheet(id).subscribe((response) => {
       this.timesheet = response;
@@ -30,6 +45,8 @@ export class GetTimesheetComponent implements OnInit {
       console.log(this.timesheet);
     })
   }
+
+
 }
 
 
