@@ -11,10 +11,12 @@
             </select>
         </tr>
         <tr>
-            <td><label><b>Task Id :</b></label></td>
-            <select name="taskId" [(ngModel)]="timesheetInfo.taskId" required>
+            <td><label><b>Task  :</b></label></td>
+            <td><input [(ngModel)]="timesheetInfo.taskId" required *ngFor="let task of tasks" [value]="task.title" ></td>
+
+            <!-- <select name="taskId" [(ngModel)]="timesheetInfo.taskId" required>
                 <option *ngFor="let task of tasks" [value]="task.id">{{task.title}}</option>
-            </select>
+            </select> -->
         </tr>
         <tr>
             <td><label><b>Employee Id :</b></label></td>

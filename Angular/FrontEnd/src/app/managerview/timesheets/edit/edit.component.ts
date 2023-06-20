@@ -19,7 +19,7 @@ export class EditComponent {
   projects: Project[] | any;
   tasks: Task[] | any;
   employees: Employee[] | any;
-
+ task : any |undefined;
   status: boolean | undefined
 
   constructor(private svc: ManagerviewService, private router: Router, private route: ActivatedRoute) {
