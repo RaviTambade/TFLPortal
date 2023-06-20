@@ -53,7 +53,6 @@ export class AddTimesheetComponent implements OnInit {
       console.log(response);
     });
 
-
   };
 
   addTimesheet(form:any): void {

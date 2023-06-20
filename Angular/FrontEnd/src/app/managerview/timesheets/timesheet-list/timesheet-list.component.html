@@ -8,24 +8,24 @@
   <button (click)="onSubmit()">Search</button>
 </div>
 <div>
-    <table>
-        <thead>
-            <th>TimeSheet Id :</th>
-            <th>Date :</th>
-            <th>Start Time :</th>
-            <th>End Time :</th>
-        </thead>
-        <tbody>
-            <tr *ngFor="let timesheet of timesheets">
-                <th scope="row">{{ timesheet.timesheetId }}</th>
-                <td>{{timesheet.date | date: 'yyyy/MM/dd'}}</td>
-                <td> {{ timesheet.fromtime }} </td>
-                <td> {{ timesheet.totime }} </td>
-                  <td><button (click)="onDetails(timesheet.timesheetId)">Details</button></td>             
-            </tr>
-        </tbody>
-    </table>
- </div> 
+  <table>
+    <thead>
+      <th>TimeSheet Id :</th>
+      <th>Date :</th>
+      <th>Start Time :</th>
+      <th>End Time :</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let timesheet of timesheets">
+        <th scope="row">{{ timesheet.timesheetId }}</th>
+        <td>{{timesheet.date | date: 'yyyy/MM/dd'}}</td>
+        <td> {{ timesheet.fromtime }} </td>
+        <td> {{ timesheet.totime }} </td>
+        <td><button (click)="onDetails(timesheet.timesheetId)">Details</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <hr>
 <h2>Enter New Task :</h2>

@@ -19,23 +19,23 @@ import { GetTimesheetComponent } from './timesheets/get-timesheet/get-timesheet.
 
 
 
-const routes : Routes=
-[
-  {path: '' , redirectTo:'home', pathMatch:'full'},
-  {path: 'home', component:HomeComponent},
-   
-  {path: 'projectlist', component : ProjectListComponent},
-  {path: 'details/:id', component : DetailComponent},
-  {path: 'add', component : AddComponent},
-  {path: 'update', component : UpdateComponent},
+const routes: Routes =
+  [
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: 'home', component: HomeComponent },
 
-  {path: 'timesheetlist' , component:TimesheetListComponent},
-  {path: 'addtimesheet/:timesheetId', component : AddTimesheetComponent},
-  {path:'edittimesheet/:timesheetId', component:EditComponent},
-  {path:'detailstimesheet/:timesheetId', component:DetailsTimesheetComponent},
 
-  {path: 'employeelist',component:EmployeeListComponent}
-];
+    { path: 'projectlist', component: ProjectListComponent },
+    { path: 'details/:id', component: DetailComponent },
+    { path: 'add', component: AddComponent },
+    { path: 'update', component: UpdateComponent },
+
+    { path: 'timesheetlist', component: TimesheetListComponent },
+    { path: 'addtimesheet/:timesheetId', component: AddTimesheetComponent },
+    { path: 'edittimesheet/:timesheetId', component: EditComponent },
+    { path: 'detailstimesheet/:timesheetId', component: DetailsTimesheetComponent },
+
+  ];
 
 
 @NgModule({
@@ -54,7 +54,7 @@ const routes : Routes=
     DetailsTimesheetComponent,
     GetTimesheetComponent,
   ],
-  exports:[RouterContainerComponent],
+  exports: [RouterContainerComponent],
   imports: [
     CommonModule,
     FormsModule,

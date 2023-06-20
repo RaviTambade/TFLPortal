@@ -37,8 +37,6 @@ export class PaginationComponent {
     }
     this.gridItems = this.items.slice(this.currentIndex, this.endIndex);
   }
-
-
 }
 
 

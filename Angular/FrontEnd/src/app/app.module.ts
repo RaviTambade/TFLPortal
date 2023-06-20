@@ -25,8 +25,6 @@ import { ManagerviewModule } from './managerview/managerview.module';
     SortedListComponent,
     CheckBoxComponent,
     RolesComponent,
-    
-    
   ],
   imports: [
     BrowserModule,
@@ -35,9 +33,6 @@ import { ManagerviewModule } from './managerview/managerview.module';
     ReactiveFormsModule,
     HttpClientModule,
     ManagerviewModule
-    
-  
-    
   ],
   providers: [],
   bootstrap: [AppComponent]

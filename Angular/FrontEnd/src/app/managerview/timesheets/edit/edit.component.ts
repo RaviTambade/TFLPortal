@@ -13,13 +13,14 @@ import { Timesheet } from '../timesheet';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent {
-
   timesheetId: any | undefined;
   timesheetInfo: TimesheetInfo | any;
   projects: Project[] | any;
   tasks: Task[] | any;
   employees: Employee[] | any;
+
  task : any |undefined;
+
   status: boolean | undefined
 
   constructor(private svc: ManagerviewService, private router: Router, private route: ActivatedRoute) {
@@ -40,7 +41,6 @@ export class EditComponent {
       this.timesheetId = params.get('timesheetId');
       console.log(this.timesheetId);
     });
-
     this.svc.getTimesheet(this.timesheetId).subscribe(
       (res) => {
         this.timesheetInfo = res;
@@ -78,9 +78,6 @@ export class EditComponent {
       }
     })
   };
-
-
-
 
 
 
