@@ -1,6 +1,6 @@
 <p>add Timesheet</p>
 
-<form #insertForm ="ngForm" (ngSubmit)="addTimesheet(insertForm.value)">
+<form #insertForm="ngForm" (ngSubmit)="addTimesheet(insertForm.value)">
     <table>
         <tr>
             <td><label><b>Project :</b></label></td>
@@ -17,7 +17,8 @@
         <tr>
             <td><label><b>Employee Id :</b></label></td>
             <select name="employeeId" [(ngModel)]="timesheetInfo.employeeId" required>
-                <option *ngFor="let employee of employees" [value]="employee.id">{{ employee.firstName }}{{employee.lastName }}</option>
+                <option *ngFor="let employee of employees" [value]="employee.id">{{ employee.firstName
+                    }}{{employee.lastName }}</option>
             </select>
         </tr>
         <tr>
@@ -37,7 +38,7 @@
         </tr>
 
         <tr>
-            <button type="submit" >Submit</button>
+            <button type="submit">Submit</button>
         </tr>
     </table>
 </form>

@@ -13,13 +13,12 @@ import { Timesheet } from '../timesheet';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent {
-  @Input () timesheet: Timesheet| any ;
-  timesheetId: any | undefined ;
+  @Input() timesheet: Timesheet | any;
+  timesheetId: any | undefined;
   timesheetInfo: TimesheetInfo | any;
   projects: Project[] | any;
   tasks: Task[] | any;
   employees: Employee[] | any;
-
 
 
   status: boolean | undefined
@@ -37,8 +36,8 @@ export class EditComponent {
 
   }
   ngOnInit(): void {
-    
-   
+
+
     this.svc.getAllProjects().subscribe((response) => {
       this.projects = response;
       console.log(response);
@@ -57,10 +56,10 @@ export class EditComponent {
 
   };
 
-  reciveTimesheet($event :any){
-    this.timesheet=$event.timesheet;
-    }
-  updateTimesheet(form:any): void {
+  reciveTimesheet($event: any) {
+    this.timesheet = $event.timesheet;
+  }
+  updateTimesheet(form: any): void {
     console.log(form);
     this.svc.updateTimesheet(form).subscribe((response) => {
       this.status = response;
@@ -74,9 +73,6 @@ export class EditComponent {
       }
     })
   }
-
-
-
 
 }
 

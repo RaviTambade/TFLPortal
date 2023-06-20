@@ -17,7 +17,7 @@ export class ProjectgridComponent implements OnInit {
   constructor(private svc: ProjectService) {
     this.projects = [];
   }
-  
+
   ngOnInit(): void {
     this.svc.getAllProjects().subscribe(
       (response) => {
@@ -40,9 +40,6 @@ export class ProjectgridComponent implements OnInit {
     this.endPosition = this.startPosition + this.size;
     this.selectedProjects = this.projects.slice(this.startPosition, this.endPosition);
   }
-
-
-
 
 }
 

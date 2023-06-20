@@ -19,13 +19,7 @@ export class AddTimesheetComponent implements OnInit {
   tasks: Task[] | any;
   employees: Employee[] | any;
 
-
-
   status: boolean | undefined
-
-
-
-
 
   constructor(private svc: ManagerviewService, private router: Router) {
     this.timesheetInfo = {
@@ -56,9 +50,8 @@ export class AddTimesheetComponent implements OnInit {
       console.log(response);
     });
 
-
   };
-  addTimesheet(form:any): void {
+  addTimesheet(form: any): void {
     console.log(form);
     this.svc.addTimesheet(form).subscribe((response) => {
       this.status = response;
@@ -72,10 +65,6 @@ export class AddTimesheetComponent implements OnInit {
       }
     })
   }
-
-
-
-
 }
 
 
