@@ -7,7 +7,9 @@ export class Timesheet {
                 public projectTitle:string,
                 public taskTitle:string,
                 public fromtime:string,
-                public totime:string  
+                public totime:string , 
+                public workingTime:string,
+                public totalWorkingHRS:string
                 )
                 {}
 }

@@ -221,7 +221,7 @@ public class TimesheetRepository : ITimeSheetRepository
         connection.ConnectionString = _conString;
         try
         {
-            string query = "SELECT ts.id, e.firstname, e.lastname, p.title AS projecttitle, t.title AS tasktitle ,ts.date,ts.fromtime,ts.totime FROM Timesheets ts INNER JOIN employees e ON ts.empid = e.id INNER JOIN projects p ON ts.projectid = p.id INNER JOIN tasks t ON ts.taskid = t.id WHERE ts.empid=@empid && ts.date=@date ";
+            string query = "SELECT ts.id, e.firstname, e.lastname, p.title AS projecttitle, t.title AS tasktitle ,ts.date,ts.fromtime,ts.totime,ts.workingtime FROM Timesheets ts INNER JOIN employees e ON ts.empid = e.id INNER JOIN projects p ON ts.projectid = p.id INNER JOIN tasks t ON ts.taskid = t.id WHERE ts.empid=@empid && ts.date=@date ";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             connection.Open();
             cmd.Parameters.AddWithValue("@empid",empid);
@@ -237,6 +237,7 @@ public class TimesheetRepository : ITimeSheetRepository
                 DateTime totime = Convert.ToDateTime(reader["totime"].ToString());
                 string empFirstName= reader["firstname"].ToString();
                 string empLastName= reader["lastname"].ToString();
+                string workingtime = reader["workingtime"].ToString();
                 string projTitle=   reader["projecttitle"].ToString();
                 string taskTitle= reader["tasktitle"].ToString();
 
@@ -248,6 +249,7 @@ public class TimesheetRepository : ITimeSheetRepository
                     Totime = totime.ToShortTimeString(),
                     EmpFirstName=empFirstName,
                     EmpLastName=empLastName,
+                    workingTime=workingtime,
                     ProjectTitle=projTitle,
                     TaskTitle=taskTitle
                 };
@@ -319,6 +321,41 @@ public TimesheetsDetail GetDetails(int timesheetId)
         return timesheetsDetail;
     }
 
+public WorkingTime GetTotalWorkingTime(int empid,string theDate)
+    {
+        WorkingTime totalTime = new WorkingTime();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _conString;
+        try
+        {
+            string query = "SELECT CONCAT(FLOOR(SUM(TIME_TO_SEC(workingtime)/3600)),':',LPAD(FLOOR((SUM(TIME_TO_SEC(workingtime) / 60)) % 60), 2, '0')) AS totalworkingHRS FROM timesheets WHERE  empid = @empid AND date = @date";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            connection.Open();
+            cmd.Parameters.AddWithValue("@empid",empid);
+            cmd.Parameters.AddWithValue("@date",theDate);
+            
+            MySqlDataReader reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                string totalworkingtime = reader["totalworkingHRS"].ToString();
+               totalTime = new WorkingTime
+                {
+                    totalWorkingHRS=totalworkingtime
+                };
+            
+            }
+            reader.Close();
+        }
+        catch (Exception ee)
+        {
+            throw ee;
+        }
+        finally
+        {
+            connection.Close();
+        }
+        return totalTime;
+    }
 
 
      // public List<Timesheet> GetAll()

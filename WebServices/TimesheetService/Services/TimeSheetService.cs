@@ -26,4 +26,6 @@ public class TImeSheetService : ITimeSheetServices
 
    public TimesheetsDetail GetDetails(int timesheetId)=> _repo.GetDetails(timesheetId);
 
+    public WorkingTime GetTotalWorkingTime(int empid,string theDate)=> _repo.GetTotalWorkingTime(empid,theDate);
+
 }

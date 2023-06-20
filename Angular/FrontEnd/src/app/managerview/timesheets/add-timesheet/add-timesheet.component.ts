@@ -20,6 +20,7 @@ export class AddTimesheetComponent implements OnInit {
   employees: Employee[] | any;
   timesheetId: any | undefined;
   status: boolean | undefined
+  empId:number=2
 
   constructor(private svc: ManagerviewService, private router: Router,private route: ActivatedRoute) {
     this.timesheetInfo = {
@@ -57,7 +58,9 @@ export class AddTimesheetComponent implements OnInit {
 
   addTimesheet(form:any): void {
     console.log(form);
-    this.svc.addTimesheet(form).subscribe((response) => {
+    console.log(this.timesheetInfo);
+    this.timesheetInfo.employeeId=this.empId;
+    this.svc.addTimesheet(this.timesheetInfo).subscribe((response) => {
       this.status = response;
       console.log(response);
       if (response) {

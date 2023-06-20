@@ -60,7 +60,7 @@ public class TimesheetController : ControllerBase
         return status;
     }
 
-    //http://localhost:5161/api/Timesheet/2
+    //http://localhost:5161/api/Timesheet/2/2023-06-13
     [HttpGet ("{empid}/{theDate}")]
     public IEnumerable<TimesheetsDetail> GetAllDetails(int empid,string theDate)
     {
@@ -75,6 +75,14 @@ public class TimesheetController : ControllerBase
     {
         TimesheetsDetail timesheets = _service.GetDetails(timesheetId);
         return timesheets;
+    }
+
+     //http://localhost:5161/api/Timesheet/totaltime/2/2023-06-13
+    [HttpGet ("totaltime/{empid}/{theDate}")]
+    public WorkingTime GetTotalWorkingTime(int empid,string theDate)
+    {
+        WorkingTime time = _service.GetTotalWorkingTime(empid,theDate);
+        return time;
     }
 
 

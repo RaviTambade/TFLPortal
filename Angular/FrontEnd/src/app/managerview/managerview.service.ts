@@ -62,5 +62,10 @@ export class ManagerviewService {
     return this.http.get<any>(url);
   }
 
+  getTotalTime(id: any, date: string): Observable<any> {
+    let url = "http://localhost:5161/api/Timesheet/totaltime/" + id + "/" + date;
+    return this.http.get<any>(url, id);
+  }
+
 
 }

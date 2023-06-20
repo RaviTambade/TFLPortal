@@ -17,6 +17,7 @@ export class TimesheetListComponent implements OnInit {
   date: string;
   timesheetId: any | undefined;
   employee: any;
+  totalWorkingHRS:any;
 
   project: any | undefined;
   name: string | undefined;
@@ -36,7 +37,10 @@ export class TimesheetListComponent implements OnInit {
     this.svc.getEmployee(this.id).subscribe((response) =>{
         this.employee = response;
         console.log(this.employee)
+      
+
       });
+      
 
   };
 
@@ -44,10 +48,18 @@ export class TimesheetListComponent implements OnInit {
     this.svc.getAllTimesheets(this.id, this.date).subscribe((response) => {
         this.timesheets = response;
         console.log(this.timesheets)
+        this.getTotalTime();
       });
   };
   onDetails(timesheetId: any) {
     this.router.navigate(['./detailstimesheet', timesheetId]);
+  };
+
+  getTotalTime() {
+    this.svc.getTotalTime(this.id,this.date).subscribe((response)=>{
+      this.totalWorkingHRS=response;
+      console.log(this.totalWorkingHRS);
+    })
   };
 
 }

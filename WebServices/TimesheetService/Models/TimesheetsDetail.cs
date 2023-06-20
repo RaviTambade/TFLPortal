@@ -10,6 +10,7 @@ public class TimesheetsDetail{
       public DateTime Date {get;set;}
      public string? Fromtime{get;set;}
      public string? Totime{get;set;}
-
+     public string? workingTime{get;set;}
+     public string? totalWorkingHRS {get;set;}
 
 }

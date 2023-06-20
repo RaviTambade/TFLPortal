@@ -12,14 +12,14 @@
                 <option *ngFor="let task of tasks" [value]="task.id">{{task.title}}</option>
             </select>
         </tr>
-        <tr>
+        <!-- <tr>
             <td><label><b>Employee Id :</b></label></td>
             <td><input type="number" name="employeeId" [value]="" [(ngModel)]="timesheetInfo.employeeId"></td>
            
-            <!-- <select name="employeeId" [(ngModel)]="timesheetInfo.employeeId" required>
+            <select name="employeeId" [(ngModel)]="timesheetInfo.employeeId" required>
                 <option *ngFor="let employee of employees" [value]="employee.id">{{ employee.firstName }}{{employee.lastName }}</option>
-            </select> -->
-        </tr>
+            </select>
+        </tr> -->
         <tr>
             <td><label><b>Date :</b></label></td>
             <td><input type="date" name="date" [(ngModel)]="timesheetInfo.date"></td>
