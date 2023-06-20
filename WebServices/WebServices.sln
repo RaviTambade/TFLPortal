@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskService", "TaskService\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimesheetService", "TimesheetService\TimesheetService.csproj", "{4A69A04D-EA3E-4C43-A20F-54D4A746E3C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeRecord", "TimeRecord\TimeRecord.csproj", "{0093CDDF-4EFF-4375-B5D9-6AE7F80CE92D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,5 +84,9 @@ Global
 		{4A69A04D-EA3E-4C43-A20F-54D4A746E3C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A69A04D-EA3E-4C43-A20F-54D4A746E3C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A69A04D-EA3E-4C43-A20F-54D4A746E3C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0093CDDF-4EFF-4375-B5D9-6AE7F80CE92D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0093CDDF-4EFF-4375-B5D9-6AE7F80CE92D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0093CDDF-4EFF-4375-B5D9-6AE7F80CE92D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0093CDDF-4EFF-4375-B5D9-6AE7F80CE92D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

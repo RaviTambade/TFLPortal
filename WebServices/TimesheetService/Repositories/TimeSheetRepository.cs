@@ -358,6 +358,26 @@ public WorkingTime GetTotalWorkingTime(int empid,string theDate)
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
      // public List<Timesheet> GetAll()
     // {
     //     List<Timesheet> timesheets = new List<Timesheet>();
