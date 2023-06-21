@@ -105,6 +105,35 @@ public class TimeRecordRepository : ITimeRecordRepository
     }
 
 
+  public bool Insert(Timerecord timerecord)
+    {
+        bool status = false;
+        MySqlConnection con = new MySqlConnection();
+        con.ConnectionString = _conString;
+        try
+        {
+            string query = $"Insert into timerecord(date,totaltime,empid) values (@date,@totaltime,@empid)";
+            MySqlCommand cmd = new MySqlCommand(query, con);
 
+            cmd.Parameters.AddWithValue("@date", timerecord.Date);
+            cmd.Parameters.AddWithValue("@totaltime", timerecord.TotalTime);
+            cmd.Parameters.AddWithValue("@empid", timerecord.EmpId);
+            con.Open();
+            int rowsaffected = cmd.ExecuteNonQuery();
+            if (rowsaffected > 0)
+            {
+                status = true;
+            }
+        }
+        catch (Exception ee)
+        {
+            throw ee;
+        }
+        finally
+        {
+            con.Close();
+        }
+        return status;
+    }
 
 }

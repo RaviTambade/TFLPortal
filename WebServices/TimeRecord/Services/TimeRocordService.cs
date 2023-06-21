@@ -13,9 +13,6 @@ public class TimeRecordService : ITimeRecordService
 
     public Timerecord Get(int id)=>_repo.Get(id);
     public List<Timerecord>GetAll()=>_repo.GetAll();
-
-
-
-
+    public bool Insert(Timerecord timerecord)=>_repo.Insert(timerecord);
     
 }

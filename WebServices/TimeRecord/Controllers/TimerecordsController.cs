@@ -34,5 +34,11 @@ public class TimerecordsController : ControllerBase
         return timerecords;
     }
 
+   [HttpPost("timerecord")]
+    public bool Insert(Timerecord timerecord)
+    {
+        bool status = _service.Insert(timerecord);
+        return status;
+    }
 
 }

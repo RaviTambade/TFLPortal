@@ -6,4 +6,6 @@ public interface ITimeRecordRepository{
     List <Timerecord> GetAll();
 
      Timerecord Get(int id);
+     bool Insert(Timerecord timerecord);
+     
 }
