@@ -4,4 +4,6 @@ namespace PMS.Repositories.Interfaces;
 
 public interface ITimeRecordRepository{
     List <Timerecord> GetAll();
+
+     Timerecord Get(int id);
 }

@@ -30,10 +30,8 @@ public class TimesheetController : ControllerBase
     [HttpGet("Get/{id}")]
     public Timesheet Get(int id)
     {
-        Timesheet user = _service.Get(id);
-
-
-        return user;
+        Timesheet timesheet = _service.Get(id);
+        return timesheet;
     }
 
     [HttpPost("timesheet")]

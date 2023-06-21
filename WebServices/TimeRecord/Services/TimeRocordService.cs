@@ -11,7 +11,7 @@ public class TimeRecordService : ITimeRecordService
         _repo=repo;
     }
 
-
+    public Timerecord Get(int id)=>_repo.Get(id);
     public List<Timerecord>GetAll()=>_repo.GetAll();
 
 

@@ -25,7 +25,14 @@ public class TimerecordsController : ControllerBase
         return timerecords;
     }
 
-
+ // http://localhost:5121/api/Timerecords/get/1
+    [HttpGet]
+    [Route ("get/{id}")]
+    public Timerecord Get(int id )
+    {
+        Timerecord timerecords=_service.Get(id);
+        return timerecords;
+    }
 
 
 }
