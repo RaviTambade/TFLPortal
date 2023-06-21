@@ -97,11 +97,17 @@ CREATE TABLE payrollCycles(id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
                          date DATETIME,
                          fromtime TIME,
                          totime TIME,
+                         workingtime TIME GENERATED ALWAYS AS (TIMEDIFF(totime, fromtime)) VIRTUAL,
                          empid INT NOT NULL, CONSTRAINT fk_emp_Id5 FOREIGN KEY(empid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
                          projectid INT NOT NULL, CONSTRAINT fk_project_Id2 FOREIGN KEY(projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
                          taskid INT NOT NULL, CONSTRAINT fk_task_Id2 FOREIGN KEY(taskid) REFERENCES tasks(id) ON UPDATE CASCADE ON DELETE CASCADE);
-  
-    
+ 
+ CREATE TABLE timerecord (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+						  date DATE,
+						  totaltime TIME,
+                          empid INT NOT NULL, CONSTRAINT fk_emp_Id6 FOREIGN KEY(empid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE);
+ 
+
     
 INSERT INTO users(email,password)VALUES('Rushi@12345','RC@12345');
 INSERT INTO users(email,password)VALUES('Akshay@12345','AK@12345');
@@ -210,11 +216,11 @@ INSERT INTO tasks(title,projectid,description,date,fromtime,totime)VALUES('Meeti
 INSERT INTO tasks(title,projectid,description,date,fromtime,totime)VALUES('Seminar Sheduling',2,'please arrange the meeting sheduling prosess quickly','2021-02-01','11:00:00', '01:30:00');
 
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(1,1,1,'2023-06-13 ','10:00:00', '11:00:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,2,2,'2023-06-13 ','11:00:00', '12:00:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,3,1,'2023-06-13 ','11:00:00', '12:00:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2023-06-13 ','11:00:00', '12:00:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(1,3,1,'2023-06-13 ','11:00:00', '12:00:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2023-06-13 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,2,2,'2023-06-13 ','11:00:00', '12:30:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,3,1,'2023-06-13 ','01:00:00', '02:30:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2023-06-13 ','11:00:00', '01:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(1,3,1,'2023-06-13 ','10:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2023-06-13 ','10:00:00', '12:30:00');
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,1,2,'2021-06-13 ','11:00:00', '12:00:00');
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,1,2,'2022-06-13 ','11:00:00', '12:00:00');
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,1,2,'2021-06-13 ','11:00:00', '12:00:00');
@@ -223,15 +229,21 @@ INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(4,1,2,
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(5,1,2,'2021-06-13 ','11:00:00', '12:00:00');
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(5,1,2,'2021-06-13 ','11:00:00', '12:00:00');
 
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2021-06-13 ','11:00:00', '12:00:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2021-06-13 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2021-06-13 ','01:00:00', '12:30:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2021-06-13 ','11:30:00', '12:50:00');
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2020-06-13 ','11:00:00', '12:00:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2020-06-14 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2020-06-14 ','11:50:00', '12:30:00');
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2020-06-15 ','11:00:00', '12:00:00');
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2029-05-13 ','11:00:00', '12:00:00');
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2019-06-14 ','11:00:00', '12:00:00');
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2020-06-14 ','11:00:00', '12:00:00');
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2020-06-14 ','11:00:00', '12:00:00');
+
+INSERT INTO timerecord(empid,date,totaltime)VALUES(1,'2020-06-14 ','3:00:00');
+INSERT INTO timerecord(empid,date,totaltime)VALUES(1,'2020-06-14 ','14:55');
+INSERT INTO timerecord(empid,date,totaltime)VALUES(1,'2020-06-16 ','10:00');
+INSERT INTO timerecord(empid,date,totaltime)VALUES(2,'2020-06-15 ','10:00');
+INSERT INTO timerecord(empid,date,totaltime)VALUES(2,'2020-06-16 ','08:00');
 
 
 
@@ -277,6 +289,7 @@ select * from clients;
 select * from onproject;
 select * from assigned;
 select * from timesheets;
+select * from timerecord;
 select * from projects;
 select * from tasks;
 select * from payrollCycles;
@@ -290,9 +303,14 @@ select roles.rolename from userroles inner join roles on userroles.roleid =roles
 SELECT * FROM projects WHERE startDate BETWEEN @fromdate AND @todate;
 
 -- select * from timesheets with details
-SELECT ts.id, e.firstname, e.lastname, p.title AS projecttitle, t.title AS tasktitle ,ts.date,ts.fromtime,ts.totime
+SELECT ts.id, e.firstname, e.lastname, p.title AS projecttitle, t.title AS tasktitle ,ts.date,ts.fromtime,ts.totime,ts.workingtime
 FROM Timesheets ts
 INNER JOIN employees e ON ts.empid = e.id
 INNER JOIN projects p ON ts.projectid = p.id
 INNER JOIN tasks t ON ts.taskid = t.id
-WHERE  ts.empid=3;
+WHERE  ts.empid=2 ;
+
+ 
+-- datewise total working time
+SELECT CONCAT(FLOOR(SUM(TIME_TO_SEC(workingtime)/3600)),':',LPAD(FLOOR((SUM(TIME_TO_SEC(workingtime) / 60)) % 60), 2, '0')) AS totalworkingHRS 
+FROM timesheets WHERE  empid = 2 AND date = '2023-06-13';
