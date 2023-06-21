@@ -41,4 +41,14 @@ public class TimerecordsController : ControllerBase
         return status;
     }
 
+     //http://localhost:5161/api/timerecord/2
+    [HttpPut("{id}")]
+    public bool Update(Timerecord timerecord)
+    {
+        bool status = _service.Update(timerecord);
+
+        return status;
+    }
+
+
 }

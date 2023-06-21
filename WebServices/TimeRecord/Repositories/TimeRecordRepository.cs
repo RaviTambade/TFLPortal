@@ -106,7 +106,7 @@ public class TimeRecordRepository : ITimeRecordRepository
 
 
   public bool Insert(Timerecord timerecord)
-    {
+      {
         bool status = false;
         MySqlConnection con = new MySqlConnection();
         con.ConnectionString = _conString;
@@ -117,7 +117,7 @@ public class TimeRecordRepository : ITimeRecordRepository
 
             cmd.Parameters.AddWithValue("@date", timerecord.Date);
             cmd.Parameters.AddWithValue("@totaltime", timerecord.TotalTime);
-            cmd.Parameters.AddWithValue("@empid", timerecord.EmpId);
+            cmd.Parameters.AddWithValue("@taskid", timerecord.EmpId);
             con.Open();
             int rowsaffected = cmd.ExecuteNonQuery();
             if (rowsaffected > 0)
@@ -135,5 +135,38 @@ public class TimeRecordRepository : ITimeRecordRepository
         }
         return status;
     }
+
+     public bool Update(Timerecord timerecord)
+    {
+        bool status = false;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _conString;
+        try
+        {
+            string query = "UPDATE timerecord SET date=@date,totaltime=@totaltime ,empid=@employeeId   WHERE id=@timerecordId";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@timerecordId", timerecord.TimeRecordId);
+            cmd.Parameters.AddWithValue("@date", timerecord.Date);
+            cmd.Parameters.AddWithValue("@totaltime", timerecord.Date);
+            cmd.Parameters.AddWithValue("@employeeId", timerecord.EmpId);
+      
+            connection.Open();
+            int rowsaffected = cmd.ExecuteNonQuery();
+            if (rowsaffected > 0)
+            {
+                status = true;
+            }
+        }
+        catch (Exception ee)
+        {
+            throw ee;
+        }
+        finally
+        {
+            connection.Close();
+        }
+        return status;
+    }
+
 
 }
