@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { Project } from '../project';
 import { Timesheet } from './timesheets/timesheet';
 import { TimesheetInfo } from './timesheets/timesheetInfo';
+import { Timerecord } from './timerecords/timerecord';
 
 @Injectable({
   providedIn: 'root'
@@ -70,6 +71,11 @@ export class ManagerviewService {
   getAllTimeRecords(id: any): Observable<any> {
     let url = "http://localhost:5121/api/Timerecords/getall/" + id;
     return this.http.get<any>(url, id);
+  }
+
+  addTimeRecord(timerecord: Timerecord): Observable<any> {
+    let url = "http://localhost:5121/api/timerecords/timerecord";
+    return this.http.post<Timerecord>(url, timerecord);
   }
 
 

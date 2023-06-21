@@ -16,6 +16,7 @@ import { EditComponent } from './timesheets/edit/edit.component';
 import { DetailsTimesheetComponent } from './timesheets/details-timesheet/details-timesheet.component';
 import { GetTimesheetComponent } from './timesheets/get-timesheet/get-timesheet.component';
 import { TimerecordListComponent } from './timerecords/timerecord-list/timerecord-list.component';
+import { AddTimerecordComponent } from './timerecords/add-timerecord/add-timerecord.component';
 
 
 
@@ -61,6 +62,7 @@ const routes: Routes =
     DetailsTimesheetComponent,
     GetTimesheetComponent,
     TimerecordListComponent,
+    AddTimerecordComponent,
   ],
   exports: [RouterContainerComponent],
   imports: [
