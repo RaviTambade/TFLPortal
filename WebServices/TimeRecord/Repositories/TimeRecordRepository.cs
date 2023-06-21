@@ -169,4 +169,32 @@ public class TimeRecordRepository : ITimeRecordRepository
     }
 
 
+    public bool Delete(int id)
+    {
+        bool status = false;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _conString;
+        try
+        {
+            string query = "delete from timerecord where id=@timerecordid";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@timerecordid", id);
+            connection.Open();
+            int rowsaffected = cmd.ExecuteNonQuery();
+            if (rowsaffected > 0)
+            {
+                status = true;
+            }
+        }
+        catch (Exception ee)
+        {
+            throw ee;
+        }
+        finally
+        {
+            connection.Close();
+        }
+        return status;
+    }
+
 }

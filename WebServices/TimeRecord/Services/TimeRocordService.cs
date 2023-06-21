@@ -15,5 +15,6 @@ public class TimeRecordService : ITimeRecordService
     public List<Timerecord>GetAll()=>_repo.GetAll();
     public bool Insert(Timerecord timerecord)=>_repo.Insert(timerecord);
     public bool Update(Timerecord timerecord)=>_repo.Update(timerecord);
-    
+    public bool Delete(int id)=>_repo.Delete(id);
+
 }

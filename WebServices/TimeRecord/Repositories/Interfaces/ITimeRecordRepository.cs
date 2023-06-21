@@ -8,5 +8,5 @@ public interface ITimeRecordRepository{
      Timerecord Get(int id);
      bool Insert(Timerecord timerecord);
      bool Update(Timerecord timerecord);
-
+     bool Delete(int id);
 }

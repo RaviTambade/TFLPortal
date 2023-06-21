@@ -33,7 +33,7 @@ public class TimerecordsController : ControllerBase
         Timerecord timerecords=_service.Get(id);
         return timerecords;
     }
-
+ // http://localhost:5121/api/timerecords/timerecord
    [HttpPost("timerecord")]
     public bool Insert(Timerecord timerecord)
     {
@@ -41,7 +41,7 @@ public class TimerecordsController : ControllerBase
         return status;
     }
 
-     //http://localhost:5161/api/timerecord/2
+     //http://localhost:5121/api/Timerecords/1
     [HttpPut("{id}")]
     public bool Update(Timerecord timerecord)
     {
@@ -50,5 +50,11 @@ public class TimerecordsController : ControllerBase
         return status;
     }
 
-
+  //http://localhost:5121/api/Timerecords/1
+    [HttpDelete("{id}")]
+    public bool Delete(int id)
+    {
+        bool status = _service.Delete(id);
+        return status;
+    }
 }
