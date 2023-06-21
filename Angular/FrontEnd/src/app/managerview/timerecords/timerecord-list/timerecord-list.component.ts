@@ -13,7 +13,7 @@ import { Timerecord } from '../timerecord';
 export class TimerecordListComponent implements OnInit {
 
   timerecords: Timerecord[] | undefined;
-  timesheetId: any;
+  timerecordId: any;
   employee: any;
 
 
@@ -32,9 +32,9 @@ export class TimerecordListComponent implements OnInit {
 
 
     // this.timesheetId = this.route.snapshot.paramMap.get('timesheetId');
-    this.timesheetId = localStorage.getItem("id");
-    console.log(this.timesheetId);
-    this.svc.getAllTimeRecords(this.timesheetId).subscribe((response) => {
+    this.timerecordId = localStorage.getItem("id");
+    console.log(this.timerecordId);
+    this.svc.getAllTimeRecords(this.timerecordId).subscribe((response) => {
       this.timerecords = response;
       console.log(this.timerecords);
     });
@@ -42,7 +42,7 @@ export class TimerecordListComponent implements OnInit {
 
 
 
-    this.svc.getEmployee(this.timesheetId).subscribe((response) => {
+    this.svc.getEmployee(this.timerecordId).subscribe((response) => {
       this.employee = response;
       console.log(this.employee)
 

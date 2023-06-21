@@ -244,7 +244,10 @@ INSERT INTO timerecord(empid,date,totaltime)VALUES(1,'2020-06-14 ','14:55');
 INSERT INTO timerecord(empid,date,totaltime)VALUES(1,'2020-06-16 ','10:00');
 INSERT INTO timerecord(empid,date,totaltime)VALUES(2,'2020-06-15 ','10:00');
 INSERT INTO timerecord(empid,date,totaltime)VALUES(2,'2020-06-16 ','08:00');
+INSERT INTO timerecord(empid,date,totaltime)VALUES(2,'2020-06-16 ','18:00');
 
+
+select * From timerecord where empid=2;
 
 
 -- INSERT INTO timesheets(startdate,week1monday,week1tuesday,week1wednesday,week1thursday,week1friday,week1saturday, week1sunday,
@@ -314,3 +317,9 @@ WHERE  ts.empid=2 ;
 -- datewise total working time
 SELECT CONCAT(FLOOR(SUM(TIME_TO_SEC(workingtime)/3600)),':',LPAD(FLOOR((SUM(TIME_TO_SEC(workingtime) / 60)) % 60), 2, '0')) AS totalworkingHRS 
 FROM timesheets WHERE  empid = 2 AND date = '2023-06-13';
+
+-- total working time
+SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(totaltime))) AS total_time
+FROM timerecord where empid=2;
+
+
