@@ -67,5 +67,10 @@ export class ManagerviewService {
     return this.http.get<any>(url, id);
   }
 
+  getAllTimeRecords(id: any): Observable<any> {
+    let url = "http://localhost:5121/api/Timerecords/getall/" + id;
+    return this.http.get<any>(url, id);
+  }
+
 
 }

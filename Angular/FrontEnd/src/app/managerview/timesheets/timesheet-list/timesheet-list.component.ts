@@ -27,18 +27,19 @@ export class TimesheetListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.timesheetId = this.route.snapshot.paramMap.get('timesheetId');
-    console.log(this.timesheetId);
+    // this.timesheetId = this.route.snapshot.paramMap.get('timesheetId');
+    // console.log(this.timesheetId);
     this.svc.getAllTimesheets(this.id, this.date).subscribe((response) => {
         this.timesheets = response;
+        
         console.log(this.timesheets);
+        
       });
 
     this.svc.getEmployee(this.id).subscribe((response) =>{
         this.employee = response;
         console.log(this.employee)
       
-
       });
       
 
@@ -62,5 +63,24 @@ export class TimesheetListComponent implements OnInit {
     })
   };
 
+  toTimeRecord(timesheetId: any) {
+    this.router.navigate(['./timerecordlist', timesheetId]);
+  };
+
+
+  // onTimeRecord(id:any) {
+  //   console.log(id);
+  //   this.router.navigate(['./timerecordlist',id],{relativeTo:this.route});        //navigation without localstorage
+  // };
+
+  onTimeRecord(id:any) {
+    console.log(id);
+    localStorage.setItem("id",id);
+    this.router.navigate(['./timerecordlist'],{relativeTo:this.route});              //navigation with localstorage
+  };
+
+ 
+
 }
+
 

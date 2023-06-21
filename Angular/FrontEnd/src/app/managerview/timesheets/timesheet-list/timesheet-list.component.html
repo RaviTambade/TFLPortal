@@ -1,12 +1,15 @@
 <h1>Task Sheet</h1>
 <div *ngIf="employee">
-  <label><b>Name : {{employee.firstName}}{{employee.lastName}}</b></label>
+  <label><b>Name : {{employee.firstName}}{{employee.lastName}}</b></label> <button (click)="onTimeRecord(id)">TimeRecords</button>
 </div>
 <br>
 <div>
   <label><b>Date :</b><input type="date" [(ngModel)]="date" ></label>
   <button (click)="onSubmit()">Search</button>
 </div>
+
+
+
 <div>
   <table>
     <thead>
@@ -33,14 +36,13 @@
 
 <div *ngIf="timesheets && totalWorkingHRS">
   <b>Total Working HRS : {{totalWorkingHRS.totalWorkingHRS}}</b>
+  <!-- <button (click)="onTimeRecord(id)">TimeRecords</button> -->
 </div>
 
 
 
 <hr>
 <h2>Enter New Task :</h2>
-
 <addtimesheet></addtimesheet>
-
 <hr>
 

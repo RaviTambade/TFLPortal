@@ -1,0 +1,27 @@
+<p>timerecord-list works!</p>
+
+
+<div>
+    <table>
+      <thead>
+        <th>TimeRecord Id :</th>
+        <th>EmpId</th>
+        <th>Date :</th>
+        <th>TotalTime :</th>
+        
+      </thead>
+      <tbody>
+        <tr *ngFor="let timerecord of timerecords">
+          <th scope="row">{{ timerecord.timeRecordId }}</th>
+          <td> {{ timerecord.empId }} </td>
+          <td>{{timerecord.date | date: 'yyyy/MM/dd'}}</td>
+          <td> {{ timerecord.totalTime }} </td>
+         
+          <!-- <td><button (click)="onDetails(timesheet.timesheetId)">Details</button></td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <br><br>
+
+ 

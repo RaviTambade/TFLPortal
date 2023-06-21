@@ -57,4 +57,14 @@ public class TimerecordsController : ControllerBase
         bool status = _service.Delete(id);
         return status;
     }
+    
+    //
+    [HttpGet]
+    [Route ("getall/{empid}")]
+    public IEnumerable<Timerecord> GetAll(int empid)
+    {
+        List<Timerecord>timerecords=_service.GetAll(empid);
+        Console.WriteLine(timerecords);
+        return timerecords;
+    }
 }

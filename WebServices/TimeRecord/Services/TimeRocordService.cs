@@ -10,11 +10,11 @@ public class TimeRecordService : ITimeRecordService
     public TimeRecordService(ITimeRecordRepository repo){
         _repo=repo;
     }
-
-    public Timerecord Get(int id)=>_repo.Get(id);
     public List<Timerecord>GetAll()=>_repo.GetAll();
+    public Timerecord Get(int id)=>_repo.Get(id);
     public bool Insert(Timerecord timerecord)=>_repo.Insert(timerecord);
     public bool Update(Timerecord timerecord)=>_repo.Update(timerecord);
     public bool Delete(int id)=>_repo.Delete(id);
+     public List<Timerecord>GetAll(int empid)=>_repo.GetAll(empid);
 
 }
