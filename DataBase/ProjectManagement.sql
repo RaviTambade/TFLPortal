@@ -83,7 +83,15 @@ CREATE TABLE payrollCycles(id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
                            CONSTRAINT fk_account_no3 FOREIGN KEY(accountnumber) REFERENCES accounts(accountnumber) ON UPDATE CASCADE ON DELETE CASCADE,
                            depositdate DATETIME);
                            
-
+-- CREATE TABLE timesheets(id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,startdate DATETIME,
+--                         week1monday VARCHAR(10),week1tuesday VARCHAR(10),week1wednesday VARCHAR(10),week1thursday VARCHAR(10),week1friday VARCHAR(10),week1saturday VARCHAR(10), week1sunday VARCHAR(10),
+--                         week2monday VARCHAR(10),week2tuesday VARCHAR(10),week2wednesday VARCHAR(10),week2thursday VARCHAR(10),week2friday VARCHAR(10),week2saturday VARCHAR(10),week2sunday VARCHAR(10),
+--                         week3monday VARCHAR(10),week3tuesday VARCHAR(10),week3wednesday VARCHAR(10),week3thursday VARCHAR(10),week3friday VARCHAR(10),week3saturday VARCHAR(10),week3sunday VARCHAR(10),
+--                         week4monday VARCHAR(10),week4tuesday VARCHAR(10),week4wednesday VARCHAR(10),week4thursday VARCHAR(10),week4friday VARCHAR(10),week4saturday VARCHAR(10),week4sunday VARCHAR(10),
+--                         empid INT NOT NULL, CONSTRAINT fk_emp_Id2 FOREIGN KEY(empid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
+--                         projectid INT NOT NULL, CONSTRAINT fk_project_Id2 FOREIGN KEY(projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
+--                         payrollcycleid INT NOT NULL , CONSTRAINT payroll_cycle_Id3 FOREIGN KEY(payrollcycleId) REFERENCES payrollCycles(id) ON UPDATE CASCADE ON DELETE CASCADE,
+--                         notes VARCHAR(255));
 --     
  CREATE TABLE Timesheets (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
                          date DATETIME,
@@ -210,7 +218,6 @@ INSERT INTO tasks(title,projectid,description,date,fromtime,totime)VALUES('Semin
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(1,1,1,'2023-06-13 ','10:00:00', '11:00:00');
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,2,2,'2023-06-13 ','11:00:00', '12:30:00');
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,3,1,'2023-06-13 ','01:00:00', '02:30:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2023-06-13 ','11:00:00', '01:00:00');
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(1,3,1,'2023-06-13 ','10:00:00', '12:00:00');
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,2,'2023-06-13 ','10:00:00', '12:30:00');
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,1,2,'2021-06-13 ','11:00:00', '12:00:00');
@@ -237,14 +244,31 @@ INSERT INTO timerecord(empid,date,totaltime)VALUES(1,'2020-06-16 ','10:00');
 INSERT INTO timerecord(empid,date,totaltime)VALUES(2,'2020-06-15 ','10:00');
 INSERT INTO timerecord(empid,date,totaltime)VALUES(2,'2020-06-16 ','08:00');
 INSERT INTO timerecord(empid,date,totaltime)VALUES(2,'2020-06-16 ','18:00');
-INSERT INTO timerecord(empid,date,totaltime)VALUES(2,'2020-06-16 ','04:10');
+
 
 select * From timerecord where empid=2;
 
-select * From timerecord where empid=2;
 
-
-
+-- INSERT INTO timesheets(startdate,week1monday,week1tuesday,week1wednesday,week1thursday,week1friday,week1saturday, week1sunday,
+--                                 week2monday,week2tuesday,week2wednesday,week2thursday,week2friday,week2saturday, week2sunday,
+--                                 week3monday,week3tuesday,week3wednesday,week3thursday,week3friday,week3saturday, week3sunday,
+--                                 week4monday,week4tuesday,week4wednesday,week4thursday,week4friday,week4saturday, week4sunday,
+--                                 empid,projectid,payrollcycleid,notes)VALUES('2022-04-22',
+--                                      '3:04:25','5:15:11','3:17:45','5:15:23','4:05:12','3:46:45','4:18:55',
+--                                      '2:05:24','4:35:23','3:15:43','6:16:28','6:25:55','7:26:25','6:07:05',
+--                                      '6:46:27','4:16:42','5:17:47','4:15:55','7:06:19','6:55:25','2:18:55',
+--                                      '4:05:54','5:45:33','4:12:43','2:23:27','5:15:19','4:46:25','6:49:29',
+--                                       2,2,1,'remaining work in process');
+-- INSERT INTO timesheets(startdate,week1monday,week1tuesday,week1wednesday,week1thursday,week1friday,week1saturday, week1sunday,
+--                                 week2monday,week2tuesday,week2wednesday,week2thursday,week2friday,week2saturday, week2sunday,
+--                                 week3monday,week3tuesday,week3wednesday,week3thursday,week3friday,week3saturday, week3sunday,
+--                                 week4monday,week4tuesday,week4wednesday,week4thursday,week4friday,week4saturday, week4sunday,
+--                                 empid,projectid,payrollcycleid,notes)VALUES('2022-05-19',
+--                                      '4:05:25','5:35:17','6:17:43','4:15:43','6:05:19','7:46:25','5:18:25',
+--                                      '3:05:24','4:35:23','3:15:43','6:25:28','7:55:19','4:12:25','6:07:05',
+--                                      '5:05:27','5:35:42','4:17:47','5:15:55','5:06:19','5:55:25','3:18:55',
+--                                      '1:05:54','5:45:33','6:12:43','4:55:27','6:42:19','6:17:25','4:18:29',
+--                                       1,1,1,'remaining work in process');
 
 
 
@@ -267,7 +291,7 @@ select * from clients;
 select * from onproject;
 select * from assigned;
 select * from timesheets;
-select * from timerecord;
+select * from timerecord where empid =2;
 select * from projects;
 select * from tasks;
 select * from payrollCycles;
@@ -294,5 +318,7 @@ SELECT CONCAT(FLOOR(SUM(TIME_TO_SEC(workingtime)/3600)),':',LPAD(FLOOR((SUM(TIME
 FROM timesheets WHERE  empid = 2 AND date = '2023-06-13';
 
 -- total working time of default employee with between two dates
-SELECT CONCAT(FLOOR(SUM(TIME_TO_SEC(totaltime)/3600)),':',LPAD(FLOOR((SUM(TIME_TO_SEC(totaltime)/ 60)) % 60),2,'0')) AS totalworkingHRS 
-FROM timerecord WHERE  date >='2020-06-15' AND date <='2020-06-16'&& empid=2;
+SELECT CONCAT(FLOOR(SUM(TIME_TO_SEC(totaltime)/3600)),':',LPAD(FLOOR((SUM(TIME_TO_SEC(totaltime) / 60)) % 60), 2, '0')) AS totalworkingHRS 
+FROM timerecord WHERE  date >= '2020-06-15' AND date <= '2020-06-16' AND empid = 2;
+
+

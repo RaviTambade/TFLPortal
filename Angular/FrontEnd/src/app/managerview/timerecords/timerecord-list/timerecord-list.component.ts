@@ -15,15 +15,15 @@ export class TimerecordListComponent implements OnInit {
   timerecords: Timerecord[] | undefined;
   timerecordId: any;
   employee: any;
-  totalWorkingHRS:any;
-  empid:number;
+  totalWorkingHRS: any;
+  empid: number;
   fromDate: string;
-  toDate:string;
+  toDate: string;
 
   constructor(private svc: ManagerviewService, private router: Router, private route: ActivatedRoute, public fb: FormBuilder) {
- this.empid=0;
- this.fromDate='';
- this.toDate='';
+    this.empid = 0;
+    this.fromDate = '';
+    this.toDate = '';
   }
 
   ngOnInit(): void {
@@ -35,7 +35,6 @@ export class TimerecordListComponent implements OnInit {
     // });
 
 
-
     // this.timesheetId = this.route.snapshot.paramMap.get('timesheetId');
     this.timerecordId = localStorage.getItem("id");
     console.log(this.timerecordId);
@@ -43,9 +42,6 @@ export class TimerecordListComponent implements OnInit {
       this.timerecords = response;
       console.log(this.timerecords);
     });
-
-
-
 
     this.svc.getEmployee(this.timerecordId).subscribe((response) => {
       this.employee = response;
@@ -55,12 +51,16 @@ export class TimerecordListComponent implements OnInit {
   }
 
   getTotalTime() {
-    this.svc.getTotalWorkingTime(this.empid,this.fromDate,this.toDate).subscribe((response)=>{
-      this.totalWorkingHRS=response;
+    this.svc.getTotalWorkingTime(this.empid, this.fromDate, this.toDate).subscribe((response) => {
+      this.totalWorkingHRS = response;
       console.log(this.totalWorkingHRS);
     })
   };
 
+
+  onSubmit() {
+    this.getTotalTime();
+  };
 
 
 }

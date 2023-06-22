@@ -1,11 +1,13 @@
-<p>timerecord-list works!</p>
+
+<div *ngIf="employee">
+  <label><b>Name : {{employee.firstName}}{{employee.lastName}}</b></label> 
+</div><br><br>
 
 
 <div>
     <table>
       <thead>
         <th>TimeRecord Id :</th>
-        <!-- <th>EmpId</th> -->
         <th>Date :</th>
         <th>TotalTime :</th>
         
@@ -13,7 +15,6 @@
       <tbody>
         <tr *ngFor="let timerecord of timerecords">
           <th scope="row">{{ timerecord.timeRecordId }}</th>
-          <!-- <td> {{ timerecord.empId }} </td> -->
           <td>{{timerecord.date }}</td>
           <td> {{ timerecord.totalTime }} </td>
          
@@ -22,6 +23,21 @@
       </tbody>
     </table>
   </div>
-  <br><br>
+  <br>
 
+  <p>If you want to calculate Time between two date's</p>
+  <div>
+    <label><b>From Date :</b><input type="date" [(ngModel)]="fromDate" ></label>
+    <label><b>To Date :</b><input type="date" [(ngModel)]="toDate" ></label>
+    <button (click)="onSubmit()">Search</button>
+  </div>
+
+  <div *ngIf="timerecords && totalWorkingHRS">
+    <b>Total Working HRS : {{totalWorkingHRS.totalWorkingHRS}}</b>
+    <!-- <button (click)="addTimeRecord()">AddToTimeRecords</button> -->
+  </div>
+
+  
+
+ 
  
