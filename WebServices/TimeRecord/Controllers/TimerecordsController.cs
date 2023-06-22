@@ -67,4 +67,14 @@ public class TimerecordsController : ControllerBase
         Console.WriteLine(timerecords);
         return timerecords;
     }
+
+  //http://localhost:5121/api/Timerecords/totaltime/2/2020-06-15/2020-06-16
+    [HttpGet ("totaltime/{empid}/{fromDate}/{toDate}")]
+    public TotalWorkingTime GetTotalWorkingTime(int empid,string fromDate,string toDate)
+    {
+        TotalWorkingTime time = _service.GetTotalWorkingTime(empid,fromDate,toDate);
+        return time;
+    }
+
+
 }

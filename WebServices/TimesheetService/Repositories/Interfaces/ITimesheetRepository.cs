@@ -12,6 +12,6 @@ public interface ITimeSheetRepository{
      bool Delete(int id);
      List<TimesheetsDetail>GetAllDetails(int empid,string theDate);  
      TimesheetsDetail GetDetails(int empid); 
-      WorkingTime GetTotalWorkingTime(int empid,string theDate);  
+     WorkingTime GetTotalWorkingTime(int empid,string theDate);  
      
  }

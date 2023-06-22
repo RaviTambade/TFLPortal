@@ -357,28 +357,30 @@ public WorkingTime GetTotalWorkingTime(int empid,string theDate)
         return totalTime;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
 
 
-     // public List<Timesheet> GetAll()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // public List<Timesheet> GetAll()
     // {
     //     List<Timesheet> timesheets = new List<Timesheet>();
     //     MySqlConnection connection = new MySqlConnection();

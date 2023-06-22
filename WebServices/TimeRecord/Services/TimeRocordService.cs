@@ -16,5 +16,6 @@ public class TimeRecordService : ITimeRecordService
     public bool Update(Timerecord timerecord)=>_repo.Update(timerecord);
     public bool Delete(int id)=>_repo.Delete(id);
      public List<Timerecord>GetAll(int empid)=>_repo.GetAll(empid);
+     public TotalWorkingTime GetTotalWorkingTime(int empid,string fromDate,string toDate)=> _repo.GetTotalWorkingTime(empid,fromDate,toDate);
 
 }

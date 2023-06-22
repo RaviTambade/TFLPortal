@@ -238,4 +238,40 @@ public class TimeRecordRepository : ITimeRecordRepository
         return timerecords;
     }
 
+    public TotalWorkingTime GetTotalWorkingTime(int empid, string fromDate, string toDate)
+     {
+        TotalWorkingTime totalWT = new TotalWorkingTime();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _conString;
+        try
+        {
+            string query = "SELECT CONCAT(FLOOR(SUM(TIME_TO_SEC(totaltime)/3600)),':',LPAD(FLOOR((SUM(TIME_TO_SEC(totaltime)/ 60)) % 60), 2,'0')) AS totalworkingHRS FROM timerecord WHERE  date >=@fromDate AND date <=@toDate && empid="+empid;
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            connection.Open();
+            cmd.Parameters.AddWithValue("@empid",empid);
+            cmd.Parameters.AddWithValue("@fromDate",fromDate);
+            cmd.Parameters.AddWithValue("@toDate",toDate);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                string totalworkingtime = reader["totalworkingHRS"].ToString();
+               totalWT = new TotalWorkingTime
+                {
+                    TotalWorkingHRS=totalworkingtime
+                };
+            
+            }
+            reader.Close();
+        }
+        catch (Exception ee)
+        {
+            throw ee;
+        }
+        finally
+        {
+            connection.Close();
+        }
+        return totalWT;
+    }
+    
 }
