@@ -78,5 +78,10 @@ export class ManagerviewService {
     return this.http.post<Timerecord>(url, timerecord);
   }
 
+  getTotalWorkingTime(id: any, fromDate: string, toDate:string): Observable<any> {
+    let url = "http://localhost:5121/api/Timerecords/totaltime/" + id + "/" + fromDate +"/"+toDate;
+    return this.http.get<any>(url, id);
+  }
+
 
 }
