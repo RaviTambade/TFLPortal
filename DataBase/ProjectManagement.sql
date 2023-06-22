@@ -249,6 +249,8 @@ INSERT INTO timerecord(empid,date,totaltime)VALUES(2,'2020-06-16 ','04:10');
 
 select * From timerecord where empid=2;
 
+select * From timerecord where empid=2;
+
 
 -- INSERT INTO timesheets(startdate,week1monday,week1tuesday,week1wednesday,week1thursday,week1friday,week1saturday, week1sunday,
 --                                 week2monday,week2tuesday,week2wednesday,week2thursday,week2friday,week2saturday, week2sunday,

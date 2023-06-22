@@ -5,7 +5,7 @@
     <table>
       <thead>
         <th>TimeRecord Id :</th>
-        <th>EmpId</th>
+        <!-- <th>EmpId</th> -->
         <th>Date :</th>
         <th>TotalTime :</th>
         
@@ -13,11 +13,11 @@
       <tbody>
         <tr *ngFor="let timerecord of timerecords">
           <th scope="row">{{ timerecord.timeRecordId }}</th>
-          <td> {{ timerecord.empId }} </td>
-          <td>{{timerecord.date | date: 'yyyy/MM/dd'}}</td>
+          <!-- <td> {{ timerecord.empId }} </td> -->
+          <td>{{timerecord.date }}</td>
           <td> {{ timerecord.totalTime }} </td>
          
-          <!-- <td><button (click)="onDetails(timesheet.timesheetId)">Details</button></td> -->
+        <td><button >Details</button></td> 
         </tr>
       </tbody>
     </table>

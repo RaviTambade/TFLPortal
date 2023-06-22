@@ -42,6 +42,7 @@ const routes: Routes =
     
     // {path : 'timesheetlist/timerecordlist/:timesheetId', component:TimerecordListComponent},
     {path : 'timesheetlist/timerecordlist', component:TimerecordListComponent},
+    {path : 'timesheetlist/addtimerecord', component:AddTimerecordComponent},
 
   ];
 

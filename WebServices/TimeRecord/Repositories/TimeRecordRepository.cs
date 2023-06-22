@@ -34,14 +34,14 @@ public class TimeRecordRepository : ITimeRecordRepository
                 int id = Int32.Parse(reader["id"].ToString());
                 int empId=Int32.Parse(reader["empid"].ToString());
                 DateTime date=Convert.ToDateTime(reader["date"].ToString());
-                DateTime totalTime = Convert.ToDateTime(reader["totaltime"].ToString());
+                string totalTime = reader["totaltime"].ToString();
 
                 Timerecord timerecord = new Timerecord
                 {
                     TimeRecordId=id,
                     EmpId=empId,
-                    Date=date,
-                    TotalTime=totalTime.ToShortTimeString()
+                    Date=date.ToShortDateString(),
+                    TotalTime=totalTime
                 };
 
                 timerecords.Add(timerecord);
@@ -79,14 +79,14 @@ public class TimeRecordRepository : ITimeRecordRepository
                 int timerecordid = Int32.Parse(reader["id"].ToString());
                 int empId=Int32.Parse(reader["empid"].ToString());
                 DateTime date=Convert.ToDateTime(reader["date"].ToString());
-                DateTime totalTime = Convert.ToDateTime(reader["totaltime"].ToString());
+                string totalTime = reader["totaltime"].ToString();
 
                 timerecord = new Timerecord
                 {
                     TimeRecordId=timerecordid,
                     EmpId=empId,
-                    Date=date,
-                    TotalTime=totalTime.ToShortTimeString()
+                    Date=date.ToShortDateString(),
+                    TotalTime=totalTime
                 };
 
             }
@@ -117,7 +117,7 @@ public class TimeRecordRepository : ITimeRecordRepository
 
             cmd.Parameters.AddWithValue("@date", timerecord.Date);
             cmd.Parameters.AddWithValue("@totaltime", timerecord.TotalTime);
-            cmd.Parameters.AddWithValue("@taskid", timerecord.EmpId);
+            cmd.Parameters.AddWithValue("@empid", timerecord.EmpId);
             con.Open();
             int rowsaffected = cmd.ExecuteNonQuery();
             if (rowsaffected > 0)
@@ -214,14 +214,14 @@ public class TimeRecordRepository : ITimeRecordRepository
                 int id = Int32.Parse(reader["id"].ToString());
                 int empId=Int32.Parse(reader["empid"].ToString());
                 DateTime date=Convert.ToDateTime(reader["date"].ToString());
-                DateTime totalTime = Convert.ToDateTime(reader["totaltime"].ToString());
+                string totalTime =reader["totaltime"].ToString();
 
                 Timerecord timerecord = new Timerecord
                 {
                     TimeRecordId=id,
                     EmpId=empId,
-                    Date=date,
-                    TotalTime=totalTime.ToShortTimeString()
+                    Date=date.ToShortDateString(),
+                    TotalTime=totalTime
                 };
                 timerecords.Add(timerecord);
             }
