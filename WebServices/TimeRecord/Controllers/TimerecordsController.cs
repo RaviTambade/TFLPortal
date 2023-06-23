@@ -58,7 +58,7 @@ public class TimerecordsController : ControllerBase
         return status;
     }
     
-    //
+    //http://localhost:5121/api/Timerecords/getall/1
     [HttpGet]
     [Route ("getall/{empid}")]
     public IEnumerable<Timerecord> GetAll(int empid)

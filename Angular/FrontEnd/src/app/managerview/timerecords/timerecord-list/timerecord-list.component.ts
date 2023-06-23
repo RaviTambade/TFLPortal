@@ -24,6 +24,8 @@ export class TimerecordListComponent implements OnInit {
     this.empid = 0;
     this.fromDate = '';
     this.toDate = '';
+
+    
   }
 
   ngOnInit(): void {

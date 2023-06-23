@@ -20,8 +20,9 @@ export class AddTimerecordComponent implements OnInit{
       date:'',
       totalTime:''
     };
-    this.timerecord.empId=localStorage.getItem('id');
-    this.timerecord.date=localStorage.getItem('date');
+     this.timerecord.empId=localStorage.getItem('id');
+    
+    
 
   }
   

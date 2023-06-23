@@ -3,14 +3,12 @@
   <label><b>Name : {{employee.firstName}}{{employee.lastName}}</b></label> 
 </div><br><br>
 
-
 <div>
     <table>
       <thead>
         <th>TimeRecord Id :</th>
         <th>Date :</th>
         <th>TotalTime :</th>
-        
       </thead>
       <tbody>
         <tr *ngFor="let timerecord of timerecords">
@@ -25,7 +23,7 @@
   </div>
   <br>
 
-  <p>If you want to calculate Time between two date's</p>
+  <p>If you want to calculate Time between two date's please enter dates</p>
   <div>
     <label><b>From Date :</b><input type="date" [(ngModel)]="fromDate" ></label>
     <label><b>To Date :</b><input type="date" [(ngModel)]="toDate" ></label>
@@ -34,7 +32,6 @@
 
   <div *ngIf="timerecords && totalWorkingHRS">
     <b>Total Working HRS : {{totalWorkingHRS.totalWorkingHRS}}</b>
-    <!-- <button (click)="addTimeRecord()">AddToTimeRecords</button> -->
   </div>
 
   
