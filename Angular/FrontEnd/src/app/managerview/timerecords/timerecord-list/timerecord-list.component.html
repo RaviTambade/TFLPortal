@@ -27,7 +27,7 @@
   <div>
     <label><b>From Date :</b><input type="date" [(ngModel)]="fromDate" ></label>
     <label><b>To Date :</b><input type="date" [(ngModel)]="toDate" ></label>
-    <button (click)="onSubmit()">Search</button>
+    <button (click)="onSubmit()">Calculate</button>
   </div>
 
   <div *ngIf="timerecords && totalWorkingHRS">

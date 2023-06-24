@@ -16,16 +16,14 @@ export class TimerecordListComponent implements OnInit {
   timerecordId: any;
   employee: any;
   totalWorkingHRS: any;
-  empid: number;
+  empid: any;
   fromDate: string;
   toDate: string;
 
   constructor(private svc: ManagerviewService, private router: Router, private route: ActivatedRoute, public fb: FormBuilder) {
-    this.empid = 0;
+    this.empid=0;
     this.fromDate = '';
-    this.toDate = '';
-
-    
+    this.toDate = '';   
   }
 
   ngOnInit(): void {
@@ -53,6 +51,7 @@ export class TimerecordListComponent implements OnInit {
   }
 
   getTotalTime() {
+    this.empid = localStorage.getItem("id");
     this.svc.getTotalWorkingTime(this.empid, this.fromDate, this.toDate).subscribe((response) => {
       this.totalWorkingHRS = response;
       console.log(this.totalWorkingHRS);
