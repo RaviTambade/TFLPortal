@@ -14,6 +14,7 @@ export class AddTimerecordComponent implements OnInit{
   status :boolean|undefined;
   
   
+  
   constructor(private svc: ManagerviewService, private router: Router,private route: ActivatedRoute){
     this.timerecord={
       empId: 0,

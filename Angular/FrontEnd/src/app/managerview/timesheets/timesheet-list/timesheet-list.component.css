@@ -1,2 +1,5 @@
-/* div {background: rgb(242, 217, 242);}
-button {text-align: center;} */
+table, th, td {
+    border: 1px solid black;
+    border-collapse:collapse;
+    text-align: center;  
+  }
