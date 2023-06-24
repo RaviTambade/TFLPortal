@@ -12,19 +12,17 @@ export class AddTimerecordComponent implements OnInit{
   
   timerecord: Timerecord|any;
   status :boolean|undefined;
-  
+  empId:any;
+  date:any;
   
   
   constructor(private svc: ManagerviewService, private router: Router,private route: ActivatedRoute){
     this.timerecord={
-      empId: 0,
-      date:'',
       totalTime:''
     };
      this.timerecord.empId=localStorage.getItem('id');
-    
-    
-
+     this.timerecord.date=localStorage.getItem('thisDate');
+     
   }
   
   

@@ -47,7 +47,8 @@ export class TimesheetListComponent implements OnInit {
   onSubmit() {
     this.svc.getAllTimesheets(this.id, this.date).subscribe((response) => {
         this.timesheets = response;
-        console.log(this.timesheets)
+        console.log(this.timesheets);
+        localStorage.setItem('thisDate',this.date);
         this.getTotalTime();
       });
   };
