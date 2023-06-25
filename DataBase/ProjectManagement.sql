@@ -1,4 +1,4 @@
--- DROP DATABASE PMS;
+  -- DROP DATABASE PMS;
 CREATE DATABASE PMS;
 USE PMS;
 
@@ -228,57 +228,125 @@ INSERT INTO tasks(title,projectid,description,date,fromtime,totime)VALUES('SRS D
 
 
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(1,1,1,'2023-06-01 ','10:00:00', '11:00:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,2,2,'2023-06-02 ','11:00:00', '12:30:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,3,1,'2023-06-03 ','01:00:00', '02:30:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,4,1,'2023-06-04 ','10:00:00', '12:00:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,5,2,'2023-06-05 ','10:00:00', '12:30:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(4,6,2,'2023-06-06 ','11:00:00', '12:00:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,7,2,'2023-06-07 ','11:00:00', '12:00:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(4,8,2,'2023-06-08 ','11:00:00', '12:00:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(4,9,2,'2023-06-09 ','11:00:00', '12:00:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(5,10,2,'2023-06-10 ','11:00:00', '12:00:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(5,1,2,'2023-06-11 ','11:00:00', '12:00:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(6,2,2,'2023-06-12 ','11:00:00', '12:00:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(6,3,2,'2023-06-13 ','01:00:00', '12:30:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(7,4,2,'2023-06-14 ','11:30:00', '12:50:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(7,5,2,'2023-06-15 ','11:00:00', '12:00:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(8,6,2,'2023-06-16 ','11:50:00', '12:30:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(8,7,2,'2023-06-17 ','11:00:00', '12:00:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(9,6,2,'2023-05-18 ','11:00:00', '12:00:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(9,5,2,'2023-06-19 ','11:00:00', '12:00:00');
-INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(1,4,2,'2023-06-20 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(1,2,1,'2023-06-01 ','11:00:00', '12:30:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(1,3,1,'2023-06-01 ','01:00:00', '02:30:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(1,4,1,'2023-06-01 ','10:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(1,5,2,'2023-06-02 ','10:00:00', '12:30:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(1,6,2,'2023-06-02 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,7,2,'2023-06-02','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,8,3,'2023-06-02','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,9,3,'2023-06-02 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,10,3,'2023-06-03 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,3,'2023-06-03 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,2,4,'2023-06-03 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,3,4,'2023-06-03 ','01:00:00', '12:30:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,4,4,'2023-06-04 ','11:30:00', '12:50:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,5,5,'2023-06-04 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,6,5,'2023-06-04 ','11:50:00', '12:30:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,7,5,'2023-06-04 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,6,5,'2023-05-04 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(4,5,1,'2023-06-05 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(4,4,2,'2023-06-05 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(4,1,3,'2023-06-05','10:00:00', '11:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(4,2,4,'2023-06-06 ','11:00:00', '12:30:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(4,3,5,'2023-06-06 ','01:00:00', '02:30:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(4,4,6,'2023-06-06 ','10:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(5,5,6,'2023-06-06 ','10:00:00', '12:30:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(5,6,6,'2023-06-06 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(5,7,7,'2023-06-07 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(5,8,7,'2023-06-07 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(5,9,7,'2023-06-07 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(5,10,8,'2023-06-08 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(6,1,8,'2023-06-08','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(6,2,8,'2023-06-08 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(6,3,9,'2023-06-09 ','01:00:00', '12:30:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(6,4,9,'2023-06-09 ','11:30:00', '12:50:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(6,5,9,'2023-06-09 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(6,6,10,'2023-06-10 ','11:50:00', '12:30:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(1,7,10,'2023-06-10 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(1,6,10,'2023-05-10 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(5,5,10,'2023-06-11 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(5,4,1,'2023-06-11 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(5,1,2,'2023-06-12 ','10:00:00', '11:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(5,2,2,'2023-06-13 ','11:00:00', '12:30:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(5,3,3,'2023-06-13 ','01:00:00', '02:30:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(1,4,3,'2023-06-14 ','10:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(1,5,3,'2023-06-14 ','10:00:00', '12:30:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(1,6,4,'2023-06-15 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(1,7,4,'2023-06-15 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,8,4,'2023-06-16 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,9,5,'2023-06-17 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,10,5,'2023-06-18 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,1,5,'2023-06-18','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(5,2,6,'2023-06-18','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(5,3,6,'2023-06-19 ','01:00:00', '12:30:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(5,4,6,'2023-06-20 ','11:30:00', '12:50:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(4,5,5,'2023-06-21 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(4,6,5,'2023-06-21 ','11:50:00', '12:30:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(4,7,4,'2023-06-22 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(4,6,4,'2023-05-22 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(4,5,4,'2023-06-23 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(4,4,4,'2023-06-23 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,6,3,'2023-05-24 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,5,3,'2023-06-24 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,4,3,'2023-06-25 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,1,3,'2023-06-25 ','10:00:00', '11:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,2,3,'2023-06-26 ','11:00:00', '12:30:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(2,3,3,'2023-06-26 ','01:00:00', '02:30:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,4,1,'2023-06-27 ','10:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,5,2,'2023-06-27 ','10:00:00', '12:30:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(4,6,2,'2023-06-28 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,7,1,'2023-06-28 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(4,8,2,'2023-06-28 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(4,9,2,'2023-06-29 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(5,10,2,'2023-06-29 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(5,1,2,'2023-06-29','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(1,2,2,'2023-06-29','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(1,3,2,'2023-06-29 ','01:00:00', '12:30:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(1,4,2,'2023-06-29 ','11:30:00', '12:50:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(1,5,3,'2023-06-30 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,6,3,'2023-06-30 ','11:50:00', '12:30:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,7,3,'2023-06-30 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,6,5,'2023-05-30 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,5,6,'2023-06-30 ','11:00:00', '12:00:00');
+INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,4,6,'2023-06-30 ','11:00:00', '12:00:00');
 
 
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(1,'2023-06-14 ','3:00:00',1);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(2,'2023-06-14 ','14:55',2);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(3,'2023-06-16 ','10:00',3);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(4,'2023-06-15 ','10:00',4);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(5,'2023-06-16 ','08:00',5);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(6,'2023-06-20 ','18:00',6);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(7,'2023-06-20 ','04:10',7);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(8,'2023-06-14 ','3:00:00',8);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(1,'2023-06-14 ','14:55',9);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(9,'2023-06-16 ','10:00',10);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(1,'2023-06-15 ','10:00',11);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(2,'2023-06-16 ','08:00',12);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(3,'2023-06-16 ','18:00',13);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(4,'2023-06-16 ','04:10',14);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(5,'2023-06-16 ','04:10',15);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(6,'2023-06-14 ','3:00:00',16);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(7,'2023-06-14 ','14:55',17);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(8,'2023-06-16 ','10:00',18);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(1,'2023-06-15 ','10:00',19);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(2,'2023-06-16 ','08:00',1);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(3,'2023-06-16 ','18:00',2);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(4,'2023-06-19 ','04:10',3);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(5,'2023-06-14 ','3:00:00',4);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(6,'2023-06-14 ','14:55',5);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(7,'2023-06-16 ','10:00',6);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(8,'2023-06-15 ','10:00',7);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(1,'2023-06-16 ','08:00',8);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(2,'2023-06-17 ','18:00',9);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(3,'2023-06-17 ','04:10',10);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(4,'2023-06-18 ','04:10',11);
+
+
+
+
+
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(1,'2023-06-01 ','3:00:00',1);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(1,'2023-06-02 ','14:55',2);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(1,'2023-06-03 ','10:00',3);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(1,'2023-06-04 ','10:00',4);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(1,'2023-06-05 ','08:00',5);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(2,'2023-06-06 ','18:00',6);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(2,'2023-06-07 ','04:10',7);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(2,'2023-06-08 ','3:00:00',8);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(2,'2023-06-09 ','14:55',9);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(2,'2023-06-10 ','10:00',10);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(2,'2023-06-11 ','10:00',11);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(3,'2023-06-12 ','08:00',12);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(3,'2023-06-13 ','18:00',13);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(3,'2023-06-14 ','04:10',14);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(3,'2023-06-15 ','04:10',15);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(3,'2023-06-16 ','3:00:00',16);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(4,'2023-06-17 ','14:55',17);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(4,'2023-06-18 ','10:00',18);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(4,'2023-06-19 ','10:00',19);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(4,'2023-06-20 ','08:00',1);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(4,'2023-06-21 ','18:00',2);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(4,'2023-06-22 ','04:10',3);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(5,'2023-06-23 ','3:00:00',4);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(5,'2023-06-24 ','14:55',5);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(5,'2023-06-25 ','10:00',6);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(5,'2023-06-26 ','10:00',7);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(5,'2023-06-27 ','08:00',8);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(6,'2023-06-28 ','18:00',9);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(6,'2023-06-29 ','04:10',10);
+INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(6,'2023-06-30 ','04:10',11);
 
 select * From timerecords where empid=2;
 
@@ -330,21 +398,7 @@ FROM timesheets WHERE  empid = 2 AND date = '2023-06-13';
 
 -- total working time of default employee with between two dates
 SELECT CONCAT(FLOOR(SUM(TIME_TO_SEC(totaltime)/3600)),':',LPAD(FLOOR((SUM(TIME_TO_SEC(totaltime)/ 60)) % 60),2,'0')) AS totalworkingHRS 
-FROM timerecords WHERE  date >='2020-06-15' AND date <='2020-06-16'&& empid=2;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+FROM timerecords WHERE  date >='2023-06-01' AND date <='2023-06-10'&& empid=1;
 
 
 
