@@ -40,9 +40,10 @@ const routes: Routes =
     { path: 'detailstimesheet/:timesheetId', component: DetailsTimesheetComponent },
 
     
-    // {path : 'timesheetlist/timerecordlist/:timesheetId', component:TimerecordListComponent},
     {path : 'timesheetlist/timerecordlist', component:TimerecordListComponent},
     {path : 'timesheetlist/addtimerecord', component:AddTimerecordComponent},
+    // {path : 'timerecordlist/timesheetlist/:Id/:date', component:TimesheetListComponent},
+    
 
   ];
 

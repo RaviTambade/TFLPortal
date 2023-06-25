@@ -64,9 +64,14 @@ export class TimerecordListComponent implements OnInit {
     this.getTotalTime();
   };
 
-  onDetails(timesheetId: any) {
-    this.router.navigate(['./detailstimesheet', timesheetId]);
-  };
+  // onDetails(Id: any,date:any) {
+
+  //   this.router.navigate(['./detailstimesheet',Id,date]);
+  // };
+  // onDetails(Id: any,date:any) {
+  //   Id=localStorage.getItem("id");
+  //   this.router.navigate(['./timesheetlist',Id,date]);
+  // };
 
 
 }
