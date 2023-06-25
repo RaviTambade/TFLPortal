@@ -32,7 +32,6 @@ public class TimeRecordRepository : ITimeRecordRepository
             while (reader.Read())
             {
                 int id = Int32.Parse(reader["id"].ToString());
-                int timesheetid = Int32.Parse(reader["timesheetid"].ToString());
                 int empId=Int32.Parse(reader["empid"].ToString());
                 DateTime date=Convert.ToDateTime(reader["date"].ToString());
                 string totalTime = reader["totaltime"].ToString();
@@ -40,7 +39,6 @@ public class TimeRecordRepository : ITimeRecordRepository
                 Timerecord timerecord = new Timerecord
                 {
                     TimeRecordId=id,
-                    TimesheetId=timesheetid,
                     EmpId=empId,
                     Date=date.ToShortDateString(),
                     TotalTime=totalTime
@@ -79,7 +77,6 @@ public class TimeRecordRepository : ITimeRecordRepository
             if(reader.Read())
             {
                 int timerecordid = Int32.Parse(reader["id"].ToString());
-                int timesheetid = Int32.Parse(reader["timesheetid"].ToString());
                 int empId=Int32.Parse(reader["empid"].ToString());
                 DateTime date=Convert.ToDateTime(reader["date"].ToString());
                 string totalTime = reader["totaltime"].ToString();
@@ -87,7 +84,6 @@ public class TimeRecordRepository : ITimeRecordRepository
                 timerecord = new Timerecord
                 {
                     TimeRecordId=timerecordid,
-                    TimesheetId=timesheetid,
                     EmpId=empId,
                     Date=date.ToShortDateString(),
                     TotalTime=totalTime
@@ -116,13 +112,12 @@ public class TimeRecordRepository : ITimeRecordRepository
         con.ConnectionString = _conString;
         try
         {
-            string query = $"Insert into timerecords(date,totaltime,empid,timesheetid) values (@date,@totaltime,@empid,@timesheetid)";
+            string query = $"Insert into timerecords(date,totaltime,empid) values (@date,@totaltime,@empid)";
             MySqlCommand cmd = new MySqlCommand(query, con);
 
             cmd.Parameters.AddWithValue("@date", timerecord.Date);
             cmd.Parameters.AddWithValue("@totaltime", timerecord.TotalTime);
             cmd.Parameters.AddWithValue("@empid", timerecord.EmpId);
-            cmd.Parameters.AddWithValue("@timesheetid", timerecord.TimesheetId);
             con.Open();
             int rowsaffected = cmd.ExecuteNonQuery();
             if (rowsaffected > 0)
@@ -148,13 +143,12 @@ public class TimeRecordRepository : ITimeRecordRepository
         connection.ConnectionString = _conString;
         try
         {
-            string query = "UPDATE timerecords SET date=@date,totaltime=@totaltime ,empid=@employeeId, timesheetid=@timesheetid  WHERE id=@timerecordId";
+            string query = "UPDATE timerecords SET date=@date,totaltime=@totaltime ,empid=@employeeId  WHERE id=@timerecordId";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@timerecordId", timerecord.TimeRecordId);
             cmd.Parameters.AddWithValue("@date", timerecord.Date);
             cmd.Parameters.AddWithValue("@totaltime", timerecord.Date);
             cmd.Parameters.AddWithValue("@employeeId", timerecord.EmpId);
-            cmd.Parameters.AddWithValue("@timesheetid", timerecord.TimesheetId);
             connection.Open();
             int rowsaffected = cmd.ExecuteNonQuery();
             if (rowsaffected > 0)
@@ -217,7 +211,6 @@ public class TimeRecordRepository : ITimeRecordRepository
             while (reader.Read())
             {
                 int id = Int32.Parse(reader["id"].ToString());
-                int timesheetid = Int32.Parse(reader["timesheetid"].ToString());
                 int empId=Int32.Parse(reader["empid"].ToString());
                 DateTime date=Convert.ToDateTime(reader["date"].ToString());
                 string totalTime =reader["totaltime"].ToString();
@@ -225,7 +218,6 @@ public class TimeRecordRepository : ITimeRecordRepository
                 Timerecord timerecord = new Timerecord
                 {
                     TimeRecordId=id,
-                    TimesheetId=timesheetid,
                     EmpId=empId,
                     Date=date.ToShortDateString(),
                     TotalTime=totalTime

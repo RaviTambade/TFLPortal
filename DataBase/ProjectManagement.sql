@@ -1,4 +1,5 @@
   -- DROP DATABASE PMS;
+-- drop database PMS;
 CREATE DATABASE PMS;
 USE PMS;
 
@@ -95,8 +96,8 @@ CREATE TABLE payrollCycles(id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
  CREATE TABLE timerecords (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 						  date DATE,
 						  totaltime TIME,
-                          empid INT NOT NULL, CONSTRAINT fk_emp_Id6 FOREIGN KEY(empid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
-                          timesheetid INT NOT NULL, CONSTRAINT fk_timesheet_Id2 FOREIGN KEY(timesheetid) REFERENCES timesheets(id) ON UPDATE CASCADE ON DELETE CASCADE);
+                          empid INT NOT NULL, CONSTRAINT fk_emp_Id6 FOREIGN KEY(empid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
+                          );
 
     
 INSERT INTO users(email,password)VALUES('Rushi@12345','RC@12345');
@@ -317,36 +318,36 @@ INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,4,6,
 
 
 
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(1,'2023-06-01 ','3:00:00',1);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(1,'2023-06-02 ','14:55',2);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(1,'2023-06-03 ','10:00',3);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(1,'2023-06-04 ','10:00',4);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(1,'2023-06-05 ','08:00',5);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(2,'2023-06-06 ','18:00',6);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(2,'2023-06-07 ','04:10',7);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(2,'2023-06-08 ','3:00:00',8);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(2,'2023-06-09 ','14:55',9);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(2,'2023-06-10 ','10:00',10);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(2,'2023-06-11 ','10:00',11);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(3,'2023-06-12 ','08:00',12);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(3,'2023-06-13 ','18:00',13);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(3,'2023-06-14 ','04:10',14);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(3,'2023-06-15 ','04:10',15);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(3,'2023-06-16 ','3:00:00',16);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(4,'2023-06-17 ','14:55',17);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(4,'2023-06-18 ','10:00',18);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(4,'2023-06-19 ','10:00',19);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(4,'2023-06-20 ','08:00',1);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(4,'2023-06-21 ','18:00',2);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(4,'2023-06-22 ','04:10',3);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(5,'2023-06-23 ','3:00:00',4);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(5,'2023-06-24 ','14:55',5);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(5,'2023-06-25 ','10:00',6);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(5,'2023-06-26 ','10:00',7);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(5,'2023-06-27 ','08:00',8);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(6,'2023-06-28 ','18:00',9);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(6,'2023-06-29 ','04:10',10);
-INSERT INTO timerecords(empid,date,totaltime,timesheetid)VALUES(6,'2023-06-30 ','04:10',11);
+INSERT INTO timerecords(empid,date,totaltime)VALUES(1,'2023-06-01 ','3:00');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(1,'2023-06-02 ','14:55');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(1,'2023-06-03 ','10:00');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(1,'2023-06-04 ','10:00');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(1,'2023-06-05 ','08:00');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(2,'2023-06-06 ','18:00');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(2,'2023-06-07 ','04:10');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(2,'2023-06-08 ','3:00');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(2,'2023-06-09 ','14:55');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(2,'2023-06-10 ','10:00');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(2,'2023-06-11 ','10:00');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(3,'2023-06-12 ','08:00');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(3,'2023-06-13 ','18:00');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(3,'2023-06-14 ','04:10');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(3,'2023-06-15 ','04:10');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(3,'2023-06-16 ','3:00');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(4,'2023-06-17 ','14:55');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(4,'2023-06-18 ','10:00');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(4,'2023-06-19 ','10:00');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(4,'2023-06-20 ','08:00');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(4,'2023-06-21 ','18:00');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(4,'2023-06-22 ','04:10');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(5,'2023-06-23 ','3:00');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(5,'2023-06-24 ','14:55');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(5,'2023-06-25 ','10:00');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(5,'2023-06-26 ','10:00');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(5,'2023-06-27 ','08:00');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(6,'2023-06-28 ','18:00');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(6,'2023-06-29 ','04:10');
+INSERT INTO timerecords(empid,date,totaltime)VALUES(6,'2023-06-30 ','04:10');
 
 select * From timerecords where empid=2;
 
@@ -370,7 +371,7 @@ select * from clients;
 select * from onproject;
 select * from assigned;
 select * from timesheets;
-select * from timerecords;
+select * from timerecords where empid =2;
 select * from projects;
 select * from tasks;
 select * from payrollCycles;
@@ -399,6 +400,7 @@ FROM timesheets WHERE  empid = 2 AND date = '2023-06-13';
 -- total working time of default employee with between two dates
 SELECT CONCAT(FLOOR(SUM(TIME_TO_SEC(totaltime)/3600)),':',LPAD(FLOOR((SUM(TIME_TO_SEC(totaltime)/ 60)) % 60),2,'0')) AS totalworkingHRS 
 FROM timerecords WHERE  date >='2023-06-01' AND date <='2023-06-10'&& empid=1;
+
 
 
 

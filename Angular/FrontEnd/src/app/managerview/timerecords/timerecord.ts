@@ -6,7 +6,7 @@ export class Timerecord {
                 public totalTime:string ,
                 public totalWorkingHRS:string,
                 public fromDate:string ,
-                public toDate:string 
+                public toDate:string ,
                     
                 )
                 {}

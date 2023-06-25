@@ -19,6 +19,7 @@ export class TimerecordListComponent implements OnInit {
   empid: any;
   fromDate: string;
   toDate: string;
+  timesheetId:any;
 
   constructor(private svc: ManagerviewService, private router: Router, private route: ActivatedRoute, public fb: FormBuilder) {
     this.empid=0;
@@ -61,6 +62,10 @@ export class TimerecordListComponent implements OnInit {
 
   onSubmit() {
     this.getTotalTime();
+  };
+
+  onDetails(timesheetId: any) {
+    this.router.navigate(['./detailstimesheet', timesheetId]);
   };
 
 

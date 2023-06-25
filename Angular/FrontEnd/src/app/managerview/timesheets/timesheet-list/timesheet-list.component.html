@@ -14,7 +14,8 @@
 <div>
   <table>
     <thead>
-      <th>TimeSheet Id </th>
+      <th>TaskSheet Id </th>
+      <th>Task Title</th>
       <th>Date </th>
       <th>Start Time </th>
       <th>End Time </th>
@@ -23,7 +24,8 @@
     <tbody>
       <tr *ngFor="let timesheet of timesheets">
         <th scope="row">{{ timesheet.timesheetId }}</th>
-        <td>{{timesheet.date | date: 'yyyy/MM/dd'}}</td>
+        <td>{{timesheet.taskTitle}}</td>
+        <td>{{timesheet.date | date: 'dd/MM/yyyy'}}</td>
         <td> {{ timesheet.fromtime }} </td>
         <td> {{ timesheet.totime }} </td>
         <td>{{timesheet.workingTime}}</td>
