@@ -24,7 +24,7 @@ public class TimeRecordRepository : ITimeRecordRepository
         connection.ConnectionString = _conString;
         try
         {
-            string query = "select * from timerecord";
+            string query = "select * from timerecords";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             connection.Open();
 
@@ -71,7 +71,7 @@ public class TimeRecordRepository : ITimeRecordRepository
         connection.ConnectionString = _conString;
         try
         {
-            string query = "select * from timerecord where id ="+ id;
+            string query = "select * from timerecords where id ="+ id;
             MySqlCommand cmd = new MySqlCommand(query, connection);
             connection.Open();
 
@@ -116,7 +116,7 @@ public class TimeRecordRepository : ITimeRecordRepository
         con.ConnectionString = _conString;
         try
         {
-            string query = $"Insert into timerecord(date,totaltime,empid,timesheetid) values (@date,@totaltime,@empid,@timesheetid)";
+            string query = $"Insert into timerecords(date,totaltime,empid,timesheetid) values (@date,@totaltime,@empid,@timesheetid)";
             MySqlCommand cmd = new MySqlCommand(query, con);
 
             cmd.Parameters.AddWithValue("@date", timerecord.Date);
@@ -148,7 +148,7 @@ public class TimeRecordRepository : ITimeRecordRepository
         connection.ConnectionString = _conString;
         try
         {
-            string query = "UPDATE timerecord SET date=@date,totaltime=@totaltime ,empid=@employeeId, timesheetid=@timesheetid  WHERE id=@timerecordId";
+            string query = "UPDATE timerecords SET date=@date,totaltime=@totaltime ,empid=@employeeId, timesheetid=@timesheetid  WHERE id=@timerecordId";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@timerecordId", timerecord.TimeRecordId);
             cmd.Parameters.AddWithValue("@date", timerecord.Date);
@@ -181,7 +181,7 @@ public class TimeRecordRepository : ITimeRecordRepository
         connection.ConnectionString = _conString;
         try
         {
-            string query = "delete from timerecord where id=@timerecordid";
+            string query = "delete from timerecords where id=@timerecordid";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@timerecordid", id);
             connection.Open();
@@ -209,7 +209,7 @@ public class TimeRecordRepository : ITimeRecordRepository
         connection.ConnectionString = _conString;
         try
         {
-            string query = "select * from timerecord where empid="+empid;
+            string query = "select * from timerecords where empid="+empid;
             MySqlCommand cmd = new MySqlCommand(query, connection);
             connection.Open();
 
@@ -252,7 +252,7 @@ public class TimeRecordRepository : ITimeRecordRepository
         connection.ConnectionString = _conString;
         try
         {
-            string query = "SELECT CONCAT(FLOOR(SUM(TIME_TO_SEC(totaltime)/3600)),':',LPAD(FLOOR((SUM(TIME_TO_SEC(totaltime)/ 60)) % 60), 2,'0')) AS totalworkingHRS FROM timerecord WHERE  date >=@fromDate AND date <=@toDate && empid="+empid;
+            string query = "SELECT CONCAT(FLOOR(SUM(TIME_TO_SEC(totaltime)/3600)),':',LPAD(FLOOR((SUM(TIME_TO_SEC(totaltime)/ 60)) % 60), 2,'0')) AS totalworkingHRS FROM timerecords WHERE  date >=@fromDate AND date <=@toDate && empid="+empid;
             MySqlCommand cmd = new MySqlCommand(query, connection);
             connection.Open();
             cmd.Parameters.AddWithValue("@empid",empid);
