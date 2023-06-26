@@ -14,6 +14,8 @@ export class DetailsTimerecordComponent implements OnInit{
   timesheets: Timesheet[] | undefined;
   id:any;
   date:any|undefined;
+  employee: any;
+  
 
   constructor(private svc: ManagerviewService, private router: Router, private route: ActivatedRoute, public fb: FormBuilder) {
     this.date=''
@@ -32,6 +34,10 @@ export class DetailsTimerecordComponent implements OnInit{
     this.svc.getAllTimesheets(this.id, this.date).subscribe((response) => {
       this.timesheets = response;
       console.log(this.timesheets);
+    });
+
+    this.svc.getEmployee(this.id).subscribe((response) =>{
+      this.employee = response;
     });
   }
 
