@@ -20,6 +20,7 @@ export class TimerecordListComponent implements OnInit {
   fromDate: string;
   toDate: string;
   timesheetId:any;
+  date:any;
 
   constructor(private svc: ManagerviewService, private router: Router, private route: ActivatedRoute, public fb: FormBuilder) {
     this.empid=0;
@@ -38,7 +39,7 @@ export class TimerecordListComponent implements OnInit {
 
     // this.timesheetId = this.route.snapshot.paramMap.get('timesheetId');
     this.timerecordId = localStorage.getItem("id");
-    console.log(this.timerecordId);
+    // console.log(this.timerecordId);
     this.svc.getAllTimeRecords(this.timerecordId).subscribe((response) => {
       this.timerecords = response;
       console.log(this.timerecords);
@@ -47,7 +48,6 @@ export class TimerecordListComponent implements OnInit {
     this.svc.getEmployee(this.timerecordId).subscribe((response) => {
       this.employee = response;
       console.log(this.employee)
-
     });
   }
 
@@ -64,14 +64,11 @@ export class TimerecordListComponent implements OnInit {
     this.getTotalTime();
   };
 
-  // onDetails(Id: any,date:any) {
 
-  //   this.router.navigate(['./detailstimesheet',Id,date]);
-  // };
-  // onDetails(Id: any,date:any) {
-  //   Id=localStorage.getItem("id");
-  //   this.router.navigate(['./timesheetlist',Id,date]);
-  // };
+  onDetails(date:any) {
+    console.log(date);
+    this.router.navigate(['./detailstimerecors',date]);
+  };
 
 
 }

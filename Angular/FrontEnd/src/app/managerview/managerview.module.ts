@@ -17,6 +17,8 @@ import { DetailsTimesheetComponent } from './timesheets/details-timesheet/detail
 import { GetTimesheetComponent } from './timesheets/get-timesheet/get-timesheet.component';
 import { TimerecordListComponent } from './timerecords/timerecord-list/timerecord-list.component';
 import { AddTimerecordComponent } from './timerecords/add-timerecord/add-timerecord.component';
+import { DetailsTimerecordComponent } from './timerecords/details-timerecord/details-timerecord.component';
+
 
 
 
@@ -42,7 +44,9 @@ const routes: Routes =
     
     {path : 'timesheetlist/timerecordlist', component:TimerecordListComponent},
     {path : 'timesheetlist/addtimerecord', component:AddTimerecordComponent},
-    // {path : 'timerecordlist/timesheetlist/:Id/:date', component:TimesheetListComponent},
+    {path : 'detailstimerecors/:date', component:DetailsTimerecordComponent},
+
+    // {path : 'timerecordlist/timesheetlist/:date', component:TimesheetListComponent},
     
 
   ];
@@ -65,6 +69,8 @@ const routes: Routes =
     GetTimesheetComponent,
     TimerecordListComponent,
     AddTimerecordComponent,
+    DetailsTimerecordComponent,
+    
   ],
   exports: [RouterContainerComponent],
   imports: [
