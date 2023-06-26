@@ -1,14 +1,14 @@
-using TeamService.Models;
+// using TeamService.Models;
 
-namespace TeamService.Repositories.Interfaces;
-public interface ITeamRepository{
+// namespace TeamService.Repositories.Interfaces;
+// public interface ITeamRepository{
 
-    List<Team> GetAll();
+//     List<Team> GetAll();
 
-     Team GetById(int teamId);
+//      Team GetById(int teamId);
 
-     bool Insert(Team team);
-     bool Update(Team team);
-     bool Delete(int teamId);
+//      bool Insert(Team team);
+//      bool Update(Team team);
+//      bool Delete(int teamId);
    
-}
+// }
