@@ -1,0 +1,12 @@
+
+<div *ngIf="employee && employee.id !=0">
+    <p><label>Employee Id :</label>{{ employee.id }}</p>
+    <p><label>Employee Firstname :</label>{{employee.firstName }}</p>
+    <p><label>Employee Lastname:</label>{{employee.lastName }}</p>
+    <p><label>Birth Date :</label>{{ employee.birthDate }}</p>
+    <p><label>Hire Date :</label>{{ employee.hireDate }}</p>
+    <p><label>Contact Number :</label>{{ employee.contactNumber }}</p>
+    <div *ngIf=" employee && employee.id==0 ">
+        <p>Employee not Found</p>
+      </div>
+</div>

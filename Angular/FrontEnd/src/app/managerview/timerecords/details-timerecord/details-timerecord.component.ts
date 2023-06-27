@@ -25,7 +25,7 @@ export class DetailsTimerecordComponent implements OnInit{
     this.route.paramMap.subscribe((params) => {
       this.date = params.get('date');
       const parts = this.date.split('/'); // Assuming the original format is "dd/mm/yyyy"
-      this.date = `${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`;
+      this.date = `${parts[2]}-${parts[1].padStart(2,'0')}-${parts[0].padStart(2, '0')}`;
       console.log(this.date);
     })
   

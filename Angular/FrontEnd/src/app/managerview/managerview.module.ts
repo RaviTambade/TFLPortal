@@ -18,6 +18,7 @@ import { GetTimesheetComponent } from './timesheets/get-timesheet/get-timesheet.
 import { TimerecordListComponent } from './timerecords/timerecord-list/timerecord-list.component';
 import { AddTimerecordComponent } from './timerecords/add-timerecord/add-timerecord.component';
 import { DetailsTimerecordComponent } from './timerecords/details-timerecord/details-timerecord.component';
+import { EmployeeDetailsComponent } from './employees/employee-details/employee-details.component';
 
 
 
@@ -35,7 +36,7 @@ const routes: Routes =
     { path: 'update', component: UpdateComponent },
 
     {path: 'employeelist' , component:EmployeeListComponent},
-
+    { path: 'detailemployee/:empid', component:EmployeeDetailsComponent },
     { path: 'timesheetlist', component: TimesheetListComponent },
     { path: 'addtimesheet/:timesheetId', component: AddTimesheetComponent },
     { path: 'edittimesheet/:timesheetId', component: EditComponent },
@@ -70,6 +71,7 @@ const routes: Routes =
     TimerecordListComponent,
     AddTimerecordComponent,
     DetailsTimerecordComponent,
+    EmployeeDetailsComponent,
     
   ],
   exports: [RouterContainerComponent],
