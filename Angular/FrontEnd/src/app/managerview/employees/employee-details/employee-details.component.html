@@ -6,7 +6,11 @@
     <p><label>Birth Date :</label>{{ employee.birthDate }}</p>
     <p><label>Hire Date :</label>{{ employee.hireDate }}</p>
     <p><label>Contact Number :</label>{{ employee.contactNumber }}</p>
+    <div>   <button type="submit" (click)="onUpdateClick(employee.id)">Update</button> </div>
     <div *ngIf=" employee && employee.id==0 ">
+    
+    
         <p>Employee not Found</p>
       </div>
+      
 </div>

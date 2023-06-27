@@ -58,6 +58,12 @@ export class ManagerviewService {
     return this.http.get<any>(url);
   }
 
+  
+  updateEmployee(form: any): Observable<any> {
+    let url = "http://localhost:5230/api/employees/employee/" ;
+    return this.http.put<Timesheet>(url, form);
+  }
+
   getAllTasks(): Observable<any> {
     let url = "http://localhost:5034/api/Task/getall";
     return this.http.get<any>(url);

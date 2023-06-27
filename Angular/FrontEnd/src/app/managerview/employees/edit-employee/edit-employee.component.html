@@ -1,0 +1,53 @@
+<form #insertForm="ngForm" (ngSubmit)="updateEmployee(insertForm.value)">
+    <table>
+        <tr>
+            <td><label><b>Employee Id:</b></label></td>
+            <td><input type="employeeId" name="employeeId" [(ngModel)]="employees.employeeId"></td>
+        </tr>
+        <tr>
+            <td><label><b>Employee Name:</b></label></td>
+            <select name="employeeId" [(ngModel)]="employees.employeeId" required>
+                <option *ngFor="let employee of employees" [value]="employee.id">{{ employee.firstname }}</option>
+            </select>
+        </tr>
+        <tr>
+            <td><label><b>Employee Id :</b></label></td>
+            <select name="employeeId" [(ngModel)]="employees.employeeId" required>
+                <option *ngFor="let employee of employees" [value]="employee.id">{{ employee.firstName}} {{employee.lastName }}</option>
+            </select>
+        </tr>
+        <tr>
+            <td><label><b>Birth Date:</b></label></td>
+            <td><input type="text" name="birthdate" [(ngModel)]="employees.birthDate"></td>
+        </tr>
+        <tr>
+            <td><label><b>Hire Date :</b></label></td>
+            <td><input type="text" name="hiredate" [(ngModel)]="employees.hireDate"></td>
+        </tr>
+        <tr>
+            <td><label><b>Contact Number :</b></label></td>
+            <td><input type="text" name="contactnumber" [(ngModel)]="employees.contactNumber"></td>
+        </tr>
+        <tr>
+            <td><label><b>Account Number :</b></label></td>
+            <td><input type="text" name="accountnumber" [(ngModel)]="employees.accountnumber"></td>
+        </tr>
+        <tr>
+            <td><label><b>User Id :</b></label></td>
+            <td><input type="number" name="userid" [(ngModel)]="employees.userId"></td>
+        </tr>
+
+        <tr>
+            <button type="submit">Update</button>
+        </tr>
+    </table>
+</form>
+
+
+<div *ngIf="status">
+    <p>Employee updated successfully</p>
+</div>
+
+<div *ngIf="status==false">
+    <p>error while updating Employee</p>
+</div>

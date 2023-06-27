@@ -5,7 +5,8 @@ export class Employee {
         public lastName: string,
         public birthDate: string,
         public hireDate: string,
-        public contactNumber: number,
+        public contactNumber: string,
+        public accountNumber:string,
         public userId: number,
     ) { }
 }

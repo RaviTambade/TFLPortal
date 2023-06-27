@@ -19,6 +19,8 @@ import { TimerecordListComponent } from './timerecords/timerecord-list/timerecor
 import { AddTimerecordComponent } from './timerecords/add-timerecord/add-timerecord.component';
 import { DetailsTimerecordComponent } from './timerecords/details-timerecord/details-timerecord.component';
 import { EmployeeDetailsComponent } from './employees/employee-details/employee-details.component';
+import { EditEmployeeComponent } from './employees/edit-employee/edit-employee.component';
+
 
 
 
@@ -29,20 +31,28 @@ const routes: Routes =
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
 
+//project
 
     { path: 'projectlist', component: ProjectListComponent },
     { path: 'details/:id', component: DetailComponent },
     { path: 'add', component: AddComponent },
     { path: 'update', component: UpdateComponent },
 
+
+//employee
     {path: 'employeelist' , component:EmployeeListComponent},
     { path: 'detailemployee/:empid', component:EmployeeDetailsComponent },
+    { path: 'editemployee/:empid', component:EditEmployeeComponent },
+
+
+//timesheet
     { path: 'timesheetlist', component: TimesheetListComponent },
     { path: 'addtimesheet/:timesheetId', component: AddTimesheetComponent },
     { path: 'edittimesheet/:timesheetId', component: EditComponent },
     { path: 'detailstimesheet/:timesheetId', component: DetailsTimesheetComponent },
 
-    
+//timerecord
+
     {path : 'timesheetlist/timerecordlist', component:TimerecordListComponent},
     {path : 'timesheetlist/addtimerecord', component:AddTimerecordComponent},
     {path : 'detailstimerecors/:date', component:DetailsTimerecordComponent},
@@ -72,6 +82,7 @@ const routes: Routes =
     AddTimerecordComponent,
     DetailsTimerecordComponent,
     EmployeeDetailsComponent,
+    EditEmployeeComponent,
     
   ],
   exports: [RouterContainerComponent],
