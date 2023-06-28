@@ -8,9 +8,9 @@
     <p><label><b>End Date :</b></label>{{ project.endDate }}</p>
     <p><label><b>Description :</b></label>{{ project.description }}</p>
 
-    <button type="submit" (click)="onUpdateClick(project.id)">Update</button> 
+<button type="submit" (click)="onUpdateClick(project.id)">Update</button> 
 |
-<button >Delete</button>
+<button type="submit" (click)="delete()">Delete</button>
 
 
     <div *ngIf=" project && project.id==0 ">

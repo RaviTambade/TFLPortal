@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class DetailComponent implements OnInit {
   projectId: any;
   project: Project | undefined;
+  status : boolean|undefined;
 
   constructor(private svc: ManagerviewService, private route: ActivatedRoute,private router: Router) { }
   ngOnInit(): void {
@@ -26,6 +27,19 @@ export class DetailComponent implements OnInit {
     console.log(id);
     this.router.navigate(['./update', id]);
   };
+
+  delete(){
+    console.log(this.projectId);
+    this.svc.deleteProject(this.projectId).subscribe((response) => {
+      this.status = response;
+      if (response) 
+      { alert("Project Deleted Successfully") }
+      else {
+        { alert("Error") }
+      }
+      console.log(response);
+    })
+  }
 
 
 }

@@ -30,6 +30,10 @@ export class ManagerviewService {
     return this.http.put<Project>(url, form);
   }
   
+  deleteProject(id: any): Observable<any> {
+    let url = "http://localhost:5294/api/projects/" + id;
+    return this.http.delete<Project>(url);
+  }
 
 
 //////////////////  Time Sheet  ///////////////////
