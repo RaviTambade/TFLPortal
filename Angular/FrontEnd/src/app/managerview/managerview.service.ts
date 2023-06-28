@@ -31,6 +31,17 @@ export class ManagerviewService {
     return this.http.post<Employee>(url, project);
   }
 
+  updateProject(form: any): Observable<any> {
+    let url = "http://localhost:5294/api/projects/project/" ;
+    return this.http.put<Project>(url, form);
+  }
+  
+  deleteProject(id: any): Observable<any> {
+    let url = "http://localhost:5294/api/projects/" + id;
+    return this.http.delete<Project>(url);
+  }
+
+
 //////////////////  Time Sheet  ///////////////////
   getAllTimesheets(id: any, date: string): Observable<any> {
     let url = "http://localhost:5161/api/Timesheet/" + id + "/" +date;
@@ -75,7 +86,7 @@ export class ManagerviewService {
 
   updateEmployee(form: any): Observable<any> {
     let url = "http://localhost:5230/api/employees/employee/" ;
-    return this.http.put<Timesheet>(url, form);
+    return this.http.put<Employee>(url, form);
   }
 
   deleteEmployee(id: any): Observable<any> {
