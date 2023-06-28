@@ -63,6 +63,8 @@ const routes: Routes =
     {path : 'detailstimerecors/:date', component:DetailsTimerecordComponent},
 
     // {path : 'timerecordlist/timesheetlist/:date', component:TimesheetListComponent},
+
+//Task
     
 
   ];

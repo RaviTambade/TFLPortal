@@ -22,4 +22,5 @@ export class ManagerAccessComponent {
     this.router.navigate(['./projectlist']);
   }
 
+
 }
