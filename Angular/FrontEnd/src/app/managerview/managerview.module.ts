@@ -41,7 +41,7 @@ const routes: Routes =
     { path: 'projectlist', component: ProjectListComponent },
     { path: 'details/:id', component: DetailComponent },
     { path: 'add', component: AddComponent },
-    { path: 'update', component: UpdateComponent },
+    { path: 'update/:id', component: UpdateComponent },
 
 
 //employee

@@ -1,7 +1,28 @@
-<div *ngFor="let project of projects" >
-<table>
-    <td> {{ project.id }} </td> 
-   <button (click)="goToProject(project.id)">{{project.title}}</button>  
 
-</table>
-</div>
+<h1>Project List</h1>
+
+<div>
+    <table>
+      <thead>
+        <th>Project Id </th>
+        <th>Title</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Description</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of projects">
+          <th scope="row">{{ project.id }}</th>
+          <td>{{project.title}}</td>
+          <td>{{project.startDate }}</td>
+          <td>{{project.endDate}}</td>
+          <td>{{project.description}}</td>
+          <td><button (click)="onDetails(project.id)">Details</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr>
+
+  

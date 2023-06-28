@@ -24,6 +24,14 @@ export class ManagerviewService {
     let url = "http://localhost:5294/api/projects/" + projectId;
     return this.http.get<Project>(url);
   }
+
+  updateProject(form: any): Observable<any> {
+    let url = "http://localhost:5294/api/projects/project/" ;
+    return this.http.put<Project>(url, form);
+  }
+  
+
+
 //////////////////  Time Sheet  ///////////////////
   getAllTimesheets(id: any, date: string): Observable<any> {
     let url = "http://localhost:5161/api/Timesheet/" + id + "/" +date;
@@ -68,7 +76,7 @@ export class ManagerviewService {
 
   updateEmployee(form: any): Observable<any> {
     let url = "http://localhost:5230/api/employees/employee/" ;
-    return this.http.put<Timesheet>(url, form);
+    return this.http.put<Employee>(url, form);
   }
 
   deleteEmployee(id: any): Observable<any> {

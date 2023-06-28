@@ -16,6 +16,10 @@ export class ManagerAccessComponent {
 
   employeeList(){
     this.router.navigate(['./employeelist']); 
+  };
+
+  projectList(){
+    this.router.navigate(['./projectlist']);
   }
 
 }

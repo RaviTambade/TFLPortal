@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ManagerviewService } from '../../managerview.service';
 import { Project } from 'src/app/project';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'detail',
@@ -12,7 +12,7 @@ export class DetailComponent implements OnInit {
   projectId: any;
   project: Project | undefined;
 
-  constructor(private svc: ManagerviewService, private route: ActivatedRoute) { }
+  constructor(private svc: ManagerviewService, private route: ActivatedRoute,private router: Router) { }
   ngOnInit(): void {
     this.projectId = this.route.snapshot.paramMap.get('id');
     console.log(this.projectId);
@@ -21,6 +21,11 @@ export class DetailComponent implements OnInit {
     console.log(response);
     })
   }
+
+  onUpdateClick(id: number) {
+    console.log(id);
+    this.router.navigate(['./update', id]);
+  };
 
 
 }

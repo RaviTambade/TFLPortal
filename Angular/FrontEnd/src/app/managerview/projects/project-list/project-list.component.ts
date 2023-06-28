@@ -21,7 +21,7 @@ export class ProjectListComponent implements OnInit {
       })
       };
 
-      goToProject(id:number): void {
+      onDetails(id: number){
         this.router.navigate(['./details', id]);
       }
 

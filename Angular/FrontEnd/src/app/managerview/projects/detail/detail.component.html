@@ -1,12 +1,18 @@
-<p>detail works!</p>
+
 
 
 <div *ngIf="project && project.id !=0">
-    <p><label>Project Id :</label>{{ project.id }}</p>
-    <p><label>Project Title :</label>{{ project.title }}</p>
-    <p><label>Start Date :</label>{{ project.startDate }}</p>
-    <p><label>End Date :</label>{{ project.endDate }}</p>
-    <p><label>Description :</label>{{ project.description }}</p>
+    <p><label><b>Project Id :</b></label>{{ project.id }}</p>
+    <p><label><b>Project Title :</b></label>{{ project.title }}</p>
+    <p><label><b>Start Date :</b></label>{{ project.startDate }}</p>
+    <p><label><b>End Date :</b></label>{{ project.endDate }}</p>
+    <p><label><b>Description :</b></label>{{ project.description }}</p>
+
+    <button type="submit" (click)="onUpdateClick(project.id)">Update</button> 
+|
+<button >Delete</button>
+
+
     <div *ngIf=" project && project.id==0 ">
         <p>Project not Found</p>
       </div>
