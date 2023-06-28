@@ -20,6 +20,8 @@ import { AddTimerecordComponent } from './timerecords/add-timerecord/add-timerec
 import { DetailsTimerecordComponent } from './timerecords/details-timerecord/details-timerecord.component';
 import { EmployeeDetailsComponent } from './employees/employee-details/employee-details.component';
 import { EditEmployeeComponent } from './employees/edit-employee/edit-employee.component';
+import { ManagerAccessComponent } from './manager-access/manager-access.component';
+import { AddEmployeeComponent } from './employees/add-employee/add-employee.component';
 
 
 
@@ -30,6 +32,9 @@ const routes: Routes =
   [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
+
+//Manager Access
+     {path: 'managesaccess', component:ManagerAccessComponent},    
 
 //project
 
@@ -83,6 +88,8 @@ const routes: Routes =
     DetailsTimerecordComponent,
     EmployeeDetailsComponent,
     EditEmployeeComponent,
+    ManagerAccessComponent,
+    AddEmployeeComponent,
     
   ],
   exports: [RouterContainerComponent],
