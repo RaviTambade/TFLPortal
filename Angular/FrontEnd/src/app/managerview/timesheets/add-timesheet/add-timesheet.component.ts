@@ -4,8 +4,8 @@ import { Timesheet } from '../timesheet';
 import { TimesheetInfo } from '../timesheetInfo';
 import { Project } from 'src/app/project';
 import { Task } from '../../Task';
-import { Employee } from 'src/app/employee';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Employee } from '../../employee';
 
 @Component({
   selector: 'addtimesheet',

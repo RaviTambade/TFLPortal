@@ -7,6 +7,6 @@ export class Employee {
         public hireDate: string,
         public contactNumber: string,
         public accountNumber:string,
-        public userId: number,
+        public userId:number
     ) { }
 }

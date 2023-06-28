@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { ManagerviewService } from '../../managerview.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Employee } from 'src/app/employee';
 import { Task } from '../../Task';
 import { Project } from '../../project';
 import { TimesheetInfo } from '../timesheetInfo';
 import { Timesheet } from '../timesheet';
+import { Employee } from '../../employee';
 
 @Component({
   selector: 'app-edit',

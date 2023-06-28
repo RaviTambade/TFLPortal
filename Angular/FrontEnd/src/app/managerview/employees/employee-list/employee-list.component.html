@@ -1,9 +1,29 @@
-<p>employee-list works!</p>
-<div *ngFor="let employee of employees" >
-    <table>
-        <td> {{ employee.id }} </td> 
-       <button (click)="goToEmployee(employee.id)">{{employee.firstName}} {{employee.lastName}}</button>  
-    
-    </table>
-    </div>
-    
+
+    <h1>Employee Table</h1>
+
+    <div>
+        <table>
+          <thead>
+            <th>Emplouyee Id </th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Contact Number</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let employee of employees">
+              <th scope="row">{{ employee.id }}</th>
+              <td>{{employee.firstName}}</td>
+              <td>{{employee.lastName }}</td>
+              <td>{{employee.contactNumber}}</td>
+              <td><button (click)="onDetails(employee.id)">Details</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+
+
+
+      <hr>
+
+      

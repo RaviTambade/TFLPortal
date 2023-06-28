@@ -5,6 +5,7 @@ import { Project } from '../project';
 import { Timesheet } from './timesheets/timesheet';
 import { TimesheetInfo } from './timesheets/timesheetInfo';
 import { Timerecord } from './timerecords/timerecord';
+import { Employee } from './employee';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class ManagerviewService {
   private subject = new Subject<any>();
   constructor(private http: HttpClient) { }
 
+  //////////////////   Project   ///////////////////////////
   getAllProjects(): Observable<any> {
     let url = "http://localhost:5294/api/projects/projects";
     return this.http.get<any>(url);
@@ -22,7 +24,7 @@ export class ManagerviewService {
     let url = "http://localhost:5294/api/projects/" + projectId;
     return this.http.get<Project>(url);
   }
-
+//////////////////  Time Sheet  ///////////////////
   getAllTimesheets(id: any, date: string): Observable<any> {
     let url = "http://localhost:5161/api/Timesheet/" + id + "/" +date;
     return this.http.get<any>(url, id);
@@ -48,6 +50,7 @@ export class ManagerviewService {
     return this.http.delete<Timesheet>(url);
   }
 
+  //////////////////   Employee   //////////////////////
   getEmployee(id: any): Observable<any> {
     let url = "http://localhost:5230/api/employees/" + id;
     return this.http.get<any>(url, id);
@@ -58,12 +61,18 @@ export class ManagerviewService {
     return this.http.get<any>(url);
   }
 
-  
   updateEmployee(form: any): Observable<any> {
     let url = "http://localhost:5230/api/employees/employee/" ;
     return this.http.put<Timesheet>(url, form);
   }
 
+  deleteEmployee(id: any): Observable<any> {
+    let url = " http://localhost:5230/api/employees/" + id;
+    return this.http.delete<Employee>(url);
+  }
+
+
+  //////////////   Task   /////////////////////
   getAllTasks(): Observable<any> {
     let url = "http://localhost:5034/api/Task/getall";
     return this.http.get<any>(url);
@@ -74,6 +83,10 @@ export class ManagerviewService {
     return this.http.get<any>(url, id);
   }
 
+
+
+
+  /////////////////// Time Record  //////////////////////
   getAllTimeRecords(id: any): Observable<any> {
     let url = "http://localhost:5121/api/Timerecords/getall/" + id;
     return this.http.get<any>(url, id);

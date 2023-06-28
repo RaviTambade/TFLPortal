@@ -2,39 +2,35 @@
     <table>
         <tr>
             <td><label><b>Employee Id:</b></label></td>
-            <td><input type="employeeId" name="employeeId" [(ngModel)]="employees.employeeId"></td>
+            <td><input type="number" name="id" [(ngModel)]="employee.id"></td>
         </tr>
         <tr>
-            <td><label><b>Employee Name:</b></label></td>
-            <select name="employeeId" [(ngModel)]="employees.employeeId" required>
-                <option *ngFor="let employee of employees" [value]="employee.id">{{ employee.firstname }}</option>
-            </select>
+            <td><label><b>First Name:</b></label></td>
+            <td><input type="text" name="firstName" [(ngModel)]="employee.firstName"></td>
         </tr>
         <tr>
-            <td><label><b>Employee Id :</b></label></td>
-            <select name="employeeId" [(ngModel)]="employees.employeeId" required>
-                <option *ngFor="let employee of employees" [value]="employee.id">{{ employee.firstName}} {{employee.lastName }}</option>
-            </select>
+            <td><label><b>Last Name:</b></label></td>
+            <td><input type="text" name="lastName" [(ngModel)]="employee.lastName"></td>
         </tr>
         <tr>
             <td><label><b>Birth Date:</b></label></td>
-            <td><input type="text" name="birthdate" [(ngModel)]="employees.birthDate"></td>
+            <td><input type="text" name="birthdate" [(ngModel)]="employee.birthDate"></td>
         </tr>
         <tr>
             <td><label><b>Hire Date :</b></label></td>
-            <td><input type="text" name="hiredate" [(ngModel)]="employees.hireDate"></td>
+            <td><input type="text" name="hiredate" [(ngModel)]="employee.hireDate"></td>
         </tr>
         <tr>
             <td><label><b>Contact Number :</b></label></td>
-            <td><input type="text" name="contactnumber" [(ngModel)]="employees.contactNumber"></td>
+            <td><input type="text" name="contactnumber" [(ngModel)]="employee.contactNumber"></td>
         </tr>
         <tr>
             <td><label><b>Account Number :</b></label></td>
-            <td><input type="text" name="accountnumber" [(ngModel)]="employees.accountnumber"></td>
+            <td><input type="text" name="accountNumber" [(ngModel)]="employee.accountNumber"></td>
         </tr>
         <tr>
             <td><label><b>User Id :</b></label></td>
-            <td><input type="number" name="userid" [(ngModel)]="employees.userId"></td>
+            <td><input type="number" name="userid" [(ngModel)]="employee.userId"></td>
         </tr>
 
         <tr>

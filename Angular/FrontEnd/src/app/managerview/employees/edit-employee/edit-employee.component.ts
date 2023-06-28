@@ -9,22 +9,23 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./edit-employee.component.css']
 })
 export class EditEmployeeComponent {
-  id: any | undefined;
-  employees: Employee[] | any;
   
+  id: any | undefined;
+  employee: Employee | any;
+
   status: boolean | undefined
 
   constructor(private svc: ManagerviewService, private router: Router, private route: ActivatedRoute) {
-    this.employees = {
-       id: 0,
-       firstName: '',
-       lastName: '',
-       birthDate: '',
-       hireDate: '',
-       contactNumber:'',
-       accountNumber :'',
-       userId: 0,
-      
+    this.employee = {
+      id: 0,
+      firstName: '',
+      lastName: '',
+      birthDate: '',
+      hireDate: '',
+      contactNumber: '',
+      accountNumber: '',
+      userId: 0,
+
     };
   }
   ngOnInit(): void {
@@ -32,13 +33,12 @@ export class EditEmployeeComponent {
       this.id = params.get('empid');
       console.log(this.id);
     });
-   
-    this.svc.getAllEmployees().subscribe((response) => {
-      this.employees = response;
-      console.log(response);
-    });
-
+    this.svc.getEmployee(this.id).subscribe((response) => {
+        this.employee = response;
+        console.log(this.employee);
+      });
   };
+
   updateEmployee(form: any): void {
     this.svc.updateEmployee(form).subscribe((response) => {
       this.status = response;
@@ -52,6 +52,8 @@ export class EditEmployeeComponent {
       }
     })
   };
+
+
 
 
 
