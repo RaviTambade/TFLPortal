@@ -25,6 +25,12 @@ export class ManagerviewService {
     return this.http.get<Project>(url);
   }
 
+
+  addProject(project: Project): Observable<any> {
+    let url = "http://localhost:5294/api/projects/projects";
+    return this.http.post<Employee>(url, project);
+  }
+
   updateProject(form: any): Observable<any> {
     let url = "http://localhost:5294/api/projects/project/" ;
     return this.http.put<Project>(url, form);
