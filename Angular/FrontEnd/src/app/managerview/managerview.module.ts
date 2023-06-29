@@ -22,6 +22,10 @@ import { EmployeeDetailsComponent } from './employees/employee-details/employee-
 import { EditEmployeeComponent } from './employees/edit-employee/edit-employee.component';
 import { ManagerAccessComponent } from './manager-access/manager-access.component';
 import { AddEmployeeComponent } from './employees/add-employee/add-employee.component';
+import { TaskListComponent } from './task/task-list/task-list.component';
+import { TaskDetailsComponent } from './task/task-details/task-details.component';
+import { AddTaskComponent } from './task/add-task/add-task.component';
+import { EditTaskComponent } from './task/edit-task/edit-task.component';
 
 
 
@@ -92,6 +96,10 @@ const routes: Routes =
     EditEmployeeComponent,
     ManagerAccessComponent,
     AddEmployeeComponent,
+    TaskListComponent,
+    TaskDetailsComponent,
+    AddTaskComponent,
+    EditTaskComponent,
     
   ],
   exports: [RouterContainerComponent],

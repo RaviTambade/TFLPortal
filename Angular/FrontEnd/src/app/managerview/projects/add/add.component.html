@@ -1,4 +1,3 @@
-
 <p><b>For inserting new Project please fill below the form.</b>For inserting new Project please fill below the form.</p>
 
 <form #insertForm="ngForm" (ngSubmit)="addProject(insertForm.value)">
@@ -7,7 +6,7 @@
             <td><label><b>Employee Id:</b></label></td>
             <td><input type="number" name="id" [(ngModel)]="employee.id"></td>
         </tr> -->
-        
+
         <tr>
             <td><label><b>Title:</b></label></td>
             <td><input type="text" name="title" [(ngModel)]="project.title"></td>
@@ -25,7 +24,7 @@
             <td><input type="text" name="description" [(ngModel)]="project.description"></td>
         </tr>
         <tr>
-            <button type="submit">Add</button>
+            <button type="submit">Add New Project </button>
         </tr>
     </table>
 </form>
