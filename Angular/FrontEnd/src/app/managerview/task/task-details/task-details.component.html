@@ -1,1 +1,27 @@
 <p>task-details works!</p>
+
+
+<div *ngIf="task && task.id !=0">
+    <p><label><b>Task Id :</b></label>{{ task.id }}</p>
+    <p><label><b>Title :</b></label>{{task.title }}</p>
+    <p><label><b>Project Id :</b></label>{{task.projectId }}</p>
+    <p><label><b>Description :</b></label>{{ task.description }}</p>
+    <p><label><b>Date :</b></label>{{ task.date }}</p>
+    <p><label><b>From Time :</b></label>{{ task.fromTime }}</p>
+    <p><label><b>To Time :</b></label>{{ task.toTime }}</p>
+    
+  
+  
+   <!-- <button type="submit" (click)="onUpdateClick(employee.id)">Update</button>  -->
+  |
+    <button type="submit" (click)="delete()">Delete</button>
+  
+  
+    <div *ngIf=" task && task.id==0 ">
+  
+      <p>Task not Found</p>
+    </div>
+  
+  </div>
+
+  

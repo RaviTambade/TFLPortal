@@ -101,9 +101,19 @@ export class ManagerviewService {
     return this.http.get<any>(url);
   }
 
+  getTask(id: any): Observable<any> {
+    let url = "http://localhost:5034/api/task/get/" + id;
+    return this.http.get<any>(url, id);
+  }
+
   getTotalTime(id: any, date: string): Observable<any> {
     let url = "http://localhost:5161/api/Timesheet/totaltime/" + id + "/" + date;
     return this.http.get<any>(url, id);
+  }
+
+  deleteTask(id: any): Observable<any> {
+    let url = "http://localhost:5034/api/task/" + id;
+    return this.http.delete<any>(url);
   }
 
 

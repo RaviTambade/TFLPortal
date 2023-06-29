@@ -22,5 +22,9 @@ export class ManagerAccessComponent {
     this.router.navigate(['./projectlist']);
   }
 
+  tasksList(){
+    this.router.navigate(['./taskslist']);
+  }
+
 
 }

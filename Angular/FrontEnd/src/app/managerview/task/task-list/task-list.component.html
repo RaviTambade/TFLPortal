@@ -1,30 +1,35 @@
-<!-- <p>task-list works!</p>
+
 
 <h1>Tasks Table</h1>
 
 <div>
     <table>
       <thead>
-        <th>Emplouyee Id </th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Contact Number</th>
+        <th>Task Id </th>
+        <th>Title</th>
+        <th>Project Id</th>
+        <th>Description</th>
+        <th>Date</th>
+        <th>From Time</th>
+        <th>To Time</th>
       </thead>
       <tbody>
-        <tr *ngFor="let employee of employees">
-          <th scope="row">{{ employee.id }}</th>
-          <td>{{employee.firstName}}</td>
-          <td>{{employee.lastName }}</td>
-          <td>{{employee.contactNumber}}</td>
-          <td><button (click)="onDetails(employee.id)">Details</button></td>
+        <tr *ngFor="let task of tasks">
+          <th scope="row">{{ task.id }}</th>
+          <td>{{task.title}}</td>
+          <td>{{task.projectId }}</td>
+          <td>{{task.description}}</td>
+          <td>{{task.date}}</td>
+          <td>{{task.fromTime}}</td>
+          <td>{{task.toTime}}</td>
+
+          <td><button (click)="onDetails(task.id)">Details</button></td>
         </tr>
       </tbody>
     </table>
   </div>
   
 
-
-
   <hr>
 
-   -->
+  

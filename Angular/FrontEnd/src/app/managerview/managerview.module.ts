@@ -66,11 +66,11 @@ const routes: Routes =
     {path : 'timesheetlist/addtimerecord', component:AddTimerecordComponent},
     {path : 'detailstimerecors/:date', component:DetailsTimerecordComponent},
 
-    // {path : 'timerecordlist/timesheetlist/:date', component:TimesheetListComponent},
 
 //Task
-    
-
+    {path : 'taskslist', component:TaskListComponent},   
+    {path : 'taskdetails/:taskid', component:TaskDetailsComponent},   
+ 
   ];
 
 
