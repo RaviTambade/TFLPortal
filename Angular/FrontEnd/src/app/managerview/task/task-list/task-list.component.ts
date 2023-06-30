@@ -15,11 +15,15 @@ export class TaskListComponent implements OnInit{
   constructor(private svc: ManagerviewService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.svc.getAllEmployees().subscribe((response) => {
+    this.svc.getAllTasks().subscribe((response) => {
         this.tasks = response;
         console.log(this.tasks);
       })
 
+  }
+
+  onDetails(taskid: number){
+    this.router.navigate(['./taskdetails', taskid]);
   }
 
   
