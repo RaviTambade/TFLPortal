@@ -9,9 +9,17 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Projectservices
 build_property.RootNamespace = Projectservices
+<<<<<<< HEAD
 build_property.ProjectDir = D:\Rushikesh\Projects\PMSApp\WebServices\Projectservices\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = D:\Rushikesh\Projects\PMSApp\WebServices\Projectservices
+=======
+build_property.ProjectDir = D:\imp\ProjectManagementSystem\PMSApp\WebServices\Projectservices\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\imp\ProjectManagementSystem\PMSApp\WebServices\Projectservices
+>>>>>>> 34a29bba2327c9bb8e3ca146717979d0ce017bf5
 build_property._RazorSourceGeneratorDebug = 

@@ -68,6 +68,8 @@ const routes: Routes =
 
 
 //Task
+{ path: 'taskadd', component:AddTaskComponent },
+{ path: 'tasklist', component:TaskListComponent },
     {path : 'taskslist', component:TaskListComponent},   
     {path : 'taskdetails/:taskid', component:TaskDetailsComponent},   
  
