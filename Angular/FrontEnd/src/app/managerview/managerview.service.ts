@@ -6,6 +6,7 @@ import { Timesheet } from './timesheets/timesheet';
 import { TimesheetInfo } from './timesheets/timesheetInfo';
 import { Timerecord } from './timerecords/timerecord';
 import { Employee } from './employee';
+import { Task } from './Task';
 
 @Injectable({
   providedIn: 'root'
@@ -106,9 +107,13 @@ export class ManagerviewService {
     return this.http.get<any>(url, id);
   }
 
+  
 
-
-
+ addTask(task:Task):Observable<any>{
+  let url ="http://localhost:5034/api/task/task"
+  return this.http.post<any>(url,task)
+ }
+ 
   /////////////////// Time Record  //////////////////////
   getAllTimeRecords(id: any): Observable<any> {
     let url = "http://localhost:5121/api/Timerecords/getall/" + id;

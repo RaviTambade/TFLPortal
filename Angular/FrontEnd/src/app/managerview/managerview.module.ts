@@ -69,8 +69,8 @@ const routes: Routes =
     // {path : 'timerecordlist/timesheetlist/:date', component:TimesheetListComponent},
 
 //Task
-    
-
+{ path: 'taskadd', component:AddTaskComponent },
+{ path: 'tasklist', component:TaskListComponent },
   ];
 
 
