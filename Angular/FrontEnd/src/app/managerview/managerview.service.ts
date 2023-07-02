@@ -112,6 +112,10 @@ export class ManagerviewService {
     return this.http.get<any>(url, id);
   }
 
+  updateTask(form: any): Observable<any> {
+    let url = "http://localhost:5034/api/task/" ;
+    return this.http.put<Project>(url, form);
+  }
   
   deleteTask(id: any): Observable<any> {
     let url = "http://localhost:5034/api/task/" + id;
