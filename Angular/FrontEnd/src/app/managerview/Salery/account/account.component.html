@@ -1,0 +1,60 @@
+<p>account works!</p>
+
+
+
+<div class="alert" *ngIf="transactionId" >
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+    <strong>Transaction Successful! </strong> Your transactionId is {{transactionId}}
+</div>
+
+<div class="card mt-50 mb-50">
+    <div class="card-title mx-auto">
+        Payment
+    </div>
+    <form  #insertForm="ngForm" (ngSubmit)="onProceed(insertForm)">
+        <span id="card-header"></span>
+        <div class="row-1">
+            <div class="row row-2">
+                <span id="card-inner">Account No</span>
+            </div>
+            <div class="row row-2">
+                <input type="text" name="acctno" ngModel placeholder="Account Number">
+            </div>
+        </div>
+        <div class="row-1">
+          <div class="row row-2">
+              <span id="card-inner">IFSC code</span>
+          </div>
+          <div class="row row-2">
+              <input type="text"  name="ifsc"  ngModel placeholder="IFSC Code">
+          </div>
+      </div>
+      <div class="row-1">
+        <div class="row row-2">
+            <span id="card-inner">Amount</span>
+        </div>
+        <div class="row row-2">
+            <input type="text" name="amount" ngModel placeholder="Amount">
+        </div>
+    </div>
+        <div class="row three">
+            <div class="col-7">
+                <div class="row-1">
+                    <div class="row row-2">
+                        <span id="card-inner"></span>
+                    </div>
+                    <div class="row row-2">
+                        <input type="text" placeholder="5134-5264-4">
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <input type="text" placeholder="Exp. date">
+            </div>
+            <div class="col-2">
+                <input type="text" placeholder="CVV">
+            </div>
+        </div>
+        <button class="btn d-flex mx-auto"><b>Proceed</b></button>
+    </form>
+</div>

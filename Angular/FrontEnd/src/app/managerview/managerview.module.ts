@@ -26,6 +26,7 @@ import { TaskListComponent } from './task/task-list/task-list.component';
 import { TaskDetailsComponent } from './task/task-details/task-details.component';
 import { AddTaskComponent } from './task/add-task/add-task.component';
 import { EditTaskComponent } from './task/edit-task/edit-task.component';
+import { AccountComponent } from './Salery/account/account.component';
 
 
 
@@ -68,11 +69,13 @@ const routes: Routes =
 
 
 //Task
-{ path: 'taskadd', component:AddTaskComponent },
-{ path: 'tasklist', component:TaskListComponent },
+    {path: 'taskadd', component:AddTaskComponent }, 
+    {path: 'tasklist', component:TaskListComponent },
     {path : 'taskslist', component:TaskListComponent},   
     {path : 'taskdetails/:taskid', component:TaskDetailsComponent},   
- 
+
+//Salary     
+    {path: 'accounr', component:AccountComponent },
   ];
 
 
@@ -102,6 +105,7 @@ const routes: Routes =
     TaskDetailsComponent,
     AddTaskComponent,
     EditTaskComponent,
+    AccountComponent,
     
   ],
   exports: [RouterContainerComponent],

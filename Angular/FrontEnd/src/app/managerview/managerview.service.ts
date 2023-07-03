@@ -145,4 +145,13 @@ export class ManagerviewService {
   }
 
 
+
+  ///////////////////////// Salary  ////////////////////////////////////////////////////
+
+  fundTransfer(credential:any){
+    let url ="http://localhost:5041/FundTransfer";
+    return this.http.post(url,credential);
+  }
+
+
 }
