@@ -9,6 +9,7 @@
         <th>Start Date</th>
         <th>End Date</th>
         <th>Description</th>
+        <th>Status</th>
       </thead>
       <tbody>
         <tr *ngFor="let project of projects">
@@ -17,6 +18,7 @@
           <td>{{project.startDate }}</td>
           <td>{{project.endDate}}</td>
           <td>{{project.description}}</td>
+          <td>{{project.status}}</td>
           <td><button (click)="onDetails(project.id)">Details</button></td>
         </tr>
       </tbody>
@@ -24,5 +26,6 @@
   </div>
 
   <hr>
+  <addproject></addproject>
 
   

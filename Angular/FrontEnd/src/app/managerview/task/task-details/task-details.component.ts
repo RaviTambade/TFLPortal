@@ -26,10 +26,10 @@ export class TaskDetailsComponent implements OnInit {
     })
   }
 
-  // onUpdateClick(employeeId: number) {
-  //   console.log(employeeId);
-  //   this.router.navigate(['./editemployee', employeeId]);
-  // };
+  onUpdateClick(taskId: number) {
+    console.log(taskId);
+    this.router.navigate(['./edittask', taskId]);
+  };
 
   delete(){
     console.log(this.id);

@@ -21,6 +21,15 @@
             <td><input type="text" name="description" [(ngModel)]="project.description"></td>
         </tr>
         <tr>
+            <td><label><b>Status :</b></label></td>
+            <select name="status" [(ngModel)]="project.status" required>
+                <option value="Pending">Pending</option>
+                <option value="In-Progress">In-Progress</option>
+                <option value="Completed">Completed</option>
+                <option value="Error">Error</option> 
+            </select>
+        </tr>   
+        <tr>
             <button type="submit">Update</button>
         </tr>
     </table>

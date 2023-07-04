@@ -39,6 +39,7 @@ public class ProjectsRepository : IProjectsRepository
                 DateTime startDate = DateTime.Parse(reader["startDate"].ToString());
                 DateTime endDate = DateTime.Parse(reader["endDate"].ToString());
                 string description = reader["description"].ToString();
+                string status = reader["status"].ToString();
                 Project project = new Project
                 {
                     Id = projId,
@@ -46,6 +47,7 @@ public class ProjectsRepository : IProjectsRepository
                     StartDate = startDate.ToShortDateString(),
                     EndDate = endDate.ToShortDateString(),
                     Description = description,
+                    Status=status
                 };
                 projects.Add(project);
             }
@@ -81,6 +83,7 @@ public class ProjectsRepository : IProjectsRepository
                 DateTime startDate = DateTime.Parse(reader["startDate"].ToString());
                 DateTime endDate = DateTime.Parse(reader["endDate"].ToString());
                 string description = reader["description"].ToString();
+                 string status = reader["status"].ToString();
 
                 project = new Project
                 {
@@ -89,6 +92,7 @@ public class ProjectsRepository : IProjectsRepository
                     StartDate = startDate.ToShortDateString(),
                     EndDate = endDate.ToShortDateString(),
                     Description = description,
+                    Status=status
 
                 };
             }
@@ -125,6 +129,7 @@ public class ProjectsRepository : IProjectsRepository
                 DateTime startDate = DateTime.Parse(reader["startDate"].ToString());
                 DateTime endDate = DateTime.Parse(reader["endDate"].ToString());
                 string description = reader["description"].ToString();
+                string status = reader["status"].ToString();
 
                 project = new Project
                 {
@@ -133,6 +138,7 @@ public class ProjectsRepository : IProjectsRepository
                     StartDate = startDate.ToShortDateString(),
                     EndDate = endDate.ToShortDateString(),
                     Description = description,
+                    Status=status
 
                 };
             }
@@ -155,12 +161,13 @@ public class ProjectsRepository : IProjectsRepository
         con.ConnectionString = _conString;
         try
         {
-            string query = "INSERT INTO projects(title,startDate,endDate,description) VALUES(@projtitle,@startdate,@enddate,@projdesc)";
+            string query = "INSERT INTO projects(title,startDate,endDate,description,status) VALUES(@projtitle,@startdate,@enddate,@projdesc,@status)";
             MySqlCommand command = new MySqlCommand(query, con);
             command.Parameters.AddWithValue("@projtitle", project.Title);
             command.Parameters.AddWithValue("@startdate", project.StartDate);
             command.Parameters.AddWithValue("@enddate", project.EndDate);
             command.Parameters.AddWithValue("@projdesc", project.Description);
+            command.Parameters.AddWithValue("@status", project.Status);
             con.Open();
             int rowsAffected = command.ExecuteNonQuery();
             if (rowsAffected > 0)
@@ -185,13 +192,14 @@ public class ProjectsRepository : IProjectsRepository
         con.ConnectionString = _conString;
         try
         {
-            string query = "Update projects SET title =@projtitle, startDate=@startdate,endDate=@enddate,description=@projdesc WHERE id=@projId";
+            string query = "Update projects SET title =@projtitle, startDate=@startdate,endDate=@enddate,description=@projdesc,status=@status WHERE id=@projId";
             MySqlCommand command = new MySqlCommand(query, con);
             command.Parameters.AddWithValue("@projtitle", project.Title);
             command.Parameters.AddWithValue("@startdate", project.StartDate);
             command.Parameters.AddWithValue("@enddate", project.EndDate);
             command.Parameters.AddWithValue("@projdesc", project.Description);
             command.Parameters.AddWithValue("@projId", project.Id);
+            command.Parameters.AddWithValue("@status", project.Status);
             con.Open();
             int rowsAffected = command.ExecuteNonQuery();
             if (rowsAffected > 0)
@@ -256,6 +264,7 @@ public class ProjectsRepository : IProjectsRepository
                 DateTime startdate = DateTime.Parse(reader["startDate"].ToString());
                 DateTime endDate = DateTime.Parse(reader["endDate"].ToString());
                 string description = reader["description"].ToString();
+                 string status = reader["status"].ToString();
                 Project project = new Project
                 {
                     Id = id,
@@ -263,6 +272,7 @@ public class ProjectsRepository : IProjectsRepository
                     StartDate = startdate.ToShortDateString(),
                     EndDate = endDate.ToShortDateString(),
                     Description = description,
+                    Status=status
                 };
                 projects.Add(project);
             }

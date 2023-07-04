@@ -112,10 +112,12 @@ export class ManagerviewService {
     return this.http.get<any>(url, id);
   }
 
-  updateTask(form: any): Observable<any> {
-    let url = "http://localhost:5034/api/task/" ;
-    return this.http.put<Project>(url, form);
+  updateTask(id: any): Observable<any> {
+    let url = "http://localhost:5034/api/task/"+id ;
+    return this.http.put<any>(url, id);
   }
+
+
   
   deleteTask(id: any): Observable<any> {
     let url = "http://localhost:5034/api/task/" + id;
@@ -129,6 +131,7 @@ export class ManagerviewService {
  }
 
   /////////////////// Time Record  //////////////////////
+
   getAllTimeRecords(id: any): Observable<any> {
     let url = "http://localhost:5121/api/Timerecords/getall/" + id;
     return this.http.get<any>(url, id);
@@ -138,7 +141,6 @@ export class ManagerviewService {
     let url = "http://localhost:5121/api/timerecords/timerecord";
     return this.http.post<Timerecord>(url, timerecord);
   }
-
   getTotalWorkingTime(id: any, fromDate: string, toDate:string): Observable<any> {
     let url = "http://localhost:5121/api/Timerecords/totaltime/" + id + "/" + fromDate +"/"+toDate;
     return this.http.get<any>(url, id);

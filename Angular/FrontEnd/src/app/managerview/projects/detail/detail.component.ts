@@ -33,7 +33,8 @@ export class DetailComponent implements OnInit {
     this.svc.deleteProject(this.projectId).subscribe((response) => {
       this.status = response;
       if (response) 
-      { alert("Project Deleted Successfully") }
+      { alert("Project Deleted Successfully") 
+      this.router.navigate(['/projectlist']);}
       else {
         { alert("Error") }
       }

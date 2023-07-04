@@ -5,6 +5,7 @@ export class Project {
         public startDate: string,
         public endDate: string,
         public description: string,
+        public status:string,
 
     ) { }
 }

@@ -1,4 +1,4 @@
-<p><b>For inserting new Project please fill below the form.</b>For inserting new Project please fill below the form.</p>
+<p><b>For inserting new Project please fill below the form.</b></p>
 
 <form #insertForm="ngForm" (ngSubmit)="addProject(insertForm.value)">
     <table>
@@ -24,6 +24,15 @@
             <td><input type="text" name="description" [(ngModel)]="project.description"></td>
         </tr>
         <tr>
+            <td><label><b>Status :</b></label></td>
+            <select name="status" [(ngModel)]="project.status" required>
+                <option value="Pending">Pending</option>
+                <option value="In-Progress">In-Progress</option>
+                <option value="Completed">Completed</option>
+                <option value="Error">Error</option> 
+            </select>
+        </tr>   
+        <tr>
             <button type="submit">Add New Project </button>
         </tr>
     </table>
@@ -37,3 +46,8 @@
 <div *ngIf="status==false">
     <p>error while updating Project</p>
 </div>
+
+
+           
+            
+               

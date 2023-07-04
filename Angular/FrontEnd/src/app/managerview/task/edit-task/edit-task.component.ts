@@ -28,7 +28,7 @@ export class EditTaskComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      this.id = params.get('id');
+      this.id = this.route.snapshot.paramMap.get('taskid');
       console.log(this.id);
     });
     this.svc.getTask(this.id).subscribe((response) => {
@@ -43,7 +43,7 @@ export class EditTaskComponent implements OnInit {
       console.log(response);
       if (response) {
         alert("Task updated successfully")
-        this.router.navigate(['/tasklist']);
+        this.router.navigate(['/taskslist']);
       }
       else {
         alert("Check the form again ....")

@@ -1,4 +1,3 @@
-<p><b>For inserting new Yask please fill below the form.</b>For inserting new Project please fill below the form.</p>
 
 <form #insertForm="ngForm" (ngSubmit)="updateTask(insertForm.value)">
     <table>
@@ -7,8 +6,12 @@
             <td><input type="number" name="id" [(ngModel)]="employee.id"></td>
         </tr> -->
         <tr>
+            <td><label><b>Task Id:</b></label></td>
+            <td><input type="timesheetId" name="id" [(ngModel)]="task.id"></td>
+        </tr>
+        <tr>
             <td><label><b>Project Id:</b></label></td>
-            <td><input type="number" name="projectid" [(ngModel)]="task.projectid"></td>
+            <td><input type="number" name="projectId" [(ngModel)]="task.projectId"></td>
         </tr>
         <tr>
             <td><label><b>Title:</b></label></td>
@@ -20,11 +23,11 @@
         </tr>
         <tr>
             <td><label><b>From Time:</b></label></td>
-            <td><input type="text" name="fromtime" [(ngModel)]="task.fromtime"></td>
+            <td><input type="text" name="fromTime" [(ngModel)]="task.fromTime"></td>
         </tr>
         <tr>
             <td><label><b>To Time :</b></label></td>
-            <td><input type="text" name="totime" [(ngModel)]="task.totime"></td>
+            <td><input type="text" name="toTime" [(ngModel)]="task.toTime"></td>
         </tr>
         <tr>
             <td><label><b>Description :</b></label></td>
@@ -38,10 +41,10 @@
 
 
 <div *ngIf="status">
-    <p>Project Added successfully</p>
+    <p>Task Added successfully</p>
 </div>
 
 <div *ngIf="status==false">
-    <p>error while updating Project</p>
+    <p>error while updating Task</p>
 </div>
 

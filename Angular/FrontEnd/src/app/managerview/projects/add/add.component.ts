@@ -39,7 +39,8 @@ export class AddComponent implements OnInit {
       console.log(response);
       if (response) {
         alert("Employee added successfully")
-        this.router.navigate(['/employeelist']);
+        this.router.navigate(['/projectlist']);
+        window.location.reload();
       }
       else {
         alert("Check the form again ....")

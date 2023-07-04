@@ -69,9 +69,9 @@ const routes: Routes =
 
 
 //Task
+    {path : 'taskslist', component:TaskListComponent}, 
     {path: 'taskadd', component:AddTaskComponent }, 
-    {path: 'tasklist', component:TaskListComponent },
-    {path : 'taskslist', component:TaskListComponent},   
+    {path: 'edittask/:taskid', component:EditTaskComponent },
     {path : 'taskdetails/:taskid', component:TaskDetailsComponent},   
 
 //Salary     

@@ -162,7 +162,7 @@ public class TaskRepository : ITaskRepository
         connection.ConnectionString = _conString;
         try
         {
-            string query = "UPDATE tasks SET title =@title ,description=@description ,date=@date,fromtime=@fromtime,totime=@totime  WHERE id=@taskId";
+            string query = "UPDATE tasks SET title =@title ,description=@description,projectid=@projectid ,date=@date,fromtime=@fromtime,totime=@totime  WHERE id=@taskId";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@taskId", task.Id);
             cmd.Parameters.AddWithValue("@projectid", task.ProjectId);
