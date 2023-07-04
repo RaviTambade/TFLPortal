@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ManagerviewService } from '../managerview.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
+import { Project } from '../project';
 
 @Component({
   selector: 'app-manager-access',
@@ -26,5 +27,19 @@ export class ManagerAccessComponent {
     this.router.navigate(['./taskslist']);
   }
 
+  projects:Project[] |undefined;
+ 
+  
+  ngOnInit(): void {
+    this.svc.getAllProjects().subscribe(
+      (response) => {
+        this.projects = response;
+        console.log(this.projects);
+      })
+      };
+
+      onDetails(id: number){
+        this.router.navigate(['./details', id]);
+      }
 
 }
