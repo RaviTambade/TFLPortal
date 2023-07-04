@@ -12,15 +12,16 @@ public class ClientServices : IClientServices
     public ClientServices(IClientRepository repo){
         _repo=repo;
     }
-    public List<Client> GetAll()=>_repo.GetAll();
+    public async Task<IEnumerable<Client>> GetAll() =>await _repo.GetAll();
 
-    public Client Get(int id)=>_repo.Get(id);
 
-    public bool Insert(Client client)=>_repo.Insert(client);
+     public async Task <Client>Get(int id)=>await _repo.Get(id);
 
-    public bool Update(Client client)=>_repo.Update(client);
+     public async Task<bool> Insert(Client client)=>await _repo.Insert(client);
 
-    public bool Delete(int id)=>_repo.Delete(id);
+    public async Task<bool> Update(Client client)=>await _repo.Update(client);
+
+    public async Task<bool> Delete(int id)=>await _repo.Delete(id);
 
 
 }
