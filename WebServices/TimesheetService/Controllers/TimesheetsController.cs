@@ -46,7 +46,6 @@ public class TimesheetController : ControllerBase
     public bool Update(Timesheet timesheets)
     {
         bool status = _service.Update(timesheets);
-
         return status;
     }
 
@@ -82,8 +81,6 @@ public class TimesheetController : ControllerBase
         WorkingTime time = _service.GetTotalWorkingTime(empid,theDate);
         return time;
     }
-
-
 }
 
 

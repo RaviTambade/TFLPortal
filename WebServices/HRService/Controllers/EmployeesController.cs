@@ -63,7 +63,6 @@ public class EmployeesController : ControllerBase
     public bool DeleteEmployee(int id)
     {
         bool status = _service.Delete(id);
-
         return status;
     }
 
@@ -74,6 +73,4 @@ public class EmployeesController : ControllerBase
         List<Employee> employees = _service.GetByRole(role);
         return employees;
     }
-
-
 }

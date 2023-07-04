@@ -6,7 +6,9 @@ using AuthenticationService.Repositories.Interfaces;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using MySql.Data.MySqlClient;
+
 namespace AuthenticationService.Repositories;
+
 public class UserRepository : IUserRepository
 {
     private readonly IConfiguration _configuration;
@@ -15,7 +17,6 @@ public class UserRepository : IUserRepository
 
     public UserRepository(IConfiguration configuration, IOptions<AppSettings> appSettings)
     {
-
         _configuration = configuration;
         _conString = this._configuration.GetConnectionString("DefaultConnection");
         _appsettings = appSettings.Value;
@@ -25,7 +26,6 @@ public class UserRepository : IUserRepository
     public async Task<AuthenticateResponse> Authenticate(AuthenticateRequest request)
     {
         User user = await GetUser(request);
-
         // return null if user not found
         if (user == null) { return null; }
         // authentication successful so generate jwt token
@@ -34,7 +34,6 @@ public class UserRepository : IUserRepository
     }
 
     private async Task<string> generateJwtToken(User user)
-
     {
         // generate token that is valid for 7 days
         var tokenHandler = new JwtSecurityTokenHandler();
@@ -72,6 +71,7 @@ public class UserRepository : IUserRepository
         try
         {
             string query = "SELECT * FROM users where email=@email AND password =@password";
+            Console.WriteLine(query);
             await con.OpenAsync();
             MySqlCommand command = new MySqlCommand(query, con);
             command.Parameters.AddWithValue("@email", request.Email);
@@ -94,7 +94,6 @@ public class UserRepository : IUserRepository
         }
         catch (Exception ee)
         {
-
             throw ee;
         }
         finally
@@ -102,7 +101,6 @@ public class UserRepository : IUserRepository
             await con.CloseAsync();
         }
         return user;
-
     }
 
     private async Task<List<string>> GetRolesOfUser(int userId)
