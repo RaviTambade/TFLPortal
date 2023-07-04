@@ -13,22 +13,18 @@ namespace AuthenticationService.Controllers
         public AuthController(IUserService svc)
         {
             _svc = svc;
-
         }
 
         [HttpPost("authenticate")] 
         public async Task<IActionResult> Authenticate([FromBody] AuthenticateRequest request)
         {
             var user =await _svc.Authenticate(request);
-
             if (user == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
-
             return Ok(user);
         }
 
         
-
         [HttpGet("getall")]  
         public async Task<IEnumerable<User>> GetAll()
         {
