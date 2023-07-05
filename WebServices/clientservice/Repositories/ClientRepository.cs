@@ -66,8 +66,8 @@ public class ClientRepository : IClientRepository
      public async Task<Client> Get(int id)
     {
         Client client = new Client();
-        MySqlConnection connection = new MySqlConnection(_conString);
-     //   connection.ConnectionString = _conString;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _conString;
         try
         {
             string query = "select * from clients where id =" + id;

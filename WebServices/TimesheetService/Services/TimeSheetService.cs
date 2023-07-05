@@ -12,20 +12,20 @@ public class TImeSheetService : ITimeSheetServices
     public TImeSheetService(ITimeSheetRepository repo){
         _repo=repo;
     }
-    public List<Timesheet> GetAll()=>_repo.GetAll();
+    public async Task <IEnumerable<Timesheet>> GetAll()=>await _repo.GetAll();
 
-    public Timesheet Get(int id)=>_repo.Get(id);
+    public async Task <Timesheet> Get(int id)=>await _repo.Get(id);
 
-    public bool Insert(Timesheet timesheet)=>_repo.Insert(timesheet);
+    public async Task <bool> Insert(Timesheet timesheet)=>await _repo.Insert(timesheet);
 
-    public bool Update(Timesheet timesheet)=>_repo.Update(timesheet);
+    public async Task <bool> Update(Timesheet timesheet)=>await _repo.Update(timesheet);
 
-    public bool Delete(int id)=>_repo.Delete(id);
+    public async Task <bool> Delete(int id)=>await _repo.Delete(id);
 
-    public List<TimesheetsDetail> GetAllDetails(int empid,string theDate)=> _repo.GetAllDetails(empid,theDate);
+   //public async Task <Enumerable<TimesheetsDetail>> GetAllDetails(int empid,string theDate)=> await _repo.GetAllDetails(empid,theDate);
 
-   public TimesheetsDetail GetDetails(int timesheetId)=> _repo.GetDetails(timesheetId);
+   public async Task <TimesheetsDetail> GetDetails(int timesheetId)=> await _repo.GetDetails(timesheetId);
 
-    public WorkingTime GetTotalWorkingTime(int empid,string theDate)=> _repo.GetTotalWorkingTime(empid,theDate);
+    public async Task <WorkingTime> GetTotalWorkingTime(int empid,string theDate)=> await _repo.GetTotalWorkingTime(empid,theDate);
 
 }
