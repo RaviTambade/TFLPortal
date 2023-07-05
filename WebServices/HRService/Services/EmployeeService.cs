@@ -10,17 +10,16 @@ public class EmployeeService : IEmployeesService
     {
         _repo = repo;
     }
-    public List<Employee> GetAll(){
-        var employees = _repo.GetAll();
+    public async Task<IEnumerable<Employee>> GetAll(){
+        var employees =await _repo.GetAll();
         return  employees;
     } 
    
-    public Employee GetById(int Id)=> _repo.GetById(Id);
-    public bool Insert (Employee employee) => _repo.Insert(employee);
-    public  bool Update(Employee emp)=> _repo.Update(emp);
-    public  bool Delete(int id)=> _repo.Delete(id);
-
-    public List<Employee> GetByRole(string role) => _repo.GetByRole(role);
+    public async Task<Employee> GetById(int Id)=>await _repo.GetById(Id);
+    public async Task<bool> Insert (Employee employee) =>await _repo.Insert(employee);
+    public async Task<bool> Update(Employee emp)=>await _repo.Update(emp);
+    public async Task<bool> Delete(int id)=>await _repo.Delete(id);
+    public async Task<IEnumerable<Employee>> GetByRole(string role) =>await _repo.GetByRole(role);
 
 }
 

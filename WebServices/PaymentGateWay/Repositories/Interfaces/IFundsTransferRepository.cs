@@ -3,5 +3,5 @@ namespace API.Repositories.Interfaces;
 
 public interface IPaymentGatewayRepo
 {
-    int FundTransfer(PaymentGateWay info );
+    Task<int> FundTransfer(PaymentGateWay info );
 }

@@ -4,15 +4,15 @@ namespace PMS.Repositories.Interfaces;
  
 public interface IProjectMemberRepository{
  
-     List<ProjectMember> GetAll();
+     Task<IEnumerable<ProjectMember>> GetAll();
 
-     ProjectMember GetById(int id);
-     List<ProjectMemberInfo>Get(int projectId);
+     Task<ProjectMember> GetById(int id);
+     Task<IEnumerable<ProjectMemberInfo>> Get(int projectId);
 
-      bool Insert(ProjectMember task);
+      Task<bool> Insert(ProjectMember task);
 
-      bool Update(ProjectMember task);
+      Task<bool> Update(ProjectMember task);
 
-      bool Delete(int id);
+      Task<bool> Delete(int id);
      
  }

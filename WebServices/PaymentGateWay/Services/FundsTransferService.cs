@@ -14,7 +14,7 @@ public class PaymentGatewayService:IPaymentGatewayService
    {
      _repo =repo;
    }
-   public int FundTransfer(PaymentGateWay info){
-    return _repo.FundTransfer(info);
+   public async  Task<int> FundTransfer(PaymentGateWay info){
+    return await _repo.FundTransfer(info);
    }
 }

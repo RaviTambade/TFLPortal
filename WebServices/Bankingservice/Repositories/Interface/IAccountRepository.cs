@@ -1,14 +1,13 @@
 using BankingService.Models;
 
 namespace BankingService.Repositories.Interfaces;
-public interface IAccountRepository{
+public interface IAccountRepository
+{
 
-    List<Account> GetAll();
+    Task<IEnumerable<Account>> GetAll();
+    Task<Account> GetById(int accountId);
+    Task<bool> Insert(Account account);
+    Task<bool> Update(Account account);
+    Task<bool> Delete(int accountId);
 
-    Account GetById(int accountId);
-
-   bool Insert(Account account);
-   bool Update(Account account);
-   bool Delete(int accountId);
-   
 }

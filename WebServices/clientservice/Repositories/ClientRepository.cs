@@ -57,39 +57,31 @@ public class ClientRepository : IClientRepository
         {
             throw ee;
         }
-
         finally
         {
             connection.Close();
         }
-
-
         return clients;
     }
-
      public async Task<Client> Get(int id)
     {
-
         Client client = new Client();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _conString;
         try
         {
-
             string query = "select * from clients where id =" + id;
             MySqlCommand cmd = new MySqlCommand(query, connection);
             await connection.OpenAsync();
             MySqlDataReader reader = cmd.ExecuteReader();
             if (await reader.ReadAsync())
             {
-
-                int clientsid = Int32.Parse(reader["id"].ToString());
+               int clientsid = Int32.Parse(reader["id"].ToString());
                 string clientName = reader["fullname"].ToString();
                 string clientAddress = reader["address"].ToString();
                 string clientdetails = reader["details"].ToString();
                 string accountNumber = reader["accountnumber"].ToString();
-        
-
+    
                 client = new Client()
                 {
                    ClientId=clientsid,
@@ -103,27 +95,21 @@ public class ClientRepository : IClientRepository
         }
         catch (Exception ee)
         {
-
             throw ee;
-
         }
-  
         finally
         {
             connection.Close();
         }
-
         return client;
     }
 
 
     public async Task<bool> Insert(Client client)
     {
-
         bool status = false;
         MySqlConnection con = new MySqlConnection();
         con.ConnectionString = _conString;
-
         try
         {
             string query = "Insert into clients(fullname,address,details,accountnumber) values (@clientName,@clientaddress,@clientdetails,@accountnumber)";
@@ -132,8 +118,7 @@ public class ClientRepository : IClientRepository
             cmd.Parameters.AddWithValue("@clientName", client.ClientName);
             cmd.Parameters.AddWithValue("@clientaddress", client.ClientAddress);
             cmd.Parameters.AddWithValue("@clientdetails", client.ClientDetails);
-            cmd.Parameters.AddWithValue("@accountnumber", client.AccountNumber);
-           
+            cmd.Parameters.AddWithValue("@accountnumber", client.AccountNumber); 
             int rowsaffected = await cmd.ExecuteNonQueryAsync();
             if (rowsaffected > 0)
             {
@@ -141,26 +126,19 @@ public class ClientRepository : IClientRepository
                 status = true;
             }
         }
-
         catch (Exception ee)
         {
-
             throw ee;
         }
-
         finally
         {
-
             con.Close();
         }
-
         return status;
-
     }
 
     public async Task<bool> Update(Client client)
     {
-
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _conString;
@@ -179,19 +157,13 @@ public class ClientRepository : IClientRepository
             {
                 status = true;
             }
-
         }
-
         catch (Exception ee)
         {
-
             throw ee;
-
         }
-
         finally
         {
-
             connection.Close();
         }
         return status;

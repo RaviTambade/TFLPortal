@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\imp\\PMS\\PMSApp\\WebServices\\Userservices\\Userservices.csproj": {}
+    "D:\\Rushikesh\\Projects\\PMSApp\\WebServices\\Userservices\\Userservices.csproj": {}
   },
   "projects": {
-    "D:\\imp\\PMS\\PMSApp\\WebServices\\Userservices\\Userservices.csproj": {
+    "D:\\Rushikesh\\Projects\\PMSApp\\WebServices\\Userservices\\Userservices.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\imp\\PMS\\PMSApp\\WebServices\\Userservices\\Userservices.csproj",
+        "projectUniqueName": "D:\\Rushikesh\\Projects\\PMSApp\\WebServices\\Userservices\\Userservices.csproj",
         "projectName": "Userservices",
-        "projectPath": "D:\\imp\\PMS\\PMSApp\\WebServices\\Userservices\\Userservices.csproj",
-        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "D:\\imp\\PMS\\PMSApp\\WebServices\\Userservices\\obj\\",
+        "projectPath": "D:\\Rushikesh\\Projects\\PMSApp\\WebServices\\Userservices\\Userservices.csproj",
+        "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
+        "outputPath": "D:\\Rushikesh\\Projects\\PMSApp\\WebServices\\Userservices\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

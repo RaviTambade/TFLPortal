@@ -18,55 +18,46 @@ public class UsersController : ControllerBase
     }
 
     [HttpGet ("getall")]
-    public IEnumerable<User> GetAll()
+    public async Task<IEnumerable<User>> GetAll()
     {
-
-        List<User> users = _service.GetAll();
-
+        IEnumerable<User> users =await _service.GetAll();
         return users;
-
     }
 
     [HttpGet ("get/{id}")]
-    public User Get(int id)
+    public async Task<User> Get(int id)
     {
-        User user = _service.Get(id);
-
-
+        User user =await _service.Get(id);
         return user;
     }
 
     [HttpPost("User")]
-    public bool Insert(User user)
+    public async Task<bool> Insert(User user)
     {
-        bool status = _service.Insert(user);
-
-
+        bool status =await  _service.Insert(user);
         return status;
     }
 
     [HttpPut ("/{id}")]
 
-    public bool Update(User user)
+    public async Task<bool> Update(User user)
     {
-        bool status = _service.Update(user);
-
+        bool status =await _service.Update(user);
         return status;
     }
 
 
     [HttpDelete ("/{id}")]
-    public bool Delete(int id)
+    public async Task<bool> Delete(int id)
     {
-        bool status = _service.Delete(id);
-
+        bool status =await _service.Delete(id);
         return status;
     }
 
 
    [HttpPost ("ValidateUser")]
-   public bool ValidateUser(Credential user){
-    bool status =_service.ValidateUser(user);
+   public async Task<bool> ValidateUser(Credential user){
+    bool status =await _service.ValidateUser(user);
     if(status==true){
         Console.WriteLine("user is valid");
     }

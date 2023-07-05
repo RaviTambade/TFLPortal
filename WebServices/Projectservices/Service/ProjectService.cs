@@ -12,15 +12,15 @@ public ProjectService(IProjectsRepository repo){
     this._repo=repo;
 
 }
-public List<Project> GetAll()=>_repo.GetAll();
+public async Task<IEnumerable<Project>> GetAll()=>await _repo.GetAll();
 
 //public List<Project> GetByProject(string projectName) => _repo.GetByProject(projectName);
-public Project GetById(int projectId)=>_repo.GetById(projectId);
-public Project Get(string name)=>_repo.Get(name);
- public bool Insert(Project project)=>_repo.Insert(project);
- public bool Update(Project project)=>_repo.Update(project);
- public bool Delete(Int32  projectId)=>_repo.Delete(projectId);
+public async Task<Project> GetById(int projectId)=>await _repo.GetById(projectId);
+public async Task<Project> Get(string name)=>await _repo.Get(name);
+ public async Task<bool> Insert(Project project)=>await _repo.Insert(project);
+ public async Task<bool> Update(Project project)=>await _repo.Update(project);
+ public async Task<bool> Delete(Int32  projectId)=>await _repo.Delete(projectId);
 
-public List<Project> GetByProject(Date date)=>_repo.GetByProject(date);
+public async Task<IEnumerable<Project>> GetByProject(Date date)=>await _repo.GetByProject(date);
 
 }

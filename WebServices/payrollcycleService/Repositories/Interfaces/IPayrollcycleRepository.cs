@@ -6,14 +6,14 @@ public interface IPayRollCycleRepository{
 
 
      
-     List<PayRollCycle> GetAll();
+     Task<IEnumerable<PayRollCycle>> GetAll();
 
-     PayRollCycle GetById(int id);
+     Task<PayRollCycle> GetById(int id);
 
-     bool InsertPayRoll(PayRollCycle payroll);
+     Task<bool> InsertPayRoll(PayRollCycle payroll);
 
-     bool UpdatePayRoll(PayRollCycle payroll);
+     Task<bool> UpdatePayRoll(PayRollCycle payroll);
 
-     bool DeletePayRoll(int id);
+     Task<bool> DeletePayRoll(int id);
      
  }

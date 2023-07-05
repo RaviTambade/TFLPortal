@@ -19,7 +19,7 @@ public class PayRollCycleRepository : IPayRollCycleRepository
     }
 
 
-    public List<PayRollCycle> GetAll()
+    public async Task<IEnumerable<PayRollCycle>> GetAll()
     {
         List<PayRollCycle> payrolls = new List<PayRollCycle>();
         MySqlConnection connection = new MySqlConnection();
@@ -28,10 +28,10 @@ public class PayRollCycleRepository : IPayRollCycleRepository
         {
             string query = "select * from payrollCycles";
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            connection.Open();
+            await connection.OpenAsync();
 
             MySqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            while (await reader.ReadAsync())
             {
                 int payRollId = Int32.Parse(reader["payroll_cycle_id"].ToString());
                 int payRollNumber = Int32.Parse(reader["payroll_cycle_number"].ToString());
@@ -39,7 +39,6 @@ public class PayRollCycleRepository : IPayRollCycleRepository
                  DateTime enddate = Convert.ToDateTime(reader["end_date"].ToString());
                  DateTime depositdate = Convert.ToDateTime(reader["deposit_date"].ToString());
                  DateTime payrollcycleyear = Convert.ToDateTime(reader["payroll_cycle_year"].ToString());
-
 
                 PayRollCycle payroll = new PayRollCycle
                 {
@@ -50,9 +49,7 @@ public class PayRollCycleRepository : IPayRollCycleRepository
                    DepositDate=depositdate,
                    PayrollCycleYear=payrollcycleyear
                 };
-
                 payrolls.Add(payroll);
-
             }
             reader.Close();
         }
@@ -60,34 +57,27 @@ public class PayRollCycleRepository : IPayRollCycleRepository
         {
             throw ee;
         }
-
         finally
         {
             connection.Close();
         }
-
-
         return payrolls;
     }
 
-    public PayRollCycle GetById(int id)
+    public async Task<PayRollCycle> GetById(int id)
     {
-
         PayRollCycle payroll = new PayRollCycle();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _conString;
         try
         {
-
             string query = "select * from payrollCycles where payroll_cycle_id =" + id;
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            connection.Open();
+            await connection.OpenAsync();
             MySqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
+            if (await reader.ReadAsync())
             {
-
-
-                 int payRollId = Int32.Parse(reader["payroll_cycle_id"].ToString());
+                int payRollId = Int32.Parse(reader["payroll_cycle_id"].ToString());
                  int payRollNumber = Int32.Parse(reader["payroll_cycle_number"].ToString());
                  DateTime startdate = Convert.ToDateTime(reader["start_date"].ToString());
                  DateTime enddate = Convert.ToDateTime(reader["end_date"].ToString());
@@ -96,41 +86,33 @@ public class PayRollCycleRepository : IPayRollCycleRepository
 
                 payroll = new PayRollCycle()
                 {
-                   
                    PayrollCycleId=payRollId,
                    PayrollCycleNumber=payRollNumber,
                    StartDate=startdate,
                    EndDate=enddate,
                    DepositDate=depositdate,
                    PayrollCycleYear=payrollcycleyear
-
                 };
             }
             reader.Close();
         }
         catch (Exception ee)
         {
-
             throw ee;
-
         }
-
         finally
         {
             connection.Close();
         }
-
         return payroll;
     }
 
 
-    public bool InsertPayRoll(PayRollCycle payroll)
+    public async Task<bool> InsertPayRoll(PayRollCycle payroll)
     {
-
         bool status = false;
         MySqlConnection con = new MySqlConnection();
         con.ConnectionString = _conString;
-
         try
         {
             string query = "Insert into payrollCycles(payroll_cycle_id,payroll_cycle_number,start_date,end_date,deposit_date,payroll_cycle_year) values (@payrollcycleid,@payrollcyclenumber,@startdate,@enddate,@depositdate,@payrollcycleyear)";
@@ -142,34 +124,26 @@ public class PayRollCycleRepository : IPayRollCycleRepository
             cmd.Parameters.AddWithValue("@depositdate", payroll.DepositDate);
             cmd.Parameters.AddWithValue("@payrollcycleyear", payroll.PayrollCycleYear);
          
-            con.Open();
-            int rowsaffected = cmd.ExecuteNonQuery();
+            await con.OpenAsync();
+            int rowsaffected =await cmd.ExecuteNonQueryAsync();
             if (rowsaffected > 0)
             {
-
                 status = true;
             }
         }
-
         catch (Exception ee)
         {
-
             throw ee;
         }
-
         finally
         {
-
             con.Close();
         }
-
         return status;
-
     }
 
-    public bool UpdatePayRoll(PayRollCycle payroll)
+    public async Task<bool> UpdatePayRoll(PayRollCycle payroll)
     {
-
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _conString;
@@ -183,44 +157,37 @@ public class PayRollCycleRepository : IPayRollCycleRepository
             cmd.Parameters.AddWithValue("@enddate", payroll.EndDate);
             cmd.Parameters.AddWithValue("@depositdate", payroll.DepositDate);
             cmd.Parameters.AddWithValue("@payrollcycleyear", payroll.PayrollCycleYear);
-            connection.Open();
-            int rowsaffected = cmd.ExecuteNonQuery();
+            await connection.OpenAsync();
+            int rowsaffected =await cmd.ExecuteNonQueryAsync();
             if (rowsaffected > 0)
             {
                 status = true;
             }
-
         }
-
         catch (Exception ee)
         {
-
             throw ee;
-
         }
-
         finally
         {
-
             connection.Close();
         }
         return status;
     }
 
 
-    public bool DeletePayRoll(int id)
+    public async Task<bool> DeletePayRoll(int id)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _conString;
         try
         {
-
             string query = "delete from payrollCycles where payroll_cycle_id=@payrollcycleid";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@payrollcycleid", id);
-            connection.Open();
-            int rowsaffected = command.ExecuteNonQuery();
+            await connection.OpenAsync();
+            int rowsaffected =await command.ExecuteNonQueryAsync();
             if (rowsaffected > 0)
             {
                 status = true;
@@ -228,10 +195,8 @@ public class PayRollCycleRepository : IPayRollCycleRepository
         }
         catch (Exception ee)
         {
-
             throw ee;
         }
-
         finally
         {
             connection.Close();

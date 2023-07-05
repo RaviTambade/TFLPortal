@@ -20,10 +20,10 @@ public class EmployeesController : ControllerBase
     
     // http://localhost:5230/api/employees/employees
     [HttpGet ("employees")]
-    public IEnumerable<Employee> GetAll()
+    public async Task<IEnumerable<Employee>> GetAll()
     {
 
-        List<Employee> employees = _service.GetAll();
+        IEnumerable<Employee> employees =await _service.GetAll();
 
         return employees;
 
@@ -31,9 +31,9 @@ public class EmployeesController : ControllerBase
    
     // http://localhost:5230/api/employees/2
     [HttpGet ("{id}")] 
-    public Employee GetById(int id)
+    public async Task<Employee> GetById(int id)
     {
-        Employee employees = _service.GetById(id);
+        Employee employees =await _service.GetById(id);
 
 
         return employees;
@@ -41,9 +41,9 @@ public class EmployeesController : ControllerBase
 
     // http://localhost:5230/api/employees/employee
     [HttpPost ("Employee")]
-    public bool InsertUser(Employee employees)
+    public async Task<bool> InsertUser(Employee employees)
     {
-        bool status = _service.Insert(employees);
+        bool status =await _service.Insert(employees);
 
 
         return status;
@@ -51,26 +51,26 @@ public class EmployeesController : ControllerBase
 
     //http://localhost:5230/api/employees/employee
     [HttpPut ("Employee")]
-    public bool UpdateEmployee(Employee emp)
+    public async Task<bool> UpdateEmployee(Employee emp)
     {
-        bool status = _service.Update(emp);
+        bool status =await _service.Update(emp);
 
         return status;
     }
 
     // http://localhost:5230/api/employees/12
     [HttpDelete ("{id}")]
-    public bool DeleteEmployee(int id)
+    public async Task<bool> DeleteEmployee(int id)
     {
-        bool status = _service.Delete(id);
+        bool status =await _service.Delete(id);
         return status;
     }
 
     //http://localhost:5230/api/employees/role/manager
     [HttpGet ("role/{role}")] 
-    public List<Employee> GetByRole(string role)
+    public async Task<IEnumerable<Employee>> GetByRole(string role)
     {
-        List<Employee> employees = _service.GetByRole(role);
+        IEnumerable<Employee> employees =await _service.GetByRole(role);
         return employees;
     }
 }
