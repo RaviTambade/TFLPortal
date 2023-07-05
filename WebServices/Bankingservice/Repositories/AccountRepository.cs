@@ -18,7 +18,7 @@ public class AccountRepository : IAccountRepository
         _configuration = configuration;
         _conString = this._configuration.GetConnectionString("DefaultConnection");
     }
-    public List<Account> GetAll()
+    public async Task<IEnumerable<Account>> GetAll()
     {
         List<Account> accounts = new List<Account>();
         MySqlConnection con = new MySqlConnection();
@@ -27,10 +27,9 @@ public class AccountRepository : IAccountRepository
         {
             string query = "SELECT * FROM accounts";
             MySqlCommand command = new MySqlCommand(query, con);
-            con.Open();
+            await con.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
-            
-            while (reader.Read())
+            while (await reader.ReadAsync())
             {
                 int accountId = int.Parse(reader["account_id"].ToString());
                 string accountNumber = reader["account_number"].ToString();
@@ -60,7 +59,7 @@ public class AccountRepository : IAccountRepository
         return accounts;
     }
 
-    public Account GetById(int accountId)
+    public async Task<Account> GetById(int accountId)
     {
         Account account = new Account();
         MySqlConnection con = new MySqlConnection();
@@ -70,11 +69,10 @@ public class AccountRepository : IAccountRepository
             string query = "SELECT * FROM accounts where account_Id =@accountId";
             MySqlCommand command = new MySqlCommand(query, con);
             command.Parameters.AddWithValue("@accountId", accountId);
-            con.Open();
+            await con.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
-            if (reader.Read())
+            if (await reader.ReadAsync())
             {
-
                 int accountid = int.Parse(reader["account_id"].ToString());
                 string accountNumber =reader["account_number"].ToString();
                 string ifscCode = reader["ifsc_code"].ToString();
@@ -102,9 +100,8 @@ public class AccountRepository : IAccountRepository
         return account;
     }
 
-    public bool Insert(Account account)
+    public async Task<bool> Insert(Account account)
     {
-
         bool status = false;
         MySqlConnection con = new MySqlConnection();
         con.ConnectionString = _conString;
@@ -117,8 +114,8 @@ public class AccountRepository : IAccountRepository
             command.Parameters.AddWithValue("@registerDate", account.RegisterDate);
             command.Parameters.AddWithValue("@balance", account.Balance);
 
-            con.Open();
-             int rowsAffected=command.ExecuteNonQuery();
+            await con.OpenAsync();
+             int rowsAffected=await command.ExecuteNonQueryAsync();
             if(rowsAffected >0){
              status=true;
             }
@@ -134,7 +131,7 @@ public class AccountRepository : IAccountRepository
         return status;
 
     }
-    public bool Update(Account account)
+    public async Task<bool> Update(Account account)
     {
         bool status = false;
         MySqlConnection con = new MySqlConnection();
@@ -148,8 +145,8 @@ public class AccountRepository : IAccountRepository
             command.Parameters.AddWithValue("@registerDate", account.RegisterDate);
             command.Parameters.AddWithValue("@balance", account.Balance);
             command.Parameters.AddWithValue("@accountId", account.AccountId);
-            con.Open();
-             int rowsAffected=command.ExecuteNonQuery();
+            await con.OpenAsync();
+             int rowsAffected=await command.ExecuteNonQueryAsync();
             if(rowsAffected >0){
              status=true;
             }
@@ -165,7 +162,7 @@ public class AccountRepository : IAccountRepository
         return status;
 
     }
-    public bool Delete(Int32 accountId)
+    public async Task<bool> Delete(Int32 accountId)
     {
         bool status = false;
         MySqlConnection con = new MySqlConnection();
@@ -175,8 +172,8 @@ public class AccountRepository : IAccountRepository
             string query = "DELETE  FROM accounts WHERE account_id=@accountId";
             MySqlCommand command = new MySqlCommand(query, con);
             command.Parameters.AddWithValue("@accountId", accountId);
-            con.Open();
-             int rowsAffected=command.ExecuteNonQuery();
+            await con.OpenAsync();
+             int rowsAffected=await command.ExecuteNonQueryAsync();
             if(rowsAffected >0){
              status=true;
             }

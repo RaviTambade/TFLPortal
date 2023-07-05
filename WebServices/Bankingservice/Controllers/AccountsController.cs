@@ -22,17 +22,17 @@ namespace BankingService.Controllers
 
         [HttpGet]
         [Route("getallaccounts")]
-        public IEnumerable<Account> GetAllAccount()
+        public async Task<IEnumerable<Account>> GetAllAccount()
         {
-            List<Account> accounts = _accountsrv.GetAll();
+            IEnumerable<Account> accounts =await _accountsrv.GetAll();
             return accounts;
         }
 
         [HttpGet]
         [Route("getaccountdetails/{id}")]
-        public Account GetById(int id)
+        public async Task<Account> GetById(int id)
         {
-            Account account = _accountsrv.GetById(id);
+            Account account =await _accountsrv.GetById(id);
             return account;
         }
 
@@ -41,26 +41,26 @@ namespace BankingService.Controllers
         //[Authorize(Roles = Role.Admin)]
         [HttpPost]
         [Route("addaccount")]
-        public bool Insert([FromBody] Account account)
+        public async Task<bool> Insert([FromBody] Account account)
         {
-            bool status = _accountsrv.Insert(account);
+            bool status =await _accountsrv.Insert(account);
             return status;
         }
 
         //[Authorize(Roles = Role.Admin)]
         [HttpDelete]
         [Route("delete/{id}")]
-        public bool Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            bool status = _accountsrv.Delete(id);
+            bool status =await _accountsrv.Delete(id);
             return status;
         }
         //[Authorize(Roles = Role.Admin)]
         [HttpPut]
         [Route("update")]
-        public bool Update(Account account)
+        public async  Task<bool> Update(Account account)
         {
-            bool status = _accountsrv.Update(account);
+            bool status =await _accountsrv.Update(account);
             return status;
         }
     }
