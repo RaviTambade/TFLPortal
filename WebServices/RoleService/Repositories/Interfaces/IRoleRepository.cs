@@ -6,14 +6,14 @@ public interface IRoleRepository{
 
 
      
-     List<Role> GetAll();
+     Task<IEnumerable<Role>> GetAll();
 
-     Role Get(int id);
+     Task<Role> Get(int id);
 
-     bool Insert(Role role);
+     Task<bool> Insert(Role role);
 
-     bool Update (Role role);
+     Task<bool> Update (Role role);
 
-     bool Delete(int id);
+     Task<bool> Delete(int id);
      
  }

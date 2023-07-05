@@ -19,7 +19,7 @@ public class RoleRepository : IRoleRepository
     }
 
 
-    public List<Role> GetAll()
+    public async Task<IEnumerable<Role>> GetAll()
     {
         List<Role> roles = new List<Role>();
         MySqlConnection connection = new MySqlConnection();
@@ -28,24 +28,20 @@ public class RoleRepository : IRoleRepository
         {
             string query = "select * from roles";
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            connection.Open();
+            await connection.OpenAsync();
 
             MySqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            while (await  reader.ReadAsync())
             {
                 int id = Int32.Parse(reader["id"].ToString());
                 string roleName = reader["rolename"].ToString();
-             
-
+            
                 Role role = new Role
                 {
                     RoleId = id,
-                    RoleName = roleName,
-                 
+                    RoleName = roleName,           
                 };
-
-                roles.Add(role);
-
+              roles.Add(role);
             }
             reader.Close();
         }
@@ -53,17 +49,14 @@ public class RoleRepository : IRoleRepository
         {
             throw ee;
         }
-
         finally
         {
             connection.Close();
         }
-
-
         return roles;
     }
 
-    public Role Get(int id)
+    public async Task<Role> Get(int id)
     {
 
         Role role = new Role();
@@ -71,84 +64,65 @@ public class RoleRepository : IRoleRepository
         connection.ConnectionString = _conString;
         try
         {
-
             string query = "select * from roles where id =" + id;
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            connection.Open();
+            await connection.OpenAsync();
             MySqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
+            if (await reader.ReadAsync())
             {
-
-
                 string roleName = reader["rolename"].ToString();
-             
-
+    
                 role = new Role()
                 {
                     RoleId = id,
                     RoleName = roleName,
-                 
                 };
             }
             reader.Close();
         }
         catch (Exception ee)
         {
-
             throw ee;
-
         }
-
         finally
         {
             connection.Close();
         }
-
         return role;
     }
 
 
-    public bool Insert(Role role)
+    public async Task<bool> Insert(Role role)
     {
-
         bool status = false;
         MySqlConnection con = new MySqlConnection();
         con.ConnectionString = _conString;
-
         try
         {
             string query = "Insert into roles (rolename) values (@roleName)";
             MySqlCommand cmd = new MySqlCommand(query, con);
             cmd.Parameters.AddWithValue("@roleName", role.RoleName);
        
-            con.Open();
-            int rowsaffected = cmd.ExecuteNonQuery();
+            await con.OpenAsync();
+            int rowsaffected =await cmd.ExecuteNonQueryAsync();
             if (rowsaffected > 0)
             {
-
                 status = true;
             }
         }
-
         catch (Exception ee)
         {
-
             throw ee;
         }
-
         finally
         {
-
             con.Close();
         }
-
-        return status;
-
+       return status;
     }
 
-    public bool Update(Role role)
+    public async Task<bool> Update(Role role)
     {
-
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _conString;
@@ -158,44 +132,37 @@ public class RoleRepository : IRoleRepository
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@roleId", role.RoleId);
             cmd.Parameters.AddWithValue("@roleName", role.RoleName);
-            connection.Open();
-            int rowsaffected = cmd.ExecuteNonQuery();
+            await connection.OpenAsync();
+            int rowsaffected =await cmd.ExecuteNonQueryAsync();
             if (rowsaffected > 0)
             {
                 status = true;
             }
-
         }
-
         catch (Exception ee)
         {
-
-            throw ee;
-
+          throw ee;
         }
-
         finally
         {
-
             connection.Close();
         }
         return status;
     }
 
 
-    public bool Delete(int id)
+    public async Task<bool> Delete(int id)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _conString;
         try
         {
-
             string query = "delete from roles where id=@roleId";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@roleId", id);
-            connection.Open();
-            int rowsaffected = cmd.ExecuteNonQuery();
+            await connection.OpenAsync();
+            int rowsaffected = await cmd.ExecuteNonQueryAsync();
             if (rowsaffected > 0)
             {
                 status = true;
@@ -203,10 +170,8 @@ public class RoleRepository : IRoleRepository
         }
         catch (Exception ee)
         {
-
             throw ee;
         }
-
         finally
         {
             connection.Close();

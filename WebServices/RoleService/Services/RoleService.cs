@@ -12,15 +12,15 @@ public class RoleServices : IRoleServices
     public RoleServices(IRoleRepository repo){
         _repo=repo;
     }
-    public List<Role> GetAll()=>_repo.GetAll();
+    public async Task<IEnumerable<Role>> GetAll()=>await _repo.GetAll();
 
-    public Role Get(int id)=>_repo.Get(id);
+    public async Task<Role> Get(int id)=>await _repo.Get(id);
 
-    public bool Insert(Role role)=>_repo.Insert(role);
+    public async Task<bool> Insert(Role role)=>await _repo.Insert(role);
 
-    public bool Update(Role role)=>_repo.Update(role);
+    public async Task<bool> Update(Role role)=>await _repo.Update(role);
 
-    public bool Delete(int id)=>_repo.Delete(id);
+    public async Task<bool> Delete(int id)=>await _repo.Delete(id);
 
 
 }
