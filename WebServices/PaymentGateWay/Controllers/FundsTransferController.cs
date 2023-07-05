@@ -17,9 +17,9 @@ public class FundTransferController: ControllerBase
     }
 
     [HttpPost]
-    public int PaymentGateWay([FromBody] PaymentGateWay info)
+    public async Task<int> PaymentGateWay([FromBody] PaymentGateWay info)
     {
-        return _svc.FundTransfer(info);
+        return await _svc.FundTransfer(info);
     }
 
 }

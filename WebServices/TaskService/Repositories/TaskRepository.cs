@@ -12,7 +12,7 @@ public class TaskRepository : ITaskRepository
     private IConfiguration _configuration;
     private string _conString;
 
-    public TaskRepository(IConfiguration configuration)
+    public TaskRepository(IConfiguration configuration) 
     {
         _configuration = configuration;
         _conString = this._configuration.GetConnectionString("DefaultConnection");

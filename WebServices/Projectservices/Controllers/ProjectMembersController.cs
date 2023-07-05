@@ -19,54 +19,54 @@ public class ProjectMembersController : ControllerBase
     //http://localhost:5294/api/ProjectMembers/ProjectMembers
     [HttpGet ("ProjectMembers")]
     //[Route("getall")]
-    public IEnumerable<ProjectMember> GetAllTeamMembers()
+    public async Task<IEnumerable<ProjectMember>> GetAllTeamMembers()
     {
-        List<ProjectMember> projectmembers = _service.GetAll();
+        IEnumerable<ProjectMember> projectmembers =await _service.GetAll();
         return projectmembers;
     }
 
     //http://localhost:5294/api/ProjectMembers/1
     [HttpGet ("{id}")]
     //[Route("getbyid/{id}")]
-    public ProjectMember GetById(int id)
+    public async Task<ProjectMember> GetById(int id)
     {
-        ProjectMember projectmember = _service.GetById(id);
+        ProjectMember projectmember =await _service.GetById(id);
         return projectmember;
     }
    
      //http://localhost:5294/api/ProjectMembers/project/1
      [HttpGet ("project/{projectId}")]
     //[Route("getbyid/{id}")]
-    public IEnumerable<ProjectMemberInfo> Get(int projectId)
+    public async Task<IEnumerable<ProjectMemberInfo>> Get(int projectId)
     {
-        List<ProjectMemberInfo> projectmembers = _service.Get(projectId);
+        IEnumerable<ProjectMemberInfo> projectmembers =await _service.Get(projectId);
         return projectmembers;
     }
 
     //http://localhost:5294/api/ProjectMembers/ProjectMember
     [HttpPost ("ProjectMember")]
     //[Route("Insert")]
-    public bool Insert(ProjectMember projectMember)
+    public async Task<bool> Insert(ProjectMember projectMember)
     {
-        bool status = _service.Insert(projectMember);
+        bool status =await _service.Insert(projectMember);
         return status;
     }
     
     //http://localhost:5294/api/ProjectMembers/17
     [HttpPut ("{id}")]
     //[Route("update/{id}")]
-    public bool Update(ProjectMember projectMember)
+    public async Task<bool> Update(ProjectMember projectMember)
     {
-        bool status = _service.Update(projectMember);
+        bool status =await _service.Update(projectMember);
         return status;
     }
 
     //http://localhost:5294/api/ProjectMembers/17
     [HttpDelete ("{id}")]
     //[Route("Delete/{id}")]
-    public bool Delete(int id)
+    public async Task<bool> Delete(int id)
     {
-        bool status = _service.Delete(id);
+        bool status =await _service.Delete(id);
         return status;
     }
 

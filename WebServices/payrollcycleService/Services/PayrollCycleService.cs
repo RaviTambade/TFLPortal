@@ -12,15 +12,15 @@ public class PayRollCycleService : IPayRollCycleServices
     public PayRollCycleService(IPayRollCycleRepository repo){
         _repo=repo;
     }
-    public List<PayRollCycle> GetAll()=>_repo.GetAll();
+    public async Task<IEnumerable<PayRollCycle>> GetAll()=>await _repo.GetAll();
 
-    public PayRollCycle GetById(int id)=>_repo.GetById(id);
+    public async Task<PayRollCycle> GetById(int id)=>await _repo.GetById(id);
 
-    public bool InsertPayRoll(PayRollCycle payroll)=>_repo.InsertPayRoll(payroll);
+    public async Task<bool> InsertPayRoll(PayRollCycle payroll)=>await _repo.InsertPayRoll(payroll);
 
-    public bool UpdatePayRoll(PayRollCycle payroll)=>_repo.UpdatePayRoll(payroll);
+    public async Task<bool> UpdatePayRoll(PayRollCycle payroll)=>await _repo.UpdatePayRoll(payroll);
 
-    public bool DeletePayRoll(int id)=>_repo.DeletePayRoll(id);
+    public async Task<bool> DeletePayRoll(int id)=>await _repo.DeletePayRoll(id);
 
 
 

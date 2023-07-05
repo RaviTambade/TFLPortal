@@ -12,13 +12,13 @@ public class ProjectMemberService:IProjectMemberService{
         this._repo=repo;
     }
 
-    public List<ProjectMember>GetAll()=>_repo.GetAll();
-     public ProjectMember GetById(int Id)=>_repo.GetById(Id);
+    public async Task<IEnumerable<ProjectMember>> GetAll()=>await _repo.GetAll();
+     public async Task<ProjectMember> GetById(int Id)=>await _repo.GetById(Id);
 
-    public List<ProjectMemberInfo>Get(int projectId)=> _repo.Get(projectId);
-     public bool Insert(ProjectMember projectMember)=>_repo.Insert(projectMember);
-      public bool Update(ProjectMember projectMember)=>_repo.Update(projectMember);
-      public bool Delete(int Id)=>_repo.Delete(Id);
+    public async Task<IEnumerable<ProjectMemberInfo>> Get(int projectId)=>await _repo.Get(projectId);
+     public async Task<bool> Insert(ProjectMember projectMember)=>await _repo.Insert(projectMember);
+      public async Task<bool> Update(ProjectMember projectMember)=>await _repo.Update(projectMember);
+      public async Task<bool> Delete(int Id)=>await _repo.Delete(Id);
 
 
 

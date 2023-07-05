@@ -20,7 +20,7 @@ public class ProjectsRepository : IProjectsRepository
     }
 
 
-    public List<Project> GetAll()
+    public async Task<IEnumerable<Project>> GetAll()
     {
         List<Project> projects = new List<Project>();
         MySqlConnection con = new MySqlConnection();
@@ -29,10 +29,10 @@ public class ProjectsRepository : IProjectsRepository
         {
             string query = "SELECT * FROM projects";
             MySqlCommand command = new MySqlCommand(query, con);
-            con.Open();
+            await con.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
 
-            while (reader.Read())
+            while (await reader.ReadAsync())
             {
                 int projId = int.Parse(reader["id"].ToString());
                 string? title = reader["title"].ToString();
@@ -63,7 +63,7 @@ public class ProjectsRepository : IProjectsRepository
         }
         return projects;
     }
-    public Project GetById(int Id)
+    public async Task<Project> GetById(int Id)
     {
         Project project = new Project();
         MySqlConnection con = new MySqlConnection();
@@ -72,10 +72,10 @@ public class ProjectsRepository : IProjectsRepository
         {
             string query = "SELECT * FROM projects where id =@projectId";
             MySqlCommand command = new MySqlCommand(query, con);
-            command.Parameters.AddWithValue("@projectId", Id);
-            con.Open();
+             command.Parameters.AddWithValue("@projectId", Id);
+            await con.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
-            if (reader.Read())
+            if (await reader.ReadAsync())
             {
 
                 int projectId = int.Parse(reader["id"].ToString());
@@ -109,7 +109,7 @@ public class ProjectsRepository : IProjectsRepository
         return project;
     }
 
-    public Project Get(string name)
+    public async Task<Project> Get(string name)
     {
         Project project = new Project();
         MySqlConnection con = new MySqlConnection();
@@ -119,9 +119,9 @@ public class ProjectsRepository : IProjectsRepository
             string query = "SELECT * FROM projects where title =@title";
             MySqlCommand command = new MySqlCommand(query, con);
             command.Parameters.AddWithValue("@title", name);
-            con.Open();
+            await con.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
-            if (reader.Read())
+            if (await reader.ReadAsync())
             {
 
                 int projectId = int.Parse(reader["id"].ToString());
@@ -154,7 +154,7 @@ public class ProjectsRepository : IProjectsRepository
         }
         return project;
     }
-    public bool Insert(Project project)
+    public async Task<bool> Insert(Project project)
     {
         bool status = false;
         MySqlConnection con = new MySqlConnection();
@@ -168,8 +168,8 @@ public class ProjectsRepository : IProjectsRepository
             command.Parameters.AddWithValue("@enddate", project.EndDate);
             command.Parameters.AddWithValue("@projdesc", project.Description);
             command.Parameters.AddWithValue("@status", project.Status);
-            con.Open();
-            int rowsAffected = command.ExecuteNonQuery();
+            await con.OpenAsync();
+            int rowsAffected =await command.ExecuteNonQueryAsync();
             if (rowsAffected > 0)
             {
                 status = true;
@@ -185,7 +185,7 @@ public class ProjectsRepository : IProjectsRepository
         }
         return status;
     }
-    public bool Update(Project project)
+    public async Task<bool> Update(Project project)
     {
         bool status = false;
         MySqlConnection con = new MySqlConnection();
@@ -200,8 +200,8 @@ public class ProjectsRepository : IProjectsRepository
             command.Parameters.AddWithValue("@projdesc", project.Description);
             command.Parameters.AddWithValue("@projId", project.Id);
             command.Parameters.AddWithValue("@status", project.Status);
-            con.Open();
-            int rowsAffected = command.ExecuteNonQuery();
+            await con.OpenAsync();
+            int rowsAffected = await command.ExecuteNonQueryAsync();
             if (rowsAffected > 0)
             {
                 status = true;
@@ -217,7 +217,7 @@ public class ProjectsRepository : IProjectsRepository
         }
         return status;
     }
-    public bool Delete(Int32 Id)
+    public async Task<bool> Delete(Int32 Id)
     {
         bool status = false;
         MySqlConnection con = new MySqlConnection();
@@ -227,8 +227,8 @@ public class ProjectsRepository : IProjectsRepository
             string query = "DELETE  FROM projects WHERE id=@projectId";
             MySqlCommand command = new MySqlCommand(query, con);
             command.Parameters.AddWithValue("@projectId", Id);
-            con.Open();
-            int rowsAffected = command.ExecuteNonQuery();
+            await con.OpenAsync();
+            int rowsAffected = await command.ExecuteNonQueryAsync();
             if (rowsAffected > 0)
             {
                 status = true;
@@ -244,7 +244,7 @@ public class ProjectsRepository : IProjectsRepository
         }
         return status;
     }
-    public List<Project> GetByProject(Date date)
+    public async Task<IEnumerable<Project>> GetByProject(Date date)
     {
         List<Project> projects = new List<Project>();
         MySqlConnection connection = new MySqlConnection();
@@ -252,12 +252,12 @@ public class ProjectsRepository : IProjectsRepository
         try
         {
             string query = "SELECT * FROM projects WHERE startDate BETWEEN @fromdate AND @todate;";
-            connection.Open();
+            await connection.OpenAsync();
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@fromdate", date.FromDate);
             cmd.Parameters.AddWithValue("@todate", date.ToDate);
             MySqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            while (await reader.ReadAsync())
             {
                 int id = int.Parse(reader["id"].ToString());
                 string projtitle = reader["title"].ToString();

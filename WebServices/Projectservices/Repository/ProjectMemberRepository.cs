@@ -19,7 +19,7 @@ public class ProjectMemberRepository : IProjectMemberRepository
         _configuration = configuration;
         _conString = this._configuration.GetConnectionString("DefaultConnection");
     }
-    public List<ProjectMember> GetAll()
+    public async Task<IEnumerable<ProjectMember>> GetAll()
     {
         List<ProjectMember> projectmembers = new List<ProjectMember>();
         MySqlConnection con = new MySqlConnection();
@@ -28,23 +28,20 @@ public class ProjectMemberRepository : IProjectMemberRepository
         {
             string query = "SELECT * FROM projectmembers";
             MySqlCommand command = new MySqlCommand(query, con);
-            con.Open();
+            await con.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
 
-            while (reader.Read())
+            while (await reader.ReadAsync())
             {
                 int id = int.Parse(reader["id"].ToString());
                 int projectId = int.Parse(reader["projectid"].ToString());
                 int empId = int.Parse(reader["empid"].ToString());
 
-
                 ProjectMember projectmember = new ProjectMember
                 {
-
                     Id = id,
                     ProjectId = projectId,
                     EmpId = empId
-
                 };
                 projectmembers.Add(projectmember);
             }
@@ -60,7 +57,7 @@ public class ProjectMemberRepository : IProjectMemberRepository
         }
         return projectmembers;
     }
-    public ProjectMember GetById(int Id)
+    public async Task<ProjectMember> GetById(int Id)
     {
         ProjectMember projectMember = new ProjectMember();
         MySqlConnection con = new MySqlConnection();
@@ -70,15 +67,13 @@ public class ProjectMemberRepository : IProjectMemberRepository
             string query = "SELECT * FROM projectmembers where id =@projectmembers";
             MySqlCommand command = new MySqlCommand(query, con);
             command.Parameters.AddWithValue("@projectmembers", Id);
-            con.Open();
+            await con.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
-            if (reader.Read())
+            if (await reader.ReadAsync())
             {
-
                 int id = int.Parse(reader["id"].ToString());
                 int projectId = int.Parse(reader["projectid"].ToString());
                 int empId = int.Parse(reader["empid"].ToString());
-
 
                 projectMember = new ProjectMember
                 {
@@ -102,7 +97,7 @@ public class ProjectMemberRepository : IProjectMemberRepository
     }
 
 
-    public List<ProjectMemberInfo> Get(int projectId)
+    public async Task<IEnumerable<ProjectMemberInfo>> Get(int projectId)
     {
        List<ProjectMemberInfo> projectMembers = new List<ProjectMemberInfo>();
         MySqlConnection con = new MySqlConnection();
@@ -112,9 +107,9 @@ public class ProjectMemberRepository : IProjectMemberRepository
             string query = "SELECT e.id, e.firstname, e.lastname FROM employees e INNER JOIN projectmembers pm ON e.id = pm.empid WHERE pm.projectid =@projectId;";
             MySqlCommand command = new MySqlCommand(query, con);
             command.Parameters.AddWithValue("@projectId", projectId);
-            con.Open();
+            await con.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
+            while (await reader.ReadAsync())
             {
                 int id = int.Parse(reader["id"].ToString());
                 string firstname = reader["firstname"].ToString();
@@ -141,9 +136,8 @@ public class ProjectMemberRepository : IProjectMemberRepository
     }
 
 
-    public bool Insert(ProjectMember projectMember)
+    public async Task<bool> Insert(ProjectMember projectMember)
     {
-
         bool status = false;
         MySqlConnection con = new MySqlConnection();
         con.ConnectionString = _conString;
@@ -155,8 +149,8 @@ public class ProjectMemberRepository : IProjectMemberRepository
             command.Parameters.AddWithValue("@empId", projectMember.EmpId);
 
 
-            con.Open();
-            int rowsAffected = command.ExecuteNonQuery();
+            await con.OpenAsync();
+            int rowsAffected = await command.ExecuteNonQueryAsync();
             if (rowsAffected > 0)
             {
                 status = true;
@@ -173,7 +167,7 @@ public class ProjectMemberRepository : IProjectMemberRepository
         return status;
 
     }
-    public bool Update(ProjectMember projectMember)
+    public async Task<bool> Update(ProjectMember projectMember)
     {
         bool status = false;
         MySqlConnection con = new MySqlConnection();
@@ -186,8 +180,8 @@ public class ProjectMemberRepository : IProjectMemberRepository
             command.Parameters.AddWithValue("@projectid", projectMember.ProjectId);
             command.Parameters.AddWithValue("@empid", projectMember.EmpId);
 
-            con.Open();
-            int rowsAffected = command.ExecuteNonQuery();
+            await con.OpenAsync();
+            int rowsAffected =await command.ExecuteNonQueryAsync();
             if (rowsAffected > 0)
             {
                 status = true;
@@ -204,7 +198,7 @@ public class ProjectMemberRepository : IProjectMemberRepository
         return status;
 
     }
-    public bool Delete(int Id)
+    public async Task<bool> Delete(int Id)
     {
         bool status = false;
         MySqlConnection con = new MySqlConnection();
@@ -214,8 +208,8 @@ public class ProjectMemberRepository : IProjectMemberRepository
             string query = "DELETE  FROM projectmembers WHERE id=@projectmembers";
             MySqlCommand command = new MySqlCommand(query, con);
             command.Parameters.AddWithValue("@projectmembers", Id);
-            con.Open();
-            int rowsAffected = command.ExecuteNonQuery();
+            await con.OpenAsync();
+            int rowsAffected =await command.ExecuteNonQueryAsync();
             if (rowsAffected > 0)
             {
                 status = true;

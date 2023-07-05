@@ -16,13 +16,13 @@ public class PaymentGatewayRepo:IPaymentGatewayRepo
         _configuration = configuration;
         _conString = this._configuration.GetConnectionString("DefaultConnection");
     }
-    public int FundTransfer(PaymentGateWay info)
+    public async Task<int> FundTransfer(PaymentGateWay info)
     {
         int transactionId=0;
         MySqlConnection con = new MySqlConnection(_conString);
         //Create Command Object
         try{
-            con.Open();
+            await con.OpenAsync();
             MySqlCommand cmd = new MySqlCommand("fundtransfer", con as MySqlConnection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@fromaccountnumber",info.FromAcct);
@@ -32,7 +32,7 @@ public class PaymentGatewayRepo:IPaymentGatewayRepo
             cmd.Parameters.AddWithValue("@toifsccode",info.ToIfsc);
             cmd.Parameters.AddWithValue("@transactionId", MySqlDbType.Int32);
             cmd.Parameters["@transactionId"].Direction=ParameterDirection.Output;
-            int rowsAffected = cmd.ExecuteNonQuery();
+            int rowsAffected =await cmd.ExecuteNonQueryAsync();
             transactionId=(int)cmd.Parameters["@transactionId"].Value;
         }
         catch (Exception e)

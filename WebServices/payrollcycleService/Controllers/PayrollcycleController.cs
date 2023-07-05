@@ -19,10 +19,10 @@ public class PayRollCyclesController : ControllerBase
 
     [HttpGet]
     [Route("getall")]
-    public IEnumerable<PayRollCycle> GetAll()
+    public async Task<IEnumerable<PayRollCycle>> GetAll()
     {
 
-        List<PayRollCycle> payrolls = _service.GetAll();
+        IEnumerable<PayRollCycle> payrolls =await _service.GetAll();
 
         return payrolls;
 
@@ -30,9 +30,9 @@ public class PayRollCyclesController : ControllerBase
 
     [HttpGet]
     [Route("getbyid/{id}")]
-    public PayRollCycle GetById(int id)
+    public async Task<PayRollCycle> GetById(int id)
     {
-        PayRollCycle payroll = _service.GetById(id);
+        PayRollCycle payroll =await _service.GetById(id);
 
 
         return payroll;
@@ -40,31 +40,27 @@ public class PayRollCyclesController : ControllerBase
 
     [HttpPost]
     [Route("Insertpayroll")]
-    public bool InsertPayRoll(PayRollCycle payroll)
+    public async Task<bool> InsertPayRoll(PayRollCycle payroll)
     {
-        bool status = _service.InsertPayRoll(payroll);
-
-
+        bool status =await _service.InsertPayRoll(payroll);
         return status;
     }
 
     [HttpPut]
     [Route("updatepayroll/{id}")]
 
-    public bool UpdatePayRoll(PayRollCycle payroll)
+    public async Task<bool> UpdatePayRoll(PayRollCycle payroll)
     {
-        bool status = _service.UpdatePayRoll(payroll);
-
+        bool status =await _service.UpdatePayRoll(payroll);
         return status;
     }
 
 
     [HttpDelete]
     [Route("Deletepayroll/{id}")]
-    public bool DeletePayroll(int id)
+    public async Task<bool> DeletePayroll(int id)
     {
-        bool status = _service.DeletePayRoll(id);
-
+        bool status =await _service.DeletePayRoll(id);
         return status;
     }
 
