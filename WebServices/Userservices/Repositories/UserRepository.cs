@@ -18,7 +18,7 @@ public class UserRepository : IUserRepository
         _conString = this._configuration.GetConnectionString("DefaultConnection");
     }
 
-    public bool ValidateUser(Credential user)
+    public async Task<bool> ValidateUser(Credential user)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection(_conString);
@@ -29,14 +29,13 @@ public class UserRepository : IUserRepository
             cmd.Connection = connection;
             cmd.Parameters.AddWithValue("@email", user.Email);
             cmd.Parameters.AddWithValue("@password", user.Password);
-            connection.Open();
+            await connection.OpenAsync();
             MySqlDataReader reader = cmd.ExecuteReader();
-            reader.Read();
+            await reader.ReadAsync();
             if ((Int64)reader[0] == 1)
             {
                 status = true;
             }
-       
             reader.Close();
         }
         catch (Exception e)
@@ -51,7 +50,7 @@ public class UserRepository : IUserRepository
 
     }
 
-    public List<User> GetAll()
+    public async Task<IEnumerable<User>> GetAll()
     {
         List<User> users = new List<User>();
         MySqlConnection connection = new MySqlConnection();
@@ -60,27 +59,22 @@ public class UserRepository : IUserRepository
         {
             string query = "select * from users";
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            connection.Open();
+            await connection.OpenAsync();
 
             MySqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            while (await reader.ReadAsync())
             {
                 int id = Int32.Parse(reader["id"].ToString());
                 string email = reader["email"].ToString();
                 string password = reader["password"].ToString();
                 
-
-
                 User user = new User
                 {
                     UserId = id,
                     Email = email,
-                    Password = password,
-                 
+                    Password = password, 
                 };
-
                 users.Add(user);
-
             }
             reader.Close();
         }
@@ -88,17 +82,14 @@ public class UserRepository : IUserRepository
         {
             throw ee;
         }
-
         finally
         {
             connection.Close();
         }
-
-
         return users;
     }
 
-    public User Get(int id)
+    public async Task<User> Get(int id)
     {
 
         User user = new User();
@@ -106,53 +97,41 @@ public class UserRepository : IUserRepository
         connection.ConnectionString = _conString;
         try
         {
-
             string query = "select * from users where id =" + id;
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            connection.Open();
+            await connection.OpenAsync();
             MySqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
+            if (await reader.ReadAsync())
             {
-
-
                 string email = reader["email"].ToString();
                 string password = reader["password"].ToString();
                 
-
                 user = new User()
                 {
                     UserId = id,
                     Email = email,
                     Password = password,
-                    
-
                 };
             }
             reader.Close();
         }
         catch (Exception ee)
         {
-
             throw ee;
-
         }
-
         finally
         {
             connection.Close();
         }
-
         return user;
     }
 
 
-    public bool Insert(User user)
+    public async Task<bool> Insert(User user)
     {
-
         bool status = false;
         MySqlConnection con = new MySqlConnection();
         con.ConnectionString = _conString;
-
         try
         {
             string query = "Insert into users(email,password) values (@email,@password)";
@@ -160,34 +139,26 @@ public class UserRepository : IUserRepository
             cmd.Parameters.AddWithValue("@email", user.Email);
             cmd.Parameters.AddWithValue("@password", user.Password);
 
-            con.Open();
-            int rowsaffected = cmd.ExecuteNonQuery();
+            await con.OpenAsync();
+            int rowsaffected =await cmd.ExecuteNonQueryAsync();
             if (rowsaffected > 0)
             {
-
                 status = true;
             }
         }
-
         catch (Exception ee)
         {
-
             throw ee;
         }
-
         finally
         {
-
             con.Close();
         }
-
         return status;
-
     }
 
-    public bool Update(User user)
+    public async Task<bool> Update(User user)
     {
-
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _conString;
@@ -198,44 +169,37 @@ public class UserRepository : IUserRepository
             cmd.Parameters.AddWithValue("@userId", user.UserId);
             cmd.Parameters.AddWithValue("@email", user.Email);
             cmd.Parameters.AddWithValue("@password", user.Password);
-            connection.Open();
-            int rowsaffected = cmd.ExecuteNonQuery();
+            await connection.OpenAsync();
+            int rowsaffected =await cmd.ExecuteNonQueryAsync();
             if (rowsaffected > 0)
             {
                 status = true;
             }
-
         }
-
         catch (Exception ee)
         {
-
             throw ee;
-
         }
-
         finally
         {
-
             connection.Close();
         }
         return status;
     }
 
 
-    public bool Delete(int id)
+    public async Task<bool> Delete(int id)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _conString;
         try
         {
-
             string query = "delete from users where id=@userId";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@userId", id);
-            connection.Open();
-            int rowsaffected = cmd.ExecuteNonQuery();
+            await connection.OpenAsync();
+            int rowsaffected =await cmd.ExecuteNonQueryAsync();
             if (rowsaffected > 0)
             {
                 status = true;
@@ -243,10 +207,8 @@ public class UserRepository : IUserRepository
         }
         catch (Exception ee)
         {
-
             throw ee;
         }
-
         finally
         {
             connection.Close();

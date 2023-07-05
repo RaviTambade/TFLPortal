@@ -12,16 +12,16 @@ public class UserService : IUserServices
     public UserService(IUserRepository repo){
         _repo=repo;
     }
-    public List<User> GetAll()=>_repo.GetAll();
+    public async Task<IEnumerable<User>> GetAll()=>await _repo.GetAll();
 
-    public User Get(int id)=>_repo.Get(id);
+    public async Task<User> Get(int id)=>await _repo.Get(id);
 
-    public bool Insert(User user)=>_repo.Insert(user);
+    public async Task<bool> Insert(User user)=>await _repo.Insert(user);
 
-    public bool Update(User user)=>_repo.Update(user);
+    public async Task<bool> Update(User user)=>await _repo.Update(user);
 
-    public bool Delete(int id)=>_repo.Delete(id);
+    public async Task<bool> Delete(int id)=>await _repo.Delete(id);
 
-    public bool ValidateUser(Credential user)=>_repo.ValidateUser(user);
+    public async Task<bool> ValidateUser(Credential user)=>await _repo.ValidateUser(user);
 
 }
