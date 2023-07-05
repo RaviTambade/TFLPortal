@@ -11,74 +11,75 @@ public class TimesheetController : ControllerBase
 {
 
     private readonly ITimeSheetServices _service;
-
-    public TimesheetController(ITimeSheetServices service)
+    private readonly ILogger<TimesheetController> _logger;
+    public TimesheetController(ITimeSheetServices service,ILogger<TimesheetController> logger)
     {
         _service = service;
+        _logger=logger;
     }
 
     //
     [HttpGet]
     [Route("getall")]
-    public IEnumerable<Timesheet> GetAll()
+    public async Task <IEnumerable<Timesheet>> GetAll()
     {
-        List<Timesheet> timesheets = _service.GetAll();
+        IEnumerable<Timesheet> timesheets =await _service.GetAll();
         return timesheets;
     }
     
     //http://localhost:5161/api/Timesheet/get/2
     [HttpGet("Get/{id}")]
-    public Timesheet Get(int id)
+      public async Task <Timesheet> GetTimesheet(int id)
     {
-        Timesheet timesheet = _service.Get(id);
+        Timesheet timesheet = await _service.Get(id);
         return timesheet;
     }
 
     [HttpPost("timesheet")]
-    public bool Insert(Timesheet timesheet)
+    public async Task<bool> Insert(Timesheet timesheet)
     {
-        bool status = _service.Insert(timesheet);
+        bool status = await _service.Insert(timesheet);
         return status;
     }
     
     //http://localhost:5161/api/Timesheet/2
     [HttpPut("{id}")]
-    public bool Update(Timesheet timesheets)
+       public async Task<bool> Update(Timesheet timesheets)
     {
-        bool status = _service.Update(timesheets);
+        bool status = await _service.Update(timesheets);
         return status;
     }
 
     //http://localhost:5161/api/Timesheet/2
     [HttpDelete("{id}")]
-    public bool Delete(int id)
+     public async Task<bool> Delete(int id)
     {
-        bool status = _service.Delete(id);
+        bool status = await _service.Delete(id);
         return status;
     }
 
-    //http://localhost:5161/api/Timesheet/2/2023-06-13
-    [HttpGet ("{empid}/{theDate}")]
-    public IEnumerable<TimesheetsDetail> GetAllDetails(int empid,string theDate)
-    {
-        List<TimesheetsDetail> timesheets = _service.GetAllDetails(empid,theDate);
-        return timesheets;
-    }
+  //  http://localhost:5161/api/Timesheet/2/2023-06-13
+    // [HttpGet ("{empid}/{theDate}")]
+    //    public async Task<IEnumerable<TimesheetsDetail>>GetAllDetails(int empid,string theDate)
+    // {
+    //    IEnumerable<TimesheetsDetail> timesheetDetails =await _service.GetAllDetails(empid,theDate);
+    //     return timesheetDetails;
+    // }
 
 
      //http://localhost:5161/api/Timesheet/get
     [HttpGet ("Getdetails/{timesheetId}")]
-    public TimesheetsDetail GetDetails(int timesheetId)
+    public async Task <TimesheetsDetail> Get(int timesheetId)
     {
-        TimesheetsDetail timesheets = _service.GetDetails(timesheetId);
-        return timesheets;
+        TimesheetsDetail timesheetDetails = await _service.GetDetails(timesheetId);
+        return timesheetDetails;
     }
 
      //http://localhost:5161/api/Timesheet/totaltime/2/2023-06-13
     [HttpGet ("totaltime/{empid}/{theDate}")]
-    public WorkingTime GetTotalWorkingTime(int empid,string theDate)
+    public async Task <WorkingTime> GetTotalWorkingTime(int empid,string theDate)
     {
-        WorkingTime time = _service.GetTotalWorkingTime(empid,theDate);
+        WorkingTime time = await _service.GetTotalWorkingTime(empid,theDate);
         return time;
     }
 }

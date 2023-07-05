@@ -71,8 +71,8 @@ public class ClientRepository : IClientRepository
     {
 
         Client client = new Client();
-        MySqlConnection connection = new MySqlConnection(_conString);
-     //   connection.ConnectionString = _conString;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _conString;
         try
         {
 
