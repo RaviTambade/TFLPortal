@@ -3,12 +3,14 @@ using PMS.Models;
 namespace PMS.Repositories.Interfaces;
 
 public interface ITimeRecordRepository{
-    List <Timerecord> GetAll();
-     Timerecord Get(int id);
-     bool Insert(Timerecord timerecord);
-     bool Update(Timerecord timerecord);
-     bool Delete(int id);
-     List <Timerecord> GetAll(int id);
+     Task<IEnumerable<Timerecord>> GetAll();
+     Task<Timerecord> Get(int id);
+     Task<bool> Insert(Timerecord timerecord);
+     Task<bool> Update(Timerecord timerecord);
+     Task <bool> Delete(int id);
+     Task<IEnumerable<Timerecord>> GetAll(int id);
+     Task<TotalWorkingTime> GetTotalWorkingTime(int empid,string startDate,string toDate); 
 
-     TotalWorkingTime GetTotalWorkingTime(int empid,string startDate,string toDate);  
+
+     
 }

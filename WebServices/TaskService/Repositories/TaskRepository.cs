@@ -20,7 +20,7 @@ public class TaskRepository : ITaskRepository
 
     
 
-    public List<Tasks> GetAll()
+    public async Task<IEnumerable<Tasks>> GetAll()
     {
         List<Tasks> tasks = new List<Tasks>();
         MySqlConnection connection = new MySqlConnection();
@@ -29,10 +29,10 @@ public class TaskRepository : ITaskRepository
         {
             string query = "select * from tasks";
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            connection.Open();
+            await connection.OpenAsync();
 
             MySqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            while (await reader.ReadAsync())
             {
                 int taskid = Int32.Parse(reader["id"].ToString());
                  int projectid = Int32.Parse(reader["projectid"].ToString());
@@ -71,7 +71,7 @@ public class TaskRepository : ITaskRepository
 
         return tasks;
     }
-    public Tasks GetById(int id)
+    public async Task<Tasks>  Get(int id)
     {
         Tasks task = new Tasks();
         MySqlConnection connection = new MySqlConnection();
@@ -80,9 +80,9 @@ public class TaskRepository : ITaskRepository
         {
             string query = "select * from tasks where id =" + id;
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            connection.Open();
+            await connection.OpenAsync();
             MySqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
+            if (await reader.ReadAsync())
             {
 
                  int taskid = Int32.Parse(reader["id"].ToString());
@@ -121,7 +121,7 @@ public class TaskRepository : ITaskRepository
     
         return task;
     }
-    public bool Insert(Tasks tasks)
+    public async Task<bool> Insert(Tasks tasks)
     {
         bool status = false;
         MySqlConnection con = new MySqlConnection();
@@ -137,8 +137,8 @@ public class TaskRepository : ITaskRepository
             cmd.Parameters.AddWithValue("@date", tasks.Date);
             cmd.Parameters.AddWithValue("@fromtime", tasks.FromTime);
             cmd.Parameters.AddWithValue("@totime", tasks.ToTime);
-            con.Open();
-            int rowsaffected = cmd.ExecuteNonQuery();
+            await con.OpenAsync();
+            int rowsaffected = await cmd.ExecuteNonQueryAsync();
             if (rowsaffected > 0)
             {
                 status = true;
@@ -155,7 +155,7 @@ public class TaskRepository : ITaskRepository
         return status;
     }
 
-    public bool Update(Tasks task)
+    public async Task<bool> Update(Tasks task)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
@@ -171,7 +171,7 @@ public class TaskRepository : ITaskRepository
             cmd.Parameters.AddWithValue("@date", task.Date);
             cmd.Parameters.AddWithValue("@fromtime", task.FromTime);
             cmd.Parameters.AddWithValue("@totime", task.ToTime);
-            connection.Open();
+            await connection.OpenAsync();
             int rowsaffected = cmd.ExecuteNonQuery();
             if (rowsaffected > 0)
             {
@@ -190,7 +190,7 @@ public class TaskRepository : ITaskRepository
     }
 
 
-    public bool Delete(int id)
+    public async Task<bool> Delete(int id)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
@@ -199,10 +199,10 @@ public class TaskRepository : ITaskRepository
         {
 
             string query = "delete from tasks where id=@taskId";
-            MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@taskId", id);
-            connection.Open();
-            int rowsaffected = command.ExecuteNonQuery();
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@taskId", id);
+            await connection.OpenAsync();
+            int rowsaffected = await cmd.ExecuteNonQueryAsync();
             if (rowsaffected > 0)
             {
                 status = true;
