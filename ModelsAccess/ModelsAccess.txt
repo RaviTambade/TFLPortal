@@ -1,0 +1,86 @@
+Home Module :-
+
+1.Dashboard          All Information About Project                   ------------  Public
+2.Employee View      In this page/link Employee Access Presents      ------------  Public
+3.Manager View       In This Page/link Managers all access Present   ------------  Public
+4.Sing Up            Sign in button available  [Register]            ------------  Public                       
+5.Log In             Login Existinh Emp/Manager Button available     ------------  Public
+6.Sign Out           Sign Out button available                       ------------  Public
+
+
+Manager Module :-
+
+Only Accessible when Manaer Login
+
+1. Project List                Finding All Previous Projects       --------  Public
+2. Task List                   Finding All Previous Tasks          --------  Public
+3. Employee List               Finding All POrevious Employees     --------  Public 
+4. List Project                List of Project By Their status     --------  Public
+5. Add Employee                Adding New Employee                 --------  Public   
+6. Employee Details            Getting details of employees        --------  Public
+7. Employee Update             Updating Employee information       --------  Public
+8. delete Employee             Deleting Existing Employee          --------  Public
+9. Add Task                    Adding New Task                     --------  Public
+10.Task Details                Getiing details Of previous Task    --------  Public
+11.Update Task                 For Updating Previous Tasks         --------  Public
+12.Delete Task                 Deleting Previous Tasks             --------  Public
+13.Add Project                 Adding New Project                  --------  Public
+14.project Details             Finding details of previous project --------  Public
+15.Update Project              Updatig Previous project            --------  Public
+16.Delete Project              Deleting previous project           --------  Public
+17.TimeRecords List            Getting time reocrd list by empId   --------  Public
+18.Calculating TimeRecord      Calculating Time of working of emp  --------  Public     
+
+
+Employee Module :- 
+
+Only Accissible when employee Login
+
+1.TimeSheet List               Finding Timesheet list of certain daye by emp Id                    --------  Public
+2.Add TaskSheet                From this Employye will Added their Daily Tasks                     --------  Public
+3.Detail TaskSheet             Fiding their details of previous tasksheet                          --------  Public
+4.Update Tasksheet             Employee can accessible for updating previous tasksheet             --------  Public 
+5.delete Tasksheet             Employee can delete their previous tasksheet if its wrong inserted  --------  Public    
+6.Add TimeRecord               from this employyee cann add tasksheet records in time records      --------  Public
+7.Detail TimeRecords           From this can get details of time records of previous dates         --------  Public
+8.Update Timerecord            Can access Time record updates while wrongly entered                --------  Public
+9.Calculation TimeSheet        From this access employee calculate their daily working HRS         --------  Public
+10.Calculating TimeRecords     From this access Employee Can find calculation of working HRS
+                                                                           Between Two dates       --------  Public
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
