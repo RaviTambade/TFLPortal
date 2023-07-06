@@ -1,0 +1,42 @@
+Users :
+       1. api/users/getallusers   - retrive data of all users
+                                  - authorization Incharge only
+       
+       2. api/users/getusersbyid/{id}  -  retrive data of isers by their id
+                                       - authorzation incharge ,project managers
+ 
+       3.api/users/updateuser/{id}   - Update data of users by their id - from body users data
+                                     - authoraized incharge only
+
+       4. api/users/deleteusers/{id}  - delete data of users by their id 
+                                      - authorization incharge only
+
+       ** User automatically inserted when employee is inserted by trigger procedure
+
+Employees :
+          1. api/employees/getallemployees  - retrieve data of all employees  
+                                            - authorization Incharge only
+
+          2. api/employees/GetEmployee/{id} - retrieve data of employee by their id
+                                            - authorization Incharge, project managers
+
+          3. api/employees/UpdateEmployee/{id} - Update data of employee by their id -fromBody Employee's data
+                                               - authorization Incharge only
+ 
+          4. api/employees/Insertemployee  - Insert data of employee  -fromBody Employee's data 
+                                           - authorization Incharge only
+
+          5. api/employees/deleteEmployee/{id} - delete data of employee by their id 
+                                               - authorization Incharge only
+
+Team :
+        1. api/team/getallteams  - retrive deta of all teams
+                                 - authorization Incharge only
+        2. api/team/getteambyid/{id}    - retrive data of team by id
+                                        - authorization Incharge only
+        3. api/team/updateteambyid/{id} - Update data of team by their id -fromBody team data
+                                        - authorization Incharge, project managers
+        4. api/team/insertteam/{id}  - Insert data of team -fromBody team data 
+                                     - authorization Incharge only
+        5. api/team/deleteteam/{id}  - delete data of teamby their id 
+                                     - authorization Incharge onlyyyyyyyyyy
