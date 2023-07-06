@@ -51,7 +51,7 @@ public class ProjectsRepository : IProjectsRepository
                 };
                 projects.Add(project);
             }
-            reader.Close();
+            await reader.CloseAsync();
         }
         catch (Exception e)
         {
@@ -59,7 +59,7 @@ public class ProjectsRepository : IProjectsRepository
         }
         finally
         {
-            con.Close();
+            await con.CloseAsync();
         }
         return projects;
     }
@@ -96,7 +96,7 @@ public class ProjectsRepository : IProjectsRepository
 
                 };
             }
-            reader.Close();
+           await reader.CloseAsync();
         }
         catch (Exception e)
         {
@@ -104,7 +104,7 @@ public class ProjectsRepository : IProjectsRepository
         }
         finally
         {
-            con.Close();
+            await con.CloseAsync();
         }
         return project;
     }
@@ -142,7 +142,7 @@ public class ProjectsRepository : IProjectsRepository
 
                 };
             }
-            reader.Close();
+            await reader.CloseAsync();
         }
         catch (Exception e)
         {
@@ -150,7 +150,7 @@ public class ProjectsRepository : IProjectsRepository
         }
         finally
         {
-            con.Close();
+           await con.CloseAsync();
         }
         return project;
     }
@@ -181,7 +181,7 @@ public class ProjectsRepository : IProjectsRepository
         }
         finally
         {
-            con.Close();
+           await con.CloseAsync();
         }
         return status;
     }
@@ -213,7 +213,7 @@ public class ProjectsRepository : IProjectsRepository
         }
         finally
         {
-            con.Close();
+           await con.CloseAsync();
         }
         return status;
     }
@@ -240,7 +240,7 @@ public class ProjectsRepository : IProjectsRepository
         }
         finally
         {
-            con.Close();
+           await con.CloseAsync();
         }
         return status;
     }
@@ -276,7 +276,7 @@ public class ProjectsRepository : IProjectsRepository
                 };
                 projects.Add(project);
             }
-            reader.Close();
+            await reader.CloseAsync();
         }
         catch (Exception e)
         {
@@ -284,7 +284,7 @@ public class ProjectsRepository : IProjectsRepository
         }
         finally
         {
-            connection.Close();
+           await connection.CloseAsync();
         }
         return projects;
     }
