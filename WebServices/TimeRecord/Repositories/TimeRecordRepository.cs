@@ -17,7 +17,7 @@ public class TimeRecordRepository : ITimeRecordRepository
    }
 
 
-    public List<Timerecord> GetAll()
+    public async Task<IEnumerable<Timerecord>> GetAll()
     {
         List<Timerecord> timerecords = new List<Timerecord>();
         MySqlConnection connection = new MySqlConnection();
@@ -26,10 +26,10 @@ public class TimeRecordRepository : ITimeRecordRepository
         {
             string query = "select * from timerecords";
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            connection.Open();
+            await connection.OpenAsync();
 
             MySqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            while (await reader.ReadAsync())
             {
                 int id = Int32.Parse(reader["id"].ToString());
                 int empId=Int32.Parse(reader["empid"].ToString());
@@ -62,7 +62,7 @@ public class TimeRecordRepository : ITimeRecordRepository
     }
 
 
-       public Timerecord Get(int id)
+       public async Task<Timerecord> Get(int id)
     {
         Timerecord timerecord = new Timerecord();
         MySqlConnection connection = new MySqlConnection();
@@ -71,10 +71,10 @@ public class TimeRecordRepository : ITimeRecordRepository
         {
             string query = "select * from timerecords where id ="+ id;
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            connection.Open();
+            await connection.OpenAsync();
 
-            MySqlDataReader reader = cmd.ExecuteReader();
-            if(reader.Read())
+            MySqlDataReader reader =  cmd.ExecuteReader();
+            if(await reader.ReadAsync())
             {
                 int timerecordid = Int32.Parse(reader["id"].ToString());
                 int empId=Int32.Parse(reader["empid"].ToString());
@@ -105,7 +105,7 @@ public class TimeRecordRepository : ITimeRecordRepository
     }
 
 
-  public bool Insert(Timerecord timerecord)
+  public async Task<bool> Insert(Timerecord timerecord)
       {
         bool status = false;
         MySqlConnection con = new MySqlConnection();
@@ -118,8 +118,8 @@ public class TimeRecordRepository : ITimeRecordRepository
             cmd.Parameters.AddWithValue("@date", timerecord.Date);
             cmd.Parameters.AddWithValue("@totaltime", timerecord.TotalTime);
             cmd.Parameters.AddWithValue("@empid", timerecord.EmpId);
-            con.Open();
-            int rowsaffected = cmd.ExecuteNonQuery();
+            await con.OpenAsync();
+            int rowsaffected = await cmd.ExecuteNonQueryAsync();
             if (rowsaffected > 0)
             {
                 status = true;
@@ -136,7 +136,7 @@ public class TimeRecordRepository : ITimeRecordRepository
         return status;
     }
 
-     public bool Update(Timerecord timerecord)
+     public async Task<bool> Update(Timerecord timerecord)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
@@ -149,8 +149,8 @@ public class TimeRecordRepository : ITimeRecordRepository
             cmd.Parameters.AddWithValue("@date", timerecord.Date);
             cmd.Parameters.AddWithValue("@totaltime", timerecord.Date);
             cmd.Parameters.AddWithValue("@employeeId", timerecord.EmpId);
-            connection.Open();
-            int rowsaffected = cmd.ExecuteNonQuery();
+            await connection.OpenAsync();
+            int rowsaffected = await cmd.ExecuteNonQueryAsync();
             if (rowsaffected > 0)
             {
                 status = true;
@@ -168,7 +168,7 @@ public class TimeRecordRepository : ITimeRecordRepository
     }
 
 
-    public bool Delete(int id)
+    public async Task<bool> Delete(int id)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
@@ -178,8 +178,8 @@ public class TimeRecordRepository : ITimeRecordRepository
             string query = "delete from timerecords where id=@timerecordid";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@timerecordid", id);
-            connection.Open();
-            int rowsaffected = cmd.ExecuteNonQuery();
+            await connection.OpenAsync();
+            int rowsaffected = await cmd.ExecuteNonQueryAsync();
             if (rowsaffected > 0)
             {
                 status = true;
@@ -196,7 +196,7 @@ public class TimeRecordRepository : ITimeRecordRepository
         return status;
     }
 
-    public List<Timerecord> GetAll(int empid)
+    public async Task<IEnumerable<Timerecord>> GetAll(int empid)
     {
         List<Timerecord> timerecords = new List<Timerecord>();
         MySqlConnection connection = new MySqlConnection();
@@ -205,10 +205,10 @@ public class TimeRecordRepository : ITimeRecordRepository
         {
             string query = "select * from timerecords where empid="+empid;
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            connection.Open();
+            await connection.OpenAsync();
 
             MySqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            while (await reader.ReadAsync())
             {
                 int id = Int32.Parse(reader["id"].ToString());
                 int empId=Int32.Parse(reader["empid"].ToString());
@@ -237,7 +237,7 @@ public class TimeRecordRepository : ITimeRecordRepository
         return timerecords;
     }
 
-    public TotalWorkingTime GetTotalWorkingTime(int empid, string fromDate, string toDate)
+    public  async Task<TotalWorkingTime>  GetTotalWorkingTime(int empid, string fromDate, string toDate)
      {
         TotalWorkingTime totalWT = new TotalWorkingTime();
         MySqlConnection connection = new MySqlConnection();
@@ -246,12 +246,12 @@ public class TimeRecordRepository : ITimeRecordRepository
         {
             string query = "SELECT CONCAT(FLOOR(SUM(TIME_TO_SEC(totaltime)/3600)),':',LPAD(FLOOR((SUM(TIME_TO_SEC(totaltime)/ 60)) % 60), 2,'0')) AS totalworkingHRS FROM timerecords WHERE  date >=@fromDate AND date <=@toDate && empid="+empid;
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            connection.Open();
+            await connection.OpenAsync();;
             cmd.Parameters.AddWithValue("@empid",empid);
             cmd.Parameters.AddWithValue("@fromDate",fromDate);
             cmd.Parameters.AddWithValue("@toDate",toDate);
             MySqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
+            if (await reader.ReadAsync())
             {
                 string totalworkingtime = reader["totalworkingHRS"].ToString();
                totalWT = new TotalWorkingTime
@@ -272,5 +272,6 @@ public class TimeRecordRepository : ITimeRecordRepository
         }
         return totalWT;
     }
-    
+
+   
 }

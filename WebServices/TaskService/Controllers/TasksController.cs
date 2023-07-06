@@ -10,19 +10,21 @@ public class TaskController : ControllerBase
 {
 
     private readonly ITaskServices _service;
+    private readonly ILogger<TaskController> _logger;
 
-    public TaskController(ITaskServices service)
+    public TaskController(ITaskServices service,ILogger<TaskController> logger)
     {
         _service = service;
+        _logger=logger;
     }
 
 
     //http://localhost:5034/api/Task/getall
     [HttpGet ("getall")]
-    public IEnumerable<Tasks> GetAll()
+    public async Task<IEnumerable<Tasks>> GetAll()
     {
 
-        List<Tasks> tasks = _service.GetAll();
+        IEnumerable<Tasks> tasks =await _service.GetAll();
 
         return tasks;
 
@@ -30,19 +32,17 @@ public class TaskController : ControllerBase
 
      //http://localhost:5034/api/task/get/1
     [HttpGet ("get/{id}")]
-    public Tasks GetById(int id)
+    public async Task <Tasks> Get(int id)
     {
-        Tasks task = _service.GetById(id);
-          Console.WriteLine(task);
-
-        return task;
+         Tasks task = await _service.Get(id);
+         return task;
     }
 
     //http://localhost:5034/api/task/task
     [HttpPost ("task")]
-    public bool Insert(Tasks task)
+    public async Task<bool> Insert(Tasks task)
     {
-        bool status = _service.Insert(task);
+        bool status = await _service.Insert(task);
 
 
         return status;
@@ -50,17 +50,17 @@ public class TaskController : ControllerBase
     
     //http://localhost:5034/api/task/1
     [HttpPut ("{id}")]
-    public bool Update(Tasks task)
+    public async Task<bool> Update(Tasks task)
     {
-        bool status = _service.Update(task);
+        bool status = await _service.Update(task);
         return status;
     }
 
     //http://localhost:5034/api/task/1
     [HttpDelete ("{id}")]
-    public bool Delete(int id)
+    public async Task<bool> Delete(int id)
     {
-        bool status = _service.Delete(id);
+        bool status = await _service.Delete(id);
 
         return status;
     }

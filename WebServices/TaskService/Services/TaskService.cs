@@ -12,16 +12,11 @@ public class TaskServices : ITaskServices
     public TaskServices(ITaskRepository repo){
         _repo=repo;
     }
-    public List<Tasks> GetAll()=>_repo.GetAll();
-
-    public Tasks GetById(int id)=>_repo.GetById(id);
-
-    public bool Insert(Tasks tasks)=>_repo.Insert(tasks);
-
-    public bool Update(Tasks task)=>_repo.Update(task);
-
-    public bool Delete(int id)=>_repo.Delete(id);
-
+    public async Task<IEnumerable<Tasks>> GetAll() =>await _repo.GetAll();
+    public async Task<Tasks>Get(int id)=>await _repo.Get(id);
+    public async Task<bool> Insert(Tasks tasks)=>await _repo.Insert(tasks);
+    public async Task<bool> Update(Tasks task)=>await _repo.Update(task);
+    public async Task<bool> Delete(int id)=>await _repo.Delete(id);
 
 
 }

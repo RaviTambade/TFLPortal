@@ -4,14 +4,14 @@ namespace PMS.Repositories.Interfaces;
  
 public interface ITaskRepository{
  
-     List<Tasks> GetAll();
+     Task<IEnumerable<Tasks>> GetAll();
 
-     Tasks GetById(int id);
+     Task<Tasks> Get(int id);
 
-     bool Insert(Tasks task);
+     Task<bool> Insert(Tasks task);
 
-     bool Update(Tasks task);
+     Task<bool> Update(Tasks task);
 
-     bool Delete(int id);
+     Task <bool> Delete(int id);
      
  }
