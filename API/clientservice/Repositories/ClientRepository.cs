@@ -51,7 +51,7 @@ public class ClientRepository : IClientRepository
                 clients.Add(client);
 
             }
-            reader.Close();
+           await reader.CloseAsync();
         }
         catch (Exception ee)
         {
@@ -59,7 +59,7 @@ public class ClientRepository : IClientRepository
         }
         finally
         {
-            connection.Close();
+           await connection.CloseAsync();
         }
         return clients;
     }
@@ -91,7 +91,7 @@ public class ClientRepository : IClientRepository
                    AccountNumber=accountNumber
                 };
             }
-            reader.Close();
+            await reader.CloseAsync();
         }
         catch (Exception ee)
         {
@@ -99,7 +99,7 @@ public class ClientRepository : IClientRepository
         }
         finally
         {
-            connection.Close();
+           await connection.CloseAsync();
         }
         return client;
     }
@@ -164,7 +164,7 @@ public class ClientRepository : IClientRepository
         }
         finally
         {
-            connection.Close();
+           await connection.CloseAsync();
         }
         return status;
     }
@@ -196,7 +196,7 @@ public class ClientRepository : IClientRepository
 
         finally
         {
-            connection.Close();
+           await connection.CloseAsync();
         }
         return status;
     }
