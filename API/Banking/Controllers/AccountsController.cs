@@ -20,6 +20,8 @@ namespace BankingService.Controllers
             _accountsrv = accountsrv;
         }
 
+
+        // httpGet :  http://localhost:5224/api/account/getallaccount
         [HttpGet]
         [Route("getallaccounts")]
         public async Task<IEnumerable<Account>> GetAllAccount()
@@ -28,6 +30,8 @@ namespace BankingService.Controllers
             return accounts;
         }
 
+
+        // httpGet :  http://localhost:5224/api/account/getaccountdetails/1
         [HttpGet]
         [Route("getaccountdetails/{id}")]
         public async Task<Account> GetById(int id)
@@ -37,7 +41,7 @@ namespace BankingService.Controllers
         }
 
 
-
+         // httpPost :  http://localhost:5224/api/account/addaccount
         //[Authorize(Roles = Role.Admin)]
         [HttpPost]
         [Route("addaccount")]
@@ -47,6 +51,7 @@ namespace BankingService.Controllers
             return status;
         }
 
+        // httpDelete :  http://localhost:5224/api/account/delete/1
         //[Authorize(Roles = Role.Admin)]
         [HttpDelete]
         [Route("delete/{id}")]
@@ -55,6 +60,8 @@ namespace BankingService.Controllers
             bool status =await _accountsrv.Delete(id);
             return status;
         }
+
+        // httpPut :  http://localhost:5224/api/account/update
         //[Authorize(Roles = Role.Admin)]
         [HttpPut]
         [Route("update")]

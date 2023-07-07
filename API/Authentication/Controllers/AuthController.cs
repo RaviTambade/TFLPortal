@@ -15,7 +15,9 @@ namespace AuthenticationService.Controllers
             _svc = svc;
         }
 
-        [HttpPost("authenticate")] 
+        // httpPost  : http://localhost:5291/api/auth/authenticate
+        [HttpPost]
+        [Route("authenticate")] 
         public async Task<IActionResult> Authenticate([FromBody] AuthenticateRequest request)
         {
             var user =await _svc.Authenticate(request);
@@ -24,8 +26,9 @@ namespace AuthenticationService.Controllers
             return Ok(user);
         }
 
-        
-        [HttpGet("getall")]  
+        // httpGet :http://localhost:5291/api/auth/getall
+        [HttpGet]
+        [Route("getall")]  
         public async Task<IEnumerable<User>> GetAll()
         {
             var users = _svc.GetAll();

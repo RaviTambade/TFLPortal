@@ -17,50 +17,49 @@ public class PayRollCyclesController : ControllerBase
         _service = service;
     }
 
+
+    // httpGet : http://localhost:5181/api/payrolecycle/getall
     [HttpGet]
     [Route("getall")]
     public async Task<IEnumerable<PayRollCycle>> GetAll()
     {
-
-        IEnumerable<PayRollCycle> payrolls =await _service.GetAll();
-
+        IEnumerable<PayRollCycle> payrolls = await _service.GetAll();
         return payrolls;
-
     }
 
+    // httpGet : http://localhost:5181/api/payrolecycle/getbyid/1
     [HttpGet]
     [Route("getbyid/{id}")]
     public async Task<PayRollCycle> GetById(int id)
     {
-        PayRollCycle payroll =await _service.GetById(id);
-
-
+        PayRollCycle payroll = await _service.GetById(id);
         return payroll;
     }
 
+    // httpPost : http://localhost:5181/api/payrolecycle/insertpayroll
     [HttpPost]
     [Route("Insertpayroll")]
     public async Task<bool> InsertPayRoll(PayRollCycle payroll)
     {
-        bool status =await _service.InsertPayRoll(payroll);
+        bool status = await _service.InsertPayRoll(payroll);
         return status;
     }
 
+    // httpPut : http://localhost:5181/api/payrolecycle/updateparyroll/1
     [HttpPut]
     [Route("updatepayroll/{id}")]
-
     public async Task<bool> UpdatePayRoll(PayRollCycle payroll)
     {
-        bool status =await _service.UpdatePayRoll(payroll);
+        bool status = await _service.UpdatePayRoll(payroll);
         return status;
     }
 
-
+    // httpDelete : http://localhost:5181/api/payrolecycle/deletepayroll/1
     [HttpDelete]
     [Route("Deletepayroll/{id}")]
     public async Task<bool> DeletePayroll(int id)
     {
-        bool status =await _service.DeletePayRoll(id);
+        bool status = await _service.DeletePayRoll(id);
         return status;
     }
 

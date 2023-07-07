@@ -12,62 +12,59 @@ public class EmployeesController : ControllerBase
 {
 
     private readonly IEmployeesService _service;
-
     public EmployeesController(IEmployeesService service)
     {
         _service = service;
     }
     
-    // http://localhost:5230/api/employees/employees
-    [HttpGet ("employees")]
+    // httpGet : http://localhost:5230/api/employees/employees
+    [HttpGet]
+    [Route ("employees")]
     public async Task<IEnumerable<Employee>> GetAll()
     {
-
         IEnumerable<Employee> employees =await _service.GetAll();
-
         return employees;
-
     }
    
-    // http://localhost:5230/api/employees/2
-    [HttpGet ("{id}")] 
+    //httpGet http://localhost:5230/api/employees/2
+    [HttpGet] 
+    [Route ("{id}")]
     public async Task<Employee> GetById(int id)
     {
         Employee employees =await _service.GetById(id);
-
-
         return employees;
     }
 
-    // http://localhost:5230/api/employees/employee
-    [HttpPost ("Employee")]
+    //httpPost : http://localhost:5230/api/employees/employee
+    [HttpPost]
+    [Route ("Employee")]
     public async Task<bool> InsertUser(Employee employees)
     {
         bool status =await _service.Insert(employees);
-
-
         return status;
     }
 
-    //http://localhost:5230/api/employees/employee
-    [HttpPut ("Employee")]
+    //httpPut : http://localhost:5230/api/employees/employee
+    [HttpPut]
+    [Route ("Employee")]
     public async Task<bool> UpdateEmployee(Employee emp)
     {
         bool status =await _service.Update(emp);
-
         return status;
     }
 
-    // http://localhost:5230/api/employees/12
-    [HttpDelete ("{id}")]
+    //httpDelete : http://localhost:5230/api/employees/12
+    [HttpDelete]
+    [Route ("{id}")]
     public async Task<bool> DeleteEmployee(int id)
     {
         bool status =await _service.Delete(id);
         return status;
     }
 
-    //http://localhost:5230/api/employees/role/manager
-    [HttpGet ("role/{role}")] 
+    //httpGet : http://localhost:5230/api/employees/role/manager
+    [HttpGet]
+    [Route ("role/{role}")] 
     public async Task<IEnumerable<Employee>> GetByRole(string role)
     {
         IEnumerable<Employee> employees =await _service.GetByRole(role);
