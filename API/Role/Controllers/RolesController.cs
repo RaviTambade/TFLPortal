@@ -9,48 +9,54 @@ namespace roles.Controllers;
 [Route("/api/[controller]")]
 public class RoleController : ControllerBase
 {
-
     private readonly IRoleServices _service;
-
     public RoleController(IRoleServices service)
     {
         _service = service;
     }
 
-    [HttpGet ("getall")]
+    // httpGet : http://localhost:5131/api/role/getall
+    [HttpGet]
+    [Route("getall")]
     public async Task<IEnumerable<Role>> GetAll()
     {
-        IEnumerable<Role> roles =await _service.GetAll();
+        IEnumerable<Role> roles = await _service.GetAll();
         return roles;
     }
 
-    [HttpGet("get/{id}")]
+    // httpGet : http://localhost:5131/api/role/get/1
+    [HttpGet]
+    [Route("get/{id}")]
     public async Task<Role> GetById(int id)
     {
-        Role role =await _service.Get(id);
+        Role role = await _service.Get(id);
         return role;
     }
 
-    [HttpPost("Role")]
+    // httpPost : http://localhost:5131/api/role/get/1
+    [HttpPost]
+    [Route("Role")]
     public async Task<bool> Insert(Role role)
     {
-        bool status =await _service.Insert(role);
+        bool status = await _service.Insert(role);
         return status;
     }
 
-    [HttpPut  ("{id}")]
-
+    // httpPut : http://localhost:5131/api/role/1
+    [HttpPut]
+    [Route("{id}")]
     public async Task<bool> Update(Role role)
     {
-        bool status =await _service.Update(role);
+        bool status = await _service.Update(role);
         return status;
     }
 
-
-    [HttpDelete  ("{id}")]
+    // httpDelete : http://localhost:5131/api/role/1
+    [HttpDelete]
+    [Route("{id}")]
     public async Task<bool> Delete(int id)
     {
-        bool status =await _service.Delete(id);
+        bool status = await _service.Delete(id);
         return status;
     }
 
