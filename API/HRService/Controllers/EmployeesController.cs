@@ -1,8 +1,8 @@
-
 using HRService.Models;
-using HRService.Services;
 using HRService.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using PMS.Helpers;
+
 
 namespace employees.Controllers;
 
@@ -18,6 +18,7 @@ public class EmployeesController : ControllerBase
     }
     
     // httpGet : http://localhost:5230/api/employees/employees
+    [Authorize]
     [HttpGet]
     [Route ("employees")]
     public async Task<IEnumerable<Employee>> GetAll()

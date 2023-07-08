@@ -2,7 +2,7 @@ using HRService.Repositories;
 using HRService.Repositories.Interfaces;
 using HRService.Services;
 using HRService.Services.Interfaces;
-
+using PMS.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,5 +41,7 @@ app.UseCors(x => x.AllowAnyOrigin()
                     .AllowAnyMethod()
                     .AllowAnyHeader());
 app.MapControllers();
+
+app.UseMiddleware<JwtMiddleware>();
 
 app.Run();
