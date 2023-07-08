@@ -21,7 +21,7 @@ namespace ProjectsService.Controllers
             _projectsrv = projectsrv;
         }
         
-        //http://localhost:5294/api/projects/projects
+        //httpGet : http://localhost:5294/api/projects/projects
         [Authorize]
         [HttpGet]
         [Route ("Projects")]
@@ -31,7 +31,7 @@ namespace ProjectsService.Controllers
             return projects;
         }
 
-        //http://localhost:5294/api/projects/1
+        //httpGet : http://localhost:5294/api/projects/1
         [Authorize]
         [HttpGet ]
         [Route ("{id}")]
@@ -41,7 +41,7 @@ namespace ProjectsService.Controllers
             return project;
         }
 
-        //http://localhost:5294/api/projects/project/PMSAPP
+        //httpGet :  http://localhost:5294/api/projects/project/PMSAPP
        [Authorize]
        [HttpGet ]
        [Route ("project/{name}")]
@@ -53,7 +53,7 @@ namespace ProjectsService.Controllers
 
 
         // //[Authorize(Roles = Role.Admin)]
-        //http://localhost:5294/api/projects/projects
+        //httpPost : http://localhost:5294/api/projects/projects
         [Authorize]
         [HttpPost ]
         [Route ("projects")]
@@ -64,7 +64,7 @@ namespace ProjectsService.Controllers
         }
 
         // //[Authorize(Roles = Role.Admin)]
-        // http://localhost:5294/api/projects/project
+        //httpPut : http://localhost:5294/api/projects/project
         [Authorize]
         [HttpPut ]
         [Route ("project")]
@@ -76,7 +76,7 @@ namespace ProjectsService.Controllers
 
 
         // //[Authorize(Roles = Role.Admin)]
-        //http://localhost:5294/api/projects/5
+        //httpDelete : http://localhost:5294/api/projects/5
         [Authorize]
         [HttpDelete ]
         [Route ("{id}")]
@@ -87,7 +87,7 @@ namespace ProjectsService.Controllers
         }
 
 
-        //http://localhost:5294/api/projects/betweendates  // frombody {"fromdate":"2022/01/01","todate": "2022/12/12"}
+        //httpPost : http://localhost:5294/api/projects/betweendates  // frombody {"fromdate":"2022/01/01","todate": "2022/12/12"}
         [Authorize]
         [HttpPost]
         [Route ("betweendates")]
