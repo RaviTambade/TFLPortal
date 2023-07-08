@@ -1,3 +1,4 @@
+using PMS.Helpers;
 using PMS.Repositories;
 using  PMS.Repositories.Interfaces;
 using PMS.Services;
@@ -37,5 +38,7 @@ app.UseCors(x => x.AllowAnyOrigin()
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseMiddleware<JwtMiddleware>();
 
 app.Run();

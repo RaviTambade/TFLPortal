@@ -2,6 +2,7 @@
 using PMS.Models;
 using PMS.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using PMS.Helpers;
 
 namespace clients.Controllers;
 
@@ -19,6 +20,7 @@ public class ClientController : ControllerBase
     }
 
     // httpGet :  http://localhost:5076/api/client/getall
+    [Authorize]
     [HttpGet]
     [Route("getall")]
     public async Task<IEnumerable<Client>> GetAll()
@@ -30,7 +32,9 @@ public class ClientController : ControllerBase
 
 
     // httpGet :  http://localhost:5076/api/client/get/1
-    [HttpGet("get/{id}")]
+    [Authorize]
+    [HttpGet]
+    [Route ("get/{id}")]
     public async Task<Client> Get(int id)
     {
         Client client = await _service.Get(id);
@@ -39,7 +43,9 @@ public class ClientController : ControllerBase
 
 
     // httpPost :  http://localhost:5076/api/client/client
-    [HttpPost("Client")]
+    [Authorize]
+    [HttpPost]
+    [Route ("Client")]
     public async Task<bool> Insert(Client client)
     {
         bool status = await _service.Insert(client);
@@ -48,7 +54,9 @@ public class ClientController : ControllerBase
 
 
     // httpPut :  http://localhost:5076/api/client/1
-    [HttpPut("{id}")]
+    [Authorize]
+    [HttpPut]
+    [Route ("{id}")]
     public async Task<bool> Update(Client role)
     {
         bool status = await _service.Update(role);
@@ -56,7 +64,9 @@ public class ClientController : ControllerBase
     }
 
     // httpDelete :  http://localhost:5076/api/client/1
-    [HttpDelete("{id}")]
+    [Authorize]
+    [HttpDelete]
+    [Route ("{id}")]
     public async Task<bool> Delete(int id)
     {
         bool status = await _service.Delete(id);

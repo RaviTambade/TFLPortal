@@ -5,6 +5,7 @@ using ProjectAPI.Models;
 using ProjectAPI.Service;
 using ProjectAPI.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
+using PMS.Helpers;
 
 
 namespace ProjectsService.Controllers
@@ -21,7 +22,9 @@ namespace ProjectsService.Controllers
         }
         
         //http://localhost:5294/api/projects/projects
-        [HttpGet("Projects")]
+        [Authorize]
+        [HttpGet]
+        [Route ("Projects")]
         public async Task<IEnumerable<Project>> GetAll()
         {
             IEnumerable<Project> projects =await _projectsrv.GetAll();
@@ -29,7 +32,9 @@ namespace ProjectsService.Controllers
         }
 
         //http://localhost:5294/api/projects/1
-        [HttpGet ("{id}")]
+        [Authorize]
+        [HttpGet ]
+        [Route ("{id}")]
         public async Task<Project> GetById(int id)
         {
             Project project =await _projectsrv.GetById(id);
@@ -37,7 +42,9 @@ namespace ProjectsService.Controllers
         }
 
         //http://localhost:5294/api/projects/project/PMSAPP
-       [HttpGet ("project/{name}")]
+       [Authorize]
+       [HttpGet ]
+       [Route ("project/{name}")]
         public async Task<Project> Get(string name)
         {
             Project project =await _projectsrv.Get(name);
@@ -47,8 +54,9 @@ namespace ProjectsService.Controllers
 
         // //[Authorize(Roles = Role.Admin)]
         //http://localhost:5294/api/projects/projects
-        [HttpPost ("projects")]
-        //[Route("insert")]
+        [Authorize]
+        [HttpPost ]
+        [Route ("projects")]
         public async Task<bool> Insert([FromBody] Project project)
         {
             bool status =await _projectsrv.Insert(project);
@@ -57,7 +65,9 @@ namespace ProjectsService.Controllers
 
         // //[Authorize(Roles = Role.Admin)]
         // http://localhost:5294/api/projects/project
-        [HttpPut ("project")]
+        [Authorize]
+        [HttpPut ]
+        [Route ("project")]
         public async Task<bool> Update(Project project)
         {
             bool status =await _projectsrv.Update(project);
@@ -67,7 +77,9 @@ namespace ProjectsService.Controllers
 
         // //[Authorize(Roles = Role.Admin)]
         //http://localhost:5294/api/projects/5
-        [HttpDelete ("{id}")]
+        [Authorize]
+        [HttpDelete ]
+        [Route ("{id}")]
         public async Task<bool> Delete(int id)
         {
             bool status =await _projectsrv.Delete(id);
@@ -76,8 +88,9 @@ namespace ProjectsService.Controllers
 
 
         //http://localhost:5294/api/projects/betweendates  // frombody {"fromdate":"2022/01/01","todate": "2022/12/12"}
-        [HttpPost("betweendates")]
-       // [Route("/ongoingprojects/{fromdate}/{todate}")]
+        [Authorize]
+        [HttpPost]
+        [Route ("betweendates")]
         public async Task<IEnumerable<Project>> GetByProject([FromBody] Date date)
         {
             IEnumerable<Project> projects =await _projectsrv.GetByProject(date);

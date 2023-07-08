@@ -2,6 +2,7 @@
 using PMS.Models;
 using PMS.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using PMS.Helpers;
 
 namespace payrollcycles.Controllers;
 
@@ -9,9 +10,7 @@ namespace payrollcycles.Controllers;
 [Route("/api/[controller]")]
 public class PayRollCyclesController : ControllerBase
 {
-
     private readonly IPayRollCycleServices _service;
-
     public PayRollCyclesController(IPayRollCycleServices service)
     {
         _service = service;
@@ -19,6 +18,7 @@ public class PayRollCyclesController : ControllerBase
 
 
     // httpGet : http://localhost:5181/api/payrolecycle/getall
+    [Authorize]
     [HttpGet]
     [Route("getall")]
     public async Task<IEnumerable<PayRollCycle>> GetAll()
@@ -28,6 +28,7 @@ public class PayRollCyclesController : ControllerBase
     }
 
     // httpGet : http://localhost:5181/api/payrolecycle/getbyid/1
+    [Authorize]
     [HttpGet]
     [Route("getbyid/{id}")]
     public async Task<PayRollCycle> GetById(int id)
@@ -37,6 +38,7 @@ public class PayRollCyclesController : ControllerBase
     }
 
     // httpPost : http://localhost:5181/api/payrolecycle/insertpayroll
+    [Authorize]
     [HttpPost]
     [Route("Insertpayroll")]
     public async Task<bool> InsertPayRoll(PayRollCycle payroll)
@@ -46,6 +48,7 @@ public class PayRollCyclesController : ControllerBase
     }
 
     // httpPut : http://localhost:5181/api/payrolecycle/updateparyroll/1
+    [Authorize]
     [HttpPut]
     [Route("updatepayroll/{id}")]
     public async Task<bool> UpdatePayRoll(PayRollCycle payroll)
@@ -55,6 +58,7 @@ public class PayRollCyclesController : ControllerBase
     }
 
     // httpDelete : http://localhost:5181/api/payrolecycle/deletepayroll/1
+    [Authorize]
     [HttpDelete]
     [Route("Deletepayroll/{id}")]
     public async Task<bool> DeletePayroll(int id)

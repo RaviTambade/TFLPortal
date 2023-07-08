@@ -28,6 +28,7 @@ public class EmployeesController : ControllerBase
     }
    
     //httpGet http://localhost:5230/api/employees/2
+    [Authorize]
     [HttpGet] 
     [Route ("{id}")]
     public async Task<Employee> GetById(int id)
@@ -37,6 +38,7 @@ public class EmployeesController : ControllerBase
     }
 
     //httpPost : http://localhost:5230/api/employees/employee
+    [Authorize]
     [HttpPost]
     [Route ("Employee")]
     public async Task<bool> InsertUser(Employee employees)
@@ -46,6 +48,7 @@ public class EmployeesController : ControllerBase
     }
 
     //httpPut : http://localhost:5230/api/employees/employee
+    [Authorize]
     [HttpPut]
     [Route ("Employee")]
     public async Task<bool> UpdateEmployee(Employee emp)
@@ -55,6 +58,7 @@ public class EmployeesController : ControllerBase
     }
 
     //httpDelete : http://localhost:5230/api/employees/12
+    [Authorize]
     [HttpDelete]
     [Route ("{id}")]
     public async Task<bool> DeleteEmployee(int id)
@@ -64,6 +68,7 @@ public class EmployeesController : ControllerBase
     }
 
     //httpGet : http://localhost:5230/api/employees/role/manager
+    [Authorize]
     [HttpGet]
     [Route ("role/{role}")] 
     public async Task<IEnumerable<Employee>> GetByRole(string role)

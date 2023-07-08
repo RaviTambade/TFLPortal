@@ -2,6 +2,7 @@ using API.Repositories;
 using API.Repositories.Interfaces;
 using API.Services;
 using API.Services.Interfaces;
+using PMS.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -44,5 +45,7 @@ app.UseCors(x => x.AllowAnyOrigin()
                     .AllowAnyHeader());
 
 app.MapControllers();
+
+app.UseMiddleware<JwtMiddleware>();
 
 app.Run();

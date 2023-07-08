@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using API.Models;
 using API.Services;
 using API.Services.Interfaces;
+using PMS.Helpers;
 
 namespace PaymentGateWayService.Controllers;
 
+//[Authorize]
 [ApiController]
 [Route("/api/[controller]")]
 public class FundTransferController: ControllerBase
