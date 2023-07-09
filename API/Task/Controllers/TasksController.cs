@@ -1,6 +1,7 @@
 using PMS.Models;
 using PMS.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using PMS.Helpers;
 
 namespace task.Controllers;
 
@@ -18,6 +19,7 @@ public class TaskController : ControllerBase
 
 
     //httpGet : http://localhost:5034/api/Task/getall
+    [Authorize]
     [HttpGet]
     [Route("getall")]
     public async Task<IEnumerable<Tasks>> GetAll()
@@ -27,6 +29,7 @@ public class TaskController : ControllerBase
     }
 
     //httpGet : http://localhost:5034/api/task/get/1
+    [Authorize]
     [HttpGet]
     [Route("get/{id}")]
     public async Task<Tasks> Get(int id)
@@ -36,6 +39,7 @@ public class TaskController : ControllerBase
     }
 
     //httpPost : http://localhost:5034/api/task/task
+    [Authorize]
     [HttpPost]
     [Route("task")]
     public async Task<bool> Insert(Tasks task)
@@ -45,6 +49,7 @@ public class TaskController : ControllerBase
     }
 
     //httpPut : http://localhost:5034/api/task/1
+    [Authorize]
     [HttpPut]
     [Route("{id}")]
     public async Task<bool> Update(Tasks task)
@@ -54,6 +59,7 @@ public class TaskController : ControllerBase
     }
 
     //httpDelete : http://localhost:5034/api/task/1
+    [Authorize]
     [HttpDelete]
     [Route("{id}")]
     public async Task<bool> Delete(int id)

@@ -23,13 +23,6 @@ builder.Services.AddTransient<IProjectMemberRepository,ProjectMemberRepository>(
 builder.Services.AddTransient<IProjectMemberService,ProjectMemberService>();
 
 
-// builder.Services.AddTransient<IProjectsRepository,ProjectsRepository>();
-// builder.Services.AddTransient<IProjectsService,ProjectService>();
-
-// builder.Services.AddTransient<IProjectMemberRepository,ProjectMemberRepository>();
-// builder.Services.AddTransient<IProjectMemberService,ProjectMemberService>();
-
-
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
