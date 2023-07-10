@@ -36,4 +36,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+
+app.UseMiddleware<PMS.Helpers.JwtMiddleware>();
+
 app.Run();

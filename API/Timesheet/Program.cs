@@ -3,6 +3,7 @@ using  PMS.Repositories.Interfaces;
 using PMS.Services;
 using PMS.Services.Interfaces;
 using PMS.Repositories;
+using PMS.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,5 +39,7 @@ app.UseCors(x => x.AllowAnyOrigin()
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseMiddleware<JwtMiddleware>();
 
 app.Run();

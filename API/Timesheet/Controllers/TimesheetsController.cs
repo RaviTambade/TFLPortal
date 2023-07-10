@@ -2,6 +2,7 @@
 using PMS.Models;
 using PMS.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using PMS.Helpers;
 
 namespace users.Controllers;
 
@@ -19,6 +20,7 @@ public class TimesheetController : ControllerBase
     }
 
     //httpGet :  http://localhost:5161/api/Timesheet/getall 
+    [Authorize]
     [HttpGet]
     [Route("getall")]
     public async Task<IEnumerable<Timesheet>> GetAll()
@@ -28,6 +30,7 @@ public class TimesheetController : ControllerBase
     }
 
     //httpGet ; http://localhost:5161/api/Timesheet/get/2
+    [Authorize]
     [HttpGet]
     [Route("Get/{id}")]
     public async Task<Timesheet> GetTimesheet(int id)
@@ -37,6 +40,7 @@ public class TimesheetController : ControllerBase
     }
 
     //httpPost ; http://localhost:5161/api/Timesheet/timesheet
+    [Authorize]
     [HttpPost]
     [Route("timesheet")]
     public async Task<bool> Insert(Timesheet timesheet)
@@ -46,6 +50,7 @@ public class TimesheetController : ControllerBase
     }
 
     //httpPut : http://localhost:5161/api/Timesheet/2
+    [Authorize]
     [HttpPut]
     [Route("{id}")]
     public async Task<bool> Update(Timesheet timesheets)
@@ -55,6 +60,7 @@ public class TimesheetController : ControllerBase
     }
 
     //httpDelete : http://localhost:5161/api/Timesheet/2
+    [Authorize]
     [HttpDelete]
     [Route("{id}")]
     public async Task<bool> Delete(int id)
@@ -73,6 +79,7 @@ public class TimesheetController : ControllerBase
 
 
     //httpGet : http://localhost:5161/api/Timesheet/Getdetails/1
+    [Authorize]
     [HttpGet]
     [Route("Getdetails/{timesheetId}")]
     public async Task<TimesheetsDetail> Get(int timesheetId)
@@ -82,6 +89,7 @@ public class TimesheetController : ControllerBase
     }
 
     //httpGet ; http://localhost:5161/api/Timesheet/totaltime/2/2023-06-13
+    [Authorize]
     [HttpGet]
     [Route("totaltime/{empid}/{theDate}")]
     public async Task<WorkingTime> GetTotalWorkingTime(int empid, string theDate)
