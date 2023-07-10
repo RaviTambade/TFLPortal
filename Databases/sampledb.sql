@@ -1,20 +1,4 @@
-INSERT INTO users(email,password)VALUES('Rushi@12345','RC@12345');
-INSERT INTO users(email,password)VALUES('Akshay@12345','AK@12345');
-INSERT INTO users(email,password)VALUES('Rohit@12345','RG@12345');
-INSERT INTO users(email,password)VALUES('Shubham@12345','ST@12345');
-INSERT INTO users(email,password)VALUES('Abhay@12345','AN@12345');
-INSERT INTO users(email,password)VALUES('Sahil@12345','SM@12345');
-INSERT INTO users(email,password)VALUES('Pragati@12345','PB@12345');
-INSERT INTO users(email,password)VALUES('Akash@12345','Aks@12345');
-INSERT INTO users(email,password)VALUES('Vedant@12345','VY@12345');
-INSERT INTO users(email,password)VALUES('Rmangavle@12345','RM@12345');
-INSERT INTO users(email,password)VALUES('RaviT@12345','RT@12345');
-INSERT INTO users(email,password)VALUES('ShubhamN@12345','SN@12345');
-INSERT INTO users(email,password)VALUES('SAM@12345','SC@12345');
-INSERT INTO users(email,password)VALUES('KBhapkar@12345','KB@12345');
-INSERT INTO users(email,password)VALUES('RohitJ@12345','Ro@12345');
-INSERT INTO users(email,password)VALUES('RoshanC@12345','Roshan@12345');
-INSERT INTO users(email,password)VALUES('AkashJ@12345','Akash@12345');
+
 
 INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1001','MAHB0000286','2023-03-01 12:40:40',22555);
 INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1002','MAHB0000286','2023-03-01 12:40:40',22555);
@@ -212,10 +196,6 @@ INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,7,3,
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,6,5,'2023-05-30 ','11:00:00', '12:00:00');
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,5,6,'2023-06-30 ','11:00:00', '12:00:00');
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,4,6,'2023-06-30 ','11:00:00', '12:00:00');
-
-
-
-
 
 
 

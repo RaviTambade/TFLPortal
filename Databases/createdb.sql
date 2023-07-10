@@ -1,15 +1,13 @@
+DROP DATABASE IF EXISTS PMS;
+
 CREATE DATABASE PMS;
 USE PMS;
 
-CREATE TABLE users(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-                   email VARCHAR(50) UNIQUE NOT NULL,
-                   password VARCHAR(50) NOT NULL);
-                   
 CREATE TABLE accounts(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-				 accountnumber VARCHAR(25) UNIQUE, 
-                     ifsccode VARCHAR(50) ,
-                     registerdate DATETIME ,
-                     balance DOUBLE);
+				      accountnumber VARCHAR(25) UNIQUE, 
+                      ifsccode VARCHAR(50) ,
+                      registerdate DATETIME ,
+                      balance DOUBLE);
                      
 CREATE TABLE employees(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
                       firstname VARCHAR (50),
@@ -19,14 +17,13 @@ CREATE TABLE employees(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                       contactnumber VARCHAR(20),
                       accountnumber VARCHAR(25) NOT NULL UNIQUE ,
                       CONSTRAINT fk_account_no1 FOREIGN KEY(accountnumber) REFERENCES accounts(accountnumber) ON UPDATE CASCADE ON DELETE CASCADE,
-                      userid INT NOT NULL UNIQUE ,CONSTRAINT fk_user_id FOREIGN KEY(userid) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE); 
+                      userid INT NOT NULL); 
 
 CREATE TABLE roles(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                    rolename varchar (50));
                    
 CREATE TABLE userroles(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-		     	   userid INT NOT NULL, 
-                       CONSTRAINT fk_user_id2 FOREIGN KEY(userid) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE,
+		     	       userid INT NOT NULL, 
                        roleid INT NOT NULL,
                        CONSTRAINT fk_role_id2 FOREIGN KEY(roleid) REFERENCES roles(id) ON UPDATE CASCADE ON DELETE CASCADE);
 
