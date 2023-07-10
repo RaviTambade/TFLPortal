@@ -26,21 +26,21 @@ INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1023'
 INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1025','UBIN0000286','2021-08-04 07-40-35',25000);
 INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1026','UBIN0000286','2021-08-04 07-40-35',25000);
 
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,accountnumber,userid) VALUES('Rushikesh','Chikane','1998-05-19','2023-02-01','7038548505','1001',1);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,accountnumber,userid) VALUES('Akshay','Tanpure','1998-05-11','2023-02-02','7038548506','1002',2);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,accountnumber,userid) VALUES('Rohit','Gore','1998-05-20','2023-02-11','7038548507','1003',3);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,accountnumber,userid) VALUES('Shubham','Teli','1998-05-29','2023-02-21','7038548515','1004',4);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,accountnumber,userid) VALUES('Abhay','Navale','1999-05-19','2021-02-01','7038548525','1005',5);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,accountnumber,userid) VALUES('Sahil','Mankar','1996-05-19','2023-05-05','7038548513','1006',6);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,accountnumber,userid) VALUES('Pragati','Bangar','1997-05-19','2023-02-01','7038548595','1007',7);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,accountnumber,userid) VALUES('Akash','Ajab','1995-05-29','2021-05-01','7038548516','1008',8);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,accountnumber,userid) VALUES('Vedant','Yadav','1996-05-14','2023-02-07','7038548515','1009',9);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,accountnumber,userid) VALUES('Rohit','Mangavale','1998-05-19','2023-02-01','7038548505','1010',10);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,accountnumber,userid) VALUES('Ravi','Tambade','1975-05-19','1994-02-01','7038548501','1011',11);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,accountnumber,userid) VALUES('Shubham','Navale','1994-05-19','2020-02-01','7038548502','1012',12);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,accountnumber,userid) VALUES('Vaibhav','More','1996-03-15','2021-02-05','7038548505','1013',13);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,accountnumber,userid) VALUES('Rohit','Patil','1998-05-19','2023-02-01','7038548506','1014',14);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,accountnumber,userid) VALUES('Rahul','jain','1998-05-11','2023-02-02','7038548512','1015',15);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Rushikesh','Chikane','1998-05-19','2023-02-01','7038548505','/assets/images/emp.jpg','1001',1);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Akshay','Tanpure','1998-05-11','2023-02-02','7038548506','/assets/images/emp.jpg','1002',2);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Rohit','Gore','1998-05-20','2023-02-11','7038548507','/assets/images/emp.jpg','1003',3);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Shubham','Teli','1998-05-29','2023-02-21','7038548515','/assets/images/emp.jpg','1004',4);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Abhay','Navale','1999-05-19','2021-02-01','7038548525','/assets/images/emp.jpg','1005',5);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Sahil','Mankar','1996-05-19','2023-05-05','7038548513','/assets/images/emp.jpg','1006',6);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Pragati','Bangar','1997-05-19','2023-02-01','7038548595','/assets/images/emp.jpg','1007',7);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Akash','Ajab','1995-05-29','2021-05-01','7038548516','/assets/images/emp.jpg','1008',8);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Vedant','Yadav','1996-05-14','2023-02-07','7038548515','/assets/images/emp.jpg','1009',9);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Rohit','Mangavale','1998-05-19','2023-02-01','7038548505','/assets/images/emp.jpg','1010',10);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Ravi','Tambade','1975-05-19','1994-02-01','7038548501','/assets/images/emp.jpg','1011',11);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Shubham','Navale','1994-05-19','2020-02-01','7038548502','/assets/images/emp.jpg','1012',12);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Vaibhav','More','1996-03-15','2021-02-05','7038548505','/assets/images/emp.jpg','1013',13);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Rohit','Patil','1998-05-19','2023-02-01','7038548506','/assets/images/emp.jpg','1014',14);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Rahul','jain','1998-05-11','2023-02-02','7038548512','/assets/images/emp.jpg','1015',15);
 
 
 
@@ -196,6 +196,10 @@ INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,7,3,
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,6,5,'2023-05-30 ','11:00:00', '12:00:00');
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,5,6,'2023-06-30 ','11:00:00', '12:00:00');
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,4,6,'2023-06-30 ','11:00:00', '12:00:00');
+
+
+
+
 
 
 

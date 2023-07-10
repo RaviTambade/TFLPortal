@@ -8,6 +8,7 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Contact Number</th>
+            <th>Images</th>
           </thead>
           <tbody>
             <tr *ngFor="let employee of employees">
@@ -15,6 +16,7 @@
               <td>{{employee.firstName}}</td>
               <td>{{employee.lastName }}</td>
               <td>{{employee.contactNumber}}</td>
+              <td><img src="{{employee.image}}" alt=""></td>
               <td><button (click)="onDetails(employee.id)">Details</button></td>
             </tr>
           </tbody>

@@ -21,8 +21,6 @@ export class EmployeeListComponent implements OnInit {
         console.log(this.employees);
       })
 
-
-
   };
 
   // goToEmployee(empid: number): void {

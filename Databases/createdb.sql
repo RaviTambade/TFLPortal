@@ -15,6 +15,7 @@ CREATE TABLE employees(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                       birthdate DATETIME,
                       hiredate DATETIME,
                       contactnumber VARCHAR(20),
+                      image varchar(255),
                       accountnumber VARCHAR(25) NOT NULL UNIQUE ,
                       CONSTRAINT fk_account_no1 FOREIGN KEY(accountnumber) REFERENCES accounts(accountnumber) ON UPDATE CASCADE ON DELETE CASCADE,
                       userid INT NOT NULL); 
