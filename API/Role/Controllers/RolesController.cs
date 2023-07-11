@@ -2,6 +2,7 @@
 using PMS.Models;
 using PMS.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using PMS.Helpers;
 
 namespace roles.Controllers;
 
@@ -16,6 +17,7 @@ public class RoleController : ControllerBase
     }
 
     // httpGet : http://localhost:5131/api/role/getall
+    [Authorize]
     [HttpGet]
     [Route("getall")]
     public async Task<IEnumerable<Role>> GetAll()
@@ -25,6 +27,7 @@ public class RoleController : ControllerBase
     }
 
     // httpGet : http://localhost:5131/api/role/get/1
+    [Authorize]
     [HttpGet]
     [Route("get/{id}")]
     public async Task<Role> GetById(int id)
@@ -34,6 +37,7 @@ public class RoleController : ControllerBase
     }
 
     // httpPost : http://localhost:5131/api/role/get/1
+    [Authorize]
     [HttpPost]
     [Route("Role")]
     public async Task<bool> Insert(Role role)
@@ -43,6 +47,7 @@ public class RoleController : ControllerBase
     }
 
     // httpPut : http://localhost:5131/api/role/1
+    [Authorize]
     [HttpPut]
     [Route("{id}")]
     public async Task<bool> Update(Role role)
@@ -52,6 +57,7 @@ public class RoleController : ControllerBase
     }
 
     // httpDelete : http://localhost:5131/api/role/1
+    [Authorize]
     [HttpDelete]
     [Route("{id}")]
     public async Task<bool> Delete(int id)
