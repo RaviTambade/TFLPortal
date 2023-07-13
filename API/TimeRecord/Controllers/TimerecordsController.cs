@@ -16,7 +16,7 @@ public class TimerecordsController : ControllerBase
     }
 
     //httpGet : http://localhost:5121/api/Timerecords/getall
-    [Authorize]
+    //[Authorize]
     [HttpGet]
     [Route("getall")]
     public async Task<IEnumerable<Timerecord>> GetAll()
@@ -27,7 +27,7 @@ public class TimerecordsController : ControllerBase
     }
 
     //httpGet : http://localhost:5121/api/Timerecords/get/1
-    [Authorize]
+    //[Authorize]
     [HttpGet]
     [Route("get/{id}")]
 
@@ -38,7 +38,7 @@ public class TimerecordsController : ControllerBase
     }
 
     //httpPost : http://localhost:5121/api/timerecords/timerecord
-    [Authorize]
+    //[Authorize]
     [HttpPost]
     [Route("timerecord")]
     public async Task<bool> Insert(Timerecord timerecord)
@@ -48,7 +48,7 @@ public class TimerecordsController : ControllerBase
     }
 
     //httpPut : http://localhost:5121/api/Timerecords/1
-    [Authorize]
+    //[Authorize]
     [HttpPut]
     [Route("{id}")]
     public async Task<bool> Update(Timerecord timerecord)
@@ -58,7 +58,7 @@ public class TimerecordsController : ControllerBase
     }
 
     //httpDelete : http://localhost:5121/api/Timerecords/1
-    [Authorize]
+    //[Authorize]
     [HttpDelete]
     [Route("{id}")]
     public async Task<bool> Delete(int id)
@@ -68,7 +68,7 @@ public class TimerecordsController : ControllerBase
     }
 
     //httpGet : http://localhost:5121/api/Timerecords/getall/1
-    [Authorize]
+    //[Authorize]
     [HttpGet]
     [Route("getall/{empid}")]
     public async Task<IEnumerable<Timerecord>> GetAll(int empid)
@@ -78,7 +78,7 @@ public class TimerecordsController : ControllerBase
     }
 
     // httpGet : http://localhost:5121/api/Timerecords/totaltime/2/2023-06-06/2023-06-10
-    [Authorize]
+    //[Authorize]
     [HttpGet]
     [Route("totaltime/{empid}/{fromDate}/{toDate}")]
     public async Task<TotalWorkingTime> GetTotalWorkingTime(int empid, string fromDate, string toDate)

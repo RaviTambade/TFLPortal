@@ -20,7 +20,7 @@ public class TimesheetController : ControllerBase
     }
 
     //httpGet :  http://localhost:5161/api/Timesheet/getall 
-    [Authorize]
+    //[Authorize]
     [HttpGet]
     [Route("getall")]
     public async Task<IEnumerable<Timesheet>> GetAll()
@@ -30,7 +30,7 @@ public class TimesheetController : ControllerBase
     }
 
     //httpGet ; http://localhost:5161/api/Timesheet/get/2
-    [Authorize]
+    //[Authorize]
     [HttpGet]
     [Route("Get/{id}")]
     public async Task<Timesheet> GetTimesheet(int id)
@@ -40,7 +40,7 @@ public class TimesheetController : ControllerBase
     }
 
     //httpPost ; http://localhost:5161/api/Timesheet/timesheet
-    [Authorize]
+    //[Authorize]
     [HttpPost]
     [Route("timesheet")]
     public async Task<bool> Insert(Timesheet timesheet)
