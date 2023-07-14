@@ -28,7 +28,7 @@ public class PayRollCyclesController : ControllerBase
     }
 
     // httpGet : http://localhost:5181/api/payrolecycle/getbyid/1
-    [Authorize]
+       //[Authorize]
     [HttpGet]
     [Route("getbyid/{id}")]
     public async Task<PayRollCycle> GetById(int id)
@@ -38,7 +38,7 @@ public class PayRollCyclesController : ControllerBase
     }
 
     // httpPost : http://localhost:5181/api/payrolecycle/insertpayroll
-    [Authorize]
+       //[Authorize]
     [HttpPost]
     [Route("Insertpayroll")]
     public async Task<bool> InsertPayRoll(PayRollCycle payroll)
@@ -48,7 +48,7 @@ public class PayRollCyclesController : ControllerBase
     }
 
     // httpPut : http://localhost:5181/api/payrolecycle/updateparyroll/1
-    [Authorize]
+      // [Authorize]
     [HttpPut]
     [Route("updatepayroll/{id}")]
     public async Task<bool> UpdatePayRoll(PayRollCycle payroll)
@@ -58,7 +58,7 @@ public class PayRollCyclesController : ControllerBase
     }
 
     // httpDelete : http://localhost:5181/api/payrolecycle/deletepayroll/1
-    [Authorize]
+     //  [Authorize]
     [HttpDelete]
     [Route("Deletepayroll/{id}")]
     public async Task<bool> DeletePayroll(int id)
