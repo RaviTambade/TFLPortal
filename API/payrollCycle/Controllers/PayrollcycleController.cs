@@ -18,7 +18,7 @@ public class PayRollCyclesController : ControllerBase
 
 
     // httpGet : http://localhost:5181/api/payrolecycle/getall
-    [Authorize]
+     //  [Authorize]
     [HttpGet]
     [Route("getall")]
     public async Task<IEnumerable<PayRollCycle>> GetAll()
