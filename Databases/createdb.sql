@@ -3,11 +3,11 @@ DROP DATABASE IF EXISTS PMS;
 CREATE DATABASE PMS;
 USE PMS;
 
-CREATE TABLE accounts(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-				      accountnumber VARCHAR(25) UNIQUE, 
-                      ifsccode VARCHAR(50) ,
-                      registerdate DATETIME ,
-                      balance DOUBLE);
+-- CREATE TABLE accounts(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+-- 				      accountnumber VARCHAR(25) UNIQUE, 
+--                       ifsccode VARCHAR(50) ,
+--                       registerdate DATETIME ,
+--                       balance DOUBLE);
                      
 CREATE TABLE employees(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
                       firstname VARCHAR (50),
@@ -16,8 +16,8 @@ CREATE TABLE employees(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                       hiredate DATETIME,
                       contactnumber VARCHAR(20),
                       image varchar(255),
-                      accountnumber VARCHAR(25) NOT NULL UNIQUE ,
-                      CONSTRAINT fk_account_no1 FOREIGN KEY(accountnumber) REFERENCES accounts(accountnumber) ON UPDATE CASCADE ON DELETE CASCADE,
+                    --   accountnumber VARCHAR(25) NOT NULL UNIQUE ,
+                    --   CONSTRAINT fk_account_no1 FOREIGN KEY(accountnumber) REFERENCES accounts(accountnumber) ON UPDATE CASCADE ON DELETE CASCADE,
                       userid INT NOT NULL); 
 
 CREATE TABLE roles(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -45,8 +45,9 @@ CREATE TABLE clients(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                     fullname VARCHAR(50),
                     address VARCHAR(200),
                     details VARCHAR(200),
-                    accountnumber VARCHAR(25) NOT NULL UNIQUE ,
-                    CONSTRAINT fk_account_no2 FOREIGN KEY(accountnumber) REFERENCES accounts(accountnumber) ON UPDATE CASCADE ON DELETE CASCADE);
+                    -- accountnumber VARCHAR(25) NOT NULL UNIQUE ,
+                    -- CONSTRAINT fk_account_no2 FOREIGN KEY(accountnumber) REFERENCES accounts(accountnumber) ON UPDATE CASCADE ON DELETE CASCADE
+                    );
                     
 CREATE TABLE onproject(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                       projectid INT NOT NULL, 
@@ -76,8 +77,8 @@ CREATE TABLE payrollCycles(id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
                            payrollcyclenumber INT NOT NULL,
                            startdate DATETIME,
                            enddate  DATETIME,
-                           accountnumber VARCHAR(25) NOT NULL UNIQUE ,
-                           CONSTRAINT fk_account_no3 FOREIGN KEY(accountnumber) REFERENCES accounts(accountnumber) ON UPDATE CASCADE ON DELETE CASCADE,
+                        --    accountnumber VARCHAR(25) NOT NULL UNIQUE ,
+                        --    CONSTRAINT fk_account_no3 FOREIGN KEY(accountnumber) REFERENCES accounts(accountnumber) ON UPDATE CASCADE ON DELETE CASCADE,
                            depositdate DATETIME);
                                
  CREATE TABLE timesheets (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
