@@ -47,7 +47,7 @@ public class RoleController : ControllerBase
     }
 
     // httpPut : http://localhost:5131/api/role/1
-       [Authorize]
+       //   [Authorize]
     [HttpPut]
     [Route("{id}")]
     public async Task<bool> Update(Role role)
@@ -57,7 +57,7 @@ public class RoleController : ControllerBase
     }
 
     // httpDelete : http://localhost:5131/api/role/1
-      [Authorize]
+       //  [Authorize]
     [HttpDelete]
     [Route("{id}")]
     public async Task<bool> Delete(int id)
