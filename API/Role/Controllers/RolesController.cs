@@ -17,7 +17,7 @@ public class RoleController : ControllerBase
     }
 
     // httpGet : http://localhost:5131/api/role/getall
-    [Authorize]
+   // [Authorize]
     [HttpGet]
     [Route("getall")]
     public async Task<IEnumerable<Role>> GetAll()
@@ -27,7 +27,7 @@ public class RoleController : ControllerBase
     }
 
     // httpGet : http://localhost:5131/api/role/get/1
-    [Authorize]
+    //   [Authorize]
     [HttpGet]
     [Route("get/{id}")]
     public async Task<Role> GetById(int id)
@@ -37,7 +37,7 @@ public class RoleController : ControllerBase
     }
 
     // httpPost : http://localhost:5131/api/role/get/1
-    [Authorize]
+     //  [Authorize]
     [HttpPost]
     [Route("Role")]
     public async Task<bool> Insert(Role role)
@@ -47,7 +47,7 @@ public class RoleController : ControllerBase
     }
 
     // httpPut : http://localhost:5131/api/role/1
-    [Authorize]
+       [Authorize]
     [HttpPut]
     [Route("{id}")]
     public async Task<bool> Update(Role role)
@@ -57,7 +57,7 @@ public class RoleController : ControllerBase
     }
 
     // httpDelete : http://localhost:5131/api/role/1
-    [Authorize]
+      [Authorize]
     [HttpDelete]
     [Route("{id}")]
     public async Task<bool> Delete(int id)
