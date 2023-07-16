@@ -53,7 +53,7 @@ INSERT INTO roles(rolename)VALUES('Developer');
 INSERT INTO roles(rolename)VALUES('Consultant');
 INSERT INTO roles(rolename)VALUES('Tester');
 INSERT INTO roles(rolename)VALUES('Manager');
-
+INSERT INTO roles(rolename)VALUES('employee');
 
 INSERT INTO userroles(userid,roleid) VALUES (1,1);
 INSERT INTO userroles(userid,roleid) VALUES (2,1);
