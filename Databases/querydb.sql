@@ -37,6 +37,21 @@ FROM timesheets WHERE  empid = 2 AND date = '2023-06-13';
 SELECT CONCAT(FLOOR(SUM(TIME_TO_SEC(totaltime)/3600)),':',LPAD(FLOOR((SUM(TIME_TO_SEC(totaltime)/ 60)) % 60),2,'0')) AS totalworkingHRS 
 FROM timerecords WHERE  date >='2023-06-01' AND date <='2023-06-10'&& empid=1;
 
+select * From timerecords where empid=2;
+select * from employees;
+select * from users;
+select * from roles;
+select * from userroles;
+select * from projectmembers;
+select * from projects;
+select * from clients;
+select * from onproject;
+select * from assigned;
+select * from timesheets;
+select * from timerecords where empid =2;
+select * from projects;
+select * from tasks;
+select * from payrollCycles;
 
 
 
