@@ -20,7 +20,7 @@ public class ClientController : ControllerBase
     }
 
     // httpGet :  http://localhost:5076/api/client/getall
-    [Authorize]
+    //[Authorize]
     [HttpGet]
     [Route("getall")]
     public async Task<IEnumerable<Client>> GetAll()
@@ -32,7 +32,7 @@ public class ClientController : ControllerBase
 
 
     // httpGet :  http://localhost:5076/api/client/get/1
-    [Authorize]
+    //[Authorize]
     [HttpGet]
     [Route ("get/{id}")]
     public async Task<Client> Get(int id)
@@ -43,7 +43,7 @@ public class ClientController : ControllerBase
 
 
     // httpPost :  http://localhost:5076/api/client/client
-    [Authorize]
+    //[Authorize]
     [HttpPost]
     [Route ("Client")]
     public async Task<bool> Insert(Client client)
@@ -54,7 +54,7 @@ public class ClientController : ControllerBase
 
 
     // httpPut :  http://localhost:5076/api/client/1
-    [Authorize]
+    //[Authorize]
     [HttpPut]
     [Route ("{id}")]
     public async Task<bool> Update(Client role)
@@ -64,7 +64,7 @@ public class ClientController : ControllerBase
     }
 
     // httpDelete :  http://localhost:5076/api/client/1
-    [Authorize]
+    //[Authorize]
     [HttpDelete]
     [Route ("{id}")]
     public async Task<bool> Delete(int id)

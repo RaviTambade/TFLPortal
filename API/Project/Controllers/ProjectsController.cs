@@ -22,7 +22,7 @@ namespace ProjectsService.Controllers
         }
         
         //httpGet : http://localhost:5294/api/projects/projects
-        [Authorize]
+       // [Authorize]
         [HttpGet]
         [Route ("Projects")]
         public async Task<IEnumerable<Project>> GetAll()
@@ -32,7 +32,7 @@ namespace ProjectsService.Controllers
         }
 
         //httpGet : http://localhost:5294/api/projects/1
-        [Authorize]
+        //[Authorize]
         [HttpGet ]
         [Route ("{id}")]
         public async Task<Project> GetById(int id)
@@ -42,7 +42,7 @@ namespace ProjectsService.Controllers
         }
 
         //httpGet :  http://localhost:5294/api/projects/project/PMSAPP
-       [Authorize]
+       //[Authorize]
        [HttpGet ]
        [Route ("project/{name}")]
         public async Task<Project> Get(string name)
@@ -54,7 +54,7 @@ namespace ProjectsService.Controllers
 
         // //[Authorize(Roles = Role.Admin)]
         //httpPost : http://localhost:5294/api/projects/projects
-        [Authorize]
+        //[Authorize]
         [HttpPost ]
         [Route ("projects")]
         public async Task<bool> Insert([FromBody] Project project)
@@ -65,7 +65,7 @@ namespace ProjectsService.Controllers
 
         // //[Authorize(Roles = Role.Admin)]
         //httpPut : http://localhost:5294/api/projects/project
-        [Authorize]
+        //[Authorize]
         [HttpPut ]
         [Route ("project")]
         public async Task<bool> Update(Project project)
@@ -77,7 +77,7 @@ namespace ProjectsService.Controllers
 
         // //[Authorize(Roles = Role.Admin)]
         //httpDelete : http://localhost:5294/api/projects/5
-        [Authorize]
+        //[Authorize]
         [HttpDelete ]
         [Route ("{id}")]
         public async Task<bool> Delete(int id)
@@ -88,7 +88,7 @@ namespace ProjectsService.Controllers
 
 
         //httpPost : http://localhost:5294/api/projects/betweendates  // frombody {"fromdate":"2022/01/01","todate": "2022/12/12"}
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         [Route ("betweendates")]
         public async Task<IEnumerable<Project>> GetByProject([FromBody] Date date)
