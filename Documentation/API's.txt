@@ -22,21 +22,26 @@ Employees :
 
           3. api/employees/UpdateEmployee/{id} - Update data of employee by their id -fromBody Employee's data
                                                - authorization Incharge only
- 
+
           4. api/employees/Insertemployee  - Insert data of employee  -fromBody Employee's data 
                                            - authorization Incharge only
+
 
           5. api/employees/deleteEmployee/{id} - delete data of employee by their id 
                                                - authorization Incharge only
 
 Team :
-        1. api/team/getallteams  - retrive deta of all teams
-                                 - authorization Incharge only
+        1. api/team/getallteams  -        retrive deta of all teams
+                                 -        authorization Incharge only
+
         2. api/team/getteambyid/{id}    - retrive data of team by id
                                         - authorization Incharge only
+
         3. api/team/updateteambyid/{id} - Update data of team by their id -fromBody team data
                                         - authorization Incharge, project managers
-        4. api/team/insertteam/{id}  - Insert data of team -fromBody team data 
-                                     - authorization Incharge only
-        5. api/team/deleteteam/{id}  - delete data of teamby their id 
-                                     - authorization Incharge onlyyyyyyyyyy
+
+        4. api/team/insertteam/{id}    -Insert data of team -fromBody team data 
+                                       -authorization Incharge only
+
+        5. api/team/deleteteam/{id}    -delete data of teamby their id 
+                                       -authorization Incharge onlyyyyyyyyyy
