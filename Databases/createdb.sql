@@ -2,7 +2,8 @@ DROP DATABASE IF EXISTS PMS;
 
 CREATE DATABASE PMS;
 USE PMS;
-
+//wanted to delete this account table from database imp
+	
 CREATE TABLE accounts(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				      accountnumber VARCHAR(25) UNIQUE, 
                       ifsccode VARCHAR(50) ,

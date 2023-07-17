@@ -23,8 +23,13 @@ INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1020'
 INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1021','UBIN0000286','2021-08-04 07-40-35',25000);
 INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1022','UBIN0000286','2021-08-04 07-40-35',25000);
 INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1023','UBIN0000286','2021-08-04 07-40-35',25000);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1025','UBIN0000286','2021-08-04 07-40-35',25000);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1026','UBIN0000286','2021-08-04 07-40-35',25000);
+INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1024','UBIN0000286','2021-08-04 07-40-35',25000);
+INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1025','UBIN0000287','2021-08-04 07-40-35',25000);
+INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1026','UBIN0000287','2023-08-04 07-40-35',27000);
+INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1027','UBIN0000288','2023-08-04 07-40-35',35000);
+INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1028','UBIN0000288','2023-08-04 07-40-35',45000);
+INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1029','UBIN0000289','2023-08-04 07-40-35',22000);
+INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1030','UBIN0000289','2023-08-04 07-40-35',15000);
 
 INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Rushikesh','Chikane','1998-05-19','2023-02-01','7038548505','/assets/images/emp.jpg','1001',1);
 INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Akshay','Tanpure','1998-05-11','2023-02-02','7038548506','/assets/images/emp.jpg','1002',2);
@@ -53,7 +58,7 @@ INSERT INTO roles(rolename)VALUES('Developer');
 INSERT INTO roles(rolename)VALUES('Consultant');
 INSERT INTO roles(rolename)VALUES('Tester');
 INSERT INTO roles(rolename)VALUES('Manager');
-
+INSERT INTO roles(rolename)VALUES('employee');
 
 INSERT INTO userroles(userid,roleid) VALUES (1,1);
 INSERT INTO userroles(userid,roleid) VALUES (2,1);
