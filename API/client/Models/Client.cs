@@ -9,7 +9,5 @@ public class Client{
 
       public string? ClientDetails{get;set;}
 
-      public string? AccountNumber{get;set;}
-
 
 }

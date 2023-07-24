@@ -1,6 +1,6 @@
-// using PMS.Repositories.Interfaces;
-// namespace PMS.Services.Interfaces;
+using PMS.Repositories.Interfaces;
+namespace PMS.Services.Interfaces;
 
-// public interface IClientServices:IClientRepository{
+public interface IClientServices:IClientRepository{
 
-// }
+}
