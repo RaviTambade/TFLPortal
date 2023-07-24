@@ -1,64 +1,33 @@
 
 
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1001','MAHB0000286','2023-03-01 12:40:40',22555);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1002','MAHB0000286','2023-03-01 12:40:40',22555);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1003','MAHB0000286','2023-03-01 12:40:40',22555);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1004','MAHB0000286','2023-03-01 12:40:40',22555);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1005','MAHB0000286','2023-03-01 12:40:40',22555);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1006','MAHB0000286','2023-03-01 12:40:40',22555);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1007','MAHB0000286','2023-03-01 12:40:40',22555);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1008','MAHB0000286','2023-03-01 12:40:40',22555);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1009','MAHB0000286','2023-03-01 12:40:40',22555);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1010','MAHB0000286','2023-03-01 12:40:35',22500);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1011','UNB0000286','2023-04-15 02:45:35',2250025);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1012','BARBO0000286','2023-03-04 02-40-35',225700);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1013','MAHB000299','2022-03-16  03-40-35',24540);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1014','MAHB0000886','2022-05-01 04-50-35',454500);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1015','AXIS0000296','2021-07-01 07-40-35',2352500);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1016','UBIN0000286','2021-08-01 07-10-35',23500);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1017','AXIS0000285','2021-05-02 07-40-35',232500);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1018','MAHB0000284','2021-08-03 07-40-35',235250);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1019','UBIN0000286','2021-08-04 07-40-35',23520);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1020','UBIN0000286','2021-08-04 07-40-35',25000);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1021','UBIN0000286','2021-08-04 07-40-35',25000);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1022','UBIN0000286','2021-08-04 07-40-35',25000);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1023','UBIN0000286','2021-08-04 07-40-35',25000);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1024','UBIN0000286','2021-08-04 07-40-35',25000);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1025','UBIN0000287','2021-08-04 07-40-35',25000);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1026','UBIN0000287','2023-08-04 07-40-35',27000);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1027','UBIN0000288','2023-08-04 07-40-35',35000);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1028','UBIN0000288','2023-08-04 07-40-35',45000);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1029','UBIN0000289','2023-08-04 07-40-35',22000);
-INSERT INTO accounts(accountnumber,ifsccode,registerdate,balance) VALUES( '1030','UBIN0000289','2023-08-04 07-40-35',15000);
-
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Rushikesh','Chikane','1998-05-19','2023-02-01','7038548505','/assets/images/emp.jpg','1001',1);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Akshay','Tanpure','1998-05-11','2023-02-02','7038548506','/assets/images/emp.jpg','1002',2);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Rohit','Gore','1998-05-20','2023-02-11','7038548507','/assets/images/emp.jpg','1003',3);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Shubham','Teli','1998-05-29','2023-02-21','7038548515','/assets/images/emp.jpg','1004',4);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Abhay','Navale','1999-05-19','2021-02-01','7038548525','/assets/images/emp.jpg','1005',5);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Sahil','Mankar','1996-05-19','2023-05-05','7038548513','/assets/images/emp.jpg','1006',6);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Pragati','Bangar','1997-05-19','2023-02-01','7038548595','/assets/images/emp.jpg','1007',7);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Akash','Ajab','1995-05-29','2021-05-01','7038548516','/assets/images/emp.jpg','1008',8);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Vedant','Yadav','1996-05-14','2023-02-07','7038548515','/assets/images/emp.jpg','1009',9);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Rohit','Mangavale','1998-05-19','2023-02-01','7038548505','/assets/images/emp.jpg','1010',10);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Ravi','Tambade','1975-05-19','1994-02-01','7038548501','/assets/images/emp.jpg','1011',11);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Shubham','Navale','1994-05-19','2020-02-01','7038548502','/assets/images/emp.jpg','1012',12);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Vaibhav','More','1996-03-15','2021-02-05','7038548505','/assets/images/emp.jpg','1013',13);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Rohit','Patil','1998-05-19','2023-02-01','7038548506','/assets/images/emp.jpg','1014',14);
-INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid) VALUES('Rahul','jain','1998-05-11','2023-02-02','7038548512','/assets/images/emp.jpg','1015',15);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,userid) VALUES('Rushikesh','Chikane','1998-05-19','2023-02-01','7038548505','/assets/images/emp.jpeg',1);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,userid) VALUES('Akshay','Tanpure','1998-05-11','2023-02-02','7038548506','/assets/images/emp.jpeg',2);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,userid) VALUES('Rohit','Gore','1998-05-20','2023-02-11','7038548507','/assets/images/emp.jpeg',3);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,userid) VALUES('Shubham','Teli','1998-05-29','2023-02-21','7038548515','/assets/images/emp.jpeg',4);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,userid) VALUES('Abhay','Navale','1999-05-19','2021-02-01','7038548525','/assets/images/emp.jpeg',5);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,userid) VALUES('Sahil','Mankar','1996-05-19','2023-05-05','7038548513','/assets/images/emp.jpeg',6);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,userid) VALUES('Pragati','Bangar','1997-05-19','2023-02-01','7038548595','/assets/images/emp.jpeg',7);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,userid) VALUES('Akash','Ajab','1995-05-29','2021-05-01','7038548516','/assets/images/emp.jpeg',8);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,userid) VALUES('Vedant','Yadav','1996-05-14','2023-02-07','7038548515','/assets/images/emp.jpeg',9);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,userid) VALUES('Rohit','Mangavale','1998-05-19','2023-02-01','7038548505','/assets/images/emp.jpeg',10);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,userid) VALUES('Ravi','Tambade','1975-05-19','1994-02-01','7038548501','/assets/images/emp.jpeg',11);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,userid) VALUES('Shubham','Navale','1994-05-19','2020-02-01','7038548502','/assets/images/emp.jpeg',12);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,userid) VALUES('Vaibhav','More','1996-03-15','2021-02-05','7038548505','/assets/images/emp.jpeg',13);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,userid) VALUES('Rohit','Patil','1998-05-19','2023-02-01','7038548506','/assets/images/emp.jpeg',14);
+INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,userid) VALUES('Rahul','jain','1998-05-11','2023-02-02','7038548512','/assets/images/emp.jpeg',15);
 
 
 
-INSERT INTO payrollCycles(payrollcycleyear,payrollcyclenumber,startdate,enddate,accountnumber,depositdate)VALUES('2022-05-19',12,'2022-05-19','2023-05-19','1014','2022-05-25');
-INSERT INTO payrollCycles(payrollcycleyear,payrollcyclenumber,startdate,enddate,accountnumber,depositdate)VALUES('2022-04-22',12,'2022-05-15','2023-05-22','1015','2022-05-16');
-INSERT INTO payrollCycles(payrollcycleyear,payrollcyclenumber,startdate,enddate,accountnumber,depositdate)VALUES('2022-05-19',12,'2022-05-19','2023-05-19','1016','2022-05-25');         
+INSERT INTO payrollCycles(payrollcycleyear,payrollcyclenumber,startdate,enddate,depositdate)VALUES('2022-05-19',12,'2022-05-19','2023-05-19','2022-05-25');
+INSERT INTO payrollCycles(payrollcycleyear,payrollcyclenumber,startdate,enddate,depositdate)VALUES('2022-04-22',12,'2022-05-15','2023-05-22','2022-05-16');
+INSERT INTO payrollCycles(payrollcycleyear,payrollcyclenumber,startdate,enddate,depositdate)VALUES('2022-05-19',12,'2022-05-19','2023-05-19','2022-05-25');         
 
 
 INSERT INTO roles(rolename)VALUES('Developer');
 INSERT INTO roles(rolename)VALUES('Consultant');
 INSERT INTO roles(rolename)VALUES('Tester');
 INSERT INTO roles(rolename)VALUES('Manager');
-INSERT INTO roles(rolename)VALUES('employee');
+
 
 INSERT INTO userroles(userid,roleid) VALUES (1,1);
 INSERT INTO userroles(userid,roleid) VALUES (2,1);
@@ -240,8 +209,9 @@ INSERT INTO timerecords(empid,date,totaltime)VALUES(6,'2023-06-29 ','04:10');
 INSERT INTO timerecords(empid,date,totaltime)VALUES(6,'2023-06-30 ','04:10');
 
 
-INSERT INTO clients(fullname,address,details,accountnumber)VALUES('Vishwambhar Kapare','Pune RajguruNagar','Client want to create online meeting portal for their compeny','1001');
-INSERT INTO clients(fullname,address,details,accountnumber)VALUES('Rajat Pisal','Kolhapur','Client want to create online Interview Sheduling Project','1002');
+INSERT INTO clients(fullname,address,details)VALUES('Vishwambhar Kapare','Pune RajguruNagar','Client want to create online meeting portal for their compeny');
+INSERT INTO clients(fullname,address,details)VALUES('Rajat Pisal','Kolhapur','Client want to create online Interview Sheduling Project');
 
 INSERT INTO onproject(projectid,clientid)VALUES(1,2);
+
 INSERT INTO assigned(taskid,empid,roleid)VALUES(1,1,1);
