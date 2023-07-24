@@ -7,7 +7,6 @@ export class Employee {
         public hireDate: string,
         public contactNumber: string,
         public image:string,
-        public accountNumber:string,
         public userId:number
     ) { }
 }

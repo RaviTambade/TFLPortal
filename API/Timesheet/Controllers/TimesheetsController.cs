@@ -50,7 +50,7 @@ public class TimesheetController : ControllerBase
     }
 
     //httpPut : http://localhost:5161/api/Timesheet/2
-    [Authorize]
+    //[Authorize]
     [HttpPut]
     [Route("{id}")]
     public async Task<bool> Update(Timesheet timesheets)
@@ -60,7 +60,7 @@ public class TimesheetController : ControllerBase
     }
 
     //httpDelete : http://localhost:5161/api/Timesheet/2
-    [Authorize]
+    //[Authorize]
     [HttpDelete]
     [Route("{id}")]
     public async Task<bool> Delete(int id)
@@ -69,17 +69,17 @@ public class TimesheetController : ControllerBase
         return status;
     }
 
-    //  http://localhost:5161/api/Timesheet/2/2023-06-13
-    // [HttpGet ("{empid}/{theDate}")]
-    //    public async Task<IEnumerable<TimesheetsDetail>>GetAllDetails(int empid,string theDate)
-    // {
-    //    IEnumerable<TimesheetsDetail> timesheetDetails =await _service.GetAllDetails(empid,theDate);
-    //     return timesheetDetails;
-    // }
+    //httpGet :  http://localhost:5161/api/Timesheet/2/2023-06-13
+    [HttpGet ("{empid}/{theDate}")]
+       public async Task<IEnumerable<TimesheetsDetail>>GetAllDetails(int empid,string theDate)
+    {
+       IEnumerable<TimesheetsDetail> timesheetDetails =await _service.GetAllDetails(empid,theDate);
+        return timesheetDetails;
+    }
 
 
     //httpGet : http://localhost:5161/api/Timesheet/Getdetails/1
-    [Authorize]
+    //[Authorize]
     [HttpGet]
     [Route("Getdetails/{timesheetId}")]
     public async Task<TimesheetsDetail> Get(int timesheetId)
@@ -89,7 +89,7 @@ public class TimesheetController : ControllerBase
     }
 
     //httpGet ; http://localhost:5161/api/Timesheet/totaltime/2/2023-06-13
-    [Authorize]
+    //[Authorize]
     [HttpGet]
     [Route("totaltime/{empid}/{theDate}")]
     public async Task<WorkingTime> GetTotalWorkingTime(int empid, string theDate)

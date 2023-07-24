@@ -30,7 +30,6 @@ public class TimerecordsController : ControllerBase
     //[Authorize]
     [HttpGet]
     [Route("get/{id}")]
-
     public async Task<Timerecord> Get(int id)
     {
         Timerecord timerecords = await _service.Get(id);

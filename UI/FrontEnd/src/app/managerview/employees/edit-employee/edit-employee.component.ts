@@ -23,7 +23,6 @@ export class EditEmployeeComponent {
       birthDate: '',
       hireDate: '',
       contactNumber: '',
-      accountNumber: '',
       userId: 0,
 
     };

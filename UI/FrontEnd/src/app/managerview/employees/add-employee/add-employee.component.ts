@@ -28,9 +28,8 @@ export class AddEmployeeComponent implements OnInit {
       hireDate: '',
       contactNumber: '',
       image :'',
-      accountNumber: '',
       userId: 0,
-
+     
     };
   }
 
