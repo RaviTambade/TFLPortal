@@ -8,7 +8,6 @@ public class Employee
     public string? HireDate{get;set;}
     public string? ContactNumber{get;set;}
     public string? Image{get;set;}
-    public string? AccountNumber{get;set;}
     public int UserId{get ; set;}
   
 }

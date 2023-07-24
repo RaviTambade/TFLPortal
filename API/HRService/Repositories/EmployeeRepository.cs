@@ -34,7 +34,6 @@ public class EmployeeRepository : IEmployeeRepository
                 DateTime hiredate = Convert.ToDateTime(reader["hiredate"].ToString());
                 string contact=reader["contactnumber"].ToString();
                 string img = reader["image"].ToString();
-                string accountNo = reader["accountnumber"].ToString();
                 int userId = Int32.Parse(reader["userid"].ToString());
                
                Employee employee = new Employee
@@ -46,7 +45,6 @@ public class EmployeeRepository : IEmployeeRepository
                     HireDate=hiredate.ToShortDateString(),
                     ContactNumber=contact,
                     Image=img,
-                    AccountNumber=accountNo,
                     UserId= userId
                 };
                 employees.Add(employee);
@@ -83,7 +81,6 @@ public class EmployeeRepository : IEmployeeRepository
                 DateTime hiredate =  Convert.ToDateTime(reader["hiredate"].ToString());
                 string contactNumber=reader["contactnumber"].ToString(); 
                 string img = reader["image"].ToString();
-                string accountNo = reader["accountnumber"].ToString();
                 int userId = Int32.Parse(reader["userid"].ToString());
         
                 employee = new Employee
@@ -95,7 +92,6 @@ public class EmployeeRepository : IEmployeeRepository
                     HireDate=hiredate.ToShortDateString(),
                     ContactNumber=contactNumber,
                     Image=img,
-                    AccountNumber=accountNo,
                     UserId=userId     
               };
               reader.Close();
@@ -115,8 +111,8 @@ public class EmployeeRepository : IEmployeeRepository
           MySqlConnection con = new MySqlConnection();
           con.ConnectionString=_conString;
           try{
-              string query =$"INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,accountnumber,userid)VALUES"+
-                                                  "(@EmpFirstName,@EmpLastName,@BirthDate,@HireDate,@ContactNumber,@image,@AccountNumber,@userId)";
+              string query =$"INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,userid)VALUES"+
+                                                  "(@EmpFirstName,@EmpLastName,@BirthDate,@HireDate,@ContactNumber,@image,@userId)";
              Console.WriteLine(query);
              await con.OpenAsync();
              MySqlCommand command=new MySqlCommand(query,con) ;
@@ -126,7 +122,6 @@ public class EmployeeRepository : IEmployeeRepository
              command.Parameters.AddWithValue("@HireDate",emp.HireDate);
              command.Parameters.AddWithValue("@ContactNumber",emp.ContactNumber);
              command.Parameters.AddWithValue("@image",emp.Image);
-             command.Parameters.AddWithValue("@AccountNumber",emp.AccountNumber);
              command.Parameters.AddWithValue("@userId",emp.UserId);
          
              await command.ExecuteNonQueryAsync(); 
@@ -147,7 +142,7 @@ public class EmployeeRepository : IEmployeeRepository
           MySqlConnection con = new MySqlConnection();
           con.ConnectionString=_conString;
           try{
-            string query = "UPDATE employees SET firstname=@EmpFirstName, lastname=@EmpLastName, birthdate=@BirthDate, hiredate=@HireDate, contactnumber=@ContactNumber,image=@image  accountnumber=@AccountNumber, userid=@userId  WHERE id=@EmployeeId";   
+            string query = "UPDATE employees SET firstname=@EmpFirstName, lastname=@EmpLastName, birthdate=@BirthDate, hiredate=@HireDate, contactnumber=@ContactNumber,image=@image , userid=@userId  WHERE id=@EmployeeId";   
              Console.WriteLine(query);
             await con.OpenAsync();
              MySqlCommand command=new MySqlCommand(query,con) ;
@@ -158,7 +153,6 @@ public class EmployeeRepository : IEmployeeRepository
              command.Parameters.AddWithValue("@HireDate",emp.HireDate);
              command.Parameters.AddWithValue("@ContactNumber",emp.ContactNumber);
              command.Parameters.AddWithValue("@image",emp.Image);
-             command.Parameters.AddWithValue("@AccountNumber",emp.AccountNumber);
              command.Parameters.AddWithValue("@userId",emp.UserId);
 
              await command.ExecuteNonQueryAsync();               
@@ -199,7 +193,7 @@ public class EmployeeRepository : IEmployeeRepository
           MySqlConnection connection=new MySqlConnection(_conString);
           try{
               MySqlCommand command=new MySqlCommand();
-              command.CommandText="SELECT e.id, e.firstname, e.lastname, e.birthdate, e.hiredate, e.contactnumber, e.image, e.accountnumber FROM employees e JOIN userroles ur ON e.userid = ur.userid JOIN roles r ON ur.roleid = r.id WHERE r.rolename=@role";
+              command.CommandText="SELECT e.id, e.firstname, e.lastname, e.birthdate, e.hiredate, e.contactnumber, e.image FROM employees e JOIN userroles ur ON e.userid = ur.userid JOIN roles r ON ur.roleid = r.id WHERE r.rolename=@role";
               command.Connection=connection;
               command.Parameters.AddWithValue("@role",role);
               await connection.OpenAsync();
@@ -213,7 +207,7 @@ public class EmployeeRepository : IEmployeeRepository
                 DateTime hiredate =  Convert.ToDateTime(reader["hiredate"].ToString());
                 string contactNumber=reader["contactnumber"].ToString(); 
                 string img = reader["image"].ToString();
-                string accountNo = reader["accountnumber"].ToString();
+                
         
                 Employee employee = new Employee
                   {
@@ -224,7 +218,7 @@ public class EmployeeRepository : IEmployeeRepository
                     HireDate=hiredate.ToShortDateString(),
                     ContactNumber=contactNumber,
                     Image=img,
-                    AccountNumber=accountNo,    
+                      
                  };
                  employees.Add(employee);
               }
