@@ -13,7 +13,7 @@ export class DetailsTimerecordComponent implements OnInit{
 
   timesheets: Timesheet[] | undefined;
   id:any;
-  date:any|undefined;
+  date:any;
   employee: any;
   
 
@@ -23,6 +23,7 @@ export class DetailsTimerecordComponent implements OnInit{
 
   ngOnInit(): void {
     this.id = localStorage.getItem("id");
+    console.log(this.id);
     
     this.route.paramMap.subscribe((params) => {
       this.date = params.get('date');
