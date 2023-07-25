@@ -6,13 +6,14 @@
 <div>
     <table>
       <thead>
-        <th>TimeRecord Id :</th>
-        <th>Date :</th>
-        <th>TotalTime :</th>
+        <th>TimeRecord Id </th>
+        <th>Date </th>
+        <th>TotalTime </th>
+        <th>Details</th>
       </thead>
       <tbody>
         <tr *ngFor="let timerecord of timerecords">
-          <th scope="row">{{ timerecord.timeRecordId }}</th>
+          <td scope="row">{{ timerecord.timeRecordId }}</td>
           <td>{{timerecord.date | date: 'MM/dd/yyyy'}}</td>
           <td> {{ timerecord.totalTime }} </td>  
           <!-- <td><button >Details</button></td>  -->

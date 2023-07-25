@@ -17,7 +17,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let timesheet of timesheets">
-          <th scope="row">{{ timesheet.timesheetId }}</th>
+          <td scope="row">{{ timesheet.timesheetId }}</td>
           <td>{{timesheet.taskTitle}}</td>
           <td>{{timesheet.date | date: 'dd/MM/yyyy'}}</td>
           <td> {{ timesheet.fromtime }} </td>

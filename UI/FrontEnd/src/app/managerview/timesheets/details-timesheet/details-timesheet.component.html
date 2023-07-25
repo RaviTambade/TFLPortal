@@ -1,4 +1,4 @@
-<div *ngIf="timesheet && timesheet.timesheetId !=0">
+<!-- <div *ngIf="timesheet && timesheet.timesheetId !=0">
     <div *ngIf="timesheet">
         <th scope="row"><b>TimesheetId :</b>{{timesheet.timesheetId }}</th><br>
         <td><b>Project Title:</b>{{timesheet.projectTitle }} </td> <br>
@@ -17,4 +17,37 @@
             <p>timesheet Details not Fount</p>
         </div>
 
-    </div>
+    </div> -->
+
+
+
+<div>
+  <div *ngIf="timesheet && timesheet.timesheetId !=0">
+    <table>
+      <thead>
+        <th>TimesheetId </th>
+        <th>Project Title</th>
+        <th>Task Title </th>
+        <th>Date </th>
+        <th>From Time </th>
+        <th>To Time</th>
+        <th>Details</th>
+      </thead>
+      <tbody>
+        <tr *ngIf="timesheet">
+          <td scope="row">{{ timesheet.timesheetId }}</td>
+          <td>{{timesheet.projectTitle}}</td>
+          <td>{{ timesheet.taskTitle}}</td>
+          <td> {{ timesheet.date | date: 'yyyy/MM/dd' }} </td>
+          <td> {{ timesheet.fromtime}} </td>
+          <td>{{timesheet.totime}}</td>
+          <td><button type="submit" (click)="onUpdateClick(timesheet.timesheetId)">Update</button>
+            |
+            <button type="submit" (click)="delete()">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
