@@ -10,10 +10,11 @@
         <th>End Date</th>
         <th>Description</th>
         <th>Status</th>
+        <th>Details</th>
       </thead>
       <tbody>
         <tr *ngFor="let project of projects">
-          <th scope="row">{{ project.id }}</th>
+          <td scope="row">{{ project.id }}</td>
           <td>{{project.title}}</td>
           <td>{{project.startDate }}</td>
           <td>{{project.endDate}}</td>

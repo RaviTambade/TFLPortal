@@ -12,17 +12,17 @@
         <th>Date</th>
         <th>From Time</th>
         <th>To Time</th>
+        <th>Details</th>
       </thead>
       <tbody>
         <tr *ngFor="let task of tasks">
-          <th scope="row">{{ task.id }}</th>
+          <td scope="row">{{ task.id }}</td>
           <td>{{task.title}}</td>
           <td>{{task.projectId }}</td>
           <td>{{task.description}}</td>
           <td>{{task.date}}</td>
           <td>{{task.fromTime}}</td>
           <td>{{task.toTime}}</td>
-
           <td><button (click)="onDetails(task.id)">Details</button></td>
         </tr>
       </tbody>

@@ -9,10 +9,11 @@
             <th>Last Name</th>
             <th>Contact Number</th>
             <th>Images</th>
+            <th>Details</th>
           </thead>
           <tbody>
             <tr *ngFor="let employee of employees">
-              <th scope="row">{{ employee.id }}</th>
+              <td scope="row">{{ employee.id }}</td>
               <td>{{employee.firstName}}</td>
               <td>{{employee.lastName }}</td>
               <td>{{employee.contactNumber}}</td>
