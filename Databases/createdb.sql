@@ -16,7 +16,8 @@ CREATE TABLE roles(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                    rolename varchar (50));
                    
 CREATE TABLE userroles(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-		     	       userid INT NOT NULL, 
+		     	       empid INT NOT NULL, 
+	                       CONSTRAINT fk_emp_id2 FOREIGN KEY(empid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
                        roleid INT NOT NULL,
                        CONSTRAINT fk_role_id2 FOREIGN KEY(roleid) REFERENCES roles(id) ON UPDATE CASCADE ON DELETE CASCADE);
 
