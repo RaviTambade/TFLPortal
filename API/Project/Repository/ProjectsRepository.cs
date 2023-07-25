@@ -301,11 +301,8 @@ public class ProjectsRepository : IProjectsRepository
         connection.ConnectionString = _conString;
         try
         {
-            string query = //"SELECT p.id AS projectid, p.title AS title,e.firstname AS employee_firstName, e.lastname AS employee_lastName,tr.date AS working_date,p.description AS project_description,p.startdate AS startDate,p.enddate AS endDate,tr.totaltime AS totalTime,p.status AS project_status FROM projects p INNER JOIN projectmembers pm ON p.id = pm.projectid INNER JOIN employees e ON pm.empid = e.id LEFT JOIN timerecords tr ON pm.empid = tr.empid AND tr.date >= p.startdate AND tr.date <= p.enddate  where p.id=@projectid";
+            string query = "SELECT p.id AS projectid, p.title AS title,e.firstname AS employee_firstName, e.lastname AS employee_lastName,tr.date AS working_date,p.description AS project_description,p.startdate AS startDate,p.enddate AS endDate,tr.totaltime AS totalTime,p.status AS project_status FROM projects p INNER JOIN projectmembers pm ON p.id = pm.projectid INNER JOIN employees e ON pm.empid = e.id LEFT JOIN timerecords tr ON pm.empid = tr.empid AND tr.date >= p.startdate AND tr.date <= p.enddate  where p.id=@projectid";
             
-               "SELECT p.id AS projectid, p.title AS title,e.firstname AS employee_firstName, e.lastname AS employee_lastName,p.description AS project_description,p.startdate AS startDate,p.enddate AS endDate,tr.totaltime AS totalTime,p.status AS project_status FROM projects p INNER JOIN projectmembers pm ON p.id = pm.projectid INNER JOIN employees e ON pm.empid = e.id LEFT JOIN timerecords tr ON pm.empid = tr.empid AND tr.date >= p.startdate AND tr.date <= p.enddate  where p.id=@projectid";
-            
-
             MySqlCommand cmd = new MySqlCommand(query, connection);
             await connection.OpenAsync();
             cmd.Parameters.AddWithValue("@projectid",projectid);
@@ -316,15 +313,9 @@ public class ProjectsRepository : IProjectsRepository
                 string title= reader["title"].ToString();
                 string empFirstName= reader["employee_firstName"].ToString();
                 string empLastName= reader["employee_lastName"].ToString();
-                // DateTime date = DateTime.Parse(reader["working_date"].ToString());
-                // DateTime startdate = DateTime.Parse(reader["startDate"].ToString());
-                // DateTime enddate = DateTime.Parse(reader["endDate"].ToString());
-
                 DateTime startdate = DateTime.Parse(reader["startDate"].ToString());
                 DateTime enddate = DateTime.Parse(reader["endDate"].ToString());
-               // DateTime date = DateTime.Parse(reader["working_date"].ToString());
-
-
+                DateTime date = DateTime.Parse(reader["working_date"].ToString());
                 string totaltime = reader["totalTime"].ToString(); 
                 string description= reader["project_description"].ToString();
                 string status= reader["project_status"].ToString();
@@ -338,7 +329,7 @@ public class ProjectsRepository : IProjectsRepository
                      FirstName=empFirstName,
                      LastName=empLastName,
                      Description=description,
-                    // WorkingDate= date.ToShortDateString(),
+                     WorkingDate= date.ToShortDateString(),
                      StartDate= startdate.ToShortDateString(),
                      EndDate= enddate.ToShortDateString(),
                      TotalTime=totaltime,
