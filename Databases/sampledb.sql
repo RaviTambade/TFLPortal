@@ -60,18 +60,11 @@ INSERT INTO projectmembers(projectid,empid)VALUES(1,1);
 INSERT INTO projectmembers(projectid,empid)VALUES(1,2);
 INSERT INTO projectmembers(projectid,empid)VALUES(1,3);
 INSERT INTO projectmembers(projectid,empid)VALUES(1,4);
-INSERT INTO projectmembers(projectid,empid)VALUES(1,13);
-INSERT INTO projectmembers(projectid,empid)VALUES(1,11);
 INSERT INTO projectmembers(projectid,empid)VALUES(2,5);
 INSERT INTO projectmembers(projectid,empid)VALUES(2,6);
-INSERT INTO projectmembers(projectid,empid)VALUES(2,7);
-INSERT INTO projectmembers(projectid,empid)VALUES(2,8);
-INSERT INTO projectmembers(projectid,empid)VALUES(2,12);
 INSERT INTO projectmembers(projectid,empid)VALUES(3,1);
 INSERT INTO projectmembers(projectid,empid)VALUES(3,5);
-INSERT INTO projectmembers(projectid,empid)VALUES(3,7);
-INSERT INTO projectmembers(projectid,empid)VALUES(3,8);
-INSERT INTO projectmembers(projectid,empid)VALUES(3,10);
+
 
 INSERT INTO tasks(title,projectid,description,date,fromtime,totime)VALUES('Develop feature login for Project PMS App',1,'please arrange the meeting sheduling prosess quickly','2023-02-01','09:00:00', '11:00:00');
 INSERT INTO tasks(title,projectid,description,date,fromtime,totime)VALUES('Troubleshoot and fix bugs in module timesheet',2,'please arrange the meeting sheduling prosess quickly','2023-02-01','11:00:00', '01:30:00');

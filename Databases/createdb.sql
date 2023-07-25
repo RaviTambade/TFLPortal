@@ -16,8 +16,7 @@ CREATE TABLE roles(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                    rolename varchar (50));
                    
 CREATE TABLE userroles(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-		     	       empid INT NOT NULL, 
-	                       CONSTRAINT fk_emp_id2 FOREIGN KEY(empid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
+		     	       userid INT NOT NULL, 
                        roleid INT NOT NULL,
                        CONSTRAINT fk_role_id2 FOREIGN KEY(roleid) REFERENCES roles(id) ON UPDATE CASCADE ON DELETE CASCADE);
 
@@ -80,7 +79,9 @@ CREATE TABLE payrollCycles(id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
                          taskid INT NOT NULL, CONSTRAINT fk_task_Id2 FOREIGN KEY(taskid) REFERENCES tasks(id) ON UPDATE CASCADE ON DELETE CASCADE);
  
  CREATE TABLE timerecords (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-						  date DATE,
+						  date DATETIME NOT NULL,
 						  totaltime TIME,
                           empid INT NOT NULL, CONSTRAINT fk_emp_Id6 FOREIGN KEY(empid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
                           );
+                          
+                          
