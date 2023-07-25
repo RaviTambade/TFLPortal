@@ -44,5 +44,27 @@ FROM timerecords WHERE  date >='2023-06-01' AND date <='2023-06-10'&& empid=1;
 
 
 
+-- Query for finding employees working on project and their working time
 
-
+SELECT 
+    p.id AS projectid,
+    p.title AS project_name,
+    p.description AS project_description,
+    p.startdate AS startDate,
+    p.enddate AS endDate,
+    p.status AS project_status,
+    e.firstname AS employee_firstName,
+    e.lastname AS employee_lastName,
+    tr.date AS working_date,
+    tr.totaltime AS totalTime
+FROM
+    projects p
+INNER JOIN
+    projectmembers pm ON p.id = pm.projectid
+INNER JOIN
+    employees e ON pm.empid = e.id
+LEFT JOIN
+    timerecords tr ON pm.empid = tr.empid AND tr.date >= p.startdate AND tr.date <= p.enddate
+-- ORDER BY
+--     p.id, e.id
+    where p.id=3;
