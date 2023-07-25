@@ -97,7 +97,7 @@ namespace ProjectsService.Controllers
             return projects;
             }
 
-   //httpGet :  http://localhost:5294/api/projects/2
+   //httpGet :  http://localhost:5294/api/projects/projectdetails/2
     [HttpGet ("projectdetails/{projectid}")]
        public async Task<IEnumerable<ProjectDetails>>GetAllDetails(int projectid)
     {
