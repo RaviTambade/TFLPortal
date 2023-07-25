@@ -9,6 +9,7 @@ public interface ITimeRecordRepository{
      Task<bool> Update(Timerecord timerecord);
      Task <bool> Delete(int id);
      Task<IEnumerable<Timerecord>> GetAll(int id);
+    // Task<IEnumerable<Timerecord>>GetDetails(int empid,string theDate);  
      Task<TotalWorkingTime> GetTotalWorkingTime(int empid,string startDate,string toDate); 
 
 

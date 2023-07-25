@@ -272,6 +272,52 @@ public class TimeRecordRepository : ITimeRecordRepository
         }
         return totalWT;
     }
+// public async Task<IEnumerable<Timerecord>> GetAllDetails(int empid,string theDate)
+//     {
+
+//        Timerecord timerecord = new Timerecord();
+//         MySqlConnection connection = new MySqlConnection();
+//         connection.ConnectionString = _conString;
+//         try
+//         {
+//            string query = "SELECT ts.id, e.firstname, e.lastname, p.title AS projecttitle, t.title AS tasktitle ,ts.date,ts.fromtime,ts.totime,ts.workingtime FROM timerecords ts INNER JOIN employees e ON ts.empid = e.id INNER JOIN projects p ON ts.projectid = p.id INNER JOIN tasks t ON ts.taskid = t.id WHERE ts.empid=@empid && ts.date=@date ";
+//             MySqlCommand cmd = new MySqlCommand(query, connection);
+//             await connection.OpenAsync();
+
+//             MySqlDataReader reader =  cmd.ExecuteReader();
+//             if(await reader.ReadAsync())
+//             {
+//                 int timerecordid = Int32.Parse(reader["id"].ToString());
+//                 int empId=Int32.Parse(reader["empid"].ToString());
+//                 DateTime date=Convert.ToDateTime(reader["date"].ToString());
+//                 string totalTime = reader["totaltime"].ToString();
+
+//                 timerecord = new Timerecord
+//                 {
+//                     TimeRecordId=timerecordid,
+//                     EmpId=empId,
+//                     Date=date.ToShortDateString(),
+//                     TotalTime=totalTime
+//                 };
+
+//             }
+//             reader.Close();
+//         }
+//         catch (Exception ee)
+//         {
+//             throw ee;
+//         }
+
+//         finally
+//         {
+//             connection.Close();
+//         }
+//         return timerecord;
+//     }
+
+
+
+
 
    
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using PMS.Models;
 using ProjectAPI.Models;
 using ProjectAPI.Repository.Interface;
 using ProjectAPI.Service.Interface;
@@ -22,5 +23,7 @@ public async Task<Project> Get(string name)=>await _repo.Get(name);
  public async Task<bool> Delete(Int32  projectId)=>await _repo.Delete(projectId);
 
 public async Task<IEnumerable<Project>> GetByProject(Date date)=>await _repo.GetByProject(date);
+
+ public async Task <IEnumerable<ProjectDetails>> GetAllDetails(int projectid)=> await _repo.GetAllDetails(projectid);
 
 }

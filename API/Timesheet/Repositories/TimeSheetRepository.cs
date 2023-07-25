@@ -271,7 +271,7 @@ public class TimesheetRepository : ITimeSheetRepository
 public  async Task <TimesheetsDetail> GetDetails(int timesheetId)
     {
      
-       TimesheetsDetail  timesheetsDetail = new TimesheetsDetail();
+        TimesheetsDetail  timesheetsDetail = new TimesheetsDetail();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _conString;
         try
