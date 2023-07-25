@@ -5,6 +5,7 @@ using ProjectAPI.Models;
 using ProjectAPI.Repository.Interface;
 using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
+using PMS.Models;
 
 namespace ProjectAPI.Repository;
 public class ProjectsRepository : IProjectsRepository
@@ -288,6 +289,80 @@ public class ProjectsRepository : IProjectsRepository
         }
         return projects;
     }
+
+
+
+
+    public async Task<IEnumerable<ProjectDetails>> GetAllDetails(int projectid)
+    {
+
+        List<ProjectDetails> projectsDetails = new List<ProjectDetails>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _conString;
+        try
+        {
+            string query ="SELECT p.id AS projectid, p.title AS title,e.firstname AS employee_firstName, e.lastname AS employee_lastName,tr.date AS working_date,p.description AS project_description,p.startdate AS project_start_date,p.enddate AS project_end_date,tr.totaltime AS totalTime,p.status AS project_status FROM projects p INNER JOIN projectmembers pm ON p.id = pm.projectid INNER JOIN employees e ON pm.empid = e.id LEFT JOIN timerecords tr ON pm.empid = tr.empid AND tr.date >= p.startdate AND tr.date <= p.enddate  where p.id=@projectid";
+            
+
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            await connection.OpenAsync();
+            cmd.Parameters.AddWithValue("@projectid",projectid);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (await reader.ReadAsync())
+            {
+                int id = int.Parse(reader["projectid"].ToString());
+                string title= reader["title"].ToString();
+               // string projTitle=   reader["projecttitle"].ToString();
+                string empFirstName= reader["employee_firstName"].ToString();
+                string empLastName= reader["employee_lastName"].ToString();
+                DateTime date = Convert.ToDateTime(reader["working_date"].ToString());
+                DateTime startdate = Convert.ToDateTime(reader["project_start_date"].ToString());
+                DateTime enddate = Convert.ToDateTime(reader["project_end_date"].ToString());
+                string totaltime = reader["totalTime"].ToString(); 
+                string description= reader["project_description"].ToString();
+                string status= reader["project_status"].ToString();
+              
+              
+
+                ProjectDetails projectinfo = new ProjectDetails
+                {
+                     ProjectId = id,
+                     Title=title,
+                     FirstName=empFirstName,
+                     LastName=empLastName,
+                     Description=description,
+                     WorkingDate=date.ToShortDateString(),
+                     StartDate=startdate.ToShortDateString(),
+                     EndDate=enddate.ToShortDateString(),
+                     Totaltime=totaltime,
+                     Status=status
+      
+                };
+                projectsDetails.Add(projectinfo);
+            }
+            reader.Close();
+        }
+        catch (Exception ee)
+        {
+            throw ee;
+        }
+        finally
+        {
+            connection.Close();
+        }
+        return projectsDetails;
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

@@ -6,7 +6,7 @@ using ProjectAPI.Service;
 using ProjectAPI.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
 using PMS.Helpers;
-
+using PMS.Models;
 
 namespace ProjectsService.Controllers
 {
@@ -96,7 +96,16 @@ namespace ProjectsService.Controllers
             IEnumerable<Project> projects =await _projectsrv.GetByProject(date);
             return projects;
             }
-        
+
+   //httpGet :  http://localhost:5294/api/projects/2
+    [HttpGet ("projectdetails/{projectid}")]
+       public async Task<IEnumerable<ProjectDetails>>GetAllDetails(int projectid)
+    {
+       IEnumerable<ProjectDetails> projectDetails = await _projectsrv.GetAllDetails(projectid);
+        return projectDetails;
+    }
+
+   
     }
     
     

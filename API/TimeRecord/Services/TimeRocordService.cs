@@ -18,4 +18,5 @@ public class TimeRecordService : ITimeRecordService
      public  async Task<IEnumerable<Timerecord>> GetAll(int empid)=>await _repo.GetAll(empid);
      public async Task <TotalWorkingTime> GetTotalWorkingTime(int empid,string fromDate,string toDate)=> await _repo.GetTotalWorkingTime(empid,fromDate,toDate);
 
+  
 }
