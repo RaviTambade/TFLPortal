@@ -36,6 +36,9 @@ public class Timesheet{
       // public int ProjectId{get;set;}
       // public int PayRollCycleId {get;set;}   
       // public string Notes{get;set;}
+
+
+      
      public int TimesheetId {get;set;} 
      public int EmployeeId{get;set;}
      public int ProjectId{get;set;}
