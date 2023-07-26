@@ -1,13 +1,48 @@
 <p><b>For inserting new Project please fill below the form.</b></p>
 
 <form #insertForm="ngForm" (ngSubmit)="addProject(insertForm.value)">
-    <table>
+
+
+    <div>
+        <table>
+            <thead>
+                <th>Title </th>
+                <th>Start Date</th>
+                <th>End Date </th>
+                <th>Description</th>
+                <th>Status </th>
+                <th>Submit</th>
+            </thead>
+
+
+            <tbody>
+                <tr>
+                    <td scope="row">
+                    <input type="text" name="title" [(ngModel)]="project.title"></td>   
+                    <td><input type="text" name="startdate" [(ngModel)]="project.startDate"></td>
+                    <td><input type="text" name="enddate" [(ngModel)]="project.endDate"></td>
+                    <td><input type="text" name="description" [(ngModel)]="project.description"></td>
+                   
+                    <select name="status" [(ngModel)]="project.status" required>
+                        <option value="Pending">Pending</option>
+                        <option value="In-Progress">In-Progress</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Error">Error</option> 
+                    </select>
+
+                    <td><button type="submit">Submit</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
         <!-- <tr>
-            <td><label><b>Employee Id:</b></label></td>
+           
             <td><input type="number" name="id" [(ngModel)]="employee.id"></td>
         </tr> -->
 
-        <tr>
+        <!-- <tr>
             <td><label><b>Title:</b></label></td>
             <td><input type="text" name="title" [(ngModel)]="project.title"></td>
         </tr>
@@ -35,8 +70,8 @@
         <tr>
             <button type="submit">Add New Project </button>
         </tr>
-    </table>
-</form>
+    </table> -->
+
 
 
 <div *ngIf="status">
@@ -49,5 +84,3 @@
 
 
            
-            
-               

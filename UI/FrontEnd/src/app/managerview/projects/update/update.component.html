@@ -1,38 +1,38 @@
 <form #insertForm="ngForm" (ngSubmit)="updateproject(insertForm.value)">
-    <table>
-        <tr>
-            <td><label><b>Project Id:</b></label></td>
-            <td><input type="number" name="id" [(ngModel)]="project.id"></td>
-        </tr>
-        <tr>
-            <td><label><b>Title:</b></label></td>
-            <td><input type="text" name="title" [(ngModel)]="project.title"></td>
-        </tr>
-        <tr>
-            <td><label><b>Start Date:</b></label></td>
-            <td><input type="text" name="startDate" [(ngModel)]="project.startDate"></td>
-        </tr>
-        <tr>
-            <td><label><b>End Date:</b></label></td>
-            <td><input type="text" name="endDate" [(ngModel)]="project.endDate"></td>
-        </tr>
-        <tr>
-            <td><label><b>Description :</b></label></td>
-            <td><input type="text" name="description" [(ngModel)]="project.description"></td>
-        </tr>
-        <tr>
-            <td><label><b>Status :</b></label></td>
-            <select name="status" [(ngModel)]="project.status" required>
-                <option value="Pending">Pending</option>
-                <option value="In-Progress">In-Progress</option>
-                <option value="Completed">Completed</option>
-                <option value="Error">Error</option> 
-            </select>
-        </tr>   
-        <tr>
-            <button type="submit">Update</button>
-        </tr>
-    </table>
+
+    <div>
+        <table>
+            <thead>
+                <th>Project Id:</th>
+                <th>Title</th>
+                <th>Start Date </th>
+                <th>End Date </th>
+                <th>Description</th>
+                <th>Status /th>
+                <th>Update</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row"><input type="number" name="id" [(ngModel)]="project.id"></td>
+                    <td><input type="text" name="title" [(ngModel)]="project.title"></td>
+                    <td><input type="text" name="startDate" [(ngModel)]="project.startDate"></td>
+
+                    <td><input type="text" name="endDate" [(ngModel)]="project.endDate"></td>
+
+                    <td><input type="text" name="description" [(ngModel)]="project.description"></td>
+                    <td><label><b>Status :</b></label></td>
+                    <select name="status" [(ngModel)]="project.status" required>
+                        <option value="Pending">Pending</option>
+                        <option value="In-Progress">In-Progress</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Error">Error</option>
+                    </select>
+                    <td><button type="submit">Update</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 </form>
 
 
@@ -43,3 +43,5 @@
 <div *ngIf="status==false">
     <p>error while updating Project</p>
 </div>
+
+

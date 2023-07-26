@@ -1,20 +1,48 @@
 
+    <div>
+        <div *ngIf="project && project.id !=0">
+          <table>
+            <thead>
+              <th>Project Id :</th>
+              <th>Project Title :</th>
+              <th>Start Date</th>
+              <th>End Date </th>
+              <th>Description </th>
+              <th>Status</th>
+              <th>Details</th>
+            </thead>
+            <tbody>
+                <tr *ngIf="project">
+                  <td scope="row">{{ project.id }}</td>
+                  <td>{{ project.title }}</td>
+                  <td>{{ project.startDate }}</td>
+                  <td> {{ project.endDate }} </td>
+                  <td> {{ project.description }}</td>
+                  <td>{{project.status}}</td>
+                  <td><button type="submit" (click)="onUpdateClick(project.id)">Update</button> 
+                    |
+                    <button type="submit" (click)="delete()">Delete</button>
+                  </td>
+                  <div *ngIf=" project && project.id==0 ">
+                    <p>Project not Found</p>
+                  </div>
+                </tr>
+              </tbody>
+            </table>
+            <div *ngIf=" project && project.id==0 ">
+                <p>Project not Found</p>
+              </div>
+          </div>
+        
+        </div>
 
 
-<div *ngIf="project && project.id !=0">
-    <p><label><b>Project Id :</b></label>{{ project.id }}</p>
-    <p><label><b>Project Title :</b></label>{{ project.title }}</p>
-    <p><label><b>Start Date :</b></label>{{ project.startDate }}</p>
-    <p><label><b>End Date :</b></label>{{ project.endDate }}</p>
-    <p><label><b>Description :</b></label>{{ project.description }}</p>
-    <p><label><b>Status :</b></label>{{project.status}}</p>
-
-<button type="submit" (click)="onUpdateClick(project.id)">Update</button> 
-|
-<button type="submit" (click)="delete()">Delete</button>
 
 
-    <div *ngIf=" project && project.id==0 ">
-        <p>Project not Found</p>
-      </div>
-</div>
+
+
+
+
+
+
+
