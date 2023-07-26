@@ -2,7 +2,7 @@
 
 
 <div *ngIf="task && task.id !=0">
-  
+
   <div>
     <table>
       <thead>
@@ -26,8 +26,8 @@
           <td>{{ task.toTime }}</td>
           <td> <button type="submit" (click)="onUpdateClick(task.id)">Update</button>
             |
-            <button type="submit" (click)="delete()">Delete</button>
-          </td>
+            <button type="submit" (click)="delete()">Delete</button></td>
+
         </tr>
       </tbody>
     </table>

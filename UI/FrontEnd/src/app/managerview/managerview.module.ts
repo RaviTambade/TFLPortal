@@ -27,6 +27,7 @@ import { TaskDetailsComponent } from './task/task-details/task-details.component
 import { AddTaskComponent } from './task/add-task/add-task.component';
 import { EditTaskComponent } from './task/edit-task/edit-task.component';
 import { AccountComponent } from './Salery/account/account.component';
+import { TotalDetailsComponent } from './projects/total-details/total-details.component';
 
 
 
@@ -47,6 +48,7 @@ const routes: Routes =
     { path: 'details/:id', component: DetailComponent },
     { path: 'add', component: AddComponent },
     { path: 'update/:id', component: UpdateComponent },
+    { path: 'totaldetails/:id', component: UpdateComponent },
 
 
 //employee
@@ -106,6 +108,7 @@ const routes: Routes =
     AddTaskComponent,
     EditTaskComponent,
     AccountComponent,
+    TotalDetailsComponent,
     
   ],
   exports: [RouterContainerComponent],
