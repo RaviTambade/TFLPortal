@@ -1,5 +1,5 @@
 <form #insertForm="ngForm" (ngSubmit)="updateEmployee(insertForm.value)">
-    <table>
+    <!-- <table>
         <tr>
             <td><label><b>Employee Id:</b></label></td>
             <td><input type="number" name="id" [(ngModel)]="employee.id"></td>
@@ -32,7 +32,41 @@
         <tr>
             <button type="submit">Update</button>
         </tr>
-    </table>
+    </table> -->
+
+
+
+    <div>
+        <table>
+          <thead>
+            <th>Emplouyee Id </th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Birth Date</th>
+            <th>Hire Date</th>
+            <th>Contact Number</th>
+            <th>User Id</th>
+            <th>Update</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td scope="row"><input type="number" name="id" [(ngModel)]="employee.id"></td>
+              <td><input type="text" name="firstName" [(ngModel)]="employee.firstName"></td>
+              <td><input type="text" name="lastName" [(ngModel)]="employee.lastName"></td>
+              <td><input type="text" name="birthdate" [(ngModel)]="employee.birthDate"></td>
+              <td><input type="text" name="hiredate" [(ngModel)]="employee.hireDate"></td>
+              <td><input type="text" name="contactnumber" [(ngModel)]="employee.contactNumber"></td>
+              <td><input type="number" name="userid" [(ngModel)]="employee.userId"></td>
+              <td> <button type="submit">Update</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+
+
+
 </form>
 
 
