@@ -4,7 +4,6 @@ import { ProjectListComponent } from './projects/project-list/project-list.compo
 import { UpdateComponent } from './projects/update/update.component';
 import { DetailComponent } from './projects/detail/detail.component';
 import { RouterContainerComponent } from './router-container/router-container.component';
-import { SignInComponent } from './sign-in/sign-in.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AddComponent } from './projects/add/add.component';
 import { EmployeeListComponent } from './employees/employee-list/employee-list.component';
@@ -28,6 +27,7 @@ import { AddTaskComponent } from './task/add-task/add-task.component';
 import { EditTaskComponent } from './task/edit-task/edit-task.component';
 import { AccountComponent } from './Salery/account/account.component';
 import { TotalDetailsComponent } from './projects/total-details/total-details.component';
+import { LoginComponent } from './authentication/login/login.component';
 
 
 
@@ -41,6 +41,10 @@ const routes: Routes =
 
 //Manager Access
      {path: 'managesaccess', component:ManagerAccessComponent},    
+
+
+//Authentication
+    {path: 'login' , component:LoginComponent},      
 
 //project
 
@@ -87,7 +91,6 @@ const routes: Routes =
     UpdateComponent,
     DetailComponent,
     RouterContainerComponent,
-    SignInComponent,
     AddComponent,
     EmployeeListComponent,
     HomeComponent,
@@ -109,6 +112,7 @@ const routes: Routes =
     EditTaskComponent,
     AccountComponent,
     TotalDetailsComponent,
+    LoginComponent,
     
   ],
   exports: [RouterContainerComponent],

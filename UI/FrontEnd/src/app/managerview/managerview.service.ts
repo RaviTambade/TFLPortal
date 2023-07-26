@@ -15,6 +15,20 @@ export class ManagerviewService {
   private subject = new Subject<any>();
   constructor(private http: HttpClient) { }
 
+
+//////////// Authentication ////////////////////////
+
+  validate(credential:Credential):Observable<boolean>{
+    let url="http://localhost:5077/api/authentication/signin";
+    return this.http.post<any>(url,credential);
+  }
+
+  register(credential:Credential):Observable<boolean>{
+
+    let url="http://localhost:5077/api/credential/register";
+    return this.http.post<any>(url,credential);
+  }
+
   //////////////////   Project   ///////////////////////////
   getAllProjects(): Observable<any> {
     let url = "http://localhost:5294/api/projects/projects";
