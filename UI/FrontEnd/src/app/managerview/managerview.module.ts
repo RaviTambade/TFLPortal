@@ -45,11 +45,11 @@ const routes: Routes =
 
 
 //Authentication
-    {path: 'login' , component:LoginComponent},    
-    {path: 'register' , component:RegisterComponent},   
+    {path: 'login' , component:LoginComponent},   
+    {path: 'register' , component:RegisterComponent},
 
+  
 //project
-
     { path: 'projectlist', component: ProjectListComponent },
     { path: 'details/:id', component: DetailComponent },
     { path: 'add', component: AddComponent },
@@ -116,6 +116,7 @@ const routes: Routes =
     TotalDetailsComponent,
     LoginComponent,
     RegisterComponent,
+   
     
   ],
   exports: [RouterContainerComponent],

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ManagerviewService } from '../../managerview.service';
 import { Credential } from '../credential';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent {
     password: ''
   }  
 
-  constructor(private svc:ManagerviewService){}
+  constructor(private svc:ManagerviewService,private router:Router){}
 
   onLogin(form:any){
     console.log(form);
@@ -29,6 +30,11 @@ export class LoginComponent {
           {
             alert("Login Failed")
           }
+
+          // localStorage.setItem("jwt",response.token)
+          // if(response){
+          //   this.router.navigate(['home']);
+          // } 
         })
-  }
-}
+      }
+    }
