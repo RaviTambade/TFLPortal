@@ -1,39 +1,33 @@
 <p><b>For inserting new Task please fill below form.</b></p>
 
 <form #insertForm="ngForm" (ngSubmit)="addTask(insertForm.value)">
-    <table>
-        <!-- <tr>
-            <td><label><b>Employee Id:</b></label></td>
-            <td><input type="number" name="id" [(ngModel)]="employee.id"></td>
-        </tr> -->
-        <tr>
-            <td><label><b>Project Id:</b></label></td>
-            <td><input type="number" name="projectid" [(ngModel)]="task.projectid"></td>
-        </tr>
-        <tr>
-            <td><label><b>Title:</b></label></td>
-            <td><input type="text" name="title" [(ngModel)]="task.title"></td>
-        </tr>
-        <tr>
-            <td><label><b>Date:</b></label></td>
-            <td><input type="text" name="date" [(ngModel)]="task.date"></td>
-        </tr>
-        <tr>
-            <td><label><b>From Time:</b></label></td>
-            <td><input type="text" name="fromtime" [(ngModel)]="task.fromtime"></td>
-        </tr>
-        <tr>
-            <td><label><b>To Time :</b></label></td>
-            <td><input type="text" name="totime" [(ngModel)]="task.totime"></td>
-        </tr>
-        <tr>
-            <td><label><b>Description :</b></label></td>
-            <td><input type="text" name="description" [(ngModel)]="task.description"></td>
-        </tr>
-        <tr>
-            <button type="submit">Add New Task </button>
-        </tr>
-    </table>
+   
+
+    <div>
+        <table>
+          <thead>
+            <th>Project Id</th>
+            <th>Title</th>
+            <th>Date</th>
+            <th>From Time</th>
+            <th>To Time</th>
+            <th>Description</th>
+            <th>Add Task</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td scope="row"><input type="number" name="projectid" [(ngModel)]="task.projectid"></td>
+              <td><input type="text" name="title" [(ngModel)]="task.title"></td>
+              <td><input type="text" name="date" [(ngModel)]="task.date"></td>
+              <td><input type="text" name="fromtime" [(ngModel)]="task.fromtime"></td>
+              <td><input type="text" name="totime" [(ngModel)]="task.totime"></td>
+              <td><input type="text" name="description" [(ngModel)]="task.description"></td>
+              <td><button type="submit">Add New Task </button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
 </form>
 
 

@@ -1,42 +1,33 @@
 
 <form #insertForm="ngForm" (ngSubmit)="updateTask(insertForm.value)">
-    <table>
-        <!-- <tr>
-            <td><label><b>Employee Id:</b></label></td>
-            <td><input type="number" name="id" [(ngModel)]="employee.id"></td>
-        </tr> -->
-        <tr>
-            <td><label><b>Task Id:</b></label></td>
-            <td><input type="timesheetId" name="id" [(ngModel)]="task.id"></td>
-        </tr>
-        <tr>
-            <td><label><b>Project Id:</b></label></td>
-            <td><input type="number" name="projectId" [(ngModel)]="task.projectId"></td>
-        </tr>
-        <tr>
-            <td><label><b>Title:</b></label></td>
-            <td><input type="text" name="title" [(ngModel)]="task.title"></td>
-        </tr>
-        <tr>
-            <td><label><b>Date:</b></label></td>
-            <td><input type="text" name="date" [(ngModel)]="task.date"></td>
-        </tr>
-        <tr>
-            <td><label><b>From Time:</b></label></td>
-            <td><input type="text" name="fromTime" [(ngModel)]="task.fromTime"></td>
-        </tr>
-        <tr>
-            <td><label><b>To Time :</b></label></td>
-            <td><input type="text" name="toTime" [(ngModel)]="task.toTime"></td>
-        </tr>
-        <tr>
-            <td><label><b>Description :</b></label></td>
-            <td><input type="text" name="description" [(ngModel)]="task.description"></td>
-        </tr>
-        <tr>
-            <button type="submit">update New Task </button>
-        </tr>
-    </table>
+   
+    <div>
+        <table>
+          <thead>
+            <th>Task Id </th>
+            <th>Project Id</th>
+            <th>Title</th>
+            <th>Date</th>
+            <th>From Time</th>
+            <th>To Time</th>
+            <th>Description</th>
+            <th>Update</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td scope="row"><input type="timesheetId" name="id" [(ngModel)]="task.id"></td>
+              <td><input type="number" name="projectId" [(ngModel)]="task.projectId"></td>
+              <td><input type="text" name="title" [(ngModel)]="task.title"></td>
+              <td><input type="text" name="date" [(ngModel)]="task.date"></td>
+              <td><input type="text" name="fromTime" [(ngModel)]="task.fromTime"></td>
+              <td><input type="text" name="toTime" [(ngModel)]="task.toTime"></td>
+              <td><input type="text" name="description" [(ngModel)]="task.description"></td>
+              <td> <button type="submit">Update</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
 </form>
 
 
