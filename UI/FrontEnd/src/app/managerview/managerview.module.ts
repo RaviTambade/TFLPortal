@@ -48,7 +48,7 @@ const routes: Routes =
     { path: 'details/:id', component: DetailComponent },
     { path: 'add', component: AddComponent },
     { path: 'update/:id', component: UpdateComponent },
-    { path: 'totaldetails/:id', component: UpdateComponent },
+    { path: 'totaldetails/:id', component: TotalDetailsComponent },
 
 
 //employee

@@ -39,7 +39,7 @@ export class ManagerAccessComponent {
       };
 
       onDetails(id: number){
-        this.router.navigate(['./details', id]);
+        this.router.navigate(['./totaldetails', id]);
       }
 
 }

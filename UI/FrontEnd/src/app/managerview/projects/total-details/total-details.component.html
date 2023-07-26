@@ -1,1 +1,39 @@
-<p>total-details works!</p>
+
+<div>
+    <table>
+      <thead>
+        <th>ProjectId Id </th>
+        <th>Title</th>
+        <th>First Name </th>
+        <th>Last Name </th>
+        <th>Description </th>
+        <th>Working date</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Total Time</th>
+        <th>Status</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let projectdetail of projectdetails">
+          <td scope="row">{{ projectdetail.projectId }}</td>
+          <td>{{projectdetail.title}}</td>
+          <td>{{projectdetail.firstName}}</td>
+          <td>{{projectdetail.lastName}}</td>
+          <td>{{projectdetail.description}}</td>
+          <td>{{projectdetail.workingDate }}</td>
+          <td>{{projectdetail.startDate }}</td>
+          <td>{{projectdetail.endDate }}</td>
+          <td> {{ projectdetail.totalTime }} </td>
+          <td>{{projectdetail.status}}</td>
+
+
+
+          <!-- | date: 'dd/MM/yyyy' -->
+
+
+
+          <!-- <td><button (click)="onDetails(timesheet.timesheetId)">Details</button></td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
