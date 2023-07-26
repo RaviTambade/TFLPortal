@@ -28,6 +28,7 @@ import { EditTaskComponent } from './task/edit-task/edit-task.component';
 import { AccountComponent } from './Salery/account/account.component';
 import { TotalDetailsComponent } from './projects/total-details/total-details.component';
 import { LoginComponent } from './authentication/login/login.component';
+import { RegisterComponent } from './authentication/register/register.component';
 
 
 
@@ -44,7 +45,8 @@ const routes: Routes =
 
 
 //Authentication
-    {path: 'login' , component:LoginComponent},      
+    {path: 'login' , component:LoginComponent},    
+    {path: 'register' , component:RegisterComponent},   
 
 //project
 
@@ -113,6 +115,7 @@ const routes: Routes =
     AccountComponent,
     TotalDetailsComponent,
     LoginComponent,
+    RegisterComponent,
     
   ],
   exports: [RouterContainerComponent],

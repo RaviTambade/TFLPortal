@@ -25,7 +25,7 @@ export class ManagerviewService {
 
   register(credential:Credential):Observable<boolean>{
 
-    let url="http://localhost:5077/api/credential/register";
+    let url="http://localhost:5077/api/authentication/register";
     return this.http.post<any>(url,credential);
   }
 
