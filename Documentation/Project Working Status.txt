@@ -21,3 +21,23 @@ Remaining Work and need to add some more works in project
 6) Convertting same angular to react
 7) Coad cleaning for frontend and backend
 8) 
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+monday 
+
+task list
+product backlist
+chart list and char displays
+presentation topic and their presentstion
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Presentation Senerio
+
+1- PPT/SRS
+2- Presentation
+3- Video
+4-
