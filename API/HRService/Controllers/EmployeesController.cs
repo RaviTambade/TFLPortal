@@ -19,7 +19,7 @@ public class EmployeesController : ControllerBase
     }
     
     // httpGet : http://localhost:5230/api/employees/employees
-    //[Authorize]
+    [Authorize]
     [HttpGet]
     [Route ("employees")]
     public async Task<IEnumerable<Employee>> GetAll()
