@@ -45,7 +45,8 @@ Only Accissible when employee Login
 8.Update Timerecord            Can access Time record updates while wrongly entered                --------  Public
 9.Calculation TimeSheet        From this access employee calculate their daily working HRS         --------  Public
 10.Calculating TimeRecords     From this access Employee Can find calculation of working HRS
-                                                                           Between Two dates       --------  Public
+                                                                           Between Two dates 
+ --------  Public
 
 
 
