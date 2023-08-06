@@ -1,4 +1,4 @@
-Remaining Work and need to add some more works in project
+Remaining Work and need to add some more works in project :
 
 
 1) Authentication Authorization Remaining in Angular
@@ -20,12 +20,12 @@ Remaining Work and need to add some more works in project
 5) Converting one api of dotnet project into java project
 6) Convertting same angular to react
 7) Coad cleaning for frontend and backend
-8) 
+
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-monday 
+monday tasks
 
 task list
 product backlist
