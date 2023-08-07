@@ -206,6 +206,8 @@ INSERT INTO timerecords(empid,date,totaltime)VALUES(6,'2023-06-30 ','04:10');
 
 INSERT INTO clients(fullname,address,details)VALUES('Vishwambhar Kapare','Pune RajguruNagar','Client want to create online meeting portal for their compeny');
 INSERT INTO clients(fullname,address,details)VALUES('Rajat Pisal','Kolhapur','Client want to create online Interview Sheduling Project');
+INSERT INTO clients(fullname,address,details)VALUES('nivruti Misal','Solapur','Client want to create online Interview Sheduling Project');
+
 
 INSERT INTO onproject(projectid,clientid)VALUES(1,2);
 
