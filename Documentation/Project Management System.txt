@@ -118,7 +118,7 @@ Functional Requirements :
                                         Output: The system will return to the screen that shows the list of shifts worked by the selected employee.
                                         Priority: Essential
                               • Add Employees
-                                        Input: The administrator is on the add user screen and inputs the employee’s basic user information (name, email employee id etc) and selects the add option.
+                                        Input: The administrator is on the add user screen and inputs the employee’s basic user information (name, email employee id etc) and selects    the    add option.
                                         Action: The system will add the user to the user listing, adding the inputted
                                         values into the database.
                                         Output: The system will return to the add user screen.
@@ -197,6 +197,7 @@ Functional Requirements :
                                         Employees will only be able to view their own timesheet.
                                         Priority: Essential
 
+
 Non-Functional Requirements :
                     ➢ Security :
                               • Only Higher Manager will able see all employee records.
@@ -249,17 +250,19 @@ Non-Functional Requirements :
                               • Employee data will be backed up periodically to ensure safety of data using 
                                 incremental back up strategy.
 
+
 Design :
           ➢ The system must be programming in Object Oriented language, in this case we will 
              using c# (.net).
           ➢ The SQL database must be attached to the system.
+
 
 Process :
          ➢ Start up :
                    • Three Options Manager / Employee / New Register.
                    • Employee & Manager is for login using id, password.
                    • New Registration Required All fields of Employee & Manager Table
-.
+
          ➢ Manager :
                    • First enter into manager page using login option.
                    • Manager alloy’s to create tasks and assigns to existing employees.
@@ -270,7 +273,7 @@ Process :
                    • Project Manager have also their own Timesheet for their working.
                    • Manager also allows to edit previous tasks.
                    • Manager also allows to delete certain tasks
-.        ➢ Employee :
+        ➢ Employee :
                    • Employee first enter into Employee page using login option.
                    • Employee has Dashboard first option , in dashboard there was description
                      about task management system and also gives some Rules for completing 
@@ -284,6 +287,7 @@ Process :
                    • Then Employe have a Time Sheet where employe can fill ther time working on project for counting their working houres
                      by manager for their salery amount counting. 
                    • and the last Employee have one more option Logout.
+
 
 Benefits of Project : 
                    • From this task management project communication between employee and 
@@ -302,6 +306,7 @@ Benefits of Project :
                    • From this above project the working process will get more connection 
                      between employee and manager.
                    • and also increase efficiency of working.
+
 
 Purpose of Project :
                    • Increasing communication between employees & managers.

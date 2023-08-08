@@ -64,7 +64,6 @@ Authentication :
 
 
 Accounts:
-
  
 1)
 Url  : http:localhost:portnumber/api/accounts/getallaccounts
