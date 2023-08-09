@@ -797,6 +797,15 @@ Header :Delete payrole cycle
 Authentication :
 
 
+6) 
+Url  :http:localhost:portnumber/api/payrolecycles/deletepayrolecycle/{id}
+id   :Payrole cycle Id 
+Method :Delete
+Return :True or False
+Body   : Null
+Header :Delete payrole cycle
+Authentication
+
 
 
 
