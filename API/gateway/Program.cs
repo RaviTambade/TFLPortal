@@ -9,7 +9,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
 
-// builder.Configuration.SetBasePath(hostingContext.hostingEnvironment.ContentRootPath);
+ builder.Configuration.SetBasePath(hostingContext.hostingEnvironment.ContentRootPath);
 
 builder.Configuration.AddJsonFile("configuration.json", optional:false, reloadOnChange: true);
 
