@@ -55,7 +55,6 @@ INSERT INTO projects(title,startdate,enddate,description,status)VALUES('HCApp','
 INSERT INTO projects(title,startdate,enddate,description,status)VALUES('EcommApp','2023-02-02','2024-03-03','ECommerce App','Completed');
 
 
-
 INSERT INTO projectmembers(projectid,empid)VALUES(1,1);
 INSERT INTO projectmembers(projectid,empid)VALUES(1,2);
 INSERT INTO projectmembers(projectid,empid)VALUES(1,3);
@@ -76,8 +75,6 @@ INSERT INTO tasks(title,projectid,description,date,fromtime,totime)VALUES('Creat
 INSERT INTO tasks(title,projectid,description,date,fromtime,totime)VALUES('Develop RESTful API for EKSApp',1,'please arrange the meeting sheduling prosess quickly','2023-02-03','11:00:00', '01:30:00');
 INSERT INTO tasks(title,projectid,description,date,fromtime,totime)VALUES('Create technical documentation for EKSApp ',4,'please arrange the meeting sheduling prosess quickly','2023-02-03','09:00:00', '11:00:00');
 INSERT INTO tasks(title,projectid,description,date,fromtime,totime)VALUES('SRS Document preparing',5,'please arrange the meeting sheduling prosess quickly','2023-02-04','11:00:00', '01:30:00');
-
-
 
 
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(1,1,1,'2023-06-01 ','10:00:00', '11:00:00');
@@ -163,10 +160,6 @@ INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,7,3,
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,6,5,'2023-05-30 ','11:00:00', '12:00:00');
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,5,6,'2023-06-30 ','11:00:00', '12:00:00');
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,4,6,'2023-06-30 ','11:00:00', '12:00:00');
-
-
-
-
 
 
 
