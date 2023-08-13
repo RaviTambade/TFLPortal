@@ -1,0 +1,46 @@
+Users userStory:--------------------------------------------------------------------------------------------------
+
+1) As a user ,I want to add new account of the application by multiple roles like Managers and Employees. 
+2) As a user ,I want to add corporate details if I am Manager or Employee. -
+3) User can change his password for security purposes.                     -
+4) As a user ,I want to access my personal information of my profile.      -
+
+
+employee User Story:----------------------------------------------------------------------------------------------
+
+6)  As a employee, I want to log in to the system so that I can access the Project Managing functionality.
+7)  As a employee, I want to change my password in the system so that I can ensure the security of my account.
+8)  As a employee, I want to search for timesheet list with certain date .
+9)  As a employee, I can get the details of any timesheet from list.
+10) As a employee, I can edit this certain timesheet details. 
+11) As a employee, I can delete any timesheet from timesheet list.
+12) As a emoloyee, I can get total working hours from daily timesheet list.
+13) As a employee, I can get total working hours from monthly timerecords.
+14) As a employee, I want to add daily timesheet in a list. 
+15) As a employee, I want to add daily timsheets total working time in monthly timerecords.
+
+
+Manager User Story :----------------------------------------------------------------------------------------------
+
+16)As a manager, I want to log in to the system so that I can access the Project Managing functionality.
+17)As a manager, I want to change my password in the system so that I can ensure the security of my account.
+18)As a manager, I want to get Project List.
+19)As a manager, I want to get details of any project from list.
+20)As a manager, I want to edit any project details.
+21)As a manager, I want to delete any project from the list.
+22)As a manager, I want to add new project in the list.
+
+23)As a manager, I want to get Employee List.
+24)As a manager, I want to get details of any employee from list.
+25)As a manager, I want to edit any employee details.
+26)As a manager, I want to delete any employee from the list.
+27)As a manager, I want to add new employee in the list.
+
+28)As a manager, I want to get Task List.
+19)As a manager, I want to get details of any Task from list.
+30)As a manager, I want to edit any Task details.
+31)As a manager, I want to delete any Task from the list.
+32)As a manager, I want to add new Task in the list.
+
+33)As a manager, I can get total project details like which employee working on project, total working time on project etc....
+ 
