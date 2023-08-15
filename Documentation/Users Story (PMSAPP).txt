@@ -1,22 +1,23 @@
 Users userStory:---------------------------------------------------------------
 
-1) As a user ,I want to add new account of the application by multiple roles like Managers and Employees. 
-2) As a user ,I want to add corporate details if I am Manager or Employee. -
-3) User can change his password for security purposes.                     -
-4) As a user ,I want to access my personal information of my profile.      -
--
+1) As a user ,I want to add my new account in PMSAPP so that I can have a access to manage my timesheets as well as timercords while working in orgsnization with having role basis like employee or manager. 
+2) As a user ,I want to add my personal or corporate details in profile so that every one can know me and know my profile in corporate. -
+3) As a user, I want to access for change my password  so that i can manage security for my personal accesses.                          -
+4) As a user ,I want to access my profile so that i can manage my personal information in current profile.      -
+
 employee User Story:--------------------
 
 6)  As a employee, I want to log in to the system so that I can access the Project Managing functionality.
 7)  As a employee, I want to change my password in the system so that I can ensure the security of my account.
-8)  As a employee, I want to search for timesheet list with certain date .
-9)  As a employee, I can get the details of any timesheet from list.
-10) As a employee, I can edit this certain timesheet details. 
-11) As a employee, I can delete any timesheet from timesheet list.
-12) As a emoloyee, I can get total working hours from daily timesheet list.
-13) As a employee, I can get total working hours from monthly timerecords.
-14) As a employee, I want to add daily timesheet in a list. 
-15) As a employee, I want to add daily timsheets total working time in monthly timerecords.
+8)  As a employee, I want to search for timesheet list so that i cangeting my timesheet list with certain date .
+9)  As a employee, I want to gate details of any timesheet from list so that i can getting information of my any dates timesheet.
+10) As a employee, I want to edit my timesheet details so that i can change my wrong details which i entered. 
+11) As a employee, I want to delete any timesheet from timesheet list so that i can delete my worngly entered timmesheet.
+12) As a emoloyee, I want to get total working hours from daily timesheet list so that i can get my working time which invested in any tasks.
+13) As a employee, I want to get daily total working hours so that where i can dooing some tasks in a one day. 
+14) As a employee, I want to get total working hours from monthly timerecords so that i can find my total workinh houres in a month.
+15) As a employee, I want to add daily timesheet so that where i can add my timesheet which work i am doning in this day. 
+16) As a employee, I want to add daily timsheets total working time in monthly timerecords so that i can manage my monthly timerecords.
 
 Manager User Story :----------------------------------------------------------------------------------------------
 -
