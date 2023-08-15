@@ -1,16 +1,11 @@
-Users userStory:--------------------------------------------------------------------------------------------------
--
--
--
+Users userStory:---------------------------------------------------------------
+
 1) As a user ,I want to add new account of the application by multiple roles like Managers and Employees. 
 2) As a user ,I want to add corporate details if I am Manager or Employee. -
 3) User can change his password for security purposes.                     -
 4) As a user ,I want to access my personal information of my profile.      -
 -
-employee User Story:----------------------------------------------------------------------------------------------
--
--
--
+employee User Story:--------------------
 
 6)  As a employee, I want to log in to the system so that I can access the Project Managing functionality.
 7)  As a employee, I want to change my password in the system so that I can ensure the security of my account.
