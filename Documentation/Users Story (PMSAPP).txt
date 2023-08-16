@@ -16,7 +16,7 @@ employee User Story:--------------------
 12) As a emoloyee, I want to get total working hours from daily timesheet list so that i can get my working time which invested in any tasks.
 13) As a employee, I want to get daily total working hours so that where i can dooing some tasks in a one day. 
 14) As a employee, I want to get total working hours from monthly timerecords so that i can find my total workinh houres in a month.
-15) As a employee, I want to add daily timesheet so that where i can add my timesheet which work i am doning in this day. 
+15) As a employee, I want to register daily timesheet so that where i can add my timesheet which work i am doning in this day. 
 16) As a employee, I want to add daily timsheets total working time in monthly timerecords so that i can manage my monthly timerecords.
 
 Manager User Story :----------------------------------------------------------------------------------------------
