@@ -7,7 +7,7 @@ Users userStory:---------------------------------------------------------------
 
 employee User Story:--------------------
 
-6)  As a employee, I want to log in to the system so that I can access the Project Managing functionality.
+6)  As a employee, I want to log in to the system so that I can access the Project Managing functionality as a role of employee.
 7)  As a employee, I want to change my password in the system so that I can ensure the security of my account.
 8)  As a employee, I want to search for timesheet list so that i cangeting my timesheet list with certain date .
 9)  As a employee, I want to gate details of any timesheet from list so that i can getting information of my any dates timesheet.
@@ -20,29 +20,26 @@ employee User Story:--------------------
 16) As a employee, I want to add daily timsheets total working time in monthly timerecords so that i can manage my monthly timerecords.
 
 Manager User Story :----------------------------------------------------------------------------------------------
--
--
--
 
-16)As a manager, I want to log in to the system so that I can access the Project Managing functionality.
-17)As a manager, I want to change my password in the system so that I can ensure the security of my account.
-18)As a manager, I want to get Project List so that i can see total project title .
-19)As a manager, I want to get details of any project from list so that i get idea about that perticular project.
-20)As a manager, I want to edit any project details .
-21)As a manager, I want to delete project from the list so that i can easily remove perticular project.
-22)As a manager, I want to register new project in the list.
+17)As a manager, I want to log in to the system so that I can access the Project Managing functionality as a role of manager. 
+18)As a manager, I want to change my password in the system so that I can ensure the security of my account.
+19)As a manager, I want to get Project List so that i can see total project descriptions .
+20)As a manager, I want to get details of any project from list so that i get idea about that perticular project.
+21)As a manager, I want to edit any project details so that i can edit changes about any project.
+22)As a manager, I want to delete project from the list so that i can easily remove perticular project which is debar from production.
+23)As a manager, I want to register new project in the list so that when any project work geted for developement in our organization.
 -
-23)As a manager, I want to get Employee List.
-24)As a manager, I want to get details of any employee from list.
-25)As a manager, I want to edit any employee details.
-26)As a manager, I want to delete any employee from the list.
-27)As a manager, I want to add new employee in the list.
+24)As a manager, I want to get Employee List so that i can find the list of employees working in our organization.
+25)As a manager, I want to get details of any employee from list so that i can get ant detail of any employee.
+26)As a manager, I want to edit some employee details so that when any employee get prommotion or increase their position that time i can change their priority for working.
+27)As a manager, I want to delete any employee from the list so that when any employee will remove from organization that time i can remove their profile from this list.
+28)As a manager, I want to add new employee in the list so that when any employee is selected for organization that time i can add their account in this list.
 -
-28)As a manager, I want to get Task List.
-19)As a manager, I want to get details of any Task from list.
-30)As a manager, I want to edit any Task details.
-31)As a manager, I want to delete any Task from the list.
-32)As a manager, I want to add new Task in the list.
+29)As a manager, I want to get Task List so that i can get all tasks list which is created for employees for project works.
+30)As a manager, I want to get details of any Task from list so that i can get details of every tasks which is created previously by me.
+31)As a manager, I want to edit any Task details so that i can change any task priorities and functions for employees.
+32)As a manager, I want to delete any Task from the list so that i can delete any task which will wrongly inserted or which  will completed by employees.
+33)As a manager, I want to add new Task in the list so that i can add new tasks for every project for their developement.
 -
-33)As a manager, I can get total project details like which employee working on project, total working time on project etc....
+34)As a manager, I can get total project details so that i can  get which  employee working on project, total working time on project, which tasks is remaining or completed  etc informations....
  
