@@ -35,7 +35,6 @@ Authentication :
 
 [ When new employee inserted his details that time user automatically inserted in user tables by trigger]
 
-
 4) 
 Url  :http:localhost:portnumber/api/users/updateuser/{id}
 id   :User Id 
