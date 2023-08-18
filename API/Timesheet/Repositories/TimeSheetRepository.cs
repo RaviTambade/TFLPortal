@@ -362,9 +362,47 @@ public  async Task  <WorkingTime> GetTotalWorkingTime(int empid,string theDate)
     }
 
     
+   public async Task<IEnumerable<WeeklyData>> GetWeeklyData(int empid)
+    {
+         List<WeeklyData> totaldata = new List<WeeklyData>();
+         MySqlConnection connection = new MySqlConnection();
+         connection.ConnectionString = _conString;
+        try
+        {
+            string query = "select week(date) AS weeknumber ,SUM((TIME_TO_SEC(workingtime)/3600)) AS totalworkingHRS  from timesheets where empid=@empid group by week(date) order by week(date)";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            await connection.OpenAsync();
+            cmd.Parameters.AddWithValue("@empid",empid);
+            
+            
+            MySqlDataReader reader = cmd.ExecuteReader();
+             while (await reader.ReadAsync())
+            {   // string weeklydata = reader["week"].ToString();
+                string weeklydata = reader["weeknumber"].ToString();
+                string totalworkingtime = reader["totalworkingHRS"].ToString();
+            
+               WeeklyData weekData = new WeeklyData
+                {
+                    Week=weeklydata,
+                    TotalWorkingHRS=totalworkingtime
+                    
+                };
+                totaldata.Add(weekData);      
+         
+            }
+            reader.Close();
+        }
+        catch (Exception ee)
+        {
+            throw ee;
+        }
 
-
-
+        finally
+        {
+            connection.Close();
+        }
+        return totaldata;  
+    }
 
 
 }

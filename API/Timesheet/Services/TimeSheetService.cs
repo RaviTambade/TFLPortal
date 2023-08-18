@@ -28,4 +28,6 @@ public class TImeSheetService : ITimeSheetServices
 
     public async Task <WorkingTime> GetTotalWorkingTime(int empid,string theDate)=> await _repo.GetTotalWorkingTime(empid,theDate);
 
+    public async Task <IEnumerable<WeeklyData>> GetWeeklyData(int empid)=> await _repo.GetWeeklyData(empid);
+
 }

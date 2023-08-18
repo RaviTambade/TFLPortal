@@ -12,5 +12,6 @@ public interface IProjectsRepository
     Task<bool> Update(Project projects);
     Task<bool> Delete(int projId);
     Task<IEnumerable<Project>> GetByProject(Date date);
-    Task<IEnumerable<ProjectDetails>>GetAllDetails(int projectid);  
+    Task<IEnumerable<ProjectDetails>>GetAllDetails(int projectid);
+    Task<IEnumerable<ProjectStatus>> GetStatus();  
 }

@@ -60,7 +60,9 @@ export class ManagerviewService {
     let url = "http://localhost:5294/api/projects/projectdetails/" + projectId;
     return this.http.get<Project>(url);
   }
- 
+
+
+  
 
 //////////////////  Time Sheet  ///////////////////
   getAllTimesheets(id: any, date: string): Observable<any> {
@@ -172,6 +174,23 @@ export class ManagerviewService {
   fundTransfer(credential:any){
     let url ="http://localhost:5041/FundTransfer";
     return this.http.post(url,credential);
+  }
+
+
+  ///////////////////////////////// timesheet charts /////////////////////////////////////////////
+// timesheet weekly status
+
+  GetWeeklyReport(id:any):Observable<any>{
+    let url ="http://localhost:5161/api/Timesheet/weeklydata/" + id ;
+      return this.http.get<any>(url,id);
+  }
+
+  ///////////////////////////////project charts///////////////////////////////////////
+
+//project status 
+  getAllProjectsStatus(): Observable<any> {
+    let url = "http://localhost:5294/api/projects/status";
+    return this.http.get<any>(url);
   }
 
 

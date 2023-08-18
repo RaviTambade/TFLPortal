@@ -14,5 +14,7 @@ public interface ITimeSheetRepository{
     Task<IEnumerable<TimesheetsDetail>>GetAllDetails(int empid,string theDate);  
      Task <TimesheetsDetail> GetDetails(int empid); 
      Task <WorkingTime> GetTotalWorkingTime(int empid,string theDate);  
+
+     Task<IEnumerable<WeeklyData>> GetWeeklyData(int empid); 
      
  }

@@ -97,6 +97,19 @@ public class TimesheetController : ControllerBase
         WorkingTime time = await _service.GetTotalWorkingTime(empid, theDate);
         return time;
     }
+
+//httpGet ; http://localhost:5161/api/Timesheet/weeklydata/2
+    //[Authorize]
+    [HttpGet]
+    [Route("weeklydata/{empid}")]
+  public async Task<IEnumerable<WeeklyData>>GetWeeklyData(int empid)
+    {
+       IEnumerable<WeeklyData> weeklydata =await _service.GetWeeklyData(empid);
+        return weeklydata;
+    }
+
+
+
 }
 
 

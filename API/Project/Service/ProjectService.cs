@@ -26,4 +26,6 @@ public async Task<IEnumerable<Project>> GetByProject(Date date)=>await _repo.Get
 
  public async Task <IEnumerable<ProjectDetails>> GetAllDetails(int projectid)=> await _repo.GetAllDetails(projectid);
 
+ public async Task<IEnumerable<ProjectStatus>> GetStatus()=>await _repo.GetStatus();
+
 }

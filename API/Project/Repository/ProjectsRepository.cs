@@ -350,6 +350,45 @@ public class ProjectsRepository : IProjectsRepository
         }
         return projectsDetails;
     }
+ public async Task<IEnumerable<ProjectStatus>> GetStatus()
+    {
+        List<ProjectStatus> projectstatus = new List<ProjectStatus>();
+        MySqlConnection con = new MySqlConnection();
+        con.ConnectionString = _conString;
+        try
+        {
+            string query = "SELECT status,GROUP_CONCAT(title) as project_titles,COUNT(*) as total_projects FROM projects GROUP BY status";
+            MySqlCommand command = new MySqlCommand(query, con);
+            await con.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+
+            while (await reader.ReadAsync())
+            {
+                string? title = reader["project_titles"].ToString();
+                string status = reader["status"].ToString();
+                string totalProjects =reader ["total_projects"].ToString();
+
+                ProjectStatus project = new ProjectStatus
+                {
+                    Title = title,
+                    Status=status,
+                    TotalProject=totalProjects
+                    
+                };
+                projectstatus.Add(project);
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            await con.CloseAsync();
+        }
+        return projectstatus;
+    }
 
 
 }

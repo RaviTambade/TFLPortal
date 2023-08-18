@@ -14,6 +14,7 @@ import { RolesComponent } from './roles/roles.component';
 import { RouterContainerComponent } from './managerview/router-container/router-container.component';
 import { RouterModule } from '@angular/router';
 import { ManagerviewModule } from './managerview/managerview.module';
+import { ProjectstatusModule } from './managerview/chart/projectstatus/projectstatus.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ManagerviewModule } from './managerview/managerview.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ManagerviewModule
+    ManagerviewModule,
+    ProjectstatusModule
   ],
   providers: [],
   bootstrap: [AppComponent]

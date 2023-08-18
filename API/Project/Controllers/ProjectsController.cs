@@ -105,6 +105,18 @@ namespace ProjectsService.Controllers
         return projectDetails;
     }
 
+
+     //httpGet : http://localhost:5294/api/projects/status
+       // [Authorize]
+        [HttpGet]
+        [Route ("status")]
+       public async Task<IEnumerable<ProjectStatus>> GetStatus()
+        {
+            IEnumerable<ProjectStatus> projects =await _projectsrv.GetStatus();
+            return projects;
+        }
+
+
    
     }
     
