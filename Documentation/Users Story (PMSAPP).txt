@@ -43,3 +43,5 @@ Manager User Story :------------------------------------------------------------
 -
 34)As a manager, I can get total project details so that i can  get which  employee working on project, total working time on project, which tasks is remaining or completed  etc informations....
  
+charts -------------------------------------------------------------------------------------------------------------
+35) As a manager, I want to get charts so that where i can get information about project status
