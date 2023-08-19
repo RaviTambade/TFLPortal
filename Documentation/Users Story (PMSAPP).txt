@@ -20,10 +20,7 @@ employee User Story:--------------------
 16) As a employee, I want to add daily timsheets total working time in monthly timerecords so that i can manage my monthly timerecords.
 
 Manager User Story :----------------------------------------------------------------------------------------------
-<<<<<<< HEAD
 
-=======
->>>>>>> 9eed5e9b5ca5ea75fbde6bb7e58748d92b72dd02
 
 17)As a manager, I want to log in to the system so that I can access the Project Managing functionality as a role of manager. 
 18)As a manager, I want to change my password in the system so that I can ensure the security of my account.
@@ -47,10 +44,9 @@ Manager User Story :------------------------------------------------------------
 -
 34)As a manager, I can get total project details so that i can  get which  employee working on project, total working time on project, which tasks is remaining or completed  etc informations....
  
-<<<<<<< HEAD
 
-
-
+charts -------------------------------------------------------------------------------------------------------------
+35) As a manager, I want to get charts so that where i can get information about project status.
 
 
 
