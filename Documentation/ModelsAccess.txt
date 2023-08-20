@@ -9,7 +9,6 @@ Home Module :-
 
 
 Manager Module :-
-
 Only Accessible when Manaer Login
 
 1. Project List                Finding All Previous Projects       --------  Public
@@ -33,7 +32,6 @@ Only Accessible when Manaer Login
 
 
 Employee Module :- 
-
 Only Accissible when employee Login
 
 1.TimeSheet List               Finding Timesheet list of certain daye by emp Id                    --------  Public
@@ -46,8 +44,7 @@ Only Accissible when employee Login
 8.Update Timerecord            Can access Time record updates while wrongly entered                --------  Public
 9.Calculation TimeSheet        From this access employee calculate their daily working HRS         --------  Public
 10.Calculating TimeRecords     From this access Employee Can find calculation of working HRS
-                                                                           Between Two dates 
- --------  Public
+                               Between Two dates                                                    --------  Public
 
 
 

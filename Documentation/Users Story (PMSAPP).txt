@@ -1,9 +1,9 @@
 Users userStory:---------------------------------------------------------------
 
-1) As a user ,I want to register my new account in PMSAPP so that I can have a access to manage my timesheets as well as timercords while working in orgsnization with having role basis like employee or manager. 
-2) As a user ,I want to add my personal or corporate details in profile so that every one can know me and know my profile in corporate. -
+1) As a user, I want to register my new account in PMSAPP so that I can have a access to manage my timesheets as well as timercords while working in orgsnization with having role basis like employee or manager. 
+2) As a user, I want to add my personal or corporate details in profile so that every one can know me and know my profile in corporate. -
 3) As a user, I want to access for change my password  so that i can manage security for my personal accesses.                          -
-4) As a user ,I want to access my profile so that i can manage my personal information in current profile.      -
+4) As a user, I want to access my profile so that i can manage my personal information in current profile.      -
 
 employee User Story:--------------------
 
