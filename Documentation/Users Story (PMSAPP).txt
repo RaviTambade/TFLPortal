@@ -22,13 +22,13 @@ employee User Story:--------------------
 Manager User Story :----------------------------------------------------------------------------------------------
 
 
-17)As a manager, I want to log in to the system so that I can access the Project Managing functionality as a role of manager. 
-18)As a manager, I want to change my password in the system so that I can ensure the security of my account.
-19)As a manager, I want to get Project List so that i can see total project descriptions .
-20)As a manager, I want to get details of any project from list so that i get idea about that perticular project.
-21)As a manager, I want to edit any project details so that i can edit changes about any project.
-22)As a manager, I want to delete project from the list so that i can easily remove perticular project which is debar from production.
-23)As a manager, I want to register new project in the list so that when any project work geted for developement in our organization.
+16)As a manager, I want to log in to the system so that I can access the Project Managing functionality as a role of manager. 
+17)As a manager, I want to change my password in the system so that I can ensure the security of my account.
+18)As a manager, I want to get Project List so that i can see total project descriptions .
+19)As a manager, I want to get details of any project from list so that i get idea about that perticular project.
+20)As a manager, I want to edit any project details so that i can edit changes about any project.
+21)As a manager, I want to delete project from the list so that i can easily remove perticular project which is debar from production.
+22)As a manager, I want to register new project in the list so that when any project work geted for developement in our organization.
 -
 24)As a manager, I want to get Employee List so that i can find the list of employees working in our organization.
 25)As a manager, I want to get details of any employee from list so that i can get ant detail of any employee.
