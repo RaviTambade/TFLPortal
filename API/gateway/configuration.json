@@ -104,7 +104,7 @@
         "UpstreamHttpMethod":["GET"]
     },
     {
-        "DownstreamPathTemplate":"api/projects/project/name",
+        "DownstreamPathTemplate":"/api/projects/project/name",
         "DownstreamScheme":"http",
         "DownstreamHostAndPorts":[
             {
@@ -130,7 +130,7 @@
 
 
     {
-        "DownstreamPathTemplate":"api/projects/projects",
+        "DownstreamPathTemplate":"/api/projects/projects",
         "DownstreamScheme":"http",
         "DownstreamHostAndPorts":[
             {
@@ -283,7 +283,7 @@
 
 
     {
-        "DownstreamPathTemplate":"api/timerecords/timerecord",
+        "DownstreamPathTemplate":"/api/timerecords/timerecord",
         "DownstreamScheme":"http",
         "DownstreamHostAndPorts":[
             {
@@ -297,7 +297,7 @@
 
 
     {
-        "DownstreamPathTemplate":"api/Timerecords/{id}",
+        "DownstreamPathTemplate":"/api/Timerecords/{id}",
         "DownstreamScheme":"http",
         "DownstreamHostAndPorts":[
             {
@@ -311,7 +311,7 @@
 
 
     {
-        "DownstreamPathTemplate":"api/Timerecords/{id}",
+        "DownstreamPathTemplate":"/api/Timerecords/{id}",
         "DownstreamScheme":"http",
         "DownstreamHostAndPorts":[
             {
@@ -443,8 +443,86 @@
         ],
         "UpstreamPathTemplate": "/Timesheet/totaltime/{empid}/{theDate}",
         "UpstreamHttpMethod":["GET"]
-    }
+    },
+    {
+        "DownstreamPathTemplate":"/api/role/getall",
+        "DownstreamScheme":"http",
+        "DownstreamHostAndPorts":[
+            {
+                "Host":"localhost",
+                "Port":5131
+            }
+        ],
+        "UpstreamPathTemplate": "/role/getall",
+        "UpstreamHttpMethod":["GET"]
+    },
 
+
+    {
+        "DownstreamPathTemplate":"/api/role/get/{id}",
+        "DownstreamScheme":"http",
+        "DownstreamHostAndPorts":[
+            {
+                "Host":"localhost",
+                "Port":5131
+            }
+        ],
+        "UpstreamPathTemplate": "/role/get/{id}",
+        "UpstreamHttpMethod":["GET"]
+    },
+
+
+    {
+        "DownstreamPathTemplate":"/api/role/role",
+        "DownstreamScheme":"http",
+        "DownstreamHostAndPorts":[
+            {
+                "Host":"localhost",
+                "Port":5131
+            }
+        ],
+        "UpstreamPathTemplate": "/role/role",
+        "UpstreamHttpMethod":["POST"]
+    },
+
+    {
+        "DownstreamPathTemplate":"/api/role/{id}",
+        "DownstreamScheme":"http",
+        "DownstreamHostAndPorts":[
+            {
+                "Host":"localhost",
+                "Port":5131
+            }
+        ],                           
+        "UpstreamPathTemplate": "/role/{id}",
+        "UpstreamHttpMethod":["PUT"]
+    },
+
+    {
+        "DownstreamPathTemplate":"/api/role/{id}",
+        "DownstreamScheme":"http",
+        "DownstreamHostAndPorts":[
+            {
+                "Host":"localhost",
+                "Port":5161
+            }
+        ],
+        "UpstreamPathTemplate": "/role/{id}",
+        "UpstreamHttpMethod":["DELETE"]
+    },
+
+    {
+        "DownstreamPathTemplate":"/api/role/user/{id}",
+        "DownstreamScheme":"http",
+        "DownstreamHostAndPorts":[
+            {
+                "Host":"localhost",
+                "Port":5131
+            }
+        ],
+        "UpstreamPathTemplate": "/role/user/{id}",
+        "UpstreamHttpMethod":["GET"]
+    }
 
 
  ]
