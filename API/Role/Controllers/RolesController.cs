@@ -26,7 +26,7 @@ public class RoleController : ControllerBase
         return roles;
     }
 
-    // httpGet : http://localhost:5131/api/role/get/1
+    // httpGet : http://localhost:5131/api/role/get/{id}
     //   [Authorize]
     [HttpGet]
     [Route("get/{id}")]
@@ -36,7 +36,7 @@ public class RoleController : ControllerBase
         return role;
     }
 
-    // httpPost : http://localhost:5131/api/role/get/1
+    // httpPost : http://localhost:5131/api/role/role
      //  [Authorize]
     [HttpPost]
     [Route("Role")]
@@ -64,6 +64,14 @@ public class RoleController : ControllerBase
     {
         bool status = await _service.Delete(id);
         return status;
+    }
+    // httpDelete : http://localhost:5131/api/role/user/{id}
+      [HttpGet("user/{id}")]
+    public  async Task<List<string>> GetRolesOfUser(int id)
+    {
+        List<string> roles = await  _service.GetRolesOfUser(id);
+
+        return roles;
     }
 
 

@@ -178,4 +178,38 @@ public class RoleRepository : IRoleRepository
         }
         return status;
     }
+
+    public async Task<List<string>> GetRolesOfUser(int id)
+     {
+        List<string> roles = new List<string>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _conString;
+        try
+        {
+            string query = "select  roles.rolename from roles inner join userroles on roles.id= userroles.roleid where userroles.userid=@userId";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@userId", id);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while(await reader.ReadAsync())
+            {
+                string role = reader["rolename"].ToString();
+                 roles.Add(role);
+            }
+            await reader.CloseAsync();
+        }
+
+        catch (Exception ee)
+        {
+            throw ee;
+        }
+
+        finally
+        {
+
+           await connection.CloseAsync();
+        }
+
+        return roles;
+    }
 }

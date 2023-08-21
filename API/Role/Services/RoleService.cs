@@ -22,5 +22,6 @@ public class RoleServices : IRoleServices
 
     public async Task<bool> Delete(int id)=>await _repo.Delete(id);
 
+    public Task<List<string>> GetRolesOfUser(int id )=>_repo.GetRolesOfUser(id);
 
 }
