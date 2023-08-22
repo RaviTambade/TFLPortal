@@ -74,58 +74,6 @@ public class RoleController : ControllerBase
         return roles;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // // httpPut : http://localhost:5131/api/role/1
-    //    //   [Authorize]
-    // [HttpPut]
-    // [Route("{id}")]
-    // public async Task<bool> Update(Role role)
-    // {
-    //     bool status = await _service.Update(role);
-    //     return status;
-    // }
-
-    // // httpDelete : http://localhost:5131/api/role/1
-    //    //  [Authorize]
-    // [HttpDelete]
-    // [Route("{id}")]
-    // public async Task<bool> Delete(int id)
-    // {
-    //     bool status = await _service.Delete(id);
-    //     return status;
-    // }
-    // // httpDelete : http://localhost:5131/api/role/user/{id}
-    //   [HttpGet("user/{id}")]
-    // public  async Task<List<string>> GetRolesOfUser(int id)
-    // {
-    //     List<string> roles = await  _service.GetRolesOfUser(id);
-
-    //     return roles;
-    // }
-
-
 }
 
 
