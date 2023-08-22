@@ -1,71 +1,48 @@
-<!-- <!-- 
-
-
-
-<div class="container">
+<div>
+  <div class="container">
     <div class="row">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card border-0 shadow rounded-3 my-5">
           <div class="card-body p-4 p-sm-5">
-            <h5 class="card-title  text-center mb-5  fs-5">Sign In</h5>
-            <form  #loginForm="ngForm" (ngSubmit)="onLogin(loginForm.value)">
+            <h2 class="card-title text-center mb-5 fs-5">Login</h2>
+            <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm.value)">
+              <P> </P> 
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="contactnumber" placeholder="" name="contactnumber" [(ngModel)]="credential.contactNumber">
-                <label for="contactnumber">Contact Number</label>
+                <input type="text" class="form-control" id="contactnumber" name="Contact Number"
+                  placeholder="Contact Number" [(ngModel)]="credential.contactNumber" />
+                <label for="contactnumber"></label>
               </div>
+              <P> </P> 
               <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="pass" placeholder="Password" name="password" [(ngModel)]="credential.password">
-                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                  [(ngModel)]="credential.password" />
+                <label for="password"></label>
               </div>
-        
+              <P> </P> 
               <div class="d-grid">
-                <button class="btn btn-success  fw-bold" style="color: inherit; text-decoration:none;display: block;" type="submit" >Sign in</button>
-              </div>
-              
-              <hr class="my-4">
-               <div class="d-grid">
-                <button class="btn btn-success fw-bold" >
-                  <a [routerLink]="['/authentication/register']" style="color: inherit; text-decoration:none;display: block;">  Create a New Account </a>
-               </button>
+                <button class="btn btn-success fw-bold" type="submit">Login</button>
               </div>
             </form>
-            </div>
+          </div>
+          <div class="screen__background">
+            <span class="screen__background__shape screen__background__shape4"></span>
+            <span class="screen__background__shape screen__background__shape3"></span>		
+            <span class="screen__background__shape screen__background__shape2"></span>
+            <span class="screen__background__shape screen__background__shape1"></span>
+          </div>		
+        </div>
+      </div> 
+
+      <div class="d-grid" *ngFor="let role of roles">
+      <br>
+        <button class="btn btn-success fw-bold">
+      
+          <a style="color: inherit; text-decoration:none;display: block;" (click)="navigateByRole(role)">
+            <br> Login As {{role}} </a>   
+        </button>    
+    
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-<router-outlet></router-outlet> -->
-
-
- <!-- <div class="container">
-	<div class="screen">
-		<div class="screen__content">
-			<form class="login" #loginForm="ngForm" (ngSubmit)="onLogin(loginForm.value)">
-				<div class="login__field">
-					<i class="login__icon fas fa-user"></i>
-					<input type="text" class="login__input" placeholder="ContactNumber" name="contactnumber" [(ngModel)]="credential.contactNumber">
-				</div>
-				<div class="login__field">
-					<i class="login__icon fas fa-lock"></i>
-					<input type="password" class="login__input" placeholder="Password" name="password" [(ngModel)]="credential.password">
-				</div>
-				<button class="button login__submit">
-					<span class="button__text"  type="submit" >Log In Now</span>
-					<i class="button__icon fas fa-chevron-right"></i>
-				</button>				
-			</form>
-			
-		</div>
-		<div class="screen__background">
-			<span class="screen__background__shape screen__background__shape4"></span>
-			<span class="screen__background__shape screen__background__shape3"></span>		
-			<span class="screen__background__shape screen__background__shape2"></span>
-			<span class="screen__background__shape screen__background__shape1"></span>
-		</div>		
-	</div>
-</div>   -->
- 
-
-
 

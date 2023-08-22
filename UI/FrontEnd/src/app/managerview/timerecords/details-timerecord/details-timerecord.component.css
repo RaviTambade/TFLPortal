@@ -16,12 +16,10 @@ table, th, td {
   th, td {
     padding: 15px;
   }
-  
   th {
-    background-color: #f55a06;
+    background-color: #0616f5;
     color: white;
   }
-
   tr:hover {background-color: rgb(242, 246, 217);}
 
 
