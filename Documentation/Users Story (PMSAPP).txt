@@ -1,9 +1,9 @@
 Users userStory:---------------------------------------------------------------
 
-1) As a user ,I want to register my new account in PMSAPP so that I can have a access to manage my timesheets as well as timercords while working in orgsnization with having role basis like employee or manager. 
-2) As a user ,I want to add my personal or corporate details in profile so that every one can know me and know my profile in corporate. -
+1) As a user, I want to register my new account in PMSAPP so that I can have a access to manage my timesheets as well as timercords while working in orgsnization with having role basis like employee or manager. 
+2) As a user, I want to add my personal or corporate details in profile so that every one can know me and know my profile in corporate. -
 3) As a user, I want to access for change my password  so that i can manage security for my personal accesses.                          -
-4) As a user ,I want to access my profile so that i can manage my personal information in current profile.      -
+4) As a user, I want to access my profile so that i can manage my personal information in current profile.      -
 
 employee User Story:--------------------
 
@@ -22,23 +22,23 @@ employee User Story:--------------------
 Manager User Story :----------------------------------------------------------------------------------------------
 
 
-17)As a manager, I want to log in to the system so that I can access the Project Managing functionality as a role of manager. 
-18)As a manager, I want to change my password in the system so that I can ensure the security of my account.
-19)As a manager, I want to get Project List so that i can see total project descriptions .
-20)As a manager, I want to get details of any project from list so that i get idea about that perticular project.
-21)As a manager, I want to edit any project details so that i can edit changes about any project.
-22)As a manager, I want to delete project from the list so that i can easily remove perticular project which is debar from production.
-23)As a manager, I want to register new project in the list so that when any project work geted for developement in our organization.
+16)As a manager, I want to log in to the system so that I can access the Project Managing functionality as a role of manager. 
+17)As a manager, I want to change my password in the system so that I can ensure the security of my account.
+18)As a manager, I want to get Project List so that i can see total project descriptions .
+19)As a manager, I want to get details of any project from list so that i get idea about that perticular project.
+20)As a manager, I want to edit any project details so that i can edit changes about any project.
+21)As a manager, I want to delete project from the list so that i can easily remove perticular project which is debar from production.
+22)As a manager, I want to register new project in the list so that when any project work geted for developement in our organization.
 -
-24)As a manager, I want to get Employee List so that i can find the list of employees working in our organization.
-25)As a manager, I want to get details of any employee from list so that i can get ant detail of any employee.
-26)As a manager, I want to edit some employee details so that when any employee get prommotion or increase their position that time i can change their priority for working.
-27)As a manager, I want to delete any employee from the list so that when any employee will remove from organization that time i can remove their profile from this list.
-28)As a manager, I want to add new employee in the list so that when any employee is selected for organization that time i can add their account in this list.
+23)As a manager, I want to get Employee List so that i can find the list of employees working in our organization.
+24)As a manager, I want to get details of any employee from list so that i can get ant detail of any employee.
+25)As a manager, I want to edit some employee details so that when any employee get prommotion or increase their position that time i can change their priority for working.
+26)As a manager, I want to delete any employee from the list so that when any employee will remove from organization that time i can remove their profile from this list.
+27)As a manager, I want to add new employee in the list so that when any employee is selected for organization that time i can add their account in this list.
 -
-29)As a manager, I want to get Task List so that i can get all tasks list which is created for employees for project works.
-30)As a manager, I want to get details of any Task from list so that i can get details of every tasks which is created previously by me.
-31)As a manager, I want to edit any Task details so that i can change any task priorities and functions for employees.
+28)As a manager, I want to get Task List so that i can get all tasks list which is created for employees for project works.
+29)As a manager, I want to get details of any Task from list so that i can get details of every tasks which is created previously by me.
+30)As a manager, I want to edit any Task details so that i can change any task priorities and functions for employees.
 32)As a manager, I want to delete any Task from the list so that i can delete any task which will wrongly inserted or which  will completed by employees.
 33)As a manager, I want to add new Task in the list so that i can add new tasks for every project for their developement.
 -

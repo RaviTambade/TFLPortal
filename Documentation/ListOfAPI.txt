@@ -59,7 +59,6 @@ Body   : Null
 Header :Delete User
 Authentication :
 
-
 Accounts:
  
 1)
@@ -120,9 +119,6 @@ Return :True or False
 Body   : Null
 Header :Delete Account
 Authentication :
-
-
-
 
 
 
@@ -191,7 +187,6 @@ Return :True or False
 Body   : Null
 Header :Delete employee
 Authentication :
-
 
 
 [Team]
