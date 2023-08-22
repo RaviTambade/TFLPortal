@@ -1,6 +1,7 @@
                   Title : Project Management System.
 
 Document : System Requirement Specification Document.
+
 Title    : Online Project Management System.
 
 Objective: 
@@ -43,6 +44,7 @@ Scope    :
           8.The team member interface will allow to search task which will be assigned by project manager and aslo have action methods to upload status of project and update their own time sheets of project working. 
 
 Overall Description :
+
    Current Solution :
                      As for the moment every team leader is using a specific software product or no software at all, for maintaining the project schedule, to organize the tasks of the project and to physically store 
                      the all project data.
@@ -96,6 +98,7 @@ Specific Requirements:
 	                  Web browser
 
 Functional Requirements :
+
            ➢ User Registration and Login : (UI01)
                               • The system will allow to register a new Employee.
                               • The system will allow existing employee or manager to log-on their account.
@@ -199,6 +202,7 @@ Functional Requirements :
 
 
 Non-Functional Requirements :
+
                     ➢ Security :
                               • Only Higher Manager will able see all employee records.
                               • One employee should not be able to modify other employee details.

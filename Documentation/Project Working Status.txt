@@ -21,8 +21,6 @@ Remaining Work and need to add some more works in project :
 6) Convertting same angular to react
 7) Coad cleaning for frontend and backend
 
-
-
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 monday tasks

@@ -21,7 +21,6 @@ employee User Story:--------------------
 
 Manager User Story :----------------------------------------------------------------------------------------------
 
-
 16)As a manager, I want to log in to the system so that I can access the Project Managing functionality as a role of manager. 
 17)As a manager, I want to change my password in the system so that I can ensure the security of my account.
 18)As a manager, I want to get Project List so that i can see total project descriptions .
@@ -44,7 +43,6 @@ Manager User Story :------------------------------------------------------------
 -
 34)As a manager, I can get total project details so that i can  get which  employee working on project, total working time on project, which tasks is remaining or completed  etc informations....
  
-
 charts -------------------------------------------------------------------------------------------------------------
 
 35) As a manager, I want to get charts so that where i can get information about project status.
