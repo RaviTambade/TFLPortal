@@ -1,181 +1,44 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
-
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;	
-	font-family: Raleway, sans-serif;
-}
 
 body {
-	background: linear-gradient(140px, #73719d, #e2ced2a7);		
+    padding-top: 100px;
+    padding-bottom:100px;
+    background-color: #f5f5f5; /* Light gray background for contrast */
 }
-
 .container {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	min-height: 100vh;
+    max-width: 1000px;
+}
+.card {
+    background-color: #ffffff; /* white background */
+    border-radius: 40px; /* More rounded corners */
+    overflow: hidden; /* Makes sure nothing spills out of the rounded corners */
+}
+.card-body {
+    padding: 30px;
 }
 
-.screen {		
-	background: linear-gradient(90deg, #8c9497, #1e7bc8);		
-	position: relative;	
-	height: 600px;
-	width: 360px;	
-	box-shadow: 0px 0px 24px #78a9e8;
+.form-control {
+    border: 2px solid #ced4da;
+    box-shadow: none; /* Removes the default Bootstrap shadow */
+	width: 350px;
+    height: 30px;
+    border-radius: 10px; /* Slightly rounded borders */
 }
-
-.screen__content {
-	z-index: 1;
-	position: relative;	
-	height: 100%;
+.form-control:focus {
+    border-color: #80bdff; /* A blueish focus ring */
+    box-shadow: 0 0 0 0.2rem rgba(185, 198, 200, 0.76); /* Enhance focus box shadow */
 }
-
-.screen__background {		
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	z-index: 0;
-	-webkit-clip-path: inset(0 0 0 0);
-	clip-path: inset(0 0 0 0);	
+.btn-success {
+    background-color: #3128a7;
+    border-color: #2a28a7;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 20px; /* Padding makes the button larger and easier to click */
 }
-
-.screen__background__shape {
-	transform: rotate(45deg);
-	position: absolute;
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
 }
-
-.screen__background__shape1 {
-	height: 520px;
-	width: 520px;
-	background: #FFF;	
-	top: -50px;
-	right: 120px;	
-	border-radius: 0 72px 0 0;
+.spacing {
+    margin-bottom: 30px; /* Adjust the value as per your preference */
 }
-
-.screen__background__shape2 {
-	height: 220px;
-	width: 220px;
-	background: #40b2e7;	
-	top: -172px;
-	right: 0;	
-	border-radius: 32px;
-}
-
-.screen__background__shape3 {
-	height: 540px;
-	width: 190px;
-	background: linear-gradient(270deg, #b561e9, #024e1e);
-	top: -24px;
-	right: 0;	
-	border-radius: 32px;
-}
-
-.screen__background__shape4 {
-	height: 400px;
-	width: 200px;
-	background: rgb(10, 108, 72);	
-	top: 420px;
-	right: 50px;	
-	border-radius: 60px;
-}
-
-.login {
-	width: 320px;
-	padding: 30px;
-	padding-top: 156px;
-}
-
-.login__field {
-	padding: 20px 0px;	
-	position: relative;	
-}
-
-.login__icon {
-	position: absolute;
-	top: 30px;
-	color: #052a14;
-}
-
-.login__input {
-	border: none;
-	border-bottom: 2px solid #D1D1D4;
-	background: none;
-	padding: 10px;
-	padding-left: 24px;
-	font-weight: 700;
-	width: 75%;
-	transition: .2s;
-}
-
-.login__input:active,
-.login__input:focus,
-.login__input:hover {
-	outline: none;
-	border-bottom-color: rgb(36, 201, 226);
-}
-
-.login__submit {
-	background: #fff;
-	font-size: 14px;
-	margin-top: 30px;
-	padding: 16px 20px;
-	border-radius: 26px;
-	border: 1px solid #D4D3E8;
-	text-transform: uppercase;
-	font-weight: 700;
-	display: flex;
-	align-items: center;
-	width: 100%;
-	color: #b6a82e;
-	box-shadow: 0px 2px 2px #106d39;
-	cursor: pointer;
-	transition: .2s;
-}
-
-.login__submit:active,
-.login__submit:focus,
-.login__submit:hover {
-	border-color: #3d8554;
-	outline: none;
-}
-
-.button__icon {
-	font-size: 24px;
-	margin-left: auto;
-	color: #49aaaf;
-}
-
-.social-login {	
-	position: absolute;
-	height: 140px;
-	width: 160px;
-	text-align: center;
-	bottom: 0px;
-	right: 0px;
-	color: #fff;
-}
-
-.social-icons {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.social-login__icon {
-	padding: 20px 10px;
-	color: #fff;
-	text-decoration: none;	
-	text-shadow: 0px 0px 8px #2d9368;
-}
-
-.social-login__icon:hover {
-	transform: scale(1.5);	
-} 
-
-
 

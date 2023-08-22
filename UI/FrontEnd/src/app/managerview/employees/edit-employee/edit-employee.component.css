@@ -15,10 +15,9 @@ table, th, td {
   }
   
   th {
-    background-color: #f55a06;
+    background-color: #0616f5;
     color: white;
   }
-  
   tr:hover {background-color: rgb(242, 246, 217);}
   
   
