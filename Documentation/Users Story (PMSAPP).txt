@@ -38,14 +38,14 @@ Manager User Story :------------------------------------------------------------
 28)As a manager, I want to get Task List so that i can get all tasks list which is created for employees for project works.
 29)As a manager, I want to get details of any Task from list so that i can get details of every tasks which is created previously by me.
 30)As a manager, I want to edit any Task details so that i can change any task priorities and functions for employees.
-32)As a manager, I want to delete any Task from the list so that i can delete any task which will wrongly inserted or which  will completed by employees.
-33)As a manager, I want to add new Task in the list so that i can add new tasks for every project for their developement.
+31)As a manager, I want to delete any Task from the list so that i can delete any task which will wrongly inserted or which  will completed by employees.
+32)As a manager, I want to add new Task in the list so that i can add new tasks for every project for their developement.
 -
-34)As a manager, I can get total project details so that i can  get which  employee working on project, total working time on project, which tasks is remaining or completed  etc informations....
+33)As a manager, I can get total project details so that i can  get which  employee working on project, total working time on project, which tasks is remaining or completed  etc informations....
  
 charts -------------------------------------------------------------------------------------------------------------
 
-35) As a manager, I want to get charts so that where i can get information about project status.
+34) As a manager, I want to get charts so that where i can get information about project status.
 
 
 

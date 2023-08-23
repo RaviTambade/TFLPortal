@@ -4,7 +4,6 @@ table, th, td {
     text-align: center;  
   }
   
-  
   table {
     border-collapse: collapse;
     width: 80%;
@@ -20,7 +19,6 @@ table, th, td {
   }
   
   tr:hover {background-color: rgb(242, 246, 217);}
-  
   
   .button {
     background-color: #4CAF50;
