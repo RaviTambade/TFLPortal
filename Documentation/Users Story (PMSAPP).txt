@@ -48,7 +48,7 @@ charts :-
 34) As a manager, I want to get charts so that where i can get information about project status.
 
 
-
+35) As a manager, I want to get weekly working hour charts so that where i can get information about employees timetrack .
 
 
 
