@@ -7,6 +7,7 @@ import { ProjectstatusModule } from './managerview/chart/projectstatus/projectst
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthenticationModule } from './authentication/authentication.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     CommonModule,
     ReactiveFormsModule,
-     HttpClientModule
+    HttpClientModule,
+    AuthenticationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
