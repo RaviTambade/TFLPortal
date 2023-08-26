@@ -12,7 +12,7 @@ export class LoginComponent {
   userId:number |any;
   roles:any[];
   status:boolean=false;
-  token:any;
+  tok:any;
   value:any;
   credential:Credential={
     contactNumber: '',
@@ -28,11 +28,11 @@ export class LoginComponent {
   onLogin(form: any) {
     console.log(form);
     this.svc.validate(form).subscribe((response) => {
-      this.token=response;
+      this.tok=response;
       console.log('check token');
-      console.log(this.token);
+      console.log(this.tok);
       localStorage.setItem("contactNumber", this.credential.contactNumber);
-     localStorage.setItem("jwt",this.token);
+     localStorage.setItem("jwt",this.tok);
     })
     this.svc.getUserId(this.credential.contactNumber).subscribe((response) => {
       this.userId = response;
