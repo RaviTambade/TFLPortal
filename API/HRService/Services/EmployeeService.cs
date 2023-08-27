@@ -1,6 +1,7 @@
-using HRService.Models;
-using HRService.Repositories.Interfaces;
-using HRService.Services.Interfaces;
+
+using Transflower.PMS.HRService.Models;
+using Transflower.PMS.HRService.Repositories.Interfaces;
+using Transflower.PMS.HRService.Services.Interfaces;
 
 namespace HRService.Services;
 public class EmployeeService : IEmployeesService

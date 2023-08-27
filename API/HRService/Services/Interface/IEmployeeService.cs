@@ -1,7 +1,7 @@
-using HRService.Repositories.Interfaces;
 
+using Transflower.PMS.HRService.Repositories.Interfaces;
 
-namespace HRService.Services.Interfaces;
+namespace  Transflower.PMS.HRService.Services.Interfaces;
 public interface IEmployeesService : IEmployeeRepository
 {
 

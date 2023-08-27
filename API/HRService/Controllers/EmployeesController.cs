@@ -1,11 +1,10 @@
 using System.Net.Http.Headers;
-using HRService.Models;
-using HRService.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using PMS.Helpers;
+using Transflower.PMS.Helpers;
+using Transflower.PMS.HRService.Models;
+using Transflower.PMS.HRService.Services.Interfaces;
 
-
-namespace employees.Controllers;
+namespace Transflower.PMS.HRService.Controllers;
 
 [ApiController]
 [Route("/api/[controller]")]
@@ -19,7 +18,7 @@ public class EmployeesController : ControllerBase
     }
     
     // httpGet : http://localhost:5230/api/employees/employees
-    [Authorize]
+    //[Authorize]
     [HttpGet]
     [Route ("employees")]
     public async Task<IEnumerable<Employee>> GetAll()

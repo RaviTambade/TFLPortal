@@ -10,13 +10,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ApplicationRoutingComponent } from './application-routing/application-routing.component';
+import { EmployeeModule } from './employee/employee.module';
+import { ManagerModule } from './manager/manager.module';
+import { DefaultModule } from './default/default.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     MembersComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    ApplicationRoutingComponent
   ],
   imports: [
     AppRoutingModule,
@@ -26,7 +31,10 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AuthenticationModule
+    AuthenticationModule,
+    EmployeeModule,
+    ManagerModule,
+    DefaultModule
   ],
   providers: [],
   bootstrap: [AppComponent]

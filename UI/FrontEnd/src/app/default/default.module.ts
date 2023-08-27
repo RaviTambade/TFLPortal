@@ -16,6 +16,12 @@ import { PrivacyComponent } from './privacy/privacy.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports:[
+    AboutComponent,
+    HomeComponent,
+    ContactComponent,
+    PrivacyComponent
   ]
 })
 export class DefaultModule { }

@@ -1,10 +1,11 @@
-using HRService.Repositories;
-using HRService.Repositories.Interfaces;
+
 using HRService.Services;
-using HRService.Services.Interfaces;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.FileProviders;
-using PMS.Helpers;
+using Transflower.PMS.HRService.Helpers;
+using Transflower.PMS.HRService.Repositories;
+using Transflower.PMS.HRService.Repositories.Interfaces;
+using Transflower.PMS.HRService.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,5 +1,6 @@
-using HRService.Models;
-namespace HRService.Repositories.Interfaces;
+
+using Transflower.PMS.HRService.Models;
+namespace Transflower.PMS.HRService.Repositories.Interfaces;
 public interface IEmployeeRepository
 {
     Task <IEnumerable<Employee>> GetAll();

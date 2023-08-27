@@ -1,24 +1,25 @@
-using HRService.Models;
-using HRService.Repositories.Interfaces;
+
 using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Configuration;
+using Transflower.PMS.HRService.Models;
+using Transflower.PMS.HRService.Repositories.Interfaces;
 
-namespace HRService.Repositories
+namespace Transflower.PMS.HRService.Repositories
 {
 public class EmployeeRepository : IEmployeeRepository
 {
   private IConfiguration _configuration;
-  private string _conString;
+  private string _connectionString;
 
   public EmployeeRepository(IConfiguration configuration){
        _configuration= configuration;
-      _conString=this._configuration.GetConnectionString("DefaultConnection");
+      _connectionString=this._configuration.GetConnectionString("DefaultConnection");
 
   }
   public async Task<IEnumerable<Employee>>  GetAll(){
      
         List<Employee> employees=new List<Employee>();
-        MySqlConnection connection=new MySqlConnection(_conString);
+        MySqlConnection connection=new MySqlConnection(_connectionString);
         try{
             MySqlCommand command=new MySqlCommand();
             command.CommandText="SELECT * FROM employees";
@@ -33,7 +34,6 @@ public class EmployeeRepository : IEmployeeRepository
                 DateTime birthdate = Convert.ToDateTime(reader["birthdate"].ToString());
                 DateTime hiredate = Convert.ToDateTime(reader["hiredate"].ToString());
                 string contact=reader["contactnumber"].ToString();
-                string img = reader["image"].ToString();
                 int userId = Int32.Parse(reader["userid"].ToString());
                
                Employee employee = new Employee
@@ -44,7 +44,6 @@ public class EmployeeRepository : IEmployeeRepository
                     BirthDate=birthdate.ToShortDateString(),
                     HireDate=hiredate.ToShortDateString(),
                     ContactNumber=contact,
-                    Image=img,
                     UserId= userId
                 };
                 employees.Add(employee);
@@ -64,7 +63,7 @@ public class EmployeeRepository : IEmployeeRepository
    public async Task<Employee>  GetById(int Id)
    {
           Employee employee =new Employee();
-          MySqlConnection connection=new MySqlConnection(_conString);
+          MySqlConnection connection=new MySqlConnection(_connectionString);
           try{
               MySqlCommand command=new MySqlCommand();
               command.CommandText="SELECT * FROM employees where id=@employeeId";
@@ -80,7 +79,7 @@ public class EmployeeRepository : IEmployeeRepository
                 DateTime birthdate = Convert.ToDateTime(reader["birthdate"].ToString());
                 DateTime hiredate =  Convert.ToDateTime(reader["hiredate"].ToString());
                 string contactNumber=reader["contactnumber"].ToString(); 
-                string img = reader["image"].ToString();
+              //  string img = reader["image"].ToString();
                 int userId = Int32.Parse(reader["userid"].ToString());
         
                 employee = new Employee
@@ -91,7 +90,7 @@ public class EmployeeRepository : IEmployeeRepository
                     BirthDate=birthdate.ToShortDateString(),
                     HireDate=hiredate.ToShortDateString(),
                     ContactNumber=contactNumber,
-                    Image=img,
+                 //   Image=img,
                     UserId=userId     
               };
               reader.Close();
@@ -105,24 +104,24 @@ public class EmployeeRepository : IEmployeeRepository
           }
           return employee;
    }
-   public  async Task<bool> Insert(Employee emp)
+   public  async Task<bool> Insert(Employee employee)
    {    
           bool status = false;
           MySqlConnection con = new MySqlConnection();
-          con.ConnectionString=_conString;
+          con.ConnectionString=_connectionString;
           try{
-              string query =$"INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,image,userid)VALUES"+
-                                                  "(@EmpFirstName,@EmpLastName,@BirthDate,@HireDate,@ContactNumber,@image,@userId)";
+              string query =$"INSERT INTO employees(firstname,lastname,birthdate,hiredate,contactnumber,userid)VALUES"+
+                                                  "(@employeeFirstName,@employeeLastName,@employeeBirthDate,@employeeHireDate,@employeeContactNumber,@userId)";
              Console.WriteLine(query);
              await con.OpenAsync();
              MySqlCommand command=new MySqlCommand(query,con) ;
-             command.Parameters.AddWithValue("@EmpFirstName",emp.FirstName);             
-             command.Parameters.AddWithValue("@EmpLastName",emp.LastName);
-             command.Parameters.AddWithValue("@BirthDate",emp.BirthDate);
-             command.Parameters.AddWithValue("@HireDate",emp.HireDate);
-             command.Parameters.AddWithValue("@ContactNumber",emp.ContactNumber);
-             command.Parameters.AddWithValue("@image",emp.Image);
-             command.Parameters.AddWithValue("@userId",emp.UserId);
+             command.Parameters.AddWithValue("@employeeFirstName",employee.FirstName);             
+             command.Parameters.AddWithValue("@employeeLastName",employee.LastName);
+             command.Parameters.AddWithValue("@employeeBirthDate",employee.BirthDate);
+             command.Parameters.AddWithValue("@employeeHireDate",employee.HireDate);
+             command.Parameters.AddWithValue("@employeeContactNumber",employee.ContactNumber);
+            // command.Parameters.AddWithValue("@employeeimage",employee.Image);
+             command.Parameters.AddWithValue("@userId",employee.UserId);
          
              await command.ExecuteNonQueryAsync(); 
              status=true;              
@@ -137,23 +136,23 @@ public class EmployeeRepository : IEmployeeRepository
           return status;
    }
 
-   public async Task<bool> Update(Employee emp){       
+   public async Task<bool> Update(Employee employee){       
           bool status=false;
           MySqlConnection con = new MySqlConnection();
-          con.ConnectionString=_conString;
+          con.ConnectionString=_connectionString;
           try{
-            string query = "UPDATE employees SET firstname=@EmpFirstName, lastname=@EmpLastName, birthdate=@BirthDate, hiredate=@HireDate, contactnumber=@ContactNumber,image=@image , userid=@userId  WHERE id=@EmployeeId";   
+            string query = "UPDATE employees SET firstname=@employeeFirstName, lastname=@employeeLastName, birthdate=@employeeBirthDate, hiredate=@employeeHireDate, contactnumber=@employeeContactNumber, userid=@userId  WHERE id=@employeeId";   
              Console.WriteLine(query);
             await con.OpenAsync();
              MySqlCommand command=new MySqlCommand(query,con) ;
-              command.Parameters.AddWithValue("@EmployeeId",emp.Id); 
-             command.Parameters.AddWithValue("@EmpFirstName",emp.FirstName);             
-             command.Parameters.AddWithValue("@EmpLastName",emp.LastName);
-             command.Parameters.AddWithValue("@BirthDate",emp.BirthDate);
-             command.Parameters.AddWithValue("@HireDate",emp.HireDate);
-             command.Parameters.AddWithValue("@ContactNumber",emp.ContactNumber);
-             command.Parameters.AddWithValue("@image",emp.Image);
-             command.Parameters.AddWithValue("@userId",emp.UserId);
+              command.Parameters.AddWithValue("@employeeId",employee.Id); 
+             command.Parameters.AddWithValue("@employeeFirstName",employee.FirstName);             
+             command.Parameters.AddWithValue("@employeeLastName",employee.LastName);
+             command.Parameters.AddWithValue("@employeeBirthDate",employee.BirthDate);
+             command.Parameters.AddWithValue("@employeeHireDate",employee.HireDate);
+             command.Parameters.AddWithValue("@employeeContactNumber",employee.ContactNumber);
+            // command.Parameters.AddWithValue("@image",employee.Image);
+             command.Parameters.AddWithValue("@userId",employee.UserId);
 
              await command.ExecuteNonQueryAsync();               
              status=true;
@@ -169,7 +168,7 @@ public class EmployeeRepository : IEmployeeRepository
    public  async Task<bool>  Delete(int Id){
           bool status = false;
           MySqlConnection con = new MySqlConnection();
-          con.ConnectionString=_conString;
+          con.ConnectionString=_connectionString;
           try{
             string query = "DELETE FROM employees WHERE id=@employeeId";
              MySqlCommand command=new MySqlCommand(query,con) ;
@@ -190,10 +189,10 @@ public class EmployeeRepository : IEmployeeRepository
         public async Task<IEnumerable<Employee>> GetByRole(string role)
         {
           List<Employee> employees =new List<Employee>();
-          MySqlConnection connection=new MySqlConnection(_conString);
+          MySqlConnection connection=new MySqlConnection(_connectionString);
           try{
               MySqlCommand command=new MySqlCommand();
-              command.CommandText="SELECT e.id, e.firstname, e.lastname, e.birthdate, e.hiredate, e.contactnumber, e.image FROM employees e JOIN userroles ur ON e.userid = ur.userid JOIN roles r ON ur.roleid = r.id WHERE r.rolename=@role";
+              command.CommandText="SELECT e.id, e.firstname, e.lastname, e.birthdate, e.hiredate, e.contactnumber  FROM employees e JOIN userroles ur ON e.userid = ur.userid JOIN roles r ON ur.roleid = r.id WHERE r.role=@role";
               command.Connection=connection;
               command.Parameters.AddWithValue("@role",role);
               await connection.OpenAsync();
@@ -206,7 +205,7 @@ public class EmployeeRepository : IEmployeeRepository
                 DateTime birthdate = Convert.ToDateTime(reader["birthdate"].ToString());
                 DateTime hiredate =  Convert.ToDateTime(reader["hiredate"].ToString());
                 string contactNumber=reader["contactnumber"].ToString(); 
-                string img = reader["image"].ToString();
+             //   string img = reader["image"].ToString();
                 
         
                 Employee employee = new Employee
@@ -217,7 +216,7 @@ public class EmployeeRepository : IEmployeeRepository
                     BirthDate=birthdate.ToShortDateString(),
                     HireDate=hiredate.ToShortDateString(),
                     ContactNumber=contactNumber,
-                    Image=img,
+                  //  Image=img,
                       
                  };
                  employees.Add(employee);

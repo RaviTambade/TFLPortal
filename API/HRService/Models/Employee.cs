@@ -1,4 +1,4 @@
-namespace HRService.Models;
+namespace Transflower.PMS.HRService.Models;
 public class Employee
 {
     public int Id{get;set;}

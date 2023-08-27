@@ -186,14 +186,14 @@ public class RoleRepository : IRoleRepository
         connection.ConnectionString = _conString;
         try
         {
-            string query = "select  roles.rolename from roles inner join userroles on roles.id= userroles.roleid where userroles.userid=@userId";
+            string query = "select  roles.role from roles inner join userroles on roles.id= userroles.roleid where userroles.userid=@userId";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@userId", id);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
             while(await reader.ReadAsync())
             {
-                string role = reader["rolename"].ToString();
+                string role = reader["role"].ToString();
                  roles.Add(role);
             }
             await reader.CloseAsync();
