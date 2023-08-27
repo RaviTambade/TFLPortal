@@ -1,12 +1,10 @@
 Users userStory :-
-
 1) As a user, I want to register my new account in PMSAPP so that I can have a access to manage my timesheets as well as timercords while working in orgsnization with having role basis like employee or manager. 
 2) As a user, I want to add my personal or corporate details in profile so that every one can know me and know my profile in corporate. -
 3) As a user, I want to access for change my password  so that i can manage security for my personal accesses.                          -
 4) As a user, I want to access my profile so that i can manage my personal information in current profile.      -
 
 employee User Story : -
-
 5)  As a employee, I want to log in to the system so that I can access the Project Managing functionality as a role of employee.
 6)  As a employee, I want to change my password in the system so that I can ensure the security of my account.
 7)  As a employee, I want to search for timesheet list so that i cangeting my timesheet list with certain date .
@@ -20,7 +18,6 @@ employee User Story : -
 15) As a employee, I want to add daily timsheets total working time in monthly timerecords so that i can manage my monthly timerecords.
 
 Manager User Story : -
-
 16)As a manager, I want to log in to the system so that I can access the Project Managing functionality as a role of manager. 
 17)As a manager, I want to change my password in the system so that I can ensure the security of my account.
 18)As a manager, I want to get Project List so that i can see total project descriptions .
@@ -41,13 +38,10 @@ Manager User Story : -
 31)As a manager, I want to delete any Task from the list so that i can delete any task which will wrongly inserted or which  will completed by employees.
 32)As a manager, I want to add new Task in the list so that i can add new tasks for every project for their developement.
 -
-33)As a manager, I can get total project details so that i can  get which  employee working on project, total working time on project, which tasks is remaining or completed  etc informations....
+33)As a manager, I can get total project details so that i can  get which  employee working on project, total working time on project, which tasks is remaining or completed  etc       informations....
  
 charts : -
-
 34) As a manager, I want to get charts so that where i can get information about project status.
-
-
 35) As a manager, I want to get weekly working hour charts so that where i can get information about employees timetrack .
 
 
