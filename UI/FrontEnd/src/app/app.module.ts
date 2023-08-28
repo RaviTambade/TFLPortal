@@ -15,13 +15,15 @@ import { EmployeeModule } from './employee/employee.module';
 import { ManagerModule } from './manager/manager.module';
 import { DefaultModule } from './default/default.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     MembersComponent,
     NavbarComponent,
     SidebarComponent,
-    ApplicationRoutingComponent
+    ApplicationRoutingComponent,
+
   ],
   imports: [
     AppRoutingModule,

@@ -1,0 +1,54 @@
+<p>timesheet-list works!</p>
+<h1>Task Sheet</h1>
+ <!-- *ngIf="showLoginPage() -->
+
+<div *ngIf="employee" >
+  <label><b>Name : {{employee.firstName}}{{employee.lastName}}</b></label> <button (click)="onTimeRecord(id)">TimeRecords</button>
+</div>
+<br>
+<div>
+  <label><b>Date :</b><input type="date" [(ngModel)]="date" ></label>
+  <button (click)="onSubmit()">Search</button>
+</div>
+<br>
+
+
+<div>
+  <table>
+    <thead>
+      <th>TaskSheet Id </th>
+      <th>Task Title</th>
+      <th>Date </th>
+      <th>Start Time </th>
+      <th>End Time </th>
+      <th>Worked Hrs</th>
+      <th>Details</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let timesheet of timesheets">
+        <td scope="row">{{ timesheet.timesheetId }}</td>
+        <td>{{timesheet.taskTitle}}</td>
+        <td>{{timesheet.date | date: 'dd/MM/yyyy'}}</td>
+        <td> {{ timesheet.fromtime }} </td>
+        <td> {{ timesheet.totime }} </td>
+        <td>{{timesheet.workingTime}}</td>
+        <td><button (click)="onDetails(timesheet.timesheetId)">Details</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<br><br>
+
+
+<div *ngIf="timesheets && totalWorkingHRS">
+  <b>Total Working HRS : {{totalWorkingHRS.totalWorkingHRS}}</b>
+  <button (click)="addTimeRecord()">AddToTimeRecords</button>
+</div>
+
+
+
+<hr>
+<h2>Enter New Task :</h2>
+<app-timesheet-registration> </app-timesheet-registration>
+<hr>
+
