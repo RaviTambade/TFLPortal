@@ -1,6 +1,8 @@
-using PMS.Models;
 
-namespace PMS.Repositories.Interfaces;
+
+using Transflower.PMS.TimesheetService.Models;
+
+namespace  Transflower.PMS.TimesheetService.Repositories.Interfaces;
  
 public interface ITimeSheetRepository{
 

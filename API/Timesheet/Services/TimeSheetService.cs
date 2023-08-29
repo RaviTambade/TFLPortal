@@ -1,7 +1,9 @@
-using PMS.Models;
-using PMS.Repositories.Interfaces;
-using PMS.Services.Interfaces;
-namespace PMS.Services;
+
+using Transflower.PMS.TimesheetService.Models;
+using Transflower.PMS.TimesheetService.Repositories.Interfaces;
+using Transflower.PMS.TimesheetService.Services.Interfaces;
+
+namespace  Transflower.PMS.TimesheetService.Services;
 
 
 public class TImeSheetService : ITimeSheetServices

@@ -10,12 +10,12 @@ public class TaskRepository : ITaskRepository
 
 
     private IConfiguration _configuration;
-    private string _conString;
+    private string _connectionString;
 
     public TaskRepository(IConfiguration configuration) 
     {
         _configuration = configuration;
-        _conString = this._configuration.GetConnectionString("DefaultConnection");
+        _connectionString = this._configuration.GetConnectionString("DefaultConnection");
     }
 
     
@@ -24,14 +24,14 @@ public class TaskRepository : ITaskRepository
     {
         List<Tasks> tasks = new List<Tasks>();
         MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _conString;
+        connection.ConnectionString = _connectionString;
         try
         {
             string query = "select * from tasks";
-            MySqlCommand cmd = new MySqlCommand(query, connection);
+            MySqlCommand command = new MySqlCommand(query, connection);
             await connection.OpenAsync();
 
-            MySqlDataReader reader = cmd.ExecuteReader();
+            MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
                 int taskid = Int32.Parse(reader["id"].ToString());
@@ -75,13 +75,13 @@ public class TaskRepository : ITaskRepository
     {
         Tasks task = new Tasks();
         MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _conString;
+        connection.ConnectionString = _connectionString;
         try
         {
             string query = "select * from tasks where id =" + id;
-            MySqlCommand cmd = new MySqlCommand(query, connection);
+            MySqlCommand command = new MySqlCommand(query, connection);
             await connection.OpenAsync();
-            MySqlDataReader reader = cmd.ExecuteReader();
+            MySqlDataReader reader = command.ExecuteReader();
             if (await reader.ReadAsync())
             {
 
@@ -125,20 +125,20 @@ public class TaskRepository : ITaskRepository
     {
         bool status = false;
         MySqlConnection con = new MySqlConnection();
-        con.ConnectionString = _conString;
+        con.ConnectionString = _connectionString;
         try
         {
             string query = "Insert into tasks(id,projectid,title,description,date,fromtime,totime) values (@taskid,@projectid,@title,@decription,@date,@fromtime,@totime)";
-            MySqlCommand cmd = new MySqlCommand(query, con);
-            cmd.Parameters.AddWithValue("@taskid", tasks.Id);
-            cmd.Parameters.AddWithValue("@projectid", tasks.ProjectId);
-            cmd.Parameters.AddWithValue("@title", tasks.Title);
-            cmd.Parameters.AddWithValue("@decription", tasks.Description);
-            cmd.Parameters.AddWithValue("@date", tasks.Date);
-            cmd.Parameters.AddWithValue("@fromtime", tasks.FromTime);
-            cmd.Parameters.AddWithValue("@totime", tasks.ToTime);
+            MySqlCommand command = new MySqlCommand(query, con);
+            command.Parameters.AddWithValue("@taskid", tasks.Id);
+            command.Parameters.AddWithValue("@projectid", tasks.ProjectId);
+            command.Parameters.AddWithValue("@title", tasks.Title);
+            command.Parameters.AddWithValue("@decription", tasks.Description);
+            command.Parameters.AddWithValue("@date", tasks.Date);
+            command.Parameters.AddWithValue("@fromtime", tasks.FromTime);
+            command.Parameters.AddWithValue("@totime", tasks.ToTime);
             await con.OpenAsync();
-            int rowsaffected = await cmd.ExecuteNonQueryAsync();
+            int rowsaffected = await command.ExecuteNonQueryAsync();
             if (rowsaffected > 0)
             {
                 status = true;
@@ -159,20 +159,20 @@ public class TaskRepository : ITaskRepository
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _conString;
+        connection.ConnectionString = _connectionString;
         try
         {
             string query = "UPDATE tasks SET title =@title ,description=@description,projectid=@projectid ,date=@date,fromtime=@fromtime,totime=@totime  WHERE id=@taskId";
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@taskId", task.Id);
-            cmd.Parameters.AddWithValue("@projectid", task.ProjectId);
-            cmd.Parameters.AddWithValue("@title", task.Title);
-            cmd.Parameters.AddWithValue("@description", task.Description);
-            cmd.Parameters.AddWithValue("@date", task.Date);
-            cmd.Parameters.AddWithValue("@fromtime", task.FromTime);
-            cmd.Parameters.AddWithValue("@totime", task.ToTime);
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@taskId", task.Id);
+            command.Parameters.AddWithValue("@projectid", task.ProjectId);
+            command.Parameters.AddWithValue("@title", task.Title);
+            command.Parameters.AddWithValue("@description", task.Description);
+            command.Parameters.AddWithValue("@date", task.Date);
+            command.Parameters.AddWithValue("@fromtime", task.FromTime);
+            command.Parameters.AddWithValue("@totime", task.ToTime);
             await connection.OpenAsync();
-            int rowsaffected = cmd.ExecuteNonQuery();
+            int rowsaffected = command.ExecuteNonQuery();
             if (rowsaffected > 0)
             {
                 status = true;
@@ -194,15 +194,15 @@ public class TaskRepository : ITaskRepository
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _conString;
+        connection.ConnectionString = _connectionString;
         try
         {
 
             string query = "delete from tasks where id=@taskId";
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@taskId", id);
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@taskId", id);
             await connection.OpenAsync();
-            int rowsaffected = await cmd.ExecuteNonQueryAsync();
+            int rowsaffected = await command.ExecuteNonQueryAsync();
             if (rowsaffected > 0)
             {
                 status = true;

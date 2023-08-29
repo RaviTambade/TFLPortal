@@ -1,10 +1,10 @@
 
-using PMS.Models;
-using PMS.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-using PMS.Helpers;
 
-namespace users.Controllers;
+using Microsoft.AspNetCore.Mvc;
+using Transflower.PMS.TimesheetService.Models;
+using Transflower.PMS.TimesheetService.Services.Interfaces;
+
+namespace Transflower.PMS.TimesheetService.Controllers;
 
 [ApiController]
 [Route("/api/[controller]")]

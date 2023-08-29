@@ -1,20 +1,21 @@
-using PMS.Models;
-using PMS.Repositories.Interfaces;
+
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
+using Transflower.PMS.TimesheetService.Models;
+using Transflower.PMS.TimesheetService.Repositories.Interfaces;
 
-namespace PMS.Repositories;
+namespace  Transflower.PMS.TimesheetService.Repositories;
 
 public class TimesheetRepository : ITimeSheetRepository
 {
 
     private IConfiguration _configuration;
-    private string _conString;
+    private string _connectionString;
 
     public TimesheetRepository(IConfiguration configuration)
     {
         _configuration = configuration;
-        _conString = this._configuration.GetConnectionString("DefaultConnection");
+        _connectionString = this._configuration.GetConnectionString("DefaultConnection");
     }
 
 
@@ -22,14 +23,14 @@ public class TimesheetRepository : ITimeSheetRepository
     {
         List<Timesheet> timesheets = new List<Timesheet>();
         MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _conString;
+        connection.ConnectionString = _connectionString;
         try
         {
             string query = "select * from timesheets";
-            MySqlCommand cmd = new MySqlCommand(query, connection);
+            MySqlCommand command = new MySqlCommand(query, connection);
             await connection.OpenAsync();
 
-            MySqlDataReader reader = cmd.ExecuteReader();
+            MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
                 int id = Int32.Parse(reader["id"].ToString());
@@ -74,15 +75,15 @@ public class TimesheetRepository : ITimeSheetRepository
 
         Timesheet timesheet = new Timesheet();
         MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _conString;
+        connection.ConnectionString = _connectionString;
         try
         {
 
             string query = "select * from timesheets where id =" + id;
-            MySqlCommand cmd = new MySqlCommand(query, connection);
+            MySqlCommand command = new MySqlCommand(query, connection);
             Console.WriteLine(query);
             await connection.OpenAsync();
-            MySqlDataReader reader = cmd.ExecuteReader();
+            MySqlDataReader reader = command.ExecuteReader();
             if (await reader.ReadAsync())
             {
                 int Id = Int32.Parse(reader["id"].ToString());
@@ -121,20 +122,20 @@ public class TimesheetRepository : ITimeSheetRepository
     {
         bool status = false;
         MySqlConnection con = new MySqlConnection();
-        con.ConnectionString = _conString;
+        con.ConnectionString = _connectionString;
         try
         {
             string query = $"Insert into timesheets(empid,projectid,taskid,date,fromtime,totime) values (@employeeId,@projectId,@taskid,@date,@fromtime,@totime)";
-            MySqlCommand cmd = new MySqlCommand(query, con);
+            MySqlCommand command = new MySqlCommand(query, con);
 
-            cmd.Parameters.AddWithValue("@employeeId", timesheet.EmployeeId);
-            cmd.Parameters.AddWithValue("@projectId", timesheet.ProjectId);
-            cmd.Parameters.AddWithValue("@taskid", timesheet.TaskId);
-            cmd.Parameters.AddWithValue("@date", timesheet.Date);
-            cmd.Parameters.AddWithValue("@fromtime", timesheet.FromTime);
-            cmd.Parameters.AddWithValue("@totime", timesheet.Totime);
+            command.Parameters.AddWithValue("@employeeId", timesheet.EmployeeId);
+            command.Parameters.AddWithValue("@projectId", timesheet.ProjectId);
+            command.Parameters.AddWithValue("@taskid", timesheet.TaskId);
+            command.Parameters.AddWithValue("@date", timesheet.Date);
+            command.Parameters.AddWithValue("@fromtime", timesheet.FromTime);
+            command.Parameters.AddWithValue("@totime", timesheet.Totime);
             await con.OpenAsync();
-            int rowsaffected = await cmd.ExecuteNonQueryAsync();
+            int rowsaffected = await command.ExecuteNonQueryAsync();
             if (rowsaffected > 0)
             {
                 status = true;
@@ -155,20 +156,20 @@ public class TimesheetRepository : ITimeSheetRepository
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _conString;
+        connection.ConnectionString = _connectionString;
         try
         {
             string query = "UPDATE timesheets SET fromtime=@fromtime,totime=@totime ,empid=@employeeId ,projectid=@projectId ,taskid=@taskid,date=@date  WHERE id=@timesheetId";
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@timesheetId", timesheet.TimesheetId);
-            cmd.Parameters.AddWithValue("@date", timesheet.Date);
-            cmd.Parameters.AddWithValue("@fromtime", timesheet.FromTime);
-            cmd.Parameters.AddWithValue("@totime", timesheet.Totime);
-            cmd.Parameters.AddWithValue("@employeeId", timesheet.EmployeeId);
-            cmd.Parameters.AddWithValue("@projectId", timesheet.ProjectId);
-            cmd.Parameters.AddWithValue("@taskId", timesheet.TaskId);
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@timesheetId", timesheet.TimesheetId);
+            command.Parameters.AddWithValue("@date", timesheet.Date);
+            command.Parameters.AddWithValue("@fromtime", timesheet.FromTime);
+            command.Parameters.AddWithValue("@totime", timesheet.Totime);
+            command.Parameters.AddWithValue("@employeeId", timesheet.EmployeeId);
+            command.Parameters.AddWithValue("@projectId", timesheet.ProjectId);
+            command.Parameters.AddWithValue("@taskId", timesheet.TaskId);
             await connection.OpenAsync();
-           int rowsaffected = await cmd.ExecuteNonQueryAsync();
+           int rowsaffected = await command.ExecuteNonQueryAsync();
             if (rowsaffected > 0)
             {
                 status = true;
@@ -189,14 +190,14 @@ public class TimesheetRepository : ITimeSheetRepository
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _conString;
+        connection.ConnectionString = _connectionString;
         try
         {
             string query = "delete from timesheets where id=@timesheetid";
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@timesheetid", id);
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@timesheetid", id);
             await connection.OpenAsync();
-            int rowsaffected = await cmd.ExecuteNonQueryAsync();
+            int rowsaffected = await command.ExecuteNonQueryAsync();
             if (rowsaffected > 0)
             {
                 status = true;
@@ -218,17 +219,17 @@ public class TimesheetRepository : ITimeSheetRepository
 
         List<TimesheetsDetail> timesheetsDetail = new List<TimesheetsDetail>();
         MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _conString;
+        connection.ConnectionString = _connectionString;
         try
         {
             string query = "SELECT ts.id, e.firstname, e.lastname, p.title AS projecttitle, t.title AS tasktitle ,ts.date,ts.fromtime,ts.totime,ts.workingtime FROM Timesheets ts INNER JOIN employees e ON ts.empid = e.id INNER JOIN projects p ON ts.projectid = p.id INNER JOIN tasks t ON ts.taskid = t.id WHERE ts.empid=@empid && ts.date=@date ";
-            MySqlCommand cmd = new MySqlCommand(query, connection);
+            MySqlCommand command = new MySqlCommand(query, connection);
             await connection.OpenAsync();
-            cmd.Parameters.AddWithValue("@empid",empid);
-            cmd.Parameters.AddWithValue("@date",theDate);
+            command.Parameters.AddWithValue("@empid",empid);
+            command.Parameters.AddWithValue("@date",theDate);
             
 
-            MySqlDataReader reader = cmd.ExecuteReader();
+            MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
                 int id = Int32.Parse(reader["id"].ToString());
@@ -277,17 +278,17 @@ public  async Task <TimesheetsDetail> GetDetails(int timesheetId)
         TimesheetsDetail  timesheetsDetail = new TimesheetsDetail();
 
         MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _conString;
+        connection.ConnectionString = _connectionString;
         try
         {
             string query = "SELECT ts.id, e.firstname, e.lastname, p.title AS projecttitle, t.title AS tasktitle ,ts.date,ts.fromtime,ts.totime FROM Timesheets ts INNER JOIN employees e ON ts.empid = e.id INNER JOIN projects p ON ts.projectid = p.id INNER JOIN tasks t ON ts.taskid = t.id WHERE ts.id=@timesheetId";
-            MySqlCommand cmd = new MySqlCommand(query, connection);
+            MySqlCommand command = new MySqlCommand(query, connection);
             await connection.OpenAsync();
-            cmd.Parameters.AddWithValue("@timesheetId",timesheetId);
-            // cmd.Parameters.AddWithValue("@date",theDate);
+            command.Parameters.AddWithValue("@timesheetId",timesheetId);
+            // command.Parameters.AddWithValue("@date",theDate);
             
 
-            MySqlDataReader reader = cmd.ExecuteReader();
+            MySqlDataReader reader = command.ExecuteReader();
             if (await reader.ReadAsync())
             {
                 int id = Int32.Parse(reader["id"].ToString());
@@ -329,16 +330,16 @@ public  async Task  <WorkingTime> GetTotalWorkingTime(int empid,string theDate)
     {
         WorkingTime totalTime = new WorkingTime();
         MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _conString;
+        connection.ConnectionString = _connectionString;
         try
         {
             string query = "SELECT CONCAT(FLOOR(SUM(TIME_TO_SEC(workingtime)/3600)),':',LPAD(FLOOR((SUM(TIME_TO_SEC(workingtime) / 60)) % 60), 2, '0')) AS totalworkingHRS FROM timesheets WHERE  empid = @empid AND date = @date";
-            MySqlCommand cmd = new MySqlCommand(query, connection);
+            MySqlCommand command = new MySqlCommand(query, connection);
             await connection.OpenAsync();
-            cmd.Parameters.AddWithValue("@empid",empid);
-            cmd.Parameters.AddWithValue("@date",theDate);
+            command.Parameters.AddWithValue("@empid",empid);
+            command.Parameters.AddWithValue("@date",theDate);
             
-            MySqlDataReader reader = cmd.ExecuteReader();
+            MySqlDataReader reader = command.ExecuteReader();
              if (await reader.ReadAsync())
             {
                 string totalworkingtime = reader["totalworkingHRS"].ToString();
@@ -366,16 +367,16 @@ public  async Task  <WorkingTime> GetTotalWorkingTime(int empid,string theDate)
     {
          List<WeeklyData> totaldata = new List<WeeklyData>();
          MySqlConnection connection = new MySqlConnection();
-         connection.ConnectionString = _conString;
+         connection.ConnectionString = _connectionString;
         try
         {
             string query = "select week(date) AS weeknumber ,SUM((TIME_TO_SEC(workingtime)/3600)) AS totalworkingHRS  from timesheets where empid=@empid group by week(date) order by week(date)";
-            MySqlCommand cmd = new MySqlCommand(query, connection);
+            MySqlCommand command = new MySqlCommand(query, connection);
             await connection.OpenAsync();
-            cmd.Parameters.AddWithValue("@empid",empid);
+            command.Parameters.AddWithValue("@empid",empid);
             
             
-            MySqlDataReader reader = cmd.ExecuteReader();
+            MySqlDataReader reader = command.ExecuteReader();
              while (await reader.ReadAsync())
             {   // string weeklydata = reader["week"].ToString();
                 string weeklydata = reader["weeknumber"].ToString();

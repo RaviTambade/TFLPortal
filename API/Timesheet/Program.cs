@@ -1,9 +1,10 @@
 
-using  PMS.Repositories.Interfaces;
-using PMS.Services;
-using PMS.Services.Interfaces;
-using PMS.Repositories;
-using PMS.Helpers;
+
+using Transflower.PMS.TimesheetService.Helpers;
+using Transflower.PMS.TimesheetService.Repositories;
+using Transflower.PMS.TimesheetService.Repositories.Interfaces;
+using Transflower.PMS.TimesheetService.Services;
+using Transflower.PMS.TimesheetService.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
