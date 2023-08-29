@@ -1,8 +1,10 @@
-using PMS.Helpers;
-using PMS.Repositories;
-using  PMS.Repositories.Interfaces;
-using PMS.Services;
-using PMS.Services.Interfaces;
+
+
+using Transflower.PMS.TaskService.Helpers;
+using Transflower.PMS.TaskService.Repositories;
+using Transflower.PMS.TaskService.Repositories.Interfaces;
+using Transflower.PMS.TaskService.Services;
+using Transflower.PMS.TaskService.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 

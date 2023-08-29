@@ -1,9 +1,9 @@
-using PMS.Models;
-using PMS.Repositories.Interfaces;
+using Transflower.PMS.TaskService.Models;
+using Transflower.PMS.TaskService.Repositories.Interfaces;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 
-namespace PMS.Repositories;
+namespace Transflower.PMS.TaskService.Repositories;
 
 public class TaskRepository : ITaskRepository
 {

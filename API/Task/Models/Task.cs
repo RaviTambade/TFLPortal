@@ -1,4 +1,4 @@
-namespace PMS.Models;
+namespace Transflower.PMS.TaskService.Models;
 
 public class Tasks{
  

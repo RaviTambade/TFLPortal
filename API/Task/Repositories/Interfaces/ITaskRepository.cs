@@ -1,6 +1,6 @@
-using PMS.Models;
+using Transflower.PMS.TaskService.Models;
 
-namespace PMS.Repositories.Interfaces;
+namespace Transflower.PMS.TaskService.Repositories.Interfaces;
  
 public interface ITaskRepository{
  

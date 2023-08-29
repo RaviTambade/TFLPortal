@@ -1,7 +1,7 @@
-using PMS.Models;
-using PMS.Repositories.Interfaces;
-using PMS.Services.Interfaces;
-namespace PMS.Services;
+using Transflower.PMS.TaskService.Models;
+using Transflower.PMS.TaskService.Repositories.Interfaces;
+using Transflower.PMS.TaskService.Services.Interfaces;
+namespace Transflower.PMS.TaskService.Services;
 
 
 public class TaskServices : ITaskServices

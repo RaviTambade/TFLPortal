@@ -1,9 +1,9 @@
-using PMS.Models;
-using PMS.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-using PMS.Helpers;
 
-namespace task.Controllers;
+using Microsoft.AspNetCore.Mvc;
+using Transflower.PMS.TaskService.Models;
+using Transflower.PMS.TaskService.Services.Interfaces;
+
+namespace Transflower.PMS.TaskService.Controllers;
 
 [ApiController]
 [Route("/api/[controller]")]
