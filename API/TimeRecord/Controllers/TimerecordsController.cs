@@ -1,9 +1,9 @@
-using PMS.Models;
-using PMS.Services.Interfaces;
+using Transflower.PMS.TimeRecordService.Models;
+using Transflower.PMS.TimeRecordService.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using PMS.Helpers;
+using Transflower.PMS.TimeRecordService.Helpers;
 
-namespace TimeRecord.Controllers;
+namespace Transflower.PMS.TimeRecordService.Controllers;
 
 [ApiController]
 [Route("/api/[controller]")]

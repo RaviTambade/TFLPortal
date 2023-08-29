@@ -1,9 +1,9 @@
-using PMS.Models;
-using PMS.Repositories.Interfaces;
+using Transflower.PMS.TimeRecordService.Models;
+using Transflower.PMS.TimeRecordService.Repositories.Interfaces;
 using MySql.Data.MySqlClient;
 
 
-namespace PMS.Repositories;
+namespace Transflower.PMS.TimeRecordService.Repositories;
 
 public class TimeRecordRepository : ITimeRecordRepository
 {

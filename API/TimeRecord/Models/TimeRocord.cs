@@ -1,4 +1,4 @@
-namespace PMS.Models;
+namespace Transflower.PMS.TimeRecordService.Models;
 
 public class Timerecord{
  

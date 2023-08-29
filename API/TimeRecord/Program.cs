@@ -1,8 +1,8 @@
-using  PMS.Repositories.Interfaces;
-using PMS.Services;
-using PMS.Services.Interfaces;
-using PMS.Repositories;
-
+using  Transflower.PMS.TimeRecordService.Repositories.Interfaces;
+using Transflower.PMS.TimeRecordService.Services;
+using Transflower.PMS.TimeRecordService.Services.Interfaces;
+using Transflower.PMS.TimeRecordService.Repositories;
+using Transflower.PMS.TimeRecordService.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +37,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 
-app.UseMiddleware<PMS.Helpers.JwtMiddleware>();
+app.UseMiddleware<JwtMiddleware>();
 
 app.Run();

@@ -1,6 +1,6 @@
-using PMS.Models;
+using Transflower.PMS.TimeRecordService.Models;
 
-namespace PMS.Repositories.Interfaces;
+namespace Transflower.PMS.TimeRecordService.Repositories.Interfaces;
 
 public interface ITimeRecordRepository{
      Task<IEnumerable<Timerecord>> GetAll();

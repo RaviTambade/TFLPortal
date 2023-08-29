@@ -1,6 +1,6 @@
-using PMS.Repositories.Interfaces;
+using Transflower.PMS.TimeRecordService.Repositories.Interfaces;
 
-namespace PMS.Services.Interfaces;
+namespace Transflower.PMS.TimeRecordService.Services.Interfaces;
 
 
 public interface ITimeRecordService : ITimeRecordRepository{

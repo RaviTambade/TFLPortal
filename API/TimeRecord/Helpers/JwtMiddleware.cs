@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace PMS.Helpers
+namespace Transflower.PMS.TimeRecordService.Helpers
 {
     public class JwtMiddleware
     {

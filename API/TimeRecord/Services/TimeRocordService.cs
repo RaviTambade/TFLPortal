@@ -1,8 +1,8 @@
-using PMS.Models;
-using PMS.Repositories.Interfaces;
-using PMS.Services.Interfaces;
+using Transflower.PMS.TimeRecordService.Models;
+using Transflower.PMS.TimeRecordService.Repositories.Interfaces;
+using Transflower.PMS.TimeRecordService.Services.Interfaces;
 
-namespace PMS.Services;
+namespace Transflower.PMS.TimeRecordService.Services;
 
 public class TimeRecordService : ITimeRecordService
 {
