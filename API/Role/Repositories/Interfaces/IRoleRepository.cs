@@ -1,10 +1,9 @@
-using PMS.Models;
 
-namespace PMS.Repositories.Interfaces;
+using Transflower.PMS.Models;
+
+namespace Transflower.PMS.Repositories.Interfaces;
  
 public interface IRoleRepository{
-
-
      
      Task<IEnumerable<Role>> GetAll();
 

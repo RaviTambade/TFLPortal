@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using PMS.Helpers;
 using PMS.Models;
 
-namespace ProjectsService.Controllers
+namespace Transflower.PMS.ProjectsService.Controllers
 {
     [ApiController]
     [Route("/api/[controller]")]

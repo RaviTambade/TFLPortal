@@ -1,4 +1,6 @@
-using PMS.Repositories.Interfaces;
+
+using Transflower.PMS.Repositories.Interfaces;
+
 namespace PMS.Services.Interfaces;
 
 public interface IRoleServices:IRoleRepository{
