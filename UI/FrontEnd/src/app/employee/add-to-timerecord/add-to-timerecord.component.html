@@ -1,0 +1,29 @@
+
+
+<form #insertForm="ngForm" (ngSubmit)="addTimeRecord(insertForm.value)">
+    <div>
+        <table>
+          <thead>
+            <th>Total Time </th>
+            <th>Submit</th>
+          </thead>
+          <tbody>
+            <tr >
+              <td scope="row"><input type="totalTime" name="totaltime" [(ngModel)]="timerecord.totalTime"></td> 
+              <!-- <td><button >Details</button></td>  -->
+              <td> <button type="submit">Submit</button></td> 
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+</form>
+
+
+<div *ngIf="status">
+    <p>TimeRecord inserted successfully</p>
+</div>
+
+<div *ngIf="status==false">
+    <p>error while inserting timesheet</p>
+</div>
