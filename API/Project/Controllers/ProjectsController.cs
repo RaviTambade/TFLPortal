@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ProjectAPI.Models;
+using Transflower.PMS.ProjectAPI.Models;
 using ProjectAPI.Service;
 using ProjectAPI.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
-using PMS.Helpers;
-using PMS.Models;
+using Transflower.PMS.ProjectAPI.Helpers;
+using Transflower.PMS.ProjectAPI.Models;
 
 namespace Transflower.PMS.ProjectsService.Controllers
 {

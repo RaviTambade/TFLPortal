@@ -1,5 +1,5 @@
 using System;
-namespace PMS.Models;
+namespace Transflower.PMS.ProjectAPI.Models;
 public class ProjectMemberInfo
 {  
     public int EmpId{ get; set; }

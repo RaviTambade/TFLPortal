@@ -1,4 +1,6 @@
-using PMS.Repositories.Interfaces;
+
+using Transflower.PMS.ProjectAPI.Repositories.Interfaces;
+
 namespace PMS.Services.Interfaces;
 
 

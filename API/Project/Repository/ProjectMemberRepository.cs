@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using PMS.Models;
-using PMS.Repositories.Interfaces;
+using Transflower.PMS.ProjectAPI.Models;
+using Transflower.PMS.ProjectAPI.Repositories.Interfaces;
 using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
 
 
-namespace PMS.Repositories;
+namespace Transflower.PMS.ProjectAPI.Repositories;
 public class ProjectMemberRepository : IProjectMemberRepository
 {
 

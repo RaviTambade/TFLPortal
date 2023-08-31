@@ -1,4 +1,4 @@
-namespace PMS.Models;
+namespace Transflower.PMS.ProjectAPI.Models;
 
     public class ProjectDetails{
 

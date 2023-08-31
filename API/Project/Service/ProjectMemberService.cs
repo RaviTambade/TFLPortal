@@ -1,6 +1,7 @@
-using PMS.Models;
-using PMS.Repositories.Interfaces;
+
 using PMS.Services.Interfaces;
+using Transflower.PMS.ProjectAPI.Models;
+using Transflower.PMS.ProjectAPI.Repositories.Interfaces;
 
 namespace PMS.Services;
 

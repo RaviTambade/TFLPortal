@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace PMS.Helpers
+namespace Transflower.PMS.ProjectAPI.Helpers
 {
 
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]

@@ -1,5 +1,5 @@
 using System;
-namespace PMS.Models;
+namespace Transflower.PMS.ProjectAPI.Models;
 public class ProjectMember
 {  
     public int Id {get;set;}

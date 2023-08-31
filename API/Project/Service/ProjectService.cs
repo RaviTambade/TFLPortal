@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using PMS.Models;
-using ProjectAPI.Models;
+using Transflower.PMS.ProjectAPI.Models;
+using Transflower.PMS.ProjectAPI.Models;
 using ProjectAPI.Repository.Interface;
 using ProjectAPI.Service.Interface;
 
-namespace ProjectAPI.Service;
+namespace Transflower.PMS.ProjectAPI.Service;
 public class ProjectService:IProjectsService{
 private readonly IProjectsRepository _repo;
 public ProjectService(IProjectsRepository repo){

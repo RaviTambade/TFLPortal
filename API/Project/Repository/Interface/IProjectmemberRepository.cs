@@ -1,6 +1,6 @@
-using PMS.Models;
+using Transflower.PMS.ProjectAPI.Models;
 
-namespace PMS.Repositories.Interfaces;
+namespace Transflower.PMS.ProjectAPI.Repositories.Interfaces;
  
 public interface IProjectMemberRepository{
  
