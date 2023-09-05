@@ -6,13 +6,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { ProjectDetailsComponent } from './project-details/project-details.component';
+import { ProjectEditComponent } from './project-edit/project-edit.component';
 
 
 
 @NgModule({
   declarations: [
     ProjectListComponent,
-    ProjectRegisterComponent
+    ProjectRegisterComponent,
+    ProjectDetailsComponent,
+    ProjectEditComponent
   ],
   imports: [
     CommonModule,
