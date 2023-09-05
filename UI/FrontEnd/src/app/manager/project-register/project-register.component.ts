@@ -39,7 +39,7 @@ export class ProjectRegisterComponent implements OnInit {
       this.status = response;
       console.log(response);
       if (response) {
-        alert("Employee added successfully")
+        alert("Project added successfully")
         this.router.navigate(['/project-list']);
         window.location.reload();
       }

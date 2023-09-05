@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 import { ProjectEditComponent } from './project-edit/project-edit.component';
+import { ProjectOveralldetailsComponent } from './project-overalldetails/project-overalldetails.component';
 
 
 
@@ -16,7 +17,8 @@ import { ProjectEditComponent } from './project-edit/project-edit.component';
     ProjectListComponent,
     ProjectRegisterComponent,
     ProjectDetailsComponent,
-    ProjectEditComponent
+    ProjectEditComponent,
+    ProjectOveralldetailsComponent,
   ],
   imports: [
     CommonModule,

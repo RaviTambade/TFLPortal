@@ -1,1 +1,44 @@
-<p>project-edit works!</p>
+<form #insertForm="ngForm" (ngSubmit)="updateproject(insertForm.value)">
+
+    <div>
+        <table>
+            <thead>
+                <th>Project Id:</th>
+                <th>Title</th>
+                <th>Start Date </th>
+                <th>End Date </th>
+                <th>Description</th>
+                <th>Status </th>
+                <th>Update</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row"><input type="number" name="id" [(ngModel)]="project.id"></td>
+                    <td><input type="text" name="title" [(ngModel)]="project.title"></td>
+                    <td><input type="text" name="startDate" [(ngModel)]="project.startDate"></td>
+                    <td><input type="text" name="endDate" [(ngModel)]="project.endDate"></td>
+                    <td><input type="text" name="description" [(ngModel)]="project.description"></td>
+                    <td><select name="status" [(ngModel)]="project.status" required>
+                        <option value="Pending">Pending</option>
+                        <option value="In-Progress">In-Progress</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Error">Error</option>
+                        </select></td>
+                    <td><button type="submit">Update</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</form>
+
+
+<div *ngIf="status">
+    <p>Project updated successfully</p>
+</div>
+
+<div *ngIf="status==false">
+    <p>error while updating Project</p>
+</div>
+
+

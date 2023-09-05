@@ -3,7 +3,7 @@ table, th, td {
     border-collapse:collapse;
     text-align: center;  
   }
-
+  
   /* table, td, th {  
     border: 1px solid #ddd;
     text-align: left;
@@ -15,17 +15,17 @@ table, th, td {
   }
   
   th, td {
-    padding: 15px;
+    padding: 2px;
   }
   
   th {
     background-color: #0616f5;
     color: white;
   }
-
+  
   tr:hover {background-color: rgb(242, 246, 217);}
-
-
+  
+  
   .button {
     background-color: #4CAF50;
     border: none;
