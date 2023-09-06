@@ -1,0 +1,40 @@
+<div *ngIf="employee && employee.id !=0">
+    <div>
+      <table>
+        <thead>
+          <th>Employee Id </th>
+          <th>Employee Firstname</th>
+          <th>Employee Lastname</th>
+          <th>Birth Date</th>
+          <th>Hire Date</th>
+          <th>Contact Number</th>
+          <th>User Id</th>
+          <th>Actions</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td scope="row">{{employee.id}}</td>
+            <td>{{employee.firstName}}</td>
+            <td>{{employee.lastName }}</td>
+            <td>{{employee.birthDate}}</td>
+            <td>{{ employee.hireDate }}</td>
+            <td>{{ employee.contactNumber }}</td>
+            <td>{{ employee.userId }}</td>
+            <td><button type="submit" (click)="onUpdateClick(employee.id)">Update</button> 
+              |
+                <button type="submit" (click)="delete()">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+  
+   
+  
+  
+    <div *ngIf=" employee && employee.id==0 ">
+  
+      <p>Employee not Found</p>
+    </div>
+  
+  </div>

@@ -10,6 +10,8 @@ import { ProjectDetailsComponent } from './project-details/project-details.compo
 import { ProjectEditComponent } from './project-edit/project-edit.component';
 import { ProjectOveralldetailsComponent } from './project-overalldetails/project-overalldetails.component';
 import { EmployeeRegisterComponent } from './employee-register/employee-register.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 
 
 
@@ -21,6 +23,8 @@ import { EmployeeRegisterComponent } from './employee-register/employee-register
     ProjectEditComponent,
     ProjectOveralldetailsComponent,
     EmployeeRegisterComponent,
+    EmployeeListComponent,
+    EmployeeDetailsComponent,
   ],
   imports: [
     CommonModule,
