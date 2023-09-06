@@ -1,0 +1,63 @@
+
+<form #insertForm="ngForm" (ngSubmit)="addEmployee(insertForm.value)">
+
+    <div>
+        <table>
+            <thead>
+                <th>First Name </th>
+                <th>Last Name</th>
+                <th>Birth Date</th>
+                <th>Hire Date</th>
+                <th>Contact Number</th>
+                <th>User Id</th>
+                <th>Upload Photo</th>
+                <th>Submit</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row"><input type="text" name="firstName" [(ngModel)]="employee.firstName"></td>
+                    <td><input type="text" name="lastName" [(ngModel)]="employee.lastName"></td>
+                    <td><input type="text" name="birthdate" [(ngModel)]="employee.birthDate"></td>
+                    <td><input type="text" name="hiredate" [(ngModel)]="employee.hireDate"></td>
+                    <td><input type="text" name="contactnumber" [(ngModel)]="employee.contactNumber"></td>
+                    <td><input type="number" name="userid" [(ngModel)]="employee.userId"></td>
+                    <td>
+                        <div class="row" style="margin-bottom:15px;">
+                            <div class="col-md-3">
+                                <input type="file" id="img" name="img" accept="image/png, image/jpeg" #file
+                                    (change)="uploadFile(file.files)" style="display:none;" multiple>
+                                <button type="button" (click)="file.click()">Upload File</button>
+                            </div>
+                            <br>
+                            <div class="col-md-4">
+                                <span class="upload" *ngIf="progress > 0">
+                                    {{progress}}%
+                                </span>
+                                <span class="upload" *ngIf="message">
+                                    {{message}}
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                    <td> <input type="submit" value="submit"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+
+</form>
+
+
+<div *ngIf="status">
+    <p>Employee Added successfully</p>
+</div>
+
+<div *ngIf="status==false">
+    <p>error while updating Employee</p>
+</div>

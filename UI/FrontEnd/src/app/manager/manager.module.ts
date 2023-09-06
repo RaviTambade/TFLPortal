@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 import { ProjectEditComponent } from './project-edit/project-edit.component';
 import { ProjectOveralldetailsComponent } from './project-overalldetails/project-overalldetails.component';
+import { EmployeeRegisterComponent } from './employee-register/employee-register.component';
 
 
 
@@ -19,6 +20,7 @@ import { ProjectOveralldetailsComponent } from './project-overalldetails/project
     ProjectDetailsComponent,
     ProjectEditComponent,
     ProjectOveralldetailsComponent,
+    EmployeeRegisterComponent,
   ],
   imports: [
     CommonModule,
