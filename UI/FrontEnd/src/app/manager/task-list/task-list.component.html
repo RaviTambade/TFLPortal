@@ -1,0 +1,36 @@
+
+
+<h1>Tasks Table</h1>
+
+<div>
+    <table>
+      <thead>
+        <th>Task Id </th>
+        <th>Title</th>
+        <th>Project Id</th>
+        <th>Description</th>
+        <th>Date</th>
+        <th>From Time</th>
+        <th>To Time</th>
+        <th>Details</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of tasks">
+          <td scope="row">{{ task.id }}</td>
+          <td>{{task.title}}</td>
+          <td>{{task.projectId }}</td>
+          <td>{{task.description}}</td>
+          <td>{{task.date}}</td>
+          <td>{{task.fromTime}}</td>
+          <td>{{task.toTime}}</td>
+          <td><button (click)="onDetails(task.id)">Details</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+
+  <hr> 
+  <app-task-register></app-task-register>
+
+  

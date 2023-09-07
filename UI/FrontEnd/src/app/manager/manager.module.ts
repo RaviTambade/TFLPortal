@@ -15,6 +15,8 @@ import { EmployeeDetailsComponent } from './employee-details/employee-details.co
 import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
 import { TaskRegisterComponent } from './task-register/task-register.component';
 import { TaskEditComponent } from './task-edit/task-edit.component';
+import { TaskDetailsComponent } from './task-details/task-details.component';
+import { TaskListComponent } from './task-list/task-list.component';
 
 
 
@@ -31,6 +33,8 @@ import { TaskEditComponent } from './task-edit/task-edit.component';
     EmployeeEditComponent,
     TaskRegisterComponent,
     TaskEditComponent,
+    TaskDetailsComponent,
+    TaskListComponent,
   ],
   imports: [
     CommonModule,
