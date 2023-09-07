@@ -19,7 +19,7 @@ public class TimesheetController : ControllerBase
         _logger = logger;
     }
 
-    //httpGet :  http://localhost:5161/api/Timesheet/getall 
+    //httpGet :  http://localhost:5161/api/Timesheet/getall
     //[Authorize]
     [HttpGet]
     [Route("getall")]
@@ -88,7 +88,7 @@ public class TimesheetController : ControllerBase
         return timesheetDetails;
     }
 
-    //httpGet ; http://localhost:5161/api/Timesheet/totaltime/2/2023-06-13
+    //httpGet ; http://localhost:5161/api/Timesheet/totaltime/2/2023-06-02
     //[Authorize]
     [HttpGet]
     [Route("totaltime/{empid}/{theDate}")]

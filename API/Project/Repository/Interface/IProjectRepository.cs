@@ -1,5 +1,5 @@
-using PMS.Models;
-using ProjectAPI.Models;
+
+using Transflower.PMS.ProjectAPI.Models;
 
 namespace ProjectAPI.Repository.Interface;
 public interface IProjectsRepository
