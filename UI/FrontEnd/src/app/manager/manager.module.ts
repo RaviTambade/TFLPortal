@@ -12,6 +12,9 @@ import { ProjectOveralldetailsComponent } from './project-overalldetails/project
 import { EmployeeRegisterComponent } from './employee-register/employee-register.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
+import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
+import { TaskRegisterComponent } from './task-register/task-register.component';
+import { TaskEditComponent } from './task-edit/task-edit.component';
 
 
 
@@ -25,6 +28,9 @@ import { EmployeeDetailsComponent } from './employee-details/employee-details.co
     EmployeeRegisterComponent,
     EmployeeListComponent,
     EmployeeDetailsComponent,
+    EmployeeEditComponent,
+    TaskRegisterComponent,
+    TaskEditComponent,
   ],
   imports: [
     CommonModule,
