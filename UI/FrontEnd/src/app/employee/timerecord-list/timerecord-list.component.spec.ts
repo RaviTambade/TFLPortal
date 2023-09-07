@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MembersComponent } from './members.component';
+import { TimerecordListComponent } from './timerecord-list.component';
 
-describe('MembersComponent', () => {
-  let component: MembersComponent;
-  let fixture: ComponentFixture<MembersComponent>;
+describe('TimerecordListComponent', () => {
+  let component: TimerecordListComponent;
+  let fixture: ComponentFixture<TimerecordListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MembersComponent ]
+      declarations: [ TimerecordListComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MembersComponent);
+    fixture = TestBed.createComponent(TimerecordListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

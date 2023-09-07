@@ -43,7 +43,7 @@ export class ProjectEditComponent implements OnInit {
       console.log(response);
       if (response) {
         alert("Project updated successfully")
-        this.router.navigate(['/projectlist']);
+        this.router.navigate(['/project-list']);
       }
       else {
         alert("Check the form again ....")

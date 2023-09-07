@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MembersComponent } from './members/members.component';
-import { ManagerviewModule } from './managerview/managerview.module';
-import { ProjectstatusModule } from './managerview/chart/projectstatus/projectstatus.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,21 +11,20 @@ import { ApplicationRoutingComponent } from './application-routing/application-r
 import { EmployeeModule } from './employee/employee.module';
 import { ManagerModule } from './manager/manager.module';
 import { DefaultModule } from './default/default.module';
+import { RouterComponent } from './router/router.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MembersComponent,
     NavbarComponent,
     SidebarComponent,
     ApplicationRoutingComponent,
+    RouterComponent,
 
   ],
   imports: [
     AppRoutingModule,
-    ManagerviewModule,
-    ProjectstatusModule,
     FormsModule,
     CommonModule,
     ReactiveFormsModule,

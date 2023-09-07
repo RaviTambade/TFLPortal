@@ -34,7 +34,7 @@ export class ProjectDetailsComponent implements OnInit {
       this.status = response;
       if (response) 
       { alert("Project Deleted Successfully") 
-      this.router.navigate(['/projectlist']);}
+      this.router.navigate(['/project-list']);}
       else {
         { alert("Error") }
       }

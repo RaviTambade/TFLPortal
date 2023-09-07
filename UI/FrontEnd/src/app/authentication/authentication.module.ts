@@ -7,8 +7,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { UpdatePasswordComponent } from './update-password/update-password.component';
 import { UpdateContactnumberComponent } from './update-contactnumber/update-contactnumber.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
 
 
+
+const routes: Routes =
+  [
+//Authentication
+{path: 'login' , component:LoginComponent},   
+{path: 'register' , component:RegistrationComponent},
+
+  ]
 
 @NgModule({
   declarations: [
@@ -27,7 +36,8 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     FormsModule,
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(routes)
   ],
 
 })

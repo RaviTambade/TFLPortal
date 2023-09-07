@@ -23,7 +23,7 @@ export class ProjectListComponent implements OnInit {
        };
  
        onDetails(id: number){
-         this.router.navigate(['./details', id]);
+         this.router.navigate(['./project-details', id]);
        }
  
  }

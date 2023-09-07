@@ -75,11 +75,11 @@ export class TimesheetListComponent implements OnInit {
   onTimeRecord(id:any) {
     console.log(id);
     localStorage.setItem("id",id);
-    this.router.navigate(['./timerecordlist'],{relativeTo:this.route});              //navigation with localstorage
+    this.router.navigate(['./timerecord-list'],{relativeTo:this.route});              //navigation with localstorage
   };
 
   addTimeRecord() {
-    this.router.navigate(['./addtimerecord'],{relativeTo:this.route});         
+    this.router.navigate(['./timerecord-registration'],{relativeTo:this.route});         
   };
     
   // showLoginPage() {

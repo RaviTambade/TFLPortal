@@ -26,7 +26,7 @@ export class EmployeeDetailsComponent  implements OnInit {
 
   onUpdateClick(employeeId: number) {
     console.log(employeeId);
-    this.router.navigate(['./editemployee', employeeId]);
+    this.router.navigate(['./employee-edit', employeeId]);
   };
 
   delete(){
