@@ -1,8 +1,8 @@
-
 INSERT INTO roles(name)VALUES('Director');
 INSERT INTO roles(name)VALUES('HR Manager');
 INSERT INTO roles(name)VALUES('Team Manager');
 INSERT INTO roles(name)VALUES('Team Member');
+
 INSERT INTO userroles(userid,roleid) VALUES (1,1);
 INSERT INTO userroles(userid,roleid) VALUES (2,1);
 INSERT INTO userroles(userid,roleid) VALUES (3,1);
@@ -27,7 +27,6 @@ INSERT INTO projects(title,startdate,enddate,description,status)VALUES('NDApp','
 INSERT INTO projects(title,startdate,enddate,description,status)VALUES('HCApp','2023-02-02','2024-03-03',' Health Care App','Error');
 INSERT INTO projects(title,startdate,enddate,description,status)VALUES('EcommApp','2023-02-02','2024-03-03','ECommerce App','Completed');
 
-
 INSERT INTO projectmembers(projectid,empid)VALUES(1,1);
 INSERT INTO projectmembers(projectid,empid)VALUES(1,2);
 INSERT INTO projectmembers(projectid,empid)VALUES(1,3);
@@ -36,7 +35,6 @@ INSERT INTO projectmembers(projectid,empid)VALUES(2,5);
 INSERT INTO projectmembers(projectid,empid)VALUES(2,6);
 INSERT INTO projectmembers(projectid,empid)VALUES(3,1);
 INSERT INTO projectmembers(projectid,empid)VALUES(3,5);
-
 
 INSERT INTO tasks(title,projectid,description,date,fromtime,totime)VALUES('Develop feature login for Project PMS App',1,'please arrange the meeting sheduling prosess quickly','2023-02-01','09:00:00', '11:00:00');
 INSERT INTO tasks(title,projectid,description,date,fromtime,totime)VALUES('Troubleshoot and fix bugs in module timesheet',2,'please arrange the meeting sheduling prosess quickly','2023-02-01','11:00:00', '01:30:00');
@@ -166,11 +164,6 @@ INSERT INTO timerecords(empid,date,totaltime)VALUES(6,'2023-06-30 ','04:10');
 INSERT INTO timerecords(empid,date,totaltime)VALUES(6,'2023-06-28 ','18:00');
 INSERT INTO timerecords(empid,date,totaltime)VALUES(6,'2023-06-29 ','04:10');
 INSERT INTO timerecords(empid,date,totaltime)VALUES(6,'2023-06-30 ','04:10');
-
-INSERT INTO clients(fullname,address,details)VALUES('Vishwambhar Kapare','Pune RajguruNagar','Client want to create online meeting portal for their compeny');
-INSERT INTO clients(fullname,address,details)VALUES('Rajat Pisal','Kolhapur','Client want to create online Interview Sheduling Project');
-INSERT INTO clients(fullname,address,details)VALUES('nivruti Misal','Solapur','Client want to create online Interview Sheduling Project');
-
 INSERT INTO assigned(taskid,empid,roleid)VALUES(1,1,1);
 
 

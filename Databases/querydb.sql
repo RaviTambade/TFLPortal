@@ -64,3 +64,4 @@ LEFT JOIN
 -- ORDER BY
 --     p.id, e.id
     where p.id=3;
+SELECT * FROM roles;
