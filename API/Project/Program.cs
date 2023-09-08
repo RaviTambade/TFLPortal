@@ -2,11 +2,12 @@ using ProjectAPI.Repository;
 using ProjectAPI.Repository.Interface;
 using ProjectAPI.Service;
 using ProjectAPI.Service.Interface;
-using PMS.Repositories.Interfaces;
-using PMS.Repositories;
 using PMS.Services.Interfaces;
 using PMS.Services;
-using PMS.Helpers;
+using Transflower.PMS.ProjectAPI.Repositories;
+using Transflower.PMS.ProjectAPI.Service;
+using Transflower.PMS.ProjectAPI.Repositories.Interfaces;
+using Transflower.PMS.ProjectAPI.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
