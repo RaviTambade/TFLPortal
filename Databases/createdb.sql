@@ -15,10 +15,10 @@ CREATE TABLE
         CONSTRAINT uc_userroles UNIQUE (userid, roleid),
         CONSTRAINT fk_userroles_roles FOREIGN KEY(roleid) REFERENCES roles(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
-CREATE TABLE directors(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY
+CREATE TABLE directors(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                       corporateid INT NOT NULL,
                       userid INT NOT NULL,
-                      CONSTRAINT fk_userroles_directors FOREIGN KEY(userid) REFERENCES roles(userid) ON UPDATE CASCADE ON DELETE CASCADE
+                      CONSTRAINT fk_userroles_directors FOREIGN KEY(userid) REFERENCES userroles(userid) ON UPDATE CASCADE ON DELETE CASCADE
                       );
 CREATE TABLE employees(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,  
                       userid INT NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE employees(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                       directorid INT NOT NULL,
                       managerid INT,
                       CONSTRAINT fk_directors_employees FOREIGN KEY(directorid) REFERENCES directors(id) ON UPDATE CASCADE ON DELETE CASCADE,
-                      CONSTRAINT fk_userroles_employees FOREIGN KEY(userid) REFERENCES roles(userid) ON UPDATE CASCADE ON DELETE CASCADE,
+                      CONSTRAINT fk_userroles_employees FOREIGN KEY(userid) REFERENCES userroles(userid) ON UPDATE CASCADE ON DELETE CASCADE,
                       CONSTRAINT fk_employees FOREIGN KEY(managerid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
                       );       
 CREATE TABLE projects(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -63,7 +63,7 @@ CREATE TABLE assignedtasks(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                          totime TIME,
                          workingtime TIME GENERATED ALWAYS AS (TIMEDIFF(totime, fromtime)) VIRTUAL,
                          employeeid INT NOT NULL,
-                         CONSTRAINT fk_timesheets_employees FOREIGN KEY(empid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
+                         CONSTRAINT fk_timesheets_employees FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
                          projectid INT NOT NULL,
                          CONSTRAINT fk_timesheets_projects FOREIGN KEY(projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
                          taskid INT NOT NULL,
@@ -72,7 +72,7 @@ CREATE TABLE assignedtasks(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 						  date DATETIME NOT NULL,
 						  totaltime TIME,
                           employeeid INT NOT NULL,
-                          CONSTRAINT fk_timerecords_employees FOREIGN KEY(empid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
+                          CONSTRAINT fk_timerecords_employees FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
                           );
                           
                           

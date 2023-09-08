@@ -1,14 +1,8 @@
-INSERT INTO payrollCycles(payrollcycleyear,payrollcyclenumber,startdate,enddate,depositdate)VALUES('2022-05-19',12,'2022-05-19','2023-05-19','2022-05-25');
-INSERT INTO payrollCycles(payrollcycleyear,payrollcyclenumber,startdate,enddate,depositdate)VALUES('2022-04-22',12,'2022-05-15','2023-05-22','2022-05-16');
-INSERT INTO payrollCycles(payrollcycleyear,payrollcyclenumber,startdate,enddate,depositdate)VALUES('2022-05-19',12,'2022-05-19','2023-05-19','2022-05-25');         
 
-
-INSERT INTO roles(rolename)VALUES('Director');
-INSERT INTO roles(rolename)VALUES('HR Manager');
-INSERT INTO roles(rolename)VALUES('Team Manager');
-INSERT INTO roles(rolename)VALUES('Team Member');
-
-
+INSERT INTO roles(name)VALUES('Director');
+INSERT INTO roles(name)VALUES('HR Manager');
+INSERT INTO roles(name)VALUES('Team Manager');
+INSERT INTO roles(name)VALUES('Team Member');
 INSERT INTO userroles(userid,roleid) VALUES (1,1);
 INSERT INTO userroles(userid,roleid) VALUES (2,1);
 INSERT INTO userroles(userid,roleid) VALUES (3,1);
@@ -21,7 +15,6 @@ INSERT INTO userroles(userid,roleid) VALUES (9,3);
 INSERT INTO userroles(userid,roleid) VALUES (10,4);
 INSERT INTO userroles(userid,roleid) VALUES (11,4);
 INSERT INTO userroles(userid,roleid) VALUES (12,4);
-
 
 INSERT INTO projects(title,startdate,enddate,description,status)VALUES('PMSAPP','2023-02-02','2024-02-02','Project Management System App','In-Progress');
 INSERT INTO projects(title,startdate,enddate,description,status)VALUES('OTBMApp','2023-05-10','2024-05-10','Online Ticket Booking management System App','Completed');
@@ -140,9 +133,6 @@ INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,7,3,
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,6,5,'2023-05-30 ','11:00:00', '12:00:00');
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,5,6,'2023-06-30 ','11:00:00', '12:00:00');
 INSERT INTO timesheets(empid,projectid,taskid,date,fromtime,totime)VALUES(3,4,6,'2023-06-30 ','11:00:00', '12:00:00');
-
-
-
 INSERT INTO timerecords(empid,date,totaltime)VALUES(1,'2023-06-01 ','3:00');
 INSERT INTO timerecords(empid,date,totaltime)VALUES(1,'2023-06-02 ','14:55');
 INSERT INTO timerecords(empid,date,totaltime)VALUES(1,'2023-06-03 ','10:00');
@@ -181,7 +171,14 @@ INSERT INTO clients(fullname,address,details)VALUES('Vishwambhar Kapare','Pune R
 INSERT INTO clients(fullname,address,details)VALUES('Rajat Pisal','Kolhapur','Client want to create online Interview Sheduling Project');
 INSERT INTO clients(fullname,address,details)VALUES('nivruti Misal','Solapur','Client want to create online Interview Sheduling Project');
 
-
-INSERT INTO onproject(projectid,clientid)VALUES(1,2);
-
 INSERT INTO assigned(taskid,empid,roleid)VALUES(1,1,1);
+
+
+
+
+
+-- INSERT INTO payrollCycles(payrollcycleyear,payrollcyclenumber,startdate,enddate,depositdate)VALUES('2022-05-19',12,'2022-05-19','2023-05-19','2022-05-25');
+-- INSERT INTO payrollCycles(payrollcycleyear,payrollcyclenumber,startdate,enddate,depositdate)VALUES('2022-04-22',12,'2022-05-15','2023-05-22','2022-05-16');
+-- INSERT INTO payrollCycles(payrollcycleyear,payrollcyclenumber,startdate,enddate,depositdate)VALUES('2022-05-19',12,'2022-05-19','2023-05-19','2022-05-25');         
+
+-- INSERT INTO onproject(projectid,clientid)VALUES(1,2);
