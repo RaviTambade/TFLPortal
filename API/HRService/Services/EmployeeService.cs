@@ -20,7 +20,7 @@ public class EmployeeService : IEmployeesService
     public async Task<bool> Insert (Employee employee) =>await _repo.Insert(employee);
     public async Task<bool> Update(Employee emp)=>await _repo.Update(emp);
     public async Task<bool> Delete(int id)=>await _repo.Delete(id);
-    public async Task<IEnumerable<Employee>> GetByRole(string role) =>await _repo.GetByRole(role);
+    // public async Task<IEnumerable<Employee>> GetByRole(string role) =>await _repo.GetByRole(role);
 
 }
 

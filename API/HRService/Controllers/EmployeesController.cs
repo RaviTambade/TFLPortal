@@ -67,15 +67,15 @@ public class EmployeesController : ControllerBase
         return status;
     }
 
-    //httpGet : http://localhost:5230/api/employees/role/manager
-    //[Authorize]
-    [HttpGet]
-    [Route ("role/{role}")] 
-    public async Task<IEnumerable<Employee>> GetByRole(string role)
-    {
-        IEnumerable<Employee> employees =await _service.GetByRole(role);
-        return employees;
-    }
+    // //httpGet : http://localhost:5230/api/employees/role/manager
+    // //[Authorize]
+    // [HttpGet]
+    // [Route ("role/{role}")] 
+    // public async Task<IEnumerable<Employee>> GetByRole(string role)
+    // {
+    //     IEnumerable<Employee> employees =await _service.GetByRole(role);
+    //     return employees;
+    // }
 
    [HttpPost, DisableRequestSizeLimit]
     public IActionResult Upload()

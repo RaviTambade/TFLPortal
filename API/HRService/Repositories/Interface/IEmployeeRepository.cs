@@ -8,5 +8,5 @@ public interface IEmployeeRepository
     Task<bool> Insert(Employee emp);
     Task<bool> Update(Employee emp);
     Task<bool> Delete(int empId);
-    Task<IEnumerable<Employee>> GetByRole(string role);
+    // Task<IEnumerable<Employee>> GetByRole(string role);
 }
