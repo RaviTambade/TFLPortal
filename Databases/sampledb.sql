@@ -83,6 +83,10 @@ INSERT INTO timerecords(date,totaltime,employeeid)VALUES('2023-06-07 ','4:00',1)
 
 
 
+
+
+
+
 -- INSERT INTO projects(title,startdate,enddate,description,status)VALUES('PMSAPP','2023-02-02','2024-02-02','Project Management System App','In-Progress');
 -- INSERT INTO projects(title,startdate,enddate,description,status)VALUES('OTBMApp','2023-05-10','2024-05-10','Online Ticket Booking management System App','Completed');
 -- INSERT INTO projects(title,startdate,enddate,description,status)VALUES('IMSApp','2023-02-02','2024-03-03','Inventry Management System App','Pending');
