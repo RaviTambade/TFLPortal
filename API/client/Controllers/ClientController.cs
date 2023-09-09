@@ -31,8 +31,8 @@
 //     }
 
 
-//     // httpGet :  http://localhost:5076/api/client/get/1
-//     //[Authorize]
+    // httpGet :  http://localhost:5076/api/client/get/1
+   //[Authorize]
 //     [HttpGet]
 //     [Route ("get/{id}")]
 //     public async Task<Client> Get(int id)
