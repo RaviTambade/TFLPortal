@@ -88,141 +88,82 @@ public class DirectorRepository : IDirectorRepository
    }
 
 
-  //  public  async Task<bool> Insert(Employee employee)
-  //  {    
-  //         bool status = false;
-  //         MySqlConnection con = new MySqlConnection();
-  //         con.ConnectionString=_connectionString;
-  //         try{
-  //             string query =$"INSERT INTO employees(userid,department,position,hire_date,directorid,managerid)VALUES"+
-  //                                                 "(@userId,@department,@position,@HireDate,@directorId,@managerId)";
-  //            Console.WriteLine(query);
-  //            await con.OpenAsync();
-  //            MySqlCommand command=new MySqlCommand(query,con) ;
-  //            command.Parameters.AddWithValue("@userId",employee.UserId);             
-  //            command.Parameters.AddWithValue("@department",employee.Department);
-  //            command.Parameters.AddWithValue("@position",employee.Position);
-  //            command.Parameters.AddWithValue("@HireDate",employee.HireDate);
-  //            command.Parameters.AddWithValue("@directorId",employee.DirectorId);
-  //            command.Parameters.AddWithValue("@managerId",employee.ManagerId);
-         
-  //            await command.ExecuteNonQueryAsync(); 
-  //            status=true;              
-
-  //         }catch(Exception e )
-  //         {
-  //           throw e;
-  //         }
-  //         finally {
-  //              con.Close();
-  //         } 
-  //         return status;
-  //  }
-
-  //  public async Task<bool> Update(Employee employee){       
-  //         bool status=false;
-  //         MySqlConnection con = new MySqlConnection();
-  //         con.ConnectionString=_connectionString;
-  //         try{
-  //           string query = "UPDATE employees SET userId=@userId, department=@department, position=@position, hire_date=@HireDate, directoridr=@directorId, managerid=@managerId  WHERE id=@employeeId";   
-  //            Console.WriteLine(query);
-  //           await con.OpenAsync();
-  //            MySqlCommand command=new MySqlCommand(query,con) ;
-  //            command.Parameters.AddWithValue("@employeeId",employee.Id); 
-  //            command.Parameters.AddWithValue("@userId",employee.UserId);             
-  //            command.Parameters.AddWithValue("@department",employee.Department);
-  //            command.Parameters.AddWithValue("@position",employee.Position);
-  //            command.Parameters.AddWithValue("@HireDate",employee.HireDate);
-  //            command.Parameters.AddWithValue("@directorId",employee.DirectorId);
-  //            command.Parameters.AddWithValue("@managerId",employee.ManagerId);
-
-  //            await command.ExecuteNonQueryAsync();               
-  //            status=true;
-  //         }catch(Exception e )
-  //         {
-  //           throw e;
-  //         }
-  //         finally {
-  //           con.Close();
-  //         }
-  //         return status;
-  //  }
-  //  public  async Task<bool>  Delete(int Id){
-  //         bool status = false;
-  //         MySqlConnection con = new MySqlConnection();
-  //         con.ConnectionString=_connectionString;
-  //         try{
-  //           string query = "DELETE FROM employees WHERE id=@employeeId";
-  //            MySqlCommand command=new MySqlCommand(query,con) ;
-  //            command.Parameters.AddWithValue("@employeeId",Id);
-  //            await con.OpenAsync();
-  //            await command.ExecuteNonQueryAsync();              
-  //            status = true;
-  //         }catch(Exception e )
-  //         {
-  //           throw e;
-  //         }
-  //         finally {
-  //           con.Close();
-  //         }
-  //         return status;
-  //  }
-
-
-
-
-
-
-
-
-
-
-        // public async Task<IEnumerable<Employee>> GetByRole(string role)
-        // {
-        //   List<Employee> employees =new List<Employee>();
-        //   MySqlConnection connection=new MySqlConnection(_connectionString);
-        //   try{
-        //       MySqlCommand command=new MySqlCommand();
-        //       command.CommandText="SELECT e.id, e.firstname, e.lastname, e.birthdate, e.hiredate, e.contactnumber  FROM employees e JOIN userroles ur ON e.userid = ur.userid JOIN roles r ON ur.roleid = r.id WHERE r.role=@role";
-        //       command.Connection=connection;
-        //       command.Parameters.AddWithValue("@role",role);
-        //       await connection.OpenAsync();
-        //       MySqlDataReader reader = command.ExecuteReader();
-        //       while (await reader.ReadAsync())
-        //       {
-        //         int id = Int32.Parse(reader["id"].ToString());
-        //         string firstname = reader["firstname"].ToString();
-        //         string lastname = reader["lastname"].ToString();
-        //         DateTime birthdate = Convert.ToDateTime(reader["birthdate"].ToString());
-        //         DateTime hiredate =  Convert.ToDateTime(reader["hiredate"].ToString());
-        //         string contactNumber=reader["contactnumber"].ToString(); 
-        //      //   string img = reader["image"].ToString();
-                
+   public  async Task<bool> Insert(Directors director)
+   {    
+          bool status = false;
+          MySqlConnection con = new MySqlConnection();
+          con.ConnectionString=_connectionString;
+          try{
+              string query ="INSERT INTO directors(corporateid,userid)VALUES"+
+                                                  "(@corporateid,@userid)";
+             Console.WriteLine(query);
+             await con.OpenAsync();
+             MySqlCommand command=new MySqlCommand(query,con) ;            
+             command.Parameters.AddWithValue("@corporateid",director.CorporateId);
+             command.Parameters.AddWithValue("@userid",director.UserId);
         
-        //         Employee employee = new Employee
-        //           {
-        //             Id=id, 
-        //             FirstName=firstname,
-        //             LastName=lastname,
-        //             BirthDate=birthdate.ToShortDateString(),
-        //             HireDate=hiredate.ToShortDateString(),
-        //             ContactNumber=contactNumber,
-        //           //  Image=img,
-                      
-        //          };
-        //          employees.Add(employee);
-        //       }
-        //       reader.Close();
-        //   }    
-        //   catch(Exception e){
-        //       throw e;
-        //   }
-        //   finally{
-        //       connection.Close();
-        //   }
-        //   return employees;
+             await command.ExecuteNonQueryAsync(); 
+             status=true;              
+
+          }catch(Exception e )
+          {
+            throw e;
+          }
+          finally {
+               con.Close();
+          } 
+          return status;
+   }
+
+   public async Task<bool> Update(Directors director){       
+          bool status=false;
+          MySqlConnection con = new MySqlConnection();
+          con.ConnectionString=_connectionString;
+          try{
+            string query = "UPDATE directors SET corporateid=@corporateid, userid=@userid  WHERE id=@Id";   
+             Console.WriteLine(query);
+            await con.OpenAsync();
+             MySqlCommand command=new MySqlCommand(query,con) ;
+             command.Parameters.AddWithValue("@Id",director.Id); 
+             command.Parameters.AddWithValue("@corporateid",director.CorporateId);             
+             command.Parameters.AddWithValue("@userid",director.UserId);
             
-        // }
+             await command.ExecuteNonQueryAsync();               
+             status=true;
+          }catch(Exception e )
+          {
+            throw e;
+          }
+          finally {
+            con.Close();
+          }
+          return status;
+   }
+
+
+   public  async Task<bool>  Delete(int Id){
+          bool status = false;
+          MySqlConnection con = new MySqlConnection();
+          con.ConnectionString=_connectionString;
+          try{
+            string query = "DELETE FROM directors WHERE id=@Id";
+             MySqlCommand command=new MySqlCommand(query,con) ;
+             command.Parameters.AddWithValue("@Id",Id);
+             await con.OpenAsync();
+             await command.ExecuteNonQueryAsync();              
+             status = true;
+          }catch(Exception e )
+          {
+            throw e;
+          }
+          finally {
+            con.Close();
+          }
+          return status;
+   }
+
+
+
     }
 
    

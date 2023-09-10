@@ -5,11 +5,10 @@ public interface IDirectorRepository
 {
     Task <IEnumerable<Directors>> GetAll();
     Task<Directors> GetById(int Id);
-    // Task<bool> Insert(Directors emp);
-    // Task<bool> Update(Directors emp);
-    // Task<bool> Delete(int empId);
+    Task<bool> Insert(Directors director);
+    Task<bool> Update(Directors director);
+    Task<bool> Delete(int empId);
 
 
 
-    // Task<IEnumerable<Employee>> GetByRole(string role);
 }
