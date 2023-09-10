@@ -3,14 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Transflower.PMS.Helpers;
 using Transflower.PMS.HRService.Models;
 using Transflower.PMS.HRService.Services.Interfaces;
-
 namespace Transflower.PMS.HRService.Controllers;
-
 [ApiController]
 [Route("/api/[controller]")]
 public class EmployeesController : ControllerBase
 {
-
     private readonly IEmployeesService _service;
     public EmployeesController(IEmployeesService service)
     {
