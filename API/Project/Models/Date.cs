@@ -1,5 +1,3 @@
-using System;
-
 namespace Transflower.PMS.ProjectAPI.Models;
 
 public class Date {

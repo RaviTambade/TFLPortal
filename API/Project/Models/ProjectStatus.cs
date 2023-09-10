@@ -1,11 +1,10 @@
 namespace Transflower.PMS.ProjectAPI.Models;
 
-    public class ProjectStatus{
+//     public class ProjectStatus{
 
-   
-       public string? Title {get;set;}
-      public string? Status {get;set;}
-      public string? TotalProject {get;set;}
+//       public string? Title {get;set;}
+//       public string? Status {get;set;}
+//       public string? TotalProject {get;set;}
 
 
-  }
+//   }

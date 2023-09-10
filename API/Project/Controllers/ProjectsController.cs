@@ -97,24 +97,24 @@ namespace Transflower.PMS.ProjectsService.Controllers
             return projects;
             }
 
-   //httpGet :  http://localhost:5294/api/projects/projectdetails/2
-    [HttpGet ("projectdetails/{projectid}")]
-       public async Task<IEnumerable<ProjectDetails>>GetAllDetails(int projectid)
-    {
-       IEnumerable<ProjectDetails> projectDetails = await _projectsrv.GetAllDetails(projectid);
-        return projectDetails;
-    }
+//    //httpGet :  http://localhost:5294/api/projects/projectdetails/2
+//     [HttpGet ("projectdetails/{projectid}")]
+//        public async Task<IEnumerable<ProjectDetails>>GetAllDetails(int projectid)
+//     {
+//        IEnumerable<ProjectDetails> projectDetails = await _projectsrv.GetAllDetails(projectid);
+//         return projectDetails;
+//     }
 
 
-     //httpGet : http://localhost:5294/api/projects/status
-       // [Authorize]
-        [HttpGet]
-        [Route ("status")]
-       public async Task<IEnumerable<ProjectStatus>> GetStatus()
-        {
-            IEnumerable<ProjectStatus> projects =await _projectsrv.GetStatus();
-            return projects;
-        }
+//      //httpGet : http://localhost:5294/api/projects/status
+//        // [Authorize]
+//         [HttpGet]
+//         [Route ("status")]
+//        public async Task<IEnumerable<ProjectStatus>> GetStatus()
+//         {
+//             IEnumerable<ProjectStatus> projects =await _projectsrv.GetStatus();
+//             return projects;
+//         }
 
 
    
