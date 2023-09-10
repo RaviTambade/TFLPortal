@@ -32,14 +32,14 @@ public class TimeRecordRepository : ITimeRecordRepository
             while (await reader.ReadAsync())
             {
                 int id = Int32.Parse(reader["id"].ToString());
-                int empId=Int32.Parse(reader["empid"].ToString());
+                int empId=Int32.Parse(reader["employeeid"].ToString());
                 DateTime date=Convert.ToDateTime(reader["date"].ToString());
                 string totalTime = reader["totaltime"].ToString();
 
                 Timerecord timerecord = new Timerecord
                 {
                     TimeRecordId=id,
-                    EmpId=empId,
+                    EmployeeId=empId,
                     Date=date.ToShortDateString(),
                     TotalTime=totalTime
                 };
@@ -77,14 +77,14 @@ public class TimeRecordRepository : ITimeRecordRepository
             if(await reader.ReadAsync())
             {
                 int timerecordid = Int32.Parse(reader["id"].ToString());
-                int empId=Int32.Parse(reader["empid"].ToString());
+                int empId=Int32.Parse(reader["employeeid"].ToString());
                 DateTime date=Convert.ToDateTime(reader["date"].ToString());
                 string totalTime = reader["totaltime"].ToString();
 
                 timerecord = new Timerecord
                 {
                     TimeRecordId=timerecordid,
-                    EmpId=empId,
+                    EmployeeId=empId,
                     Date=date.ToShortDateString(),
                     TotalTime=totalTime
                 };
@@ -112,12 +112,12 @@ public class TimeRecordRepository : ITimeRecordRepository
         con.ConnectionString = _conString;
         try
         {
-            string query = $"Insert into timerecords(date,totaltime,empid) values (@date,@totaltime,@empid)";
+            string query = $"Insert into timerecords(date,totaltime,employeeid) values (@date,@totaltime,@empid)";
             MySqlCommand cmd = new MySqlCommand(query, con);
 
             cmd.Parameters.AddWithValue("@date", timerecord.Date);
             cmd.Parameters.AddWithValue("@totaltime", timerecord.TotalTime);
-            cmd.Parameters.AddWithValue("@empid", timerecord.EmpId);
+            cmd.Parameters.AddWithValue("@empid", timerecord.EmployeeId);
             await con.OpenAsync();
             int rowsaffected = await cmd.ExecuteNonQueryAsync();
             if (rowsaffected > 0)
@@ -143,12 +143,12 @@ public class TimeRecordRepository : ITimeRecordRepository
         connection.ConnectionString = _conString;
         try
         {
-            string query = "UPDATE timerecords SET date=@date,totaltime=@totaltime ,empid=@employeeId  WHERE id=@timerecordId";
+            string query = "UPDATE timerecords SET date=@date,totaltime=@totaltime ,employeeid=@employeeId  WHERE id=@timerecordId";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@timerecordId", timerecord.TimeRecordId);
             cmd.Parameters.AddWithValue("@date", timerecord.Date);
             cmd.Parameters.AddWithValue("@totaltime", timerecord.Date);
-            cmd.Parameters.AddWithValue("@employeeId", timerecord.EmpId);
+            cmd.Parameters.AddWithValue("@employeeId", timerecord.EmployeeId);
             await connection.OpenAsync();
             int rowsaffected = await cmd.ExecuteNonQueryAsync();
             if (rowsaffected > 0)
@@ -211,14 +211,14 @@ public class TimeRecordRepository : ITimeRecordRepository
             while (await reader.ReadAsync())
             {
                 int id = Int32.Parse(reader["id"].ToString());
-                int empId=Int32.Parse(reader["empid"].ToString());
+                int empId=Int32.Parse(reader["employeeid"].ToString());
                 DateTime date=Convert.ToDateTime(reader["date"].ToString());
                 string totalTime =reader["totaltime"].ToString();
 
                 Timerecord timerecord = new Timerecord
                 {
                     TimeRecordId=id,
-                    EmpId=empId,
+                    EmployeeId=empId,
                     Date=date.ToShortDateString(),
                     TotalTime=totalTime
                 };
@@ -244,7 +244,7 @@ public class TimeRecordRepository : ITimeRecordRepository
         connection.ConnectionString = _conString;
         try
         {
-            string query = "SELECT CONCAT(FLOOR(SUM(TIME_TO_SEC(totaltime)/3600)),':',LPAD(FLOOR((SUM(TIME_TO_SEC(totaltime)/ 60)) % 60), 2,'0')) AS totalworkingHRS FROM timerecords WHERE  date >=@fromDate AND date <=@toDate && empid="+empid;
+            string query = "SELECT CONCAT(FLOOR(SUM(TIME_TO_SEC(totaltime)/3600)),':',LPAD(FLOOR((SUM(TIME_TO_SEC(totaltime)/ 60)) % 60), 2,'0')) AS totalworkingHRS FROM timerecords WHERE  date >=@fromDate AND date <=@toDate && employeeid="+empid;
             MySqlCommand cmd = new MySqlCommand(query, connection);
             await connection.OpenAsync();;
             cmd.Parameters.AddWithValue("@empid",empid);
