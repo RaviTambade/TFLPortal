@@ -28,13 +28,13 @@ public class EmployeeRepository : IEmployeeRepository
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
-                int id = Int32.Parse(reader["id"].ToString());
-                int userid = Int32.Parse(reader["userid"].ToString());
+                int id = int.Parse(reader["id"].ToString());
+                int userid = int.Parse(reader["userid"].ToString());
                 string department = reader["department"].ToString();
                 string position = reader["position"].ToString();
                 DateTime hiredate = Convert.ToDateTime(reader["hire_date"].ToString());
-                int directorid = Int32.Parse(reader["directorid"].ToString());
-                int managerid = Int32.Parse(reader["managerid"].ToString());
+                int directorid = int.Parse(reader["directorid"].ToString());
+                int managerid = int.Parse(reader["managerid"].ToString());
                
                Employee employee = new Employee
                 {
@@ -74,13 +74,13 @@ public class EmployeeRepository : IEmployeeRepository
               MySqlDataReader reader = command.ExecuteReader();
               if (await reader.ReadAsync())
               {
-               int id = Int32.Parse(reader["id"].ToString());
-                int userid = Int32.Parse(reader["userid"].ToString());
+               int id = int.Parse(reader["id"].ToString());
+                int userid = int.Parse(reader["userid"].ToString());
                 string department = reader["department"].ToString();
                 string position = reader["position"].ToString();
                 DateTime hiredate = Convert.ToDateTime(reader["hire_date"].ToString());
-                int directorid = Int32.Parse(reader["directorid"].ToString());
-                int managerid = Int32.Parse(reader["managerid"].ToString());
+                int directorid = int.Parse(reader["directorid"].ToString());
+                int managerid = int.Parse(reader["managerid"].ToString());
         
                 employee = new Employee
                   {

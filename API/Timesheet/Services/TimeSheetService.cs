@@ -24,9 +24,9 @@ public class TImeSheetService : ITimeSheetServices
 
     public async Task <bool> Delete(int id)=>await _repo.Delete(id);
 
-   public async Task <IEnumerable<TimesheetsDetail>> GetAllDetails(int empid,string theDate)=> await _repo.GetAllDetails(empid,theDate);
+//    public async Task <IEnumerable<TimesheetsDetail>> GetAllDetails(int empid,string theDate)=> await _repo.GetAllDetails(empid,theDate);
 
-   public async Task <TimesheetsDetail> GetDetails(int timesheetId)=> await _repo.GetDetails(timesheetId);
+//    public async Task <TimesheetsDetail> GetDetails(int timesheetId)=> await _repo.GetDetails(timesheetId);
 
     public async Task <WorkingTime> GetTotalWorkingTime(int empid,string theDate)=> await _repo.GetTotalWorkingTime(empid,theDate);
 

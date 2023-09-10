@@ -1,5 +1,3 @@
-
-
 using Microsoft.AspNetCore.Mvc;
 using Transflower.PMS.TimesheetService.Models;
 using Transflower.PMS.TimesheetService.Services.Interfaces;
@@ -69,24 +67,24 @@ public class TimesheetController : ControllerBase
         return status;
     }
 
-    //httpGet :  http://localhost:5161/api/Timesheet/2/2023-06-13
-    [HttpGet ("{empid}/{theDate}")]
-       public async Task<IEnumerable<TimesheetsDetail>>GetAllDetails(int empid,string theDate)
-    {
-       IEnumerable<TimesheetsDetail> timesheetDetails =await _service.GetAllDetails(empid,theDate);
-        return timesheetDetails;
-    }
+    // //httpGet :  http://localhost:5161/api/Timesheet/2/2023-06-13
+    // [HttpGet ("{empid}/{theDate}")]
+    //    public async Task<IEnumerable<TimesheetsDetail>>GetAllDetails(int empid,string theDate)
+    // {
+    //    IEnumerable<TimesheetsDetail> timesheetDetails =await _service.GetAllDetails(empid,theDate);
+    //     return timesheetDetails;
+    // }
 
 
-    //httpGet : http://localhost:5161/api/Timesheet/Getdetails/1
-    //[Authorize]
-    [HttpGet]
-    [Route("Getdetails/{timesheetId}")]
-    public async Task<TimesheetsDetail> Get(int timesheetId)
-    {
-        TimesheetsDetail timesheetDetails = await _service.GetDetails(timesheetId);
-        return timesheetDetails;
-    }
+    // //httpGet : http://localhost:5161/api/Timesheet/Getdetails/1
+    // //[Authorize]
+    // [HttpGet]
+    // [Route("Getdetails/{timesheetId}")]
+    // public async Task<TimesheetsDetail> Get(int timesheetId)
+    // {
+    //     TimesheetsDetail timesheetDetails = await _service.GetDetails(timesheetId);
+    //     return timesheetDetails;
+    // }
 
     //httpGet ; http://localhost:5161/api/Timesheet/totaltime/2/2023-06-02
     //[Authorize]
