@@ -1,9 +1,7 @@
-using ProjectAPI.Repository;
 using ProjectAPI.Repository.Interface;
-using ProjectAPI.Service;
 using ProjectAPI.Service.Interface;
-using PMS.Services.Interfaces;
-using PMS.Services;
+using Transflower.PMS.ProjectAPI.Services.Interfaces;
+using Transflower.PMS.ProjectAPI.Services;
 using Transflower.PMS.ProjectAPI.Repositories;
 using Transflower.PMS.ProjectAPI.Service;
 using Transflower.PMS.ProjectAPI.Repositories.Interfaces;

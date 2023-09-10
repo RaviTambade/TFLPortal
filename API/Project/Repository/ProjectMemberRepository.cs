@@ -35,13 +35,13 @@ public class ProjectMemberRepository : IProjectMemberRepository
             {
                 int id = int.Parse(reader["id"].ToString());
                 int projectId = int.Parse(reader["projectid"].ToString());
-                int empId = int.Parse(reader["empid"].ToString());
+                int teammemberid = int.Parse(reader["teammemberid"].ToString());
 
                 ProjectMember projectmember = new ProjectMember
                 {
                     Id = id,
                     ProjectId = projectId,
-                    EmpId = empId
+                    TeammemberId=teammemberid
                 };
                 projectmembers.Add(projectmember);
             }
@@ -73,13 +73,13 @@ public class ProjectMemberRepository : IProjectMemberRepository
             {
                 int id = int.Parse(reader["id"].ToString());
                 int projectId = int.Parse(reader["projectid"].ToString());
-                int empId = int.Parse(reader["empid"].ToString());
+                int teammemberid = int.Parse(reader["teammemberid"].ToString());
 
                 projectMember = new ProjectMember
                 {
                     Id = id,
                     ProjectId = projectId,
-                    EmpId = empId
+                    TeammemberId=teammemberid
 
                 };
             }
@@ -97,43 +97,43 @@ public class ProjectMemberRepository : IProjectMemberRepository
     }
 
 
-    public async Task<IEnumerable<ProjectMemberInfo>> Get(int projectId)
-    {
-       List<ProjectMemberInfo> projectMembers = new List<ProjectMemberInfo>();
-        MySqlConnection con = new MySqlConnection();
-        con.ConnectionString = _conString;
-        try
-        {
-            string query = "SELECT e.id, e.firstname, e.lastname FROM employees e INNER JOIN projectmembers pm ON e.id = pm.empid WHERE pm.projectid =@projectId;";
-            MySqlCommand command = new MySqlCommand(query, con);
-            command.Parameters.AddWithValue("@projectId", projectId);
-            await con.OpenAsync();
-            MySqlDataReader reader = command.ExecuteReader();
-            while (await reader.ReadAsync())
-            {
-                int id = int.Parse(reader["id"].ToString());
-                string firstname = reader["firstname"].ToString();
-                string lastname = reader["lastname"].ToString();
-               ProjectMemberInfo projectMember = new ProjectMemberInfo
-                {
-                    EmpId=id,
-                   FirstName=firstname,
-                   LastName= lastname
-                };
-                projectMembers.Add(projectMember);
-            }
-            reader.Close();
-        }
-        catch (Exception e)
-        {
-            throw e;
-        }
-        finally
-        {
-            con.Close();
-        }
-        return projectMembers;
-    }
+    // public async Task<IEnumerable<ProjectMemberInfo>> Get(int projectId)
+    // {
+    //    List<ProjectMemberInfo> projectMembers = new List<ProjectMemberInfo>();
+    //     MySqlConnection con = new MySqlConnection();
+    //     con.ConnectionString = _conString;
+    //     try
+    //     {
+    //         string query = "SELECT e.id, e.firstname, e.lastname FROM employees e INNER JOIN projectmembers pm ON e.id = pm.empid WHERE pm.projectid =@projectId;";
+    //         MySqlCommand command = new MySqlCommand(query, con);
+    //         command.Parameters.AddWithValue("@projectId", projectId);
+    //         await con.OpenAsync();
+    //         MySqlDataReader reader = command.ExecuteReader();
+    //         while (await reader.ReadAsync())
+    //         {
+    //             int id = int.Parse(reader["id"].ToString());
+    //             string firstname = reader["firstname"].ToString();
+    //             string lastname = reader["lastname"].ToString();
+    //            ProjectMemberInfo projectMember = new ProjectMemberInfo
+    //             {
+    //                 EmpId=id,
+    //                FirstName=firstname,
+    //                LastName= lastname
+    //             };
+    //             projectMembers.Add(projectMember);
+    //         }
+    //         reader.Close();
+    //     }
+    //     catch (Exception e)
+    //     {
+    //         throw e;
+    //     }
+    //     finally
+    //     {
+    //         con.Close();
+    //     }
+    //     return projectMembers;
+    // }
 
 
     public async Task<bool> Insert(ProjectMember projectMember)
@@ -143,10 +143,10 @@ public class ProjectMemberRepository : IProjectMemberRepository
         con.ConnectionString = _conString;
         try
         {
-            string query = "INSERT INTO projectmembers(projectid,empid) VALUES (@projectId,@empId)";
+            string query = "INSERT INTO projectmembers(projectid,teammemberid) VALUES (@projectId,@teammemberId)";
             MySqlCommand command = new MySqlCommand(query, con);
             command.Parameters.AddWithValue("@projectId", projectMember.ProjectId);
-            command.Parameters.AddWithValue("@empId", projectMember.EmpId);
+            command.Parameters.AddWithValue("@teammemberId", projectMember.TeammemberId);
 
 
             await con.OpenAsync();
@@ -174,11 +174,11 @@ public class ProjectMemberRepository : IProjectMemberRepository
         con.ConnectionString = _conString;
         try
         {
-            string query = "Update projectmembers SET projectid =@projectid, empid=@empid  WHERE id=@projectmemberid";
+            string query = "Update projectmembers SET projectid =@projectid, teammemberid=@teammemberid  WHERE id=@projectmemberid";
             MySqlCommand command = new MySqlCommand(query, con);
             command.Parameters.AddWithValue("@projectmemberid", projectMember.Id);
             command.Parameters.AddWithValue("@projectid", projectMember.ProjectId);
-            command.Parameters.AddWithValue("@empid", projectMember.EmpId);
+            command.Parameters.AddWithValue("@teammemberid", projectMember.TeammemberId);
 
             await con.OpenAsync();
             int rowsAffected =await command.ExecuteNonQueryAsync();

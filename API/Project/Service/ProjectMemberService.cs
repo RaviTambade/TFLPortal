@@ -1,9 +1,9 @@
 
-using PMS.Services.Interfaces;
+using Transflower.PMS.ProjectAPI.Services.Interfaces;
 using Transflower.PMS.ProjectAPI.Models;
 using Transflower.PMS.ProjectAPI.Repositories.Interfaces;
 
-namespace PMS.Services;
+namespace Transflower.PMS.ProjectAPI.Services;
 
 public class ProjectMemberService:IProjectMemberService{
     
@@ -16,7 +16,7 @@ public class ProjectMemberService:IProjectMemberService{
     public async Task<IEnumerable<ProjectMember>> GetAll()=>await _repo.GetAll();
      public async Task<ProjectMember> GetById(int Id)=>await _repo.GetById(Id);
 
-     public async Task<IEnumerable<ProjectMemberInfo>> Get(int projectId)=>await _repo.Get(projectId);
+    //  public async Task<IEnumerable<ProjectMemberInfo>> Get(int projectId)=>await _repo.Get(projectId);
      public async Task<bool> Insert(ProjectMember projectMember)=>await _repo.Insert(projectMember);
       public async Task<bool> Update(ProjectMember projectMember)=>await _repo.Update(projectMember);
       public async Task<bool> Delete(int Id)=>await _repo.Delete(Id);
