@@ -15,7 +15,16 @@ export class ProjectService {
     {id:7,employeeId:1, title: "OCBAPP", startDate: new Date("2023-02-02"), status: "Canceled" ,description: "Description for Project 2", teamManager: "Manager 2"},
     {id:8,employeeId:1, title: "EKrushi", startDate: new Date("2023-02-02"), status: "Canceled",description: "Description for Project 2", teamManager: "Manager 2" },
   ];
-
+  projectTeamMembers:{projectId:number;teammembers:string[]}[]=[
+    {projectId:1,teammembers:["Rushikesh Chikane" ,"Abhay Navale","Akshay Tanpure"]},
+    {projectId:2,teammembers:["Sahil Mankar" ,"Shubham Teli","Akash Ajab"]},
+    {projectId:3,teammembers:["Rushikesh Chikane" ,"Abhay Navale","Akshay Tanpure"]},
+    {projectId:4,teammembers:["Rushikesh Chikane" ,"Abhay Navale","Akshay Tanpure"]},
+    {projectId:5,teammembers:["Rushikesh Chikane" ,"Abhay Navale","Akshay Tanpure"]},
+    {projectId:6,teammembers:["Rushikesh Chikane" ,"Abhay Navale","Akshay Tanpure"]},
+    {projectId:7,teammembers:["Rushikesh Chikane" ,"Abhay Navale","Akshay Tanpure"]},
+    {projectId:8,teammembers:["Rushikesh Chikane" ,"Abhay Navale","Akshay Tanpure"]},
+  ]
   constructor() { }
   getProjects(): Observable<{ id: number; title: string; startDate: Date }[]> {
     const summaryData = this.projects.map(project => ({
@@ -56,4 +65,21 @@ export class ProjectService {
       });
     }
   }
+  getProjectTeamMembers(projectId:number):Observable<{teammembers:string[]}>{
+    const members=this.projectTeamMembers.find(p=>p.projectId == projectId);
+    if (members){
+      return of({
+teammembers:members.teammembers
+      }
+      )
+    }
+    else{
+      return of({
+       teammembers:[]
+      });
+    }
+    
+
+  }
+
 }

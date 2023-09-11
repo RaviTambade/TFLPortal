@@ -75,6 +75,10 @@ CREATE TABLE
         projectid INT NOT NULL,
         CONSTRAINT fk_tasks_projects FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
         description VARCHAR(200),
+        status ENUM (     
+            'Pending',
+            'In-Progress',
+            'Completed') DEFAULT 'Pending',
         date DATETIME,
         fromtime TIME,
         totime TIME

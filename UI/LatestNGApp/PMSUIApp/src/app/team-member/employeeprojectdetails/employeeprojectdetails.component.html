@@ -3,11 +3,12 @@
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Project ID: {{ projectDetails.id }}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Status: {{ projectDetails.status }}</h6>
+        <p class="card-title"><strong>Status:</strong>{{ projectDetails.status }}</p>
         <p class="card-text"><strong>Title:</strong> {{ projectDetails.title }}</p>
         <p class="card-text"><strong>Start Date:</strong> {{ projectDetails.startDate | date }}</p>
         <p class="card-text"><strong>Description:</strong> {{ projectDetails.description }}</p>
         <p class="card-text"><strong>Team Manager:</strong> {{ projectDetails.teamManager }}</p>
+        <app-projectteammembers [projectId]="projectId"></app-projectteammembers>
       </div>
     </div>
   </div>
