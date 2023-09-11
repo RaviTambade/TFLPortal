@@ -140,7 +140,6 @@ export class TimeSheetService {
   constructor(private projectsService:ProjectService) {}
 
   getAllTimeSheetsSummaryOfEmployee(employeeId: number): Observable<any[]> {
-    // Assuming employeeId is used to filter timesheets for a specific employee
     const summaryData = this.timeSheets
       .filter(timesheet => timesheet.employeeId === employeeId)
       .map(timesheet => ({

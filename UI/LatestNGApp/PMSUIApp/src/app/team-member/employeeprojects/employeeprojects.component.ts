@@ -11,6 +11,7 @@ export class EmployeeprojectsComponent {
   projects: any[]=[]; 
   selectedProjectId: number | null = null;
   filteredProjects: any[] = [];
+  activeAction:"details" | null =null
   constructor(private projectService: ProjectService, private router: Router) { }
 
   ngOnInit() {
@@ -19,14 +20,16 @@ export class EmployeeprojectsComponent {
       this.filteredProjects = projects;
     });
   }
-
-  viewDetails(projectId: number) {
-    if (this.selectedProjectId === projectId) {
-      this.selectedProjectId = null;
-    } else {
-      this.selectedProjectId = projectId;
-    }
+onActionClick(action:"details",projectId:number){
+  if(this.activeAction === action && this.selectedProjectId=== projectId){
+    this.activeAction =null;
+    this.selectedProjectId= null;
   }
+    else{
+      this.activeAction=action;
+      this.selectedProjectId=projectId;
+    }
+}
   filterProjectsByStatus(status: string) {
     if (status === 'All') {
       this.filteredProjects = this.projects;
@@ -35,4 +38,9 @@ export class EmployeeprojectsComponent {
     }
   }
 
+  getAllTasksOfProject(projectId: number) {
+    if (projectId) {
+      this.router.navigate(['teammember/projecttasks', projectId]);
+    }
+}
 }

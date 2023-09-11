@@ -25,6 +25,7 @@ export class ProjectService {
     {projectId:7,teammembers:["Rushikesh Chikane" ,"Abhay Navale","Akshay Tanpure"]},
     {projectId:8,teammembers:["Rushikesh Chikane" ,"Abhay Navale","Akshay Tanpure"]},
   ]
+  
   constructor() { }
   getProjects(): Observable<{ id: number; title: string; startDate: Date }[]> {
     const summaryData = this.projects.map(project => ({

@@ -3,8 +3,8 @@
     <div class="row">
       <div class="col-md-6">
         <app-employeeprojectfilters (filterByStatus)="filterProjectsByStatus($event)"></app-employeeprojectfilters>
-        <table class="table">
-          <thead>
+        <table class="table table-secondary">
+          <thead class="table-active">
             <tr>
               <th>Start Date</th>
               <th>Title</th>
@@ -18,7 +18,8 @@
               <td>{{ project.title }}</td>
               <td>{{ project.status }}</td>
               <td>
-                <button class="btn btn-primary" (click)="viewDetails(project.id)">Details</button>
+                <button class="btn btn-primary" (click)="onActionClick('details',project.id)">Details</button>&nbsp; &nbsp;
+                <button class="btn btn-primary" (click)="getAllTasksOfProject(project.id)">Tasks Details</button>
               </td>
             </tr>
           </tbody>
@@ -26,7 +27,7 @@
       </div>
 
       <div class="col-md-6">
-        <div *ngIf="selectedProjectId !== null">
+        <div *ngIf="activeAction === 'details' && selectedProjectId !== null">
           <app-employeeprojectdetails [projectId]="selectedProjectId"></app-employeeprojectdetails>
         </div>
       </div>

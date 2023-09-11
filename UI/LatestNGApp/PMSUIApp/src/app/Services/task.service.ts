@@ -19,12 +19,12 @@ tasks:{id:number;title:string;projectId:number;description:string;date:string;fr
 ]
   constructor(private projectService:ProjectService) { }
   getAllTasks(): Observable<{ id: number; title: string; date: string }[]> {
-    const summaryData = this.tasks.map(task => ({
+    const tasks = this.tasks.map(task => ({
       id: task.id,
       title: task.title,
       date: task.date
     }));
-    return of(summaryData);
+    return of(tasks);
   }
   private getProjectNameById(projectId: number): string {
     const project = this.projectService.projects.find(project => project.id === projectId);
@@ -59,4 +59,41 @@ tasks:{id:number;title:string;projectId:number;description:string;date:string;fr
       })
     }
   }
+
+  getTasksOfProject(projectId:number):Observable<{id:number;title:string;projectId:number;projectName:string;description:string;date:string;fromTime:string;toTime:string}>{
+    const taskdetails=this.tasks.find(t => t.id == projectId);
+    if(taskdetails){
+      return of({
+        id:taskdetails.id,
+        title:taskdetails.title,
+        projectName:this.getProjectNameById(taskdetails.projectId),
+        description:taskdetails.description,
+        date:taskdetails.date,
+        fromTime: taskdetails.fromTime,
+        toTime:taskdetails.toTime,
+        projectId:taskdetails.projectId
+      })
+    }
+    else{
+      return of({
+        id:-1,
+        title:'',
+        projectName:'',
+        description:'',
+        date:'',
+        fromTime: '',
+        toTime:'',
+        projectId:-1
+
+      })
+    }
+  }
+    getAllTasksOfProject(projectId: number): Observable<{ id: number; title: string; date: string; projectId: number }[]> {
+      const tasksOfProject = this.tasks.filter(t => t.projectId === projectId);   
+      if (tasksOfProject.length > 0) {
+        return of(tasksOfProject);
+      } else {
+        return of([{ id: -1, title: '', date: '', projectId: -1 }]);
+      }
+}
 }

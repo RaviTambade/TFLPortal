@@ -1,9 +1,9 @@
 <div class="container mt-4">
     <h2>Project Details</h2>
-    <div class="card">
+    <div class="card bg-secondary text-white">
       <div class="card-body">
-        <h5 class="card-title">Project ID: {{ projectDetails.id }}</h5>
-        <p class="card-title"><strong>Status:</strong>{{ projectDetails.status }}</p>
+        <h5 class="card-title">Project ID: {{ projectDetails.id }}</h5> 
+     <p class="card-title"><strong>Status:</strong>{{ projectDetails.status }}</p>
         <p class="card-text"><strong>Title:</strong> {{ projectDetails.title }}</p>
         <p class="card-text"><strong>Start Date:</strong> {{ projectDetails.startDate | date }}</p>
         <p class="card-text"><strong>Description:</strong> {{ projectDetails.description }}</p>

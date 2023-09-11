@@ -10,12 +10,14 @@ import { TimesheetdetailsComponent } from './timesheetdetails/timesheetdetails.c
 import { ProjectteammembersComponent } from './projectteammembers/projectteammembers.component';
 import { TasklistComponent } from './tasklist/tasklist.component';
 import { TaskdetailsComponent } from './taskdetails/taskdetails.component';
+import { TasksofprojectsComponent } from './tasksofprojects/tasksofprojects.component';
 
 export const teammemberRoutes:Routes=[
   {path:'dashboard',component:DashboardComponent},
   {path:'projects',component:EmployeeprojectsComponent},
   {path:'timesheets',component:TimesheetlistComponent},
-  {path:'mytasks',component:TasklistComponent}
+  {path:'mytasks',component:TasklistComponent},
+  {path:'projecttasks/:projectId',component:TasksofprojectsComponent}
 ]
 
 @NgModule({
@@ -29,6 +31,7 @@ export const teammemberRoutes:Routes=[
     ProjectteammembersComponent,
     TasklistComponent,
     TaskdetailsComponent,
+    TasksofprojectsComponent,
   ],
   imports: [
     CommonModule

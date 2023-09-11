@@ -17,7 +17,6 @@ export class EmployeeprojectdetailsComponent {
       this.projectService.getProjectDetails(this.projectId).subscribe(details => {
         this.projectDetails = details;
       });
-    
     }
   }
 }
