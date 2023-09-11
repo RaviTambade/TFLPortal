@@ -1,3 +1,4 @@
+-- Active: 1678339848098@@127.0.0.1@3306@pms
 INSERT INTO roles(name)VALUES('Director');
 INSERT INTO roles(name)VALUES('HR Manager');
 INSERT INTO roles(name)VALUES('Team Manager');
@@ -22,18 +23,18 @@ insert into directors(corporateid,userid)values(2,1);
 insert into directors(corporateid,userid)values(3,1);
 insert into directors(corporateid,userid)values(4,1);
  
-insert into employees(userid,department,position,hire_date,directorid)values(1,'Developing','Developer','2010-02-02',1);   
-insert into employees(userid,department,position,hire_date,directorid)values(2,'Testing','Tester','2010-10-02',1); 
-insert into employees(userid,department,position,hire_date,directorid)values(3,'Hardware','Assambly','2011-05-02',2); 
-insert into employees(userid,department,position,hire_date,directorid)values(4,'QA','Quality Assure','2010-02-02',2); 
-insert into employees(userid,department,position,hire_date,directorid)values(5,'Supplier','Supplier','2008-02-12',3); 
+insert into employees(userid,department,position,hiredate,directorid)values(9,'Developing','Developer','2010-02-02',1);   
+insert into employees(userid,department,position,hiredate,directorid)values(8,'Testing','Tester','2010-10-02',1); 
+insert into employees(userid,department,position,hiredate,directorid)values(10,'Hardware','Assambly','2011-05-02',2); 
+insert into employees(userid,department,position,hiredate,directorid)values(11,'QA','Quality Assure','2010-02-02',2); 
+insert into employees(userid,department,position,hiredate,directorid)values(12,'Supplier','Supplier','2008-02-12',3); 
 
 
-INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('PMSAPP','2023-02-02','2024-02-02','Project Management System App',1,'In-Progress');
-INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('EKrushi','2020-02-02','2022-02-02','Krushi Product Management',2,'Completed');
+INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('PMSAPP','2023-02-02','2024-02-02','Project Management System App',3,'In-Progress');
+INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('EKrushi','2020-02-02','2022-02-02','Krushi Product Management',3,'In-Progress');
 INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('Agro','2022-02-02','2021-02-02','Agri Produst Supplying App',3,'Pending');
-INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('Inventory','2020-02-02','2021-02-02','Store Management App',4,'Error');
-INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('OMTB','2021-02-02','2023-02-02','Ticket booking Management App',1,'Completed');
+INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('Inventory','2020-02-02','2021-02-02','Store Management App',4,'Pending');
+INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('OMTB','2021-02-02','2023-02-02','Ticket booking Management App',4,'Completed');
 
 INSERT INTO projectmembers(projectid,teammemberid)VALUES(1,1);
 INSERT INTO projectmembers(projectid,teammemberid)VALUES(1,2);

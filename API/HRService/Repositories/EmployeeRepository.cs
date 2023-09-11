@@ -25,7 +25,7 @@ namespace Transflower.PMS.HRService.Repositories
       try
       {
         MySqlCommand command = new MySqlCommand();
-        command.CommandText = "SELECT * FROM employees";
+        command.CommandText ="SELECT * FROM employees";
         command.Connection = connection;
         await connection.OpenAsync();
         MySqlDataReader reader = command.ExecuteReader();
@@ -33,8 +33,8 @@ namespace Transflower.PMS.HRService.Repositories
         {
           int id = int.Parse(reader["id"].ToString());
           int userid = int.Parse(reader["userid"].ToString());
-          string department = reader["department"].ToString();
-          string position = reader["position"].ToString();
+          string? department = reader["department"].ToString();
+          string? position = reader["position"].ToString();
           DateTime hireDate = DateTime.Parse(reader["hiredate"].ToString());
           DateOnly dateOnlyHireDate = DateOnly.FromDateTime(hireDate);
           int directorid = int.Parse(reader["directorid"].ToString());
@@ -53,7 +53,7 @@ namespace Transflower.PMS.HRService.Repositories
           };
           employees.Add(employee);
         }
-        reader.Close();
+       await reader.CloseAsync();
       }
       catch (Exception e)
       {
@@ -61,7 +61,7 @@ namespace Transflower.PMS.HRService.Repositories
       }
       finally
       {
-        connection.Close();
+       await connection.CloseAsync();
       }
       return employees;
     }

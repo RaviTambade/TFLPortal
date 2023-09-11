@@ -1,10 +1,59 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
+   projects: {id:number, employeeId:number; title: string; startDate: Date; status: string;description:string;teamManager:string }[] = [
+    {id:1,employeeId:1, title: "PMSAPP", startDate: new Date("2023-02-02"), status: "In-Progress",description: "Description for Project 1", teamManager: "Manager 1" },
+    {id:2,employeeId:1, title: "EKrushi", startDate: new Date("2023-02-02"), status: "Pending",description: "Description for Project 2", teamManager: "Manager 2"  },
+    {id:3,employeeId:1, title: "HMAPP", startDate: new Date("2023-02-02"), status: "In-Progress",description: "Description for Project 2", teamManager: "Manager 2" },
+    {id:4,employeeId:1, title: "EAgro", startDate: new Date("2023-02-02"), status: "Pending" ,description: "Description for Project 2", teamManager: "Manager 2"},
+    {id:5,employeeId:1, title: "Inventrory", startDate: new Date("2023-02-02"), status: "Completed",description: "Description for Project 2", teamManager: "Manager 2" },
+    {id:6,employeeId:1, title: "OMTBAPP", startDate: new Date("2023-02-02"), status: "Completed" ,description: "Description for Project 2", teamManager: "Manager 2"},
+    {id:7,employeeId:1, title: "OCBAPP", startDate: new Date("2023-02-02"), status: "Canceled" ,description: "Description for Project 2", teamManager: "Manager 2"},
+    {id:8,employeeId:1, title: "EKrushi", startDate: new Date("2023-02-02"), status: "Canceled",description: "Description for Project 2", teamManager: "Manager 2" },
+  ];
 
   constructor() { }
+  getProjects(): Observable<{ id: number; title: string; startDate: Date }[]> {
+    const summaryData = this.projects.map(project => ({
+      id: project.id,
+      title: project.title,
+      status: project.status,
+      startDate: project.startDate
+    }));
+    return of(summaryData);
+  }
 
+  getProjectDetails(id: number): Observable<{
+    id: number;
+    title: string;
+    startDate: Date;
+    status: string;
+    description: string;
+    teamManager: string;
+  }> {
+    const project = this.projects.find(p => p.id === id);
+    if (project) {
+      return of({
+        id: project.id,
+        title: project.title,
+        startDate: project.startDate,
+        status: project.status,
+        description: project.description,
+        teamManager: project.teamManager
+      });
+    } else {
+      return of({
+        id: -1,
+        title: '',
+        startDate: new Date(),
+        status: '',
+        description: '',
+        teamManager: ''
+      });
+    }
+  }
 }

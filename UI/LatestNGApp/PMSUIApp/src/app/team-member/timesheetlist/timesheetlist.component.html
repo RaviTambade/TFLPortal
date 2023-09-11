@@ -1,0 +1,27 @@
+<div class="container">
+    <h2>Time Sheets</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Date</th>
+          <th>Project Name</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let timeSheet of timeSheetSummaryData">
+          <td>{{ timeSheet.id }}</td>
+          <td>{{ timeSheet.date | date }}</td>
+          <td>{{ timeSheet.projectName }}</td>
+          <td>
+            <button class="btn btn-primary" (click)="showDetails(timeSheet.id)">Details</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="selectedTimeSheet">
+        <app-timesheetdetails [selectedTimeSheet]="selectedTimeSheet"></app-timesheetdetails>
+    </div>
+  </div>
+ 
