@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,15 +18,23 @@ export class ProjectService {
   projectTeamMembers:{projectId:number;teammembers:string[]}[]=[
     {projectId:1,teammembers:["Rushikesh Chikane" ,"Abhay Navale","Akshay Tanpure"]},
     {projectId:2,teammembers:["Sahil Mankar" ,"Shubham Teli","Akash Ajab"]},
-    {projectId:3,teammembers:["Rushikesh Chikane" ,"Abhay Navale","Akshay Tanpure"]},
+    {projectId:3,teammembers:["Rushikesh Kale" ,"Abhi Shinde","Akashdeep Karale"]},
     {projectId:4,teammembers:["Rushikesh Chikane" ,"Abhay Navale","Akshay Tanpure"]},
-    {projectId:5,teammembers:["Rushikesh Chikane" ,"Abhay Navale","Akshay Tanpure"]},
+    {projectId:5,teammembers:["Sahil Mankar" ,"Shubham Teli","Akash Ajab"]},
     {projectId:6,teammembers:["Rushikesh Chikane" ,"Abhay Navale","Akshay Tanpure"]},
-    {projectId:7,teammembers:["Rushikesh Chikane" ,"Abhay Navale","Akshay Tanpure"]},
-    {projectId:8,teammembers:["Rushikesh Chikane" ,"Abhay Navale","Akshay Tanpure"]},
+    {projectId:7,teammembers:["Sahil Mankar" ,"Shubham Teli","Akash Ajab"]},
+    {projectId:8,teammembers:["Rushikesh Kale" ,"Abhi Shinde","Akashdeep Karale"]},
   ]
-  
+
   constructor() { }
+  private selectedProjectIdSubject=new BehaviorSubject<any>(null);
+  selectedProjectId$=this.selectedProjectIdSubject.asObservable();
+  
+  setSelectedProjectId(id:number){
+    this.selectedProjectIdSubject.next(id)
+  }
+  
+
   getProjects(): Observable<{ id: number; title: string; startDate: Date }[]> {
     const summaryData = this.projects.map(project => ({
       id: project.id,

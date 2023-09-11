@@ -18,7 +18,7 @@
               <td>{{ project.title }}</td>
               <td>{{ project.status }}</td>
               <td>
-                <button class="btn btn-primary" (click)="onActionClick('details',project.id)">Details</button>&nbsp; &nbsp;
+                <button class="btn btn-primary" (click)="selectProject(project.id)">Details</button>&nbsp; &nbsp;
                 <button class="btn btn-primary" (click)="getAllTasksOfProject(project.id)">Tasks Details</button>
               </td>
             </tr>
@@ -27,10 +27,10 @@
       </div>
 
       <div class="col-md-6">
-        <div *ngIf="activeAction === 'details' && selectedProjectId !== null">
+        <div *ngIf="selectedProjectId !== undefined">
           <app-employeeprojectdetails [projectId]="selectedProjectId"></app-employeeprojectdetails>
-        </div>
-      </div>
+        </div>     
+       </div>
     </div>
   </div>
   

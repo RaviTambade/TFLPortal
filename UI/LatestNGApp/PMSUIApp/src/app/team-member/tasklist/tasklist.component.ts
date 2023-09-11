@@ -7,7 +7,7 @@ import { TaskService } from 'src/app/Services/task.service';
   styleUrls: ['./tasklist.component.css']
 })
 export class TasklistComponent implements OnInit{
-  selectedTaskId:any
+  selectedTaskId:number |undefined
   tasks:any[]=[]
   constructor(private taskService:TaskService){}
   ngOnInit(): void {
@@ -16,13 +16,10 @@ this.taskService.getAllTasks().subscribe((res)=>{
   this.tasks=res
 })
 }
-viewDetails(taskId:number){
-  console.log('cl')
-  if (this.selectedTaskId === taskId) {
-    this.selectedTaskId = null;
-  } else {
-    this.selectedTaskId = taskId;
-  }
+selectTask(id:number){
+  this.selectedTaskId=id
+  console.log(id)
+  this.taskService.setSelectedTaskId(id);
 }
 
 }

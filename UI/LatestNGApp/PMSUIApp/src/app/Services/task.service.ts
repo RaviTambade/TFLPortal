@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { ProjectService } from './project.service';
 
 @Injectable({
@@ -18,6 +18,13 @@ tasks:{id:number;title:string;projectId:number;description:string;date:string;fr
   {id:9,title:"Create technical documentation for EKSApp",projectId:8,description:"please arrange the meeting sheduling prosess quickly",date:"2022-02-10",fromTime:"3:00pm",toTime:"5:00pm"},
 ]
   constructor(private projectService:ProjectService) { }
+  private selectedTaskIdSubject=new BehaviorSubject<any>(null);
+  selectedTaskId$=this.selectedTaskIdSubject.asObservable();
+  
+  setSelectedTaskId(id:number){
+    this.selectedTaskIdSubject.next(id)
+  }
+  
   getAllTasks(): Observable<{ id: number; title: string; date: string }[]> {
     const tasks = this.tasks.map(task => ({
       id: task.id,

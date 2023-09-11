@@ -9,9 +9,8 @@ import { ProjectService } from 'src/app/Services/project.service';
 })
 export class EmployeeprojectsComponent {
   projects: any[]=[]; 
-  selectedProjectId: number | null = null;
+  selectedProjectId: number |undefined;
   filteredProjects: any[] = [];
-  activeAction:"details" | null =null
   constructor(private projectService: ProjectService, private router: Router) { }
 
   ngOnInit() {
@@ -20,16 +19,7 @@ export class EmployeeprojectsComponent {
       this.filteredProjects = projects;
     });
   }
-onActionClick(action:"details",projectId:number){
-  if(this.activeAction === action && this.selectedProjectId=== projectId){
-    this.activeAction =null;
-    this.selectedProjectId= null;
-  }
-    else{
-      this.activeAction=action;
-      this.selectedProjectId=projectId;
-    }
-}
+
   filterProjectsByStatus(status: string) {
     if (status === 'All') {
       this.filteredProjects = this.projects;
@@ -42,5 +32,9 @@ onActionClick(action:"details",projectId:number){
     if (projectId) {
       this.router.navigate(['teammember/projecttasks', projectId]);
     }
+}
+selectProject(id:number){
+  this.selectedProjectId=id
+  this.projectService.setSelectedProjectId(id);
 }
 }

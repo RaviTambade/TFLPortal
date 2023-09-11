@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { TaskService } from 'src/app/Services/task.service';
 
 @Component({
@@ -6,16 +6,15 @@ import { TaskService } from 'src/app/Services/task.service';
   templateUrl: './taskdetails.component.html',
   styleUrls: ['./taskdetails.component.css']
 })
-export class TaskdetailsComponent implements OnInit{
-  @Input() taskId :any
+export class TaskdetailsComponent {
+  @Input() taskId :number |null =null
 taskDetail:any={}
 constructor(private taskService:TaskService){}
-ngOnInit(): void {
-  if(this.taskId !== null){
-    console.log(this.taskId)
- this.taskService.getTaskDetails(this.taskId).subscribe((res)=>{
-  this.taskDetail=res
- })
-}
+ngOnChanges(changes: SimpleChanges) {
+  if (changes['taskId'] && this.taskId !== null) {
+    this.taskService.getTaskDetails(this.taskId).subscribe(details => {
+      this.taskDetail = details;
+    });
+  }
 }
 }
