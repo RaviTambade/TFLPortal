@@ -14,7 +14,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let project of filteredProjects">
-              <td>{{ project.title }}</td>
+              <td (click)="selectProject(project.id)">{{ project.title }}</td>
               <td>{{ project.startDate | date }}</td>
               <td>{{ project.status }}</td>
               <td>

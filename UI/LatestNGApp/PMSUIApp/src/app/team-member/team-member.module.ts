@@ -11,6 +11,7 @@ import { ProjectteammembersComponent } from './projectteammembers/projectteammem
 import { TasklistComponent } from './tasklist/tasklist.component';
 import { TaskdetailsComponent } from './taskdetails/taskdetails.component';
 import { TasksofprojectsComponent } from './tasksofprojects/tasksofprojects.component';
+import { FilteredtasksComponent } from './filteredtasks/filteredtasks.component';
 
 export const teammemberRoutes:Routes=[
   {path:'dashboard',component:DashboardComponent},
@@ -32,6 +33,7 @@ export const teammemberRoutes:Routes=[
     TasklistComponent,
     TaskdetailsComponent,
     TasksofprojectsComponent,
+    FilteredtasksComponent,
   ],
   imports: [
     CommonModule

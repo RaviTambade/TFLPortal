@@ -1,9 +1,9 @@
 <div class="container">
   <div class="btn-group">
     <a class="btn btn-link" (click)="filterProjects('All')">All Projects</a>
-    <a class="btn btn-link" (click)="filterProjects('In-Progress')">In Progress</a>
-    <a class="btn btn-link" (click)="filterProjects('Pending')">Pending</a>
-    <a class="btn btn-link" (click)="filterProjects('Completed')">Completed</a>
-    <a class="btn btn-link" (click)="filterProjects('Canceled')">Canceled</a>
+    <a class="btn btn-link" (click)="filterProjects('In-Progress')"><i class="fas fa-spinner" style="color: #007bff;"></i>&nbsp;In Progress</a>
+    <a class="btn btn-link" (click)="filterProjects('Pending')"><i class="fas fa-clock" style="color: #ffc107;"></i>&nbsp;Pending</a>
+    <a class="btn btn-link" (click)="filterProjects('Completed')"><i class="fas fa-check-circle" style="color: #28a745;">&nbsp;</i>Completed</a>
+    <a class="btn btn-link" (click)="filterProjects('Canceled')"><i class="fas fa-times" style="color: #f70303;"></i>&nbsp;Canceled</a>
   </div>
   <div class="active-filter-line"></div>

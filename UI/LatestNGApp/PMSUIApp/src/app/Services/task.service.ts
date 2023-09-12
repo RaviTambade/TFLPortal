@@ -20,13 +20,14 @@ tasks:{id:number;projectName:string;title:string;status:string;projectId:number;
   private selectedTaskIdSubject=new BehaviorSubject<any>(null);
   selectedTaskId$=this.selectedTaskIdSubject.asObservable();
   
-  setSelectedTaskId(id:number){
+  setSelectedTaskId(id:number |null){
     this.selectedTaskIdSubject.next(id)
   }
   
-  getAllTasks(): Observable<{ id: number; title: string; projectName: string }[]> {
+  getAllTasks(): Observable<{ id: number;status:string; title: string; projectName: string }[]> {
     const tasks = this.tasks.map(task => ({
       id: task.id,
+      status:task.status,
       title: task.title,
       projectName: task.projectName
     }));

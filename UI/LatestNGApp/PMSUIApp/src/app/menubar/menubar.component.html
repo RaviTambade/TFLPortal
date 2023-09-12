@@ -8,16 +8,18 @@
         <div
           class="navbar-collapse collapse d-sm-inline-flex justify-content-start">
           <ul class="navbar-nav flex-grow">
-            <li
-              class="nav-item">
-              <a class="nav-link text-dark" [routerLink]="['teammember/projects']">Projects</a>
+            <li class="nav-item">
+              <a class="nav-link text-dark" [routerLink]="['teammember/projects']" routerLinkActive="router-link-active">
+                <i class="fas fa-clipboard" style="color: #007bff;"></i>&nbsp;Projects</a>
             </li>
-            <li
-            class="nav-item">
-            <a class="nav-link text-dark" [routerLink]="['teammember/mytasks']">MyTasks</a>
+            <li class="nav-item">
+            <a class="nav-link text-dark" [routerLink]="['teammember/mytasks']" routerLinkActive="router-link-active">
+              <i class="fas fa-check-square" style="color: #28a745;"></i>&nbsp;MyTasks
+            </a>
           </li>
             <li class="nav-item">
-              <a class="nav-link text-dark" [routerLink]="['teammember/timesheets']">Timesheet</a>
+              <a class="nav-link text-dark" [routerLink]="['teammember/timesheets']" routerLinkActive="router-link-active">
+                <i class="fas fa-calendar" style="color: #ffc107;"></i>&nbsp;Timesheet</a>
             </li>
           </ul>
         </div>
