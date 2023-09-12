@@ -1,7 +1,6 @@
-
 Authentication Service:
 
- 
+
 1)
 Url  : http:localhost:portnumber/api/users/getallusers
 Mehtod : GET
