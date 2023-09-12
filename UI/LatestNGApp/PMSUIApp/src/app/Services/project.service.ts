@@ -10,7 +10,7 @@ export class ProjectService {
     {id:2,employeeId:1, title: "EKrushi", startDate: new Date("2023-02-02"), status: "Pending",description: "Description for Project 2", teamManager: "Manager 2"  },
     {id:3,employeeId:1, title: "HMAPP", startDate: new Date("2023-02-02"), status: "In-Progress",description: "Description for Project 2", teamManager: "Manager 2" },
     {id:4,employeeId:1, title: "EAgro", startDate: new Date("2023-02-02"), status: "Pending" ,description: "Description for Project 2", teamManager: "Manager 2"},
-    {id:5,employeeId:1, title: "Inventrory", startDate: new Date("2023-02-02"), status: "Completed",description: "Description for Project 2", teamManager: "Manager 2" },
+    {id:5,employeeId:1, title: "Inventory", startDate: new Date("2023-02-02"), status: "Completed",description: "Description for Project 2", teamManager: "Manager 2" },
     {id:6,employeeId:1, title: "OMTBAPP", startDate: new Date("2023-02-02"), status: "Completed" ,description: "Description for Project 2", teamManager: "Manager 2"},
     {id:7,employeeId:1, title: "OCBAPP", startDate: new Date("2023-02-02"), status: "Canceled" ,description: "Description for Project 2", teamManager: "Manager 2"},
     {id:8,employeeId:1, title: "EKrushi", startDate: new Date("2023-02-02"), status: "Canceled",description: "Description for Project 2", teamManager: "Manager 2" },

@@ -9,7 +9,7 @@ import { TaskService } from 'src/app/Services/task.service';
 })
 export class TasksofprojectsComponent implements OnInit {
   selectedTaskId:any
-  @Input() projectId:any
+  projectId:any
   tasks:any[]=[]
   constructor(private taskService:TaskService,private route:ActivatedRoute){}
   ngOnInit(): void {

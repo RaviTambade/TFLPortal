@@ -8,13 +8,21 @@ import { ProjectService } from './project.service';
 export class TaskService {
 tasks:{id:number;projectName:string;title:string;status:string;projectId:number;description:string;date:string;fromTime:string;toTime:string}[]=[
   {id:1, projectName:"PMSAPP",title:"Develop feature login for Project PMS App",status:"In-Progress",projectId:1,description:"please arrange the meeting sheduling prosess quickly",date:"2022-02-02",fromTime:"3:00pm",toTime:"5:00pm"},
-  {id:2, projectName:"EKrushi",title:"Troubleshoot and fix bugs in module timesheet",status:"Pending",projectId:1,description:"please arrange the meeting sheduling prosess quickly",date:"2022-02-03",fromTime:"3:00pm",toTime:"5:00pm"},
+  {id:2, projectName:"EKrushi",title:"Troubleshoot and fix bugs in module timesheet",status:"Pending",projectId:2,description:"please arrange the meeting sheduling prosess quickly",date:"2022-02-03",fromTime:"3:00pm",toTime:"5:00pm"},
   {id:3, projectName:"HMAPP",title:"Check data validation for Form adding timesheet",status:"In-Progress",projectId:3,description:"please arrange the meeting sheduling prosess quickly",date:"2022-02-04",fromTime:"3:00pm",toTime:"5:00pm"},
-  {id:4, projectName:"EAgro",title:"Optimize performance of Database PMS",projectId:2,status:"Pending",description:"please arrange the meeting sheduling prosess quickly",date:"2022-02-05",fromTime:"3:00pm",toTime:"5:00pm"},
-  {id:5, projectName:"Inventrory",title:"Write unit tests for Module Timerecord",status:"Completed",projectId:4,description:"please arrange the meeting sheduling prosess quickly",date:"2022-02-06",fromTime:"3:00pm",toTime:"5:00pm"},
-  {id:6, projectName:"OMTBAPP",title:"Refactor code for better maintainability",status:"In-Progress",projectId:5,description:"please arrange the meeting sheduling prosess quickly",date:"2022-02-07",fromTime:"3:00pm",toTime:"5:00pm"},
-  {id:7, projectName:"OCBAPP",title:"Create technical documentation for project PMSApp",status:"In-Progress",projectId:6,description:"please arrange the meeting sheduling prosess quickly",date:"2022-02-08",fromTime:"3:00pm",toTime:"5:00pm"},
-  {id:8, projectName:"EKrushi",title:"Develop RESTful API for EKSApp",projectId:7,status:"Pending",description:"please arrange the meeting sheduling prosess quickly",date:"2022-02-09",fromTime:"3:00pm",toTime:"5:00pm"},
+  {id:4, projectName:"EAgro",title:"Optimize performance of Database PMS",projectId:4,status:"Pending",description:"please arrange the meeting sheduling prosess quickly",date:"2022-02-05",fromTime:"3:00pm",toTime:"5:00pm"},
+  {id:5, projectName:"Inventrory",title:"Write unit tests for Module Timerecord",status:"Completed",projectId:5,description:"please arrange the meeting sheduling prosess quickly",date:"2022-02-06",fromTime:"3:00pm",toTime:"5:00pm"},
+  {id:6, projectName:"OMTBAPP",title:"Refactor code for better maintainability",status:"In-Progress",projectId:6,description:"please arrange the meeting sheduling prosess quickly",date:"2022-02-07",fromTime:"3:00pm",toTime:"5:00pm"},
+  {id:7, projectName:"OCBAPP",title:"Create technical documentation for project PMSApp",status:"In-Progress",projectId:7,description:"please arrange the meeting sheduling prosess quickly",date:"2022-02-08",fromTime:"3:00pm",toTime:"5:00pm"},
+  {id:8, projectName:"EKrushi",title:"Develop RESTful API for EKSApp",projectId:8,status:"Pending",description:"please arrange the meeting sheduling prosess quickly",date:"2022-02-09",fromTime:"3:00pm",toTime:"5:00pm"},
+  {id:9, projectName:"PMSAPP",title:"Develop feature login for Project PMS App",status:"In-Progress",projectId:1,description:"please arrange the meeting sheduling prosess quickly",date:"2022-02-02",fromTime:"3:00pm",toTime:"5:00pm"},
+  {id:10, projectName:"EKrushi",title:"Troubleshoot and fix bugs in module timesheet",status:"Pending",projectId:2,description:"please arrange the meeting sheduling prosess quickly",date:"2022-02-03",fromTime:"3:00pm",toTime:"5:00pm"},
+  {id:11, projectName:"HMAPP",title:"Check data validation for Form adding timesheet",status:"In-Progress",projectId:3,description:"please arrange the meeting sheduling prosess quickly",date:"2022-02-04",fromTime:"3:00pm",toTime:"5:00pm"},
+  {id:12, projectName:"EAgro",title:"Optimize performance of Database PMS",projectId:4,status:"Pending",description:"please arrange the meeting sheduling prosess quickly",date:"2022-02-05",fromTime:"3:00pm",toTime:"5:00pm"},
+  {id:13, projectName:"Inventrory",title:"Write unit tests for Module Timerecord",status:"Completed",projectId:5,description:"please arrange the meeting sheduling prosess quickly",date:"2022-02-06",fromTime:"3:00pm",toTime:"5:00pm"},
+  {id:14, projectName:"OMTBAPP",title:"Refactor code for better maintainability",status:"In-Progress",projectId:6,description:"please arrange the meeting sheduling prosess quickly",date:"2022-02-07",fromTime:"3:00pm",toTime:"5:00pm"},
+  {id:15, projectName:"OCBAPP",title:"Create technical documentation for project PMSApp",status:"In-Progress",projectId:7,description:"please arrange the meeting sheduling prosess quickly",date:"2022-02-08",fromTime:"3:00pm",toTime:"5:00pm"},
+  {id:16, projectName:"EKrushi",title:"Develop RESTful API for EKSApp",projectId:8,status:"Pending",description:"please arrange the meeting sheduling prosess quickly",date:"2022-02-09",fromTime:"3:00pm",toTime:"5:00pm"},
 ]
   constructor(private projectService:ProjectService) { }
   private selectedTaskIdSubject=new BehaviorSubject<any>(null);

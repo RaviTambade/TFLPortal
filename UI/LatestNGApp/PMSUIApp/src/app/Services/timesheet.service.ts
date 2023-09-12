@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject,Observable, of } from 'rxjs';
 import { ProjectService } from './project.service';
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,7 @@ export class TimeSheetService {
     toTime: string;
     workingTime: number;
     projectId: number;
+    projectName:string;
     task: string;
   }[] = [
     {
@@ -23,6 +24,7 @@ export class TimeSheetService {
       toTime: "12:00 PM",
       workingTime: 3,
       projectId: 1,
+      projectName:"PMSAPP",
       task: "Task 1"
     },
     {
@@ -33,6 +35,7 @@ export class TimeSheetService {
       toTime: "05:00 PM",
       workingTime: 3,
       projectId: 2, 
+      projectName:"EKrushi",
       task: "Task 2"
     },
     {
@@ -42,7 +45,8 @@ export class TimeSheetService {
       fromTime: "09:00 AM",
       toTime: "12:00 PM",
       workingTime: 3,
-      projectId: 1,
+      projectId: 3,
+      projectName:"HMAPP",
       task: "Task 3"
     },
     {
@@ -52,7 +56,8 @@ export class TimeSheetService {
       fromTime: "02:00 PM",
       toTime: "05:00 PM",
       workingTime: 3,
-      projectId: 2, 
+      projectId: 4, 
+      projectName:"EAgro",
       task: "Task 4"
     },
     {
@@ -62,7 +67,8 @@ export class TimeSheetService {
       fromTime: "09:00 AM",
       toTime: "12:00 PM",
       workingTime: 3,
-      projectId: 3,
+      projectId: 5,
+      projectName:"Inventory",
       task: "Task 5"
     },
     {
@@ -72,7 +78,8 @@ export class TimeSheetService {
       fromTime: "02:00 PM",
       toTime: "05:00 PM",
       workingTime: 3,
-      projectId: 3, 
+      projectId: 6, 
+      projectName:"OMTBAPP",
       task: "Task 6"
     },
     {
@@ -82,7 +89,8 @@ export class TimeSheetService {
       fromTime: "09:00 AM",
       toTime: "12:00 PM",
       workingTime: 3,
-      projectId: 4,
+      projectId: 7,
+      projectName:"OCBAPP",
       task: "Task 7"
     },
     {
@@ -92,52 +100,63 @@ export class TimeSheetService {
       fromTime: "02:00 PM",
       toTime: "05:00 PM",
       workingTime: 3,
-      projectId: 4, 
+      projectId: 2, 
+      projectName:"EKrushi",
       task: "Task 8"
     },
     {
-      id: 1,
+      id: 9,
       employeeId:1,
       date: new Date("2023-02-03"),
       fromTime: "09:00 AM",
       toTime: "12:00 PM",
       workingTime: 3,
       projectId: 1,
+      projectName:"PMSAPP",
       task: "Task 1"
     },
     {
-      id: 2,
+      id: 10,
       employeeId:1,
       date: new Date("2023-02-04"),
       fromTime: "02:00 PM",
       toTime: "05:00 PM",
       workingTime: 3,
-      projectId: 2, 
+      projectId: 1, 
+      projectName:"PMSAPP",
       task: "Task 2"
     },
     {
-      id: 1,
+      id: 11,
       employeeId:1,
       date: new Date("2023-02-03"),
       fromTime: "09:00 AM",
       toTime: "12:00 PM",
       workingTime: 3,
       projectId: 1,
+      projectName:"PMSAPP",
       task: "Task 1"
     },
     {
-      id: 2,
+      id: 12,
       employeeId:1,
       date: new Date("2023-02-04"),
       fromTime: "02:00 PM",
       toTime: "05:00 PM",
       workingTime: 3,
-      projectId: 2, 
+      projectId: 1, 
+      projectName:"PMSAPP",
       task: "Task 2"
     },
   ];
 
   constructor(private projectsService:ProjectService) {}
+private selectedtimeSheetIdSubject=new BehaviorSubject<any>(null);
+selectedTaskId$=this.selectedtimeSheetIdSubject.asObservable();
+
+setTimeSheetId(id:number |null){
+  this.selectedtimeSheetIdSubject.next(id);
+}
 
   getAllTimeSheetsSummaryOfEmployee(employeeId: number): Observable<any[]> {
     const summaryData = this.timeSheets

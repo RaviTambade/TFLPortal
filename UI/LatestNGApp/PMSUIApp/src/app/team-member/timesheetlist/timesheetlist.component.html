@@ -6,26 +6,26 @@
           <thead class="table-active">
         <tr>
           <th>ID</th>
-          <th>Date</th>
           <th>Project Name</th>
+          <th>Date</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let timeSheet of timeSheetSummaryData">
           <td>{{ timeSheet.id }}</td>
-          <td>{{ timeSheet.date | date }}</td>
           <td>{{ timeSheet.projectName }}</td>
+          <td>{{ timeSheet.date | date }}</td>
           <td>
-            <button class="btn btn-primary" (click)="showDetails(timeSheet.id)">Details</button>
+            <button class="btn btn-primary" (click)="selectTimeSheet(timeSheet.id)">Details</button>
           </td>
         </tr>
       </tbody>
     </table>
       </div>
       <div class="col-md-6">
-    <div *ngIf="selectedTimeSheet">
-        <app-timesheetdetails [selectedTimeSheet]="selectedTimeSheet"></app-timesheetdetails>
+    <div *ngIf="selectedTimeSheetId">
+        <app-timesheetdetails [selectedTimeSheetId]="selectedTimeSheetId"></app-timesheetdetails>
     </div>
   </div>
   </div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TaskService } from 'src/app/Services/task.service';
 import { TimeSheetService } from 'src/app/Services/timesheet.service';
 
 @Component({
@@ -8,8 +9,7 @@ import { TimeSheetService } from 'src/app/Services/timesheet.service';
 })
 export class TimesheetlistComponent {
   timeSheetSummaryData: any[]=[];
-  selectedTimeSheet: any;
-
+selectedTimeSheetId:number |null=null
   constructor(private timeSheetService: TimeSheetService) {}
 
   ngOnInit() {
@@ -20,9 +20,13 @@ export class TimesheetlistComponent {
         this.timeSheetSummaryData = data;
       });
   }
-  showDetails(timeSheetId: number) {
-    this.timeSheetService.getTimeSheetById(timeSheetId).subscribe(details => {
-      this.selectedTimeSheet = details;
-    });
+  selectTimeSheet(id :number){
+if(this.selectedTimeSheetId === id){
+  this.selectedTimeSheetId = null;
+}
+else{
+  this.selectedTimeSheetId= id
+}
+this.timeSheetService.setTimeSheetId(id);
   }
 }
