@@ -1,4 +1,5 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProjectService } from 'src/app/Services/project.service';
 
 @Component({
@@ -7,15 +8,16 @@ import { ProjectService } from 'src/app/Services/project.service';
   styleUrls: ['./employeeprojectdetails.component.css']
 })
 export class EmployeeprojectdetailsComponent {
-  @Input() projectId: number | null=null;
+  @Input() projectId: number | undefined=undefined;
   projectDetails: any = {};
 
-  constructor(private projectService: ProjectService) { }
+  constructor(private projectService: ProjectService,private router:Router) { }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['projectId'] && this.projectId !== null) {
+    if (changes['projectId'] && this.projectId !== undefined) {
       this.projectService.getProjectDetails(this.projectId).subscribe(details => {
         this.projectDetails = details;
+        this.selectProject(this.projectDetails.id)
       });
     }
   }
@@ -24,5 +26,9 @@ export class EmployeeprojectdetailsComponent {
     console.log(id)
     this.projectService.setSelectedProjectId(id);
   }
-
+  getAllTasksOfProject(projectId: number) {
+    if (projectId) {
+      this.router.navigate(['teammember/projecttasks', projectId]);
+    }
+  }
 }

@@ -6,20 +6,19 @@
         <table class="table table-secondary">
           <thead class="table-active">
             <tr>
-              <th>Start Date</th>
               <th>Title</th>
+              <th>Start Date</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let project of filteredProjects">
-              <td>{{ project.startDate | date }}</td>
               <td>{{ project.title }}</td>
+              <td>{{ project.startDate | date }}</td>
               <td>{{ project.status }}</td>
               <td>
-                <button class="btn btn-primary" (click)="selectProject(project.id)">Details</button>&nbsp; &nbsp;
-                <button class="btn btn-primary" (click)="getAllTasksOfProject(project.id)">Tasks Details</button>
+                <button class="btn btn-primary" (click)="selectProject(project.id)">Details</button>
               </td>
             </tr>
           </tbody>
@@ -27,7 +26,7 @@
       </div>
 
       <div class="col-md-6">
-        <div *ngIf="selectedProjectId !== undefined">
+        <div *ngIf="selectedProjectId !== null">
           <app-employeeprojectdetails [projectId]="selectedProjectId"></app-employeeprojectdetails>
         </div>     
        </div>

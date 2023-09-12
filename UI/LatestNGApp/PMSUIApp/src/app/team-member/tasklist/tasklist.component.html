@@ -7,7 +7,7 @@
           <thead class="table-active">
             <tr>
               <th>ID</th>
-              <th>Date</th>
+              <th>Project</th>
               <th>Task</th>
               <th>Action</th>
             </tr>
@@ -15,7 +15,7 @@
           <tbody>
             <tr *ngFor="let task of tasks">
               <td>{{ task.id }}</td>
-              <td>{{ task.date | date }}</td>
+              <td>{{ task.projectName}}</td>
               <td>{{ task.title }}</td>
               <td>
                 <button class="btn btn-primary" (click)="selectTask(task.id)">Details</button>
@@ -24,6 +24,7 @@
           </tbody>
         </table>
       </div>
+      
       <div class="col-md-6">
         <div *ngIf="selectedTaskId !== undefined">
           <app-taskdetails [taskId]="selectedTaskId"></app-taskdetails>

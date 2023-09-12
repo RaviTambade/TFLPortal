@@ -3,12 +3,13 @@
     <div class="card bg-secondary text-white">
       <div class="card-body">
         <h5 class="card-title">Project ID: {{ projectDetails.id }}</h5> 
-     <p class="card-title"><strong>Status:</strong>{{ projectDetails.status }}</p>
+        <p class="card-title"><strong>Status:</strong>{{ projectDetails.status }}</p>
         <p class="card-text"><strong>Title:</strong> {{ projectDetails.title }}</p>
         <p class="card-text"><strong>Start Date:</strong> {{ projectDetails.startDate | date }}</p>
         <p class="card-text"><strong>Description:</strong> {{ projectDetails.description }}</p>
         <p class="card-text"><strong>Team Manager:</strong> {{ projectDetails.teamManager }}</p>
-        <app-projectteammembers [projectId]="projectId"></app-projectteammembers>
+        <app-projectteammembers></app-projectteammembers>
+        <button class="btn btn-primary" (click)="getAllTasksOfProject(projectDetails.id)">Tasks Details</button>
       </div>
     </div>
   </div>

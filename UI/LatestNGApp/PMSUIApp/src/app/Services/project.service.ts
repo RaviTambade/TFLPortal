@@ -30,7 +30,7 @@ export class ProjectService {
   private selectedProjectIdSubject=new BehaviorSubject<any>(null);
   selectedProjectId$=this.selectedProjectIdSubject.asObservable();
   
-  setSelectedProjectId(id:number){
+  setSelectedProjectId(id:number|null){
     this.selectedProjectIdSubject.next(id)
   }
   
@@ -43,6 +43,16 @@ export class ProjectService {
       startDate: project.startDate
     }));
     return of(summaryData);
+  }
+  getProject(projectId:number):Observable<string>{
+    const project=this.projects.find(p=>p.id === projectId)
+    if(project)
+    return of(project ? project.title : "project not")
+    else{
+      return of(
+
+      )
+    }
   }
 
   getProjectDetails(id: number): Observable<{
