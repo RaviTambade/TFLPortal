@@ -12,6 +12,7 @@
         <p class="card-text"><strong>To Time:</strong> {{ taskDetail.toTime }}</p> -->
         <button  class="btn btn-primary" (click)="selectTask(taskDetail.id)">Task Details</button>
         <div *ngIf="selectedTaskId !== null">
+          <br> 
           <app-taskdetailsinfo [taskId]="selectedTaskId"></app-taskdetailsinfo>
         </div>    
     </div>

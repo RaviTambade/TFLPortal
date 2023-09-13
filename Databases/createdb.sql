@@ -79,6 +79,7 @@ CREATE TABLE
             'In-Progress',
             'Completed') DEFAULT 'Pending',
         date DATETIME,
+        duedate DATETIME,
         fromtime DATETIME,
         totime DATETIME
     );
@@ -98,10 +99,9 @@ CREATE TABLE
         date DATETIME,
         fromtime TIME,
         totime TIME,
+        description TEXT,
         employeeid INT NOT NULL,
         CONSTRAINT fk_timesheets_employees FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
-        projectid INT NOT NULL,
-        CONSTRAINT fk_timesheets_projects FOREIGN KEY(projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
         taskid INT NOT NULL,
         CONSTRAINT fk_timesheets_tasks FOREIGN KEY(taskid) REFERENCES tasks(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
@@ -115,22 +115,26 @@ CREATE TABLE
         CONSTRAINT fk_timerecords_employees FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
--- CREATE TABLE clients(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 
---                     fullname VARCHAR(50),
+-- CREATE TABLE projectchats(
+--     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     projectid INT NOT NULL,
+--     comment TEXT,
+--     createdat DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+--     CONSTRAINT fk_projectchats_projects FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
+--     employeeid INT NOT NULL,
+--     CONSTRAINT fk_timerecords_employees FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
+--     );
 
---                     address VARCHAR(200),
-
---                     details VARCHAR(200)
-
--- 	                );
-
--- CREATE TABLE onproject(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-
---                       projectid INT NOT NULL,
-
---                       CONSTRAINT fk_projid FOREIGN KEY (projectid) REFERENCES projects(id)ON UPDATE CASCADE  ON DELETE CASCADE,
-
---                       clientid INT NOT NULL,
-
---                       CONSTRAINT fk_clientid FOREIGN KEY (clientid) REFERENCES clients(id)ON UPDATE CASCADE  ON DELETE CASCADE);
+-- CREATE TABLE attachments (
+--     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     -- projectid INT,
+--     task_id INT,
+--     comment_id INT,
+--     file_name VARCHAR(40) NOT NULL,
+--     file_path VARCHAR(80) NOT NULL,
+--     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+--     -- CONSTRAINT fk_projects_attachments FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
+--     CONSTRAINT fk_tasks_attachments FOREIGN KEY (taskid) REFERENCES tasks(id) ON UPDATE CASCADE ON DELETE CASCADE,
+--     CONSTRAINT fk_projectchats_attachments FOREIGN KEY (commentid) REFERENCES projectchats(id) ON UPDATE CASCADE ON DELETE CASCADE
+-- );

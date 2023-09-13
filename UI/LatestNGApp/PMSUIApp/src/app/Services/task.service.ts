@@ -32,11 +32,12 @@ tasks:{id:number;projectName:string;title:string;status:string;projectId:number;
     this.selectedTaskIdSubject.next(id)
   }
   
-  getAllTasks(): Observable<{ id: number;status:string; title: string; projectName: string }[]> {
+  getAllTasks(): Observable<{ id: number;status:string; title: string; projectName: string,employee:string }[]> {
     const tasks = this.tasks.map(task => ({
       id: task.id,
       status:task.status,
       title: task.title,
+      employee:task.employee,
       projectName: task.projectName
     }));
     return of(tasks);
