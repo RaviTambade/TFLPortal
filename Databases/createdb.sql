@@ -47,7 +47,7 @@ CREATE TABLE
         title VARCHAR(40),
         startdate DATETIME NOT NULL,
         enddate DATETIME,
-        description VARCHAR(100),
+        description TEXT,
         teammanagerid INT NOT NULL,
         CONSTRAINT fk_employees_projects FOREIGN KEY(teammanagerid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
         status enum(
@@ -79,8 +79,8 @@ CREATE TABLE
             'In-Progress',
             'Completed') DEFAULT 'Pending',
         date DATETIME,
-        fromtime TIME,
-        totime TIME
+        fromtime DATETIME,
+        totime DATETIME
     );
 
 CREATE TABLE

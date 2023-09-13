@@ -2,4 +2,15 @@
 .box-shadow {
     box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
   }
-  
+    
+  .nav-item li {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+
+  .nav-item a.router-link-active {
+    background-color:aqua;
+  }
+ 

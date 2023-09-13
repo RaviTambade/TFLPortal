@@ -1,19 +1,16 @@
-<div class="container mt-4">
-    <h2 class="text-center mb-4">Time Sheet Details</h2>
-    <div *ngIf="selectedTimeSheet" class="border rounded p-3 shadow">
-      <div class="row">
-        <div class="col-sm-6">
-          <h4><strong>Timesheet ID:</strong> {{ selectedTimeSheet.id }}</h4>
+<div class="container">
+    <h2 class="text-center">Time Sheet Details</h2>
+    <div *ngIf="selectedTimeSheet">
+      <div class="card bg-dark text-white">
+        <div class="card-body">
+          <!-- <h4><strong>Timesheet ID:</strong> {{ selectedTimeSheet.id }}</h4> -->
+          <p><strong>Task:</strong> {{ selectedTimeSheet.task }}</p>
           <p><strong>Date:</strong> {{ selectedTimeSheet.date | date }}</p>
           <p><strong>Project Name:</strong> {{ selectedTimeSheet.projectName }}</p>
-        </div>
-        <div class="col-sm-6">
             <p><strong>From Time:</strong> {{ selectedTimeSheet.fromTime }}</p>
             <p><strong>To Time:</strong> {{ selectedTimeSheet.toTime }}</p>
             <p><strong>Working Time:</strong> {{ selectedTimeSheet.workingTime}} hours</p>
-            <p><strong>Task:</strong> {{ selectedTimeSheet.task }}</p>
         </div>
-      </div>
-    </div>
-  </div>
+          </div>
+        </div>
   

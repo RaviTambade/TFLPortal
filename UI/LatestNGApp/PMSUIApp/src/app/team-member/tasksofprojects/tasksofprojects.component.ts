@@ -10,6 +10,8 @@ import { TaskService } from 'src/app/Services/task.service';
 export class TasksofprojectsComponent implements OnInit {
   selectedTaskId:any
   projectId:any
+  projectNames:any[] =[]
+  projectName:string=''
   tasks:any[]=[]
   constructor(private taskService:TaskService,private route:ActivatedRoute){}
   ngOnInit(): void {
@@ -18,6 +20,10 @@ export class TasksofprojectsComponent implements OnInit {
       });
     this.taskService.getAllTasksOfProject(this.projectId).subscribe((res)=>{
       this.tasks=res
+      console.log(this.tasks)
+     this.projectNames= this.tasks.map((task)=>task.projectName)
+     this.projectName=this.projectNames[0]
+      
     })
   }
   viewDetails(taskId:number){

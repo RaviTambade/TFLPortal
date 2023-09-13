@@ -1,17 +1,19 @@
 <div class="container mt-4">
-    <h2>Task Details</h2>
-    <div class="card bg-secondary text-white">
+    <h2 class="mb-4">Task Details</h2>
+    <div class="card bg-dark text-white">
       <div class="card-body">
-        <h5 class="card-title">Task ID: {{ taskDetail.id }}</h5>
-        <h5 class="card-title">Status: {{ taskDetail.status }}</h5>
-        <p class="card-title"><strong>Project Name:</strong>{{ taskDetail.projectName }}</p>
+        <!-- <h5 class="card-title">Task ID: {{ taskDetail.id }}</h5> -->
         <p class="card-text"><strong>Task:</strong> {{ taskDetail.title }}</p>
-        <p class="card-text"><strong> Date:</strong> {{ taskDetail.date | date }}</p>
+        <p class="card-text"><strong>Status:</strong> {{ taskDetail.status }}</p>
+        <p class="card-text"><strong>Project Name:</strong>{{ taskDetail.projectName }}</p>
+        <!-- <p class="card-text"><strong> Date:</strong> {{ taskDetail.date | date }}</p>
         <p class="card-text"><strong>Description:</strong> {{ taskDetail.description }}</p>
         <p class="card-text"><strong>From Time:</strong> {{ taskDetail.fromTime }}</p>
-        <p class="card-text"><strong>To Time:</strong> {{ taskDetail.toTime }}</p>
-
-      </div>
+        <p class="card-text"><strong>To Time:</strong> {{ taskDetail.toTime }}</p> -->
+        <button  class="btn btn-primary" (click)="selectTask(taskDetail.id)">Task Details</button>
+        <div *ngIf="selectedTaskId !== null">
+          <app-taskdetailsinfo [taskId]="selectedTaskId"></app-taskdetailsinfo>
+        </div>    
     </div>
   </div>
   

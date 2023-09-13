@@ -3,10 +3,11 @@
     <div class="row">
       <div class="col-md-6">
         <app-filteredtasks (filterTasksByStatus)="filterTasksByStatus($event)"></app-filteredtasks>
+        <br>
         <table class="table table-secondary">
           <thead class="table-active">
             <tr>
-              <th>ID</th>
+              <!-- <th>ID</th> -->
               <th>Project</th>
               <th>Task</th>
               <th>Action</th>
@@ -14,7 +15,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let task of filteredTasks">
-              <td>{{ task.id }}</td>
+              <!-- <td>{{ task.id }}</td> -->
               <td>{{ task.projectName}}</td>
               <td>{{ task.title }}</td>
               <td>

@@ -1,21 +1,25 @@
 <div class="container">
-    <h2>Tasks Of Projects</h2>
+    <h2>Tasks Of {{projectName}}</h2>
     <div class="row">
       <div class="col-md-6">
         <table class="table table-secondary">
           <thead class="table-active">
             <tr>
-              <th>Id</th>
-              <th>Project</th>
-              <th>Title</th>
+              <!-- <th>Id</th> -->
+              <!-- <th>Project</th> -->
+              <th>Task</th>
+              <th>Deligated Employee</th>
+              <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let task of tasks">
-              <td>{{ task.id }}</td>
-              <td>{{ task.projectName}}</td>
+              <!-- <td>{{ task.id }}</td> -->
+              <!-- <td>{{ task.projectName}}</td> -->
               <td>{{ task.title }}</td>
+              <td>{{ task.employee }}</td>
+              <td>{{ task.status }}</td>
               <td>
                 <button class="btn btn-primary" (click)="viewDetails(task.id)">Details</button>
               </td>
