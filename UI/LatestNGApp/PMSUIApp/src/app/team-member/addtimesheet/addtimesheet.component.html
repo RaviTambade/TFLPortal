@@ -5,11 +5,14 @@
     <div>
         <table>
             <thead>
-                <th>Project </th>
-                <th>Task Id</th>
+                <th>Employee Id </th>
                 <th>Date </th>
-                <th>Start Time </th>
-                <th>End Time </th>
+                <th>From Time </th>
+                <th>To Time </th>
+                <th>Working Time</th>
+                <th>Project Id</th>
+                <th>Project Name</th>
+                <th>Task </th>
                 <th>Submit</th>
             </thead>
             <tbody>
@@ -22,9 +25,14 @@
                     <td><select name="taskId" [(ngModel)]="timesheetInfo.taskId" required>
                             <option *ngFor="let task of tasks" [value]="task.id">{{task.title}}</option>
                         </select></td> -->
-                    <td><input type="date" name="date" formControlName="address"></td>
-                    <td><input type="time" name="fromtime" formControlName="address"></td>
-                    <td><input type="time" name="totime" formControlName="address"></td>
+                        <td><input type="number" name="empid" formControlName="empid"></td>
+                    <td><input type="date" name="date" formControlName="date"></td>
+                    <td><input type="time" name="fromtime" formControlName="fromtime"></td>
+                    <td><input type="time" name="totime" formControlName="totime"></td>
+                    <td><input type="time" name="workingtime" formControlName="workingtime"></td>
+                    <td><input type="number" name="projectid" formControlName="projectid"></td>
+                    <td><input type="text" name="projectname" formControlName="projectname"></td>
+                    <td><input type="text" name="task" formControlName="task"></td>
                     <td><button type="submit">Submit</button></td>
                 </tr>
             </tbody>
