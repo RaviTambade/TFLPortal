@@ -99,7 +99,6 @@ CREATE TABLE
         date DATETIME,
         fromtime TIME,
         totime TIME,
-        workingtime TIME GENERATED ALWAYS AS (TIMEDIFF(totime, fromtime)) VIRTUAL,
         employeeid INT NOT NULL,
         CONSTRAINT fk_timesheets_employees FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
         projectid INT NOT NULL,
