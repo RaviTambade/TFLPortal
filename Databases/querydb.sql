@@ -5,14 +5,12 @@ select * from roles;
 select * from userroles;
 select * from projectmembers;
 select * from projects;
-select * from clients;
-select * from onproject;
 select * from assigned;
 select * from timesheets;
 select * from timerecords where empid =2;
-select * from projects;
 select * from tasks;
 select * from payrollCycles;
+select * from clients;
 
 
 -- 1)Finding role name of employee from roles table 
@@ -35,7 +33,6 @@ WHERE  ts.empid=2 ;
 -- datewise total working time
 SELECT CONCAT(FLOOR(SUM(TIME_TO_SEC(workingtime)/3600)),':',LPAD(FLOOR((SUM(TIME_TO_SEC(workingtime) / 60)) % 60), 2, '0')) AS totalworkingHRS 
 FROM timesheets WHERE  empid = 2 AND date = '2023-06-13';
-
 
 -- total working time of default employee with between two dates
 SELECT CONCAT(FLOOR(SUM(TIME_TO_SEC(totaltime)/3600)),':',LPAD(FLOOR((SUM(TIME_TO_SEC(totaltime)/ 60)) % 60),2,'0')) AS totalworkingHRS 
