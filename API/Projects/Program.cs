@@ -1,6 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Transflower.PMSApp.Projects.Services;
+using Transflower.PMSApp.Projects.Repositories;
 using Transflower.PMSApp.Projects.Repositories.Context;
+using Transflower.PMSApp.Projects.Repositories.Interfaces;
+using Transflower.PMSApp.Projects.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +17,8 @@ builder.Services.AddDbContext<ProjectContext>(options=>
             .LogTo(Console.WriteLine, LogLevel.Information)
         
         );
+builder.Services.AddTransient<IProjectRepository,ProjectRepository>();
+builder.Services.AddTransient<IProjectService,ProjectService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -4,6 +4,7 @@
       <div class="col-md-6">
         <!-- <app-filteredtasks (filterTasksByStatus)="filterTasksByStatus($event)"></app-filteredtasks> -->
         <br>
+        <div class="scrollable-list ">
         <table class="table table-secondary table-striped">
           <thead class="table-active ">
             <tr>
@@ -19,13 +20,14 @@
               <!-- <td>{{ task.id }}</td> -->
               <td>{{ task.projectName }}</td>
               <td>{{ task.title }}</td>
-              <td>{{ task.employee}}</td>
+              <td (click)="onTeamMemberClick(task.employee)">{{ task.employee}}</td>
               <td>
                 <button class="btn btn-primary" (click)="selectTask(task.id)">Details</button>
               </td>
             </tr>
           </tbody>
         </table>
+      </div>
       </div>
       
       <div class="col-md-6">

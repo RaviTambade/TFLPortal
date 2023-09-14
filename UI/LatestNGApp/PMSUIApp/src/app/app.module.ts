@@ -34,7 +34,6 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     AuthenticationModule,
     ReactiveFormsModule,
-    NgModule,
     CommonModule,
     
     RouterModule.forRoot([

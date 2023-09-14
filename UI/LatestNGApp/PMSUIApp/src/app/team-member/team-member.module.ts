@@ -15,6 +15,8 @@ import { FilteredtasksComponent } from './filteredtasks/filteredtasks.component'
 import { AddtimesheetComponent } from './addtimesheet/addtimesheet.component';
 import { TaskdetailsinfoComponent } from './taskdetailsinfo/taskdetailsinfo.component';
 import { AlltaskslistComponent } from './alltaskslist/alltaskslist.component';
+import { FormsModule } from '@angular/forms';
+import { EmployeedetailsComponent } from './employeedetails/employeedetails.component';
 
 export const teammemberRoutes:Routes=[
   {path:'dashboard',component:DashboardComponent},
@@ -24,6 +26,8 @@ export const teammemberRoutes:Routes=[
   {path:'mytasks',component:TasklistComponent},
   {path:'projecttasks/:projectId',component:TasksofprojectsComponent},
   {path:'alltasks',component:AlltaskslistComponent},
+  {path:'employeedetails/:employee',component:EmployeedetailsComponent},
+
 
 ]
 
@@ -43,9 +47,11 @@ export const teammemberRoutes:Routes=[
     AddtimesheetComponent,
     TaskdetailsinfoComponent,
     AlltaskslistComponent,
+    EmployeedetailsComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ]
 })
 export class TeamMemberModule { }

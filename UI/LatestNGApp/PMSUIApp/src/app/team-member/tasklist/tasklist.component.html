@@ -4,6 +4,7 @@
       <div class="col-md-6">
         <app-filteredtasks (filterTasksByStatus)="filterTasksByStatus($event)"></app-filteredtasks>
         <br>
+        <div class="scrollable-list">
         <table class="table table-secondary table-striped">
           <thead class="table-active">
             <tr>
@@ -24,6 +25,7 @@
             </tr>
           </tbody>
         </table>
+      </div>
       </div>
       
       <div class="col-md-6">

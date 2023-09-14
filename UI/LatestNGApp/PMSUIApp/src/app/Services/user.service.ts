@@ -7,6 +7,7 @@ import { User } from '../Models/user';
   providedIn: 'root'
 })
 export class UserService {
+  
   constructor(private httpClient:HttpClient) { }
   
   getUserByContact(contactNumber: string): Observable<User> {
