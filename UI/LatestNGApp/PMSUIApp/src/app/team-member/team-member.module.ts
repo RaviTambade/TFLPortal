@@ -19,6 +19,7 @@ import { AlltaskslistComponent } from './alltaskslist/alltaskslist.component';
 export const teammemberRoutes:Routes=[
   {path:'dashboard',component:DashboardComponent},
   {path:'projects',component:EmployeeprojectsComponent},
+  {path:'projectdetails',component:EmployeeprojectdetailsComponent},
   {path:'timesheets',component:TimesheetlistComponent},
   {path:'mytasks',component:TasklistComponent},
   {path:'projecttasks/:projectId',component:TasksofprojectsComponent},

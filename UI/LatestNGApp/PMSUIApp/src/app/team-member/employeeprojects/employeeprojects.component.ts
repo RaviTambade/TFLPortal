@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProjectService } from 'src/app/Services/project.service';
 
@@ -7,7 +7,7 @@ import { ProjectService } from 'src/app/Services/project.service';
   templateUrl: './employeeprojects.component.html',
   styleUrls: ['./employeeprojects.component.css'],
 })
-export class EmployeeprojectsComponent {
+export class EmployeeprojectsComponent implements OnInit {
   projects: any[] = [];
   selectedProjectId: number | null = null;
   filteredProjects: any[] = [];

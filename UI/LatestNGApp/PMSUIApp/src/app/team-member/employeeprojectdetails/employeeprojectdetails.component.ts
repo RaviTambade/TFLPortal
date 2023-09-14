@@ -1,29 +1,53 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from 'src/app/Services/project.service';
 
 @Component({
   selector: 'app-employeeprojectdetails',
   templateUrl: './employeeprojectdetails.component.html',
-  styleUrls: ['./employeeprojectdetails.component.css']
+  styleUrls: ['./employeeprojectdetails.component.css'],
 })
 export class EmployeeprojectdetailsComponent {
-  @Input() projectId: number | undefined=undefined;
+  @Input() projectId: number | null = null;
   projectDetails: any = {};
 
-  constructor(private projectService: ProjectService,private router:Router) { }
+  constructor(
+    private projectService: ProjectService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
+  ngOnInit(): void {
+    this.projectService.selectedProjectId$.subscribe((res) => {
+      console.log(res);
+      this.projectId = res;
+    });
+
+    if(this.projectId!=null)
+    this.projectService
+        .getProjectDetails(this.projectId)
+        .subscribe((details) => {
+          this.projectDetails = details;
+          this.selectProject(this.projectDetails.id);
+        });
+
+  }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['projectId'] && this.projectId !== undefined) {
-      this.projectService.getProjectDetails(this.projectId).subscribe(details => {
-        this.projectDetails = details;
-        this.selectProject(this.projectDetails.id)
-      });
+    if (this.projectId !== null) {
+      this.projectService
+        .getProjectDetails(this.projectId)
+        .subscribe((details) => {
+          this.projectDetails = details;
+          this.selectProject(this.projectDetails.id);
+        });
     }
   }
-  selectProject(id:number){
-    this.projectId=id
-    console.log(id)
+  selectProject(id: number | null) {
+    if (this.projectId === id) {
+      this.projectId = null;
+    } else {
+      this.projectId = id;
+    }
     this.projectService.setSelectedProjectId(id);
   }
   getAllTasksOfProject(projectId: number) {

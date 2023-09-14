@@ -5,7 +5,7 @@
         <!-- <h5 class="card-title">Task ID: {{ taskDetail.id }}</h5> -->
         <p class="card-text"><strong>Task:</strong> {{ taskDetail.title }}</p>
         <p class="card-text"><strong>Status:</strong> {{ taskDetail.status }}</p>
-        <p class="card-text"><strong>Project Name:</strong>{{ taskDetail.projectName }}</p>
+        <p class="card-text" (click)="selectProject(taskDetail.projectId)"><strong>Project Name:</strong>{{ taskDetail.projectName }}</p>
         <!-- <p class="card-text"><strong> Date:</strong> {{ taskDetail.date | date }}</p>
         <p class="card-text"><strong>Description:</strong> {{ taskDetail.description }}</p>
         <p class="card-text"><strong>From Time:</strong> {{ taskDetail.fromTime }}</p>

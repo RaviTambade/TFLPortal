@@ -1,36 +1,37 @@
 <div class="container">
-    <h2>Employee Projects</h2>
-    <div class="row">
+  <h2>Employee Projects</h2>
+  <div class="row">
       <div class="col-md-6">
-        <app-employeeprojectfilters (filterByStatus)="filterProjectsByStatus($event)"></app-employeeprojectfilters>
-        <br>
-        <table class="table table-secondary table-striped">
-          <thead class="table-active">
-            <tr>
-              <th>Title</th>
-              <th>Start Date</th>
-              <!-- <th>Status</th> -->
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let project of filteredProjects">
-              <td (click)="selectProject(project.id)">{{ project.title }}</td>
-              <td>{{ project.startDate | date }}</td>
-              <!-- <td>{{ project.status }}</td> -->
-              <td>
-                <button class="btn btn-primary" (click)="selectProject(project.id)">Details</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+          <app-employeeprojectfilters (filterByStatus)="filterProjectsByStatus($event)"></app-employeeprojectfilters>
+          <br>
+          <div class="scrollable-list">
+              <table class="table table-secondary table-striped">
+                  <thead class="table-active">
+                      <tr>
+                          <th>Title</th>
+                          <th>Start Date</th>
+                          <!-- <th>Status</th> -->
+                          <th>Action</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let project of filteredProjects">
+                          <td (click)="selectProject(project.id)">{{ project.title }}</td>
+                          <td>{{ project.startDate | date }}</td>
+                          <!-- <td>{{ project.status }}</td> -->
+                          <td>
+                              <button class="btn btn-primary" (click)="selectProject(project.id)">Details</button>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
       </div>
 
       <div class="col-md-6">
-        <div *ngIf="selectedProjectId !== null">
-          <app-employeeprojectdetails [projectId]="selectedProjectId"></app-employeeprojectdetails>
-        </div>     
-       </div>
-    </div>
+          <div *ngIf="selectedProjectId !== null">
+              <app-employeeprojectdetails [projectId]="selectedProjectId"></app-employeeprojectdetails>
+          </div>
+      </div>
   </div>
-  
+</div>
