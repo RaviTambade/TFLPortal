@@ -16,7 +16,7 @@
                   </thead>
                   <tbody>
                       <tr *ngFor="let project of filteredProjects">
-                          <td (click)="selectProject(project.id)">{{ project.title }}</td>
+                          <td (click)="selectProject(project.id)"><span class="hover-link">{{ project.title }}</span></td>
                           <td>{{ project.startDate | date }}</td>
                           <!-- <td>{{ project.status }}</td> -->
                           <td>

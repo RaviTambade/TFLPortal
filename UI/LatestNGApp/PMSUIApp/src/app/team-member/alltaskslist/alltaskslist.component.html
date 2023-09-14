@@ -20,7 +20,7 @@
               <!-- <td>{{ task.id }}</td> -->
               <td>{{ task.projectName }}</td>
               <td>{{ task.title }}</td>
-              <td (click)="onTeamMemberClick(task.employee)">{{ task.employee}}</td>
+              <td (click)="onTeamMemberClick(task.employee)"><span class="hover-link">{{ task.employee}}</span></td>
               <td>
                 <button class="btn btn-primary" (click)="selectTask(task.id)">Details</button>
               </td>
