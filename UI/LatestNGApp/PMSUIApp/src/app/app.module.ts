@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -16,6 +16,7 @@ import { hrmanagerRoutes } from './hrmanager/hrmanager.module';
 import { teammanagerRoutes } from './team-manager/team-manager.module';
 import { teammemberRoutes } from './team-member/team-member.module';
 import { MenubarComponent } from './menubar/menubar.component';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -32,7 +33,10 @@ import { MenubarComponent } from './menubar/menubar.component';
     HttpClientModule,
     FormsModule,
     AuthenticationModule,
-
+    ReactiveFormsModule,
+    NgModule,
+    CommonModule,
+    
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },

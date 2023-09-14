@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { TimeSheetService } from 'src/app/Services/timesheet.service';
 
 @Component({
   selector: 'app-addtimesheet',
@@ -16,6 +17,48 @@ workingTime:new FormControl(''),
 projectId:new FormControl(''),
 projectName:new FormControl(''),
 task:new FormControl('')
-
 })
+
+timesheet : any | undefined;
+status: boolean | undefined;
+
+//  timeSheets = this.timesheetservice.getItems();
+
+// checkoutForm = this.formBuilder.group({
+//       id: 0,
+//       employeeId:0,
+//       date: new Date(''),
+//       fromTime: '',
+//       toTime: '',
+//       workingTime: 0,
+//       projectId: 0, 
+//       projectName:'',
+//       task: ''
+// });
+
+constructor(
+  private timesheetservice: TimeSheetService,private formBuilder: FormBuilder) {
+    this.timesheet={
+      id: 0,
+      employeeId:0,
+      date: new Date(''),
+      fromTime: '',
+      toTime: '',
+      workingTime: 0,
+      projectId: 0, 
+      projectName:'',
+      task: ''
+    }
+  }
+
+  addTimesheet(form:any): void {
+
+      this.timesheetservice.insertTimeSheet(this.timesheet).subscribe((response) => {
+        this.status = response;
+        console.log(response);
+  })
+};
 }
+
+
+
