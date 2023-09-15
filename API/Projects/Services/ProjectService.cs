@@ -1,4 +1,5 @@
 using Transflower.PMSApp.Projects.Entities;
+using Transflower.PMSApp.Projects.Models;
 using Transflower.PMSApp.Projects.Repositories.Interfaces;
 using Transflower.PMSApp.Projects.Services.Interfaces;
 
@@ -11,28 +12,32 @@ public class ProjectService : IProjectService
     {
         _repository = repository;
     }
-    public Task<List<Project>> GetAll()
+    public async Task<List<Project>> GetAll()
     {
-        return _repository.GetAll();
+        return await _repository.GetAll();
     }
 
-    public Task<Project> GetById(int projectId)
+    public async Task<Project> GetById(int projectId)
     {
-        return _repository.GetById(projectId);
+        return await _repository.GetById(projectId);
+    }
+    public async Task<List<ProjectList>> GetProjects(){
+        return await _repository.GetProjects();
     }
 
-    public Task<bool> Insert(Project project)
+
+    public  async Task<bool> Insert(Project project)
     {
-        return _repository.Insert(project);
+        return await _repository.Insert(project);
     }
 
-    public Task<bool> Update(Project project)
+    public async Task<bool> Update(Project project)
     {
-        return _repository.Update(project);
+        return await _repository.Update(project);
     }
-        public Task<bool> Delete(int projectId)
+        public async Task<bool> Delete(int projectId)
     {
-        return _repository.Delete(projectId);
+        return await _repository.Delete(projectId);
     }
 
 }

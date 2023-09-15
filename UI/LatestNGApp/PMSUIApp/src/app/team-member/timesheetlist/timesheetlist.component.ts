@@ -35,7 +35,7 @@ this.timeSheetService.setTimeSheetId(id);
   }
 
 add() {
-    this.router.navigate(['/timesheetadding']);
+    this.router.navigate(['teammember/timesheetadd']);
 }
 
 }

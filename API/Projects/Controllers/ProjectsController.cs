@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Transflower.PMSApp.Projects.Entities;
+using Transflower.PMSApp.Projects.Models;
 using Transflower.PMSApp.Projects.Services.Interfaces;
 namespace Transflower.PMSApp.Projects.Controller;
 [ApiController]
@@ -40,5 +41,10 @@ public class ProjectsController : ControllerBase
     public async Task<bool> Delete(int projectId)
     {
         return await _service.Delete(projectId);
+    }
+
+    [HttpGet("list")]
+    public async Task<List<ProjectList>> GetProjects(){
+        return await _service.GetProjects();
     }
 }

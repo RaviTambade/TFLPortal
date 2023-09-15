@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Transflower.PMSApp.Projects.Models;
 using Transflower.PMSApp.Projects.Entities;
 using Transflower.PMSApp.Projects.Repositories.Context;
 using Transflower.PMSApp.Projects.Repositories.Interfaces;
@@ -36,6 +37,31 @@ public class ProjectRepository : IProjectRepository
             throw;
         }
     }
+    public async Task<List<ProjectList>> GetProjects()
+    {
+        try
+        {
+            var projects = await (
+                         from project in _projectContext.Projects
+                         select new ProjectList()
+                         {
+                           Id= project.Id,
+                            Title= project.Title,
+                            StartDate= project.StartDate,
+                            TeamManagerId= project.TeamManagerId
+                         }
+                         ).ToListAsync();
+    
+       
+       return projects;
+
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+
 
     public async Task<bool> Insert(Project project)
     {
@@ -76,7 +102,7 @@ public class ProjectRepository : IProjectRepository
     }
     public async Task<bool> Delete(int projectId)
     {
-         try
+        try
         {
             bool status = false;
             var project = await _projectContext.Projects.FindAsync(projectId);

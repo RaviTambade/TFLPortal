@@ -1,3 +1,4 @@
+-- Active: 1678339848098@@127.0.0.1@3306@pms
 select * From timerecords where empid=2;
 select * from employees;
 select * from users;
@@ -62,3 +63,7 @@ LEFT JOIN
 --     p.id, e.id
     where p.id=3;
 SELECT * FROM roles;
+
+
+  SELECT `p`.`Id`, `p`.`Title`, `p`.`StartDate`, `p`.`TeamManagerId`
+      FROM `Projects` AS `p`;

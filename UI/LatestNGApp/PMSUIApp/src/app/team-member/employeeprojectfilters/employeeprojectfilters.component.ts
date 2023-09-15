@@ -6,9 +6,10 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./employeeprojectfilters.component.css']
 })
 export class EmployeeprojectfiltersComponent {
+  activeFilter:string=''
   @Output() filterByStatus = new EventEmitter<string>();
   filterProjects(status: string) {
+    this.activeFilter=status
     this.filterByStatus.emit(status);
- 
   }
 }

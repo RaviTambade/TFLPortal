@@ -27,6 +27,7 @@ export const teammemberRoutes:Routes=[
   {path:'projecttasks/:projectId',component:TasksofprojectsComponent},
   {path:'alltasks',component:AlltaskslistComponent},
   {path:'employeedetails/:employee',component:EmployeedetailsComponent},
+  {path:'timesheetadd',component:AddtimesheetComponent}
 
 
 ]
