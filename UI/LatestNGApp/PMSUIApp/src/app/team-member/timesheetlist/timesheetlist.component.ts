@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { TaskService } from 'src/app/Services/task.service';
 import { TimeSheetService } from 'src/app/Services/timesheet.service';
 
@@ -10,7 +11,10 @@ import { TimeSheetService } from 'src/app/Services/timesheet.service';
 export class TimesheetlistComponent {
   timeSheetSummaryData: any[]=[];
 selectedTimeSheetId:number |null=null
-  constructor(private timeSheetService: TimeSheetService) {}
+  
+constructor(private timeSheetService: TimeSheetService,
+    private router: Router,
+    private route: ActivatedRoute) {}
 
   ngOnInit() {
     const employeeId = 1;
@@ -29,4 +33,9 @@ else{
 }
 this.timeSheetService.setTimeSheetId(id);
   }
+
+add() {
+    this.router.navigate(['/timesheetadding']);
+}
+
 }

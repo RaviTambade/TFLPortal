@@ -1,53 +1,16 @@
- <p>addtimesheet works!</p>
-
- <form #insertForm="ngForm" (ngSubmit)="addTimesheet(insertForm.value)">
-
-    <div>
-        <table>
-            <thead>
-                <th>Employee Id </th>
-                <th>Date </th>
-                <th>From Time </th>
-                <th>To Time </th>
-                <th>Working Time</th>
-                <th>Project Id</th>
-                <th>Project Name</th>
-                <th>Task </th>
-                <th>Submit</th>
-            </thead>
-            <tbody>
-                <tr>
-                    <!-- <td scope="row">
-                        <select name="projectId" [(ngModel)]="timesheetInfo.projectId" required>
-                            <option *ngFor="let project of projects" [value]="project.id">{{ project.title }}</option>
-                        </select>
-                    </td>
-                    <td><select name="taskId" [(ngModel)]="timesheetInfo.taskId" required>
-                            <option *ngFor="let task of tasks" [value]="task.id">{{task.title}}</option>
-                        </select></td> -->
-                        <td><input type="number" name="empid" formControlName="empid"></td>
-                    <td><input type="date" name="date" formControlName="date"></td>
-                    <td><input type="time" name="fromtime" formControlName="fromtime"></td>
-                    <td><input type="time" name="totime" formControlName="totime"></td>
-                    <td><input type="time" name="workingtime" formControlName="workingtime"></td>
-                    <td><input type="number" name="projectid" formControlName="projectid"></td>
-                    <td><input type="text" name="projectname" formControlName="projectname"></td>
-                    <td><input type="text" name="task" formControlName="task"></td>
-                    <td><button type="submit">Submit</button></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-</form>
-
-
-<div *ngIf="status">
-    <p>TimeSheet inserted successfully</p>
-</div>
-
-<div *ngIf="status==false">
-    <p>error while inserting timesheet</p>
-</div> 
-
-
+<div>
+    <h2>Time Sheet Entry</h2>
+    <form (ngSubmit)="addTimeSheet()">
+      <div class="form-group">
+        <label for="employeeId">Employee ID:</label>
+        <input type="number" id="employeeId" [(ngModel)]="newTimeSheet.employeeId" name="employeeId" required>
+      </div>
+      <div class="form-group">
+        <label for="date">Date:</label>
+        <input type="date" id="date" [(ngModel)]="newTimeSheet.date" name="date" required>
+      </div>
+      <!-- Add more input fields for other properties of the timeSheets object -->
+      <button type="submit">Add Time Sheet</button>
+    </form>
+  </div>
+  
