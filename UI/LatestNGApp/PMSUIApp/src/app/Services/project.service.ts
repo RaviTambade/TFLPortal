@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
+import { Projectlist } from '../Models/projectlist';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +28,7 @@ export class ProjectService {
     {projectId:8,teammembers:["Rushikesh Kale" ,"Abhi Shinde","Akashdeep Karale"]},
   ]
 
-  constructor() { }
+  constructor(private httpClient:HttpClient) { }
   private selectedProjectIdSubject=new BehaviorSubject<any>(null);
   selectedProjectId$=this.selectedProjectIdSubject.asObservable();
   
@@ -102,6 +104,11 @@ teammembers:members.teammembers
     }
     
 
+  }
+
+  getProjectsList():Observable<Projectlist[]>{
+    let url="http://localhost:5248/api/projects/list"
+    return this.httpClient.get<Projectlist[]>(url)
   }
 
 }

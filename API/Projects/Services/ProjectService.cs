@@ -21,10 +21,9 @@ public class ProjectService : IProjectService
     {
         return await _repository.GetById(projectId);
     }
-    public async Task<List<ProjectList>> GetProjects(){
-        return await _repository.GetProjects();
+    public async Task<List<ProjectList>> GetProjectsList(int teamMemberId){
+        return await _repository.GetProjectsList(teamMemberId);
     }
-
 
     public  async Task<bool> Insert(Project project)
     {

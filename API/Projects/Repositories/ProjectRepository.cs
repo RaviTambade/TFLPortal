@@ -37,12 +37,15 @@ public class ProjectRepository : IProjectRepository
             throw;
         }
     }
-    public async Task<List<ProjectList>> GetProjects()
+    public async Task<List<ProjectList>> GetProjectsList(int teamMemberId)
     {
         try
         {
             var projects = await (
                          from project in _projectContext.Projects
+                         join projectmember in _projectContext.ProjectMembers
+                         on project.Id equals projectmember.ProjectId
+                         where projectmember.TeamMemberId == teamMemberId
                          select new ProjectList()
                          {
                            Id= project.Id,
@@ -51,7 +54,6 @@ public class ProjectRepository : IProjectRepository
                             TeamManagerId= project.TeamManagerId
                          }
                          ).ToListAsync();
-    
        
        return projects;
 

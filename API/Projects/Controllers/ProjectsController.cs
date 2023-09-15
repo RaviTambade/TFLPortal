@@ -43,8 +43,8 @@ public class ProjectsController : ControllerBase
         return await _service.Delete(projectId);
     }
 
-    [HttpGet("list")]
-    public async Task<List<ProjectList>> GetProjects(){
-        return await _service.GetProjects();
+    [HttpGet("list/{teamMemberId}")]
+    public async Task<List<ProjectList>> GetProjectsList(int teamMemberId){
+        return await _service.GetProjectsList(teamMemberId);
     }
 }

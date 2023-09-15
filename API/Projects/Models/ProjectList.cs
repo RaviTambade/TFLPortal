@@ -4,5 +4,4 @@ public class ProjectList{
     public string? Title { get; set; }
     public string? StartDate { get; set; }
     public int TeamManagerId { get; set; }
-
 }
