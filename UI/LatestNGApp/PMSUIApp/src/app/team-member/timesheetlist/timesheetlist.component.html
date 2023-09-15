@@ -3,6 +3,7 @@
     <h3><button class="btn btn-primary" (click)="add()">Add New TimeSheet</button></h3>
     <div class="row">
       <div class="col-md-6">
+        <div class="scrollable-list">
         <table class="table table-secondary">
           <thead class="table-active">
         <tr>
@@ -23,6 +24,7 @@
         </tr>
       </tbody>
     </table>
+    </div>
       </div>
       <div class="col-md-6">
     <div *ngIf="selectedTimeSheetId">

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProjectService } from 'src/app/Services/project.service';
 import { TaskService } from 'src/app/Services/task.service';
 
@@ -13,7 +14,8 @@ export class AlltaskslistComponent {
   filteredTasks: any[] = [];
   constructor(
     public taskService: TaskService,
-    public projectService: ProjectService
+    public projectService: ProjectService,
+    public router:Router
   ) {}
   ngOnInit(): void {
     this.taskService.getAllTasks().subscribe((res) => {
@@ -40,5 +42,8 @@ export class AlltaskslistComponent {
     }
     this.selectedTaskId =null;
     this.taskService.setSelectedTaskId(this.selectedTaskId)
+  }
+  onTeamMemberClick(employee:string){
+    this.router.navigate(['teammember/employeedetails',employee]);
   }
 }

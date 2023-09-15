@@ -2,7 +2,7 @@ using Transflower.PMSApp.Projects.Entities;
 using Transflower.PMSApp.Projects.Repositories.Interfaces;
 using Transflower.PMSApp.Projects.Services.Interfaces;
 
-namespace Transflower.EAgroServices.Merchants.Services;
+namespace Transflower.PMSApp.Projects.Services;
 public class ProjectService : IProjectService
 {
     private readonly IProjectRepository _repository;
