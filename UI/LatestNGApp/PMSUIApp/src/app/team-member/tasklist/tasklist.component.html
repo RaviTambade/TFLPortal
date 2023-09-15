@@ -4,6 +4,12 @@
       <div class="col-md-6">
         <app-filteredtasks (filterTasksByStatus)="filterTasksByStatus($event)"></app-filteredtasks>
         <br>
+        <div>
+          <label for="datePicker">Select a date of tasks: </label>
+          <input type="date" id="datePicker" [(ngModel)]="selectedDate" (change)="getTasksByDate(selectedDate)">&nbsp;
+          <button class="btn btn-danger" (click)="showAllTasks()">Remove Date Filter</button>
+        </div>
+        <br>
         <div class="scrollable-list">
         <table class="table table-secondary table-striped">
           <thead class="table-active">

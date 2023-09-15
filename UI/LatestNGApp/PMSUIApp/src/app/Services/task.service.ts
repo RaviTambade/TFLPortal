@@ -117,4 +117,7 @@ tasks:{id:number;projectName:string;title:string;status:string;projectId:number;
         return of([{ id: -1, title: '', date: '', projectId: -1 }]);
       }
 }
+getTasksByDate(date: string) {
+  return this.tasks.filter((task) => task.date === date);
+}
 }

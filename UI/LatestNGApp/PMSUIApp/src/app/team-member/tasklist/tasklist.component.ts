@@ -9,6 +9,7 @@ import { TaskService } from 'src/app/Services/task.service';
 })
 export class TasklistComponent implements OnInit {
   selectedTaskId: number | null = null;
+  selectedDate:string='';
   tasks: any[] = [];
   filteredTasks: any[] = [];
   constructor(
@@ -40,5 +41,16 @@ export class TasklistComponent implements OnInit {
     }
     this.selectedTaskId =null;
     this.taskService.setSelectedTaskId(this.selectedTaskId)
+  }
+
+  getTasksByDate(date: string) {
+    this.filteredTasks = this.taskService.getTasksByDate(date);
+  }
+  showAllTasks() {
+    this.selectedDate = '';
+    this.taskService.getAllTasks().subscribe((res) => {
+      this.tasks = res;
+      this.filteredTasks=res
+    });
   }
 }

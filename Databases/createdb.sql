@@ -1,4 +1,4 @@
--- Active: 1678339848098@@127.0.0.1@3306@sampledb
+-- Active: 1678339848098@@127.0.0.1@3306@pms
 
 DROP DATABASE IF EXISTS PMS;
 CREATE DATABASE PMS;
@@ -79,7 +79,6 @@ CREATE TABLE
             'In-Progress',
             'Completed') DEFAULT 'Pending',
         date DATETIME,
-        duedate DATETIME,
         fromtime DATETIME,
         totime DATETIME
     );
@@ -100,6 +99,10 @@ CREATE TABLE
         fromtime TIME,
         totime TIME,
         description TEXT,
+     status ENUM (     
+            'Pending',
+            'In-Progress',
+            'Completed') DEFAULT 'Pending', 
         employeeid INT NOT NULL,
         CONSTRAINT fk_timesheets_employees FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
         taskid INT NOT NULL,
