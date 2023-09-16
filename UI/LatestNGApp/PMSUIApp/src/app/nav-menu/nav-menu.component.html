@@ -21,12 +21,11 @@
             <a class="nav-link text-dark">{{name}}</a>
           </li>
           <li class="nav-item" *ngIf="isLoggedIn()">
-            <a class="nav-link text-dark" (click)="logOut()">LogOut</a>
+            <a class="nav-link text-dark" (click)="loggedOut()">LogOut</a>
           </li>
           <li class="nav-item" *ngIf="!isLoggedIn()">
             <a class="nav-link text-dark" [routerLink]="['/login']">Login</a>
           </li>
-          
         </ul>
       </div>
     </div>

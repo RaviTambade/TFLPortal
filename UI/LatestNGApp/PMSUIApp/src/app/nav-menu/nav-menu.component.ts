@@ -30,7 +30,7 @@ export class NavMenuComponent implements OnInit {
     this.isExpanded = !this.isExpanded;
   }
   isLoggedIn(): boolean {
-    let jwt = localStorage.getItem("JWT")
+    let jwt = localStorage.getItem("jwt")
     return jwt != null;
   }
 
@@ -45,9 +45,14 @@ export class NavMenuComponent implements OnInit {
 
   }
 
-  logOut() {
-    localStorage.clear();
-    this.router.navigate(['login']);
+  loggedOut() {
+    const result = window.confirm('Are you sure you want to log out?');
+    if (result) {
+      this.router.navigate(['login']);
+      localStorage.clear();
+    } else {
+      console.log('logout canceled');
+    }
   }
 
 }
