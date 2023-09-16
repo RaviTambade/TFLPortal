@@ -106,8 +106,8 @@ teammembers:members.teammembers
 
   }
 
-  getProjectsList():Observable<Projectlist[]>{
-    let url="http://localhost:5248/api/projects/list"
+  getProjectsList(teamMemberId:number):Observable<Projectlist[]>{
+    let url="http://localhost:5248/api/projects/list" +teamMemberId
     return this.httpClient.get<Projectlist[]>(url)
   }
 

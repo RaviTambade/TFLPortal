@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Credential } from '../Models/credential';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -9,6 +9,9 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   providedIn: 'root'
 })
 export class AuthenticationService {
+
+  reloadSubject= new Subject<void>();
+  reloadSubject$=this.reloadSubject.asObservable();
 
   constructor(private httpClient:HttpClient,
     private jwtHelper: JwtHelperService,
@@ -19,7 +22,7 @@ export class AuthenticationService {
   }
 
   getContactNumberFromToken(): string | null {
-    const token = localStorage.getItem("JWT");
+    const token = localStorage.getItem("jwt");
     if (token) {
       const decodedToken = this.jwtHelper.decodeToken(token);
       return decodedToken.contactNumber;

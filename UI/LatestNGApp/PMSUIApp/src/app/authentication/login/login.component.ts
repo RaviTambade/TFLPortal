@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Route, Router } from '@angular/router';
+import { LocalStorageKeys } from 'src/app/Models/Enums/local-storage-keys';
+import { Role } from 'src/app/Models/Enums/role';
 import { Credential } from 'src/app/Models/credential';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { UserService } from 'src/app/Services/user.service';
@@ -25,36 +27,48 @@ export class LoginComponent {
     console.log('Validating user');
     this.authService.validate(this.credential).subscribe((response) => {
       if (response != null) {
-        localStorage.setItem('JWT', response.token);
-        this.userService
-          .getUserByContact(this.credential.contactNumber)
-          .subscribe((response) => {
-            this.userId = response.id;
-            console.log(this.userId);
-            this.userService.getUserRole(this.userId).subscribe((response) => {
-              this.roles = response;
-              console.log(this.roles);
-              const role = this.roles[0];
-              this.navigateByRole(role);
+        localStorage.setItem('jwt', response.token);
+        let contactNumber = this.authService.getContactNumberFromToken();
+        if (contactNumber !== null) {
+          this.userService
+            .getUserByContact(contactNumber)
+            .subscribe((response) => {
+              let userId = response.id;
+              localStorage.setItem(LocalStorageKeys.userId, userId.toString());
+              console.log(userId);
+              this.userService.getUserRole(userId).subscribe((response) => {
+                this.roles = response;
+                console.log(this.roles);
+                const role = this.roles[0];
+                this.navigateByRole(role);
+              });
             });
-          });
+        }
       }
     });
   }
 
   navigateByRole(role: string) {
     switch (role) {
-      case 'Director':
+      case Role.director:
         this.router.navigate(['director/dashboard']);
+        this.authService.reloadSubject.next();
+
         break;
-      case 'HR Manager':
-        this.router.navigate(['hrnmanager/dashboard']);
+      case Role.HRManager:
+        this.router.navigate(['hrmanager/dashboard']);
+        this.authService.reloadSubject.next();
+
         break;
-      case 'Team Manager':
+      case Role.TeamManager:
         this.router.navigate(['teammanager/dashboard']);
+        this.authService.reloadSubject.next();
+
         break;
-      case 'Team Member':
-        this.router.navigate(['teammember/dashboard']);
+      case Role.TeamMember:
+        this.router.navigate(['teammember/projects']);
+        this.authService.reloadSubject.next();
+
         break;
     }
   }
