@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class EmployeeService {
-employee:{id:number;name:string;contactnumber:string;department:string;position:string,manager:string}[]=[
+  employee: { id: number; name: string; contactnumber: string; department: string; position: string, manager: string }[] = [
     {
       id: 1,
       name: 'Rushikesh Chikane',
@@ -62,38 +62,39 @@ employee:{id:number;name:string;contactnumber:string;department:string;position:
       position: 'Manager',
       manager: 'Vaibhav Kale'
     },
-      {
-        id: 8,
-        name: 'Jayesh Erande',
-        contactnumber: '9089087898',
-        department: 'Marketing',
-        position: 'Coordinator',
-        manager: 'Vaibhav Kale'
-      },
+    {
+      id: 8,
+      name: 'Jayesh Erande',
+      contactnumber: '9089087898',
+      department: 'Marketing',
+      position: 'Coordinator',
+      manager: 'Vaibhav Kale'
+    },
   ];
   constructor() { }
-  getEmployeeDetails(name:string):Observable<{id:number;name:string;contactnumber:string;department:string;position:string,manager:string}>{
-    const emp=this.employee.find((employ)=>employ.name ==name)
-   if(emp){
-return of({
-  id:emp.id,
-  name:emp.name,
-  contactnumber:emp.contactnumber,
-  department:emp.department,
-  position:emp.position,
-  manager:emp.manager
-})
-   }
-else{
-  return of({
-    id:0,
-    name:'',
-    contactnumber:'',
-    department:'',
-    position:'',
-    manager:''
-  })
-}
-    }
 
-   }
+  getEmployeeDetails(name: string): Observable<{ id: number; name: string; contactnumber: string; department: string; position: string, manager: string }> {
+    const emp = this.employee.find((employ) => employ.name == name)
+    if (emp) {
+      return of({
+        id: emp.id,
+        name: emp.name,
+        contactnumber: emp.contactnumber,
+        department: emp.department,
+        position: emp.position,
+        manager: emp.manager
+      })
+    }
+    else {
+      return of({
+        id: 0,
+        name: '',
+        contactnumber: '',
+        department: '',
+        position: '',
+        manager: ''
+      })
+    }
+  }
+
+}

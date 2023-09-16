@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProjectService } from 'src/app/Services/project.service';
 
 @Component({
-  selector: 'app-employeeprojects',
-  templateUrl: './employeeprojects.component.html',
-  styleUrls: ['./employeeprojects.component.css'],
+  selector: 'app-managerprojects',
+  templateUrl: './managerprojects.component.html',
+  styleUrls: ['./managerprojects.component.css']
 })
-export class EmployeeprojectsComponent implements OnInit {
+export class ManagerprojectsComponent {
   projects: any[] = [];
   selectedProjectId: number | null = null;
   filteredProjects: any[] = [];
@@ -40,4 +40,5 @@ export class EmployeeprojectsComponent implements OnInit {
     }
     this.projectService.setSelectedProjectId(id);
   }
+
 }

@@ -9,8 +9,35 @@
         <label for="date">Date:</label>
         <input type="date" id="date" [(ngModel)]="newTimeSheet.date" name="date" required>
       </div>
+      <div class="form-group">
+        <label for="fromTime">From Time:</label>
+        <input type="time" id="fromtime" [(ngModel)]="newTimeSheet.fromTime" name="fromTime" required>
+      </div>
+      <div class="form-group">
+        <label for="toTime">To Time:</label>
+        <input type="time" id="toTime" [(ngModel)]="newTimeSheet.toTime" name="toTime" required>
+      </div>
+      <div class="form-group">
+        <label for="workingTime">Working Time :</label>
+        <input type="time" id="workingTime" [(ngModel)]="newTimeSheet.workingTime" name="workingTime" required>
+      </div>
+      <div class="form-group">
+        <label for="projectId">Project Id :</label>
+        <input type="number" id="projectId" [(ngModel)]="newTimeSheet.projectId" name="projectId" required>
+      </div>
+      <div class="form-group">
+        <label for="projectName">Project Name :</label>
+        <input type="text" id="projectName" [(ngModel)]="newTimeSheet.projectName" name="projectName" required>
+      </div>
+      <div class="form-group">
+        <label for="task">Task :</label>
+        <input type="text" id="task" [(ngModel)]="newTimeSheet.task" name="task" required>
+      </div>
       <!-- Add more input fields for other properties of the timeSheets object -->
+      <br>
       <button type="submit">Add Time Sheet</button>
     </form>
   </div>
+  
+
   
