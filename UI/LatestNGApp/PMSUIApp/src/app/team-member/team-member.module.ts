@@ -28,8 +28,6 @@ export const teammemberRoutes:Routes=[
   {path:'alltasks',component:AlltaskslistComponent},
   {path:'employeedetails/:employee',component:EmployeedetailsComponent},
   {path:'timesheetadd',component:AddtimesheetComponent}
-
-
 ]
 
 @NgModule({

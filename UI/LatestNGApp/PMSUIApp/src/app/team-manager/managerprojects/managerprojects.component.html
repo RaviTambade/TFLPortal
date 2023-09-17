@@ -1,6 +1,7 @@
 
 <div class="container">
-    <h2>Employee Projects</h2>
+    <h2>Employee Projects -</h2>
+    <button class="btn btn-primary" (click)="addProject()">Add New Project</button>
     <div class="row">
         <div class="col-md-6">
             <app-managerprojectfilters (filterByStatus)="filterProjectsByStatus($event)"></app-managerprojectfilters>

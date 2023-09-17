@@ -41,4 +41,9 @@ export class ManagerprojectsComponent {
     this.projectService.setSelectedProjectId(id);
   }
 
+  addProject() {
+      this.router.navigate(['teammanager/addproject']);
+    
+  }
+
 }

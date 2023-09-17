@@ -1,0 +1,22 @@
+<div class="container mt-4">
+    <h2 class="mb-4">Task Details</h2>
+    <div class="card bg-light text-dark">
+      <div class="card-body">
+        <!-- <h5 class="card-title">Task ID: {{ taskDetail.id }}</h5> -->
+        <p class="card-text"><strong>Task:</strong> {{ taskDetail.title }}</p>
+        <p class="card-text"><strong>Status:</strong> {{ taskDetail.status }}</p>
+        <p class="card-text" (click)="selectProject(taskDetail.projectId)"><strong>Project Name:</strong><span class="hover-link">{{ taskDetail.projectName }}</span></p>
+        <!-- <p class="card-text"><strong> Date:</strong> {{ taskDetail.date | date }}</p>
+        <p class="card-text"><strong>Description:</strong> {{ taskDetail.description }}</p>
+        <p class="card-text"><strong>From Time:</strong> {{ taskDetail.fromTime }}</p>
+        <p class="card-text"><strong>To Time:</strong> {{ taskDetail.toTime }}</p> -->
+        <button  class="btn btn-primary" (click)="selectTask(taskDetail.id)">More Task Details</button>
+        <button  class="btn btn-primary" (click)="updateTask(taskDetail.id)">Update</button>
+        <button  class="btn btn-primary" >Delete</button>
+        <div *ngIf="selectedTaskId !== null">
+          <br> 
+          <app-taskdetailsinfo [taskId]="selectedTaskId"></app-taskdetailsinfo>
+        </div>    
+    </div>
+  </div>
+  
