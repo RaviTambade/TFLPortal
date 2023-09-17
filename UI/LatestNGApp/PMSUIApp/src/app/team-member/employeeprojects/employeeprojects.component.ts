@@ -59,7 +59,8 @@ teamManagerUserId:string=''
     }
     this.selectedProjectId = null;
     this.projectService.setSelectedProjectId(this.selectedProjectId);
-  }
+  } 
+  
   selectProject(id: number | null) {
     if (this.selectedProjectId === id) {
       this.selectedProjectId = null;

@@ -173,11 +173,11 @@ setTimeSheetId(id:number |null){
     const project = this.projectsService.projects.find(project => project.id === projectId);
     return project ? project.title : '';
   }
+
   insertTimeSheet(timeSheet: any): Observable<any> {
     const newId = this.generateNewTimeSheetId();
     timeSheet.id = newId;
     this.timeSheets.push(timeSheet);
-
     return of(timeSheet);
   }
   getTimeSheetById(timesheetId: number): Observable<any> {

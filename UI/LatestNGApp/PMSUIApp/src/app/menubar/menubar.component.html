@@ -1,6 +1,15 @@
-
-
 <header>
+<<<<<<< HEAD
+  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container">
+      <div class="navbar-collapse collapse d-sm-inline-flex justify-content-start">
+        <ul class="navbar-nav flex-grow">
+          <li class="nav-item">
+            <a class="nav-link text-dark" [routerLink]="['teammember/projects']" routerLinkActive="router-link-active">
+              <i class="fas fa-clipboard" style="color: #007bff;"></i>&nbsp;Projects</a>
+          </li>
+          <li class="nav-item">
+=======
     <nav
       class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
     >
@@ -13,23 +22,35 @@
                 <i class="fas fa-clipboard" style="color: #007bff;"></i>&nbsp;Projects</a>
             </li>
             <li class="nav-item" *ngIf="isUserHaveRequiredRole(Role.TeamMember)">
+>>>>>>> c55d9a5bc44d5229afb4e2ebfc2760f63ec2b76c
             <a class="nav-link text-dark" [routerLink]="['teammember/mytasks']" routerLinkActive="router-link-active">
               <i class="fas fa-check-square" style="color: #8b0ba4;"></i>&nbsp;MyTasks
             </a>
           </li>
           <li class="nav-item" *ngIf="isUserHaveRequiredRole(Role.TeamMember)">
             <a class="nav-link text-dark" [routerLink]="['teammember/alltasks']" routerLinkActive="router-link-active">
-              <i class="fas fa-check list"  style="color: #cb0c4b;"></i>&nbsp;AllTasks</a>
+              <i class="fas fa-check list" style="color: #cb0c4b;"></i>&nbsp;AllTasks</a>
           </li>
+<<<<<<< HEAD
+          <li class="nav-item">
+            <a class="nav-link text-dark" [routerLink]="['teammember/timesheets']"
+              routerLinkActive="router-link-active">
+              <i class="fas fa-calendar" style="color: #ffc107;"></i>&nbsp;Timesheet</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" [routerLink]="['teammanager/projects']" routerLinkActive="router-link-active">
+              <i class="fas fa-clipboard" style="color: #007bff;"></i>&nbsp;Projects</a>
+          </li>
+        </ul>
+=======
             <li class="nav-item" *ngIf="isUserHaveRequiredRole(Role.TeamMember)">
               <a class="nav-link text-dark" [routerLink]="['teammember/timesheets']" routerLinkActive="router-link-active">
                 <i class="fas fa-calendar" style="color: #ffc107;"></i>&nbsp;Timesheet</a>
             </li>
           </ul>
         </div>
+>>>>>>> c55d9a5bc44d5229afb4e2ebfc2760f63ec2b76c
       </div>
-    </nav>
-  </header>
-  
-  
-  
+    </div>
+  </nav>
+</header>
