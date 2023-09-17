@@ -9,6 +9,7 @@ using Transflower.PMSApp.Projects.Services.Interfaces;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddCors();
 builder.Services.AddControllers();
 builder.Services.AddDbContext<ProjectContext>(options=>
         options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")
@@ -33,6 +34,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors(x => x.AllowAnyOrigin()
+                  .AllowAnyMethod()
+                  .AllowAnyHeader());
 
 app.UseAuthorization();
 

@@ -1,10 +1,11 @@
-
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using HRService.Services;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.FileProviders;
-using Transflower.PMS.HRService.Helpers;
 using Transflower.PMS.HRService.Repositories;
 using Transflower.PMS.HRService.Repositories.Interfaces;
+using Transflower.PMS.HRService.Repositories.Contexts;
 using Transflower.PMS.HRService.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddDbContext<EmployeeContext>(options=>
+        options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")
+        ?? throw new ArgumentNullException(nameof(options))
+        )
+            .LogTo(Console.WriteLine, LogLevel.Information)
+        
+        );
 builder.Services.AddCors();
 
 
@@ -54,7 +62,7 @@ app.UseCors(x => x.AllowAnyOrigin()
                     .AllowAnyHeader());
 app.MapControllers();
 
-app.UseMiddleware<JwtMiddleware>();
+// app.UseMiddleware<JwtMiddleware>();
 
 app.UseStaticFiles();
 app.UseStaticFiles(new StaticFileOptions()
