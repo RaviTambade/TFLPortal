@@ -1,7 +1,6 @@
 using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Mvc;
-using Transflower.PMS.Helpers;
-using Transflower.PMS.HRService.Models;
+using Transflower.PMS.HRService.Entities;
 using Transflower.PMS.HRService.Services.Interfaces;
 namespace Transflower.PMS.HRService.Controllers;
 [ApiController]
@@ -13,99 +12,18 @@ public class EmployeesController : ControllerBase
     {
         _service = service;
     }
-    
-    // httpGet : http://localhost:5230/api/employees/employees
-    //[Authorize]
-    [HttpGet]
-    [Route ("employees")]
-    public async Task<IEnumerable<Employee>> GetAll()
+
+    [HttpGet("employeeid/{userId}")]
+    public async Task<int> GetEmployeeId(int userId)
     {
-        IEnumerable<Employee> employees =await _service.GetAll();
-        return employees;
-    }
-   
-    //httpGet http://localhost:5230/api/employees/2
-    //[Authorize]
-    [HttpGet] 
-    [Route ("{id}")]
-    public async Task<Employee> GetById(int id)
-    {
-        Employee employees =await _service.GetById(id);
-        return employees;
+        return await _service.GetEmployeeId(userId);
     }
 
-    //httpPost : http://localhost:5230/api/employees/employee
-    //[Authorize]
-    [HttpPost]
-    [Route ("Employee")]
-    public async Task<bool> InsertUser(Employee employees)
+    [HttpGet("userId/{employeeId}")]
+    public async Task<List<int>> GetUserId(int employeeId)
     {
-        bool status =await _service.Insert(employees);
-        return status;
+        return await _service.GetUserId(employeeId);
     }
-
-    //httpPut : http://localhost:5230/api/employees/employee
-    //[Authorize]
-    [HttpPut]
-    [Route ("Employee")]
-    public async Task<bool> UpdateEmployee(Employee emp)
-    {
-        bool status =await _service.Update(emp);
-        return status;
-    }
-
-    //httpDelete : http://localhost:5230/api/employees/12
-    //[Authorize]
-    [HttpDelete]
-    [Route ("{id}")]
-    public async Task<bool> DeleteEmployee(int id)
-    {
-        bool status =await _service.Delete(id);
-        return status;
-    }
-
-    // //httpGet : http://localhost:5230/api/employees/role/manager
-    // //[Authorize]
-    // [HttpGet]
-    // [Route ("role/{role}")] 
-    // public async Task<IEnumerable<Employee>> GetByRole(string role)
-    // {
-    //     IEnumerable<Employee> employees =await _service.GetByRole(role);
-    //     return employees;
-    // }
-
-   [HttpPost, DisableRequestSizeLimit]
-    public IActionResult Upload()
-    {
-        try
-        {
-            var file = Request.Form.Files[0];
-            var folderName = Path.Combine("Resources", "Images");
-            var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-            if (file.Length > 0)
-            {
-                var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                var fullPath = Path.Combine(pathToSave, fileName);
-                var dbPath = Path.Combine(folderName, fileName);
-                using (var stream = new FileStream(fullPath, FileMode.Create))
-                {
-                    file.CopyTo(stream);
-                }
-                return Ok(new { dbPath });
-            }
-            else
-            {
-                return BadRequest();
-            }
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, $"Internal server error: {ex}");
-        }
-    }
-
-    
-
 
 
 }

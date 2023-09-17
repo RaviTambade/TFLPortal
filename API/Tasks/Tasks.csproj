@@ -16,4 +16,5 @@
     <PackageReference Include="mysql.entityframeworkcore" Version="7.0.5" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
+
 </Project>

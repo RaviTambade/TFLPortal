@@ -42,7 +42,9 @@ public class ProjectRepository : IProjectRepository
         try
         {
             var projects = await (
-                         from project in _projectContext.Projects
+                         from employee in _projectContext.Employees
+                         join project in _projectContext.Projects
+                         on employee.Id equals project.TeamManagerId
                          join projectmember in _projectContext.ProjectMembers
                          on project.Id equals projectmember.ProjectId
                          where projectmember.TeamMemberId == teamMemberId
@@ -51,7 +53,9 @@ public class ProjectRepository : IProjectRepository
                            Id= project.Id,
                             Title= project.Title,
                             StartDate= project.StartDate,
-                            TeamManagerId= project.TeamManagerId
+                            TeamManagerId= project.TeamManagerId,
+                            Status=project.Status,
+                            TeamManagerUserId=employee.UserId
                          }
                          ).ToListAsync();
        

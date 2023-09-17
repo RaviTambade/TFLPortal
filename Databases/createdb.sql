@@ -33,7 +33,7 @@ CREATE TABLE
         userid INT NOT NULL,
         department VARCHAR(50),
         position VARCHAR(50),
-        hiredate DATE,
+        hiredate DATETIME,
         directorid INT NOT NULL,
         managerid INT,
         CONSTRAINT fk_directors_employees FOREIGN KEY(directorid) REFERENCES directors(id) ON UPDATE CASCADE ON DELETE CASCADE,
