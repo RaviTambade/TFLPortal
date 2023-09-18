@@ -8,6 +8,10 @@ import { Observable, of } from 'rxjs';
 export class EmployeeService {
   constructor(private httpClient :HttpClient) {}
 
+
+
+  
+
   getEmployeeId(userId:number):Observable<number>{
     let url= "http://localhost:5230/api/Employees/employeeid/" +userId
     return this.httpClient.get<number>(url)
