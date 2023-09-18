@@ -22,7 +22,7 @@
                           <td>{{ project.startDate | date }}</td>
                           <!-- <td>{{ project.status }}</td> -->
                           <td>{{project.teamManager}}</td>
-                          <!-- <td>{{project.completion}}</td> -->
+                          <td>{{project.completion}}%</td>
                           <td>
                               <button class="btn btn-primary" (click)="selectProject(project.id)">Details</button>
                           </td>
@@ -39,3 +39,4 @@
       </div>
   </div>
 </div>
+    

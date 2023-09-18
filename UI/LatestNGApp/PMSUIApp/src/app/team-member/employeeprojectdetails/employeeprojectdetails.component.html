@@ -7,7 +7,7 @@
       <p class="card-text"><strong>Title:</strong> {{ projectDetails.title }}</p>
       <p class="card-text"><strong>Start Date:</strong> {{ projectDetails.startDate | date }}</p>
       <p class="card-text"><strong>Description:</strong> {{ projectDetails.description }}</p>
-      <p class="card-text"><strong>Team Manager:</strong> {{ projectDetails.teamManager }}</p>
+      <!-- <p class="card-text"><strong>Team Manager:</strong> {{ projectDetails.teamManager }}</p> -->
       <app-projectteammembers></app-projectteammembers>
       <br>
       <button class="btn btn-primary" (click)="getAllTasksOfProject(projectDetails.id)">Tasks List</button>

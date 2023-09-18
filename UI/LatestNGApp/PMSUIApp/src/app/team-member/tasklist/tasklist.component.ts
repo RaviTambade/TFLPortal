@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Mytasklist } from 'src/app/Models/mytasklist';
+import { EmployeeService } from 'src/app/Services/employee.service';
 import { ProjectService } from 'src/app/Services/project.service';
 import { TaskService } from 'src/app/Services/task.service';
 
@@ -10,18 +12,24 @@ import { TaskService } from 'src/app/Services/task.service';
 export class TasklistComponent implements OnInit {
   selectedTaskId: number | null = null;
   selectedDate:string='';
-  tasks: any[] = [];
+  tasks: Mytasklist[] = [];
   filteredTasks: any[] = [];
+  teamMemberId: number = 0;
   constructor(
     public taskService: TaskService,
-    public projectService: ProjectService
+    public projectService: ProjectService,
+    public employeeService:EmployeeService
   ) {}
   ngOnInit(): void {
-    this.taskService.getAllTasks().subscribe((res) => {
+    let userId = localStorage.getItem('userId');
+    this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
+      this.teamMemberId = res;
+    this.taskService.GetMyTaskList(this.teamMemberId).subscribe((res) => {
       this.tasks = res;
       this.filteredTasks=res
     });
-  }
+  })
+}
   selectTask(id: number | null) {
     {
       if (this.selectedTaskId === id) {
@@ -48,7 +56,7 @@ export class TasklistComponent implements OnInit {
   }
   showAllTasks() {
     this.selectedDate = '';
-    this.taskService.getAllTasks().subscribe((res) => {
+    this.taskService.GetMyTaskList(this.teamMemberId).subscribe((res) => {
       this.tasks = res;
       this.filteredTasks=res
     });

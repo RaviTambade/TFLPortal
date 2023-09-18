@@ -9,7 +9,7 @@ select * from projects;
 select * from assigned;
 select * from timesheets;
 select * from timerecords where empid =2;
-select * from tasks;
+select * from tasks WHERE projectid=3;
 select * from payrollCycles;
 select * from clients;
 
