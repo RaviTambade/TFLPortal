@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Projectlist } from '../Models/projectlist';
 import { HttpClient } from '@angular/common/http';
+import { Project } from '../Models/project';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +36,6 @@ export class ProjectService {
   setSelectedProjectId(id:number|null){
     this.selectedProjectIdSubject.next(id)
   }
-  
 
   getProjects(): Observable<{ id: number; title: string; startDate: Date }[]> {
     const summaryData = this.projects.map(project => ({
@@ -60,35 +60,7 @@ export class ProjectService {
     }
   }
 
-  getProjectDetails(id: number): Observable<{
-    id: number;
-    title: string;
-    startDate: Date;
-    status: string;
-    description: string;
-    teamManager: string;
-  }> {
-    const project = this.projects.find(p => p.id === id);
-    if (project) {
-      return of({
-        id: project.id,
-        title: project.title,
-        startDate: project.startDate,
-        status: project.status,
-        description: project.description,
-        teamManager: project.teamManager
-      });
-    } else {
-      return of({
-        id: -1,
-        title: '',
-        startDate: new Date(),
-        status: '',
-        description: '',
-        teamManager: ''
-      });
-    }
-  }
+
   getProjectTeamMembers(projectId:number):Observable<{teammembers:string[]}>{
     const members=this.projectTeamMembers.find(p=>p.projectId == projectId);
     if (members){
@@ -109,6 +81,11 @@ teammembers:members.teammembers
   getProjectsList(teamMemberId:number):Observable<Projectlist[]>{
     let url="http://localhost:5248/api/projects/list/" +teamMemberId
     return this.httpClient.get<Projectlist[]>(url)
+  }
+
+  getProjectDetails(projectId:number):Observable<Project>{
+    let url="http://localhost:5248/api/projects/list/" +projectId
+    return this.httpClient.get<Project>(url)
   }
   
 

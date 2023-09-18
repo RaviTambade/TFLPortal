@@ -15,9 +15,9 @@ constructor(private route:ActivatedRoute,private employeeService:EmployeeService
     this.route.params.subscribe(params=>{
       this.employee=params['employee'];
     })
-    this.employeeService.getEmployeeDetails(this.employee).subscribe((res)=>{
-      this.employeeDetail=res
-      console.log(res)
-    })
+    // this.employeeService.getEmployeeDetails(this.employee).subscribe((res)=>{
+    //   this.employeeDetail=res
+    //   console.log(res)
+    // })
   }
 }

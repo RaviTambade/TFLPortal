@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Project } from 'src/app/Models/project';
 import { ProjectService } from 'src/app/Services/project.service';
 
 @Component({
@@ -9,7 +10,15 @@ import { ProjectService } from 'src/app/Services/project.service';
 })
 export class EmployeeprojectdetailsComponent {
   @Input() projectId: number | null = null;
-  projectDetails: any = {};
+  projectDetails: Project = {
+    id: 0,
+    title: '',
+    startDate: '',
+    endDate: 0,
+    description: '',
+    status: '',
+    teamManagerUserId: 0
+  };
 
   constructor(
     private projectService: ProjectService,
@@ -21,11 +30,12 @@ export class EmployeeprojectdetailsComponent {
       console.log(res);
       this.projectId = res;
     });
-
     if(this.projectId!=null)
     this.projectService
         .getProjectDetails(this.projectId)
         .subscribe((details) => {
+          console.log(details)
+          console.log(this.projectId)
           this.projectDetails = details;
           this.selectProject(this.projectDetails.id);
         });

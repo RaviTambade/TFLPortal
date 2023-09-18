@@ -2,8 +2,12 @@ using Microsoft.EntityFrameworkCore;
 using Transflower.PMSApp.Tasks.Entities;
 namespace Transflower.PMSApp.Tasks.Repositories.Contexts;
 public class TaskContext:DbContext{
-    public DbSet<Task> Tasks{get;set;}
+    public DbSet<Transflower.PMSApp.Tasks.Entities.Task> Tasks{get;set;}
+    public DbSet<Project> Projects{get;set;}
+    public DbSet<AssignedTask> AssignedTasks{get;set;}
     public TaskContext(DbContextOptions options):base(options){
-        Tasks=Set<Tasks>();
+        Tasks=Set<Transflower.PMSApp.Tasks.Entities.Task>();
+        Projects=Set<Project>();
+        AssignedTasks=Set<AssignedTask>();
     }
 }
