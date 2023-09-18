@@ -5,8 +5,7 @@
         <ul class="navbar-nav flex-grow">
           <li class="nav-item">
     <nav
-      class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
-    >
+      class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
       <div class="container">
         <div
           class="navbar-collapse collapse d-sm-inline-flex justify-content-start">
@@ -27,6 +26,14 @@
               <li class="nav-item" *ngIf="isUserHaveRequiredRole(Role.TeamMember)">
               <a class="nav-link text-dark" [routerLink]="['teammember/timesheets']" routerLinkActive="router-link-active">
                 <i class="fas fa-calendar" style="color: #ffc107;"></i>&nbsp;Timesheet</a>
+            </li>
+            <li class="nav-item" *ngIf="isUserHaveRequiredRole(Role.TeamManager)">
+              <a class="nav-link text-dark" [routerLink]="['teammanager/projects']" routerLinkActive="router-link-active" >
+                <i class="fas fa-clipboard" style="color: #007bff;"></i>&nbsp;Projects</a>
+            </li>
+            <li class="nav-item" *ngIf="isUserHaveRequiredRole(Role.TeamManager)">
+              <a class="nav-link text-dark" [routerLink]="['teammanager/tasklist']" routerLinkActive="router-link-active">
+                <i class="fas fa-check list" style="color: #cb0c4b;"></i>&nbsp;AllTasks</a>
             </li>
           </ul>
         </div>

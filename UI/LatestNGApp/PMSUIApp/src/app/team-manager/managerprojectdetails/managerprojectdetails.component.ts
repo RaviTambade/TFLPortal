@@ -57,4 +57,10 @@ export class ManagerprojectdetailsComponent {
     }
   }
 
+  updateProject(projectId: number) {
+    if (projectId) {
+      this.router.navigate(['teammanager/updateproject', projectId]);
+    }
+  }
+
 }

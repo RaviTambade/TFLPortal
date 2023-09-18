@@ -1,0 +1,13 @@
+
+<div class="container">
+    <div class="navbar">
+      <a class="btn btn-outline-success" (click)="filterTasks('All')"
+      [ngClass]="{'btn-success active-button':activeFilter === 'All'}">All Tasks</a>
+      <a class="btn btn-outline-success" (click)="filterTasks('In-Progress')"
+      [ngClass]="{'btn-success active-button':activeFilter === 'In-Progress'}"><i class="fas fa-spinner" style="color: #007bff;"></i>&nbsp;In Progress</a>
+      <a class="btn btn-outline-success" (click)="filterTasks('Pending')"
+      [ngClass]="{'btn-success active-button':activeFilter === 'Pending'}"><i class="fas fa-clock" style="color: #ffc107;"></i>&nbsp;Pending</a>
+      <a class="btn btn-outline-success" (click)="filterTasks('Completed')"
+      [ngClass]="{'btn-success active-button':activeFilter === 'Completed'}"><i class="fas fa-check-circle" style="color: #28a745;"></i>&nbsp;Completed</a>
+    </div>
+    <div class="active-filter-line"></div>
