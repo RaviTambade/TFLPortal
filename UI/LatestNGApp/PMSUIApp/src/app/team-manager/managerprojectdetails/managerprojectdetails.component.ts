@@ -8,7 +8,7 @@ import { ProjectService } from 'src/app/Services/project.service';
   styleUrls: ['./managerprojectdetails.component.css']
 })
 export class ManagerprojectdetailsComponent {
-  
+
   @Input() projectId: number | null = null;
   projectDetails: any = {};
 
@@ -16,15 +16,15 @@ export class ManagerprojectdetailsComponent {
     private projectService: ProjectService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) { }
   ngOnInit(): void {
     this.projectService.selectedProjectId$.subscribe((res) => {
       console.log(res);
       this.projectId = res;
     });
 
-    if(this.projectId!=null)
-    this.projectService
+    if (this.projectId != null)
+      this.projectService
         .getProjectDetails(this.projectId)
         .subscribe((details) => {
           this.projectDetails = details;
