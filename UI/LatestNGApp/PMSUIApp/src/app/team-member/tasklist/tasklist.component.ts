@@ -15,6 +15,7 @@ export class TasklistComponent implements OnInit {
   tasks: Mytasklist[] = [];
   filteredTasks: any[] = [];
   teamMemberId: number = 0;
+  selectedTimePeriod:string="today"
   constructor(
     public taskService: TaskService,
     public projectService: ProjectService,
@@ -24,11 +25,16 @@ export class TasklistComponent implements OnInit {
     let userId = localStorage.getItem('userId');
     this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
       this.teamMemberId = res;
-    this.taskService.GetMyTaskList(this.teamMemberId).subscribe((res) => {
-      this.tasks = res;
-      this.filteredTasks=res
-    });
+      this.filterMyTasks(this.selectedTimePeriod) 
+   
   })
+}
+filterMyTasks(timePeriod:string){
+  this.selectedTimePeriod=timePeriod
+  this.taskService.GetMyTaskList(this.teamMemberId,timePeriod).subscribe((res) => {
+    this.tasks = res;
+    this.filteredTasks=res
+  });
 }
   selectTask(id: number | null) {
     {
@@ -38,6 +44,7 @@ export class TasklistComponent implements OnInit {
         this.selectedTaskId = id;
       }
         this.taskService.setSelectedTaskId(id);
+        console.log(id)
       }
   }
   filterTasksByStatus(status: string) {
@@ -54,11 +61,11 @@ export class TasklistComponent implements OnInit {
   getTasksByDate(date: string) {
     this.filteredTasks = this.taskService.getTasksByDate(date);
   }
-  showAllTasks() {
-    this.selectedDate = '';
-    this.taskService.GetMyTaskList(this.teamMemberId).subscribe((res) => {
-      this.tasks = res;
-      this.filteredTasks=res
-    });
-  }
+  // showAllTasks() {
+  //   this.selectedDate = '';
+  //   this.taskService.GetMyTaskList(this.teamMemberId).subscribe((res) => {
+  //     this.tasks = res;
+  //     this.filteredTasks=res
+  //   });
+  // }
 }

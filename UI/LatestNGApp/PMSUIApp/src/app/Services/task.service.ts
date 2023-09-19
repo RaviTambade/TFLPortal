@@ -4,6 +4,7 @@ import { ProjectService } from './project.service';
 import { HttpClient } from '@angular/common/http';
 import { Projecttaskcount } from '../Models/projecttaskcount';
 import { Mytasklist } from '../Models/mytasklist';
+import { Taskdetail } from '../Models/taskdetail';
 
 @Injectable({
   providedIn: 'root',
@@ -247,47 +248,7 @@ export class TaskService {
     return project ? project.title : '';
   }
 
-  getTaskDetails(
-    taskId: number
-  ): Observable<{
-    id: number;
-    title: string;
-    status: string;
-    projectId: number;
-    projectName: string;
-    description: string;
-    date: string;
-    fromTime: string;
-    toTime: string;
-  }> {
-    const taskdetails = this.tasks.find((t) => t.id == taskId);
-    if (taskdetails) {
-      return of({
-        id: taskdetails.id,
-        title: taskdetails.title,
-        status: taskdetails.status,
-        projectName: taskdetails.projectName,
-        description: taskdetails.description,
-        date: taskdetails.date,
-        fromTime: taskdetails.fromTime,
-        toTime: taskdetails.toTime,
-        projectId: taskdetails.projectId,
-      });
-    } else {
-      return of({
-        id: -1,
-        title: '',
-        status: '',
-        projectName: '',
-        description: '',
-        date: '',
-        fromTime: '',
-        toTime: '',
-        projectId: -1,
-      });
-    }
-  }
-
+ 
   getTasksOfProject(
     projectId: number
   ): Observable<{
@@ -349,8 +310,12 @@ export class TaskService {
     return this.httpClient.get<Projecttaskcount>(url)
   } 
   
-  GetMyTaskList(teamMemberId:number):Observable<Mytasklist[]>{
-    let url="http://localhost:5283/api/tasks/mytasks/" +teamMemberId
+  GetMyTaskList(teamMemberId:number,timePeriod:string):Observable<Mytasklist[]>{
+    let url="http://localhost:5283/api/tasks/mytasks/" +teamMemberId +"/" +timePeriod
     return this.httpClient.get<Mytasklist[]>(url)
+  }
+  getTaskDetails(taskId:number):Observable<Taskdetail>{
+    let url="http://localhost:5283/api/tasks/taskDetail/" +taskId
+    return this.httpClient.get<Taskdetail>(url)
   }
 }

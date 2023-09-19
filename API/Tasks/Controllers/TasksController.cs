@@ -19,12 +19,15 @@ public class TasksController : ControllerBase
         return await _service.GetProjectTaskCount(projectId);
     }
 
-    [HttpGet("mytasks/{teamMemberId}")]
-    public async Task<List<MyTaskList>> GetMyTasksList(int teamMemberId)
-    {    
-    return await _service.GetMyTasksList(teamMemberId);
+    [HttpGet("mytasks/{teamMemberId}/{timePeriod}")]
+    public async Task<List<MyTaskList>> GetMyTasksList(int teamMemberId,string timePeriod)
+    {
+        return await _service.GetMyTasksList(teamMemberId,timePeriod);
     }
 
-    
-
+    [HttpGet("taskDetail/{taskId}")]
+    public async Task<TaskDetail> GetTaskDetail(int taskId)
+    {
+        return await _service.GetTaskDetail(taskId);
+    }
 }

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
+import { Taskdetail } from 'src/app/Models/taskdetail';
 import { ProjectService } from 'src/app/Services/project.service';
 import { TaskService } from 'src/app/Services/task.service';
 
@@ -8,18 +9,29 @@ import { TaskService } from 'src/app/Services/task.service';
   templateUrl: './taskdetails.component.html',
   styleUrls: ['./taskdetails.component.css']
 })
-export class TaskdetailsComponent {
+export class TaskdetailsComponent implements OnInit {
   selectedProjectId:number |null=null
   selectedTaskId:number |null=null
   @Input() taskId :number |null =null
-taskDetail:any={}
+taskDetail:Taskdetail={
+  taskId: 0,
+  task: '',
+  status: '',
+  projectName: '',
+  projectId: 0
+}
 constructor(private taskService:TaskService,private router:Router,private projectService:ProjectService){}
-ngOnChanges(changes: SimpleChanges) {
-  if (changes['taskId'] && this.taskId !== null) {
+// ngOnChanges(changes: SimpleChanges)
+ngOnInit():void{
+  // if (changes['taskId'] && this.taskId !== null) {
+    if(this.taskId != null){
     this.taskService.getTaskDetails(this.taskId).subscribe(details => {
+      console.log(this.taskId)
       this.taskDetail = details;
+      console.log(this.taskDetail)
     });
-  }
+  // }
+}
 }
 selectTask(id: number | null) {
   {

@@ -9,7 +9,9 @@ public class TaskService:ITaskService
         _taskRepository=taskRepository;
     }
     public async Task<ProjectTaskCount> GetProjectTaskCount(int projectId)=>await _taskRepository.GetProjectTaskCount(projectId);
-    public async Task<List<MyTaskList>> GetMyTasksList(int teamMemberId)=>await _taskRepository.GetMyTasksList(teamMemberId);
+    public async Task<List<MyTaskList>> GetMyTasksList(int teamMemberId,string timePeriod)=>await _taskRepository.GetMyTasksList(teamMemberId,timePeriod);
+    public async Task<TaskDetail> GetTaskDetail(int taskId)=>await _taskRepository.GetTaskDetail(taskId );
+
 
 
 }

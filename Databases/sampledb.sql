@@ -85,12 +85,12 @@ INSERT INTO projectmembers(projectid,teammemberid)VALUES(5,14);
 INSERT INTO projectmembers(projectid,teammemberid)VALUES(5,17);
 
 INSERT INTO tasks (title, projectid, description, date, status, fromtime, totime) VALUES
-('Develop User Registration Feature', 1, 'Implement user registration functionality with email verification.', '2023-09-14', 'Pending', '2023-09-14 09:00:00', '2023-09-14 11:00:00'),
-('Design User Profile Page', 1, 'Create the user profile page layout and components.', '2023-09-15', 'In-Progress', '2023-09-15 10:00:00', '2023-09-15 12:00:00'),
+('Develop User Registration Feature', 1, 'Implement user registration functionality with email verification.', '2023-09-19', 'Pending', '2023-09-14 09:00:00', '2023-09-14 11:00:00'),
+('Design User Profile Page', 1, 'Create the user profile page layout and components.', '2023-09-15', 'In-Progress', '2023-09-19 10:00:00', '2023-09-15 12:00:00'),
 ('Implement Password Reset', 1, 'Develop password reset functionality with email notifications.', '2023-09-16', 'Completed', '2023-09-16 11:00:00', '2023-09-16 13:00:00'),
-('Test User Authentication', 1, 'Perform unit and integration tests for user authentication.', '2023-09-17', 'Pending', '2023-09-17 14:00:00', '2023-09-17 16:00:00'),
+('Test User Authentication', 1, 'Perform unit and integration tests for user authentication.', '2023-08-17', 'Pending', '2023-09-17 14:00:00', '2023-09-17 16:00:00'),
 ('Optimize Database Queries', 1, 'Improve database query performance for user-related data.', '2023-09-18', 'In-Progress', '2023-09-18 15:00:00', '2023-09-18 17:00:00'),
-('Create User Dashboard', 1, 'Design a dashboard for users to manage their accounts.', '2023-09-19', 'Pending', '2023-09-19 09:00:00', '2023-09-19 11:00:00'),
+('Create User Dashboard', 1, 'Design a dashboard for users to manage their accounts.', '2022-09-19', 'Pending', '2023-09-19 09:00:00', '2023-09-19 11:00:00'),
 ('Implement User Notifications', 1, 'Develop a notification system for user-related events.', '2023-09-20', 'In-Progress', '2023-09-20 10:00:00', '2023-09-20 12:00:00'),
 ('Write User Registration API', 1, 'Create API endpoints for user registration and verification.', '2023-09-21', 'Completed', '2023-09-21 11:00:00', '2023-09-21 13:00:00'),
 ('Test User Dashboard Functionality', 1, 'Conduct UI and functionality tests for the user dashboard.', '2023-09-22', 'Pending', '2023-09-22 14:00:00', '2023-09-22 16:00:00'),

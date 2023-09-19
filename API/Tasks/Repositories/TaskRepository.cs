@@ -16,7 +16,7 @@ public class TaskRepository : ITaskRepository
         {
             var projectTaskCount = await (
                                  from task in _taskContext.Tasks
-                                //  where task.ProjectId == projectId
+                                     //  where task.ProjectId == projectId
                                  select new ProjectTaskCount()
                                  {
                                      CompletedTaskCount = _taskContext.Tasks.Count(t => t.ProjectId == projectId && t.Status == "Completed"),
@@ -30,30 +30,88 @@ public class TaskRepository : ITaskRepository
         }
     }
 
-    public async Task<List<MyTaskList>> GetMyTasksList(int teamMemberId)
+    public async Task<List<MyTaskList>> GetMyTasksList(int teamMemberId, string timePeriod)
     {
         try
         {
-            var myTaskList=await(
-                           from project in _taskContext.Projects
-                           join task in _taskContext.Tasks
-                           on project.Id equals task.ProjectId       
-                           join assignedTask in _taskContext.AssignedTasks
-                           on task.Id equals assignedTask.TaskId
-                           where assignedTask.TeamMemberId == teamMemberId
-                           select new MyTaskList(){
-                            TaskId=task.Id,
-                            ProjectId=task.ProjectId,
-                            Title=task.Title,
-                            ProjectName=project.Title,
-                            Status=task.Status
-                            }).ToListAsync();
-                return myTaskList;
+            DateTime currentDate = DateTime.Now.Date;
+            DateTime startDate = currentDate;
+            DateTime endDate = currentDate;
+
+            switch (timePeriod)
+            {
+                case "today":
+                    startDate = currentDate;
+                    endDate = currentDate;
+                    break;
+                case "yesterday":
+                    startDate = currentDate.AddDays(-1);
+                    endDate = currentDate.AddDays(-1);
+                    break;
+                case "lastweek":
+                    startDate = currentDate.AddDays(-7);
+                    endDate = currentDate;
+                    break;
+                case "lastmonth":
+                    startDate = currentDate.AddMonths(-1);
+                    endDate = currentDate;
+                    break;
+                case "lastyear":
+                    startDate = currentDate.AddYears(-1);
+                    endDate = currentDate;
+                    break;
+            }
+
+            var myTaskList = await (
+                from project in _taskContext.Projects
+                join task in _taskContext.Tasks
+                on project.Id equals task.ProjectId
+                join assignedTask in _taskContext.AssignedTasks
+                on task.Id equals assignedTask.TaskId
+                where assignedTask.TeamMemberId == teamMemberId &&
+                      task.Date >= startDate && task.Date <= endDate
+                select new MyTaskList()
+                {
+                    TaskId = task.Id,
+                    ProjectId = task.ProjectId,
+                    Title = task.Title,
+                    ProjectName = project.Title,
+                    Status = task.Status
+                }).ToListAsync();
+
+            return myTaskList;
         }
-        catch(Exception){
+        catch (Exception)
+        {
             throw;
         }
     }
+
+    public async Task<TaskDetail> GetTaskDetail(int taskId)
+    {
+        try
+        {
+            var taskDetail = await (
+                           from project in _taskContext.Projects
+                           join task in _taskContext.Tasks
+                           on project.Id equals task.ProjectId
+                           where task.Id == taskId
+                           select new TaskDetail()
+                           {
+                               TaskId = task.Id,
+                               Task = task.Title,
+                               Status = task.Status,
+                               ProjectId = task.ProjectId,
+                               ProjectName = project.Title
+                           }).FirstOrDefaultAsync();
+            return taskDetail;
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+
 
 
 }

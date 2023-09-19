@@ -30,7 +30,7 @@ export class EmployeeprojectdetailsComponent {
       console.log(res);
       this.projectId = res;
     });
-    if(this.projectId!=null)
+    if(this.projectId!=null){
     this.projectService
         .getProjectDetails(this.projectId)
         .subscribe((details) => {
@@ -41,6 +41,7 @@ export class EmployeeprojectdetailsComponent {
         });
 
   }
+}
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.projectId !== null) {
