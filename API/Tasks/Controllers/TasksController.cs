@@ -25,9 +25,16 @@ public class TasksController : ControllerBase
         return await _service.GetMyTasksList(teamMemberId,timePeriod);
     }
 
-    [HttpGet("taskDetail/{taskId}")]
+    [HttpGet("taskdetail/{taskId}")]
     public async Task<TaskDetail> GetTaskDetail(int taskId)
     {
         return await _service.GetTaskDetail(taskId);
     }
+
+    [HttpGet("moretaskdetail/{taskId}")]
+    public async Task<MoreTaskDetail> GetMoreTaskDetail(int taskId)
+    {
+      return await _service.GetMoreTaskDetail(taskId);
+    }
+
 }

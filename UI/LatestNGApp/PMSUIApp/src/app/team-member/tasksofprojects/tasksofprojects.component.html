@@ -18,10 +18,10 @@
               <!-- <td>{{ task.id }}</td> -->
               <!-- <td>{{ task.projectName}}</td> -->
               <td>{{ task.title }}</td>
-              <td>{{ task.employee }}</td>
+              <td>{{ task.employeeName }}</td>
               <td>{{ task.status }}</td>
               <td>
-                <button class="btn btn-primary" (click)="viewDetails(task.id)">Details</button>
+                <button class="btn btn-primary" (click)="viewDetails(task.taskId)">Details</button>
               </td>
             </tr>
           </tbody>

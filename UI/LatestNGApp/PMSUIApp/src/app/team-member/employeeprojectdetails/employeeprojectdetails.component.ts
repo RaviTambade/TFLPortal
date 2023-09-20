@@ -29,7 +29,7 @@ export class EmployeeprojectdetailsComponent {
     this.projectService.selectedProjectId$.subscribe((res) => {
       console.log(res);
       this.projectId = res;
-    });
+ 
     if(this.projectId!=null){
     this.projectService
         .getProjectDetails(this.projectId)
@@ -37,33 +37,35 @@ export class EmployeeprojectdetailsComponent {
           console.log(details)
           console.log(this.projectId)
           this.projectDetails = details;
-          this.selectProject(this.projectDetails.id);
+          // this.selectProject(this.projectDetails.id);
         });
+      }
+      });
 
-  }
+  
 }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (this.projectId !== null) {
-      this.projectService
-        .getProjectDetails(this.projectId)
-        .subscribe((details) => {
-          this.projectDetails = details;
-          this.selectProject(this.projectDetails.id);
-        });
-    }
-  }
-  selectProject(id: number | null) {
-    if (this.projectId === id) {
-      this.projectId = null;
-    } else {
-      this.projectId = id;
-    }
-    this.projectService.setSelectedProjectId(id);
-  }
+  // ngOnChanges(changes: SimpleChanges) {
+  //   if (this.projectId !== null) {
+  //     this.projectService
+  //       .getProjectDetails(this.projectId)
+  //       .subscribe((details) => {
+  //         this.projectDetails = details;
+  //         this.selectProject(this.projectDetails.id);
+  //       });
+  //   }
+  // }
+  // selectProject(id: number | null) {
+  //   if (this.projectId === id) {
+  //     this.projectId = null;
+  //   } else {
+  //     this.projectId = id;
+  //   }
+  //   this.projectService.setSelectedProjectId(id);
+  // }
   getAllTasksOfProject(projectId: number) {
     if (projectId) {
-      this.router.navigate(['teammember/projecttasks', projectId]);
+      this.router.navigate(['teammember/projecttasks', projectId], { queryParams: { projectName: this.projectDetails.title } });
     }
   }
 }

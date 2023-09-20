@@ -12,8 +12,9 @@ export class TaskdetailsinfoComponent {
   constructor(private taskService:TaskService){}
   ngOnChanges(changes: SimpleChanges) {
     if (changes['taskId'] && this.taskId !== null) {
-      this.taskService.getTaskDetails(this.taskId).subscribe(details => {
+      this.taskService.getMoreTaskDetails(this.taskId).subscribe(details => {
         this.taskDetail = details;
+        console.log(details)
       });
     }
   }

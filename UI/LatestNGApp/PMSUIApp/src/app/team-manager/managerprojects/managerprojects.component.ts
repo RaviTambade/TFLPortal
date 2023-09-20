@@ -14,35 +14,35 @@ export class ManagerprojectsComponent {
   constructor(private projectService: ProjectService, private router: Router) {}
 
   ngOnInit() {
-    this.projectService.getProjects().subscribe((projects) => {
-      this.projects = projects;
-      this.filteredProjects = projects;
-    });
-  }
+  //   this.projectService.getProjects().subscribe((projects) => {
+  //     this.projects = projects;
+  //     this.filteredProjects = projects;
+  //   });
+  // }
 
-  filterProjectsByStatus(status: string) {
-    if (status === 'All') {
-      this.filteredProjects = this.projects;
-    } else {
-      this.filteredProjects = this.projects.filter(
-        (project) => project.status === status
-      );
-    }
-    this.selectedProjectId = null;
-    this.projectService.setSelectedProjectId(this.selectedProjectId);
-  } 
+  // filterProjectsByStatus(status: string) {
+  //   if (status === 'All') {
+  //     this.filteredProjects = this.projects;
+  //   } else {
+  //     this.filteredProjects = this.projects.filter(
+  //       (project) => project.status === status
+  //     );
+  //   }
+  //   this.selectedProjectId = null;
+  //   this.projectService.setSelectedProjectId(this.selectedProjectId);
+  // } 
   
-  selectProject(id: number | null) {
-    if (this.selectedProjectId === id) {
-      this.selectedProjectId = null;
-    } else {
-      this.selectedProjectId = id;
-    }
-    this.projectService.setSelectedProjectId(id);
-  }
+  // selectProject(id: number | null) {
+  //   if (this.selectedProjectId === id) {
+  //     this.selectedProjectId = null;
+  //   } else {
+  //     this.selectedProjectId = id;
+  //   }
+  //   this.projectService.setSelectedProjectId(id);
+  // }
 
-  addProject() {
-      this.router.navigate(['teammanager/addproject']);
+  // addProject() {
+  //     this.router.navigate(['teammanager/addproject']);
     
   }
 

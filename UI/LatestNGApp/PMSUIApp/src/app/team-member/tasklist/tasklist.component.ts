@@ -34,6 +34,7 @@ filterMyTasks(timePeriod:string){
   this.taskService.GetMyTaskList(this.teamMemberId,timePeriod).subscribe((res) => {
     this.tasks = res;
     this.filteredTasks=res
+    this.filterTasksByStatus("All")
   });
 }
   selectTask(id: number | null) {

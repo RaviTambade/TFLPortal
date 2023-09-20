@@ -39,5 +39,17 @@ public class ProjectService : IProjectService
         return await _repository.Delete(projectId);
     }
 
+    public async Task<List<int>> GetProjectMembers(int projectId)
+    {
+        return await _repository.GetProjectMembers(projectId);
+    }
+
+    public async Task<List<ProjectTask>> GetTasksOfProject(int projectId)
+    {
+        return await _repository.GetTasksOfProject(projectId);
+    }
+
+
+
 }
 
