@@ -1,4 +1,17 @@
 .scrollable-list {
     max-height: 350px; 
     overflow-y: auto;
+}.scrollable-list {
+    max-height: 400px; 
+    overflow-y: auto;
+}
+
+.hover-link {
+    text-decoration: none; 
+    /* color: blue;  */
+    cursor: pointer; 
+}
+.hover-link:hover {
+    text-decoration: underline; 
+    color: blue;
 }

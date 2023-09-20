@@ -41,6 +41,11 @@
                         routerLinkActive="router-link-active">
                         <i class="fas fa-check list" style="color: #cb0c4b;"></i>&nbsp;AllTasks</a>
                     </li>
+                    <li class="nav-item" *ngIf="isUserHaveRequiredRole(Role.TeamManager)">
+                      <a class="nav-link text-dark" [routerLink]="['teammanager/employeelist']"
+                        routerLinkActive="router-link-active">
+                        <i class="fas fa-calendar" style="color: #ffc107;"></i>&nbsp;Employees</a>
+                    </li>
                   </ul>
                 </div>
               </div>

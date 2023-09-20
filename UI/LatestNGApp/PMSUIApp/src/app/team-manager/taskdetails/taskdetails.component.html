@@ -11,8 +11,8 @@
         <p class="card-text"><strong>From Time:</strong> {{ taskDetail.fromTime }}</p>
         <p class="card-text"><strong>To Time:</strong> {{ taskDetail.toTime }}</p> -->
         <button  class="btn btn-primary" (click)="selectTask(taskDetail.id)">More Task Details</button>
-        <button  class="btn btn-primary" (click)="updateTask(taskDetail.id)">Update</button>
-        <button  class="btn btn-primary" >Delete</button>
+        <button  class="btn btn-warning" (click)="updateTask()">Update</button>
+        <button  class="btn btn-danger" >Delete</button>
         <div *ngIf="selectedTaskId !== null">
           <br> 
           <app-taskdetailsinfo [taskId]="selectedTaskId"></app-taskdetailsinfo>

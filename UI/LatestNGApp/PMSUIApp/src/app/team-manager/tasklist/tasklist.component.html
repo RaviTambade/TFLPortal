@@ -1,7 +1,7 @@
 
 <div class="container">
     <h2>Tasks</h2>
-    <button class="btn btn-primary" (click)="addTask()">Add New Task</button>
+    <button class="btn btn-secondary" (click)="addTask()">Add New Task</button>
     <div class="row">
       <div class="col-md-6">
         <app-filteredtasks (filterTasksByStatus)="filterTasksByStatus($event)"></app-filteredtasks>
