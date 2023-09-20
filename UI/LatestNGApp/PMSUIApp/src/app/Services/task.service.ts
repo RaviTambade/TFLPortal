@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Projecttaskcount } from '../Models/projecttaskcount';
 import { Mytasklist } from '../Models/mytasklist';
 import { Taskdetail } from '../Models/taskdetail';
+import { Moretaskdetail } from '../Models/moretaskdetail';
 
 @Injectable({
   providedIn: 'root',
@@ -317,5 +318,9 @@ export class TaskService {
   getTaskDetails(taskId:number):Observable<Taskdetail>{
     let url="http://localhost:5283/api/tasks/taskDetail/" +taskId
     return this.httpClient.get<Taskdetail>(url)
+  }
+  getMoreTaskDetails(taskId:number):Observable<Moretaskdetail>{
+    let url="http://localhost:5283/api/tasks/moretaskDetail/" +taskId
+    return this.httpClient.get<Moretaskdetail>(url)
   }
 }

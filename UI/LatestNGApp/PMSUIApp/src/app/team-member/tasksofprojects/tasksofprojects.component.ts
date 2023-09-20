@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Projecttask } from 'src/app/Models/projecttask';
+import { ProjectService } from 'src/app/Services/project.service';
 import { TaskService } from 'src/app/Services/task.service';
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'app-tasksofprojects',
@@ -12,20 +15,36 @@ export class TasksofprojectsComponent implements OnInit {
   projectId:any
   projectNames:any[] =[]
   projectName:string=''
-  tasks:any[]=[]
-  constructor(private taskService:TaskService,private route:ActivatedRoute){}
+  tasks:Projecttask[]=[]
+  
+  constructor(private userService:UserService,private route:ActivatedRoute,private projectService:ProjectService){}
   ngOnInit(): void {
       this.route.params.subscribe(params => {
         this.projectId = +params['projectId'];
       });
-    this.taskService.getAllTasksOfProject(this.projectId).subscribe((res)=>{
+      this.route.queryParams.subscribe(queryParams => {
+        this.projectName = queryParams['projectName'] || '';
+      });
+    this.projectService.getTasksOfProject(this.projectId).subscribe((res)=>{
       this.tasks=res
       console.log(this.tasks)
-     this.projectNames= this.tasks.map((task)=>task.projectName)
-     this.projectName=this.projectNames[0]
-      
+      let distinctTeamMemberUserIds=this.tasks.map((item)=>item.teamMemberUserId)
+      .filter((number, index, array) => array.indexOf(number) === index)
+      console.log(distinctTeamMemberUserIds)
+      let teamMemberIdsString=distinctTeamMemberUserIds.join(",")
+      this.userService.getUserNamesWithId(teamMemberIdsString).subscribe((res)=>{
+        let teamMemberName=res
+        this.tasks.forEach((item)=> {
+          let matchingItem = teamMemberName.find(
+            (element) => element.id === item.teamMemberUserId
+          );
+          if (matchingItem != undefined)
+            item.employeeName = matchingItem.name;
+          console.log(matchingItem);
+        });
     })
-  }
+  })
+}
   viewDetails(taskId:number){
     if (this.selectedTaskId === taskId) {
       this.selectedTaskId = null;
@@ -33,4 +52,6 @@ export class TasksofprojectsComponent implements OnInit {
       this.selectedTaskId = taskId;
     }
   }
+
+
 }

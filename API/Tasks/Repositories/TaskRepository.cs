@@ -112,6 +112,40 @@ public class TaskRepository : ITaskRepository
         }
     }
 
+   public async Task<MoreTaskDetail> GetMoreTaskDetail(int taskId)
+    {
+        try
+        {
+            var moreTaskDetail = await (
+                           from task in _taskContext.Tasks
+                           where task.Id == taskId
+                           select new MoreTaskDetail()
+                           {
+                               TaskId = task.Id,
+                               Date = task.Date,
+                               Description = task.Description,
+                               FromTime = task.FromTime,
+                               ToTime = task.ToTime
+                           }).FirstOrDefaultAsync();
+            return moreTaskDetail;
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+
+    public async Task<<List>ProjectTask>> GetTasksOfProject(int projectId)
+    {
+        try
+        {
+            var projectTasks=await (
+                             from project in _taskContext.Projects
+                             join projectmember in _taskContext.ProjectMembers
+            )
+        }
+    }
+
 
 
 }

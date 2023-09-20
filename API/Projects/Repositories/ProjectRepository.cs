@@ -133,4 +133,50 @@ public class ProjectRepository : IProjectRepository
         }
         return false;
     }
+
+    public async Task<List<int>> GetProjectMembers(int projectId)
+    {
+        try
+        {
+            var teamMembers=await (
+                            from employee in _projectContext.Employees
+                            join projectmember in _projectContext.ProjectMembers
+                            on employee.Id equals projectmember.TeamMemberId
+                            where projectmember.ProjectId == projectId
+                            select (employee.UserId)).ToListAsync();
+                return teamMembers;
+            
+        }
+        catch(Exception)
+        {
+            throw;
+        }
+    }
+
+       public async Task<List<ProjectTask>> GetTasksOfProject(int projectId)
+    {
+        try
+        {
+            var projectTasks=await (
+                             from employee in _projectContext.Employees
+                             join assignedTask in _projectContext.AssignedTasks
+                             on employee.Id equals assignedTask.TeamMemberId
+                             join task in _projectContext.Tasks
+                             on assignedTask.TaskId equals task.Id
+                             where task.ProjectId==projectId
+                             select new ProjectTask()
+                             {
+                                TaskId=task.Id,
+                                Title=task.Title,
+                                TeamMemberUserId=employee.UserId,
+                                Status=task.Status
+                             }).ToListAsync();
+                return projectTasks;
+        }
+        catch(Exception){
+            throw;
+        }
+    }
+
+     
 }

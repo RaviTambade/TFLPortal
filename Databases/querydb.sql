@@ -9,7 +9,10 @@ select * from projects;
 select * from assigned;
 select * from timesheets;
 select * from timerecords where empid =2;
-select * from tasks WHERE projectid=3;
+select employees.userid,tasks.title,tasks.status,tasks.id,assignedtasks.teammemberid
+ from employees  tasks WHERE projectid=1;
+
+ SELECT * FROM assignedtasks;
 select * from payrollCycles;
 select * from clients;
 
@@ -67,3 +70,29 @@ SELECT * FROM roles;
 
   SELECT `p`.`Id`, `p`.`Title`, `p`.`StartDate`, `p`.`TeamManagerId`
       FROM `Projects` AS `p`;
+
+
+
+      SELECT * FROM employees;
+      SELECT * FROM projectmembers;
+      SELECT employees.userid FROM employees 
+      INNER JOIN projectmembers ON employees.id=projectmembers.teammemberid
+      WHERE projectmembers.projectid=1;
+
+
+    SELECT `t`.`id` AS `TaskId`, `t`.`title` AS `Title`, `e`.`UserId` AS `TeamMemberUserId`, `t`.`status` AS `Status`, `a`.`teammemberid` AS `TeamMemberId`
+      FROM `Employees` AS `e`
+      INNER JOIN `projectmembers` AS `p` ON `e`.`Id` = `p`.`teammemberid`
+      INNER JOIN `projects` AS `p0` ON `p`.`projectid` = `p0`.`id`
+      INNER JOIN `tasks` AS `t` ON `p0`.`id` = `t`.`projectid`
+      INNER JOIN `assignedtasks` AS `a` ON `e`.`Id` = `a`.`teammemberid`
+      WHERE `t`.`projectid` = 1;
+
+
+select employees.userid,tasks.title,tasks.status,tasks.id
+ from employees
+  INNER JOIN assignedtasks
+   ON employees.id =assignedtasks.teammemberid
+   INNER JOIN tasks
+   ON assignedtasks.taskid=tasks.id
+    WHERE projectid=1;

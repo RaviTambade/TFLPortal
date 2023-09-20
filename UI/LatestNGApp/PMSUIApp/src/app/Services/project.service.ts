@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Projectlist } from '../Models/projectlist';
 import { HttpClient } from '@angular/common/http';
 import { Project } from '../Models/project';
+import { Projecttask } from '../Models/projecttask';
 
 @Injectable({
   providedIn: 'root'
@@ -37,55 +38,24 @@ export class ProjectService {
     this.selectedProjectIdSubject.next(id)
   }
 
-  getProjects(): Observable<{ id: number; title: string; startDate: Date }[]> {
-    const summaryData = this.projects.map(project => ({
-      id: project.id,
-      title: project.title,
-      status: project.status,
-      completion:project.completion,
-      teamManager:project.teamManager,
-      startDate: project.startDate
-    }));
-    return of(summaryData);
-  }
-  
-  getProject(projectId:number):Observable<string>{
-    const project=this.projects.find(p=>p.id === projectId)
-    if(project)
-    return of(project ? project.title : "project not")
-    else{
-      return of(
-
-      )
-    }
-  }
-
-
-  getProjectTeamMembers(projectId:number):Observable<{teammembers:string[]}>{
-    const members=this.projectTeamMembers.find(p=>p.projectId == projectId);
-    if (members){
-      return of({
-teammembers:members.teammembers
-      }
-      )
-    }
-    else{
-      return of({
-       teammembers:[]
-      });
-    }
-    
-
-  }
-
   getProjectsList(teamMemberId:number):Observable<Projectlist[]>{
     let url="http://localhost:5248/api/projects/list/" +teamMemberId
     return this.httpClient.get<Projectlist[]>(url)
   }
 
   getProjectDetails(projectId:number):Observable<Project>{
-    let url="http://localhost:5248/api/projects/list/" +projectId
+    let url="http://localhost:5248/api/projects/" +projectId
     return this.httpClient.get<Project>(url)
+  }
+
+  getProjectMembers(projectId:number):Observable<number[]>{
+    let url="http://localhost:5248/api/projects/teammembers/" +projectId
+    return this.httpClient.get<number[]>(url)
+  }
+
+  getTasksOfProject(projectId:number):Observable<Projecttask[]>{
+    let url="http://localhost:5248/api/projects/tasks/" +projectId
+    return this.httpClient.get<Projecttask[]>(url)
   }
   
 

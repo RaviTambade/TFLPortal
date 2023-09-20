@@ -15,20 +15,20 @@ export class ProjectteammembersComponent {
   constructor(private projectService: ProjectService, private router: Router,private employeeService:EmployeeService) {
     this.teamMembers = [];
   }
-  ngOnInit(): void {
-      this.projectService.selectedProjectId$.subscribe((response) => {
-        this.projectId=response;
-        this.projectService.getProjectTeamMembers(this.projectId).subscribe((res) => {
-          this.teamMembers = res.teammembers;
-          console.log(res);
-        });
-      });
-  }
-  onTeamMemberClick(employee:string){
-    // this.employeeService.getEmployeeDetails(employee).subscribe((res)=>{
-    //   console.log(res)
-    this.router.navigate(['teammember/employeedetails',employee]);
+  // ngOnInit(): void {
+  //     this.projectService.selectedProjectId$.subscribe((response) => {
+  //       this.projectId=response;
+  //       this.projectService.getProjectTeamMembers(this.projectId).subscribe((res) => {
+  //         this.teamMembers = res.teammembers;
+  //         console.log(res);
+  //       });
+  //     });
+  // }
+  // onTeamMemberClick(employee:string){
+  //   // this.employeeService.getEmployeeDetails(employee).subscribe((res)=>{
+  //   //   console.log(res)
+  //   this.router.navigate(['teammember/employeedetails',employee]);
 
-  }
+  // }
 
 }

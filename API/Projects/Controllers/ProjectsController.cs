@@ -47,4 +47,17 @@ public class ProjectsController : ControllerBase
     public async Task<List<ProjectList>> GetProjectsList(int teamMemberId){
         return await _service.GetProjectsList(teamMemberId);
     }
+
+    [HttpGet("teammembers/{projectId}")]
+      public async Task<List<int>> GetProjectMembers(int projectId)
+    {
+        return await _service.GetProjectMembers(projectId);
+    }
+
+
+    [HttpGet("tasks/{projectId}")]
+      public async Task<List<ProjectTask>> GetTasksOfProject(int projectId)
+    {
+        return await _service.GetTasksOfProject(projectId);
+    }
 }
