@@ -42,9 +42,14 @@ selectProject(id: number | null) {
   this.projectService.setSelectedProjectId(id);
 }
 
-updateTask(taskId: number) {
-  if (taskId) {
-    this.router.navigate(['teammanager/updatetask', taskId]);
-  }
+// updateTask(taskId: number) {
+//   if (taskId) {
+//     this.router.navigate(['teammanager/updatetask', taskId]);
+//   }
+// }
+
+updateTask() {
+  this.router.navigate(['teammanager/updatetask']);
+
 }
 }

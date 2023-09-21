@@ -14,6 +14,9 @@ import { UpdateprojectComponent } from './updateproject/updateproject.component'
 import { AddtaskComponent } from './addtask/addtask.component';
 import { TaskdetailsComponent } from './taskdetails/taskdetails.component';
 import { TaskdetailsinfoComponent } from './taskdetailsinfo/taskdetailsinfo.component';
+import { UpdatetaskComponent } from './updatetask/updatetask.component';
+import { EmployeelistComponent } from './employeelist/employeelist.component';
+import { AddemployeeComponent } from './addemployee/addemployee.component';
 
 
 export const teammanagerRoutes:Routes=[
@@ -23,7 +26,10 @@ export const teammanagerRoutes:Routes=[
   {path:'addproject', component:AddprojectComponent},
   {path:'updateproject/:projectId',component:UpdateprojectComponent},
   {path:'addtask',component:AddtaskComponent},
-  {path:'updatetask/:taskId',component:UpdateprojectComponent},
+  {path:'updateproject',component:UpdateprojectComponent},
+  {path:'updatetask',component:UpdatetaskComponent},
+  {path:'employeelist',component:EmployeelistComponent},
+  {path:'addemployee',component:AddemployeeComponent},
 ]
 
 @NgModule({
@@ -39,7 +45,10 @@ export const teammanagerRoutes:Routes=[
     UpdateprojectComponent,
     AddtaskComponent,
     TaskdetailsComponent,
-    TaskdetailsinfoComponent
+    TaskdetailsinfoComponent,
+    UpdatetaskComponent,
+    EmployeelistComponent,
+    AddemployeeComponent
   ],
   imports: [
     CommonModule,

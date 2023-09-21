@@ -1,43 +1,70 @@
-<div>
-    <h2>Time Sheet Entry</h2>
-    <form (ngSubmit)="addTimeSheet()">
-      <div class="form-group">
-        <label for="employeeId">Employee ID:</label>
-        <input type="number" id="employeeId" [(ngModel)]="newTimeSheet.employeeId" name="employeeId" required>
+<div class="container">
+  <h2>Add New Timesheet</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="scrollable-list">
+        
+<form>
+    <!-- 2 column grid layout with text inputs for the first and last names -->
+    <div class="row mb-4">
+      <div class="col">
+        <div class="form-outline">
+          <input type="date" id="form6Example1" class="form-control" />
+          <label class="form-label" for="form6Example1">Date</label>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="date">Date:</label>
-        <input type="date" id="date" [(ngModel)]="newTimeSheet.date" name="date" required>
+      <div class="col">
+        <div class="form-outline">
+          <input type="number" id="form6Example2" class="form-control" />
+          <label class="form-label" for="form6Example2">Employee Id</label>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="fromTime">From Time:</label>
-        <input type="time" id="fromtime" [(ngModel)]="newTimeSheet.fromTime" name="fromTime" required>
-      </div>
-      <div class="form-group">
-        <label for="toTime">To Time:</label>
-        <input type="time" id="toTime" [(ngModel)]="newTimeSheet.toTime" name="toTime" required>
-      </div>
-      <div class="form-group">
-        <label for="workingTime">Working Time :</label>
-        <input type="time" id="workingTime" [(ngModel)]="newTimeSheet.workingTime" name="workingTime" required>
-      </div>
-      <div class="form-group">
-        <label for="projectId">Project Id :</label>
-        <input type="number" id="projectId" [(ngModel)]="newTimeSheet.projectId" name="projectId" required>
-      </div>
-      <div class="form-group">
-        <label for="projectName">Project Name :</label>
-        <input type="text" id="projectName" [(ngModel)]="newTimeSheet.projectName" name="projectName" required>
-      </div>
-      <div class="form-group">
-        <label for="task">Task :</label>
-        <input type="text" id="task" [(ngModel)]="newTimeSheet.task" name="task" required>
-      </div>
-      <!-- Add more input fields for other properties of the timeSheets object -->
-      <br>
-      <button type="submit">Add Time Sheet</button>
-    </form>
-  </div>
+    </div>
   
+    <!-- Text input -->
+    <div class="form-outline mb-4">
+      <input type="text" id="form6Example3" class="form-control" />
+      <label class="form-label" for="form6Example3">Status</label>
+    </div>
+  
+    <!-- Text input -->
+    <div class="form-outline mb-4">
+      <input type="number" id="form6Example4" class="form-control" />
+      <label class="form-label" for="form6Example4">Task Id</label>
+    </div>
+  
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <input type="time" id="form6Example5" class="form-control" />
+      <label class="form-label" for="form6Example5">From Time</label>
+    </div>
+  
+    <!-- Number input -->
+    <div class="form-outline mb-4">
+      <input type="time" id="form6Example6" class="form-control" />
+      <label class="form-label" for="form6Example6">To Time</label>
+    </div>
+  
+    <!-- Message input -->
+    <div class="form-outline mb-4">
+      <textarea class="form-control" id="form6Example7" rows="4"></textarea>
+      <label class="form-label" for="form6Example7">Description</label>
+    </div>
+  
+    <!-- Checkbox
+    <div class="form-check d-flex justify-content-center mb-4">
+      <input class="form-check-input me-2" type="checkbox" value="" id="form6Example8" checked />
+      <label class="form-check-label" for="form6Example8"> Create an account? </label>
+    </div> -->
+  
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary btn-block mb-4">Insert Task</button>
+  </form>
 
-  
+</div>
+</div>
+<div class="col-md-6">
+  <h1> Timesheet Inserted Successfully </h1>
+</div>
+</div>
+</div>
