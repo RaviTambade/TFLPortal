@@ -60,4 +60,11 @@ public class ProjectsController : ControllerBase
     {
         return await _service.GetTasksOfProject(projectId,timePeriod);
     }
+   
+    
+    [HttpGet("employee/{employeeId}")]
+     public async Task<List<ProjectName>> GetProjectNames(int employeeId)
+    {
+        return await _service.GetProjectNames(employeeId);
+    }
 }

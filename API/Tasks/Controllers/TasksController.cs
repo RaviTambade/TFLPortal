@@ -20,9 +20,9 @@ public class TasksController : ControllerBase
     }
 
     [HttpGet("mytasks/{teamMemberId}/{timePeriod}")]
-    public async Task<List<MyTaskList>> GetMyTasksList(int teamMemberId,string timePeriod)
+    public async Task<List<MyTaskList>> GetMyTasksList(int teamMemberId, string timePeriod)
     {
-        return await _service.GetMyTasksList(teamMemberId,timePeriod);
+        return await _service.GetMyTasksList(teamMemberId, timePeriod);
     }
 
     [HttpGet("taskdetail/{taskId}")]
@@ -34,14 +34,21 @@ public class TasksController : ControllerBase
     [HttpGet("moretaskdetail/{taskId}")]
     public async Task<MoreTaskDetail> GetMoreTaskDetail(int taskId)
     {
-      return await _service.GetMoreTaskDetail(taskId);
+        return await _service.GetMoreTaskDetail(taskId);
     }
 
     [HttpGet("alltasks/{employeeId}/{timePeriod}")]
-    public async Task<List<AllTaskList>> GetAllTaskList(int employeeId,string timePeriod)
+    public async Task<List<AllTaskList>> GetAllTaskList(int employeeId, string timePeriod)
     {
-       return await _service.GetAllTaskList(employeeId,timePeriod);
+        return await _service.GetAllTaskList(employeeId, timePeriod);
     }
+
+    [HttpGet("tasktitle/{employeeId}/{projectId}/{status}")]
+    public async Task<List<TaskIdWithTitle>> GetTaskIdWithTitle(int employeeId, int projectId, string status)
+    {
+        return await _service.GetTaskIdWithTitle(employeeId, projectId, status);
+    }
+
 
 
 }

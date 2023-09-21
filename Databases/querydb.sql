@@ -171,3 +171,12 @@ WHERE
 
 
 SELECT * FROM timesheets;
+SELECT * FROM projects;
+SELECT * FROM projectmembers;
+SELECT * FROM tasks;
+SELECT * FROM assignedtasks;
+
+    SELECT tasks.id,tasks.title
+    FROM tasks INNER JOIN assignedtasks
+    ON tasks.id = assignedtasks.taskid
+    WHERE tasks.projectid=1 AND assignedtasks.teammemberid=7 AND tasks.status= "pending";

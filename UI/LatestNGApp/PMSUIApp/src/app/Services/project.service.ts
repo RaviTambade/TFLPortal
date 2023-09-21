@@ -4,6 +4,7 @@ import { Projectlist } from '../Models/projectlist';
 import { HttpClient } from '@angular/common/http';
 import { Project } from '../Models/project';
 import { Projecttask } from '../Models/projecttask';
+import { Projectname } from '../Models/projectname';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +57,10 @@ export class ProjectService {
   getTasksOfProject(projectId:number,timePeriod:string):Observable<Projecttask[]>{
     let url="http://localhost:5248/api/projects/tasks/" +projectId + "/" + timePeriod 
     return this.httpClient.get<Projecttask[]>(url)
+  }
+  getProjectNames(employeeId:number):Observable<Projectname[]>{
+    let url="http://localhost:5248/api/projects/employee/" +employeeId
+    return this.httpClient.get<Projectname[]>(url)
   }
   
 

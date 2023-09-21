@@ -196,6 +196,32 @@ public class TaskRepository : ITaskRepository
     }
 
 
+    public async Task<List<TaskIdWithTitle>> GetTaskIdWithTitle(int employeeId,int projectId,string status)
+    {
+        try
+        {
+            var taskIdWithTitle=await(
+                                from task in _taskContext.Tasks
+                                join assignedTask in _taskContext.AssignedTasks
+                                on task.Id equals assignedTask.TaskId
+                                where task.ProjectId == projectId &&
+                                assignedTask.TeamMemberId ==employeeId &&
+                                task.Status ==status
+                                select new TaskIdWithTitle()
+                                {
+                                    TaskId=task.Id,
+                                    Title=task.Title
+                                }).ToListAsync();
+            return taskIdWithTitle;
+        }
+        catch(Exception)
+        {
+            throw;
+        }
+    }
+
+
+
 
 }
 

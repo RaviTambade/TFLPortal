@@ -1,12 +1,13 @@
 export class Timesheet {
     constructor(
-                public timesheetId:number,
-                public date:string ,
-                public fromtime:string,
-                public totime:string , 
-                public employeeId:number,
-                public projectId:number,
-                public taskId:number
-                )
-                {}
+        public id:number,
+        public date:string ,
+        public fromtime:string,
+        public totime:string , 
+        public description:string,
+        public status:string,
+        public employeeId:number,
+        public taskId:number
+        )
+        {}
 }
