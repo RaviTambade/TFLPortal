@@ -1,48 +1,53 @@
 <div class="container">
-    <h2>Time Sheets</h2>
-    <h3><button class="btn btn-primary add-button" (click)="add()" >Add New TimeSheet</button></h3>
-    <div class="row" >
-      <div class="col-md-2" >
-        <br>
-        <div class="filter-card" >
-          <div class="time-period-options">
-            <span class="time-period-option" [class.active]="selectedTimePeriod === 'today'" (click)="getMyTimeSheet('today')">Today</span>
-            <span class="time-period-option" [class.active]="selectedTimePeriod === 'yesterday'" (click)="getMyTimeSheet('yesterday')">Yesterday</span>
-            <span class="time-period-option" [class.active]="selectedTimePeriod === 'lastweek'" (click)="getMyTimeSheet('lastweek')">Last Week</span>
-            <span class="time-period-option" [class.active]="selectedTimePeriod === 'lastmonth'" (click)="getMyTimeSheet('lastmonth')">Last Month</span>
-            <span class="time-period-option" [class.active]="selectedTimePeriod === 'lastyear'" (click)="getMyTimeSheet('lastyear')">Last Year</span>
-          </div>
+  <h2>Time Sheets</h2>
+  <h3><button class="btn btn-primary add-button" (click)="add()">Add New TimeSheet</button></h3>
+  <div class="row">
+    <div class="col-md-2">
+      <br>
+      <div class="filter-card">
+        <div class="time-period-options">
+          <span class="time-period-option" [class.active]="selectedTimePeriod === 'today'"
+            (click)="getMyTimeSheet('today')">Today</span>
+          <span class="time-period-option" [class.active]="selectedTimePeriod === 'yesterday'"
+            (click)="getMyTimeSheet('yesterday')">Yesterday</span>
+          <span class="time-period-option" [class.active]="selectedTimePeriod === 'lastweek'"
+            (click)="getMyTimeSheet('lastweek')">Last Week</span>
+          <span class="time-period-option" [class.active]="selectedTimePeriod === 'lastmonth'"
+            (click)="getMyTimeSheet('lastmonth')">Last Month</span>
+          <span class="time-period-option" [class.active]="selectedTimePeriod === 'lastyear'"
+            (click)="getMyTimeSheet('lastyear')">Last Year</span>
         </div>
       </div>
-        <br>
-      <div class="col-md-6">
-        <div class="scrollable-list">
+    </div>
+    <br>
+    <div class="col-md-6" id="table">
+      <div class="scrollable-list">
         <table class="table table-secondary">
           <thead class="table-active">
-        <tr>
-          <th>Date</th>
-          <th>Task</th>
-          <th>Status</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let timeSheet of timeSheetList">
-          <td>{{ timeSheet.date |date }}</td>
-          <td>{{ timeSheet.taskTitle }}</td>
-          <td>{{ timeSheet.status }}</td>
-          <td>
-            <button class="btn btn-primary" (click)="selectTimeSheet(timeSheet.timeSheetId)">Details</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    </div>
+            <tr>
+              <th>Date</th>
+              <th>Task</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let timeSheet of timeSheetList">
+              <td>{{ timeSheet.date |date }}</td>
+              <td>{{ timeSheet.taskTitle }}</td>
+              <td>{{ timeSheet.status }}</td>
+              <td>
+                <button class="btn btn-primary" (click)="selectTimeSheet(timeSheet.timeSheetId)">Details</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="col-md-6">
-    <div *ngIf="selectedTimeSheetId">
-        <app-timesheetdetails [selectedTimeSheetId]="selectedTimeSheetId"></app-timesheetdetails>
     </div>
-  </div>
+    <div class="col-md-4">
+      <div *ngIf="selectedTimeSheetId">
+        <app-timesheetdetails [selectedTimeSheetId]="selectedTimeSheetId"></app-timesheetdetails>
+      </div>
+    </div>
   </div>
 </div>

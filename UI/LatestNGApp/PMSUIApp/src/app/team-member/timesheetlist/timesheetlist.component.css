@@ -3,12 +3,13 @@
     overflow-y: auto;
 }
 
-
 .filter-card {
-    border: 1px solid #ccc;
-    padding: 10px;
-    width: 120px; 
-  }
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 120px; 
+  float: right;
+  /* margin-top: 30px; */
+}
   
   .filter-card h3 {
     margin-bottom: 10px;
@@ -31,4 +32,9 @@
     position: absolute;
     top: 180px; 
     right: 550px;
+    margin-top: 15px;
+  }
+
+  #table{
+    margin-top: 22px;
   }
