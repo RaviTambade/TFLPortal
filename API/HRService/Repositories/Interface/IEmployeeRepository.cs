@@ -1,5 +1,6 @@
 
 using Transflower.PMS.HRService.Entities;
+using Transflower.PMS.HRService.Models;
 namespace Transflower.PMS.HRService.Repositories.Interfaces;
 public interface IEmployeeRepository
 {
@@ -7,7 +8,8 @@ public interface IEmployeeRepository
     // Task<Employee> GetById(int Id);
     Task<int> GetEmployeeId(int userId);
     Task<List<int>> GetUserId(int employeeId);
-
+    
+    Task<EmployeeInfo> GetEmployeeInfo(int employeeId);
 
     // Task<bool> Insert(Employee emp);
     // Task<bool> Update(Employee emp);

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { Mytimesheetlist } from 'src/app/Models/mytimesheetlist';
+import { EmployeeService } from 'src/app/Services/employee.service';
 import { TaskService } from 'src/app/Services/task.service';
 import { TimeSheetService } from 'src/app/Services/timesheet.service';
 
@@ -9,21 +11,29 @@ import { TimeSheetService } from 'src/app/Services/timesheet.service';
   styleUrls: ['./timesheetlist.component.css']
 })
 export class TimesheetlistComponent {
-  timeSheetSummaryData: any[]=[];
+timeSheetList:Mytimesheetlist[]=[]
 selectedTimeSheetId:number |null=null
-  
+teamMemberId: number = 0;
+  selectedTimePeriod:string="today"
 constructor(private timeSheetService: TimeSheetService,
     private router: Router,
-    private route: ActivatedRoute) {}
+    private route: ActivatedRoute,
+    private employeeService:EmployeeService) {}
 
   ngOnInit() {
-    const employeeId = 1;
-    this.timeSheetService
-      .getAllTimeSheetsSummaryOfEmployee(employeeId)
-      .subscribe(data => {
-        this.timeSheetSummaryData = data;
-      });
-  }
+    let userId = localStorage.getItem('userId');
+    this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
+      this.teamMemberId = res;
+      this.getMyTimeSheet(this.selectedTimePeriod)
+  })
+}
+getMyTimeSheet(timePeriod:string){
+this.selectedTimePeriod=timePeriod
+this.timeSheetService.getTimeSheetList(this.teamMemberId,timePeriod).subscribe((res)=>{
+  this.timeSheetList=res
+})
+
+}
   selectTimeSheet(id :number){
 if(this.selectedTimeSheetId === id){
   this.selectedTimeSheetId = null;

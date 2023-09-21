@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../Models/user';
 import { NameId } from '../Models/name-id';
+import { Userinfo } from '../Models/userinfo';
 
 @Injectable({
   providedIn: 'root',
@@ -23,5 +24,9 @@ export class UserService {
   getUserNamesWithId(userId: string): Observable<NameId[]> {
     let url = 'http://localhost:5102/api/users/name/' + userId;
     return this.httpClient.get<NameId[]>(url);
+  }
+  getUser(id: number): Observable<Userinfo> {
+    let url = 'http://localhost:5102/api/users/' + id;
+    return this.httpClient.get<Userinfo>(url);
   }
 }

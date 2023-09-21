@@ -4,12 +4,12 @@
       <div class="card bg-light text-dark">
         <div class="card-body">
           <!-- <h4><strong>Timesheet ID:</strong> {{ selectedTimeSheet.id }}</h4> -->
-          <p><strong>Task:</strong> {{ selectedTimeSheet.task }}</p>
+          <p><strong>Task:</strong> {{ selectedTimeSheet.taskTitle }}</p>
           <p><strong>Date:</strong> {{ selectedTimeSheet.date | date }}</p>
-          <p><strong>Project Name:</strong> {{ selectedTimeSheet.projectName }}</p>
+          <p><strong>Project Name:</strong> {{ selectedTimeSheet.status }}</p>
+          <p><strong>Project Name:</strong> {{ selectedTimeSheet.description }}</p>
             <p><strong>From Time:</strong> {{ selectedTimeSheet.fromTime }}</p>
             <p><strong>To Time:</strong> {{ selectedTimeSheet.toTime }}</p>
-            <p><strong>Working Time:</strong> {{ selectedTimeSheet.workingTime}} hours</p>
         </div>
           </div>
         </div>

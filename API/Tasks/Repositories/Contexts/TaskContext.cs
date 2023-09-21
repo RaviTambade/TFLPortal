@@ -4,6 +4,7 @@ namespace Transflower.PMSApp.Tasks.Repositories.Contexts;
 public class TaskContext:DbContext{
     public DbSet<Transflower.PMSApp.Tasks.Entities.Task> Tasks{get;set;}
     public DbSet<Project> Projects{get;set;}
+    public DbSet<ProjectMember> ProjectMembers{get;set;}
     public DbSet<Employee> Employees{get;set;}
     public DbSet<AssignedTask> AssignedTasks{get;set;}
     public TaskContext(DbContextOptions options):base(options){
@@ -11,5 +12,6 @@ public class TaskContext:DbContext{
         Projects=Set<Project>();
         AssignedTasks=Set<AssignedTask>();
         Employees=Set<Employee>();
+        ProjectMembers=Set<ProjectMember>();
     }
 }

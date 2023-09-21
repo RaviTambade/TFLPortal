@@ -12,6 +12,6 @@ public class TaskService:ITaskService
     public async Task<List<MyTaskList>> GetMyTasksList(int teamMemberId,string timePeriod)=>await _taskRepository.GetMyTasksList(teamMemberId,timePeriod);
     public async Task<TaskDetail> GetTaskDetail(int taskId)=>await _taskRepository.GetTaskDetail(taskId );
     public async Task<MoreTaskDetail> GetMoreTaskDetail(int taskId)=>await _taskRepository.GetMoreTaskDetail(taskId);
-
+    public async Task<List<AllTaskList>> GetAllTaskList(int employeeId,string timePeriod)=>await _taskRepository.GetAllTaskList(employeeId,timePeriod);
 
 }

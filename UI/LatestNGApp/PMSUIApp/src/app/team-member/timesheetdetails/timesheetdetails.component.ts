@@ -1,4 +1,5 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
+import { Timesheetdetail } from 'src/app/Models/timesheetdetail';
 import { TimeSheetService } from 'src/app/Services/timesheet.service';
 
 @Component({
@@ -8,11 +9,19 @@ import { TimeSheetService } from 'src/app/Services/timesheet.service';
 })
 export class TimesheetdetailsComponent {
   @Input() selectedTimeSheetId: any;
-  selectedTimeSheet:any={}
+  selectedTimeSheet:Timesheetdetail={
+    timeSheetId: 0,
+    date: '',
+    fromTime: '',
+    toTime: '',
+    description: '',
+    status: '',
+    taskTitle: ''
+  }
 constructor(private timeSheetService:TimeSheetService){}
 ngOnChanges(changes:SimpleChanges){
   if(changes['selectedTimeSheetId'] && this.selectedTimeSheetId !== undefined){
-    this.timeSheetService.getTimeSheetById(this.selectedTimeSheetId).subscribe((res)=>{
+    this.timeSheetService.getTimeSheetDetail(this.selectedTimeSheetId).subscribe((res)=>{
       this.selectedTimeSheet=res
       this.selectTimeSheet(this.selectedTimeSheetId)
     })

@@ -112,7 +112,7 @@ public class TaskRepository : ITaskRepository
         }
     }
 
-   public async Task<MoreTaskDetail> GetMoreTaskDetail(int taskId)
+    public async Task<MoreTaskDetail> GetMoreTaskDetail(int taskId)
     {
         try
         {
@@ -135,14 +135,63 @@ public class TaskRepository : ITaskRepository
         }
     }
 
-    public async Task<<List>ProjectTask>> GetTasksOfProject(int projectId)
+    public async Task<List<AllTaskList>> GetAllTaskList(int employeeId,string timePeriod)
     {
         try
         {
-            var projectTasks=await (
-                             from project in _taskContext.Projects
-                             join projectmember in _taskContext.ProjectMembers
-            )
+             DateTime currentDate = DateTime.Now.Date;
+            DateTime startDate = currentDate;
+            DateTime endDate = currentDate;
+
+            switch (timePeriod)
+            {
+                case "today":
+                    startDate = currentDate;
+                    endDate = currentDate;
+                    break;
+                case "yesterday":
+                    startDate = currentDate.AddDays(-1);
+                    endDate = currentDate.AddDays(-1);
+                    break;
+                case "lastweek":
+                    startDate = currentDate.AddDays(-7);
+                    endDate = currentDate;
+                    break;
+                case "lastmonth":
+                    startDate = currentDate.AddMonths(-1);
+                    endDate = currentDate;
+                    break;
+                case "lastyear":
+                    startDate = currentDate.AddYears(-1);
+                    endDate = currentDate;
+                    break;
+            }
+            var allTaskList = await (from employee in _taskContext.Employees
+                                     join projectMember in _taskContext.ProjectMembers
+                                     on employee.Id equals projectMember.TeamMemberId
+                                     join task in _taskContext.Tasks
+                                     on projectMember.ProjectId equals task.ProjectId
+                                     join project in _taskContext.Projects
+                                     on task.ProjectId equals project.Id
+                                     join assignedTask in _taskContext.AssignedTasks
+                                     on task.Id equals assignedTask.TaskId
+                                     join employee2 in _taskContext.Employees
+                                     on assignedTask.TeamMemberId equals employee2.Id
+                                     where employee.Id == employeeId &&
+                                      task.Date >= startDate && task.Date <= endDate
+                                     select new AllTaskList()
+                                     {
+                                         ProjectName = project.Title,
+                                         TaskTitle = task.Title,
+                                         TeamMemberId = assignedTask.TeamMemberId,
+                                         TaskId= task.Id,
+                                         TeamMemberUserId = employee2.UserId
+                                     }).ToListAsync();
+            return allTaskList;
+        }
+        catch(Exception)
+        {
+            throw;
         }
     }
 

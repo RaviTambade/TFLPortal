@@ -1,14 +1,24 @@
 <div class="container">
     <h2>My Tasks</h2>
     <div class="row">
+      <div class="col-md-2" >
+        <br>
+        <div class="filter-card" >
+          <div class="time-period-options">
+            <span class="time-period-option" [class.active]="selectedTimePeriod === 'today'" (click)="filterAllTasks('today')">Today</span>
+            <span class="time-period-option" [class.active]="selectedTimePeriod === 'yesterday'" (click)="filterAllTasks('yesterday')">Yesterday</span>
+            <span class="time-period-option" [class.active]="selectedTimePeriod === 'lastweek'" (click)="filterAllTasks('lastweek')">Last Week</span>
+            <span class="time-period-option" [class.active]="selectedTimePeriod === 'lastmonth'" (click)="filterAllTasks('lastmonth')">Last Month</span>
+            <span class="time-period-option" [class.active]="selectedTimePeriod === 'lastyear'" (click)="filterAllTasks('lastyear')">Last Year</span>
+          </div>
+        </div>
+      </div>
       <div class="col-md-6">
-        <app-filteredtasks (filterTasksByStatus)="filterTasksByStatus($event)"></app-filteredtasks>
         <br>
         <div class="scrollable-list ">
         <table class="table table-secondary table-striped">
           <thead class="table-active ">
             <tr>
-              <!-- <th>ID</th> -->
               <th>Project</th>
               <th>Task</th>
               <th>Employee</th>
@@ -16,13 +26,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let task of filteredTasks">
+            <tr *ngFor="let task of tasks">
               <!-- <td>{{ task.id }}</td> -->
               <td>{{ task.projectName }}</td>
-              <td>{{ task.title }}</td>
-              <td (click)="onTeamMemberClick(task.employee)"><span class="hover-link">{{ task.employee}}</span></td>
+              <td>{{ task.taskTitle }}</td>
+              <td (click)="onTeamMemberClick(task.teamMemberUserId)"><span class="hover-link">{{ task.employeeName}}</span></td>
               <td>
-                <button class="btn btn-primary" (click)="selectTask(task.id)">Details</button>
+                <button class="btn btn-primary" (click)="selectTask(task.taskId)">Details</button>
               </td>
             </tr>
           </tbody>
@@ -30,7 +40,7 @@
       </div>
       </div>
       
-      <div class="col-md-6">
+      <div class="col-md-4">
         <div *ngIf="selectedTaskId !== null">
           <app-taskdetails [taskId]="selectedTaskId"></app-taskdetails>
         </div> 

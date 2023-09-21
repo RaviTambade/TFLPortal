@@ -53,8 +53,8 @@ export class ProjectService {
     return this.httpClient.get<number[]>(url)
   }
 
-  getTasksOfProject(projectId:number):Observable<Projecttask[]>{
-    let url="http://localhost:5248/api/projects/tasks/" +projectId
+  getTasksOfProject(projectId:number,timePeriod:string):Observable<Projecttask[]>{
+    let url="http://localhost:5248/api/projects/tasks/" +projectId + "/" + timePeriod 
     return this.httpClient.get<Projecttask[]>(url)
   }
   

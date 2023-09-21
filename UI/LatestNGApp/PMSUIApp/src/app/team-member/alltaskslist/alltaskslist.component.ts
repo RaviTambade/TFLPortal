@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Alltasklist } from 'src/app/Models/alltasklist';
+import { EmployeeService } from 'src/app/Services/employee.service';
 import { ProjectService } from 'src/app/Services/project.service';
 import { TaskService } from 'src/app/Services/task.service';
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'app-alltaskslist',
@@ -10,19 +13,53 @@ import { TaskService } from 'src/app/Services/task.service';
 })
 export class AlltaskslistComponent {
   selectedTaskId: number | null = null;
-  tasks: any[] = [];
+  tasks: Alltasklist[] = [];
   filteredTasks: any[] = [];
+  employeeId:number=0
+  selectedTimePeriod:string="today"
   constructor(
-    public taskService: TaskService,
-    public projectService: ProjectService,
-    public router:Router
+    private taskService: TaskService,
+    private projectService: ProjectService,
+    private router:Router,
+    private employeeService:EmployeeService,
+    private userService:UserService
   ) {}
   ngOnInit(): void {
-    this.taskService.getAllTasks().subscribe((res) => {
-      this.tasks = res;
-      this.filteredTasks=res
-    });
+    let userId = localStorage.getItem('userId');
+    this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
+      this.employeeId = res;
+
+    })
   }
+filterAllTasks(timePeriod:string){
+  this.selectedTimePeriod=timePeriod
+    this.taskService.getAllTaskList(this.employeeId,timePeriod).subscribe((res) => {
+      this.tasks = res;
+      console.log(this.tasks)
+      let distinctTeamMemberUserIds=this.tasks.map((item)=>item.teamMemberUserId)
+      .filter((number, index, array) => array.indexOf(number) === index);
+      console.log(distinctTeamMemberUserIds)
+      let teamMemberIdsString=distinctTeamMemberUserIds.join(",")
+      this.userService
+      .getUserNamesWithId(teamMemberIdsString)
+      .subscribe((res) => {
+        let teamMemberName = res;
+        console.log(teamMemberName);
+        this.tasks.forEach((item) => {
+          let matchingItem = teamMemberName.find(
+            (element) => element.id === item.teamMemberUserId
+          );
+          if (matchingItem != undefined){
+            item.employeeName = matchingItem.name;
+            item.teamMemberUserId=matchingItem.id
+          console.log(matchingItem);
+          }
+        });
+    });
+  })
+}
+
+
   selectTask(id: number | null) {
     {
       if (this.selectedTaskId === id) {
@@ -33,17 +70,18 @@ export class AlltaskslistComponent {
         this.taskService.setSelectedTaskId(id);
       }
   }
-  filterTasksByStatus(status: string) {
-    console.log(status)
-    if (status === 'All') {
-      this.filteredTasks = this.tasks;
-    } else {
-      this.filteredTasks = this.tasks.filter((task) => task.status === status)
-    }
-    this.selectedTaskId =null;
-    this.taskService.setSelectedTaskId(this.selectedTaskId)
-  }
-  onTeamMemberClick(employee:string){
-    this.router.navigate(['teammember/employeedetails',employee]);
-  }
+  // filterTasksByStatus(status: string) {
+  //   console.log(status)
+  //   if (status === 'All') {
+  //     this.filteredTasks = this.tasks;
+  //   } else {
+  //     this.filteredTasks = this.tasks.filter((task) => task.status === status)
+  //   }
+  //   this.selectedTaskId =null;
+  //   this.taskService.setSelectedTaskId(this.selectedTaskId)
+  // }
+  onTeamMemberClick(employeeId:number){
+        this.router.navigate(['teammember/employeedetails',employeeId]);
+    
+      }
 }

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NameId } from 'src/app/Models/name-id';
 import { EmployeeService } from 'src/app/Services/employee.service';
 import { ProjectService } from 'src/app/Services/project.service';
 import { UserService } from 'src/app/Services/user.service';
@@ -12,7 +13,9 @@ import { UserService } from 'src/app/Services/user.service';
 export class ProjectteammembersComponent implements OnInit {
 projectId: number =0;
   teamMembersUserId: number[];
-  teamMembers:string[]=[]
+  teamMembers:NameId[]=[]
+  teamMember:string[]=[]
+  selectedUserId:number=0
   constructor(private projectService: ProjectService, private router: Router,private employeeService:EmployeeService,private userService:UserService) {
     this.teamMembersUserId = [];
   }
@@ -25,16 +28,15 @@ projectId: number =0;
           let teamManagerUserIdString=this.teamMembersUserId.join(",")
           this.userService.getUserNamesWithId(teamManagerUserIdString).subscribe((res)=>{
             console.log(res)
-            this.teamMembers=res.map(user=>user.name)
+            this.teamMembers=res
+            this.teamMember=res.map(res=>res.name)
           })
-
         });
       });
   }
-  onTeamMemberClick(employee:string){
-    // this.employeeService.getEmployeeDetails(employee).subscribe((res)=>{
-   + //   console.log(res)
-    this.router.navigate(['teammember/employeedetails',employee]);
+  onTeamMemberClick(employeeId:number){
+// this.selectedUserId=employeeId
+    this.router.navigate(['teammember/employeedetails',employeeId]);
 
   }
 }

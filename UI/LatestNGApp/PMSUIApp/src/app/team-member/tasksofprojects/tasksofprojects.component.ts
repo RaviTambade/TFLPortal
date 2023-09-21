@@ -16,6 +16,7 @@ export class TasksofprojectsComponent implements OnInit {
   projectNames:any[] =[]
   projectName:string=''
   tasks:Projecttask[]=[]
+  selectedTimePeriod:string="today"
   
   constructor(private userService:UserService,private route:ActivatedRoute,private projectService:ProjectService){}
   ngOnInit(): void {
@@ -25,7 +26,11 @@ export class TasksofprojectsComponent implements OnInit {
       this.route.queryParams.subscribe(queryParams => {
         this.projectName = queryParams['projectName'] || '';
       });
-    this.projectService.getTasksOfProject(this.projectId).subscribe((res)=>{
+      this.GetfilteredTasksOfProjects(this.selectedTimePeriod);
+    }
+      GetfilteredTasksOfProjects(timePeriod:string){
+        this.selectedTimePeriod=timePeriod
+    this.projectService.getTasksOfProject(this.projectId,timePeriod).subscribe((res)=>{
       this.tasks=res
       console.log(this.tasks)
       let distinctTeamMemberUserIds=this.tasks.map((item)=>item.teamMemberUserId)
@@ -45,6 +50,7 @@ export class TasksofprojectsComponent implements OnInit {
     })
   })
 }
+
   viewDetails(taskId:number){
     if (this.selectedTaskId === taskId) {
       this.selectedTaskId = null;

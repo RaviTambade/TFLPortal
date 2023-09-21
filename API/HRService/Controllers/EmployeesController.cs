@@ -1,6 +1,7 @@
 using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Mvc;
 using Transflower.PMS.HRService.Entities;
+using Transflower.PMS.HRService.Models;
 using Transflower.PMS.HRService.Services.Interfaces;
 namespace Transflower.PMS.HRService.Controllers;
 [ApiController]
@@ -24,6 +25,13 @@ public class EmployeesController : ControllerBase
     {
         return await _service.GetUserId(employeeId);
     }
+
+    [HttpGet("employeeinfo/{employeeId}")]
+    public async Task<EmployeeInfo> GetEmployeeInfo(int employeeId)
+    {
+       return await _service.GetEmployeeInfo(employeeId);
+    }
+
 
 
 }

@@ -1,12 +1,23 @@
 <div class="container">
-    <h2>Tasks Of {{projectName}}</h2>
     <div class="row">
+      <div class="col-md-2">
+        <br>
+        <div class="filter-card">
+          <div class="time-period-options">
+            <span class="time-period-option" [class.active]="selectedTimePeriod === 'today'" (click)="GetfilteredTasksOfProjects('today')">Today</span>
+            <span class="time-period-option" [class.active]="selectedTimePeriod === 'yesterday'" (click)="GetfilteredTasksOfProjects('yesterday')">Yesterday</span>
+            <span class="time-period-option" [class.active]="selectedTimePeriod === 'lastweek'" (click)="GetfilteredTasksOfProjects('lastweek')">Last Week</span>
+            <span class="time-period-option" [class.active]="selectedTimePeriod === 'lastmonth'" (click)="GetfilteredTasksOfProjects('lastmonth')">Last Month</span>
+            <span class="time-period-option" [class.active]="selectedTimePeriod === 'lastyear'" (click)="GetfilteredTasksOfProjects('lastyear')">Last Year</span>
+          </div>
+        </div>
+      </div>
       <div class="col-md-6">
+        <h2>Tasks Of {{projectName}}</h2>
+        <div class="scrollable-list">
         <table class="table table-secondary">
           <thead class="table-active">
             <tr>
-              <!-- <th>Id</th> -->
-              <!-- <th>Project</th> -->
               <th>Task</th>
               <th>Employee</th>
               <th>Status</th>
@@ -15,8 +26,6 @@
           </thead>
           <tbody>
             <tr *ngFor="let task of tasks">
-              <!-- <td>{{ task.id }}</td> -->
-              <!-- <td>{{ task.projectName}}</td> -->
               <td>{{ task.title }}</td>
               <td>{{ task.employeeName }}</td>
               <td>{{ task.status }}</td>
@@ -26,8 +35,9 @@
             </tr>
           </tbody>
         </table>
+        </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-4">
         <div *ngIf="selectedTaskId !== undefined">
           <app-taskdetails [taskId]="selectedTaskId"></app-taskdetails>
         </div>

@@ -55,9 +55,9 @@ public class ProjectsController : ControllerBase
     }
 
 
-    [HttpGet("tasks/{projectId}")]
-      public async Task<List<ProjectTask>> GetTasksOfProject(int projectId)
+    [HttpGet("tasks/{projectId}/{timePeriod}")]
+      public async Task<List<ProjectTask>> GetTasksOfProject(int projectId,string timePeriod)
     {
-        return await _service.GetTasksOfProject(projectId);
+        return await _service.GetTasksOfProject(projectId,timePeriod);
     }
 }

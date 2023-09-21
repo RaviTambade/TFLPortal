@@ -44,9 +44,9 @@ public class ProjectService : IProjectService
         return await _repository.GetProjectMembers(projectId);
     }
 
-    public async Task<List<ProjectTask>> GetTasksOfProject(int projectId)
+    public async Task<List<ProjectTask>> GetTasksOfProject(int projectId,string timePeriod)
     {
-        return await _repository.GetTasksOfProject(projectId);
+        return await _repository.GetTasksOfProject(projectId,timePeriod);
     }
 
 

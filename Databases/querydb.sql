@@ -96,3 +96,78 @@ select employees.userid,tasks.title,tasks.status,tasks.id
    INNER JOIN tasks
    ON assignedtasks.taskid=tasks.id
     WHERE projectid=1;
+
+    SELECT * FROM tasks;
+SELECT * FROM assignedtasks;
+SELECT * FROM employees;
+SELECT * FROM projects;
+SELECT * FROM projectmembers;
+
+SELECT projects.title,tasks.title,assignedtasks.teammemberid,tasks.id,employees.userid
+FROM projects INNER JOIN projectmembers
+ON projects.id =projectmembers.projectid
+FROM 
+
+SELECT
+    p.title AS project_title,
+    t.title AS task_title,
+    at.teammemberid,
+    t.id AS task_id,
+    e.userid AS employee_userid
+FROM
+    employees e
+INNER JOIN
+    projectmembers pm ON e.id = pm.teammemberid
+INNER JOIN
+    tasks t ON pm.projectid = t.projectid
+INNER JOIN
+    projects p ON t.projectid = p.id
+INNER JOIN
+    assignedtasks at ON t.id = at.taskid
+WHERE
+    e.id = 7;
+
+SELECT
+    p.title AS project_title,
+    t.title AS task_title,
+    at.teammemberid,
+    t.id AS task_id,
+    e.userid AS employee_userid
+FROM
+    employees e
+INNER JOIN
+    projectmembers pm ON e.id = pm.teammemberid
+INNER JOIN
+    tasks t ON pm.projectid = t.projectid
+INNER JOIN
+    projects p ON t.projectid = p.id
+INNER JOIN
+    assignedtasks at ON t.id = at.taskid
+WHERE
+    e.id = 7;
+
+
+
+SELECT
+    p.title AS project_title,
+    t.title AS task_title,
+    at.teammemberid,
+    t.id AS task_id,
+    e2.userid AS employee_userid
+FROM
+    employees e
+INNER JOIN
+    projectmembers pm ON e.id = pm.teammemberid
+INNER JOIN
+    tasks t ON pm.projectid = t.projectid
+INNER JOIN
+    projects p ON t.projectid = p.id
+INNER JOIN
+    assignedtasks at ON t.id = at.taskid
+INNER JOIN
+    employees e2 ON at.teammemberid = e2.id
+WHERE
+    e.id = 7;
+
+
+SELECT * FROM timesheets;

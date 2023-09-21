@@ -6,6 +6,7 @@ import { Projecttaskcount } from '../Models/projecttaskcount';
 import { Mytasklist } from '../Models/mytasklist';
 import { Taskdetail } from '../Models/taskdetail';
 import { Moretaskdetail } from '../Models/moretaskdetail';
+import { Alltasklist } from '../Models/alltasklist';
 
 @Injectable({
   providedIn: 'root',
@@ -322,5 +323,9 @@ export class TaskService {
   getMoreTaskDetails(taskId:number):Observable<Moretaskdetail>{
     let url="http://localhost:5283/api/tasks/moretaskDetail/" +taskId
     return this.httpClient.get<Moretaskdetail>(url)
+  }
+  getAllTaskList(employeeId:number,timePeriod:string):Observable<Alltasklist[]>{
+    let url="http://localhost:5283/api/tasks/alltasks/" + employeeId + "/" +timePeriod
+    return this.httpClient.get<Alltasklist[]>(url)
   }
 }

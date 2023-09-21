@@ -37,4 +37,11 @@ public class TasksController : ControllerBase
       return await _service.GetMoreTaskDetail(taskId);
     }
 
+    [HttpGet("alltasks/{employeeId}/{timePeriod}")]
+    public async Task<List<AllTaskList>> GetAllTaskList(int employeeId,string timePeriod)
+    {
+       return await _service.GetAllTaskList(employeeId,timePeriod);
+    }
+
+
 }
