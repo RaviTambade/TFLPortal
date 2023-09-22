@@ -34,7 +34,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let task of filteredTasks">
-              <td>{{ task.projectName}}</td>
+              <td (click)="selectProject(task.projectId)"><span class="hover-link">{{ task.projectName}}</span></td>
               <td>{{ task.title }}</td>
               <td>
                 <button class="btn btn-primary" (click)="selectTask(task.taskId)">Details</button>

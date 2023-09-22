@@ -12,6 +12,7 @@ import { UserService } from 'src/app/Services/user.service';
   styleUrls: ['./alltaskslist.component.css']
 })
 export class AlltaskslistComponent {
+  selectedProjectId: number | null = null;
   selectedTaskId: number | null = null;
   tasks: Alltasklist[] = [];
   filteredTasks: any[] = [];
@@ -83,5 +84,15 @@ filterAllTasks(timePeriod:string){
   onTeamMemberClick(employeeId:number){
         this.router.navigate(['teammember/employeedetails',employeeId]);
     
+      }
+
+      selectProject(id: number | null) {
+        if (this.selectedProjectId === id) {
+          this.selectedProjectId = null;
+        } else {
+          this.selectedProjectId = id;
+        }
+        this.router.navigate(["teammember/projectdetails"])
+        this.projectService.setSelectedProjectId(id);
       }
 }

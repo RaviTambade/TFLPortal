@@ -23,6 +23,7 @@ ngOnChanges(changes:SimpleChanges){
   if(changes['selectedTimeSheetId'] && this.selectedTimeSheetId !== undefined){
     this.timeSheetService.getTimeSheetDetail(this.selectedTimeSheetId).subscribe((res)=>{
       this.selectedTimeSheet=res
+      console.log(this.selectedTimeSheet)
       this.selectTimeSheet(this.selectedTimeSheetId)
     })
   }

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Projecttask } from 'src/app/Models/projecttask';
 import { ProjectService } from 'src/app/Services/project.service';
 import { TaskService } from 'src/app/Services/task.service';
@@ -18,7 +18,7 @@ export class TasksofprojectsComponent implements OnInit {
   tasks:Projecttask[]=[]
   selectedTimePeriod:string="today"
   
-  constructor(private userService:UserService,private route:ActivatedRoute,private projectService:ProjectService){}
+  constructor(private userService:UserService,private route:ActivatedRoute,private projectService:ProjectService,private router:Router){}
   ngOnInit(): void {
       this.route.params.subscribe(params => {
         this.projectId = +params['projectId'];
@@ -58,6 +58,10 @@ export class TasksofprojectsComponent implements OnInit {
       this.selectedTaskId = taskId;
     }
   }
+  onTeamMemberClick(employeeId:number){
 
+    this.router.navigate(['teammember/employeedetails',employeeId]);
+  
+  }
 
 }

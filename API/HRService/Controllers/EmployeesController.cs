@@ -29,8 +29,17 @@ public class EmployeesController : ControllerBase
     [HttpGet("employeeinfo/{employeeId}")]
     public async Task<EmployeeInfo> GetEmployeeInfo(int employeeId)
     {
-       return await _service.GetEmployeeInfo(employeeId);
+        return await _service.GetEmployeeInfo(employeeId);
     }
+
+    [HttpGet("useridbymanager/{managerId}")]
+    public async Task<List<int>> GetEmployeeUserId(int managerId)
+    {
+        return await _service.GetEmployeeUserId(managerId);
+
+    }
+
+
 
 
 

@@ -29,3 +29,14 @@
     background-color: #0ac3f6;
   }
  
+
+  
+.hover-link {
+  text-decoration: none; 
+  /* color: blue;  */
+  cursor: pointer; 
+}
+.hover-link:hover {
+  text-decoration: underline; 
+  color: blue;
+}

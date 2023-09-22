@@ -70,4 +70,19 @@ public class EmployeeRepository : IEmployeeRepository
       throw;
     }
   }
+
+  public async Task<List<int>> GetEmployeeUserId(int managerId)
+  {
+    try{
+    var userids=await _employeeContext.Employees
+             .Where(e => e.ManagerId == managerId)
+             .Select(e => e.UserId).ToListAsync();
+             return userids;
+    }
+    catch(Exception){
+      throw;
+    }
+
+  }
+  
 }

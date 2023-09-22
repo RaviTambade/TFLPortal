@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Mytasklist } from 'src/app/Models/mytasklist';
 import { EmployeeService } from 'src/app/Services/employee.service';
 import { ProjectService } from 'src/app/Services/project.service';
@@ -10,6 +11,7 @@ import { TaskService } from 'src/app/Services/task.service';
   styleUrls: ['./tasklist.component.css'],
 })
 export class TasklistComponent implements OnInit {
+  selectedProjectId: number | null = null;
   taskId: number | null = null;
   selectedTaskId: number | null = null;
   selectedDate:string='';
@@ -20,7 +22,8 @@ export class TasklistComponent implements OnInit {
   constructor(
     public taskService: TaskService,
     public projectService: ProjectService,
-    public employeeService:EmployeeService
+    public employeeService:EmployeeService,
+    private router:Router
   ) {}
   ngOnInit(): void {
     this.taskService.selectedTaskId$.subscribe((taskId) => {
@@ -62,6 +65,15 @@ filterMyTasks(timePeriod:string){
     this.taskService.setSelectedTaskId(this.selectedTaskId)
   }
 
+  selectProject(id: number | null) {
+    if (this.selectedProjectId === id) {
+      this.selectedProjectId = null;
+    } else {
+      this.selectedProjectId = id;
+    }
+    this.router.navigate(["teammember/projectdetails"])
+    this.projectService.setSelectedProjectId(id);
+  }
 
   // showAllTasks() {
   //   this.selectedDate = '';

@@ -1,2 +1,10 @@
-<p>employeelist works!</p>
+
 <button class="btn btn-secondary" (click)="addEmployee()">Add New Employee</button>
+<br>
+<br>
+<div class="card-container">
+    <div *ngFor="let employee of teamMembers" class="card" (click)="onTeamMemberClick(employee.id)">
+        <span class="hover-link">{{employee.name}}</span> 
+    </div>
+  </div>
+  

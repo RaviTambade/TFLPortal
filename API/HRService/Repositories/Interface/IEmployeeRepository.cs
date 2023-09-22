@@ -10,6 +10,7 @@ public interface IEmployeeRepository
     Task<List<int>> GetUserId(int employeeId);
     
     Task<EmployeeInfo> GetEmployeeInfo(int employeeId);
+    Task<List<int>> GetEmployeeUserId(int managerId);
 
     // Task<bool> Insert(Employee emp);
     // Task<bool> Update(Employee emp);

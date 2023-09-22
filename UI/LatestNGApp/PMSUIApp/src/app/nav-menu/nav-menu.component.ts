@@ -11,6 +11,8 @@ import { AuthenticationService } from '../Services/authentication.service';
 export class NavMenuComponent implements OnInit {
   isExpanded = false;
   name: string | undefined
+  roles:string[]=[]
+  role:string=''
   constructor(private router: Router, private userService: UserService,private authService:AuthenticationService) { }
   ngOnInit(): void {
      let contactNumber =  this.authService.getContactNumberFromToken()
@@ -18,7 +20,14 @@ export class NavMenuComponent implements OnInit {
       this.userService.getUserByContact(contactNumber).subscribe((response) => {
         console.log(response);
         this.name = response.name;
-      })    
+            })  
+            let userId = localStorage.getItem('userId');
+            if (userId !== null) {
+              this.userService.getUserRole(Number(userId)).subscribe((res) => {
+                this.roles = res;
+                this.role=this.roles[0]
+              });
+            }  
     }
   }
 

@@ -22,4 +22,9 @@ export class EmployeeService {
     let url="http://localhost:5230/api/Employees/employeeinfo/" +employeeId
     return this.httpClient.get<Employeeinfo>(url)
   }
+
+  getUserIdByManagerId(managerId:number):Observable<number[]>{
+    let url="http://localhost:5230/api/Employees/useridbymanager/" +managerId
+    return this.httpClient.get<number[]>(url)
+  }
 }

@@ -9,10 +9,12 @@ exports.__esModule = true;
 exports.TasklistComponent = void 0;
 var core_1 = require("@angular/core");
 var TasklistComponent = /** @class */ (function () {
-    function TasklistComponent(taskService, projectService, employeeService) {
+    function TasklistComponent(taskService, projectService, employeeService, router) {
         this.taskService = taskService;
         this.projectService = projectService;
         this.employeeService = employeeService;
+        this.router = router;
+        this.selectedProjectId = null;
         this.taskId = null;
         this.selectedTaskId = null;
         this.selectedDate = '';
@@ -62,6 +64,16 @@ var TasklistComponent = /** @class */ (function () {
         }
         this.selectedTaskId = null;
         this.taskService.setSelectedTaskId(this.selectedTaskId);
+    };
+    TasklistComponent.prototype.selectProject = function (id) {
+        if (this.selectedProjectId === id) {
+            this.selectedProjectId = null;
+        }
+        else {
+            this.selectedProjectId = id;
+        }
+        this.router.navigate(["teammember/projectdetails"]);
+        this.projectService.setSelectedProjectId(id);
     };
     TasklistComponent = __decorate([
         core_1.Component({

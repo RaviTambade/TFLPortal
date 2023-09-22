@@ -27,7 +27,7 @@
           <tbody>
             <tr *ngFor="let task of tasks">
               <td>{{ task.title }}</td>
-              <td>{{ task.employeeName }}</td>
+              <td (click)="onTeamMemberClick(task.teamMemberUserId)"><span class="hover-link">{{ task.employeeName }}</span></td>
               <td>{{ task.status }}</td>
               <td>
                 <button class="btn btn-primary" (click)="viewDetails(task.taskId)">Details</button>
