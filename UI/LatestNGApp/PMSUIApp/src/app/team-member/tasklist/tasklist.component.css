@@ -8,6 +8,8 @@
     border: 1px solid #ccc;
     padding: 10px;
     width: 120px; 
+    float: right;
+    margin-top: 30px;
   }
   
   .filter-card h3 {
