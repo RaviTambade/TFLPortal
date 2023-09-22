@@ -202,4 +202,8 @@ setTimeSheetId(id:number |null){
     let url="http://localhost:5221/api/timesheets/details/" +timeSheetId
     return this.httpClient.get<Timesheetdetail>(url)
   }
+  addTimeSheet(timeSheet:Timesheet):Observable<boolean>{
+    let url="http://localhost:5221/api/timesheets/add"
+    return this.httpClient.post<boolean>(url,timeSheet)
+  }
 }

@@ -23,6 +23,13 @@ public class TimeSheetsController : ControllerBase
     [HttpGet("details/{timeSheetId}")]
     public async Task<TimeSheetDetail> GetTimeSheetDetails(int timeSheetId)
     {
-   return await _service.GetTimeSheetDetails(timeSheetId);
+        return await _service.GetTimeSheetDetails(timeSheetId);
+    }
+
+    [HttpPost("add")]
+    public async Task<bool> AddTimeSheet(TimeSheet timeSheet)
+    {
+        return await _service.AddTimeSheet(timeSheet);
+
     }
 }

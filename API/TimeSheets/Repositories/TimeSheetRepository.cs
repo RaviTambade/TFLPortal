@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Transflower.PMSApp.TimeSheets.Entities;
 using Transflower.PMSApp.TimeSheets.Models;
 using Transflower.PMSApp.TimeSheets.Repositories.Interfaces;
 using Transflower.PMSApp.TimeSheets.Repositories.Contexts;
@@ -89,4 +90,30 @@ public class TimeSheetRepository : ITimeSheetRepository
             throw;
         }
     }
+
+    public async Task<bool> AddTimeSheet(TimeSheet timeSheet)
+    {
+        try
+        {
+            bool status=false;
+            await _timeSheetContext.AddAsync(timeSheet);
+            status=await SaveChanges(_timeSheetContext);
+            return status;
+        }
+         catch (Exception)
+        {
+            throw;
+        }
+    }
+
+      private async Task<bool> SaveChanges(TimeSheetContext context)
+    {
+        int rowsAffected = await context.SaveChangesAsync();
+        if (rowsAffected > 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
 }

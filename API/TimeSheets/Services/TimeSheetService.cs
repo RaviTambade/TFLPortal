@@ -2,6 +2,7 @@ using Transflower.PMSApp.TimeSheets.Services.Interfaces;
 using Transflower.PMSApp.TimeSheets.Models;
 using Transflower.PMSApp.TimeSheets.Repositories.Interfaces;
 namespace Transflower.PMSApp.TimeSheets.Services;
+using Transflower.PMSApp.TimeSheets.Entities;
 public class TimeSheetService:ITimeSheetService
 {
     private readonly ITimeSheetRepository _timeSheetRepository;
@@ -12,5 +13,8 @@ public class TimeSheetService:ITimeSheetService
     await _timeSheetRepository.GetMyTimeSheets(employeeId,timePeriod);
     public async Task<TimeSheetDetail> GetTimeSheetDetails(int timeSheetId)=>
     await _timeSheetRepository.GetTimeSheetDetails(timeSheetId);
+
+    public async Task<bool> AddTimeSheet(TimeSheet timeSheet)=>
+    await _timeSheetRepository.AddTimeSheet(timeSheet);
 
 }

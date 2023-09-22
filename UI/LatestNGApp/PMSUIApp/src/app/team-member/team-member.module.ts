@@ -15,7 +15,7 @@ import { FilteredtasksComponent } from './filteredtasks/filteredtasks.component'
 import { AddtimesheetComponent } from './addtimesheet/addtimesheet.component';
 import { TaskdetailsinfoComponent } from './taskdetailsinfo/taskdetailsinfo.component';
 import { AlltaskslistComponent } from './alltaskslist/alltaskslist.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmployeedetailsComponent } from './employeedetails/employeedetails.component';
 
 export const teammemberRoutes:Routes=[
@@ -50,7 +50,8 @@ export const teammemberRoutes:Routes=[
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class TeamMemberModule { }
