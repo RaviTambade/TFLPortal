@@ -4,10 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { Routes } from '@angular/router';
 import { ManagerprojectsComponent } from './managerprojects/managerprojects.component';
 import { ManagerprojectfiltersComponent } from './managerprojectfilters/managerprojectfilters.component';
-import { ManagerprojectdetailsComponent } from './managerprojectdetails/managerprojectdetails.component';
-import { ProjectteammembersComponent } from './projectteammembers/projectteammembers.component';
-import { TasklistComponent } from './tasklist/tasklist.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilteredtasksComponent } from './filteredtasks/filteredtasks.component';
 import { AddprojectComponent } from './addproject/addproject.component';
 import { UpdateprojectComponent } from './updateproject/updateproject.component';
@@ -17,16 +14,18 @@ import { TaskdetailsinfoComponent } from './taskdetailsinfo/taskdetailsinfo.comp
 import { UpdatetaskComponent } from './updatetask/updatetask.component';
 import { EmployeelistComponent } from './employeelist/employeelist.component';
 import { AddemployeeComponent } from './addemployee/addemployee.component';
+import { TeamMemberModule } from '../team-member/team-member.module';
+import { TasksofprojectsComponent } from '../team-member/tasksofprojects/tasksofprojects.component';
 
 
 export const teammanagerRoutes:Routes=[
   {path:'dashboard',component:DashboardComponent},
   {path:'projects',component:ManagerprojectsComponent},
-  {path:'tasklist',component:TasklistComponent},
+  {path:'projecttasks/:projectId',component:TasksofprojectsComponent},
   {path:'addproject', component:AddprojectComponent},
   {path:'updateproject/:projectId',component:UpdateprojectComponent},
-  {path:'addtask',component:AddtaskComponent},
-  {path:'updateproject',component:UpdateprojectComponent},
+  {path:'addtask/:projectId',component:AddtaskComponent},
+  {path:'updateproject/:projectId',component:UpdateprojectComponent},
   {path:'updatetask',component:UpdatetaskComponent},
   {path:'employeelist',component:EmployeelistComponent},
   {path:'addemployee',component:AddemployeeComponent},
@@ -37,9 +36,6 @@ export const teammanagerRoutes:Routes=[
     DashboardComponent,
     ManagerprojectsComponent,
     ManagerprojectfiltersComponent,
-    ManagerprojectdetailsComponent,
-    ProjectteammembersComponent,
-    TasklistComponent,
     FilteredtasksComponent,
     AddprojectComponent,
     UpdateprojectComponent,
@@ -52,7 +48,9 @@ export const teammanagerRoutes:Routes=[
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    TeamMemberModule,
+    ReactiveFormsModule
     
   ]
 })

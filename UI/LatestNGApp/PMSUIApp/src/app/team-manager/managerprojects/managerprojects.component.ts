@@ -16,7 +16,7 @@ export class ManagerprojectsComponent implements OnInit {
   projectList: Projectlist[] = [];
   selectedProjectId: number | null = null;
   filteredProjects: Projectlist[] = [];
-  teamMemberId: number = 0;
+  teamManagerId: number = 0;
   teamManagerUserId: string = '';
   projectTaskCount: Projecttaskcount;
   constructor(
@@ -34,48 +34,34 @@ export class ManagerprojectsComponent implements OnInit {
   ngOnInit() {
     let userId = localStorage.getItem('userId');
     this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
-      this.teamMemberId = res;
+      this.teamManagerId = res;
       this.projectService
-        .getProjectsList(this.teamMemberId)
+        .getManagerProjects(this.teamManagerId)
         .subscribe((res) => {
           this.projectList = res;
           console.log(this.projectList);
           this.filteredProjects = res;
-          let distinctTeamManagerUserIds = this.projectList
-            .map((item) => item.teamManagerUserId)
-            .filter((number, index, array) => array.indexOf(number) === index);
-          console.log(distinctTeamManagerUserIds);
-          let teamManagerUserIdString = distinctTeamManagerUserIds.join(',');
-          this.userService
-            .getUserNamesWithId(teamManagerUserIdString)
-            .subscribe((res) => {
-              let teamManagerName = res;
-              console.log(teamManagerName);
-              this.projectList.forEach((item) => {
-                let matchingItem = teamManagerName.find(
-                  (element) => element.id === item.teamManagerUserId
-                );
-                if (matchingItem != undefined)
-                  item.teamManager = matchingItem.name;
-                console.log(matchingItem);
-              });
               this.projectList.forEach((project) => {
                 this.taskService
                   .GetProjectTaskCount(project.id)
                   .subscribe((res) => {
+
                     this.projectTaskCount = res;
-                    console.log(this.projectTaskCount);
+                    if(this.projectTaskCount ==null ){
+                      project.completion=0;
+                    }
+                    else{
                     let completedTask =
                       this.projectTaskCount.completedTaskCount;
                     console.log(completedTask);
                     let totalTask = this.projectTaskCount.totalTaskCount;
                     console.log(totalTask);
-                    project.completion = (completedTask / totalTask) * 100;
+                    project.completion = totalTask === 0 ? 0 : (completedTask / totalTask) * 100;
+                    }
                   });
               });
             });
         });
-    });
   }
 
   filterProjectsByStatus(status: string) {
@@ -100,9 +86,11 @@ export class ManagerprojectsComponent implements OnInit {
     this.projectService.setSelectedProjectId(id);
   }
 
-  addProject() {
-    this.router.navigate(['teammanager/addproject']);
-  
+addProject() {
+    this.router.navigate(['teammanager/addproject']); 
+}
+addTask(projectId:number){
+  this.router.navigate(['teammanager/addtask',projectId])
 }
 
 }

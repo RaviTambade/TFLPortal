@@ -10,6 +10,7 @@ import { TaskService } from 'src/app/Services/task.service';
   styleUrls: ['./tasklist.component.css'],
 })
 export class TasklistComponent implements OnInit {
+  taskId: number | null = null;
   selectedTaskId: number | null = null;
   selectedDate:string='';
   tasks: Mytasklist[] = [];
@@ -22,19 +23,21 @@ export class TasklistComponent implements OnInit {
     public employeeService:EmployeeService
   ) {}
   ngOnInit(): void {
+    this.taskService.selectedTaskId$.subscribe((taskId) => {
+      this.taskId = taskId;
     let userId = localStorage.getItem('userId');
     this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
       this.teamMemberId = res;
       this.filterMyTasks(this.selectedTimePeriod) 
    
   })
-}
+})
+  }
 filterMyTasks(timePeriod:string){
   this.selectedTimePeriod=timePeriod
   this.taskService.GetMyTaskList(this.teamMemberId,timePeriod).subscribe((res) => {
     this.tasks = res;
     this.filteredTasks=res
-    this.filterTasksByStatus("All")
   });
 }
   selectTask(id: number | null) {
@@ -59,9 +62,7 @@ filterMyTasks(timePeriod:string){
     this.taskService.setSelectedTaskId(this.selectedTaskId)
   }
 
-  getTasksByDate(date: string) {
-    this.filteredTasks = this.taskService.getTasksByDate(date);
-  }
+
   // showAllTasks() {
   //   this.selectedDate = '';
   //   this.taskService.GetMyTaskList(this.teamMemberId).subscribe((res) => {

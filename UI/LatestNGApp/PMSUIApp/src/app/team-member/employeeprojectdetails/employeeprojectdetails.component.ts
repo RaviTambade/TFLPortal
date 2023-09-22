@@ -2,6 +2,7 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from 'src/app/Models/project';
 import { ProjectService } from 'src/app/Services/project.service';
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'app-employeeprojectdetails',
@@ -23,7 +24,8 @@ export class EmployeeprojectdetailsComponent {
   constructor(
     private projectService: ProjectService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private userService:UserService
   ) {}
   ngOnInit(): void {
     this.projectService.selectedProjectId$.subscribe((res) => {
@@ -41,31 +43,37 @@ export class EmployeeprojectdetailsComponent {
         });
       }
       });
-
-  
 }
 
-  // ngOnChanges(changes: SimpleChanges) {
-  //   if (this.projectId !== null) {
-  //     this.projectService
-  //       .getProjectDetails(this.projectId)
-  //       .subscribe((details) => {
-  //         this.projectDetails = details;
-  //         this.selectProject(this.projectDetails.id);
-  //       });
-  //   }
-  // }
-  // selectProject(id: number | null) {
-  //   if (this.projectId === id) {
-  //     this.projectId = null;
-  //   } else {
-  //     this.projectId = id;
-  //   }
-  //   this.projectService.setSelectedProjectId(id);
-  // }
   getAllTasksOfProject(projectId: number) {
+  const isTeamManager=this.userService.isUserHaveRequiredRole("Team Manager")
+  if(isTeamManager){
+      this.router.navigate(['teammanager/projecttasks', projectId], { queryParams: { projectName: this.projectDetails.title } });
+  }else{
+    this.router.navigate(['teammember/projecttasks', projectId], { queryParams: { projectName: this.projectDetails.title } });
+  }
+  }
+  
+  updateProject(projectId: number) {
     if (projectId) {
-      this.router.navigate(['teammember/projecttasks', projectId], { queryParams: { projectName: this.projectDetails.title } });
+      this.router.navigate(['teammanager/updateproject', projectId]);
     }
   }
+
+  canShowButton(){
+    return this.userService.isUserHaveRequiredRole("Team Manager");
+  }
+  onRemoveButton(id: number) {
+    const confirmation = window.confirm('Are you sure you want to delete this project?');
+  
+    if (confirmation) {
+    
+      this.projectService.deleteProject(id).subscribe((res) => {
+        console.log(res);
+        window.location.reload()
+      });
+    } else {
+      console.log('Deletion canceled');
+    }
+}
 }

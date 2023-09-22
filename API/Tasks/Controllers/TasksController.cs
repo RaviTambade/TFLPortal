@@ -49,6 +49,13 @@ public class TasksController : ControllerBase
         return await _service.GetTaskIdWithTitle(employeeId, projectId, status);
     }
 
+    [HttpPost("addtask")]
+    public async Task<bool> AddTask(Transflower.PMSApp.Tasks.Entities.Task task)
+    {
+        return await _service.AddTask(task);
+    }
+
+
 
 
 }

@@ -1,1 +1,33 @@
-<p>updateproject works!</p>
+<div class="container">
+    <h2>Update Project</h2>
+    <form (ngSubmit)="OnSubmit()">
+      <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" class="form-control" id="title" [(ngModel)]="projectdetail.title" name="title" required>
+      </div>
+      <div class="form-group">
+        <label for="startDate">Start Date:</label>
+        <input type="date" class="form-control" id="startDate" [(ngModel)]="projectdetail.startDate" name="startDate" required>
+      </div>
+      <div class="form-group">
+        <label for="endDate">End Date:</label>
+        <input type="date" class="form-control" id="endDate" [(ngModel)]="projectdetail.endDate" name="endDate" required>
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea class="form-control" id="description" [(ngModel)]="projectdetail.description" name="description" rows="4" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="status">Status:</label>
+        <select class="form-control" id="status" [(ngModel)]="projectdetail.status" name="status" required>
+          <option value="InProgress">Pending</option>
+          <option value="InProgress">In Progress</option>
+          <option value="Completed">Completed</option>
+        </select>
+      </div>
+      <br>
+      <br>
+      <button type="submit" class="btn btn-primary">Update Project</button>
+    </form>
+  </div>
+  

@@ -1,69 +1,41 @@
-<div class="container">
-  <h2>Add New Task</h2>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="scrollable-list">
-<form>
-    <!-- 2 column grid layout with text inputs for the first and last names -->
-    <div class="row mb-4">
-      <div class="col">
-        <div class="form-outline">
-          <input type="text" id="form6Example1" class="form-control" />
-          <label class="form-label" for="form6Example1">Title</label>
-        </div>
+<div class="container mt-5">
+  <h2>Add Task</h2>
+  <form [formGroup]="addTaskForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" formControlName="title" placeholder="Enter Title" required>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="date">Date</label>
+        <input type="date" class="form-control" id="date" formControlName="date" required>
       </div>
-      <div class="col">
-        <div class="form-outline">
-          <input type="number" id="form6Example2" class="form-control" />
-          <label class="form-label" for="form6Example2">Project Id</label>
-        </div>
+      <div class="form-group col-md-6">
+        <label for="status">Status</label>
+        <select class="form-control" id="status" formControlName="status" required>
+          <!-- <option value="">Select Status</option> -->
+          <option value="Pending">Pending</option>
+        </select>
       </div>
     </div>
-  
-    <!-- Text input -->
-    <div class="form-outline mb-4">
-      <input type="text" id="form6Example3" class="form-control" />
-      <label class="form-label" for="form6Example3">Status</label>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="fromTime">From Time</label>
+        <input type="datetime-local" class="form-control" id="fromTime" formControlName="fromTime" required>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="toTime">To Time</label>
+        <input type="datetime-local" class="form-control" id="toTime" formControlName="toTime" required>
+      </div>
     </div>
-  
-    <!-- Text input -->
-    <div class="form-outline mb-4">
-      <input type="date" id="form6Example4" class="form-control" />
-      <label class="form-label" for="form6Example4">Date</label>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea class="form-control" id="description" formControlName="description" rows="4" placeholder="Enter Description" required></textarea>
     </div>
-  
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-      <input type="time" id="form6Example5" class="form-control" />
-      <label class="form-label" for="form6Example5">From Time</label>
+    <div class="form-group">
+      <label for="projectId" hidden>Project ID</label>
+      <input type="number" class="form-control" id="projectId" formControlName="projectId" [(ngModel)]="projectId" placeholder="Enter Project ID" required hidden>
     </div>
-  
-    <!-- Number input -->
-    <div class="form-outline mb-4">
-      <input type="time" id="form6Example6" class="form-control" />
-      <label class="form-label" for="form6Example6">To Time</label>
-    </div>
-  
-    <!-- Message input -->
-    <div class="form-outline mb-4">
-      <textarea class="form-control" id="form6Example7" rows="4"></textarea>
-      <label class="form-label" for="form6Example7">Description</label>
-    </div>
-  
-    <!-- Checkbox
-    <div class="form-check d-flex justify-content-center mb-4">
-      <input class="form-check-input me-2" type="checkbox" value="" id="form6Example8" checked />
-      <label class="form-check-label" for="form6Example8"> Create an account? </label>
-    </div> -->
-  
-    <!-- Submit button -->
-    <button type="submit" class="btn btn-primary btn-block mb-4">Insert Task</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!addTaskForm.valid">Submit</button>
   </form>
-
-</div>
-</div>
-<div class="col-md-6">
-  <h1> Task Inserted Successfully </h1>
-</div>
-</div>
 </div>

@@ -180,3 +180,4 @@ SELECT * FROM assignedtasks;
     FROM tasks INNER JOIN assignedtasks
     ON tasks.id = assignedtasks.taskid
     WHERE tasks.projectid=1 AND assignedtasks.teammemberid=7 AND tasks.status= "pending";
+    SELECT * FROM tasks WHERE projectid=4;

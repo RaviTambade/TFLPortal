@@ -135,11 +135,11 @@ public class TaskRepository : ITaskRepository
         }
     }
 
-    public async Task<List<AllTaskList>> GetAllTaskList(int employeeId,string timePeriod)
+    public async Task<List<AllTaskList>> GetAllTaskList(int employeeId, string timePeriod)
     {
         try
         {
-             DateTime currentDate = DateTime.Now.Date;
+            DateTime currentDate = DateTime.Now.Date;
             DateTime startDate = currentDate;
             DateTime endDate = currentDate;
 
@@ -184,41 +184,68 @@ public class TaskRepository : ITaskRepository
                                          ProjectName = project.Title,
                                          TaskTitle = task.Title,
                                          TeamMemberId = assignedTask.TeamMemberId,
-                                         TaskId= task.Id,
+                                         TaskId = task.Id,
                                          TeamMemberUserId = employee2.UserId
                                      }).ToListAsync();
             return allTaskList;
         }
-        catch(Exception)
+        catch (Exception)
         {
             throw;
         }
     }
 
 
-    public async Task<List<TaskIdWithTitle>> GetTaskIdWithTitle(int employeeId,int projectId,string status)
+    public async Task<List<TaskIdWithTitle>> GetTaskIdWithTitle(int employeeId, int projectId, string status)
     {
         try
         {
-            var taskIdWithTitle=await(
+            var taskIdWithTitle = await (
                                 from task in _taskContext.Tasks
                                 join assignedTask in _taskContext.AssignedTasks
                                 on task.Id equals assignedTask.TaskId
                                 where task.ProjectId == projectId &&
-                                assignedTask.TeamMemberId ==employeeId &&
-                                task.Status ==status
+                                assignedTask.TeamMemberId == employeeId &&
+                                task.Status == status
                                 select new TaskIdWithTitle()
                                 {
-                                    TaskId=task.Id,
-                                    Title=task.Title
+                                    TaskId = task.Id,
+                                    Title = task.Title
                                 }).ToListAsync();
             return taskIdWithTitle;
         }
-        catch(Exception)
+        catch (Exception)
         {
             throw;
         }
     }
+
+    public async Task<bool> AddTask(Transflower.PMSApp.Tasks.Entities.Task task)
+    {
+        try
+        {
+            bool status = false;
+            await _taskContext.AddAsync(task);
+            status = await SaveChangesAsync(_taskContext);
+            status = true;
+            return status;
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+
+    private async Task<bool> SaveChangesAsync(TaskContext taskContext)
+    {
+        int rowsAffected = await taskContext.SaveChangesAsync();
+        if (rowsAffected > 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
 
 
 

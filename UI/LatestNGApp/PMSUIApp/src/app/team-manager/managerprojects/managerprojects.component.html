@@ -11,8 +11,6 @@
                         <tr>
                             <th>Title</th>
                             <th>Start Date</th>
-                            <!-- <th>Status</th> -->
-                            <th>Team Manager</th>
                             <th>Completion</th>
                             <th>Action</th>
                         </tr>
@@ -21,11 +19,10 @@
                         <tr *ngFor="let project of filteredProjects">
                             <td (click)="selectProject(project.id)"><span class="hover-link">{{ project.title }}</span></td>
                             <td>{{ project.startDate | date }}</td>
-                            <!-- <td>{{ project.status }}</td> -->
-                            <td>{{project.teamManager}}</td>
                             <td>{{project.completion}}%</td>
                             <td>
-                                <button class="btn btn-primary" (click)="selectProject(project.id)">Details</button>
+                                <button class="btn btn-primary" (click)="selectProject(project.id)">Details</button>&nbsp;
+                                <button class="btn btn-secondary" (click)="addTask(project.id)">Add Task</button>
                             </td>
                         </tr>
                     </tbody>
@@ -35,7 +32,7 @@
   
         <div class="col-md-6">
             <div *ngIf="selectedProjectId !== null">
-                <app-managerprojectdetails [projectId]="selectedProjectId"></app-managerprojectdetails>
+                <app-employeeprojectdetails [projectId]="selectedProjectId"></app-employeeprojectdetails>
             </div>
         </div>
     </div>

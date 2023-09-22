@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Project } from '../Models/project';
 import { Projecttask } from '../Models/projecttask';
 import { Projectname } from '../Models/projectname';
+import { Addproject } from '../Models/addproject';
 
 @Injectable({
   providedIn: 'root'
@@ -62,6 +63,22 @@ export class ProjectService {
     let url="http://localhost:5248/api/projects/employee/" +employeeId
     return this.httpClient.get<Projectname[]>(url)
   }
-  
 
+  getManagerProjects(managerId:number):Observable<Projectlist[]>{
+    let url="http://localhost:5248/api/projects/manager/" + managerId
+    return this.httpClient.get<Projectlist[]>(url)
+  }
+
+  addProject(project:Addproject):Observable<boolean>{
+    let url="http://localhost:5248/api/projects/addproject"
+    return this.httpClient.post<boolean>(url,project) 
+  }
+  updateProject(project:Project):Observable<boolean>{
+    let url="http://localhost:5248/api/projects"
+    return this.httpClient.put<boolean>(url,project)
+  }
+  deleteProject(projectId:number):Observable<boolean>{
+    let url="http://localhost:5248/api/projects/" +projectId
+    return this.httpClient.delete<boolean>(url)
+  }
 }

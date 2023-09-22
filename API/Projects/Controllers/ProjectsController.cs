@@ -37,7 +37,7 @@ public class ProjectsController : ControllerBase
         return await _service.Update(project);
     }
 
-    [HttpDelete]
+    [HttpDelete("{projectId}")]
     public async Task<bool> Delete(int projectId)
     {
         return await _service.Delete(projectId);
@@ -67,4 +67,11 @@ public class ProjectsController : ControllerBase
     {
         return await _service.GetProjectNames(employeeId);
     }
+
+    [HttpGet("manager/{managerId}")]
+      public async Task<List<ProjectList>> GetManagerProjects(int managerId)
+    {
+        return await _service.GetManagerProjects(managerId);
+    }
+
 }

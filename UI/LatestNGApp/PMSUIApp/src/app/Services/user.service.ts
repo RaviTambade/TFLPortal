@@ -9,7 +9,10 @@ import { Userinfo } from '../Models/userinfo';
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private httpClient: HttpClient) {}
+  private roles: string[] = [];
+  constructor(private httpClient: HttpClient) {
+    this.loadUserRole();
+  }
 
   getUserByContact(contactNumber: string): Observable<User> {
     let url = 'http://localhost:5102/api/users/username/' + contactNumber;
@@ -28,5 +31,19 @@ export class UserService {
   getUser(id: number): Observable<Userinfo> {
     let url = 'http://localhost:5102/api/users/' + id;
     return this.httpClient.get<Userinfo>(url);
+  }
+  
+  private loadUserRole() {
+    const userId = localStorage.getItem('userId');
+    if (userId !== null) {
+      this.getUserRole(Number(userId)).subscribe((res) => {
+        this.roles = res;
+      });
+    }
+  }
+
+  isUserHaveRequiredRole(role: string): boolean {
+    const userRole = this.roles[0];
+    return userRole === role;
   }
 }

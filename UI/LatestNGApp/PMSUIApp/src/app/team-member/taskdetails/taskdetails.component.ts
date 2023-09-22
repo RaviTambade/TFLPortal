@@ -9,7 +9,7 @@ import { TaskService } from 'src/app/Services/task.service';
   templateUrl: './taskdetails.component.html',
   styleUrls: ['./taskdetails.component.css']
 })
-export class TaskdetailsComponent implements OnInit {
+export class TaskdetailsComponent  {
   selectedProjectId:number |null=null
   selectedTaskId:number |null=null
   @Input() taskId :number |null =null
@@ -21,9 +21,9 @@ taskDetail:Taskdetail={
   projectId: 0
 }
 constructor(private taskService:TaskService,private router:Router,private projectService:ProjectService){}
-// ngOnChanges(changes: SimpleChanges)
-ngOnInit():void{
-  // if (changes['taskId'] && this.taskId !== null) {
+ngOnChanges(changes: SimpleChanges){
+// ngOnInit():void{
+  if (changes['taskId'] && this.taskId !== null) {
     if(this.taskId != null){
     this.taskService.getTaskDetails(this.taskId).subscribe(details => {
       console.log(this.taskId)
@@ -31,6 +31,7 @@ ngOnInit():void{
       console.log(this.taskDetail)
     });
   // }
+}
 }
 }
 selectTask(id: number | null) {

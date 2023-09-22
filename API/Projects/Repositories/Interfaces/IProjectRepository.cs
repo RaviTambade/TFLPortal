@@ -11,5 +11,6 @@ public interface IProjectRepository{
     Task<bool> Delete(int projectId);
     Task<List<ProjectTask>> GetTasksOfProject(int projectId,string timePeriod);
     Task<List<ProjectName>> GetProjectNames(int employeeId);
+    Task<List<ProjectList>> GetManagerProjects(int managerId);
 
 }

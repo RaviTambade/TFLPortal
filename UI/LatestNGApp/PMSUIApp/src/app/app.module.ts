@@ -14,7 +14,7 @@ import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { directorRoutes } from './director/director.module';
 import { hrmanagerRoutes } from './hrmanager/hrmanager.module';
 import { teammanagerRoutes } from './team-manager/team-manager.module';
-import { teammemberRoutes } from './team-member/team-member.module';
+import { TeamMemberModule, teammemberRoutes } from './team-member/team-member.module';
 import { MenubarComponent } from './menubar/menubar.component';
 import { CommonModule } from '@angular/common';
 
@@ -35,6 +35,7 @@ import { CommonModule } from '@angular/common';
     AuthenticationModule,
     ReactiveFormsModule,
     CommonModule,
+    TeamMemberModule,
     
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },

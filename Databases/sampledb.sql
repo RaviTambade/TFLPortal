@@ -55,6 +55,8 @@ INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VA
 INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('Agro','2021-02-02','2022-02-02','Agri Produst Supplying App',6,'In-Progress');
 INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('Inventory','2021-02-02','2024-02-02','Store Management App',4,'Pending');
 INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('OMTB','2021-10-10','2025-02-02','Ticket booking Management App',4,'Pending');
+INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('HMApp','2021-10-10','2025-02-02','Hospital Management App',4,'Pending');
+
 
 INSERT INTO projectmembers(projectid,teammemberid)VALUES(1,7);
 INSERT INTO projectmembers(projectid,teammemberid)VALUES(1,8);
