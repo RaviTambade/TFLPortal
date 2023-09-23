@@ -30,9 +30,9 @@
  
   .add-button {
     position: absolute;
-    top: 180px; 
+    top: 225px; 
     right: 550px;
-    margin-top: 15px;
+    /* margin-top: 15px; */
   }
 
   #table{
