@@ -44,34 +44,42 @@ public class ProjectsController : ControllerBase
     }
 
     [HttpGet("list/{teamMemberId}")]
-    public async Task<List<ProjectList>> GetProjectsList(int teamMemberId){
+    public async Task<List<ProjectList>> GetProjectsList(int teamMemberId)
+    {
         return await _service.GetProjectsList(teamMemberId);
     }
 
     [HttpGet("teammembers/{projectId}")]
-      public async Task<List<int>> GetProjectMembers(int projectId)
+    public async Task<List<int>> GetProjectMembers(int projectId)
     {
         return await _service.GetProjectMembers(projectId);
     }
 
 
     [HttpGet("tasks/{projectId}/{timePeriod}")]
-      public async Task<List<ProjectTask>> GetTasksOfProject(int projectId,string timePeriod)
+    public async Task<List<ProjectTask>> GetTasksOfProject(int projectId, string timePeriod)
     {
-        return await _service.GetTasksOfProject(projectId,timePeriod);
+        return await _service.GetTasksOfProject(projectId, timePeriod);
     }
-   
-    
+
+
     [HttpGet("employee/{employeeId}")]
-     public async Task<List<ProjectName>> GetProjectNames(int employeeId)
+    public async Task<List<ProjectName>> GetProjectNames(int employeeId)
     {
         return await _service.GetProjectNames(employeeId);
     }
 
     [HttpGet("manager/{managerId}")]
-      public async Task<List<ProjectList>> GetManagerProjects(int managerId)
+    public async Task<List<ProjectList>> GetManagerProjects(int managerId)
     {
         return await _service.GetManagerProjects(managerId);
     }
+
+    [HttpGet("unassignedtask/{projectId}/{timePeriod}")]
+    public async Task<List<UnAssignedTask>> GetUnAssignedTasks(int projectId, string timePeriod)
+    {
+        return await _service.GetUnAssignedTasks(projectId, timePeriod);
+    }
+
 
 }

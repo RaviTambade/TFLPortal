@@ -25,6 +25,7 @@ var taskdetailsinfo_component_1 = require("./taskdetailsinfo/taskdetailsinfo.com
 var alltaskslist_component_1 = require("./alltaskslist/alltaskslist.component");
 var forms_1 = require("@angular/forms");
 var employeedetails_component_1 = require("./employeedetails/employeedetails.component");
+var unassignedtasks_component_1 = require("./unassignedtasks/unassignedtasks.component");
 exports.teammemberRoutes = [
     { path: 'dashboard', component: dashboard_component_1.DashboardComponent },
     { path: 'projects', component: employeeprojects_component_1.EmployeeprojectsComponent },
@@ -57,6 +58,7 @@ var TeamMemberModule = /** @class */ (function () {
                 taskdetailsinfo_component_1.TaskdetailsinfoComponent,
                 alltaskslist_component_1.AlltaskslistComponent,
                 employeedetails_component_1.EmployeedetailsComponent,
+                unassignedtasks_component_1.UnassignedtasksComponent,
             ],
             imports: [
                 common_1.CommonModule,
@@ -65,7 +67,8 @@ var TeamMemberModule = /** @class */ (function () {
             ],
             exports: [
                 projectteammembers_component_1.ProjectteammembersComponent,
-                employeeprojectdetails_component_1.EmployeeprojectdetailsComponent
+                employeeprojectdetails_component_1.EmployeeprojectdetailsComponent,
+                unassignedtasks_component_1.UnassignedtasksComponent,
             ]
         })
     ], TeamMemberModule);

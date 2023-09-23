@@ -258,5 +258,64 @@ public class ProjectRepository : IProjectRepository
         }
     }
 
+    public async Task<List<UnAssignedTask>> GetUnAssignedTasks(int projectId, string timePeriod)
+    {
+        try
+        {
+            DateTime currentDate = DateTime.Now.Date;
+            DateTime startDate = currentDate;
+            DateTime endDate = currentDate;
 
+            switch (timePeriod)
+            {
+                case "today":
+                    startDate = currentDate;
+                    endDate = currentDate;
+                    break;
+                case "yesterday":
+                    startDate = currentDate.AddDays(-1);
+                    endDate = currentDate.AddDays(-1);
+                    break;
+                case "lastweek":
+                    startDate = currentDate.AddDays(-7);
+                    endDate = currentDate;
+                    break;
+                case "lastmonth":
+                    startDate = currentDate.AddMonths(-1);
+                    endDate = currentDate;
+                    break;
+                case "lastyear":
+                    startDate = currentDate.AddYears(-1);
+                    endDate = currentDate;
+                    break;
+            }
+            var unAssignedTask = await (
+                               from project in _projectContext.Projects
+                               join task in _projectContext.Tasks
+                               on project.Id equals task.ProjectId
+                               join assignedTask in _projectContext.AssignedTasks
+                               on task.Id equals assignedTask.TaskId
+                               into isAssignedTask
+                               from assignedTask in isAssignedTask.DefaultIfEmpty()
+                               where assignedTask == null && project.Id == projectId
+                               && task.Date >= startDate && task.Date <= endDate
+                               select new UnAssignedTask()
+                               {
+                                   TaskId = task.Id,
+                                   ProjectId = project.Id,
+                                   Title = task.Title,
+                                   ProjectName = project.Title,
+                                   Status = task.Status
+                               }).ToListAsync();
+            return unAssignedTask;
+        }
+
+        catch (Exception)
+        {
+            throw;
+        }
     }
+
+
+
+}

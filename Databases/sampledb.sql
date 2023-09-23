@@ -185,7 +185,12 @@ INSERT INTO tasks (title, projectid, description, date, status, fromtime, totime
 ('Implement Feedback Action Planning', 5, 'Create tools for action planning based on feedback analysis.', '2021-05-28', 'Pending', '2021-05-28 10:00:00', '2021-05-28 12:00:00'),
 ('Design Feedback Loop', 5, 'Design a feedback loop for continuous improvement based on user feedback.', '2021-05-29', 'Pending', '2021-05-29 11:00:00', '2021-05-29 13:00:00'),
 ('Test Feedback-Driven Development', 5, 'Test the integration of user feedback into product development.', '2021-05-30', 'Pending', '2021-05-30 14:00:00', '2021-05-30 16:00:00'),
-('Implement Knowledge Base', 5, 'Create a knowledge base for product documentation and help resources.', '2021-05-31', 'Pending', '2021-05-31 15:00:00', '2021-05-31 17:00:00');
+('Implement Knowledge Base', 5, 'Create a knowledge base for product documentation and help resources.', '2021-05-31', 'Pending', '2021-05-31 15:00:00', '2021-05-31 17:00:00'),
+('Design Feedback Export', 1, 'Design tools for exporting feedback data for further analysis.', '2023-09-23', 'Pending', '2023-09-23 15:00:00', '2023-09-26 17:00:00'),
+('Test Feedback Analytics', 1, 'Test the analytics and insights generated from feedback data.', '2023-09-23', 'Pending', '2021-09-23 09:00:00', '2023-09-27 11:00:00'),
+('Implement Feedback Action Planning', 1, 'Create tools for action planning based on feedback analysis.', '2023-09-22', 'Pending', '2023-09-28 10:00:00', '2023-09-28 12:00:00'),
+('Design Feedback Loop', 1, 'Design a feedback loop for continuous improvement based on user feedback.', '2023-09-17', 'Pending', '2023-09-29 11:00:00', '2023-09-29 13:00:00'),
+('Test Feedback-Driven Development', 1, 'Test the integration of user feedback into product development.', '2023-08-29', 'Pending', '2023-08-29 14:00:00', '2023-09-30 16:00:00');
 INSERT INTO assignedtasks (taskid, teammemberid)
 VALUES
     (1, 7), (2, 7), (3, 7), (4, 7), (5, 8),

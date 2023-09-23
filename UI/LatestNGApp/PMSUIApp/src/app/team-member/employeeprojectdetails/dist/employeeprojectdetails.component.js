@@ -56,6 +56,9 @@ var EmployeeprojectdetailsComponent = /** @class */ (function () {
             this.router.navigate(['teammanager/updateproject', projectId]);
         }
     };
+    EmployeeprojectdetailsComponent.prototype.unAssignedTask = function (projectId) {
+        this.router.navigate(['teammanager/unassignedtasks', projectId], { queryParams: { projectName: this.projectDetails.title } });
+    };
     EmployeeprojectdetailsComponent.prototype.canShowButton = function () {
         return this.userService.isUserHaveRequiredRole("Team Manager");
     };

@@ -8,6 +8,5 @@ public interface ITaskRepository{
     Task<MoreTaskDetail> GetMoreTaskDetail(int taskId);
     Task<List<AllTaskList>> GetAllTaskList(int employeeId,string timePeriod);
     Task<List<TaskIdWithTitle>> GetTaskIdWithTitle(int employeeId,int projectId,string status);
-
     Task<bool> AddTask(Transflower.PMSApp.Tasks.Entities.Task task );
 }

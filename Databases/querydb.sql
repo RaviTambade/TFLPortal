@@ -188,3 +188,5 @@ SELECT * FROM assignedtasks;
     SELECT * FROM employees ;
     SELECT * FROM tasks;
     SELECT * FROM assignedtasks;
+    SELECT * FROM timesheets;
+    SELECT * FROM projects;

@@ -24,6 +24,7 @@ var employeelist_component_1 = require("./employeelist/employeelist.component");
 var addemployee_component_1 = require("./addemployee/addemployee.component");
 var team_member_module_1 = require("../team-member/team-member.module");
 var tasksofprojects_component_1 = require("../team-member/tasksofprojects/tasksofprojects.component");
+var unassignedtasks_component_1 = require("../team-member/unassignedtasks/unassignedtasks.component");
 exports.teammanagerRoutes = [
     { path: 'dashboard', component: dashboard_component_1.DashboardComponent },
     { path: 'projects', component: managerprojects_component_1.ManagerprojectsComponent },
@@ -35,6 +36,7 @@ exports.teammanagerRoutes = [
     { path: 'updatetask', component: updatetask_component_1.UpdatetaskComponent },
     { path: 'employeelist', component: employeelist_component_1.EmployeelistComponent },
     { path: 'addemployee', component: addemployee_component_1.AddemployeeComponent },
+    { path: 'unassignedtasks/:projectId', component: unassignedtasks_component_1.UnassignedtasksComponent },
 ];
 var TeamManagerModule = /** @class */ (function () {
     function TeamManagerModule() {

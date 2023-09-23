@@ -16,6 +16,7 @@ import { EmployeelistComponent } from './employeelist/employeelist.component';
 import { AddemployeeComponent } from './addemployee/addemployee.component';
 import { TeamMemberModule } from '../team-member/team-member.module';
 import { TasksofprojectsComponent } from '../team-member/tasksofprojects/tasksofprojects.component';
+import { UnassignedtasksComponent } from '../team-member/unassignedtasks/unassignedtasks.component';
 
 
 export const teammanagerRoutes:Routes=[
@@ -29,6 +30,7 @@ export const teammanagerRoutes:Routes=[
   {path:'updatetask',component:UpdatetaskComponent},
   {path:'employeelist',component:EmployeelistComponent},
   {path:'addemployee',component:AddemployeeComponent},
+  {path:'unassignedtasks/:projectId',component:UnassignedtasksComponent},
 ]
 
 @NgModule({

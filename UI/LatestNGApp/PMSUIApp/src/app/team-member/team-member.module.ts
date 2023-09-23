@@ -18,6 +18,7 @@ import { AlltaskslistComponent } from './alltaskslist/alltaskslist.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmployeedetailsComponent } from './employeedetails/employeedetails.component';
 import { Project } from '../Models/project';
+import { UnassignedtasksComponent } from './unassignedtasks/unassignedtasks.component';
 
 export const teammemberRoutes:Routes=[
   {path:'dashboard',component:DashboardComponent},
@@ -48,6 +49,7 @@ export const teammemberRoutes:Routes=[
     TaskdetailsinfoComponent,
     AlltaskslistComponent,
     EmployeedetailsComponent,
+    UnassignedtasksComponent,
   ],
   imports: [
     CommonModule,
@@ -56,7 +58,8 @@ export const teammemberRoutes:Routes=[
   ],
   exports:[
     ProjectteammembersComponent,
-    EmployeeprojectdetailsComponent
+    EmployeeprojectdetailsComponent,
+    UnassignedtasksComponent,
   ]
 })
 export class TeamMemberModule { }

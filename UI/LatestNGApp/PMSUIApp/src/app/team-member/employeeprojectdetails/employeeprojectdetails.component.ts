@@ -54,10 +54,13 @@ export class EmployeeprojectdetailsComponent {
   }
   }
   
-  updateProject(projectId: number) {
+updateProject(projectId: number) {
     if (projectId) {
       this.router.navigate(['teammanager/updateproject', projectId]);
     }
+  }
+  unAssignedTask(projectId:number){
+    this.router.navigate(['teammanager/unassignedtasks',projectId], { queryParams: { projectName: this.projectDetails.title } });
   }
 
   canShowButton(){
