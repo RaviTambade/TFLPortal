@@ -46,6 +46,11 @@
                         routerLinkActive="router-link-active">
                         <i class="fas fa-calendar" style="color: #ffc107;"></i>&nbsp;Employees</a>
                     </li>
+                    <li class="nav-item" *ngIf="isUserHaveRequiredRole(Role.TeamManager)">
+                      <a class="nav-link text-dark" [routerLink]="['teammanager/timesheetlist']"
+                        routerLinkActive="router-link-active">
+                        <i class="fas fa-calendar" style="color: #ffc107;"></i>&nbsp;Timesheets</a>
+                    </li>
                   </ul>
                 </div>
               </div>
