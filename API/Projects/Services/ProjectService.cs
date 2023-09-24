@@ -21,11 +21,12 @@ public class ProjectService : IProjectService
     {
         return await _repository.GetById(projectId);
     }
-    public async Task<List<ProjectList>> GetProjectsList(int teamMemberId){
+    public async Task<List<ProjectList>> GetProjectsList(int teamMemberId)
+    {
         return await _repository.GetProjectsList(teamMemberId);
     }
 
-    public  async Task<bool> Insert(Project project)
+    public async Task<bool> Insert(Project project)
     {
         return await _repository.Insert(project);
     }
@@ -34,7 +35,7 @@ public class ProjectService : IProjectService
     {
         return await _repository.Update(project);
     }
-        public async Task<bool> Delete(int projectId)
+    public async Task<bool> Delete(int projectId)
     {
         return await _repository.Delete(projectId);
     }
@@ -44,9 +45,9 @@ public class ProjectService : IProjectService
         return await _repository.GetProjectMembers(projectId);
     }
 
-    public async Task<List<ProjectTask>> GetTasksOfProject(int projectId,string timePeriod)
+    public async Task<List<ProjectTask>> GetTasksOfProject(int projectId, string timePeriod)
     {
-        return await _repository.GetTasksOfProject(projectId,timePeriod);
+        return await _repository.GetTasksOfProject(projectId, timePeriod);
     }
 
     public async Task<List<ProjectName>> GetProjectNames(int employeeId)
@@ -60,13 +61,19 @@ public class ProjectService : IProjectService
     }
     public async Task<List<UnAssignedTask>> GetUnAssignedTasks(int projectId, string timePeriod)
     {
-        return await _repository.GetUnAssignedTasks(projectId,timePeriod);
+        return await _repository.GetUnAssignedTasks(projectId, timePeriod);
     }
 
     public async Task<List<AssignedTaskByManager>> GetAssignedTasksByManager(int managerId, string timePeriod)
     {
-        return await _repository.GetAssignedTasksByManager(managerId,timePeriod);
+        return await _repository.GetAssignedTasksByManager(managerId, timePeriod);
     }
+
+    public async Task<List<UnAssignedTaskByManager>> GetUnAssignedTasksByManager(int managerId, string timePeriod)
+    {
+        return await _repository.GetUnAssignedTasksByManager(managerId, timePeriod);
+    }
+
 
 
 

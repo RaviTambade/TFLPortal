@@ -1,1 +1,47 @@
-<p>unassignedtasksbymanager works!</p>
+<div class="container">
+    <div class="row">
+      <div class="col-md-2">
+        <br>
+        <div class="filter-card">
+          <div class="time-period-options">
+            <span class="time-period-option" [class.active]="selectedTimePeriod === 'today'" (click)="getFilteredUnAssignedTasks('today')">Today</span>
+            <span class="time-period-option" [class.active]="selectedTimePeriod === 'yesterday'" (click)="getFilteredUnAssignedTasks('yesterday')">Yesterday</span>
+            <span class="time-period-option" [class.active]="selectedTimePeriod === 'lastweek'" (click)="getFilteredUnAssignedTasks('lastweek')">Last Week</span>
+            <span class="time-period-option" [class.active]="selectedTimePeriod === 'lastmonth'" (click)="getFilteredUnAssignedTasks('lastmonth')">Last Month</span>
+            <span class="time-period-option" [class.active]="selectedTimePeriod === 'lastyear'" (click)="getFilteredUnAssignedTasks('lastyear')">Last Year</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h2>AssignedTasks</h2>
+        <div class="scrollable-list">
+        <table class="table table-secondary">
+          <thead class="table-active">
+            <tr>
+              <th>Date</th>
+              <th>Task</th>
+              <th>Project</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let task of unAssignedTasks">
+                <td>{{ task.taskDate |date }}</td>
+              <td>{{ task.taskTitle }}</td>
+              <td>{{task.projectTitle}}</td>
+              <td>
+                <button class="btn btn-primary" (click)="viewDetails(task.taskId)">Details</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div *ngIf="selectedTaskId !== null">
+          <app-taskdetails [taskId]="selectedTaskId"></app-taskdetails>
+        </div>
+      </div>
+    </div>
+  </div>
+  

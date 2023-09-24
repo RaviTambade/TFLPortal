@@ -376,6 +376,61 @@ public class ProjectRepository : IProjectRepository
             throw;
         }
     }
+ public async Task<List<UnAssignedTaskByManager>> GetUnAssignedTasksByManager(int managerId,string timePeriod)
+ {
+    try{
+           DateTime currentDate = DateTime.Now.Date;
+            DateTime startDate = currentDate;
+            DateTime endDate = currentDate;
+
+            switch (timePeriod)
+            {
+                case "today":
+                    startDate = currentDate;
+                    endDate = currentDate;
+                    break;
+                case "yesterday":
+                    startDate = currentDate.AddDays(-1);
+                    endDate = currentDate.AddDays(-1);
+                    break;
+                case "lastweek":
+                    startDate = currentDate.AddDays(-7);
+                    endDate = currentDate;
+                    break;
+                case "lastmonth":
+                    startDate = currentDate.AddMonths(-1);
+                    endDate = currentDate;
+                    break;
+                case "lastyear":
+                    startDate = currentDate.AddYears(-1);
+                    endDate = currentDate;
+                    break;
+            }
+            var unassignedTaskByManager = await (
+                from project in _projectContext.Projects
+                join task in _projectContext.Tasks
+                on project.Id equals task.ProjectId
+                join assignedTask in _projectContext.AssignedTasks
+                on task.Id equals assignedTask.TaskId
+                into assignedTasks
+                from assignedTask in assignedTasks.DefaultIfEmpty()
+                where assignedTask == null && project.TeamManagerId ==managerId
+                      && task.Date >= startDate && task.Date <= endDate
+                select new UnAssignedTaskByManager()
+                {
+                    TaskId=task.Id,
+                    ProjectId=project.Id,
+                    TaskTitle=task.Title,
+                    ProjectTitle=project.Title,
+                    TaskDate=task.Date
+                }).ToListAsync();
+                return unassignedTaskByManager;
+    }
+    catch(Exception){
+        throw;
+    }
+ }
+   
 
 
 

@@ -8,6 +8,7 @@ import { Projectname } from '../Models/projectname';
 import { Addproject } from '../Models/addproject';
 import { Unassignedtask } from '../Models/unassignedtask';
 import { Assignedtaskbymanager } from '../Models/assignedtaskbymanager';
+import { Unassignedtaskbymanager } from '../Models/unassignedtaskbymanager';
 
 @Injectable({
   providedIn: 'root'
@@ -72,5 +73,9 @@ export class ProjectService {
   assignedTasksByManager(managerId:number,timePeriod:string):Observable<Assignedtaskbymanager[]>{
     let url="http://localhost:5248/api/projects/assignedtasksbymanager/" + managerId + "/" +timePeriod
     return this.httpClient.get<Assignedtaskbymanager[]>(url)
+  }
+  unAssignedTasksByManager(managerId:number,timePeriod:string):Observable<Unassignedtaskbymanager[]>{
+    let url="http://localhost:5248/api/projects/unassignedtasksbymanager/" + managerId + "/" +timePeriod
+    return this.httpClient.get<Unassignedtaskbymanager[]>(url)
   }
 }

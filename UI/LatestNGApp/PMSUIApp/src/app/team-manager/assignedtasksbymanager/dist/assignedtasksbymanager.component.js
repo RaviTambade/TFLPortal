@@ -9,9 +9,10 @@ exports.__esModule = true;
 exports.AssignedtasksbymanagerComponent = void 0;
 var core_1 = require("@angular/core");
 var AssignedtasksbymanagerComponent = /** @class */ (function () {
-    function AssignedtasksbymanagerComponent(employeeService, projectService) {
+    function AssignedtasksbymanagerComponent(employeeService, projectService, userService) {
         this.employeeService = employeeService;
         this.projectService = projectService;
+        this.userService = userService;
         this.assignedTasks = [];
         this.selectedTimePeriod = "today";
         this.projectId = 0;
@@ -32,6 +33,23 @@ var AssignedtasksbymanagerComponent = /** @class */ (function () {
         this.selectedTimePeriod = timePeriod;
         this.projectService.assignedTasksByManager(this.teamManagerId, timePeriod).subscribe(function (res) {
             _this.assignedTasks = res;
+            var distinctTeamMemberUserIds = _this.assignedTasks
+                .map(function (item) { return item.teamMemberUserId; })
+                .filter(function (number, index, array) { return array.indexOf(number) === index; });
+            console.log(distinctTeamMemberUserIds);
+            var teamMemberUserIdString = distinctTeamMemberUserIds.join(',');
+            _this.userService
+                .getUserNamesWithId(teamMemberUserIdString)
+                .subscribe(function (res) {
+                var teamMemberName = res;
+                console.log(teamMemberName);
+                _this.assignedTasks.forEach(function (item) {
+                    var matchingItem = teamMemberName.find(function (element) { return element.id === item.teamMemberUserId; });
+                    if (matchingItem != undefined)
+                        item.teamMember = matchingItem.name;
+                    console.log(matchingItem);
+                });
+            });
         });
     };
     AssignedtasksbymanagerComponent.prototype.viewDetails = function (taskId) {
