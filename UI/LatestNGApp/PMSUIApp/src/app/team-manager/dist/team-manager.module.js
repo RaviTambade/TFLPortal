@@ -25,6 +25,9 @@ var addemployee_component_1 = require("./addemployee/addemployee.component");
 var team_member_module_1 = require("../team-member/team-member.module");
 var tasksofprojects_component_1 = require("../team-member/tasksofprojects/tasksofprojects.component");
 var unassignedtasks_component_1 = require("../team-member/unassignedtasks/unassignedtasks.component");
+var assignedtasksbymanager_component_1 = require("./assignedtasksbymanager/assignedtasksbymanager.component");
+var tasksbymanager_component_1 = require("./tasksbymanager/tasksbymanager.component");
+var unassignedtasksbymanager_component_1 = require("./unassignedtasksbymanager/unassignedtasksbymanager.component");
 exports.teammanagerRoutes = [
     { path: 'dashboard', component: dashboard_component_1.DashboardComponent },
     { path: 'projects', component: managerprojects_component_1.ManagerprojectsComponent },
@@ -36,6 +39,7 @@ exports.teammanagerRoutes = [
     { path: 'updatetask', component: updatetask_component_1.UpdatetaskComponent },
     { path: 'employeelist', component: employeelist_component_1.EmployeelistComponent },
     { path: 'addemployee', component: addemployee_component_1.AddemployeeComponent },
+    { path: 'tasksbymanager', component: tasksbymanager_component_1.TasksbymanagerComponent },
     { path: 'unassignedtasks/:projectId', component: unassignedtasks_component_1.UnassignedtasksComponent },
 ];
 var TeamManagerModule = /** @class */ (function () {
@@ -55,7 +59,10 @@ var TeamManagerModule = /** @class */ (function () {
                 taskdetailsinfo_component_1.TaskdetailsinfoComponent,
                 updatetask_component_1.UpdatetaskComponent,
                 employeelist_component_1.EmployeelistComponent,
-                addemployee_component_1.AddemployeeComponent
+                addemployee_component_1.AddemployeeComponent,
+                assignedtasksbymanager_component_1.AssignedtasksbymanagerComponent,
+                tasksbymanager_component_1.TasksbymanagerComponent,
+                unassignedtasksbymanager_component_1.UnassignedtasksbymanagerComponent
             ],
             imports: [
                 common_1.CommonModule,

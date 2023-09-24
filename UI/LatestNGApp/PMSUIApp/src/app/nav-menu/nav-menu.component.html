@@ -17,9 +17,9 @@
           <li class="nav-item">
             <a class="nav-link text-dark">Fetch data</a>
           </li> -->
-          <li class="nav-item" *ngIf="isLoggedIn()">
+          <li class="nav-item" *ngIf="isLoggedIn()" style="font-size: 12px;">
             <a class="nav-link text-dark">
-              &nbsp;&nbsp;Welcome{{role}},<br>{{name}}
+              &nbsp;&nbsp;&nbsp;Welcome,<br>{{role}}<br>{{name}}
             </a>
           </li>
           <li class="nav-item" *ngIf="isLoggedIn()">

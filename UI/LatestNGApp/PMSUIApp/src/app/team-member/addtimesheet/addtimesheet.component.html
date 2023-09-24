@@ -61,10 +61,8 @@
             <option *ngFor="let option of taskStatusOptions" [value]="option">{{ option }}</option>
           </select>
         </div>
-
-
-
-        <button type="submit" [disabled]="!timeSheetForm.valid">Submit</button>
+<br>
+        <button type="submit" [disabled]="!timeSheetForm.valid" class="btn btn-primary">Submit</button>
       </form>
     </div>
   </div>

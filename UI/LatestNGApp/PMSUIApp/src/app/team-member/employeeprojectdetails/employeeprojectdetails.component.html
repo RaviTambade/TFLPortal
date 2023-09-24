@@ -8,7 +8,7 @@
       <p class="card-text"><strong>Description:</strong> {{ projectDetails.description }}</p>
       <app-projectteammembers></app-projectteammembers>
       <br>
-      <button class="btn btn-primary" (click)="getAllTasksOfProject(projectDetails.id)">Tasks List</button>&nbsp;
+      <button class="btn btn-primary" (click)="getAllTasksOfProject(projectDetails.id)">AssignedTasks List</button>&nbsp;
       <button *ngIf="canShowButton()" class="btn btn-secondary"  (click)="unAssignedTask(projectDetails.id)">UnAssignedTasks</button>&nbsp;
       <button *ngIf="canShowButton()" class="btn btn-warning"  (click)="updateProject(projectDetails.id)">Edit</button>&nbsp;
       <button *ngIf="canShowButton()" (click)="onRemoveButton(projectDetails.id)" class="btn btn-danger">Delete</button>
