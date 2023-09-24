@@ -7,11 +7,11 @@
       </div>
       <div class="form-group">
         <label for="startDate">Start Date:</label>
-        <input type="date" class="form-control" id="startDate" [(ngModel)]="projectdetail.startDate" name="startDate" required>
+        <input type="text" class="form-control" id="startDate" [(ngModel)]="projectdetail.startDate" name="startDate" required>
       </div>
       <div class="form-group">
         <label for="endDate">End Date:</label>
-        <input type="date" class="form-control" id="endDate" [(ngModel)]="projectdetail.endDate" name="endDate" required>
+        <input type="text" class="form-control" id="endDate" [(ngModel)]="projectdetail.endDate" name="endDate" required>
       </div>
       <div class="form-group">
         <label for="description">Description:</label>
@@ -19,7 +19,7 @@
       </div>
       <div class="form-group">
         <label for="status">Status:</label>
-        <select class="form-control" id="status" [(ngModel)]="projectdetail.status" name="status" required>
+        <select  class="form-control" id="status" [(ngModel)]="projectdetail.status" name="status" required>
           <option value="InProgress">Pending</option>
           <option value="InProgress">In Progress</option>
           <option value="Completed">Completed</option>
