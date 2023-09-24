@@ -81,5 +81,11 @@ public class ProjectsController : ControllerBase
         return await _service.GetUnAssignedTasks(projectId, timePeriod);
     }
 
+    [HttpGet("assignedtasksbymanager/{managerId}/{timePeriod}")]
+      public async Task<List<AssignedTaskByManager>> GetAssignedTasksByManager(int managerId, string timePeriod)
+    {
+        return await _service.GetAssignedTasksByManager(managerId,timePeriod);
+    }
+
 
 }

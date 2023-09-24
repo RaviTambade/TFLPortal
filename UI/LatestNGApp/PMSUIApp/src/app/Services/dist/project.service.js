@@ -58,6 +58,10 @@ var ProjectService = /** @class */ (function () {
         var url = "http://localhost:5248/api/projects/unassignedtask/" + projectId + "/" + timePeriod;
         return this.httpClient.get(url);
     };
+    ProjectService.prototype.assignedTasksByManager = function (managerId, timePeriod) {
+        var url = "http://localhost:5248/api/projects/assignedtasksbymanager/" + managerId + "/" + timePeriod;
+        return this.httpClient.get(url);
+    };
     ProjectService = __decorate([
         core_1.Injectable({
             providedIn: 'root'

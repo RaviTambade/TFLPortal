@@ -63,6 +63,12 @@ public class ProjectService : IProjectService
         return await _repository.GetUnAssignedTasks(projectId,timePeriod);
     }
 
+    public async Task<List<AssignedTaskByManager>> GetAssignedTasksByManager(int managerId, string timePeriod)
+    {
+        return await _repository.GetAssignedTasksByManager(managerId,timePeriod);
+    }
+
+
 
 
 

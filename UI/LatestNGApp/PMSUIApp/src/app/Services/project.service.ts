@@ -7,6 +7,7 @@ import { Projecttask } from '../Models/projecttask';
 import { Projectname } from '../Models/projectname';
 import { Addproject } from '../Models/addproject';
 import { Unassignedtask } from '../Models/unassignedtask';
+import { Assignedtaskbymanager } from '../Models/assignedtaskbymanager';
 
 @Injectable({
   providedIn: 'root'
@@ -62,9 +63,13 @@ export class ProjectService {
   deleteProject(projectId:number):Observable<boolean>{
     let url="http://localhost:5248/api/projects/" +projectId
     return this.httpClient.delete<boolean>(url)
-  }
+  }     
   unAssignedTask(projectId:number,timePeriod:string):Observable<Unassignedtask[]>{
     let url="http://localhost:5248/api/projects/unassignedtask/" + projectId +  "/" + timePeriod
     return this.httpClient.get<Unassignedtask[]>(url)
+  }
+  assignedTasksByManager(managerId:number,timePeriod:string):Observable<Assignedtaskbymanager[]>{
+    let url="http://localhost:5248/api/projects/assignedtasksbymanager/" + managerId + "/" +timePeriod
+    return this.httpClient.get<Assignedtaskbymanager[]>(url)
   }
 }

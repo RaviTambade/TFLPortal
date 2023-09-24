@@ -190,3 +190,10 @@ SELECT * FROM assignedtasks;
     SELECT * FROM assignedtasks;
     SELECT * FROM timesheets;
     SELECT * FROM projects;
+
+
+SELECT p.title AS project_title, t.title AS task_title
+FROM projects p
+INNER JOIN tasks t ON p.id = t.projectid
+LEFT JOIN assignedtasks at ON t.id = at.taskid
+WHERE p.teammanagerid = 4 AND at.taskid IS NULL;
