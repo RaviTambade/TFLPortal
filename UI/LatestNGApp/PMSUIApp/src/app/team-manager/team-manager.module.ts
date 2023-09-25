@@ -23,6 +23,7 @@ import { TimesheetdetailsComponent } from './timesheetdetails/timesheetdetails.c
 import { AssignedtasksbymanagerComponent } from './assignedtasksbymanager/assignedtasksbymanager.component';
 import { TasksbymanagerComponent } from './tasksbymanager/tasksbymanager.component';
 import { UnassignedtasksbymanagerComponent } from './unassignedtasksbymanager/unassignedtasksbymanager.component';
+import { AssigntheunassignedtaskComponent } from './assigntheunassignedtask/assigntheunassignedtask.component';
 
 
 export const teammanagerRoutes:Routes=[
@@ -61,7 +62,8 @@ export const teammanagerRoutes:Routes=[
     TimesheetdetailsComponent,
     AssignedtasksbymanagerComponent,
     TasksbymanagerComponent,
-    UnassignedtasksbymanagerComponent
+    UnassignedtasksbymanagerComponent,
+    AssigntheunassignedtaskComponent
   ],
   imports: [
     CommonModule,

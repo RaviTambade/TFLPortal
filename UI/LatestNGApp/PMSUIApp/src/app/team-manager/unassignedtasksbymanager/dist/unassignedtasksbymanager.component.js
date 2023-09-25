@@ -9,8 +9,9 @@ exports.__esModule = true;
 exports.UnassignedtasksbymanagerComponent = void 0;
 var core_1 = require("@angular/core");
 var UnassignedtasksbymanagerComponent = /** @class */ (function () {
-    function UnassignedtasksbymanagerComponent(employeeService, projectService) {
+    function UnassignedtasksbymanagerComponent(employeeService, taskService, projectService) {
         this.employeeService = employeeService;
+        this.taskService = taskService;
         this.projectService = projectService;
         this.unAssignedTasks = [];
         this.selectedTimePeriod = "today";
@@ -34,12 +35,15 @@ var UnassignedtasksbymanagerComponent = /** @class */ (function () {
             _this.unAssignedTasks = res;
         });
     };
-    UnassignedtasksbymanagerComponent.prototype.viewDetails = function (taskId) {
-        if (this.selectedTaskId === taskId) {
-            this.selectedTaskId = null;
-        }
-        else {
-            this.selectedTaskId = taskId;
+    UnassignedtasksbymanagerComponent.prototype.selectTask = function (id) {
+        {
+            if (this.selectedTaskId === id) {
+                this.selectedTaskId = null;
+            }
+            else {
+                this.selectedTaskId = id;
+            }
+            this.taskService.setSelectedTaskId(id);
         }
     };
     UnassignedtasksbymanagerComponent = __decorate([

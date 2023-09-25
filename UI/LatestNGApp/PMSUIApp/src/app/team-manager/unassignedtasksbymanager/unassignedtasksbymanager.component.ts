@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Unassignedtaskbymanager } from 'src/app/Models/unassignedtaskbymanager';
 import { EmployeeService } from 'src/app/Services/employee.service';
 import { ProjectService } from 'src/app/Services/project.service';
+import { TaskService } from 'src/app/Services/task.service';
 
 @Component({
   selector: 'app-unassignedtasksbymanager',
@@ -15,7 +16,7 @@ export class UnassignedtasksbymanagerComponent {
   teamManagerId:number=0
   projectName:string =''
   selectedTaskId:number| null=null
-  constructor(private employeeService:EmployeeService,private projectService:ProjectService){}
+  constructor(private employeeService:EmployeeService,private taskService:TaskService,private projectService:ProjectService){}
   ngOnInit(): void {
     let userId = localStorage.getItem('userId');
     this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
@@ -29,11 +30,15 @@ getFilteredUnAssignedTasks(timePeriod:string){
     this.unAssignedTasks=res
   })
 }
-viewDetails(taskId:number){
-  if (this.selectedTaskId === taskId) {
-    this.selectedTaskId = null;
-  } else {
-    this.selectedTaskId = taskId;
-  }
+
+selectTask(id: number | null) {
+  {
+    if (this.selectedTaskId === id) {
+      this.selectedTaskId = null;
+    } else {
+      this.selectedTaskId = id;
+    }
+      this.taskService.setSelectedTaskId(id);
+    }
 }
 }
