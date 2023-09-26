@@ -25,5 +25,19 @@
         </div>
       </div>
     </div>
+  <form [formGroup]="assignTaskForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+    <div class="form-group">
+      <label for="taskId" hidden>TaskId</label>
+      <input type="number" class="form-control" id="taskId" formControlName="taskId" [(ngModel)]="taskId" required hidden>
+    </div>
+    <div class="form-group">
+      <label for="teamMemberId">Select Employee</label>
+      <select class="form-control" id="teamMemberId" formControlName="teamMemberId">
+        <option *ngFor="let employee of employeeIdWithUserIds" [value]="employee.teamMemberId">{{ employee.employeeName }}</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!assignTaskForm.valid">Submit</button>
+
+  </form>
   </div>
   

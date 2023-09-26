@@ -201,3 +201,4 @@ WHERE p.teammanagerid = 4 AND at.taskid IS NULL;
 SELECT * FROM employees;
 SELECT * FROM projects;
 SELECT * FROM projectmembers;
+SELECT * FROM assignedtasks;

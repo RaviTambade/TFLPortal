@@ -443,7 +443,7 @@ public class ProjectRepository : IProjectRepository
                                 where projectMember.ProjectId == projectId
                                 select new EmployeeIdWithUserId()
                                 {
-                                    EmployeeId = projectMember.TeamMemberId,
+                                    TeamMemberId = projectMember.TeamMemberId,
                                     UserId = employee.UserId
                                 }).ToListAsync();
             return employeesWithUserId;
