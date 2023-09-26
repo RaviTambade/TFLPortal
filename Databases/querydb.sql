@@ -197,3 +197,7 @@ FROM projects p
 INNER JOIN tasks t ON p.id = t.projectid
 LEFT JOIN assignedtasks at ON t.id = at.taskid
 WHERE p.teammanagerid = 4 AND at.taskid IS NULL;
+
+SELECT * FROM employees;
+SELECT * FROM projects;
+SELECT * FROM projectmembers;

@@ -9,8 +9,6 @@ import { FilteredtasksComponent } from './filteredtasks/filteredtasks.component'
 import { AddprojectComponent } from './addproject/addproject.component';
 import { UpdateprojectComponent } from './updateproject/updateproject.component';
 import { AddtaskComponent } from './addtask/addtask.component';
-import { TaskdetailsComponent } from './taskdetails/taskdetails.component';
-import { TaskdetailsinfoComponent } from './taskdetailsinfo/taskdetailsinfo.component';
 import { UpdatetaskComponent } from './updatetask/updatetask.component';
 import { EmployeelistComponent } from './employeelist/employeelist.component';
 import { AddemployeeComponent } from './addemployee/addemployee.component';
@@ -41,6 +39,7 @@ export const teammanagerRoutes:Routes=[
   {path:'unassignedtasks/:projectId',component:UnassignedtasksComponent},
   {path:'timesheetlist', component:TimesheetlistComponent},
   {path:'timesheetdetails',component: TimesheetdetailsComponent},
+  {path:'assigntask/:taskId',component:AssigntheunassignedtaskComponent}
 
 ]
 
@@ -53,8 +52,6 @@ export const teammanagerRoutes:Routes=[
     AddprojectComponent,
     UpdateprojectComponent,
     AddtaskComponent,
-    TaskdetailsComponent,
-    TaskdetailsinfoComponent,
     UpdatetaskComponent,
     EmployeelistComponent,
     AddemployeeComponent,
@@ -70,7 +67,9 @@ export const teammanagerRoutes:Routes=[
     FormsModule,
     TeamMemberModule,
     ReactiveFormsModule
-    
+  ],
+  exports:[
+    AssigntheunassignedtaskComponent
   ]
 })
 export class TeamManagerModule { }

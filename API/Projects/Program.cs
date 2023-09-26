@@ -20,6 +20,8 @@ builder.Services.AddDbContext<ProjectContext>(options=>
         );
 builder.Services.AddTransient<IProjectRepository,ProjectRepository>();
 builder.Services.AddTransient<IProjectService,ProjectService>();
+builder.Services.AddTransient<IProjectMemberRepository,ProjectMemberRepository>();
+builder.Services.AddTransient<IProjectMemberService,ProjectMemberService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

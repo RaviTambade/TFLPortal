@@ -55,6 +55,12 @@ public class TasksController : ControllerBase
         return await _service.AddTask(task);
     }
 
+    [HttpGet("details/{taskId}")]
+    public async Task<Transflower.PMSApp.Tasks.Entities.Task> GetDetailsById(int taskId)
+    {
+      return await _service.GetDetailsById(taskId);
+    }
+
 
 
 

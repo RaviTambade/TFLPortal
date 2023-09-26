@@ -66,6 +66,14 @@ var ProjectService = /** @class */ (function () {
         var url = "http://localhost:5248/api/projects/unassignedtasksbymanager/" + managerId + "/" + timePeriod;
         return this.httpClient.get(url);
     };
+    ProjectService.prototype.getEmployeeIdWithUserId = function (projectId) {
+        var url = "http://localhost:5248/api/projects/employeeidwithuserid/" + projectId;
+        return this.httpClient.get(url);
+    };
+    ProjectService.prototype.getProjectTitle = function (projectId) {
+        var url = "http://localhost:5248/api/projects/title/" + projectId;
+        return this.httpClient.get(url, { responseType: 'text' });
+    };
     ProjectService = __decorate([
         core_1.Injectable({
             providedIn: 'root'

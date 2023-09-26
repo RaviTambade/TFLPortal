@@ -9,16 +9,18 @@ exports.__esModule = true;
 exports.UnassignedtasksbymanagerComponent = void 0;
 var core_1 = require("@angular/core");
 var UnassignedtasksbymanagerComponent = /** @class */ (function () {
-    function UnassignedtasksbymanagerComponent(employeeService, taskService, projectService) {
+    function UnassignedtasksbymanagerComponent(employeeService, taskService, projectService, router) {
         this.employeeService = employeeService;
         this.taskService = taskService;
         this.projectService = projectService;
+        this.router = router;
         this.unAssignedTasks = [];
         this.selectedTimePeriod = "today";
         this.projectId = 0;
         this.teamManagerId = 0;
         this.projectName = '';
         this.selectedTaskId = null;
+        this.selectedTaskId2 = null;
     }
     UnassignedtasksbymanagerComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -45,6 +47,20 @@ var UnassignedtasksbymanagerComponent = /** @class */ (function () {
             }
             this.taskService.setSelectedTaskId(id);
         }
+    };
+    UnassignedtasksbymanagerComponent.prototype.selectTask2 = function (id) {
+        {
+            if (this.selectedTaskId2 === id) {
+                this.selectedTaskId2 = null;
+            }
+            else {
+                this.selectedTaskId2 = id;
+            }
+            this.taskService.setSelectedTaskId(id);
+        }
+    };
+    UnassignedtasksbymanagerComponent.prototype.assignTask = function (taskId) {
+        this.router.navigate(['teammanager/assigntask/', taskId]);
     };
     UnassignedtasksbymanagerComponent = __decorate([
         core_1.Component({

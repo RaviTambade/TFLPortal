@@ -17,17 +17,18 @@ var filteredtasks_component_1 = require("./filteredtasks/filteredtasks.component
 var addproject_component_1 = require("./addproject/addproject.component");
 var updateproject_component_1 = require("./updateproject/updateproject.component");
 var addtask_component_1 = require("./addtask/addtask.component");
-var taskdetails_component_1 = require("./taskdetails/taskdetails.component");
-var taskdetailsinfo_component_1 = require("./taskdetailsinfo/taskdetailsinfo.component");
 var updatetask_component_1 = require("./updatetask/updatetask.component");
 var employeelist_component_1 = require("./employeelist/employeelist.component");
 var addemployee_component_1 = require("./addemployee/addemployee.component");
 var team_member_module_1 = require("../team-member/team-member.module");
 var tasksofprojects_component_1 = require("../team-member/tasksofprojects/tasksofprojects.component");
 var unassignedtasks_component_1 = require("../team-member/unassignedtasks/unassignedtasks.component");
+var timesheetlist_component_1 = require("./timesheetlist/timesheetlist.component");
+var timesheetdetails_component_1 = require("./timesheetdetails/timesheetdetails.component");
 var assignedtasksbymanager_component_1 = require("./assignedtasksbymanager/assignedtasksbymanager.component");
 var tasksbymanager_component_1 = require("./tasksbymanager/tasksbymanager.component");
 var unassignedtasksbymanager_component_1 = require("./unassignedtasksbymanager/unassignedtasksbymanager.component");
+var assigntheunassignedtask_component_1 = require("./assigntheunassignedtask/assigntheunassignedtask.component");
 exports.teammanagerRoutes = [
     { path: 'dashboard', component: dashboard_component_1.DashboardComponent },
     { path: 'projects', component: managerprojects_component_1.ManagerprojectsComponent },
@@ -41,6 +42,9 @@ exports.teammanagerRoutes = [
     { path: 'addemployee', component: addemployee_component_1.AddemployeeComponent },
     { path: 'tasksbymanager', component: tasksbymanager_component_1.TasksbymanagerComponent },
     { path: 'unassignedtasks/:projectId', component: unassignedtasks_component_1.UnassignedtasksComponent },
+    { path: 'timesheetlist', component: timesheetlist_component_1.TimesheetlistComponent },
+    { path: 'timesheetdetails', component: timesheetdetails_component_1.TimesheetdetailsComponent },
+    { path: 'assigntask/:taskId', component: assigntheunassignedtask_component_1.AssigntheunassignedtaskComponent }
 ];
 var TeamManagerModule = /** @class */ (function () {
     function TeamManagerModule() {
@@ -55,20 +59,24 @@ var TeamManagerModule = /** @class */ (function () {
                 addproject_component_1.AddprojectComponent,
                 updateproject_component_1.UpdateprojectComponent,
                 addtask_component_1.AddtaskComponent,
-                taskdetails_component_1.TaskdetailsComponent,
-                taskdetailsinfo_component_1.TaskdetailsinfoComponent,
                 updatetask_component_1.UpdatetaskComponent,
                 employeelist_component_1.EmployeelistComponent,
                 addemployee_component_1.AddemployeeComponent,
+                timesheetlist_component_1.TimesheetlistComponent,
+                timesheetdetails_component_1.TimesheetdetailsComponent,
                 assignedtasksbymanager_component_1.AssignedtasksbymanagerComponent,
                 tasksbymanager_component_1.TasksbymanagerComponent,
-                unassignedtasksbymanager_component_1.UnassignedtasksbymanagerComponent
+                unassignedtasksbymanager_component_1.UnassignedtasksbymanagerComponent,
+                assigntheunassignedtask_component_1.AssigntheunassignedtaskComponent
             ],
             imports: [
                 common_1.CommonModule,
                 forms_1.FormsModule,
                 team_member_module_1.TeamMemberModule,
                 forms_1.ReactiveFormsModule
+            ],
+            exports: [
+                assigntheunassignedtask_component_1.AssigntheunassignedtaskComponent
             ]
         })
     ], TeamManagerModule);

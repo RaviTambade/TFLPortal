@@ -60,6 +60,8 @@ export const teammemberRoutes:Routes=[
     ProjectteammembersComponent,
     EmployeeprojectdetailsComponent,
     UnassignedtasksComponent,
+    TaskdetailsComponent,
+    TaskdetailsinfoComponent
   ]
 })
 export class TeamMemberModule { }

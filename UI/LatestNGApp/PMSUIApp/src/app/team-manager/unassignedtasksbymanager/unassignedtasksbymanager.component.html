@@ -12,7 +12,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-7">
         <h2>UnAssignedTasks</h2>
         <div class="scrollable-list">
         <table class="table table-secondary">
@@ -30,14 +30,15 @@
               <td>{{ task.taskTitle }}</td>
               <td>{{task.projectTitle}}</td>
               <td>
-                <button class="btn btn-primary" (click)="selectTask(task.taskId)">Details</button>
+                <button class="btn btn-primary" (click)="selectTask(task.taskId)">Details</button>&nbsp;
+                <button class="btn btn-secondary" (click)="assignTask(task.taskId)">AssignTask</button>
               </td>
             </tr>
           </tbody>
         </table>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
         <div *ngIf="selectedTaskId !== null">
           <app-taskdetails [taskId]="selectedTaskId"></app-taskdetails>
         </div>

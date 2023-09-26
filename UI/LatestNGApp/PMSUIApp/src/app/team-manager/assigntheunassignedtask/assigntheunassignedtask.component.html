@@ -1,1 +1,29 @@
-<p>assigntheunassignedtask works!</p>
+<div class="container" *ngIf="task !== undefined">
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">{{ task.title }}</h4>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <p><strong>Project:</strong> {{ projectTitle }}</p>
+                <p><strong>Status:</strong> {{ task.status }}</p>
+                <p><strong>Date:</strong> {{ task.date }}</p>
+              </div>
+              <div class="col-md-6">
+                <p><strong>From Time:</strong> {{ task.fromTime }}</p>
+                <p><strong>To Time:</strong> {{ task.toTime }}</p>
+              </div>
+            </div>
+            <p><strong>Description:</strong></p>
+            <p>{{ task.description }}</p>
+          </div>
+          <div class="card-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

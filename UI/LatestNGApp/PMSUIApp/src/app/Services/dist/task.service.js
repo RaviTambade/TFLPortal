@@ -47,6 +47,14 @@ var TaskService = /** @class */ (function () {
         var url = "http://localhost:5283/api/tasks/addtask";
         return this.httpClient.post(url, task);
     };
+    TaskService.prototype.getTaskDetail = function (taskId) {
+        var url = "http://localhost:5283/api/tasks/details/" + taskId;
+        return this.httpClient.get(url);
+    };
+    TaskService.prototype.addAssignedTask = function (assignedTask) {
+        var url = "http://localhost:5283/api/AssignedTasks";
+        return this.httpClient.post(url, assignedTask);
+    };
     TaskService = __decorate([
         core_1.Injectable({
             providedIn: 'root'

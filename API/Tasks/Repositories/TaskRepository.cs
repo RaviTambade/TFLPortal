@@ -247,6 +247,21 @@ public class TaskRepository : ITaskRepository
     }
 
 
+    public async Task<Transflower.PMSApp.Tasks.Entities.Task> GetDetailsById(int taskId)
+    {
+        try
+        {
+            var taskDetail=await _taskContext.Tasks.FindAsync(taskId);
+            return taskDetail;
+        }
+        catch(Exception)
+        {
+            throw;
+        }
+    }
+
+
+
 
 
 

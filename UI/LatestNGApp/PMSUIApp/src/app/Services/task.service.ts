@@ -9,6 +9,8 @@ import { Moretaskdetail } from '../Models/moretaskdetail';
 import { Alltasklist } from '../Models/alltasklist';
 import { Taskidwithtitle } from '../Models/taskidwithtitle';
 import { Addtask } from '../Models/addtask';
+import { Task } from '../Models/task';
+import { Assignedtask } from '../Models/assignedtask';
 
 @Injectable({
   providedIn: 'root',
@@ -52,6 +54,14 @@ export class TaskService {
   addTask(task:Addtask):Observable<boolean>{
     let url="http://localhost:5283/api/tasks/addtask"
     return this.httpClient.post<boolean>(url,task)
+  }
+  getTaskDetail(taskId:number):Observable<Task>{
+    let url="http://localhost:5283/api/tasks/details/" +taskId
+    return this.httpClient.get<Task>(url)
+  }
+  addAssignedTask(assignedTask:Assignedtask):Observable<boolean>{
+    let url="http://localhost:5283/api/AssignedTasks"
+    return this.httpClient.post<boolean>(url,assignedTask)
   }
 
 

@@ -69,6 +69,8 @@ var TeamMemberModule = /** @class */ (function () {
                 projectteammembers_component_1.ProjectteammembersComponent,
                 employeeprojectdetails_component_1.EmployeeprojectdetailsComponent,
                 unassignedtasks_component_1.UnassignedtasksComponent,
+                taskdetails_component_1.TaskdetailsComponent,
+                taskdetailsinfo_component_1.TaskdetailsinfoComponent
             ]
         })
     ], TeamMemberModule);

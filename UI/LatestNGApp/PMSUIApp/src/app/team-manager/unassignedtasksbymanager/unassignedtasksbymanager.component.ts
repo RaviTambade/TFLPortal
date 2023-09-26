@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Unassignedtaskbymanager } from 'src/app/Models/unassignedtaskbymanager';
 import { EmployeeService } from 'src/app/Services/employee.service';
 import { ProjectService } from 'src/app/Services/project.service';
@@ -16,7 +17,8 @@ export class UnassignedtasksbymanagerComponent {
   teamManagerId:number=0
   projectName:string =''
   selectedTaskId:number| null=null
-  constructor(private employeeService:EmployeeService,private taskService:TaskService,private projectService:ProjectService){}
+  selectedTaskId2:number| null=null
+  constructor(private employeeService:EmployeeService,private taskService:TaskService,private projectService:ProjectService,private router:Router){}
   ngOnInit(): void {
     let userId = localStorage.getItem('userId');
     this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
@@ -41,4 +43,21 @@ selectTask(id: number | null) {
       this.taskService.setSelectedTaskId(id);
     }
 }
+
+selectTask2(id: number | null) {
+  {
+    if (this.selectedTaskId2 === id) {
+      this.selectedTaskId2 = null;
+    } else {
+      this.selectedTaskId2 = id;
+    }
+      this.taskService.setSelectedTaskId(id);
+    }
+}
+
+assignTask(taskId:number){
+  this.router.navigate(['teammanager/assigntask/',taskId]);
+}
+
+
 }

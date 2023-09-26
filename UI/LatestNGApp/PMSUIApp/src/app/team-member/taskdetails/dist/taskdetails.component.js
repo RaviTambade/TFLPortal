@@ -29,6 +29,7 @@ var TaskdetailsComponent = /** @class */ (function () {
         // ngOnInit():void{
         if (changes['taskId'] && this.taskId !== null) {
             if (this.taskId != null) {
+                console.log(this.taskId);
                 this.taskService.getTaskDetails(this.taskId).subscribe(function (details) {
                     console.log(_this.taskId);
                     _this.taskDetail = details;
