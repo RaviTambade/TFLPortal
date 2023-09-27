@@ -1,9 +1,11 @@
 
 .filter-card {
-    border: 1px solid #ccc;
-    padding: 10px;
-    width: 120px; 
-  }
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 120px; 
+  float: right;
+   margin-top: 30px; 
+}
   
   .filter-card h3 {
     margin-bottom: 10px;
@@ -21,4 +23,5 @@
   .time-period-option.active {
     background-color: #0ac3f6;
   }
+ 
  
