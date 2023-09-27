@@ -5,4 +5,5 @@ public class UnAssignedTaskByManager{
     public string? TaskTitle{get;set;}
     public string? ProjectTitle{get;set;}
     public DateTime? TaskDate{get;set;}
+    
 }

@@ -192,13 +192,14 @@ public class ProjectRepository : IProjectRepository
                              join task in _projectContext.Tasks
                              on assignedTask.TaskId equals task.Id
                              where task.ProjectId == projectId &&
-                               task.Date >= startDate && task.Date <= endDate
+                               assignedTask.AssignedOn.Date >= startDate.Date && assignedTask.AssignedOn.Date <= endDate.Date orderby assignedTask.AssignedOn descending
                              select new ProjectTask()
                              {
                                  TaskId = task.Id,
                                  Title = task.Title,
                                  TeamMemberUserId = employee.UserId,
-                                 Status = task.Status
+                                 Status = task.Status,
+                                 AssignedTaskDate=assignedTask.AssignedOn
                              }).ToListAsync();
             return projectTasks;
         }
@@ -298,7 +299,7 @@ public class ProjectRepository : IProjectRepository
                                into isAssignedTask
                                from assignedTask in isAssignedTask.DefaultIfEmpty()
                                where assignedTask == null && project.Id == projectId
-                               && task.Date >= startDate && task.Date <= endDate
+                               && task.Date.Date >= startDate.Date && task.Date.Date <= endDate.Date orderby task.Date descending
                                select new UnAssignedTask()
                                {
                                    TaskId = task.Id,
@@ -358,7 +359,8 @@ public class ProjectRepository : IProjectRepository
                                       join employee2 in _projectContext.Employees
                                       on assignedTask.TeamMemberId equals employee2.Id
                                       where project.TeamManagerId == managerId
-                                       && task.Date >= startDate && task.Date <= endDate
+ && assignedTask.AssignedOn.Date >= startDate.Date
+        && assignedTask.AssignedOn.Date <= endDate.Date     orderby assignedTask.AssignedOn descending
                                       select new AssignedTaskByManager()
                                       {
                                           TaskId = task.Id,
@@ -366,6 +368,7 @@ public class ProjectRepository : IProjectRepository
                                           TaskTitle = task.Title,
                                           ProjectTitle = project.Title,
                                           TaskDate = task.Date,
+                                          AssignedTaskDate = assignedTask.AssignedOn,
                                           TeamMemberId = assignedTask.TeamMemberId,
                                           TeamMemberUserId = employee2.UserId
                                       }).ToListAsync();

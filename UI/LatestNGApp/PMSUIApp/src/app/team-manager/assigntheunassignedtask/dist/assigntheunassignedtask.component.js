@@ -81,6 +81,9 @@ var AssigntheunassignedtaskComponent = /** @class */ (function () {
                     alert('task assigned Sucessfully');
                     _this.assignTaskForm.reset();
                 }
+                else {
+                    alert('data is inconsistent');
+                }
             });
         }
     };

@@ -2,6 +2,7 @@
     <div class="row">
       <div class="col-md-2">
         <br>
+        <h4>AssignedOn:</h4>
         <div class="filter-card">
           <div class="time-period-options">
             <span class="time-period-option" [class.active]="selectedTimePeriod === 'today'" (click)="getFilteredAssignedTasks('today')">Today</span>
@@ -18,7 +19,7 @@
         <table class="table table-secondary">
           <thead class="table-active">
             <tr>
-              <th>Date</th>
+              <th>AssignedOn</th>
               <th>Task</th>
               <th>Employee</th>
               <th>Project</th>
@@ -27,7 +28,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let task of assignedTasks">
-                <td>{{ task.taskDate |date }}</td>
+                <td>{{ task.assignedTaskDate |date }}</td>
               <td>{{ task.taskTitle }}</td>
               <td>{{task.teamMember}}</td>
               <td>{{task.projectTitle}}</td>

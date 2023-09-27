@@ -2,7 +2,7 @@
 exports.__esModule = true;
 exports.Assignedtaskbymanager = void 0;
 var Assignedtaskbymanager = /** @class */ (function () {
-    function Assignedtaskbymanager(taskId, projectId, taskTitle, projectTitle, taskDate, teamMemberUserId, teamMemberId, teamMember) {
+    function Assignedtaskbymanager(taskId, projectId, taskTitle, projectTitle, taskDate, teamMemberUserId, teamMemberId, teamMember, assignedTaskDate) {
         this.taskId = taskId;
         this.projectId = projectId;
         this.taskTitle = taskTitle;
@@ -11,6 +11,7 @@ var Assignedtaskbymanager = /** @class */ (function () {
         this.teamMemberUserId = teamMemberUserId;
         this.teamMemberId = teamMemberId;
         this.teamMember = teamMember;
+        this.assignedTaskDate = assignedTaskDate;
     }
     return Assignedtaskbymanager;
 }());

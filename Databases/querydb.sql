@@ -201,4 +201,56 @@ WHERE p.teammanagerid = 4 AND at.taskid IS NULL;
 SELECT * FROM employees;
 SELECT * FROM projects;
 SELECT * FROM projectmembers;
+SELECT * FROM tasks;
 SELECT * FROM assignedtasks;
+
+  SELECT `t`.`id` AS `TaskId`, `p`.`id` AS `ProjectId`, `t`.`title` AS `TaskTitle`, `p`.`title` AS `ProjectTitle`, `t`.`date` AS `TaskDate`, `a`.`assignedon` AS `AssignedTaskDate`, `a`.`teammemberid` AS `TeamMemberId`, `e0`.`UserId` AS `TeamMemberUserId`
+      FROM `Employees` AS `e`
+      INNER JOIN `projects` AS `p` ON `e`.`Id` = `p`.`teammanagerid`
+      INNER JOIN `tasks` AS `t` ON `p`.`id` = `t`.`projectid`
+      INNER JOIN `assignedtasks` AS `a` ON `t`.`id` = `a`.`taskid`
+      INNER JOIN `Employees` AS `e0` ON `a`.`teammemberid` = `e0`.`Id`
+      WHERE ((`p`.`teammanagerid` = 4) AND (`a`.`assignedon` >= "2023-09-26 00:00:00")) AND (`a`.`assignedon` <=  "2023-09-26 23:59:59" );
+
+
+SELECT
+    t.id AS TaskId,
+    p.id AS ProjectId,
+    t.title AS TaskTitle,
+    p.title AS ProjectTitle,
+    t.date AS TaskDate,
+    a.assignedon AS AssignedTaskDate,
+    a.teammemberid AS TeamMemberId,
+    e0.UserId AS TeamMemberUserId
+FROM
+    Employees AS e
+INNER JOIN
+    projects AS p ON e.Id = p.teammanagerid
+INNER JOIN
+    tasks AS t ON p.id = t.projectid
+INNER JOIN
+    assignedtasks AS a ON t.id = a.taskid
+INNER JOIN
+    Employees AS e0 ON a.teammemberid = e0.Id
+WHERE
+    p.teammanagerid =   4
+    AND a.assignedon >= '2023-09-26 00:00:00'
+    AND a.assignedon <= '2023-09-26 23:59:59';
+
+
+
+   SELECT `t`.`id` AS `TaskId`, `t`.`projectid` AS `ProjectId`, `t`.`title` AS `Title`, `a`.`assignedon` AS `AssignedOn`, `p`.`title` AS `ProjectName`, `t`.`status` AS `Status`
+      FROM `projects` AS `p`
+      INNER JOIN `tasks` AS `t` ON `p`.`id` = `t`.`projectid`
+      INNER JOIN `assignedtasks` AS `a` ON `t`.`id` = `a`.`taskid`
+      WHERE ((`a`.`teammemberid` = 7) AND (`a`.`assignedon` >= '2023-09-27 00:00:00')) AND (`a`.`assignedon` <='2023-09-27 23:59:59')
+      ORDER BY `a`.`assignedon` DESC;
+
+
+SELECT * FROM assignedtasks;
+ SELECT `t`.`id` AS `TaskId`, `p`.`id` AS `ProjectId`, `t`.`title` AS `TaskTitle`, `p`.`title` AS `ProjectTitle`, `t`.`date` AS `TaskDate`
+      FROM `projects` AS `p`
+      INNER JOIN `tasks` AS `t` ON `p`.`id` = `t`.`projectid`    
+      LEFT JOIN `assignedtasks` AS `a` ON `t`.`id` = `a`.`taskid`
+      WHERE ((`a`.`id` IS NULL AND (`p`.`teammanagerid` =4)) AND (`t`.`date` >= '2023-09-27 00:00:00')) AND (`t`.`date` <='2023-09-27 23:59:59');
+SELECT * FROM tasks;

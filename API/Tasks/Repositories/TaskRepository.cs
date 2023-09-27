@@ -68,13 +68,14 @@ public class TaskRepository : ITaskRepository
                 on project.Id equals task.ProjectId
                 join assignedTask in _taskContext.AssignedTasks
                 on task.Id equals assignedTask.TaskId
-                where assignedTask.TeamMemberId == teamMemberId &&
-                      task.Date >= startDate && task.Date <= endDate
+                where assignedTask.TeamMemberId == teamMemberId  && assignedTask.AssignedOn.Date >= startDate.Date
+        && assignedTask.AssignedOn.Date <= endDate.Date orderby assignedTask.AssignedOn descending
                 select new MyTaskList()
                 {
                     TaskId = task.Id,
                     ProjectId = task.ProjectId,
                     Title = task.Title,
+                    AssignedOn=assignedTask.AssignedOn,
                     ProjectName = project.Title,
                     Status = task.Status
                 }).ToListAsync();

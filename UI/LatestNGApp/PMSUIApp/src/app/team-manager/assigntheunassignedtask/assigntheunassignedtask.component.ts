@@ -88,6 +88,9 @@ export class AssigntheunassignedtaskComponent implements OnInit {
           alert('task assigned Sucessfully');
           this.assignTaskForm.reset();
         }
+        else{
+          alert('data is inconsistent')
+        }
       })
     }
   }

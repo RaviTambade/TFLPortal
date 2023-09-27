@@ -86,6 +86,7 @@ CREATE TABLE
 CREATE TABLE
     assignedtasks(
         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        assignedon DATETIME DEFAULT CURRENT_TIMESTAMP ,
         taskid INT NOT NULL,
         CONSTRAINT fk_tasks_assignedtasks FOREIGN KEY (taskid) REFERENCES tasks(id) ON UPDATE CASCADE ON DELETE CASCADE,
         teammemberid INT NOT NULL,
