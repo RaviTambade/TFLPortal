@@ -9,7 +9,7 @@
     padding: 10px;
     width: 120px; 
     float: right;
-    margin-top: 30px;
+    /* margin-top: 30px; */
   }
   
   .filter-card h3 {
@@ -28,4 +28,9 @@
   .time-period-option.active {
     background-color: #0ac3f6;
   }
+
+  .col-md-6{
+    margin-top: 15px;
+  }
  
+  
