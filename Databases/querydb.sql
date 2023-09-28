@@ -254,3 +254,60 @@ SELECT * FROM assignedtasks;
       LEFT JOIN `assignedtasks` AS `a` ON `t`.`id` = `a`.`taskid`
       WHERE ((`a`.`id` IS NULL AND (`p`.`teammanagerid` =4)) AND (`t`.`date` >= '2023-09-27 00:00:00')) AND (`t`.`date` <='2023-09-27 23:59:59');
 SELECT * FROM tasks;
+SELECT * FROM projectmembers;
+
+
+
+DELIMITER $$
+CREATE PROCEDURE addTaskAndAssign(IN title VARCHAR(40),
+                                  IN projectId INT ,
+                                  IN description TEXT,
+                                  IN date DATETIME,
+                                  IN status VARCHAR(20),
+                                  IN fromTime DATETIME,
+                                  IN toTime DATETIME,
+                                  IN teamMemberId INT,
+                                  IN assignedOn DATETIME)
+BEGIN
+DECLARE taskId INT;
+START TRANSACTION;  
+INSERT INTO tasks(title,projectid,description,status,date,fromtime,totime)VALUES(title,projectId,description,status,date,fromTime,toTime);
+SET taskId=LAST_INSERT_ID();
+INSERT INTO assignedtasks(taskid, teammemberid,assignedOn)VALUES(taskId,teamMemberId,assignedOn);
+COMMIT;
+END $$
+DELIMITER ;
+
+CALL `addTaskAndAssign`('Design User Profile Page',2,'Create the user profile page',NOW(),'Pending','2023-09-27 10:00:00','2023-09-28 10:00:00',9,NOW());
+SELECT * FROM tasks;
+SELECT * FROM assignedtasks;
+DROP Procedure addTaskAndAssign;
+
+SELECT employees.userid,tasks.title,assignedTasks.assignedon
+FROM employees 
+INNER JOIN projects
+ON employees.id= projects.teammanagerid
+INNER JOIN assignedtasks
+ON employees.id=assignedtasks.teammemberid
+INNER JOIN tasks
+ON assignedtasks.taskid =tasks.id
+WHERE projects.teammanagerid=4;
+
+
+SELECT * FROM timesheets WHERE `date`='2023-06-01 00:00:00';
+SELECT * FROM employees;
+
+SELECT employees.userid,tasks.title,tasks.id,projects.id,timesheets.date
+FROM projects 
+INNER JOIN tasks
+ON projects.id =tasks.projectid
+INNER JOIN assignedtasks 
+ON tasks.id =assignedtasks.taskid
+INNER JOIN timesheets
+ON tasks.id =timesheets.taskid
+INNER JOIN employees
+ON timesheets.employeeid =employees.id
+WHERE (projects.teammanagerid=4) AND (timesheets.date>='2023-09-28 00:00:00') AND (timesheets.date<='2023-09-28 23:59:59');
+SELECT * FROM timesheets;
+SELECT * FROM tasks WHERE title="Develop User Registration Feature";
+

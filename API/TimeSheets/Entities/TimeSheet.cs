@@ -8,7 +8,7 @@ public class TimeSheet
     public int Id { get; set; }
 
     [Column("date")]
-    public DateTime? Date { get; set; }
+    public DateTime Date { get; set; }
 
     [Column("fromtime")]
     public TimeSpan? FromTime { get; set; }

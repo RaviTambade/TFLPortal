@@ -119,6 +119,8 @@ public class TaskRepository : ITaskRepository
         {
             var moreTaskDetail = await (
                            from task in _taskContext.Tasks
+                           join assignedTask in _taskContext.AssignedTasks
+                           on task.Id equals assignedTask.TaskId
                            where task.Id == taskId
                            select new MoreTaskDetail()
                            {
@@ -126,7 +128,8 @@ public class TaskRepository : ITaskRepository
                                Date = task.Date,
                                Description = task.Description,
                                FromTime = task.FromTime,
-                               ToTime = task.ToTime
+                               ToTime = task.ToTime,
+                               AssignedTaskDate=assignedTask.AssignedOn
                            }).FirstOrDefaultAsync();
             return moreTaskDetail;
         }
@@ -179,14 +182,15 @@ public class TaskRepository : ITaskRepository
                                      join employee2 in _taskContext.Employees
                                      on assignedTask.TeamMemberId equals employee2.Id
                                      where employee.Id == employeeId &&
-                                      task.Date >= startDate && task.Date <= endDate
+                                      assignedTask.AssignedOn.Date >= startDate.Date && assignedTask.AssignedOn.Date <= endDate.Date orderby assignedTask.AssignedOn descending
                                      select new AllTaskList()
                                      {
                                          ProjectName = project.Title,
                                          TaskTitle = task.Title,
                                          TeamMemberId = assignedTask.TeamMemberId,
                                          TaskId = task.Id,
-                                         TeamMemberUserId = employee2.UserId
+                                         TeamMemberUserId = employee2.UserId,
+                                         AssignedTaskDate=assignedTask.AssignedOn
                                      }).ToListAsync();
             return allTaskList;
         }

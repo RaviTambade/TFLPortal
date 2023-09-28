@@ -29,6 +29,7 @@ export class AlltaskslistComponent {
     let userId = localStorage.getItem('userId');
     this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
       this.employeeId = res;
+      this.filterAllTasks(this.selectedTimePeriod)
 
     })
   }

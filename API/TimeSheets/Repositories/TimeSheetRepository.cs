@@ -48,7 +48,7 @@ public class TimeSheetRepository : ITimeSheetRepository
                                 join timesheet in _timeSheetContext.TimeSheets
                                 on task.Id equals timesheet.TaskId
                                 where timesheet.EmployeeId == employeeId &&
-                                timesheet.Date >= startDate && timesheet.Date <= endDate
+                             timesheet.Date.Date >= startDate.Date && timesheet.Date.Date <= endDate.Date orderby timesheet.Date descending
                                 select new MyTimeSheetList()
                                 {
                                     TimeSheetId = timesheet.Id,
@@ -115,5 +115,66 @@ public class TimeSheetRepository : ITimeSheetRepository
         }
         return false;
     }
+
+    public async Task<List<TimeSheetList>> GetTimeSheetList(int managerId,string timePeriod)
+    {
+        try
+        {
+            DateTime currentDate = DateTime.Now.Date;
+            DateTime startDate = currentDate;
+            DateTime endDate = currentDate;
+
+            switch (timePeriod)
+            {
+                case "today":
+                    startDate = currentDate;
+                    endDate = currentDate;
+                    break;
+                case "yesterday":
+                    startDate = currentDate.AddDays(-1);
+                    endDate = currentDate.AddDays(-1);
+                    break;
+                case "lastweek":
+                    startDate = currentDate.AddDays(-7);
+                    endDate = currentDate;
+                    break;
+                case "lastmonth":
+                    startDate = currentDate.AddMonths(-1);
+                    endDate = currentDate;
+                    break;
+                case "lastyear":
+                    startDate = currentDate.AddYears(-1);
+                    endDate = currentDate;
+                    break;
+            }
+            var timeSheetList= await (
+                               from project in _timeSheetContext.Projects
+                               join task in _timeSheetContext.Tasks
+                               on project.Id equals task.ProjectId
+                               join assignedTask in _timeSheetContext.AssignedTasks
+                               on task.Id equals assignedTask.TaskId
+                               join timesheet in _timeSheetContext.TimeSheets
+                               on task.Id equals timesheet.TaskId
+                               join employee in _timeSheetContext.Employees
+                               on timesheet.EmployeeId equals employee.Id
+                               where project.TeamManagerId == managerId &&
+                               timesheet.Date.Date >= startDate.Date && timesheet.Date.Date <= endDate.Date orderby timesheet.Date descending
+                               select new TimeSheetList()
+                               {
+                                TaskId=assignedTask.TaskId,
+                                ProjectId=project.Id,
+                                TaskTitle=task.Title,
+                                EmployeeUserId=employee.UserId,
+                                TimeSheetDate=timesheet.Date,
+                                TimeSheetId=timesheet.Id
+                               }).ToListAsync();
+                               return timeSheetList;
+        }
+        catch(Exception)
+        {
+            throw;
+        }
+    }
+
 
 }

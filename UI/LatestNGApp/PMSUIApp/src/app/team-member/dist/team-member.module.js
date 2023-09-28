@@ -70,7 +70,8 @@ var TeamMemberModule = /** @class */ (function () {
                 employeeprojectdetails_component_1.EmployeeprojectdetailsComponent,
                 unassignedtasks_component_1.UnassignedtasksComponent,
                 taskdetails_component_1.TaskdetailsComponent,
-                taskdetailsinfo_component_1.TaskdetailsinfoComponent
+                taskdetailsinfo_component_1.TaskdetailsinfoComponent,
+                timesheetdetails_component_1.TimesheetdetailsComponent
             ]
         })
     ], TeamMemberModule);

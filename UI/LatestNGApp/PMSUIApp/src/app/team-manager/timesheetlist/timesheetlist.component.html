@@ -5,20 +5,20 @@
     <div class="row">
         <div class="col-md-2">
             <br>
-            <!-- <div class="filter-card">
+            <div class="filter-card">
           <div class="time-period-options">
             <span class="time-period-option" [class.active]="selectedTimePeriod === 'today'"
-              (click)="getMyTimeSheet('today')">Today</span>
+              (click)="getTimeSheetList('today')">Today</span>
             <span class="time-period-option" [class.active]="selectedTimePeriod === 'yesterday'"
-              (click)="getMyTimeSheet('yesterday')">Yesterday</span>
+              (click)="getTimeSheetList('yesterday')">Yesterday</span>
             <span class="time-period-option" [class.active]="selectedTimePeriod === 'lastweek'"
-              (click)="getMyTimeSheet('lastweek')">Last Week</span>
+              (click)="getTimeSheetList('lastweek')">Last Week</span>
             <span class="time-period-option" [class.active]="selectedTimePeriod === 'lastmonth'"
-              (click)="getMyTimeSheet('lastmonth')">Last Month</span>
+              (click)="getTimeSheetList('lastmonth')">Last Month</span>
             <span class="time-period-option" [class.active]="selectedTimePeriod === 'lastyear'"
-              (click)="getMyTimeSheet('lastyear')">Last Year</span>
+              (click)="getTimeSheetList('lastyear')">Last Year</span>
           </div>
-        </div> -->
+        </div>
         </div>
         <br>
         <div class="col-md-6" id="table">
@@ -32,64 +32,20 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Ashish Shinde</td>
-                            <td>2023-09-25</td>
-                            <td>Developing task 1 Entities</td>
-                            <td>
-                            <button class="btn btn-primary" (click)="selectTimesheet()">Details</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Akshay Thorat</td>
-                            <td>2023-09-26</td>
-                            <td>Task 2</td>
-                            <td>
-                            <button class="btn btn-primary" (click)="selectTimesheet()">Details</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Nikhil Shinde</td>
-                            <td>2023-09-27</td>
-                            <td>Task 3</td>
-                            <td>
-                            <button class="btn btn-primary" (click)="selectTimesheet()">Details</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Akshay Kudale</td>
-                            <td>2023-09-28</td>
-                            <td>Task 4</td>
-                            <td>
-                            <button class="btn btn-primary" (click)="selectTimesheet()">Details</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Sanjay Thorat</td>
-                            <td>2023-09-29</td>
-                            <td>Task 5</td>
-                            <td>
-                            <button class="btn btn-primary" (click)="selectTimesheet()">Details</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Ashish Shinde</td>
-                            <td>2023-09-30</td>
-                            <td>Task 6</td>
-                            <td>
-                            <button class="btn btn-primary" (click)="selectTimesheet()">Details</button>
-                            </td>
-                        </tr>
-                    </tbody>
+                <tbody *ngFor="let timesheet of timeSheetList">
+                    <td>{{timesheet.employeeName}}</td>
+                    <td>{{timesheet.timeSheetDate | date}}</td>
+                    <td>{{timesheet.taskTitle}}</td>
+                    <button class="btn btn-primary" (click)="selectTimeSheet(timesheet.timeSheetId)">Details</button>&nbsp;
+                </tbody>
                 </table>
             </div>
         </div>
 
         <div class="col-md-4">
-            <!-- <div *ngIf="selectedTimeSheetId">
+            <div *ngIf="selectedTimeSheetId">
           <app-timesheetdetails [selectedTimeSheetId]="selectedTimeSheetId"></app-timesheetdetails>
-        </div> -->
+        </div>
         </div>
     </div>
-</div>
+</div>  

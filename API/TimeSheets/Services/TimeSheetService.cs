@@ -11,10 +11,13 @@ public class TimeSheetService:ITimeSheetService
     }
     public async Task<List<MyTimeSheetList>> GetMyTimeSheets(int employeeId,string timePeriod)=>
     await _timeSheetRepository.GetMyTimeSheets(employeeId,timePeriod);
+
     public async Task<TimeSheetDetail> GetTimeSheetDetails(int timeSheetId)=>
     await _timeSheetRepository.GetTimeSheetDetails(timeSheetId);
 
     public async Task<bool> AddTimeSheet(TimeSheet timeSheet)=>
     await _timeSheetRepository.AddTimeSheet(timeSheet);
 
+    public async Task<List<TimeSheetList>> GetTimeSheetList(int managerId,string timePeriod)=>
+    await _timeSheetRepository.GetTimeSheetList(managerId,timePeriod);
 }

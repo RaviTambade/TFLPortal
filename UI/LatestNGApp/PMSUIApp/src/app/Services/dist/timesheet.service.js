@@ -31,6 +31,10 @@ var TimeSheetService = /** @class */ (function () {
         var url = "http://localhost:5221/api/timesheets/add";
         return this.httpClient.post(url, timeSheet);
     };
+    TimeSheetService.prototype.getTimeSheetListByManager = function (managerId, timePeriod) {
+        var url = "http://localhost:5221/api/timesheets/timesheetlist/" + managerId + "/" + timePeriod;
+        return this.httpClient.get(url);
+    };
     TimeSheetService = __decorate([
         core_1.Injectable({
             providedIn: 'root'

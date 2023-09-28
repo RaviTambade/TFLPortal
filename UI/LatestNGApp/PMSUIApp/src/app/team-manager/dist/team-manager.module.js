@@ -24,7 +24,6 @@ var team_member_module_1 = require("../team-member/team-member.module");
 var tasksofprojects_component_1 = require("../team-member/tasksofprojects/tasksofprojects.component");
 var unassignedtasks_component_1 = require("../team-member/unassignedtasks/unassignedtasks.component");
 var timesheetlist_component_1 = require("./timesheetlist/timesheetlist.component");
-var timesheetdetails_component_1 = require("./timesheetdetails/timesheetdetails.component");
 var assignedtasksbymanager_component_1 = require("./assignedtasksbymanager/assignedtasksbymanager.component");
 var tasksbymanager_component_1 = require("./tasksbymanager/tasksbymanager.component");
 var unassignedtasksbymanager_component_1 = require("./unassignedtasksbymanager/unassignedtasksbymanager.component");
@@ -43,7 +42,6 @@ exports.teammanagerRoutes = [
     { path: 'tasksbymanager', component: tasksbymanager_component_1.TasksbymanagerComponent },
     { path: 'unassignedtasks/:projectId', component: unassignedtasks_component_1.UnassignedtasksComponent },
     { path: 'timesheetlist', component: timesheetlist_component_1.TimesheetlistComponent },
-    { path: 'timesheetdetails', component: timesheetdetails_component_1.TimesheetdetailsComponent },
     { path: 'assigntask/:taskId', component: assigntheunassignedtask_component_1.AssigntheunassignedtaskComponent }
 ];
 var TeamManagerModule = /** @class */ (function () {
@@ -63,7 +61,6 @@ var TeamManagerModule = /** @class */ (function () {
                 employeelist_component_1.EmployeelistComponent,
                 addemployee_component_1.AddemployeeComponent,
                 timesheetlist_component_1.TimesheetlistComponent,
-                timesheetdetails_component_1.TimesheetdetailsComponent,
                 assignedtasksbymanager_component_1.AssignedtasksbymanagerComponent,
                 tasksbymanager_component_1.TasksbymanagerComponent,
                 unassignedtasksbymanager_component_1.UnassignedtasksbymanagerComponent,

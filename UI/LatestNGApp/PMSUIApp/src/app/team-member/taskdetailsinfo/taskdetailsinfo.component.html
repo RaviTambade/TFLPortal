@@ -1,5 +1,6 @@
 <div>
-    <p class="card-text"><strong> Date:</strong> {{ taskDetail.date | date }}</p>
+    <p class="card-text"><strong>Created Date:</strong> {{ taskDetail.date | date }}</p>
+    <p class="card-text"><strong>AssignedOn Date:</strong> {{ taskDetail.assignedTaskDate | date }}</p>
     <p class="card-text"><strong>Description:</strong> {{ taskDetail.description }}</p>
     <p class="card-text"><strong>From Time:</strong> {{ taskDetail.fromTime | date:'dd-MM-yyyy HH:mm: a' }}</p>
     <p class="card-text"><strong>To Time:</strong> {{ taskDetail.toTime | date:'dd-MM-yyyy HH:mm: a' }}</p>

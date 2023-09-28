@@ -27,6 +27,7 @@ var AlltaskslistComponent = /** @class */ (function () {
         var userId = localStorage.getItem('userId');
         this.employeeService.getEmployeeId(Number(userId)).subscribe(function (res) {
             _this.employeeId = res;
+            _this.filterAllTasks(_this.selectedTimePeriod);
         });
     };
     AlltaskslistComponent.prototype.filterAllTasks = function (timePeriod) {

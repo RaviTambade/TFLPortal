@@ -16,7 +16,7 @@ import { TeamMemberModule } from '../team-member/team-member.module';
 import { TasksofprojectsComponent } from '../team-member/tasksofprojects/tasksofprojects.component';
 import { UnassignedtasksComponent } from '../team-member/unassignedtasks/unassignedtasks.component';
 import { TimesheetlistComponent } from './timesheetlist/timesheetlist.component';
-import { TimesheetdetailsComponent } from './timesheetdetails/timesheetdetails.component';
+
 
 import { AssignedtasksbymanagerComponent } from './assignedtasksbymanager/assignedtasksbymanager.component';
 import { TasksbymanagerComponent } from './tasksbymanager/tasksbymanager.component';
@@ -38,7 +38,7 @@ export const teammanagerRoutes:Routes=[
   {path:'tasksbymanager',component:TasksbymanagerComponent},
   {path:'unassignedtasks/:projectId',component:UnassignedtasksComponent},
   {path:'timesheetlist', component:TimesheetlistComponent},
-  {path:'timesheetdetails',component: TimesheetdetailsComponent},
+
   {path:'assigntask/:taskId',component:AssigntheunassignedtaskComponent}
 
 ]
@@ -56,7 +56,6 @@ export const teammanagerRoutes:Routes=[
     EmployeelistComponent,
     AddemployeeComponent,
     TimesheetlistComponent,
-    TimesheetdetailsComponent,
     AssignedtasksbymanagerComponent,
     TasksbymanagerComponent,
     UnassignedtasksbymanagerComponent,

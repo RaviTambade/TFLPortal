@@ -5,6 +5,7 @@ import { Mytimesheetlist } from '../Models/mytimesheetlist';
 import { HttpClient } from '@angular/common/http';
 import { Timesheet } from '../Models/timesheet';
 import { Timesheetdetail } from '../Models/timesheetdetail';
+import { Timesheetlist } from '../Models/timesheetlist';
 @Injectable({
   providedIn: 'root'
 })
@@ -29,5 +30,9 @@ setTimeSheetId(id:number |null){
   addTimeSheet(timeSheet:Timesheet):Observable<boolean>{
     let url="http://localhost:5221/api/timesheets/add"
     return this.httpClient.post<boolean>(url,timeSheet)
+  }
+  getTimeSheetListByManager(managerId:number,timePeriod:string):Observable<Timesheetlist[]>{
+    let url="http://localhost:5221/api/timesheets/timesheetlist/"+ managerId + "/" +timePeriod
+    return this.httpClient.get<Timesheetlist[]>(url)
   }
 }
