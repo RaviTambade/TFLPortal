@@ -10,5 +10,5 @@ public interface ITaskRepository{
     Task<List<TaskIdWithTitle>> GetTaskIdWithTitle(int employeeId,int projectId,string status);
     Task<bool> AddTask(Transflower.PMSApp.Tasks.Entities.Task task );
     Task<Transflower.PMSApp.Tasks.Entities.Task> GetDetailsById(int taskId);
-    Task<bool> UpdateTaskStatus(int taskId,UpdateStatus updateStatus);
+    Task<bool> UpdateTaskStatus(int taskId,string updateStatus);
 }

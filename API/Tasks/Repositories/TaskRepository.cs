@@ -265,7 +265,7 @@ public class TaskRepository : ITaskRepository
         }
     }
 
-    public async Task<bool> UpdateTaskStatus(int taskId,UpdateStatus updateStatus)
+    public async Task<bool> UpdateTaskStatus(int taskId,string updateStatus)
     {
          bool status = false;
         try
@@ -275,7 +275,7 @@ public class TaskRepository : ITaskRepository
             {
                 return false;
             }
-            task.Status=updateStatus.Status;
+            task.Status=updateStatus;
             status=await SaveChangesAsync(_taskContext);
         }
         catch(Exception)

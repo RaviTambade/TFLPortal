@@ -64,5 +64,11 @@ export class TaskService {
     return this.httpClient.post<boolean>(url,assignedTask)
   }
 
+  updateTaskStatus(taskId:number,status:string):Observable<boolean>{
+    let url="http://localhost:5283/api/tasks/status/" + taskId  +"/" + status
+    return this.httpClient.patch<boolean>(url,null)
+  }
+
+
 
 }

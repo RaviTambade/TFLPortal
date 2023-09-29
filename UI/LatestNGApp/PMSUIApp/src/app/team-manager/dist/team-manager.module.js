@@ -28,6 +28,7 @@ var assignedtasksbymanager_component_1 = require("./assignedtasksbymanager/assig
 var tasksbymanager_component_1 = require("./tasksbymanager/tasksbymanager.component");
 var unassignedtasksbymanager_component_1 = require("./unassignedtasksbymanager/unassignedtasksbymanager.component");
 var assigntheunassignedtask_component_1 = require("./assigntheunassignedtask/assigntheunassignedtask.component");
+var updatetaskstatus_component_1 = require("./updatetaskstatus/updatetaskstatus.component");
 exports.teammanagerRoutes = [
     { path: 'dashboard', component: dashboard_component_1.DashboardComponent },
     { path: 'projects', component: managerprojects_component_1.ManagerprojectsComponent },
@@ -42,6 +43,7 @@ exports.teammanagerRoutes = [
     { path: 'tasksbymanager', component: tasksbymanager_component_1.TasksbymanagerComponent },
     { path: 'unassignedtasks/:projectId', component: unassignedtasks_component_1.UnassignedtasksComponent },
     { path: 'timesheetlist', component: timesheetlist_component_1.TimesheetlistComponent },
+    { path: 'updatestatus/:taskId', component: updatetaskstatus_component_1.UpdatetaskstatusComponent },
     { path: 'assigntask/:taskId', component: assigntheunassignedtask_component_1.AssigntheunassignedtaskComponent }
 ];
 var TeamManagerModule = /** @class */ (function () {
@@ -64,7 +66,8 @@ var TeamManagerModule = /** @class */ (function () {
                 assignedtasksbymanager_component_1.AssignedtasksbymanagerComponent,
                 tasksbymanager_component_1.TasksbymanagerComponent,
                 unassignedtasksbymanager_component_1.UnassignedtasksbymanagerComponent,
-                assigntheunassignedtask_component_1.AssigntheunassignedtaskComponent
+                assigntheunassignedtask_component_1.AssigntheunassignedtaskComponent,
+                updatetaskstatus_component_1.UpdatetaskstatusComponent
             ],
             imports: [
                 common_1.CommonModule,

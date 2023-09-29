@@ -59,6 +59,9 @@ var TimesheetlistComponent = /** @class */ (function () {
         }
         this.timeSheetService.setTimeSheetId(id);
     };
+    TimesheetlistComponent.prototype.onClickTask = function (taskId) {
+        this.router.navigate(['teammanager/updatestatus', taskId]);
+    };
     TimesheetlistComponent = __decorate([
         core_1.Component({
             selector: 'app-timesheetlist',

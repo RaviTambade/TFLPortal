@@ -68,4 +68,8 @@ export class TimesheetlistComponent implements OnInit {
     }
     this.timeSheetService.setTimeSheetId(id);
       }
+
+    onClickTask(taskId:number){
+      this.router.navigate(['teammanager/updatestatus',taskId]);
+    }
 }

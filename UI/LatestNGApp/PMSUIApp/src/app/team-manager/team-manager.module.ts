@@ -22,6 +22,7 @@ import { AssignedtasksbymanagerComponent } from './assignedtasksbymanager/assign
 import { TasksbymanagerComponent } from './tasksbymanager/tasksbymanager.component';
 import { UnassignedtasksbymanagerComponent } from './unassignedtasksbymanager/unassignedtasksbymanager.component';
 import { AssigntheunassignedtaskComponent } from './assigntheunassignedtask/assigntheunassignedtask.component';
+import { UpdatetaskstatusComponent } from './updatetaskstatus/updatetaskstatus.component';
 
 
 export const teammanagerRoutes:Routes=[
@@ -38,9 +39,8 @@ export const teammanagerRoutes:Routes=[
   {path:'tasksbymanager',component:TasksbymanagerComponent},
   {path:'unassignedtasks/:projectId',component:UnassignedtasksComponent},
   {path:'timesheetlist', component:TimesheetlistComponent},
-
+  {path:'updatestatus/:taskId',component:UpdatetaskstatusComponent},
   {path:'assigntask/:taskId',component:AssigntheunassignedtaskComponent}
-
 ]
 
 @NgModule({
@@ -59,7 +59,8 @@ export const teammanagerRoutes:Routes=[
     AssignedtasksbymanagerComponent,
     TasksbymanagerComponent,
     UnassignedtasksbymanagerComponent,
-    AssigntheunassignedtaskComponent
+    AssigntheunassignedtaskComponent,
+    UpdatetaskstatusComponent
   ],
   imports: [
     CommonModule,
