@@ -9,8 +9,7 @@
               <div class="container">
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-start">
                   <ul class="navbar-nav flex-grow">
-                    <li class="nav-item"
-                      *ngIf="isUserHaveRequiredRole(Role.TeamMember)">
+                    <li class="nav-item" *ngIf="isUserHaveRequiredRole(Role.TeamMember)">
                       <a class="nav-link text-dark" [routerLink]="['teammember/projects']"
                         routerLinkActive="router-link-active">
                         <i class="fas fa-clipboard" style="color: #007bff;"></i>&nbsp;Projects</a>
