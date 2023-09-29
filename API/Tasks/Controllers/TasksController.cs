@@ -61,6 +61,14 @@ public class TasksController : ControllerBase
       return await _service.GetDetailsById(taskId);
     }
 
+    [HttpPatch("status/{taskId}")]
+    public async Task<bool> UpdateTaskStatus(int taskId,[FromBody] UpdateStatus updateStatus)
+    {
+    return await _service.UpdateTaskStatus(taskId,updateStatus);    
+    }
+    
+
+
 
 
 

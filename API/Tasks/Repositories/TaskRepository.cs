@@ -265,6 +265,26 @@ public class TaskRepository : ITaskRepository
         }
     }
 
+    public async Task<bool> UpdateTaskStatus(int taskId,UpdateStatus updateStatus)
+    {
+         bool status = false;
+        try
+        {
+            var task=await _taskContext.Tasks.FindAsync(taskId);
+            if(task == null)
+            {
+                return false;
+            }
+            task.Status=updateStatus.Status;
+            status=await SaveChangesAsync(_taskContext);
+        }
+        catch(Exception)
+        {
+            throw;
+        }
+        return status;
+    }
+
 
 
 

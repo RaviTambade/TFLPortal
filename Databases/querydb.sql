@@ -311,3 +311,5 @@ WHERE (projects.teammanagerid=4) AND (timesheets.date>='2023-09-28 00:00:00') AN
 SELECT * FROM timesheets;
 SELECT * FROM tasks WHERE title="Develop User Registration Feature";
 
+SELECT * FROM tasks;
+

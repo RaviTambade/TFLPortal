@@ -16,6 +16,8 @@ public class TaskService:ITaskService
     public async Task<List<TaskIdWithTitle>> GetTaskIdWithTitle(int employeeId,int projectId,string status)=>await _taskRepository.GetTaskIdWithTitle(employeeId,projectId,status);
     public async Task<bool> AddTask(Transflower.PMSApp.Tasks.Entities.Task task)=>await _taskRepository.AddTask(task);
     public async Task<Transflower.PMSApp.Tasks.Entities.Task> GetDetailsById(int taskId)=>await _taskRepository.GetDetailsById(taskId);
+    public async Task<bool> UpdateTaskStatus(int taskId,UpdateStatus updateStatus)=>await _taskRepository.UpdateTaskStatus(taskId,updateStatus);
+
 
 
 
