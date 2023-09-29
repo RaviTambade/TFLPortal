@@ -1,21 +1,28 @@
 <div class="container">
-    <div class="row">
-      <div class="col-md-2">
-        <br>
-        <h4>AssignedOn:</h4><hr>
-        <div class="filter-card">
-          <div class="time-period-options">
-            <span class="time-period-option" [class.active]="selectedTimePeriod === 'today'" (click)="getFilteredAssignedTasks('today')">Today</span>
-            <span class="time-period-option" [class.active]="selectedTimePeriod === 'yesterday'" (click)="getFilteredAssignedTasks('yesterday')">Yesterday</span>
-            <span class="time-period-option" [class.active]="selectedTimePeriod === 'lastweek'" (click)="getFilteredAssignedTasks('lastweek')">Last Week</span>
-            <span class="time-period-option" [class.active]="selectedTimePeriod === 'lastmonth'" (click)="getFilteredAssignedTasks('lastmonth')">Last Month</span>
-            <span class="time-period-option" [class.active]="selectedTimePeriod === 'lastyear'" (click)="getFilteredAssignedTasks('lastyear')">Last Year</span>
-          </div>
+  <div class="row">
+    <div class="col-md-2">
+      <br>
+      <h4>AssignedOn:</h4>
+      <hr>
+      <div class="filter-card">
+        <div class="time-period-options">
+          <span class="time-period-option" [class.active]="selectedTimePeriod === 'today'"
+            (click)="getFilteredAssignedTasks('today')">Today</span>
+          <span class="time-period-option" [class.active]="selectedTimePeriod === 'yesterday'"
+            (click)="getFilteredAssignedTasks('yesterday')">Yesterday</span>
+          <span class="time-period-option" [class.active]="selectedTimePeriod === 'lastweek'"
+            (click)="getFilteredAssignedTasks('lastweek')">Last Week</span>
+          <span class="time-period-option" [class.active]="selectedTimePeriod === 'lastmonth'"
+            (click)="getFilteredAssignedTasks('lastmonth')">Last Month</span>
+          <span class="time-period-option" [class.active]="selectedTimePeriod === 'lastyear'"
+            (click)="getFilteredAssignedTasks('lastyear')">Last Year</span>
         </div>
       </div>
-      <div class="col-md-6">
-        <h2>AssignedTasks</h2><hr>
-        <div class="scrollable-list">
+    </div>
+    <div class="col-md-6">
+      <h2>AssignedTasks</h2>
+      <hr>
+      <div class="scrollable-list">
         <table class="table table-secondary">
           <thead class="table-active">
             <tr>
@@ -28,7 +35,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let task of assignedTasks">
-                <td>{{ task.assignedTaskDate |date }}</td>
+              <td>{{ task.assignedTaskDate |date }}</td>
               <td>{{ task.taskTitle }}</td>
               <td>{{task.teamMember}}</td>
               <td>{{task.projectTitle}}</td>
@@ -38,13 +45,12 @@
             </tr>
           </tbody>
         </table>
-        </div>
       </div>
-      <div class="col-md-4">
-        <div *ngIf="selectedTaskId !== null">
-          <app-taskdetails [taskId]="selectedTaskId"></app-taskdetails>
-        </div>
+    </div>
+    <div class="col-md-4">
+      <div *ngIf="selectedTaskId !== null">
+        <app-taskdetails [taskId]="selectedTaskId"></app-taskdetails>
       </div>
     </div>
   </div>
-  
+</div>
