@@ -5,7 +5,7 @@
         <ul class="navbar-nav flex-grow">
           <li class="nav-item">
             <nav
-              class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+              class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-1">
               <div class="container">
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-start">
                   <ul class="navbar-nav flex-grow">
@@ -49,6 +49,12 @@
                       <a class="nav-link text-dark" [routerLink]="['teammanager/timesheetlist']"
                         routerLinkActive="router-link-active">
                         <i class="fas fa-calendar" style="color: #ffc107;"></i>&nbsp;Timesheets</a>
+                    </li>
+
+                    <li class="nav-item" *ngIf="isUserHaveRequiredRole(Role.HRManager)">
+                      <a class="nav-link text-dark" [routerLink]="['hrmanager/employeeslist']"
+                        routerLinkActive="router-link-active">
+                        <i class="fas fa-calendar" style="color: #ffc107;"></i>&nbsp;Employees</a>
                     </li>
                   </ul>
                 </div>

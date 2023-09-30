@@ -1,10 +1,9 @@
 <div class="container">
-  <h2>Time Sheets</h2>
-  <!-- <h3><button class="btn btn-primary add-button" (click)="add()">Add New TimeSheet</button></h3> -->
-  <hr>
   <div class="row">
     <div class="col-md-2">
       <br>
+      <h4>Select Date:</h4>
+      <hr>
       <div class="filter-card">
         <div class="time-period-options">
           <span class="time-period-option" [class.active]="selectedTimePeriod === 'today'"
@@ -20,8 +19,9 @@
         </div>
       </div>
     </div>
-    <br>
-    <div class="col-md-6" id="table">
+    <div class="col-md-6">
+      <h2>Time Sheets</h2>
+      <hr>
       <div class="scrollable-list">
         <table class="table table-secondary">
           <thead class="table-active">
@@ -45,7 +45,6 @@
         </table>
       </div>
     </div>
-
     <div class="col-md-4">
       <div *ngIf="selectedTimeSheetId">
         <app-timesheetdetails [selectedTimeSheetId]="selectedTimeSheetId"></app-timesheetdetails>

@@ -8,7 +8,6 @@
   padding: 10px;
   width: 120px; 
   float: right;
-  /* margin-top: 30px; */
 }
   
   .filter-card h3 {
@@ -28,13 +27,12 @@
     background-color: #0ac3f6;
   }
  
-  .add-button {
-    position: absolute;
-    top: 225px; 
-    right: 550px;
-    /* margin-top: 15px; */
-  }
+ 
 
   #table{
     margin-top: 22px;
+  }
+
+  #button{
+    float: right;
   }
