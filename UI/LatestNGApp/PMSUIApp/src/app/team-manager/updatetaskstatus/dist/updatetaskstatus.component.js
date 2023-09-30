@@ -67,7 +67,10 @@ var UpdatetaskstatusComponent = /** @class */ (function () {
         }
     };
     UpdatetaskstatusComponent.prototype.onSubmit = function () {
-        this.taskService.updateTaskStatus(this.taskId, this.task.status).subscribe(function (res) {
+        this.taskService
+            .updateTaskStatus(this.taskId, this.task.status)
+            .subscribe(function (res) {
+            window.alert("status updated successfully");
         });
     };
     UpdatetaskstatusComponent = __decorate([
