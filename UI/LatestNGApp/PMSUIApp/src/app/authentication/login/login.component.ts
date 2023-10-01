@@ -21,7 +21,7 @@ export class LoginComponent {
     private router: Router,
     private authService: AuthenticationService,
     private userService: UserService
-  ) {}
+  ) { }
 
   public onSignIn() {
     console.log('Validating user');
@@ -53,22 +53,21 @@ export class LoginComponent {
       case Role.director:
         this.router.navigate(['director/dashboard']);
         this.authService.reloadSubject.next();
-
         break;
+
       case Role.HRManager:
         this.router.navigate(['hrmanager/dashboard']);
         this.authService.reloadSubject.next();
-
         break;
+
       case Role.TeamManager:
         this.router.navigate(['teammanager/projects']);
         this.authService.reloadSubject.next();
-
         break;
+
       case Role.TeamMember:
         this.router.navigate(['teammember/projects']);
         this.authService.reloadSubject.next();
-
         break;
     }
   }
