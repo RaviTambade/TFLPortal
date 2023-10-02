@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Routes } from '@angular/router';
 import { EmployeeslistComponent } from './employeeslist/employeeslist.component';
+import { ProjectlistComponent } from './projectlist/projectlist.component';
 
 
 export const hrmanagerRoutes:Routes=[
@@ -14,6 +15,7 @@ export const hrmanagerRoutes:Routes=[
   declarations: [
     DashboardComponent,
     EmployeeslistComponent,
+    ProjectlistComponent,
    
   ],
   imports: [
