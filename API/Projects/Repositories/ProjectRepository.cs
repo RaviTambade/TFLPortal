@@ -153,7 +153,7 @@ public class ProjectRepository : IProjectRepository
         }
     }
 
-    public async Task<List<ProjectTask>> GetTasksOfProject(int projectId, string timePeriod)
+    public async Task<List<ProjectTaskList>> GetTasksOfProject(int projectId, string timePeriod)
     {
         try
         {
@@ -187,19 +187,21 @@ public class ProjectRepository : IProjectRepository
 
             var projectTasks = await (
                              from employee in _projectContext.Employees
-                             join assignedTask in _projectContext.AssignedTasks
-                             on employee.Id equals assignedTask.TeamMemberId
+                             join taskallocation in _projectContext.TasksAllocations
+                             on employee.Id equals taskallocation.TeamMemberId
+                             join projecttask in _projectContext.ProjectTasks
+                             on taskallocation.ProjectTaskId equals projecttask.Id
                              join task in _projectContext.Tasks
-                             on assignedTask.TaskId equals task.Id
-                             where task.ProjectId == projectId &&
-                               assignedTask.AssignedOn.Date >= startDate.Date && assignedTask.AssignedOn.Date <= endDate.Date orderby assignedTask.AssignedOn descending
-                             select new ProjectTask()
+                             on projecttask.TaskId equals task.Id
+                             where projecttask.ProjectId == projectId &&
+                               taskallocation.AssignedOn.Date >= startDate.Date && taskallocation.AssignedOn.Date <= endDate.Date orderby taskallocation.AssignedOn descending
+                             select new ProjectTaskList()
                              {
                                  TaskId = task.Id,
                                  Title = task.Title,
                                  TeamMemberUserId = employee.UserId,
-                                 Status = task.Status,
-                                 AssignedTaskDate=assignedTask.AssignedOn
+                                 Status = projecttask.Status,
+                                 TaskAllocationDate=taskallocation.AssignedOn
                              }).ToListAsync();
             return projectTasks;
         }
@@ -208,6 +210,7 @@ public class ProjectRepository : IProjectRepository
             throw;
         }
     }
+
     public async Task<List<ProjectName>> GetProjectNames(int employeeId)
     {
         try
@@ -292,21 +295,23 @@ public class ProjectRepository : IProjectRepository
             }
             var unAssignedTask = await (
                                from project in _projectContext.Projects
+                               join projecttask in _projectContext.ProjectTasks
+                               on project.Id equals projecttask.ProjectId
                                join task in _projectContext.Tasks
-                               on project.Id equals task.ProjectId
-                               join assignedTask in _projectContext.AssignedTasks
-                               on task.Id equals assignedTask.TaskId
-                               into isAssignedTask
-                               from assignedTask in isAssignedTask.DefaultIfEmpty()
-                               where assignedTask == null && project.Id == projectId
-                               && task.Date.Date >= startDate.Date && task.Date.Date <= endDate.Date orderby task.Date descending
+                               on projecttask.TaskId equals task.Id
+                               join taskallocation in _projectContext.TasksAllocations
+                               on projecttask.Id equals taskallocation.ProjectTaskId 
+                               into istaskallocated
+                               from taskallocation in istaskallocated.DefaultIfEmpty()
+                               where taskallocation == null && project.Id == projectId
+                               && projecttask.Date.Date >= startDate.Date && projecttask.Date.Date <= endDate.Date orderby projecttask.Date descending
                                select new UnAssignedTask()
                                {
-                                   TaskId = task.Id,
+                                   TaskId = projecttask.Id,
                                    ProjectId = project.Id,
                                    Title = task.Title,
                                    ProjectName = project.Title,
-                                   Status = task.Status
+                                   Status = projecttask.Status
                                }).ToListAsync();
             return unAssignedTask;
         }
@@ -352,24 +357,24 @@ public class ProjectRepository : IProjectRepository
                                       from employee in _projectContext.Employees
                                       join project in _projectContext.Projects
                                       on employee.Id equals project.TeamManagerId
-                                      join task in _projectContext.Tasks
-                                      on project.Id equals task.ProjectId
-                                      join assignedTask in _projectContext.AssignedTasks
-                                      on task.Id equals assignedTask.TaskId
+                                      join projecttask in _projectContext.ProjectTasks
+                                      on project.Id equals projecttask.ProjectId
+                                      join taskallocation in _projectContext.TasksAllocations
+                                      on task.Id equals taskallocation.TaskId
                                       join employee2 in _projectContext.Employees
-                                      on assignedTask.TeamMemberId equals employee2.Id
+                                      on taskallocation.TeamMemberId equals employee2.Id
                                       where project.TeamManagerId == managerId
- && assignedTask.AssignedOn.Date >= startDate.Date
-        && assignedTask.AssignedOn.Date <= endDate.Date     orderby assignedTask.AssignedOn descending
+ && taskallocation.AssignedOn.Date >= startDate.Date
+        && taskallocation.AssignedOn.Date <= endDate.Date     orderby taskallocation.AssignedOn descending
                                       select new AssignedTaskByManager()
                                       {
                                           TaskId = task.Id,
-                                          ProjectId = project.Id,
+                                          ProjectId = projecttask.Id,
                                           TaskTitle = task.Title,
                                           ProjectTitle = project.Title,
-                                          TaskDate = task.Date,
-                                          AssignedTaskDate = assignedTask.AssignedOn,
-                                          TeamMemberId = assignedTask.TeamMemberId,
+                                          TaskDate = projecttask.Date,
+                                          AssignedTaskDate = taskallocation.AssignedOn,
+                                          TeamMemberId = taskallocation.TeamMemberId,
                                           TeamMemberUserId = employee2.UserId
                                       }).ToListAsync();
             return assignedTaskByManager;
@@ -379,100 +384,100 @@ public class ProjectRepository : IProjectRepository
             throw;
         }
     }
-    public async Task<List<UnAssignedTaskByManager>> GetUnAssignedTasksByManager(int managerId, string timePeriod)
-    {
-        try
-        {
-            DateTime currentDate = DateTime.Now.Date;
-            DateTime startDate = currentDate;
-            DateTime endDate = currentDate;
+//     public async Task<List<UnAssignedTaskByManager>> GetUnAssignedTasksByManager(int managerId, string timePeriod)
+//     {
+//         try
+//         {
+//             DateTime currentDate = DateTime.Now.Date;
+//             DateTime startDate = currentDate;
+//             DateTime endDate = currentDate;
 
-            switch (timePeriod)
-            {
-                case "today":
-                    startDate = currentDate;
-                    endDate = currentDate;
-                    break;
-                case "yesterday":
-                    startDate = currentDate.AddDays(-1);
-                    endDate = currentDate.AddDays(-1);
-                    break;
-                case "lastweek":
-                    startDate = currentDate.AddDays(-7);
-                    endDate = currentDate;
-                    break;
-                case "lastmonth":
-                    startDate = currentDate.AddMonths(-1);
-                    endDate = currentDate;
-                    break;
-                case "lastyear":
-                    startDate = currentDate.AddYears(-1);
-                    endDate = currentDate;
-                    break;
-            }
-            var unassignedTaskByManager = await (
-                from project in _projectContext.Projects
-                join task in _projectContext.Tasks
-                on project.Id equals task.ProjectId
-                join assignedTask in _projectContext.AssignedTasks
-                on task.Id equals assignedTask.TaskId
-                into assignedTasks
-                from assignedTask in assignedTasks.DefaultIfEmpty()
-                where assignedTask == null && project.TeamManagerId == managerId
-                      && task.Date >= startDate && task.Date <= endDate
-                select new UnAssignedTaskByManager()
-                {
-                    TaskId = task.Id,
-                    ProjectId = project.Id,
-                    TaskTitle = task.Title,
-                    ProjectTitle = project.Title,
-                    TaskDate = task.Date
-                }).ToListAsync();
-            return unassignedTaskByManager;
-        }
-        catch (Exception)
-        {
-            throw;
-        }
+//             switch (timePeriod)
+//             {
+//                 case "today":
+//                     startDate = currentDate;
+//                     endDate = currentDate;
+//                     break;
+//                 case "yesterday":
+//                     startDate = currentDate.AddDays(-1);
+//                     endDate = currentDate.AddDays(-1);
+//                     break;
+//                 case "lastweek":
+//                     startDate = currentDate.AddDays(-7);
+//                     endDate = currentDate;
+//                     break;
+//                 case "lastmonth":
+//                     startDate = currentDate.AddMonths(-1);
+//                     endDate = currentDate;
+//                     break;
+//                 case "lastyear":
+//                     startDate = currentDate.AddYears(-1);
+//                     endDate = currentDate;
+//                     break;
+//             }
+//             var unassignedTaskByManager = await (
+//                 from project in _projectContext.Projects
+//                 join task in _projectContext.Tasks
+//                 on project.Id equals task.ProjectId
+//                 join assignedTask in _projectContext.AssignedTasks
+//                 on task.Id equals assignedTask.TaskId
+//                 into assignedTasks
+//                 from assignedTask in assignedTasks.DefaultIfEmpty()
+//                 where assignedTask == null && project.TeamManagerId == managerId
+//                       && task.Date >= startDate && task.Date <= endDate
+//                 select new UnAssignedTaskByManager()
+//                 {
+//                     TaskId = task.Id,
+//                     ProjectId = project.Id,
+//                     TaskTitle = task.Title,
+//                     ProjectTitle = project.Title,
+//                     TaskDate = task.Date
+//                 }).ToListAsync();
+//             return unassignedTaskByManager;
+//         }
+//         catch (Exception)
+//         {
+//             throw;
+//         }
+//     }
+//     public async Task<List<EmployeeIdWithUserId>> GetEmployeeIdWithUserId(int projectId)
+//     {
+//         try
+//         {
+//             var employeesWithUserId = await (
+//                                 from employee in _projectContext.Employees
+//                                 join projectMember in _projectContext.ProjectMembers
+//                                 on employee.Id equals projectMember.TeamMemberId
+//                                 where projectMember.ProjectId == projectId
+//                                 select new EmployeeIdWithUserId()
+//                                 {
+//                                     TeamMemberId = projectMember.TeamMemberId,
+//                                     UserId = employee.UserId
+//                                 }).ToListAsync();
+//             return employeesWithUserId;
+
+//         }
+//         catch (Exception)
+//         {
+//             throw;
+//         }
+//     }
+
+//     public async Task<string> GetProjectName(int projectId)
+//     {
+//         try
+//         {
+//             var project = await _projectContext.Projects
+//                         .Where(p => p.Id == projectId)
+//                         .Select(p => p.Title)
+//                         .FirstOrDefaultAsync();
+//             return project;
+//         }
+//         catch (Exception)
+//         {
+//             throw;
+//         }
     }
-    public async Task<List<EmployeeIdWithUserId>> GetEmployeeIdWithUserId(int projectId)
-    {
-        try
-        {
-            var employeesWithUserId = await (
-                                from employee in _projectContext.Employees
-                                join projectMember in _projectContext.ProjectMembers
-                                on employee.Id equals projectMember.TeamMemberId
-                                where projectMember.ProjectId == projectId
-                                select new EmployeeIdWithUserId()
-                                {
-                                    TeamMemberId = projectMember.TeamMemberId,
-                                    UserId = employee.UserId
-                                }).ToListAsync();
-            return employeesWithUserId;
-
-        }
-        catch (Exception)
-        {
-            throw;
-        }
-    }
-
-    public async Task<string> GetProjectName(int projectId)
-    {
-        try
-        {
-            var project = await _projectContext.Projects
-                        .Where(p => p.Id == projectId)
-                        .Select(p => p.Title)
-                        .FirstOrDefaultAsync();
-            return project;
-        }
-        catch (Exception)
-        {
-            throw;
-        }
-    }
 
 
 
@@ -481,4 +486,3 @@ public class ProjectRepository : IProjectRepository
 
 
 
-}

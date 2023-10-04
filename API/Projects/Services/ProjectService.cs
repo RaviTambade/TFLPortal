@@ -4,6 +4,7 @@ using Transflower.PMSApp.Projects.Repositories.Interfaces;
 using Transflower.PMSApp.Projects.Services.Interfaces;
 
 namespace Transflower.PMSApp.Projects.Services;
+
 public class ProjectService : IProjectService
 {
     private readonly IProjectRepository _repository;
@@ -12,6 +13,7 @@ public class ProjectService : IProjectService
     {
         _repository = repository;
     }
+
     public async Task<List<Project>> GetAll()
     {
         return await _repository.GetAll();
@@ -21,6 +23,7 @@ public class ProjectService : IProjectService
     {
         return await _repository.GetById(projectId);
     }
+
     public async Task<List<ProjectList>> GetProjectsList(int teamMemberId)
     {
         return await _repository.GetProjectsList(teamMemberId);
@@ -35,6 +38,7 @@ public class ProjectService : IProjectService
     {
         return await _repository.Update(project);
     }
+
     public async Task<bool> Delete(int projectId)
     {
         return await _repository.Delete(projectId);
@@ -45,7 +49,7 @@ public class ProjectService : IProjectService
         return await _repository.GetProjectMembers(projectId);
     }
 
-    public async Task<List<ProjectTask>> GetTasksOfProject(int projectId, string timePeriod)
+    public async Task<List<ProjectTaskList>> GetTasksOfProject(int projectId, string timePeriod)
     {
         return await _repository.GetTasksOfProject(projectId, timePeriod);
     }
@@ -59,39 +63,35 @@ public class ProjectService : IProjectService
     {
         return await _repository.GetManagerProjects(managerId);
     }
+
     public async Task<List<UnAssignedTask>> GetUnAssignedTasks(int projectId, string timePeriod)
     {
         return await _repository.GetUnAssignedTasks(projectId, timePeriod);
     }
 
-    public async Task<List<AssignedTaskByManager>> GetAssignedTasksByManager(int managerId, string timePeriod)
+    public async Task<List<AssignedTaskByManager>> GetAssignedTasksByManager(
+        int managerId,
+        string timePeriod
+    )
     {
         return await _repository.GetAssignedTasksByManager(managerId, timePeriod);
     }
 
-    public async Task<List<UnAssignedTaskByManager>> GetUnAssignedTasksByManager(int managerId, string timePeriod)
-    {
-        return await _repository.GetUnAssignedTasksByManager(managerId, timePeriod);
-    }
+    // public async Task<List<UnAssignedTaskByManager>> GetUnAssignedTasksByManager(
+    //     int managerId,
+    //     string timePeriod
+    // )
+    // {
+    //     return await _repository.GetUnAssignedTasksByManager(managerId, timePeriod);
+    // }
 
-    public async Task<List<EmployeeIdWithUserId>> GetEmployeeIdWithUserId(int projectId)
-    {
-        return await _repository.GetEmployeeIdWithUserId(projectId);
-    }
+    // public async Task<List<EmployeeIdWithUserId>> GetEmployeeIdWithUserId(int projectId)
+    // {
+    //     return await _repository.GetEmployeeIdWithUserId(projectId);
+    // }
 
-    public async Task<string> GetProjectName(int projectId)
-    {
-        return await _repository.GetProjectName(projectId);
-    }
-
-
-
-
-
-
-
-
-
-
+    // public async Task<string> GetProjectName(int projectId)
+    // {
+    //     return await _repository.GetProjectName(projectId);
+    // }
 }
-
