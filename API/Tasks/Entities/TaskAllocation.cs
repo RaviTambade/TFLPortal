@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace Transflower.PMSApp.Tasks.Entities;
-[Table("assignedtasks")]
-public class AssignedTask
+[Table("taskallocations")]
+public class TaskAllocation
 {
     [Key]
     [Column("id")]
@@ -11,12 +11,13 @@ public class AssignedTask
     [Column("assignedon")]
     public DateTime AssignedOn { get; set; }
 
-    [Column("taskid")]
-    public int TaskId { get; set; }
+    [Column("projecttaskid")]
+    public int ProjectTaskId { get; set; }
 
     [Column("teammemberid")]
     public int TeamMemberId { get; set; }
- public AssignedTask(){
+
+    public TaskAllocation(){
         AssignedOn=DateTime.Now;
     }
 }

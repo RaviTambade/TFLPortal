@@ -9,18 +9,18 @@ using Transflower.PMSApp.Tasks.Entities;
 using Transflower.PMSApp.Tasks.Repositories.Contexts;
 namespace Transflower.PMSApp.Tasks.Repositories
 {
-    public class AssignedTaskRepository:IAssignedTaskRepository
+    public class TaskAllocationRepository:ITaskAllocationRepository
     {
         private readonly TaskContext _taskContext;
-        public AssignedTaskRepository(TaskContext taskContext){
+        public TaskAllocationRepository(TaskContext taskContext){
             _taskContext=taskContext;
         }
-      public async Task<bool> Insert(AssignedTask assignedTask)
+      public async Task<bool> Insert(TaskAllocation taskAllocation)
       {
         try
         {
             bool status = false;
-            await _taskContext.AssignedTasks.AddAsync(assignedTask);
+            await _taskContext.TaskAllocations.AddAsync(taskAllocation);
             status=await SaveChangesAsync(_taskContext);
             status=true;    
             return status;

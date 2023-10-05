@@ -20,8 +20,8 @@ builder.Services.AddDbContext<TaskContext>(options=>
         );
 builder.Services.AddTransient<ITaskRepository,TaskRepository>();
 builder.Services.AddTransient<ITaskService,TaskService>();
-builder.Services.AddTransient<IAssignedTaskRepository,AssignedTaskRepository>();
-builder.Services.AddTransient<IAssignedTaskService,AssignedTaskService>();
+builder.Services.AddTransient<ITaskAllocationRepository,TaskAllocationRepository>();
+builder.Services.AddTransient<ITaskAllocationService,TaskAllocationService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

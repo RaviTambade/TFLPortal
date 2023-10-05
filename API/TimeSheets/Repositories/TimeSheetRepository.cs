@@ -45,9 +45,13 @@ public class TimeSheetRepository : ITimeSheetRepository
             }
             var myTimeSheetList = await (
                                 from task in _timeSheetContext.Tasks
+                                join projecttask in _timeSheetContext.ProjectTasks
+                                on task.Id equals projecttask.TaskId
+                                join taskallocation in _timeSheetContext.TaskAllocations
+                                on projecttask.Id equals taskallocation.ProjectTaskId
                                 join timesheet in _timeSheetContext.TimeSheets
-                                on task.Id equals timesheet.TaskId
-                                where timesheet.EmployeeId == employeeId &&
+                                on taskallocation.Id equals timesheet.TaskAllocationId
+                                where taskallocation.TeamMemberId == employeeId &&
                              timesheet.Date.Date >= startDate.Date && timesheet.Date.Date <= endDate.Date orderby timesheet.Date descending
                                 select new MyTimeSheetList()
                                 {
@@ -149,10 +153,12 @@ public class TimeSheetRepository : ITimeSheetRepository
             }
             var timeSheetList= await (
                                from project in _timeSheetContext.Projects
+                               join projecttask in _timeSheetContext.ProjectTasks
+                               on project.Id equals projecttask.ProjectId
                                join task in _timeSheetContext.Tasks
-                               on project.Id equals task.ProjectId
-                               join assignedTask in _timeSheetContext.AssignedTasks
-                               on task.Id equals assignedTask.TaskId
+                               on projecttask.TaskId equals task.Id
+                               join taskallocation in _timeSheetContext.TaskAllocations
+                               on projecttask.Id equals taskallocation.ProjectTaskId
                                join timesheet in _timeSheetContext.TimeSheets
                                on task.Id equals timesheet.TaskId
                                join employee in _timeSheetContext.Employees

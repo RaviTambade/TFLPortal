@@ -77,21 +77,21 @@ public class ProjectService : IProjectService
         return await _repository.GetAssignedTasksByManager(managerId, timePeriod);
     }
 
-    // public async Task<List<UnAssignedTaskByManager>> GetUnAssignedTasksByManager(
-    //     int managerId,
-    //     string timePeriod
-    // )
-    // {
-    //     return await _repository.GetUnAssignedTasksByManager(managerId, timePeriod);
-    // }
+    public async Task<List<UnAssignedTaskByManager>> GetUnAssignedTasksByManager(
+        int managerId,
+        string timePeriod
+    )
+    {
+        return await _repository.GetUnAssignedTasksByManager(managerId, timePeriod);
+    }
 
-    // public async Task<List<EmployeeIdWithUserId>> GetEmployeeIdWithUserId(int projectId)
-    // {
-    //     return await _repository.GetEmployeeIdWithUserId(projectId);
-    // }
+    public async Task<List<EmployeeIdWithUserId>> GetEmployeeIdWithUserId(int projectId)
+    {
+        return await _repository.GetEmployeeIdWithUserId(projectId);
+    }
 
-    // public async Task<string> GetProjectName(int projectId)
-    // {
-    //     return await _repository.GetProjectName(projectId);
-    // }
+    public async Task<string> GetProjectName(int projectId)
+    {
+        return await _repository.GetProjectName(projectId);
+    }
 }

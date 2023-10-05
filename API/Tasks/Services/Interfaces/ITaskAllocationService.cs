@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Transflower.PMSApp.Tasks.Repositories.Interfaces;
 namespace Transflower.PMSApp.Tasks.Services.Interfaces;
-    public interface IAssignedTaskService:IAssignedTaskRepository
+    public interface ITaskAllocationService:ITaskAllocationRepository
     {
         
     }

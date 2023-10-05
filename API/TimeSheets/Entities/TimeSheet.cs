@@ -22,9 +22,6 @@ public class TimeSheet
     [Column("status")]
     public string? Status { get; set; }
 
-    [Column("employeeid")]
-    public int EmployeeId { get; set; }
-
-    [Column("taskid")]
-    public int TaskId { get; set; }
+    [Column("taskallocationid")]
+    public int TaskAllocationId { get; set; }
 }

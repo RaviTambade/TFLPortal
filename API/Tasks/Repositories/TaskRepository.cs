@@ -19,8 +19,8 @@ public class TaskRepository : ITaskRepository
                                      //  where task.ProjectId == projectId
                                  select new ProjectTaskCount()
                                  {
-                                     CompletedTaskCount = _taskContext.Tasks.Count(t => t.ProjectId == projectId && t.Status == "Completed"),
-                                     TotalTaskCount = _taskContext.Tasks.Count(t => t.ProjectId == projectId)
+                                     CompletedTaskCount = _taskContext.ProjectTasks.Count(t => t.ProjectId == projectId && t.Status == "Completed"),
+                                     TotalTaskCount = _taskContext.ProjectTasks.Count(t => t.ProjectId == projectId)
                                  }).FirstOrDefaultAsync();
             return projectTaskCount;
         }
@@ -64,20 +64,22 @@ public class TaskRepository : ITaskRepository
 
             var myTaskList = await (
                 from project in _taskContext.Projects
+                join projecttask in _taskContext.ProjectTasks
+                on project.Id equals projecttask.ProjectId
                 join task in _taskContext.Tasks
-                on project.Id equals task.ProjectId
-                join assignedTask in _taskContext.AssignedTasks
-                on task.Id equals assignedTask.TaskId
-                where assignedTask.TeamMemberId == teamMemberId  && assignedTask.AssignedOn.Date >= startDate.Date
-        && assignedTask.AssignedOn.Date <= endDate.Date orderby assignedTask.AssignedOn descending
+                on projecttask.TaskId equals task.Id
+                join taskallocation in _taskContext.TaskAllocations
+                on projecttask.Id equals taskallocation.ProjectTaskId
+                where taskallocation.TeamMemberId == teamMemberId  && taskallocation.AssignedOn.Date >= startDate.Date
+        && taskallocation.AssignedOn.Date <= endDate.Date orderby taskallocation.AssignedOn descending
                 select new MyTaskList()
                 {
-                    TaskId = task.Id,
-                    ProjectId = task.ProjectId,
+                    TaskId = projecttask.Id,
+                    ProjectId = projecttask.ProjectId,
                     Title = task.Title,
-                    AssignedOn=assignedTask.AssignedOn,
+                    AssignedOn=taskallocation.AssignedOn,
                     ProjectName = project.Title,
-                    Status = task.Status
+                    Status = projecttask.Status
                 }).ToListAsync();
 
             return myTaskList;
@@ -94,15 +96,17 @@ public class TaskRepository : ITaskRepository
         {
             var taskDetail = await (
                            from project in _taskContext.Projects
+                           join projecttask in _taskContext.ProjectTasks
+                           on project.Id equals projecttask.ProjectId
                            join task in _taskContext.Tasks
-                           on project.Id equals task.ProjectId
-                           where task.Id == taskId
+                           on projecttask.TaskId equals task.Id
+                           where projecttask.Id == taskId
                            select new TaskDetail()
                            {
-                               TaskId = task.Id,
+                               TaskId = projecttask.Id,
                                Task = task.Title,
-                               Status = task.Status,
-                               ProjectId = task.ProjectId,
+                               Status = projecttask.Status,
+                               ProjectId = projecttask.ProjectId,
                                ProjectName = project.Title
                            }).FirstOrDefaultAsync();
             return taskDetail;
@@ -119,17 +123,19 @@ public class TaskRepository : ITaskRepository
         {
             var moreTaskDetail = await (
                            from task in _taskContext.Tasks
-                           join assignedTask in _taskContext.AssignedTasks
-                           on task.Id equals assignedTask.TaskId
-                           where task.Id == taskId
+                           join projecttask in _taskContext.ProjectTasks
+                           on task.Id equals projecttask.TaskId
+                           join taskallocation in _taskContext.TaskAllocations
+                           on projecttask.Id equals taskallocation.ProjectTaskId
+                           where projecttask.Id == taskId
                            select new MoreTaskDetail()
                            {
-                               TaskId = task.Id,
-                               Date = task.Date,
+                               TaskId = projecttask.Id,
+                               Date = projecttask.Date,
                                Description = task.Description,
-                               FromTime = task.FromTime,
-                               ToTime = task.ToTime,
-                               AssignedTaskDate=assignedTask.AssignedOn
+                               FromTime = projecttask.FromTime,
+                               ToTime = projecttask.ToTime,
+                               AssignedTaskDate=taskallocation.AssignedOn
                            }).FirstOrDefaultAsync();
             return moreTaskDetail;
         }
@@ -173,24 +179,26 @@ public class TaskRepository : ITaskRepository
             var allTaskList = await (from employee in _taskContext.Employees
                                      join projectMember in _taskContext.ProjectMembers
                                      on employee.Id equals projectMember.TeamMemberId
+                                     join projecttask in _taskContext.ProjectTasks
+                                     on projectMember.ProjectId equals projecttask.ProjectId
                                      join task in _taskContext.Tasks
-                                     on projectMember.ProjectId equals task.ProjectId
+                                     on projecttask.TaskId equals task.Id
                                      join project in _taskContext.Projects
-                                     on task.ProjectId equals project.Id
-                                     join assignedTask in _taskContext.AssignedTasks
-                                     on task.Id equals assignedTask.TaskId
+                                     on projecttask.ProjectId equals project.Id
+                                     join taskallocation in _taskContext.TaskAllocations
+                                     on projecttask.Id equals taskallocation.ProjectTaskId
                                      join employee2 in _taskContext.Employees
-                                     on assignedTask.TeamMemberId equals employee2.Id
+                                     on taskallocation.TeamMemberId equals employee2.Id
                                      where employee.Id == employeeId &&
-                                      assignedTask.AssignedOn.Date >= startDate.Date && assignedTask.AssignedOn.Date <= endDate.Date orderby assignedTask.AssignedOn descending
+                                      taskallocation.AssignedOn.Date >= startDate.Date && taskallocation.AssignedOn.Date <= endDate.Date orderby taskallocation.AssignedOn descending
                                      select new AllTaskList()
                                      {
                                          ProjectName = project.Title,
                                          TaskTitle = task.Title,
-                                         TeamMemberId = assignedTask.TeamMemberId,
-                                         TaskId = task.Id,
+                                         TeamMemberId = taskallocation.TeamMemberId,
+                                         TaskId = projecttask.Id,
                                          TeamMemberUserId = employee2.UserId,
-                                         AssignedTaskDate=assignedTask.AssignedOn
+                                         AssignedTaskDate=taskallocation.AssignedOn
                                      }).ToListAsync();
             return allTaskList;
         }
@@ -206,15 +214,17 @@ public class TaskRepository : ITaskRepository
         try
         {
             var taskIdWithTitle = await (
-                                from task in _taskContext.Tasks
-                                join assignedTask in _taskContext.AssignedTasks
-                                on task.Id equals assignedTask.TaskId
-                                where task.ProjectId == projectId &&
-                                assignedTask.TeamMemberId == employeeId &&
-                                task.Status == status
+                                from projecttask in _taskContext.ProjectTasks
+                                join taskallocation in _taskContext.TaskAllocations
+                                on projecttask.Id equals taskallocation.ProjectTaskId
+                                join task in _taskContext.Tasks
+                                on projecttask.TaskId equals task.Id
+                                where projecttask.ProjectId == projectId &&
+                                taskallocation.TeamMemberId == employeeId &&
+                                projecttask.Status == status
                                 select new TaskIdWithTitle()
                                 {
-                                    TaskId = task.Id,
+                                    TaskId = projecttask.Id,
                                     Title = task.Title
                                 }).ToListAsync();
             return taskIdWithTitle;
@@ -270,12 +280,12 @@ public class TaskRepository : ITaskRepository
          bool status = false;
         try
         {
-            var task=await _taskContext.Tasks.FindAsync(taskId);
-            if(task == null)
+            var projecttask=await _taskContext.ProjectTasks.FindAsync(taskId);
+            if(projecttask == null)
             {
                 return false;
             }
-            task.Status=updateStatus;
+            projecttask.Status=updateStatus;
             status=await SaveChangesAsync(_taskContext);
         }
         catch(Exception)

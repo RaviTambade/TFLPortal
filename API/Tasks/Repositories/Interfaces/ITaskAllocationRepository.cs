@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Transflower.PMSApp.Tasks.Models;
 using Transflower.PMSApp.Tasks.Entities;
 namespace Transflower.PMSApp.Tasks.Repositories.Interfaces;
-    public interface IAssignedTaskRepository
+    public interface ITaskAllocationRepository
     {
-        Task<bool> Insert(AssignedTask assignedTask);
+        Task<bool> Insert(TaskAllocation taskAllocation);
     }

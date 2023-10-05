@@ -314,3 +314,4 @@ SELECT * FROM tasks WHERE title="Develop User Registration Feature";
 SELECT * FROM tasks;
 
 SELECT * FROM projectmembers;
+SELECT * FROM projects;

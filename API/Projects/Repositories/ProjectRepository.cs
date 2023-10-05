@@ -359,8 +359,10 @@ public class ProjectRepository : IProjectRepository
                                       on employee.Id equals project.TeamManagerId
                                       join projecttask in _projectContext.ProjectTasks
                                       on project.Id equals projecttask.ProjectId
+                                      join task in _projectContext.Tasks
+                                      on projecttask.TaskId equals task.Id
                                       join taskallocation in _projectContext.TasksAllocations
-                                      on task.Id equals taskallocation.TaskId
+                                      on projecttask.Id equals taskallocation.ProjectTaskId
                                       join employee2 in _projectContext.Employees
                                       on taskallocation.TeamMemberId equals employee2.Id
                                       where project.TeamManagerId == managerId
@@ -384,100 +386,103 @@ public class ProjectRepository : IProjectRepository
             throw;
         }
     }
-//     public async Task<List<UnAssignedTaskByManager>> GetUnAssignedTasksByManager(int managerId, string timePeriod)
-//     {
-//         try
-//         {
-//             DateTime currentDate = DateTime.Now.Date;
-//             DateTime startDate = currentDate;
-//             DateTime endDate = currentDate;
+    public async Task<List<UnAssignedTaskByManager>> GetUnAssignedTasksByManager(int managerId, string timePeriod)
+    {
+        try
+        {
+            DateTime currentDate = DateTime.Now.Date;
+            DateTime startDate = currentDate;
+            DateTime endDate = currentDate;
 
-//             switch (timePeriod)
-//             {
-//                 case "today":
-//                     startDate = currentDate;
-//                     endDate = currentDate;
-//                     break;
-//                 case "yesterday":
-//                     startDate = currentDate.AddDays(-1);
-//                     endDate = currentDate.AddDays(-1);
-//                     break;
-//                 case "lastweek":
-//                     startDate = currentDate.AddDays(-7);
-//                     endDate = currentDate;
-//                     break;
-//                 case "lastmonth":
-//                     startDate = currentDate.AddMonths(-1);
-//                     endDate = currentDate;
-//                     break;
-//                 case "lastyear":
-//                     startDate = currentDate.AddYears(-1);
-//                     endDate = currentDate;
-//                     break;
-//             }
-//             var unassignedTaskByManager = await (
-//                 from project in _projectContext.Projects
-//                 join task in _projectContext.Tasks
-//                 on project.Id equals task.ProjectId
-//                 join assignedTask in _projectContext.AssignedTasks
-//                 on task.Id equals assignedTask.TaskId
-//                 into assignedTasks
-//                 from assignedTask in assignedTasks.DefaultIfEmpty()
-//                 where assignedTask == null && project.TeamManagerId == managerId
-//                       && task.Date >= startDate && task.Date <= endDate
-//                 select new UnAssignedTaskByManager()
-//                 {
-//                     TaskId = task.Id,
-//                     ProjectId = project.Id,
-//                     TaskTitle = task.Title,
-//                     ProjectTitle = project.Title,
-//                     TaskDate = task.Date
-//                 }).ToListAsync();
-//             return unassignedTaskByManager;
-//         }
-//         catch (Exception)
-//         {
-//             throw;
-//         }
-//     }
-//     public async Task<List<EmployeeIdWithUserId>> GetEmployeeIdWithUserId(int projectId)
-//     {
-//         try
-//         {
-//             var employeesWithUserId = await (
-//                                 from employee in _projectContext.Employees
-//                                 join projectMember in _projectContext.ProjectMembers
-//                                 on employee.Id equals projectMember.TeamMemberId
-//                                 where projectMember.ProjectId == projectId
-//                                 select new EmployeeIdWithUserId()
-//                                 {
-//                                     TeamMemberId = projectMember.TeamMemberId,
-//                                     UserId = employee.UserId
-//                                 }).ToListAsync();
-//             return employeesWithUserId;
-
-//         }
-//         catch (Exception)
-//         {
-//             throw;
-//         }
-//     }
-
-//     public async Task<string> GetProjectName(int projectId)
-//     {
-//         try
-//         {
-//             var project = await _projectContext.Projects
-//                         .Where(p => p.Id == projectId)
-//                         .Select(p => p.Title)
-//                         .FirstOrDefaultAsync();
-//             return project;
-//         }
-//         catch (Exception)
-//         {
-//             throw;
-//         }
+            switch (timePeriod)
+            {
+                case "today":
+                    startDate = currentDate;
+                    endDate = currentDate;
+                    break;
+                case "yesterday":
+                    startDate = currentDate.AddDays(-1);
+                    endDate = currentDate.AddDays(-1);
+                    break;
+                case "lastweek":
+                    startDate = currentDate.AddDays(-7);
+                    endDate = currentDate;
+                    break;
+                case "lastmonth":
+                    startDate = currentDate.AddMonths(-1);
+                    endDate = currentDate;
+                    break;
+                case "lastyear":
+                    startDate = currentDate.AddYears(-1);
+                    endDate = currentDate;
+                    break;
+            }
+            var unassignedTaskByManager = await (
+                from project in _projectContext.Projects
+                join projecttask in _projectContext.ProjectTasks
+                on project.Id equals projecttask.ProjectId
+                join task in _projectContext.Tasks
+                on projecttask.TaskId equals task.Id
+                join assignedTask in _projectContext.TasksAllocations
+                on projecttask.Id equals assignedTask.ProjectTaskId
+                into assignedTasks
+                from assignedTask in assignedTasks.DefaultIfEmpty()
+                where assignedTask == null && project.TeamManagerId == managerId
+                      && projecttask.Date >= startDate && projecttask.Date <= endDate
+                select new UnAssignedTaskByManager()
+                {
+                    TaskId = task.Id,
+                    ProjectId = project.Id,
+                    TaskTitle = task.Title,
+                    ProjectTitle = project.Title,
+                    TaskDate = projecttask.Date
+                }).ToListAsync();
+            return unassignedTaskByManager;
+        }
+        catch (Exception)
+        {
+            throw;
+        }
     }
+    public async Task<List<EmployeeIdWithUserId>> GetEmployeeIdWithUserId(int projectId)
+    {
+        try
+        {
+            var employeesWithUserId = await (
+                                from employee in _projectContext.Employees
+                                join projectMember in _projectContext.ProjectMembers
+                                on employee.Id equals projectMember.TeamMemberId
+                                where projectMember.ProjectId == projectId
+                                select new EmployeeIdWithUserId()
+                                {
+                                    TeamMemberId = projectMember.TeamMemberId,
+                                    UserId = employee.UserId
+                                }).ToListAsync();
+            return employeesWithUserId;
+
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+
+    public async Task<string> GetProjectName(int projectId)
+    {
+        try
+        {
+            var project = await _projectContext.Projects
+                        .Where(p => p.Id == projectId)
+                        .Select(p => p.Title)
+                        .FirstOrDefaultAsync();
+            return project;
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+}
 
 
 
