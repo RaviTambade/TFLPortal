@@ -12,7 +12,7 @@ public class TaskAllocation
     [Column("assignedon")]
     public DateTime AssignedOn { get; set; }
 
-    [Column("taskid")]
+[Column("projecttaskid")]
     public int ProjectTaskId { get; set; }
 
     [Column("teammemberid")]

@@ -15,5 +15,6 @@ public class TimeSheetContext:DbContext{
         Projects=Set<Project>();
         Employees=Set<Employee>();
         TaskAllocations=Set<TaskAllocation>();
+        ProjectTasks=Set<ProjectTask>();
     }
 }

@@ -8,7 +8,7 @@ Team Members :-
                                       6.Timesheets of any employyes. 
 Team Manager :-
                 1)Charts -- A)Project --
-                                      7.Project Status Wise chart-- barchart/pie chart.
+                                      7.Total Working Hours on a project
                                       8.working hours of team members on a project.
                                       9.percentage wise progress bar of project. 
                                       10.Overdue date task or near by overdue tasks of project.

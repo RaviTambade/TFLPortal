@@ -312,6 +312,28 @@ SELECT * FROM timesheets;
 SELECT * FROM tasks WHERE title="Develop User Registration Feature";
 
 SELECT * FROM tasks;
+SELECT * FROM projecttasks;
 
 SELECT * FROM projectmembers;
 SELECT * FROM projects;
+
+SELECT * FROM timesheets;
+SELECT * FROM taskallocations;
+SELECT * FROM projecttasks;
+
+SELECT  projects.title, SUM(TIMESTAMPDIFF(HOUR, timesheets.fromtime, timesheets.totime))  AS totaltimespend
+FROM projects
+INNER JOIN projecttasks ON projects.id = projecttasks.projectid
+INNER JOIN taskallocations ON projecttasks.id = taskallocations.projecttaskid
+INNER JOIN timesheets ON taskallocations.id = timesheets.taskallocationid
+WHERE  projects.teammanagerid=4
+GROUP BY projects.title;
+
+SELECT e.id , e.userid,SUM(TIMESTAMPDIFF(SECOND, ts.fromtime, ts.totime)) / 3600 AS totalworkinghours
+FROM employees e
+INNER JOIN taskallocations ta ON e.id = ta.teammemberid
+INNER JOIN timesheets ts ON ta.id = ts.taskallocationid
+INNER JOIN projecttasks pt ON ta.projecttaskid = pt.id
+WHERE pt.projectid = 1
+GROUP BY e.id
+ORDER BY totalworkinghours DESC;

@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace Transflower.PMSApp.TimeSheets.Entities;
 
-[Table("tasks")]
+[Table("projecttasks")]
 public class ProjectTask{
 
     [Column("id")]
@@ -25,5 +25,4 @@ public class ProjectTask{
     
     [Column("taskid")]
     public int TaskId{get;set;}
-
 }

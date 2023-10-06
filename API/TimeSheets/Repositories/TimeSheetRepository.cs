@@ -73,9 +73,13 @@ public class TimeSheetRepository : ITimeSheetRepository
         try
         {
             var timeSheetDetails = await (
-                 from task in _timeSheetContext.Tasks
-                 join timesheet in _timeSheetContext.TimeSheets
-                 on task.Id equals timesheet.TaskId
+                from projecttask in  _timeSheetContext.ProjectTasks
+                join task in _timeSheetContext.Tasks
+                on projecttask.TaskId equals task.Id
+                join taskallocation in _timeSheetContext.TaskAllocations
+                on projecttask.Id equals taskallocation.ProjectTaskId
+                join timesheet in _timeSheetContext.TimeSheets
+                 on taskallocation.Id equals timesheet.TaskAllocationId
                  where timesheet.Id == timeSheetId
                  select new TimeSheetDetail()
                  {
@@ -160,14 +164,14 @@ public class TimeSheetRepository : ITimeSheetRepository
                                join taskallocation in _timeSheetContext.TaskAllocations
                                on projecttask.Id equals taskallocation.ProjectTaskId
                                join timesheet in _timeSheetContext.TimeSheets
-                               on task.Id equals timesheet.TaskId
+                               on taskallocation.Id equals timesheet.TaskAllocationId
                                join employee in _timeSheetContext.Employees
-                               on timesheet.EmployeeId equals employee.Id
+                               on taskallocation.TeamMemberId equals employee.Id
                                where project.TeamManagerId == managerId &&
                                timesheet.Date.Date >= startDate.Date && timesheet.Date.Date <= endDate.Date orderby timesheet.Date descending
                                select new TimeSheetList()
                                {
-                                TaskId=assignedTask.TaskId,
+                                TaskId=taskallocation.ProjectTaskId,
                                 ProjectId=project.Id,
                                 TaskTitle=task.Title,
                                 EmployeeUserId=employee.UserId,
