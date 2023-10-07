@@ -23,6 +23,7 @@ import { TasksbymanagerComponent } from './tasksbymanager/tasksbymanager.compone
 import { UnassignedtasksbymanagerComponent } from './unassignedtasksbymanager/unassignedtasksbymanager.component';
 import { AssigntheunassignedtaskComponent } from './assigntheunassignedtask/assigntheunassignedtask.component';
 import { UpdatetaskstatusComponent } from './updatetaskstatus/updatetaskstatus.component';
+import { TotalprojectworkhoursComponent } from './totalprojectworkhours/totalprojectworkhours.component';
 
 
 export const teammanagerRoutes:Routes=[
@@ -60,7 +61,8 @@ export const teammanagerRoutes:Routes=[
     TasksbymanagerComponent,
     UnassignedtasksbymanagerComponent,
     AssigntheunassignedtaskComponent,
-    UpdatetaskstatusComponent
+    UpdatetaskstatusComponent,
+    TotalprojectworkhoursComponent
   ],
   imports: [
     CommonModule,

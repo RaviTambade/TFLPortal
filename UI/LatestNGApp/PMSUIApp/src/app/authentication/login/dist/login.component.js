@@ -57,7 +57,7 @@ var LoginComponent = /** @class */ (function () {
                 this.authService.reloadSubject.next();
                 break;
             case role_1.Role.TeamManager:
-                this.router.navigate(['teammanager/projects']);
+                this.router.navigate(['teammanager/dashboard']);
                 this.authService.reloadSubject.next();
                 break;
             case role_1.Role.TeamMember:

@@ -1,26 +1,22 @@
 Team Members :- 
-                1)Charts -- A)Project -- 
-                                      1.Project Status Wise chart.  
+                                      1.Project Statuswise chart.  
                                       2.Total working hours spend on Project.
                                       3.All working Hours by daily tasks working calculation.
                                       4.Overdue date task or near by overdue tasks of project.
-                                      5.Avarage task duration.
-                                      6.Timesheets of any employyes. 
+                                      5.Avarage task duration to complete a task.
+                                      6.Tracking the completion status of individual tasks.
 Team Manager :-
-                1)Charts -- A)Project --
-                                      7.Total Working Hours on a project
-                                      8.working hours of team members on a project.
-                                      9.percentage wise progress bar of project. 
+                                      7.Total Working Hours on a project    *
+                                      8.working hours of team members on a project.  *
+                                      9.percentage wise progress bar of projects. 
                                       10.Overdue date task or near by overdue tasks of project.
-                            B)Task --
-                                      11.status wise project tasks.
-                                      12.assigned tasks for emplyess.
-                            C)Employee--
-                                      13.working hours of team members.
-                                      14.status wise employees assigned tasks.
-                                      15.performance of employee
-                            D)Timesheet--
-                                      16.Timesheets of any employyes.
+                                      11.status wise project tasks.    *
+                                      12.overview of assigned tasks for particular employee.   *
+                                      13.Individual working hours of team members.
+                                      14.Employee-wise task statuses.
+                                      15.Evaluation of employee performance.
+                                      16.Timesheets of any employees.
+                                      17.Overview of resource allocation across the team.
+                                      18.Displaying the availability of team members.
 
                
-
