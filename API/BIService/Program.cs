@@ -5,7 +5,7 @@ using Transflower.PMSApp.BIService.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddCors();
 builder.Services.AddControllers();
 builder.Services.AddScoped<ITeamManagerRepository, TeamManagerRepository>();
 builder.Services.AddScoped<ITeamManagerService, TeamManagerService>();
@@ -27,7 +27,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors(x => x.AllowAnyOrigin()
+                  .AllowAnyMethod()
+                  .AllowAnyHeader());
 app.UseAuthorization();
 
 app.MapControllers();

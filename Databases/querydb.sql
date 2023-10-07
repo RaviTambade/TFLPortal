@@ -329,11 +329,42 @@ INNER JOIN timesheets ON taskallocations.id = timesheets.taskallocationid
 WHERE  projects.teammanagerid=4
 GROUP BY projects.title;
 
-SELECT e.id , e.userid,SUM(TIMESTAMPDIFF(SECOND, ts.fromtime, ts.totime)) / 3600 AS totalworkinghours
-FROM employees e
-INNER JOIN taskallocations ta ON e.id = ta.teammemberid
-INNER JOIN timesheets ts ON ta.id = ts.taskallocationid
-INNER JOIN projecttasks pt ON ta.projecttaskid = pt.id
-WHERE pt.projectid = 1
-GROUP BY e.id
+SELECT employees.userid,SUM(TIMESTAMPDIFF(SECOND, timesheets.fromtime, timesheets.totime)) / 3600 AS totalworkinghours
+FROM employees 
+INNER JOIN taskallocations ON employees.id = taskallocations.teammemberid
+INNER JOIN timesheets ON taskallocations.id = timesheets.taskallocationid
+INNER JOIN projecttasks ON taskallocations.projecttaskid = projecttasks.id
+WHERE projecttasks.projectid = 2  
+GROUP BY employees.id
 ORDER BY totalworkinghours DESC;
+
+
+SELECT * FROM projecttasks WHERE projectid=1;
+
+SELECT * FROM employees;
+SELECT * FROM projects;
+
+SELECT projects.title,COUNT(projecttasks.status),projecttasks.status
+FROM projects 
+INNER JOIN projecttasks
+ON projects.id = projecttasks.projectid
+WHERE projects.id =1
+GROUP BY projecttasks.status;
+
+SELECT * FROM projectmembers;
+SELECT employees.userid,COUNT(taskallocations.id),projects.title,projecttasks.status
+FROM employees
+INNER JOIN taskallocations ON employees.id=taskallocations.teammemberid
+INNER JOIN projecttasks ON taskallocations.projecttaskid = projecttasks.id
+INNER JOIN projects ON projecttasks.projectid = projects.id
+WHERE  taskallocations.teammemberid IN (7) AND (taskallocations.assignedon >="2023-09-01 00:00:00") AND (taskallocations.assignedon<="2023-09-26 00:00:00")
+GROUP BY projecttasks.status,projecttasks.projectid,employees.userid; 
+
+SELECT taskallocations.teammemberid, SUM(TIMESTAMPDIFF(HOUR, timesheets.fromtime, timesheets.totime))  AS totaltimespend
+FROM taskallocations
+INNER JOIN timesheets ON timesheets.id=timesheets.taskallocationid
+WHERE taskallocations.teammemberid=7;
+SELECT * FROM taskallocations WHERE taskallocations.teammemberid=7  AND taskallocations.assignedon >="2023-09-01 00:00:00" AND taskallocations.assignedon<="2023-09-27 00:00:00";
+
+
+SELECT * FROM timesheets;

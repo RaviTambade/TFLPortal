@@ -5,20 +5,37 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Transflower.PMSApp.BIService.Models;
 using Transflower.PMSApp.BIService.Services.Interfaces;
+
 namespace Transflower.PMSApp.BIService.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
     public class TeamManagersBIController : ControllerBase
     {
-         private readonly ITeamManagerService _service;
-  public TeamManagersBIController(ITeamManagerService service)
-  {
-    _service = service;
-  }
-      [HttpGet]
-        public async Task<List<TotalProjectWork>> GetTotalProjectWorkHours(int teamManagerId)=>
+        private readonly ITeamManagerService _service;
+
+        public TeamManagersBIController(ITeamManagerService service)
+        {
+            _service = service;
+        }
+
+        [HttpGet("projectwork/{teamManagerId}")]
+        public async Task<List<TotalProjectWork>> GetTotalProjectWorkHours(int teamManagerId) =>
         await _service.GetTotalProjectWorkHours(teamManagerId);
-          
+
+
+        [HttpGet("projectworkbymembers/{projectId}")]
+        public async Task<List<TotalProjectWorkingByMember>> GetTotalProjectWorkHourByMembers(int projectId)=>
+        await _service.GetTotalProjectWorkHourByMembers(projectId);
+
+        [HttpGet("projectstatuscount/{projectId}")]
+          public async Task<List<ProjectTaskStatus>> GetProjectStatusCount(int projectId)=>
+        await _service.GetProjectStatusCount(projectId);
+
+
+        [HttpPost("allocatedtasks/{teamMemberId}")]
+          public async Task<List<AllocatedTaskOverview>> GetAllocatedTaskOverview([FromQuery] string teamMemberId,[FromBody] DateFilter dateFilter)=>
+        await _service.GetAllocatedTaskOverview(teamMemberId,dateFilter);
+              
     }
 }

@@ -61,7 +61,7 @@ export class LoginComponent {
         break;
 
       case Role.TeamManager:
-        this.router.navigate(['teammanager/projects']);
+        this.router.navigate(['teammanager/dashboard']);
         this.authService.reloadSubject.next();
         break;
 
