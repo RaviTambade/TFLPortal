@@ -14,14 +14,16 @@ namespace Transflower.PMSApp.BIService.Services
     {
         _repository = repository;
     } 
-        public async Task<List<TotalProjectWork>> GetTotalProjectWorkHours(int teamManagerId)=>
-        await _repository.GetTotalProjectWorkHours(teamManagerId);
+        public async Task<List<TotalProjectWork>> GetTotalProjectWorkHours(int teamManagerId,DateFilter dateFilter)=>
+        await _repository.GetTotalProjectWorkHours(teamManagerId, dateFilter);
         public async Task<List<TotalProjectWorkingByMember>> GetTotalProjectWorkHourByMembers(int projectId)=>
         await _repository.GetTotalProjectWorkHourByMembers(projectId);
         public async Task<List<ProjectTaskStatus>> GetProjectStatusCount(int projectId)=>
         await _repository.GetProjectStatusCount(projectId);
         public async Task<List<AllocatedTaskOverview>> GetAllocatedTaskOverview(string teamMemberId,DateFilter dateFilter)=>
         await _repository.GetAllocatedTaskOverview(teamMemberId,dateFilter);
-                    
+
+        public async Task<List<TotalProjectWorkingByMember>> GetTotalTimeSpendByMembers(string teamMemberId,DateFilter dateFilter)=>
+        await _repository.GetTotalTimeSpendByMembers(teamMemberId,dateFilter);
     }
 }

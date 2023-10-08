@@ -247,7 +247,7 @@ WHERE
       ORDER BY `a`.`assignedon` DESC;
 
 
-SELECT * FROM assignedtasks;
+
  SELECT `t`.`id` AS `TaskId`, `p`.`id` AS `ProjectId`, `t`.`title` AS `TaskTitle`, `p`.`title` AS `ProjectTitle`, `t`.`date` AS `TaskDate`
       FROM `projects` AS `p`
       INNER JOIN `tasks` AS `t` ON `p`.`id` = `t`.`projectid`    
@@ -326,7 +326,7 @@ FROM projects
 INNER JOIN projecttasks ON projects.id = projecttasks.projectid
 INNER JOIN taskallocations ON projecttasks.id = taskallocations.projecttaskid
 INNER JOIN timesheets ON taskallocations.id = timesheets.taskallocationid
-WHERE  projects.teammanagerid=4
+WHERE  projects.teammanagerid=4 AND (timesheets.date >="2023-09-01 00:00:00") AND (timesheets.date<="2023-09-26 00:00:00")
 GROUP BY projects.title;
 
 SELECT employees.userid,SUM(TIMESTAMPDIFF(SECOND, timesheets.fromtime, timesheets.totime)) / 3600 AS totalworkinghours
@@ -360,11 +360,21 @@ INNER JOIN projects ON projecttasks.projectid = projects.id
 WHERE  taskallocations.teammemberid IN (7) AND (taskallocations.assignedon >="2023-09-01 00:00:00") AND (taskallocations.assignedon<="2023-09-26 00:00:00")
 GROUP BY projecttasks.status,projecttasks.projectid,employees.userid; 
 
-SELECT taskallocations.teammemberid, SUM(TIMESTAMPDIFF(HOUR, timesheets.fromtime, timesheets.totime))  AS totaltimespend
-FROM taskallocations
-INNER JOIN timesheets ON timesheets.id=timesheets.taskallocationid
-WHERE taskallocations.teammemberid=7;
 SELECT * FROM taskallocations WHERE taskallocations.teammemberid=7  AND taskallocations.assignedon >="2023-09-01 00:00:00" AND taskallocations.assignedon<="2023-09-27 00:00:00";
+SELECT employees.userid, SUM(TIMESTAMPDIFF(HOUR, timesheets.fromtime, timesheets.totime)) AS totaltimespend
+FROM taskallocations
+INNER JOIN employees ON taskallocations.teammemberid =employees.id
+INNER JOIN timesheets ON taskallocations.id = timesheets.taskallocationid
+WHERE taskallocations.teammemberid IN (7) AND (timesheets.date >="2023-08-01 00:00:00") AND (timesheets.date<="2023-09-26 00:00:00")
+GROUP BY employees.userid;
 
 
 SELECT * FROM timesheets;
+
+
+SELECT employees.userid AS UserId, SUM(TIMESTAMPDIFF(HOUR, timesheets.fromtime, timesheets.totime)) AS TotalWorkingHour
+FROM taskallocations
+INNER JOIN employees ON taskallocations.teammemberid =employees.id
+INNER JOIN timesheets ON taskallocations.id = timesheets.taskallocationid
+WHERE taskallocations.teammemberid IN (7) AND (timesheets.date >="2023-08-01 00:00:00") AND (timesheets.date<="2023-09-26 00:00:00")
+GROUP BY employees.userid;

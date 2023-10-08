@@ -12,7 +12,7 @@ Team Manager :-
                                       10.Overdue date task or near by overdue tasks of project.
                                       11.status wise project tasks.    *
                                       12.overview of assigned tasks for particular employee.   *
-                                      13.Individual working hours of team members.
+                                      13.Individual working hours of team members. *
                                       14.Employee-wise task statuses.
                                       15.Evaluation of employee performance.
                                       16.Timesheets of any employees.

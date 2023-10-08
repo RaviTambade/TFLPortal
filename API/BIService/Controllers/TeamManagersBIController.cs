@@ -19,23 +19,31 @@ namespace Transflower.PMSApp.BIService.Controllers
             _service = service;
         }
 
-        [HttpGet("projectwork/{teamManagerId}")]
-        public async Task<List<TotalProjectWork>> GetTotalProjectWorkHours(int teamManagerId) =>
-        await _service.GetTotalProjectWorkHours(teamManagerId);
-
+        [HttpPost("projectwork/{teamManagerId}")]
+        public async Task<List<TotalProjectWork>> GetTotalProjectWorkHours(
+            int teamManagerId,
+            [FromBody] DateFilter dateFilter
+        ) => await _service.GetTotalProjectWorkHours(teamManagerId, dateFilter);
 
         [HttpGet("projectworkbymembers/{projectId}")]
-        public async Task<List<TotalProjectWorkingByMember>> GetTotalProjectWorkHourByMembers(int projectId)=>
-        await _service.GetTotalProjectWorkHourByMembers(projectId);
+        public async Task<List<TotalProjectWorkingByMember>> GetTotalProjectWorkHourByMembers(
+            int projectId
+        ) => await _service.GetTotalProjectWorkHourByMembers(projectId);
 
         [HttpGet("projectstatuscount/{projectId}")]
-          public async Task<List<ProjectTaskStatus>> GetProjectStatusCount(int projectId)=>
-        await _service.GetProjectStatusCount(projectId);
-
+        public async Task<List<ProjectTaskStatus>> GetProjectStatusCount(int projectId) =>
+            await _service.GetProjectStatusCount(projectId);
 
         [HttpPost("allocatedtasks/{teamMemberId}")]
-          public async Task<List<AllocatedTaskOverview>> GetAllocatedTaskOverview([FromQuery] string teamMemberId,[FromBody] DateFilter dateFilter)=>
-        await _service.GetAllocatedTaskOverview(teamMemberId,dateFilter);
-              
+        public async Task<List<AllocatedTaskOverview>> GetAllocatedTaskOverview(
+            string teamMemberId,
+            [FromBody] DateFilter dateFilter
+        ) => await _service.GetAllocatedTaskOverview(teamMemberId, dateFilter);
+
+        [HttpPost("totaltimespend/{teamMemberId}")]
+        public async Task<List<TotalProjectWorkingByMember>> GetTotalTimeSpendByMembers(
+            string teamMemberId,
+            [FromBody] DateFilter dateFilter
+        ) => await _service.GetTotalTimeSpendByMembers(teamMemberId, dateFilter);
     }
 }
