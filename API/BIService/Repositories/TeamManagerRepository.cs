@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
@@ -29,7 +30,7 @@ namespace Transflower.PMSApp.BIService.Repositories
             try
             {
                 string query =
-                    @"SELECT  projects.title AS Title, SUM(TIMESTAMPDIFF(HOUR, timesheets.fromtime, timesheets.totime))  AS TotalTimeSpend
+                    @"SELECT  projects.id AS Id,projects.title AS Title, SUM(TIMESTAMPDIFF(SECOND, timesheets.fromtime, timesheets.totime))  / 3600  AS TotalTimeSpend
                                FROM projects
                                INNER JOIN projecttasks ON projects.id = projecttasks.projectid
                                INNER JOIN taskallocations ON projecttasks.id = taskallocations.projecttaskid
@@ -47,6 +48,7 @@ WHERE  projects.teammanagerid=@teamManagerId AND (timesheets.date >=@startDate) 
                     projectWorkHours.Add(
                         new TotalProjectWork
                         {
+                            Id= reader.GetInt32("Id"),
                             Title = reader.GetString("Title"),
                             TotalTimeSpend = reader.GetDouble("TotalTimeSpend")
                         }
@@ -248,5 +250,37 @@ Console.WriteLine(dateFilter.EndDate);
             }
             return projectWorkingByMembers;
         }
+
+        public async Task<List<double>> GetCompletionPercentage(string projectId)
+{
+    List<double> percentages = new List<double>();
+    MySqlConnection connection = new MySqlConnection(_connectionString);
+    try
+    {
+        string query = @"SELECT 
+            ROUND((SUM(CASE WHEN projecttasks.status = 'Completed' THEN 1 ELSE 0 END) / COUNT(projecttasks.id)) * 100, 2) AS CompletionPercentage
+            FROM projecttasks
+            WHERE projecttasks.projectid = @projectId";
+        MySqlCommand command = new MySqlCommand(query, connection);
+        command.Parameters.AddWithValue("@projectId", projectId);
+        await connection.OpenAsync();
+        using MySqlDataReader reader = command.ExecuteReader();
+        while (await reader.ReadAsync())
+        {
+            double completionPercentage = reader.GetDouble("CompletionPercentage");
+            percentages.Add(completionPercentage);
+        }
+    }
+    catch (System.Exception)
+    {
+        throw;
+    }
+    finally
+    {
+        await connection.CloseAsync();
+    }
+    return percentages;
+}
+
     }
 }

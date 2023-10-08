@@ -105,6 +105,12 @@ public class ProjectsController : ControllerBase
         return await _service.GetProjectName(projectId);
     }
 
+    [HttpGet("managerprojects/{managerId}")]
+    public async Task<List<ProjectName>> GetProjectOfManager(int managerId)
+     {
+        return await _service.GetProjectOfManager(managerId);
+     }
+
 
 
 }

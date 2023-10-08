@@ -1,3 +1,3 @@
 export class Totalprojectwork {
-    constructor(public title:string,public totalTimeSpend:number){}
+    constructor(public id:number,public title:string,public totalTimeSpend:number){}
 }

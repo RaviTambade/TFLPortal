@@ -25,5 +25,9 @@ namespace Transflower.PMSApp.BIService.Services
 
         public async Task<List<TotalProjectWorkingByMember>> GetTotalTimeSpendByMembers(string teamMemberId,DateFilter dateFilter)=>
         await _repository.GetTotalTimeSpendByMembers(teamMemberId,dateFilter);
+
+        public async Task<List<double>> GetCompletionPercentage(string projectId)=>
+        await _repository.GetCompletionPercentage(projectId);
+
     }
 }

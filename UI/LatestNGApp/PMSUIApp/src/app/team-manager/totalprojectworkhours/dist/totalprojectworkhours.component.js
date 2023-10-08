@@ -9,22 +9,38 @@ exports.__esModule = true;
 exports.TotalprojectworkhoursComponent = void 0;
 var core_1 = require("@angular/core");
 var TotalprojectworkhoursComponent = /** @class */ (function () {
-    function TotalprojectworkhoursComponent(biService, employeeService) {
+    function TotalprojectworkhoursComponent(biService, projectService, employeeService) {
         this.biService = biService;
+        this.projectService = projectService;
         this.employeeService = employeeService;
         this.totalProjectWork = [];
         this.teamManagerId = 0;
+        this.dateFilter = {
+            "startDate": "2020-08-01T17:34:03",
+            "endDate": "2024-10-08T17:34:03"
+        };
+        this.selectedProjectId = null;
     }
     TotalprojectworkhoursComponent.prototype.ngOnInit = function () {
         var _this = this;
         var userId = localStorage.getItem('userId');
         this.employeeService.getEmployeeId(Number(userId)).subscribe(function (res) {
             _this.teamManagerId = res;
-            _this.biService.getTotalProjectWorkHours(_this.teamManagerId).subscribe(function (res) {
+            _this.biService.getTotalProjectWorkHours(_this.teamManagerId, _this.dateFilter).subscribe(function (res) {
+                console.log(_this.dateFilter);
                 _this.totalProjectWork = res;
                 console.log(res);
             });
         });
+    };
+    TotalprojectworkhoursComponent.prototype.selectProject = function (id) {
+        if (this.selectedProjectId === id) {
+            this.selectedProjectId = null;
+        }
+        else {
+            this.selectedProjectId = id;
+        }
+        this.projectService.setSelectedProjectId(id);
     };
     TotalprojectworkhoursComponent = __decorate([
         core_1.Component({

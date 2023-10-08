@@ -9,7 +9,6 @@ exports.__esModule = true;
 exports.TeamManagerModule = exports.teammanagerRoutes = void 0;
 var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
-var dashboard_component_1 = require("./dashboard/dashboard.component");
 var managerprojects_component_1 = require("./managerprojects/managerprojects.component");
 var managerprojectfilters_component_1 = require("./managerprojectfilters/managerprojectfilters.component");
 var forms_1 = require("@angular/forms");
@@ -29,8 +28,12 @@ var tasksbymanager_component_1 = require("./tasksbymanager/tasksbymanager.compon
 var unassignedtasksbymanager_component_1 = require("./unassignedtasksbymanager/unassignedtasksbymanager.component");
 var assigntheunassignedtask_component_1 = require("./assigntheunassignedtask/assigntheunassignedtask.component");
 var updatetaskstatus_component_1 = require("./updatetaskstatus/updatetaskstatus.component");
+var totalprojectworkhours_component_1 = require("./totalprojectworkhours/totalprojectworkhours.component");
+var teammanagerdashboard_component_1 = require("./teammanagerdashboard/teammanagerdashboard.component");
+var projectworkbyteammembers_component_1 = require("./projectworkbyteammembers/projectworkbyteammembers.component");
+var ng2_charts_1 = require("ng2-charts");
 exports.teammanagerRoutes = [
-    { path: 'dashboard', component: dashboard_component_1.DashboardComponent },
+    { path: 'dashboard', component: teammanagerdashboard_component_1.TeammanagerdashboardComponent },
     { path: 'projects', component: managerprojects_component_1.ManagerprojectsComponent },
     { path: 'projecttasks/:projectId', component: tasksofprojects_component_1.TasksofprojectsComponent },
     { path: 'addproject', component: addproject_component_1.AddprojectComponent },
@@ -52,7 +55,6 @@ var TeamManagerModule = /** @class */ (function () {
     TeamManagerModule = __decorate([
         core_1.NgModule({
             declarations: [
-                dashboard_component_1.DashboardComponent,
                 managerprojects_component_1.ManagerprojectsComponent,
                 managerprojectfilters_component_1.ManagerprojectfiltersComponent,
                 filteredtasks_component_1.FilteredtasksComponent,
@@ -67,13 +69,17 @@ var TeamManagerModule = /** @class */ (function () {
                 tasksbymanager_component_1.TasksbymanagerComponent,
                 unassignedtasksbymanager_component_1.UnassignedtasksbymanagerComponent,
                 assigntheunassignedtask_component_1.AssigntheunassignedtaskComponent,
-                updatetaskstatus_component_1.UpdatetaskstatusComponent
+                updatetaskstatus_component_1.UpdatetaskstatusComponent,
+                totalprojectworkhours_component_1.TotalprojectworkhoursComponent,
+                teammanagerdashboard_component_1.TeammanagerdashboardComponent,
+                projectworkbyteammembers_component_1.ProjectworkbyteammembersComponent,
             ],
             imports: [
                 common_1.CommonModule,
                 forms_1.FormsModule,
                 team_member_module_1.TeamMemberModule,
-                forms_1.ReactiveFormsModule
+                forms_1.ReactiveFormsModule,
+                ng2_charts_1.NgChartsModule,
             ],
             exports: [
                 assigntheunassignedtask_component_1.AssigntheunassignedtaskComponent

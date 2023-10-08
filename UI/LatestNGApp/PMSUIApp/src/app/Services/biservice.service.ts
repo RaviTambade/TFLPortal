@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Totalprojectwork } from '../Models/totalprojectwork';
+import { Datefilter } from '../Models/datefilter';
+import { Projectworkbymember } from '../Models/projectworkbymember';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +11,14 @@ import { Totalprojectwork } from '../Models/totalprojectwork';
 export class BIserviceService {
 
   constructor(private httpClient: HttpClient) { }
-getTotalProjectWorkHours(teamManagerId:number):Observable<Totalprojectwork[]>{
+getTotalProjectWorkHours(teamManagerId:number,dateFilter:Datefilter):Observable<Totalprojectwork[]>{
   let url="http://localhost:5242/api/TeamManagersBI/projectwork/" + teamManagerId
-  return this.httpClient.get<Totalprojectwork[]>(url)
+  return this.httpClient.post<Totalprojectwork[]>(url,dateFilter)
 }
+
+getTotalProjectWorkByMembers(projectId:number):Observable<Projectworkbymember[]>{
+  let url="http://localhost:5242/api/TeamManagersBI/projectworkbymembers/ " + projectId
+  return this.httpClient.get<Projectworkbymember[]>(url)
+}
+
 }

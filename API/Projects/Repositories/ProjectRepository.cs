@@ -482,6 +482,28 @@ public class ProjectRepository : IProjectRepository
             throw;
         }
     }
+
+
+     public async Task<List<ProjectName>> GetProjectOfManager(int managerId)
+    {
+        try
+        {
+            var projectNames = await (
+                             from project in _projectContext.Projects
+                             where project.TeamManagerId == managerId
+                             select new ProjectName()
+                             {
+                                 ProjectId = project.Id,
+                                 Title = project.Title
+                             }).ToListAsync();
+            return projectNames;
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+
 }
 
 

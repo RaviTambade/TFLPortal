@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { Routes } from '@angular/router';
 import { ManagerprojectsComponent } from './managerprojects/managerprojects.component';
 import { ManagerprojectfiltersComponent } from './managerprojectfilters/managerprojectfilters.component';
@@ -16,18 +15,19 @@ import { TeamMemberModule } from '../team-member/team-member.module';
 import { TasksofprojectsComponent } from '../team-member/tasksofprojects/tasksofprojects.component';
 import { UnassignedtasksComponent } from '../team-member/unassignedtasks/unassignedtasks.component';
 import { TimesheetlistComponent } from './timesheetlist/timesheetlist.component';
-
-
 import { AssignedtasksbymanagerComponent } from './assignedtasksbymanager/assignedtasksbymanager.component';
 import { TasksbymanagerComponent } from './tasksbymanager/tasksbymanager.component';
 import { UnassignedtasksbymanagerComponent } from './unassignedtasksbymanager/unassignedtasksbymanager.component';
 import { AssigntheunassignedtaskComponent } from './assigntheunassignedtask/assigntheunassignedtask.component';
 import { UpdatetaskstatusComponent } from './updatetaskstatus/updatetaskstatus.component';
 import { TotalprojectworkhoursComponent } from './totalprojectworkhours/totalprojectworkhours.component';
+import { TeammanagerdashboardComponent } from './teammanagerdashboard/teammanagerdashboard.component';
+import { ProjectworkbyteammembersComponent } from './projectworkbyteammembers/projectworkbyteammembers.component';
+import { NgChartsModule } from 'ng2-charts';
 
 
 export const teammanagerRoutes:Routes=[
-  {path:'dashboard',component:DashboardComponent},
+  {path:'dashboard',component:TeammanagerdashboardComponent},
   {path:'projects',component:ManagerprojectsComponent},
   {path:'projecttasks/:projectId',component:TasksofprojectsComponent},
   {path:'addproject', component:AddprojectComponent},
@@ -46,7 +46,6 @@ export const teammanagerRoutes:Routes=[
 
 @NgModule({
   declarations: [
-    DashboardComponent,
     ManagerprojectsComponent,
     ManagerprojectfiltersComponent,
     FilteredtasksComponent,
@@ -62,13 +61,16 @@ export const teammanagerRoutes:Routes=[
     UnassignedtasksbymanagerComponent,
     AssigntheunassignedtaskComponent,
     UpdatetaskstatusComponent,
-    TotalprojectworkhoursComponent
+    TotalprojectworkhoursComponent,
+    TeammanagerdashboardComponent,
+    ProjectworkbyteammembersComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     TeamMemberModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgChartsModule,
   ],
   exports:[
     AssigntheunassignedtaskComponent

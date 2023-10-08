@@ -12,8 +12,12 @@ var BIserviceService = /** @class */ (function () {
     function BIserviceService(httpClient) {
         this.httpClient = httpClient;
     }
-    BIserviceService.prototype.getTotalProjectWorkHours = function (teamManagerId) {
+    BIserviceService.prototype.getTotalProjectWorkHours = function (teamManagerId, dateFilter) {
         var url = "http://localhost:5242/api/TeamManagersBI/projectwork/" + teamManagerId;
+        return this.httpClient.post(url, dateFilter);
+    };
+    BIserviceService.prototype.getTotalProjectWorkByMembers = function (projectId) {
+        var url = "http://localhost:5242/api/TeamManagersBI/projectworkbymembers/ " + projectId;
         return this.httpClient.get(url);
     };
     BIserviceService = __decorate([

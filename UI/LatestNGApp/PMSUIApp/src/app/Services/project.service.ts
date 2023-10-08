@@ -87,4 +87,8 @@ export class ProjectService {
     let url="http://localhost:5248/api/projects/title/" + projectId
     return this.httpClient.get(url, { responseType: 'text' })
   }
+  getManagerProjectNames(managerId:number):Observable<Projectname[]>{
+    let url="http://localhost:5248/api/projects/managerprojects/" + managerId
+    return this.httpClient.get<Projectname[]>(url)
+  }
 }

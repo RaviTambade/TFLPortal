@@ -17,4 +17,6 @@ public interface IProjectRepository{
     Task<List<UnAssignedTaskByManager>> GetUnAssignedTasksByManager(int managerId,string timePeriod);
     Task<List<EmployeeIdWithUserId>> GetEmployeeIdWithUserId(int projectId);
     Task<string> GetProjectName(int projectId);
+    Task<List<ProjectName>> GetProjectOfManager(int managerId);
+
 }

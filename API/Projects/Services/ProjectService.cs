@@ -94,4 +94,10 @@ public class ProjectService : IProjectService
     {
         return await _repository.GetProjectName(projectId);
     }
+
+     public async Task<List<ProjectName>> GetProjectOfManager(int managerId)
+     {
+        return await _repository.GetProjectOfManager(managerId);
+     }
+
 }
