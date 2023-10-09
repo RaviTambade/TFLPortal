@@ -31,6 +31,11 @@
                         <i class="fas fa-calendar" style="color: #ffc107;"></i>&nbsp;Timesheet</a>
                     </li>
                     <li class="nav-item" *ngIf="isUserHaveRequiredRole(Role.TeamManager)">
+                      <a class="nav-link text-dark" [routerLink]="['teammanager/dashboard']"
+                        routerLinkActive="router-link-active">
+                        <i class="fas fa-line-chart" style="color: #f56709;"></i>&nbsp;Dashboard</a>
+                    </li>
+                    <li class="nav-item" *ngIf="isUserHaveRequiredRole(Role.TeamManager)">
                       <a class="nav-link text-dark" [routerLink]="['teammanager/projects']"
                         routerLinkActive="router-link-active">
                         <i class="fas fa-clipboard" style="color: #007bff;"></i>&nbsp;Projects</a>

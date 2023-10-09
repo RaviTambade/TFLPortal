@@ -67,7 +67,9 @@ WHERE  projects.teammanagerid=@teamManagerId AND (timesheets.date >=@startDate) 
             return projectWorkHours;
         }
 
-        public async Task<List<TotalProjectWorkingByMember>> GetTotalProjectWorkHourByMembers(int projectId)
+        public async Task<List<TotalProjectWorkingByMember>> GetTotalProjectWorkHourByMembers(
+            int projectId
+        )
         {
             List<TotalProjectWorkingByMember> projectWorkingByMembers = new();
             MySqlConnection connection = new(_connectionString);
@@ -109,7 +111,7 @@ WHERE  projects.teammanagerid=@teamManagerId AND (timesheets.date >=@startDate) 
             return projectWorkingByMembers;
         }
 
-        public async Task<List<ProjectTaskStatus>> GetProjectStatusCount(int projectId)
+        public async Task<List<ProjectTaskStatus>> GetProjectStatusCount(int teamManagerId)
         {
             List<ProjectTaskStatus> projectTaskStatuses = new();
             MySqlConnection connection = new(_connectionString);
@@ -120,10 +122,10 @@ WHERE  projects.teammanagerid=@teamManagerId AND (timesheets.date >=@startDate) 
                                FROM projects 
                                INNER JOIN projecttasks
                                ON projects.id = projecttasks.projectid
-                               WHERE projects.id =@projectId
-                               GROUP BY projecttasks.status";
+                               WHERE projects.teammanagerid =@teamManagerId
+                               GROUP BY projecttasks.status,projects.title";
                 MySqlCommand command = new(query, connection);
-                command.Parameters.AddWithValue("@projectid", projectId);
+                command.Parameters.AddWithValue("@teamManagerId", teamManagerId);
                 await connection.OpenAsync();
                 using MySqlDataReader reader = command.ExecuteReader();
                 while (await reader.ReadAsync())
@@ -215,10 +217,10 @@ INNER JOIN employees ON taskallocations.teammemberid =employees.id
 INNER JOIN timesheets ON taskallocations.id = timesheets.taskallocationid
 WHERE taskallocations.teammemberid IN (@teamMemberId) AND (timesheets.date >=@startDate) AND (timesheets.date<=@endDate)
 GROUP BY employees.userid;";
-                Console.WriteLine(query);
-                Console.WriteLine(teamMemberId);
-                Console.WriteLine(dateFilter.StartDate);
-                Console.WriteLine(dateFilter.EndDate);
+Console.WriteLine(query);
+Console.WriteLine(teamMemberId);
+Console.WriteLine(dateFilter.StartDate);
+Console.WriteLine(dateFilter.EndDate);
 
                 MySqlCommand command = new(query, connection);
                 command.Parameters.AddWithValue("@teamMemberId", teamMemberId);

@@ -1,25 +1,18 @@
 <div class="card mb-4">
-<div class="container mt-4">
+  <div class="container mt-4">
     <h4 class="mb-4">Total Project Work Hours</h4>
     <div class="row">
       <div class="col-lg-4 col-md-6" *ngFor="let project of totalProjectWork">
-<div class="card mb-4">
+        <div class="card mb-4">
           <div class="card-body">
             <h5 class="card-title">{{ project.title }}</h5>
             <p class="card-text">
               Total Time Spent: 
               <span class="large-font">{{ project.totalTimeSpend }} hours</span>
             </p>
-            <p>
-              <!-- <button class="btn btn-primary" (click)="selectProject(project.id)">Details</button>&nbsp; -->
-            </p>
           </div>
         </div>
       </div>
     </div>
-    </div>
   </div>
-  <!-- <div *ngIf="selectedProjectId !== null">
-    <app-projectworkbyteammembers [projectId]="selectedProjectId"></app-projectworkbyteammembers>
-</div> -->
-  
+</div>

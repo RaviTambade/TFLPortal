@@ -24,6 +24,7 @@ import { TotalprojectworkhoursComponent } from './totalprojectworkhours/totalpro
 import { TeammanagerdashboardComponent } from './teammanagerdashboard/teammanagerdashboard.component';
 import { ProjectworkbyteammembersComponent } from './projectworkbyteammembers/projectworkbyteammembers.component';
 import { NgChartsModule } from 'ng2-charts';
+import { ProjectsstatuscountComponent } from './projectsstatuscount/projectsstatuscount.component';
 
 
 export const teammanagerRoutes:Routes=[
@@ -64,6 +65,7 @@ export const teammanagerRoutes:Routes=[
     TotalprojectworkhoursComponent,
     TeammanagerdashboardComponent,
     ProjectworkbyteammembersComponent,
+    ProjectsstatuscountComponent,
   ],
   imports: [
     CommonModule,

@@ -49,7 +49,7 @@ var ManagerprojectsComponent = /** @class */ (function () {
                             console.log(completedTask);
                             var totalTask = _this.projectTaskCount.totalTaskCount;
                             console.log(totalTask);
-                            project.completion = totalTask === 0 ? 0 : (completedTask / totalTask) * 100;
+                            project.completion = totalTask === 0 ? 0 : ((completedTask / totalTask) * 100);
                         }
                     });
                 });

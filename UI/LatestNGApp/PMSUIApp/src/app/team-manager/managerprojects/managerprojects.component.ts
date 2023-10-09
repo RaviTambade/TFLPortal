@@ -56,7 +56,7 @@ export class ManagerprojectsComponent implements OnInit {
                     console.log(completedTask);
                     let totalTask = this.projectTaskCount.totalTaskCount;
                     console.log(totalTask);
-                    project.completion = totalTask === 0 ? 0 : (completedTask / totalTask) * 100;
+                    project.completion = totalTask === 0 ? 0 : ((completedTask / totalTask) * 100);
                     }
                   });
               });

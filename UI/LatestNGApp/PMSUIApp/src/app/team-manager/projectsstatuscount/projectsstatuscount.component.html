@@ -1,12 +1,7 @@
 <div class="card mb-4" style="height: 450px;">
     <br>
-    <h4>Total project work hours by members</h4>
+ <h4>Total project tasks</h4>
     <div class="container mt-4">
-      <div>
-        <select [(ngModel)]="selectedProjectId" (ngModelChange)="onProjectChange($event)" class="form-control">
-          <option *ngFor="let project of managerProjects" [value]="project.projectId">{{ project.title }}</option>
-        </select>
-      </div>
       <div style="height: 300px;">
         <canvas
           baseChart
@@ -20,4 +15,5 @@
       </div>
     </div>
   </div>
+
   

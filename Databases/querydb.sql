@@ -321,12 +321,12 @@ SELECT * FROM timesheets;
 SELECT * FROM taskallocations;
 SELECT * FROM projecttasks;
 
-SELECT  projects.title, SUM(TIMESTAMPDIFF(HOUR, timesheets.fromtime, timesheets.totime))  AS totaltimespend
+SELECT  projects.title, SUM(TIMESTAMPDIFF(SECOND, timesheets.fromtime, timesheets.totime)) / 3600  AS totaltimespend
 FROM projects
 INNER JOIN projecttasks ON projects.id = projecttasks.projectid
 INNER JOIN taskallocations ON projecttasks.id = taskallocations.projecttaskid
 INNER JOIN timesheets ON taskallocations.id = timesheets.taskallocationid
-WHERE  projects.teammanagerid=4 AND (timesheets.date >="2023-09-01 00:00:00") AND (timesheets.date<="2023-09-26 00:00:00")
+WHERE  projects.teammanagerid=4 AND (timesheets.date >="2021-07-01 00:00:00") AND (timesheets.date<="2023-09-26 00:00:00")
 GROUP BY projects.title;
 
 SELECT employees.userid,SUM(TIMESTAMPDIFF(SECOND, timesheets.fromtime, timesheets.totime)) / 3600 AS totalworkinghours
@@ -348,9 +348,10 @@ SELECT projects.title,COUNT(projecttasks.status),projecttasks.status
 FROM projects 
 INNER JOIN projecttasks
 ON projects.id = projecttasks.projectid
-WHERE projects.id =1
-GROUP BY projecttasks.status;
+WHERE projects.teammanagerid =4
+GROUP BY projecttasks.status,projects.title;
 
+SELECT * FROM projecttasks where projectid=5;
 SELECT * FROM projectmembers;
 SELECT employees.userid,COUNT(taskallocations.id),projects.title,projecttasks.status
 FROM employees
@@ -378,3 +379,45 @@ INNER JOIN employees ON taskallocations.teammemberid =employees.id
 INNER JOIN timesheets ON taskallocations.id = timesheets.taskallocationid
 WHERE taskallocations.teammemberid IN (7) AND (timesheets.date >="2023-08-01 00:00:00") AND (timesheets.date<="2023-09-26 00:00:00")
 GROUP BY employees.userid;
+
+
+
+DELIMITER //
+CREATE PROCEDURE GetEmployeeWorkingHours(
+    IN startDate DATE,
+    IN endDate DATE,
+    IN dateRange VARCHAR(10)
+)
+BEGIN
+    IF dateRange = 'today' THEN
+        SET startDate = CURDATE();
+        SET endDate = CURDATE();
+    ELSEIF dateRange = 'yesterday' THEN
+        SET startDate = CURDATE() - INTERVAL 1 DAY;
+        SET endDate = CURDATE() - INTERVAL 1 DAY;
+    ELSEIF dateRange = 'weekly' THEN
+        SET endDate = startDate + INTERVAL (WEEKDAY(startDate) + 7) DAY;
+    ELSEIF dateRange = 'monthly' THEN
+        SET endDate = LAST_DAY(startDate);
+    ELSEIF dateRange = 'quarterly' THEN
+        SET endDate = DATE_ADD(QUARTER(startDate), INTERVAL 3 MONTH) - INTERVAL 1 DAY;
+    END IF;
+
+    SELECT employees.userid, SUM(TIMESTAMPDIFF(SECOND, timesheets.fromtime, timesheets.totime)) / 3600 AS totalworkinghours
+    FROM employees 
+    INNER JOIN taskallocations ON employees.id = taskallocations.teammemberid
+    INNER JOIN timesheets ON taskallocations.id = timesheets.taskallocationid
+    INNER JOIN projecttasks ON taskallocations.projecttaskid = projecttasks.id
+    WHERE projecttasks.projectid = 2
+    AND timesheets.fromtime >= startDate
+    AND timesheets.totime <= endDate
+    GROUP BY employees.id
+    ORDER BY totalworkinghours DESC;
+END;
+//
+DELIMITER ;
+
+
+CALL GetEmployeeWorkingHours('2023-10-09', '2023-10-15', 'weekly');
+
+SELECT GetEmployeeWorkingHours;

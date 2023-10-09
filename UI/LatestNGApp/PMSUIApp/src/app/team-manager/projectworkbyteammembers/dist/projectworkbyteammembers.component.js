@@ -45,7 +45,8 @@ var ProjectworkbyteammembersComponent = /** @class */ (function () {
             datasets: [
                 {
                     data: [],
-                    label: 'WorkingHours'
+                    label: 'Employees',
+                    backgroundColor: '#a506b4'
                 },
             ]
         };
@@ -57,7 +58,9 @@ var ProjectworkbyteammembersComponent = /** @class */ (function () {
             _this.teamManagerId = res;
             _this.fetchProjectWork(_this.selectedProjectId);
             console.log(_this.selectedProjectId);
-            _this.projectService.getManagerProjectNames(_this.teamManagerId).subscribe(function (res) {
+            _this.projectService
+                .getManagerProjectNames(_this.teamManagerId)
+                .subscribe(function (res) {
                 console.log(res);
                 _this.managerProjects = res;
             });
@@ -70,7 +73,7 @@ var ProjectworkbyteammembersComponent = /** @class */ (function () {
             var teamMemberIds = _this.projectWorkByMember.map(function (u) { return u.userId; });
             console.log(teamMemberIds);
             if (teamMemberIds !== null) {
-                var teamMemberStringIds = teamMemberIds.join(",");
+                var teamMemberStringIds = teamMemberIds.join(',');
                 _this.userService
                     .getUserNamesWithId(teamMemberStringIds)
                     .subscribe(function (res) {
@@ -82,8 +85,8 @@ var ProjectworkbyteammembersComponent = /** @class */ (function () {
                                 item.employeeName = matchingItem.name;
                             if (_this.projectWorkByMember != undefined) {
                                 _this.barChartData.labels = _this.projectWorkByMember.map(function (work) { return work.employeeName; });
-                                _this.barChartData.datasets[0].data = _this.projectWorkByMember.map(function (work) { return work.totalWorkingHour; });
-                                _this.barChartData.datasets[0].backgroundColor = _this.getBarColors(_this.projectWorkByMember.length);
+                                _this.barChartData.datasets[0].data =
+                                    _this.projectWorkByMember.map(function (work) { return work.totalWorkingHour; });
                             }
                         });
                 });
@@ -94,21 +97,6 @@ var ProjectworkbyteammembersComponent = /** @class */ (function () {
         this.selectedProjectId = newProjectId;
         this.fetchProjectWork(newProjectId);
         console.log(newProjectId);
-    };
-    ProjectworkbyteammembersComponent.prototype.getBarColors = function (dataLength) {
-        var colors = [];
-        for (var i = 0; i < dataLength; i++) {
-            colors.push(this.getRandomColor());
-        }
-        return colors;
-    };
-    ProjectworkbyteammembersComponent.prototype.getRandomColor = function () {
-        var letters = '0123456789ABCDEF';
-        var color = '#';
-        for (var i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
     };
     __decorate([
         core_1.Input()
