@@ -421,3 +421,15 @@ DELIMITER ;
 CALL GetEmployeeWorkingHours('2023-10-09', '2023-10-15', 'weekly');
 
 SELECT GetEmployeeWorkingHours;
+
+
+SELECT projecttasks.projectid, ROUND((SUM(CASE WHEN projecttasks.status = 'Completed' THEN 1 ELSE 0 END) / COUNT(projecttasks.id)) * 100, 2) AS CompletionPercentage
+            FROM projecttasks
+            WHERE projecttasks.projectid IN (1,4,5) GROUP BY projecttasks.projectid;
+
+
+            SELECT projecttasks.projectid AS ProjectId, ROUND((SUM(CASE WHEN projecttasks.status = 'Completed' THEN 1 ELSE 0 END) / COUNT(projecttasks.id)) * 100, 2) AS CompletionPercentage
+            FROM projecttasks
+            WHERE projecttasks.projectid IN (1,4,5) GROUP BY projecttasks.projectid;
+
+            SELECT * FROM projects;

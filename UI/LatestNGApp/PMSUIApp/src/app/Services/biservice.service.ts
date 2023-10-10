@@ -5,6 +5,7 @@ import { Totalprojectwork } from '../Models/totalprojectwork';
 import { Datefilter } from '../Models/datefilter';
 import { Projectworkbymember } from '../Models/projectworkbymember';
 import { Projectstatuscount } from '../Models/projectstatuscount';
+import { Projectpercentage } from '../Models/projectpercentage';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,10 @@ getTotalProjectWorkByMembers(projectId:number):Observable<Projectworkbymember[]>
 getProjectsStatusCount(teamManagerId:number):Observable<Projectstatuscount[]>{
   let url="http://localhost:5242/api/TeamManagersBI/projectstatuscount/" +teamManagerId
   return this.httpClient.get<Projectstatuscount[]>(url)
+}
+getProjectCompletionPercentage(projectId:string):Observable<Projectpercentage[]>{
+  let url="http://localhost:5242/api/TeamManagersBI/projectpercentage/" +projectId
+  return this.httpClient.get<Projectpercentage[]>(url)
 }
 
 }

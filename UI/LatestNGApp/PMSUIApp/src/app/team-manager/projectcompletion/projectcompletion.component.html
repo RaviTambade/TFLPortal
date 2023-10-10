@@ -1,0 +1,19 @@
+
+
+
+
+<div class="container">
+    <h4>Progress of each project:</h4>
+    <br>
+    <div class="row">
+        <div *ngFor="let project of projectNames" class="col-md-6">
+           <h5> {{ project.title }}</h5>
+            <div class="progress-outer">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-info progress-bar-striped active" style="width:80%; box-shadow:-1px 10px 10px rgba(91, 192, 222, 0.7);"></div>
+                    <div class="progress-value">{{ getCompletionPercentage(project.projectId) }}%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

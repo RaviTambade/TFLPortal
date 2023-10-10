@@ -48,7 +48,7 @@ namespace Transflower.PMSApp.BIService.Controllers
 
 
         [HttpGet("projectpercentage/{projectId}")]
-           public async Task<List<double>> GetCompletionPercentage(string projectId)=>
+           public async Task<List<ProjectPercentage>> GetCompletionPercentage(string projectId)=>
         await _service.GetCompletionPercentage(projectId);
 
     }

@@ -25,6 +25,7 @@ import { TeammanagerdashboardComponent } from './teammanagerdashboard/teammanage
 import { ProjectworkbyteammembersComponent } from './projectworkbyteammembers/projectworkbyteammembers.component';
 import { NgChartsModule } from 'ng2-charts';
 import { ProjectsstatuscountComponent } from './projectsstatuscount/projectsstatuscount.component';
+import { ProjectcompletionComponent } from './projectcompletion/projectcompletion.component';
 
 
 export const teammanagerRoutes:Routes=[
@@ -66,6 +67,7 @@ export const teammanagerRoutes:Routes=[
     TeammanagerdashboardComponent,
     ProjectworkbyteammembersComponent,
     ProjectsstatuscountComponent,
+    ProjectcompletionComponent,
   ],
   imports: [
     CommonModule,

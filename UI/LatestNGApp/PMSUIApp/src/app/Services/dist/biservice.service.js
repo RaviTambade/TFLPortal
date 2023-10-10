@@ -24,6 +24,10 @@ var BIserviceService = /** @class */ (function () {
         var url = "http://localhost:5242/api/TeamManagersBI/projectstatuscount/" + teamManagerId;
         return this.httpClient.get(url);
     };
+    BIserviceService.prototype.getProjectCompletionPercentage = function (projectId) {
+        var url = "http://localhost:5242/api/TeamManagersBI/projectpercentage/" + projectId;
+        return this.httpClient.get(url);
+    };
     BIserviceService = __decorate([
         core_1.Injectable({
             providedIn: 'root'
