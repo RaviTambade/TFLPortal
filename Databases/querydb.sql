@@ -433,3 +433,4 @@ SELECT projecttasks.projectid, ROUND((SUM(CASE WHEN projecttasks.status = 'Compl
             WHERE projecttasks.projectid IN (1,4,5) GROUP BY projecttasks.projectid;
 
             SELECT * FROM projects;
+            SELECT * FROM projecttasks WHERE projectid=5;

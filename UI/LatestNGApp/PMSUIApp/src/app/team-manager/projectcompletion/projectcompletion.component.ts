@@ -48,4 +48,5 @@ export class ProjectcompletionComponent implements OnInit {
     return projectPercentage ? projectPercentage.completionPercentage : 0;
   }
   
+
 }
