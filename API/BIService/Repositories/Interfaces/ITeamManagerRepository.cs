@@ -8,12 +8,20 @@ namespace Transflower.PMSApp.BIService.Repositories.Interfaces
 {
     public interface ITeamManagerRepository
     {
-         Task<List<TotalProjectWork>> GetTotalProjectWorkHours(int teamManagerId,DateFilter dateFilter);
-         Task<List<TotalProjectWorkingByMember>> GetTotalProjectWorkHourByMembers(int projectId);
-         Task<List<ProjectTaskStatus>> GetProjectStatusCount(int teamManagerId);
-         Task<List<AllocatedTaskOverview>> GetAllocatedTaskOverview(string teamMemberId,DateFilter dateFilter);
-         Task<List<TotalProjectWorkingByMember>> GetTotalTimeSpendByMembers(string teamMemberId,DateFilter dateFilter);
-         Task<List<ProjectPercentage>> GetCompletionPercentage(string projectId);
-
+        Task<List<TotalProjectWork>> GetTotalProjectWorkHours(
+            int teamManagerId,
+            DateFilter dateFilter
+        );
+        Task<List<TotalProjectWorkingByMember>> GetTotalProjectWorkHourByMembers(int projectId);
+        Task<List<ProjectTaskStatus>> GetProjectStatusCount(int teamManagerId);
+        Task<List<AllocatedTaskOverview>> GetAllocatedTaskOverview(
+            string teamMemberId,
+            DateFilter dateFilter
+        );
+        Task<List<TotalProjectWorkingByMember>> GetTotalTimeSpendByMembers(
+            string teamMemberId,
+            DateFilter dateFilter
+        );
+        Task<List<ProjectPercentage>> GetCompletionPercentage(string projectId);
     }
 }

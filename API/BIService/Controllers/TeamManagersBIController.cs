@@ -46,10 +46,8 @@ namespace Transflower.PMSApp.BIService.Controllers
             [FromBody] DateFilter dateFilter
         ) => await _service.GetTotalTimeSpendByMembers(teamMemberId, dateFilter);
 
-
         [HttpGet("projectpercentage/{projectId}")]
-           public async Task<List<ProjectPercentage>> GetCompletionPercentage(string projectId)=>
-        await _service.GetCompletionPercentage(projectId);
-
+        public async Task<List<ProjectPercentage>> GetCompletionPercentage(string projectId) =>
+            await _service.GetCompletionPercentage(projectId);
     }
 }
