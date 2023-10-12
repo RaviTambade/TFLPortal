@@ -48,7 +48,7 @@ WHERE  projects.teammanagerid=@teamManagerId AND (timesheets.date >=@startDate) 
                     projectWorkHours.Add(
                         new TotalProjectWork
                         {
-                            Id= reader.GetInt32("Id"),
+                            Id = reader.GetInt32("Id"),
                             Title = reader.GetString("Title"),
                             TotalTimeSpend = reader.GetDouble("TotalTimeSpend")
                         }
@@ -217,10 +217,10 @@ INNER JOIN employees ON taskallocations.teammemberid =employees.id
 INNER JOIN timesheets ON taskallocations.id = timesheets.taskallocationid
 WHERE taskallocations.teammemberid IN (@teamMemberId) AND (timesheets.date >=@startDate) AND (timesheets.date<=@endDate)
 GROUP BY employees.userid;";
-Console.WriteLine(query);
-Console.WriteLine(teamMemberId);
-Console.WriteLine(dateFilter.StartDate);
-Console.WriteLine(dateFilter.EndDate);
+                Console.WriteLine(query);
+                Console.WriteLine(teamMemberId);
+                Console.WriteLine(dateFilter.StartDate);
+                Console.WriteLine(dateFilter.EndDate);
 
                 MySqlCommand command = new(query, connection);
                 command.Parameters.AddWithValue("@teamMemberId", teamMemberId);
@@ -252,37 +252,37 @@ Console.WriteLine(dateFilter.EndDate);
         }
 
         public async Task<List<ProjectPercentage>> GetCompletionPercentage(string projectId)
-{
-    List<ProjectPercentage> percentages = new List<ProjectPercentage>();
-    MySqlConnection connection = new MySqlConnection(_connectionString);
-    try
-    {
-        string query = $"SELECT projecttasks.projectid AS ProjectId, ROUND((SUM(CASE WHEN projecttasks.status = 'Completed' THEN 1 ELSE 0 END) / COUNT(projecttasks.id)) * 100, 2) AS CompletionPercentage FROM projecttasks WHERE projecttasks.projectid IN ({projectId}) GROUP BY projecttasks.projectid";
-        MySqlCommand command = new MySqlCommand(query, connection);
-        command.Parameters.AddWithValue("@projectId", projectId);
-        await connection.OpenAsync();
-        using MySqlDataReader reader = command.ExecuteReader();
-        while (await reader.ReadAsync())
         {
-             percentages.Add(
+            List<ProjectPercentage> percentages = new List<ProjectPercentage>();
+            MySqlConnection connection = new MySqlConnection(_connectionString);
+            try
+            {
+                string query =
+                    $"SELECT projecttasks.projectid AS ProjectId, ROUND((SUM(CASE WHEN projecttasks.status = 'Completed' THEN 1 ELSE 0 END) / COUNT(projecttasks.id)) * 100, 2) AS CompletionPercentage FROM projecttasks WHERE projecttasks.projectid IN ({projectId}) GROUP BY projecttasks.projectid";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@projectId", projectId);
+                await connection.OpenAsync();
+                using MySqlDataReader reader = command.ExecuteReader();
+                while (await reader.ReadAsync())
+                {
+                    percentages.Add(
                         new ProjectPercentage
                         {
                             ProjectId = reader.GetInt32("ProjectId"),
                             CompletionPercentage = reader.GetDouble("CompletionPercentage")
                         }
                     );
+                }
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                await connection.CloseAsync();
+            }
+            return percentages;
         }
-    }
-    catch (System.Exception)
-    {
-        throw;
-    }
-    finally
-    {
-        await connection.CloseAsync();
-    }
-    return percentages;
-}
-
     }
 }
