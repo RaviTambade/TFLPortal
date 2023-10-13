@@ -382,47 +382,6 @@ GROUP BY employees.userid;
 
 
 
-DELIMITER //
-CREATE PROCEDURE GetEmployeeWorkingHours(
-    IN startDate DATE,
-    IN endDate DATE,
-    IN dateRange VARCHAR(10)
-)
-BEGIN
-    IF dateRange = 'today' THEN
-        SET startDate = CURDATE();
-        SET endDate = CURDATE();
-    ELSEIF dateRange = 'yesterday' THEN
-        SET startDate = CURDATE() - INTERVAL 1 DAY;
-        SET endDate = CURDATE() - INTERVAL 1 DAY;
-    ELSEIF dateRange = 'weekly' THEN
-        SET endDate = startDate + INTERVAL (WEEKDAY(startDate) + 7) DAY;
-    ELSEIF dateRange = 'monthly' THEN
-        SET endDate = LAST_DAY(startDate);
-    ELSEIF dateRange = 'quarterly' THEN
-        SET endDate = DATE_ADD(QUARTER(startDate), INTERVAL 3 MONTH) - INTERVAL 1 DAY;
-    END IF;
-
-    SELECT employees.userid, SUM(TIMESTAMPDIFF(SECOND, timesheets.fromtime, timesheets.totime)) / 3600 AS totalworkinghours
-    FROM employees 
-    INNER JOIN taskallocations ON employees.id = taskallocations.teammemberid
-    INNER JOIN timesheets ON taskallocations.id = timesheets.taskallocationid
-    INNER JOIN projecttasks ON taskallocations.projecttaskid = projecttasks.id
-    WHERE projecttasks.projectid = 2
-    AND timesheets.fromtime >= startDate
-    AND timesheets.totime <= endDate
-    GROUP BY employees.id
-    ORDER BY totalworkinghours DESC;
-END;
-//
-DELIMITER ;
-
-
-CALL GetEmployeeWorkingHours('2023-10-09', '2023-10-15', 'weekly');
-
-SELECT GetEmployeeWorkingHours;
-
-
 SELECT projecttasks.projectid, ROUND((SUM(CASE WHEN projecttasks.status = 'Completed' THEN 1 ELSE 0 END) / COUNT(projecttasks.id)) * 100, 2) AS CompletionPercentage
             FROM projecttasks
             WHERE projecttasks.projectid IN (1,4,5) GROUP BY projecttasks.projectid;
@@ -434,3 +393,5 @@ SELECT projecttasks.projectid, ROUND((SUM(CASE WHEN projecttasks.status = 'Compl
 
             SELECT * FROM projects;
             SELECT * FROM projecttasks WHERE projectid=5;
+
+SELECT * FROM projecttasks;

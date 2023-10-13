@@ -23,5 +23,7 @@ namespace Transflower.PMSApp.BIService.Repositories.Interfaces
             DateFilter dateFilter
         );
         Task<List<ProjectPercentage>> GetCompletionPercentage(string projectId);
+        Task<List<TotalProjectWorkingByMember>> GetTotalProjectWorkHourOfMembers(int projectId,DateTime givenDate,string dateRange);
+
     }
 }

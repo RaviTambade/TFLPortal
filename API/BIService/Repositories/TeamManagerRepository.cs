@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Data;
 using MySql.Data.MySqlClient;
 using Transflower.PMSApp.BIService.Models;
 using Transflower.PMSApp.BIService.Repositories.Interfaces;
@@ -284,5 +286,41 @@ GROUP BY employees.userid;";
             }
             return percentages;
         }
+
+       public async Task<List<TotalProjectWorkingByMember>> GetTotalProjectWorkHourOfMembers(int projectId,DateTime givenDate,string dateRange)
+       {
+        List<TotalProjectWorkingByMember> totalProjectWorkingByMembers=new();
+        MySqlConnection connection= new(_connectionString);
+        try
+        {
+            MySqlCommand command =new MySqlCommand("GetEmployeeWorkingHours",connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@projectId", projectId);
+            command.Parameters.AddWithValue("@givenDate", givenDate);
+            command.Parameters.AddWithValue("@dateRange", dateRange);
+            await connection.OpenAsync();
+            MySqlDataReader reader = (MySqlDataReader)await command.ExecuteReaderAsync();
+             while (await reader.ReadAsync())
+             {
+                TotalProjectWorkingByMember totalProjectWorkingByMember=new TotalProjectWorkingByMember(){
+                    UserId=reader.GetInt32("userid"),
+                    TotalWorkingHour=reader.GetDouble("totalworkinghours")
+                };
+                totalProjectWorkingByMembers.Add(totalProjectWorkingByMember);
+             }
+              await reader.CloseAsync();
+        }
+        catch (System.Exception)
+        {
+            
+            throw;
+        }
+         finally
+        {
+            await connection.CloseAsync();
+        }
+        return totalProjectWorkingByMembers;
+       }
+        
     }
 }
