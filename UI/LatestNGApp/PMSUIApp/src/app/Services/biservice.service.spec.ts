@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BIserviceService } from './biservice.service';
+import { BIserviceService } from '../Models/Enums/biservice.service';
 
 describe('BIserviceService', () => {
   let service: BIserviceService;

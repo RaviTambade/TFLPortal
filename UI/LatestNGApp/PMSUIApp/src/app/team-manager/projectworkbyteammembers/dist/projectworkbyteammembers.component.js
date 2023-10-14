@@ -19,6 +19,9 @@ var ProjectworkbyteammembersComponent = /** @class */ (function () {
         this.teamManagerId = 0;
         this.managerProjects = [];
         this.selectedProjectId = 1;
+        this.selectedDateRange = "today";
+        this.selectedGivenDate = new Date().toISOString().split('T')[0];
+        this.dateRangeOptions = ['today', 'yesterday', 'weekly', 'monthly', 'custom'];
         this.barChartOptions = {
             responsive: true,
             // We use these empty structures as placeholders for dynamic theming.
@@ -56,7 +59,7 @@ var ProjectworkbyteammembersComponent = /** @class */ (function () {
         var userId = localStorage.getItem('userId');
         this.employeeService.getEmployeeId(Number(userId)).subscribe(function (res) {
             _this.teamManagerId = res;
-            _this.fetchProjectWork(_this.selectedProjectId);
+            _this.fetchProjectWork(_this.selectedProjectId, _this.selectedGivenDate, _this.selectedDateRange);
             console.log(_this.selectedProjectId);
             _this.projectService
                 .getManagerProjectNames(_this.teamManagerId)
@@ -66,9 +69,9 @@ var ProjectworkbyteammembersComponent = /** @class */ (function () {
             });
         });
     };
-    ProjectworkbyteammembersComponent.prototype.fetchProjectWork = function (projectId) {
+    ProjectworkbyteammembersComponent.prototype.fetchProjectWork = function (projectId, givenDate, dateRange) {
         var _this = this;
-        this.biService.getTotalProjectWorkByMembers(projectId).subscribe(function (res) {
+        this.biService.getTotalHoursOfMembers(projectId, givenDate, dateRange).subscribe(function (res) {
             _this.projectWorkByMember = res;
             var teamMemberIds = _this.projectWorkByMember.map(function (u) { return u.userId; });
             console.log(teamMemberIds);
@@ -93,10 +96,13 @@ var ProjectworkbyteammembersComponent = /** @class */ (function () {
             }
         });
     };
-    ProjectworkbyteammembersComponent.prototype.onProjectChange = function (newProjectId) {
-        this.selectedProjectId = newProjectId;
-        this.fetchProjectWork(newProjectId);
-        console.log(newProjectId);
+    // onProjectChange(newProjectId: number,newGivenDate:string,newDateRange:string): void {
+    //   this.selectedProjectId = newProjectId;
+    //   this.fetchProjectWork(newProjectId,newGivenDate,newDateRange);
+    //   console.log(newProjectId);
+    // }
+    ProjectworkbyteammembersComponent.prototype.onButtonClick = function () {
+        this.fetchProjectWork(this.selectedProjectId, this.selectedGivenDate, this.selectedDateRange);
     };
     __decorate([
         core_1.Input()

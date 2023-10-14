@@ -395,3 +395,13 @@ SELECT projecttasks.projectid, ROUND((SUM(CASE WHEN projecttasks.status = 'Compl
             SELECT * FROM projecttasks WHERE projectid=5;
 
 SELECT * FROM projecttasks;
+
+SELECT * FROM timesheets  where date="2023-09-09"  ;
+SELECT * FROM timesheets;
+SELECT * FROM taskallocations WHERE teammemberid=7;
+
+SELECT * FROM timesheets;
+SELECT * FROM taskallocations;
+
+
+

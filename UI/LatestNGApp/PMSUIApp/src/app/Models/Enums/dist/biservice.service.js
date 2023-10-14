@@ -28,10 +28,6 @@ var BIserviceService = /** @class */ (function () {
         var url = "http://localhost:5242/api/TeamManagersBI/projectpercentage/" + projectId;
         return this.httpClient.get(url);
     };
-    BIserviceService.prototype.getTotalHoursOfMembers = function (projectId, givenDate, dateRange) {
-        var url = "http://localhost:5242/api/TeamManagersBI/memberworkhours/" + projectId + "/" + givenDate + "/" + dateRange;
-        return this.httpClient.get(url);
-    };
     BIserviceService = __decorate([
         core_1.Injectable({
             providedIn: 'root'

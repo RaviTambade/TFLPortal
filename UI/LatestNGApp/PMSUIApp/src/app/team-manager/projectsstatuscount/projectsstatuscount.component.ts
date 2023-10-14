@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { Projectstatuscount } from 'src/app/Models/projectstatuscount';
-import { BIserviceService } from 'src/app/Services/biservice.service';
 import { EmployeeService } from 'src/app/Services/employee.service';
+import { BIserviceService } from 'src/app/Services/biservice.service';
 
 @Component({
   selector: 'app-projectsstatuscount',
