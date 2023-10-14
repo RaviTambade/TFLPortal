@@ -21,8 +21,13 @@ namespace Transflower.PMSApp.BIService.Repositories.Interfaces
             );
 
             Task<double> GetCalculateAverageTime(
-            int UserIdd
+            int UserId
             );
+
+        Task<List<OverDueTask>> OverDueTaskOfMember(
+            int UserId
+            );
+            
 
 
 

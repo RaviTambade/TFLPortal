@@ -144,6 +144,49 @@ GROUP BY employees.userid;";
     }
 }
 
+public async Task<List<OverDueTask>> OverDueTaskOfMember(int userId)
+{
+    List<OverDueTask> overduetasks = new List<OverDueTask>();
+    MySqlConnection connection = new MySqlConnection(_connectionString);
+
+    try
+    {
+        MySqlCommand command = new MySqlCommand("getOverDueTasks", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@userId", userId);
+
+        await connection.OpenAsync();
+        MySqlDataReader reader = (MySqlDataReader)await command.ExecuteReaderAsync();
+
+        while (await reader.ReadAsync())
+        {
+            OverDueTask overdueTask = new OverDueTask()
+            {
+                DueDate = reader.GetDateTime("dueDate"),
+                Status = reader.GetString("status"),
+                ProjectTitle = reader.GetString("projectTitle"),
+                UserId = reader.GetInt32("userId"),
+                TaskTitle = reader.GetString("taskTitle")
+            };
+
+            overduetasks.Add(overdueTask);
+        }
+
+        await reader.CloseAsync();
+    }
+    catch (Exception)
+    {
+        throw;
+    }
+    finally
+    {
+        await connection.CloseAsync();
+    }
+
+    return overduetasks;
+}
+
+
 
 
 

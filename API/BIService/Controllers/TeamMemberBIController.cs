@@ -34,6 +34,10 @@ namespace Transflower.PMSApp.BIService.Controllers
         public async Task<double> GetCalculateAverageTime(int userId) =>
        await _service.GetCalculateAverageTime(userId);
 
+        [HttpGet("memberoverduetasks/{userId}")]
+        public async Task<List<OverDueTask>> OverDueTaskOfMember(int userId) =>
+       await _service.OverDueTaskOfMember(userId);
+
 
 
     }

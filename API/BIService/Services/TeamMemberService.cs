@@ -27,5 +27,8 @@ namespace Transflower.PMSApp.BIService.Services
         public async Task<double> GetCalculateAverageTime(int userId) =>
       await _repository.GetCalculateAverageTime(userId);
 
+        public async Task<List<OverDueTask>> OverDueTaskOfMember(int userId) =>
+      await _repository.OverDueTaskOfMember(userId);
+
     }
 }
