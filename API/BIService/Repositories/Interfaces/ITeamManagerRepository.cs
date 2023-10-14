@@ -12,7 +12,6 @@ namespace Transflower.PMSApp.BIService.Repositories.Interfaces
             int teamManagerId,
             DateFilter dateFilter
         );
-        Task<List<TotalProjectWorkingByMember>> GetTotalProjectWorkHourByMembers(int projectId);
         Task<List<ProjectTaskStatus>> GetProjectStatusCount(int teamManagerId);
         Task<List<AllocatedTaskOverview>> GetAllocatedTaskOverview(
             string teamMemberId,

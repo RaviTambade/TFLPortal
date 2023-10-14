@@ -405,3 +405,35 @@ SELECT * FROM taskallocations;
 
 
 
+
+SELECT employees.userid, SUM(TIMESTAMPDIFF(HOUR, timesheets.fromtime, timesheets.totime)) AS totaltimespend
+FROM taskallocations
+INNER JOIN employees ON taskallocations.teammemberid =employees.id
+INNER JOIN timesheets ON taskallocations.id = timesheets.taskallocationid
+WHERE taskallocations.teammemberid IN (7) AND (timesheets.date >="2023-08-01 00:00:00") AND (timesheets.date<="2023-09-26 00:00:00");
+
+
+SELECT * FROM projecttasks;
+
+SELECT * FROM projectmembers;
+SELECT * FROM taskallocations;
+
+
+
+
+--average task duration 
+SELECT AVG(taskTime) as AverageTime
+FROM (
+    SELECT SUM(TIMESTAMPDIFF(HOUR, timesheets.fromtime, timesheets.totime)) as taskTime
+    FROM employees
+    INNER JOIN taskallocations
+    ON employees.id = taskallocations.teammemberid
+    INNER JOIN timesheets
+    ON taskallocations.id = timesheets.taskallocationid
+    INNER JOIN projecttasks
+    ON taskallocations.projecttaskid = projecttasks.id
+    WHERE employees.userid =10
+    AND projecttasks.status = 'Completed'
+    GROUP BY projecttasks.id
+) AS completedTasks;
+

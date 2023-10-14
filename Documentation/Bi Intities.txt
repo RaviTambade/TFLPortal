@@ -1,7 +1,7 @@
 Team Members :- 
                                       1.Project Statuswise chart.  
-                                      2.Total working hours spend on Project.
-                                      3.All working Hours by daily tasks working calculation.
+                                      2.Total working hours spend on Project. 
+                                      3.All working Hours by daily tasks working calculation. *
                                       4.Overdue date task or near by overdue tasks of project.
                                       5.Avarage task duration to complete a task.
                                       6.Tracking the completion status of individual tasks.

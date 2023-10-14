@@ -38,7 +38,7 @@ namespace Transflower.PMSApp.BIService.Repositories
                                INNER JOIN taskallocations ON projecttasks.id = taskallocations.projecttaskid
                                INNER JOIN timesheets ON taskallocations.id = timesheets.taskallocationid
 WHERE  projects.teammanagerid=@teamManagerId AND (timesheets.date >=@startDate) AND (timesheets.date<=@endDate)
-                               GROUP BY projects.title";
+                               GROUP BY Id";
                 MySqlCommand command = new(query, connection);
                 command.Parameters.AddWithValue("@teammanagerid", teamManagerId);
                 command.Parameters.AddWithValue("@startDate", dateFilter.StartDate);
@@ -67,50 +67,6 @@ WHERE  projects.teammanagerid=@teamManagerId AND (timesheets.date >=@startDate) 
                 connection.Close();
             }
             return projectWorkHours;
-        }
-
-        public async Task<List<TotalProjectWorkingByMember>> GetTotalProjectWorkHourByMembers(
-            int projectId
-        )
-        {
-            List<TotalProjectWorkingByMember> projectWorkingByMembers = new();
-            MySqlConnection connection = new(_connectionString);
-            try
-            {
-                string query =
-                    @"SELECT employees.userid,SUM(TIMESTAMPDIFF(SECOND, timesheets.fromtime, timesheets.totime)) / 3600 AS totalworkinghours
-                               FROM employees 
-                               INNER JOIN taskallocations ON employees.id = taskallocations.teammemberid
-                               INNER JOIN timesheets ON taskallocations.id = timesheets.taskallocationid
-                               INNER JOIN projecttasks ON taskallocations.projecttaskid = projecttasks.id
-                               WHERE projecttasks.projectid = @projectId 
-                               GROUP BY employees.id
-                               ORDER BY totalworkinghours DESC";
-                MySqlCommand command = new(query, connection);
-                command.Parameters.AddWithValue("@projectid", projectId);
-                await connection.OpenAsync();
-                using MySqlDataReader reader = command.ExecuteReader();
-                while (await reader.ReadAsync())
-                {
-                    projectWorkingByMembers.Add(
-                        new TotalProjectWorkingByMember
-                        {
-                            UserId = reader.GetInt32("UserId"),
-                            TotalWorkingHour = reader.GetDouble("totalworkinghours")
-                        }
-                    );
-                }
-                await reader.CloseAsync();
-            }
-            catch (System.Exception)
-            {
-                throw;
-            }
-            finally
-            {
-                connection.Close();
-            }
-            return projectWorkingByMembers;
         }
 
         public async Task<List<ProjectTaskStatus>> GetProjectStatusCount(int teamManagerId)
@@ -260,7 +216,7 @@ GROUP BY employees.userid;";
             try
             {
                 string query =
-                    $"SELECT projecttasks.projectid AS ProjectId, ROUND((SUM(CASE WHEN projecttasks.status = 'Completed' THEN 1 ELSE 0 END) / COUNT(projecttasks.id)) * 100, 2) AS CompletionPercentage FROM projecttasks WHERE projecttasks.projectid IN ({projectId}) GROUP BY projecttasks.projectid";
+                    $"SELECT projecttasks.projectid AS ProjectId, ROUND((SUM(CASE WHEN projecttasks.status = 'Completed' THEN 1 ELSE 0 END) / COUNT(projecttasks.id)) * 100, 2) AS CompletionPercentage FROM projecttasks WHERE projecttasks.projectid IN ({projectId}) GROUP BY ProjectId";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@projectId", projectId);
                 await connection.OpenAsync();
