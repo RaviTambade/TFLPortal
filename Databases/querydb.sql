@@ -404,6 +404,12 @@ SELECT * FROM timesheets;
 SELECT * FROM taskallocations;
 
 
+SELECT employees.userid AS UserId, SUM(TIMESTAMPDIFF(HOUR, timesheets.fromtime, timesheets.totime)) AS TotalWorkingHour
+FROM taskallocations
+INNER JOIN employees ON taskallocations.teammemberid =employees.id
+INNER JOIN timesheets ON taskallocations.id = timesheets.taskallocationid
+WHERE taskallocations.teammemberid IN (7) AND Date(timesheets.date)="2023-10-14"
+GROUP BY employees.userid;
 
 
 SELECT employees.userid, SUM(TIMESTAMPDIFF(HOUR, timesheets.fromtime, timesheets.totime)) AS totaltimespend
@@ -438,3 +444,24 @@ FROM (
     GROUP BY projecttasks.id
 ) AS completedTasks;
 
+
+SELECT employees.userid,COUNT(taskallocations.id),projects.title,projecttasks.status
+FROM employees
+INNER JOIN taskallocations ON employees.id=taskallocations.teammemberid
+INNER JOIN projecttasks ON taskallocations.projecttaskid = projecttasks.id
+INNER JOIN projects ON projecttasks.projectid = projects.id
+WHERE  taskallocations.teammemberid IN (7) 
+GROUP BY projecttasks.status,projecttasks.projectid,employees.userid; 
+
+
+DELIMITER //
+CREATE PROCEDURE getTotalStatusWiseTasks(IN teamManagerId INT)
+BEGIN
+SELECT projects.title AS Title,COUNT(projecttasks.status) AS TaskCount,projecttasks.status AS Status
+                               FROM projects 
+                               INNER JOIN projecttasks
+                               ON projects.id = projecttasks.projectid
+                               WHERE projects.teammanagerid = teamManagerId
+                               GROUP BY projecttasks.status,projects.title;
+                               END //
+                               DELIMITER ;

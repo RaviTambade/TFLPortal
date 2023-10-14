@@ -88,21 +88,21 @@ SELECT employees.userid AS UserId, SUM(TIMESTAMPDIFF(HOUR, timesheets.fromtime, 
 FROM taskallocations
 INNER JOIN employees ON taskallocations.teammemberid =employees.id
 INNER JOIN timesheets ON taskallocations.id = timesheets.taskallocationid
-WHERE taskallocations.teammemberid IN (teamMemberId) AND Date(timesheets.date)=givenDate;
+WHERE taskallocations.teammemberid IN (teamMemberId) AND Date(timesheets.date)=givenDate GROUP BY employees.userid;
 
-  ELSEIF dateRange = 'yesterday' THEN
+  ELSEIF dateRange = 'yesterday' THEN   
   SELECT employees.userid AS UserId, SUM(TIMESTAMPDIFF(HOUR, timesheets.fromtime, timesheets.totime)) AS TotalWorkingHour
 FROM taskallocations
 INNER JOIN employees ON taskallocations.teammemberid =employees.id
 INNER JOIN timesheets ON taskallocations.id = timesheets.taskallocationid
-WHERE taskallocations.teammemberid IN (teamMemberId) AND Date(timesheets.date)=DATE_SUB(givenDate,INTERVAL 1 DAY);
+WHERE taskallocations.teammemberid IN (teamMemberId) AND Date(timesheets.date)=DATE_SUB(givenDate,INTERVAL 1 DAY) GROUP BY employees.userid;
 
  ELSEIF dateRange = 'weekly' THEN
   SELECT employees.userid AS UserId, SUM(TIMESTAMPDIFF(HOUR, timesheets.fromtime, timesheets.totime)) AS TotalWorkingHour
 FROM taskallocations
 INNER JOIN employees ON taskallocations.teammemberid =employees.id
 INNER JOIN timesheets ON taskallocations.id = timesheets.taskallocationid
-WHERE taskallocations.teammemberid IN (teamMemberId) AND Date(timesheets.date)=DATE_SUB(givenDate,INTERVAL 1 DAY);
+WHERE taskallocations.teammemberid IN (teamMemberId) AND Date(timesheets.date)=DATE_SUB(givenDate,INTERVAL 1 DAY) GROUP BY employees.userid;
 
  ELSEIF dateRange = 'monthly' THEN
   SELECT employees.userid AS UserId, SUM(TIMESTAMPDIFF(HOUR, timesheets.fromtime, timesheets.totime)) AS TotalWorkingHour
@@ -110,7 +110,7 @@ FROM taskallocations
 INNER JOIN employees ON taskallocations.teammemberid =employees.id
 INNER JOIN timesheets ON taskallocations.id = timesheets.taskallocationid
 WHERE taskallocations.teammemberid IN (teamMemberId) AND  DATE(timesheets.date) BETWEEN DATE_SUB(givenDate, INTERVAL DAY(givenDate) - 1 DAY)
-    AND LAST_DAY(givenDate);
+    AND LAST_DAY(givenDate) GROUP BY employees.userid;
 
         ELSEIF dateRange = 'custom' THEN
     SET @startDateTime = CONCAT(givenDate, ' 00:00:00');
@@ -120,7 +120,7 @@ FROM taskallocations
 INNER JOIN employees ON taskallocations.teammemberid =employees.id
 INNER JOIN timesheets ON taskallocations.id = timesheets.taskallocationid
 WHERE taskallocations.teammemberid IN (teamMemberId)  AND timesheets.date >= @startDateTime
-    AND timesheets.date <= @endDateTime;
+    AND timesheets.date <= @endDateTime GROUP BY employees.userid;
     END IF;
 END //
 DELIMITER ;
@@ -178,8 +178,7 @@ WHERE
 DELIMITER;
 
 
-
-
+DROP PROCEDURE GetEmployeeWorkHours;
 
 
 
