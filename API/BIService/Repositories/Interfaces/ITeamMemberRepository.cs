@@ -20,6 +20,10 @@ namespace Transflower.PMSApp.BIService.Repositories.Interfaces
             string dateRange
             );
 
+            Task<double> GetCalculateAverageTime(
+            int UserIdd
+            );
+
 
 
     }
