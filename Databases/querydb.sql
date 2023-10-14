@@ -423,9 +423,6 @@ SELECT * FROM taskallocations;
 
 --average task duration 
 
-DELIMITER //
-CREATE PROCEDURE CalculateAverageTime(IN userId INT)
-BEGIN
 SELECT AVG(taskTime) as AverageTime
 FROM (
     SELECT SUM(TIMESTAMPDIFF(HOUR, timesheets.fromtime, timesheets.totime)) as taskTime
@@ -440,5 +437,4 @@ FROM (
     AND projecttasks.status = 'Completed'
     GROUP BY projecttasks.id
 ) AS completedTasks;
-END //
-DELIMITER;
+

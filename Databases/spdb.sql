@@ -151,9 +151,31 @@ END //
 DELIMITER;
 
 
-
-
-
+DELIMITER //
+CREATE PROCEDURE getOverDueTasks(IN userId INT)
+BEGIN
+SELECT
+    projecttasks.date AS dueDate,
+    projecttasks.status ,
+    projects.title ,
+    employees.userid,
+    tasks.title
+FROM
+tasks
+INNER JOIN 
+    projecttasks ON tasks.id = projecttasks.taskid
+INNER JOIN
+    projects ON projecttasks.projectid = projects.id
+    INNER JOIN
+     taskallocations ON projecttasks.id = taskallocations.projecttaskid
+     INNER JOIN 
+     employees ON taskallocations.teammemberid= employees.id
+WHERE
+    projecttasks.status = 'Pending'
+        AND projecttasks.date BETWEEN NOW() AND DATE_ADD(NOW(), INTERVAL 7 DAY) 
+    AND employees.userid = userId;
+        END //
+DELIMITER;
 
 
 
