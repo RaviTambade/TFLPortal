@@ -36,23 +36,6 @@ var ManagerprojectsComponent = /** @class */ (function () {
                 _this.projectList = res;
                 console.log(_this.projectList);
                 _this.filteredProjects = res;
-                _this.projectList.forEach(function (project) {
-                    _this.taskService
-                        .GetProjectTaskCount(project.id)
-                        .subscribe(function (res) {
-                        _this.projectTaskCount = res;
-                        if (_this.projectTaskCount == null) {
-                            project.completion = 0;
-                        }
-                        else {
-                            var completedTask = _this.projectTaskCount.completedTaskCount;
-                            console.log(completedTask);
-                            var totalTask = _this.projectTaskCount.totalTaskCount;
-                            console.log(totalTask);
-                            project.completion = totalTask === 0 ? 0 : ((completedTask / totalTask) * 100);
-                        }
-                    });
-                });
             });
         });
     };

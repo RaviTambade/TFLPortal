@@ -31,9 +31,8 @@ namespace Transflower.PMSApp.BIService.Controllers
 
         [HttpPost("allocatedtasks/{teamMemberId}")]
         public async Task<List<AllocatedTaskOverview>> GetAllocatedTaskOverview(
-            string teamMemberId,
-            [FromBody] DateFilter dateFilter
-        ) => await _service.GetAllocatedTaskOverview(teamMemberId, dateFilter);
+            string teamMemberId
+        ) => await _service.GetAllocatedTaskOverview(teamMemberId);
 
         [HttpPost("totaltimespend/{teamMemberId}")]
         public async Task<List<TotalProjectWorkingByMember>> GetTotalTimeSpendByMembers(

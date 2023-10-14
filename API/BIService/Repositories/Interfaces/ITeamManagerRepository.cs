@@ -14,8 +14,7 @@ namespace Transflower.PMSApp.BIService.Repositories.Interfaces
         );
         Task<List<ProjectTaskStatus>> GetProjectStatusCount(int teamManagerId);
         Task<List<AllocatedTaskOverview>> GetAllocatedTaskOverview(
-            string teamMemberId,
-            DateFilter dateFilter
+            string teamMemberId
         );
         Task<List<TotalProjectWorkingByMember>> GetTotalTimeSpendByMembers(
             string teamMemberId,

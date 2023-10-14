@@ -11,7 +11,7 @@
                         <tr>
                             <th>Title</th>
                             <th>Start Date</th>
-                            <th>Completion</th>
+                            <!-- <th>Completion</th> -->
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -19,7 +19,7 @@
                         <tr *ngFor="let project of filteredProjects">
                             <td (click)="selectProject(project.id)"><span class="hover-link">{{ project.title }}</span></td>
                             <td>{{ project.startDate | date }}</td>
-                            <td>{{project.completion}}%</td>
+                            <!-- <td>{{project.completion}}%</td> -->
                             <td>
                                 <button class="btn btn-primary" (click)="selectProject(project.id)">Details</button>&nbsp;
                                 <button class="btn btn-secondary" (click)="addTask(project.id)">Add Task</button>

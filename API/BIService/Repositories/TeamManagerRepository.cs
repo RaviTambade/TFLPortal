@@ -111,8 +111,7 @@ WHERE  projects.teammanagerid=@teamManagerId AND (timesheets.date >=@startDate) 
         }
 
         public async Task<List<AllocatedTaskOverview>> GetAllocatedTaskOverview(
-            string teamMemberId,
-            DateFilter dateFilter
+            string teamMemberId
         )
         {
             List<AllocatedTaskOverview> allocatedTaskOverview = new();
@@ -126,12 +125,10 @@ FROM employees
 INNER JOIN taskallocations ON employees.id=taskallocations.teammemberid
 INNER JOIN projecttasks ON taskallocations.projecttaskid = projecttasks.id
 INNER JOIN projects ON projecttasks.projectid = projects.id
-WHERE  taskallocations.teammemberid IN (@teamMemberId) AND (taskallocations.assignedon >=@startDate) AND (taskallocations.assignedon<=@endDate)
+WHERE  taskallocations.teammemberid IN (@teamMemberId) 
 GROUP BY projecttasks.status,projecttasks.projectid,employees.userid";
                 MySqlCommand command = new(query, connection);
                 command.Parameters.AddWithValue("@teamMemberId", teamMemberId);
-                command.Parameters.AddWithValue("@startDate", dateFilter.StartDate);
-                command.Parameters.AddWithValue("@endDate", dateFilter.EndDate);
                 await connection.OpenAsync();
                 using MySqlDataReader reader = command.ExecuteReader();
                 while (await reader.ReadAsync())

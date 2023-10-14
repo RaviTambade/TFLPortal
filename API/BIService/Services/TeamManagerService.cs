@@ -26,9 +26,8 @@ namespace Transflower.PMSApp.BIService.Services
             await _repository.GetProjectStatusCount(teamManagerId);
 
         public async Task<List<AllocatedTaskOverview>> GetAllocatedTaskOverview(
-            string teamMemberId,
-            DateFilter dateFilter
-        ) => await _repository.GetAllocatedTaskOverview(teamMemberId, dateFilter);
+            string teamMemberId
+        ) => await _repository.GetAllocatedTaskOverview(teamMemberId);
 
         public async Task<List<TotalProjectWorkingByMember>> GetTotalTimeSpendByMembers(
             string teamMemberId,

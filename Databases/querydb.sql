@@ -450,18 +450,24 @@ FROM employees
 INNER JOIN taskallocations ON employees.id=taskallocations.teammemberid
 INNER JOIN projecttasks ON taskallocations.projecttaskid = projecttasks.id
 INNER JOIN projects ON projecttasks.projectid = projects.id
-WHERE  taskallocations.teammemberid IN (7) 
+WHERE  taskallocations.teammemberid IN (7,8) 
 GROUP BY projecttasks.status,projecttasks.projectid,employees.userid; 
 
 
+
 DELIMITER //
-CREATE PROCEDURE getTotalStatusWiseTasks(IN teamManagerId INT)
+CREATE PROCEDURE getTaskAllocationsCount(IN teamMemberId VARCHAR(10))
 BEGIN
-SELECT projects.title AS Title,COUNT(projecttasks.status) AS TaskCount,projecttasks.status AS Status
-                               FROM projects 
-                               INNER JOIN projecttasks
-                               ON projects.id = projecttasks.projectid
-                               WHERE projects.teammanagerid = teamManagerId
-                               GROUP BY projecttasks.status,projects.title;
-                               END //
-                               DELIMITER ;
+SELECT employees.userid AS UserId,COUNT(taskallocations.id) AS TaskAllocationCount,projects.title AS Title,projecttasks.status AS Status
+FROM employees
+INNER JOIN taskallocations ON employees.id=taskallocations.teammemberid
+INNER JOIN projecttasks ON taskallocations.projecttaskid = projecttasks.id
+INNER JOIN projects ON projecttasks.projectid = projects.id
+WHERE  taskallocations.teammemberid IN (teamMemberId) 
+GROUP BY projecttasks.status,projecttasks.projectid,employees.userid;
+END //
+DELIMITER ;
+
+DROP PROCEDURE getOverDueTasks;
+
+

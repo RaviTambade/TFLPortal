@@ -156,10 +156,10 @@ CREATE PROCEDURE getOverDueTasks(IN userId INT)
 BEGIN
 SELECT
     projecttasks.date AS dueDate,
-    projecttasks.status ,
-    projects.title ,
-    employees.userid,
-    tasks.title
+    projecttasks.status AS status ,
+    projects.title AS projectTitle ,
+    employees.userid AS userId,
+    tasks.title AS taskTitle
 FROM
 tasks
 INNER JOIN 
@@ -178,7 +178,18 @@ WHERE
 DELIMITER;
 
 
-DROP PROCEDURE GetEmployeeWorkHours;
+
+DELIMITER //
+CREATE PROCEDURE getTotalStatusWiseTasks(IN teamManagerId INT)
+BEGIN
+SELECT projects.title AS Title,COUNT(projecttasks.status) AS TaskCount,projecttasks.status AS Status
+                               FROM projects 
+                               INNER JOIN projecttasks
+                               ON projects.id = projecttasks.projectid
+                               WHERE projects.teammanagerid = teamManagerId
+                               GROUP BY projecttasks.status,projects.title;
+                               END //
+                               DELIMITER ;
 
 
 

@@ -41,25 +41,6 @@ export class ManagerprojectsComponent implements OnInit {
           this.projectList = res;
           console.log(this.projectList);
           this.filteredProjects = res;
-              this.projectList.forEach((project) => {
-                this.taskService
-                  .GetProjectTaskCount(project.id)
-                  .subscribe((res) => {
-
-                    this.projectTaskCount = res;
-                    if(this.projectTaskCount ==null ){
-                      project.completion=0;
-                    }
-                    else{
-                    let completedTask =
-                      this.projectTaskCount.completedTaskCount;
-                    console.log(completedTask);
-                    let totalTask = this.projectTaskCount.totalTaskCount;
-                    console.log(totalTask);
-                    project.completion = totalTask === 0 ? 0 : ((completedTask / totalTask) * 100);
-                    }
-                  });
-              });
             });
         });
   }
