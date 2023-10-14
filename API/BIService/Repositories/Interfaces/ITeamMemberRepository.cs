@@ -8,6 +8,11 @@ namespace Transflower.PMSApp.BIService.Repositories.Interfaces
 {
     public interface ITeamMemberRepository
     {
-         Task<List<TotalProjectWork>> GetTotalProjectWorkHours(int teamMemberId,string fromtime,string totime);
+       
+         Task<List<TotalProjectWorkingByMember>> GetTotalTimeSpendByMembers(
+            string teamMemberId,
+            DateFilter dateFilter
+        );
+
     }
 }

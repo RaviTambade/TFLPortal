@@ -13,7 +13,7 @@ namespace Transflower.PMSApp.BIService.Repositories
 {
     public class TeamManagerRepository : ITeamManagerRepository
     {
-        private readonly IConfiguration _configuration;
+        private readonly IConfiguration _configuration; 
         private readonly string _connectionString;
 
         public TeamManagerRepository(IConfiguration configuration)
@@ -287,40 +287,41 @@ GROUP BY employees.userid;";
             return percentages;
         }
 
-       public async Task<List<TotalProjectWorkingByMember>> GetTotalProjectWorkHourOfMembers(int projectId,DateTime givenDate,string dateRange)
-       {
-        List<TotalProjectWorkingByMember> totalProjectWorkingByMembers=new();
-        MySqlConnection connection= new(_connectionString);
-        try
+        public async Task<List<TotalProjectWorkingByMember>> GetTotalProjectWorkHourOfMembers(int projectId, DateTime givenDate, string dateRange)
         {
-            MySqlCommand command =new MySqlCommand("GetEmployeeWorkingHours",connection);
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@projectId", projectId);
-            command.Parameters.AddWithValue("@givenDate", givenDate);
-            command.Parameters.AddWithValue("@dateRange", dateRange);
-            await connection.OpenAsync();
-            MySqlDataReader reader = (MySqlDataReader)await command.ExecuteReaderAsync();
-             while (await reader.ReadAsync())
-             {
-                TotalProjectWorkingByMember totalProjectWorkingByMember=new TotalProjectWorkingByMember(){
-                    UserId=reader.GetInt32("userid"),
-                    TotalWorkingHour=reader.GetDouble("totalworkinghours")
-                };
-                totalProjectWorkingByMembers.Add(totalProjectWorkingByMember);
-             }
-              await reader.CloseAsync();
+            List<TotalProjectWorkingByMember> totalProjectWorkingByMembers = new();
+            MySqlConnection connection = new(_connectionString);
+            try
+            {
+                MySqlCommand command = new MySqlCommand("GetEmployeeWorkingHours", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@projectId", projectId);
+                command.Parameters.AddWithValue("@givenDate", givenDate);
+                command.Parameters.AddWithValue("@dateRange", dateRange);
+                await connection.OpenAsync();
+                MySqlDataReader reader = (MySqlDataReader)await command.ExecuteReaderAsync();
+                while (await reader.ReadAsync())
+                {
+                    TotalProjectWorkingByMember totalProjectWorkingByMember = new TotalProjectWorkingByMember()
+                    {
+                        UserId = reader.GetInt32("userid"),
+                        TotalWorkingHour = reader.GetDouble("totalworkinghours")
+                    };
+                    totalProjectWorkingByMembers.Add(totalProjectWorkingByMember);
+                }
+                await reader.CloseAsync();
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                await connection.CloseAsync();
+            }
+            return totalProjectWorkingByMembers;
         }
-        catch (System.Exception)
-        {
-            
-            throw;
-        }
-         finally
-        {
-            await connection.CloseAsync();
-        }
-        return totalProjectWorkingByMembers;
-       }
-        
+
     }
 }

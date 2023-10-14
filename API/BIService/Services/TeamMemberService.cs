@@ -15,12 +15,11 @@ namespace Transflower.PMSApp.BIService.Services
         _repository = repository;
     }
 
-        public Task<List<TotalProjectWork>> GetTotalProjectWorkHours(int teamMemberId, string fromtime, string totime)
-        {
-            throw new NotImplementedException();
-        }
-        // public async Task<List<TotalProjectWork>> GetTotalProjectWorkHours(int teamManagerId)=>
-        // await _repository.GetTotalProjectWorkHours(teamManagerId);
+         public async Task<List<TotalProjectWorkingByMember>> GetTotalTimeSpendByMembers(
+            string teamMemberId,
+            DateFilter dateFilter
+        ) => await _repository.GetTotalTimeSpendByMembers(teamMemberId, dateFilter);
+       
 
     }
 }
