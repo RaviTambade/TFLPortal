@@ -21,5 +21,8 @@ namespace Transflower.PMSApp.BIService.Services
         ) => await _repository.GetTotalTimeSpendByMembers(teamMemberId, dateFilter);
        
 
+         public async Task<List<TotalProjectWorkingByMember>> GetTotalProjectWorkHourOfMembers(int teamMemberId,DateTime givenDate,string dateRange)=>
+       await _repository.GetTotalProjectWorkHourOfMembers(teamMemberId,givenDate,dateRange);
+
     }
 }

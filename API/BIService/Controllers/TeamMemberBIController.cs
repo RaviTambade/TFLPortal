@@ -26,6 +26,10 @@ namespace Transflower.PMSApp.BIService.Controllers
             [FromBody] DateFilter dateFilter
         ) => await _service.GetTotalTimeSpendByMembers(teamMemberId, dateFilter);
 
+        [HttpGet("memberworkhours/{teamMemberId}/{givenDate}/{dateRange}")]
+           public async Task<List<TotalProjectWorkingByMember>> GetTotalProjectWorkHourOfMembers(int teamMemberId,DateTime givenDate,string dateRange)=>
+       await _service.GetTotalProjectWorkHourOfMembers(teamMemberId,givenDate,dateRange);
+
         
         
     }

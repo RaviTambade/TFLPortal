@@ -14,5 +14,13 @@ namespace Transflower.PMSApp.BIService.Repositories.Interfaces
             DateFilter dateFilter
         );
 
+        Task<List<TotalProjectWorkingByMember>> GetTotalProjectWorkHourOfMembers(
+            int teamMemberId,
+            DateTime givenDate,
+            string dateRange
+            );
+
+
+
     }
 }
