@@ -127,8 +127,6 @@ DELIMITER ;
 
 
 
-
-
 --average task duration 
 DELIMITER //
 CREATE PROCEDURE CalculateAverageTime(IN userId INT)
@@ -190,44 +188,6 @@ SELECT projects.title AS Title,COUNT(projecttasks.status) AS TaskCount,projectta
                                GROUP BY projecttasks.status,projects.title;
                                END //
                                DELIMITER ;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
