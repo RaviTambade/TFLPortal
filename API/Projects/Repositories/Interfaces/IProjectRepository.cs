@@ -18,5 +18,6 @@ public interface IProjectRepository{
     Task<List<EmployeeIdWithUserId>> GetEmployeeIdWithUserId(int projectId);
     Task<string> GetProjectName(int projectId);
     Task<List<ProjectName>> GetProjectOfManager(int managerId);
+    Task<List<int>> GetTeamMemberIds(int teamManagerId);
 
 }

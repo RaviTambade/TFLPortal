@@ -20,11 +20,6 @@ getTotalProjectWorkHours(teamManagerId:number,dateFilter:Datefilter):Observable<
   return this.httpClient.post<Totalprojectwork[]>(url,dateFilter)
 }
 
-getTotalProjectWorkByMembers(projectId:number):Observable<Projectworkbymember[]>{
-  let url="http://localhost:5242/api/TeamManagersBI/projectworkbymembers/ " + projectId
-  return this.httpClient.get<Projectworkbymember[]>(url)
-}
-
 getProjectsStatusCount(teamManagerId:number):Observable<Projectstatuscount[]>{
   let url="http://localhost:5242/api/TeamManagersBI/projectstatuscount/" +teamManagerId
   return this.httpClient.get<Projectstatuscount[]>(url)
@@ -38,5 +33,8 @@ getTotalHoursOfMembers(projectId:number,givenDate:string,dateRange:string):Obser
   let url="http://localhost:5242/api/TeamManagersBI/memberworkhours/" + projectId + "/" + givenDate + "/" + dateRange
   return this.httpClient.get<Projectworkbymember[]>(url)
 }
-
+getAllocatedTaskOverview(teamMemberId :string):Observable<any[]>{
+  let url="http://localhost:5242/api/TeamManagersBI/allocatedtasks/" +teamMemberId
+  return this.httpClient.get<any[]>(url)
+}
 }

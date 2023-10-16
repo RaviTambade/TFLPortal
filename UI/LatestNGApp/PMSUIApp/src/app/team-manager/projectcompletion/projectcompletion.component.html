@@ -1,19 +1,19 @@
-
-
-
-
-<div class="container">
-    <h4>Progress of each project:</h4>
-    <br>
+ 
     <div class="row">
-        <div *ngFor="let project of projectNames;let i = index" class="col-md-6">
-           <h5> {{ project.title }}</h5>
-            <div class="progress-outer">
+      <div class="col-md-12">
+        <div class="card">
+    <h4>&nbsp;&nbsp;Progress of each project</h4>
+          <div class="card-body">
+            <div *ngFor="let project of projectNames; let i = index">
+              <h5>{{ project.title }}</h5>
+              <div class="progress-outer">
                 <div class="progress">
-                    <div class="progress-bar  progress-bar-striped active" [style.width.%]="getCompletionPercentage(project.projectId)"></div>
-                    <div class="progress-value" style="color: rgb(241, 16, 16);">{{ getCompletionPercentage(project.projectId) }} %</div>
+                  <div class="progress-bar progress-bar-striped active" [style.width.%]="getCompletionPercentage(project.projectId)"></div>
+                  <div class="progress-value" style="color: rgb(7, 245, 51);">{{ getCompletionPercentage(project.projectId) }} %</div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>

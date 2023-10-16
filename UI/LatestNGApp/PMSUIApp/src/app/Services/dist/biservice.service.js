@@ -16,10 +16,6 @@ var BIserviceService = /** @class */ (function () {
         var url = "http://localhost:5242/api/TeamManagersBI/projectwork/" + teamManagerId;
         return this.httpClient.post(url, dateFilter);
     };
-    BIserviceService.prototype.getTotalProjectWorkByMembers = function (projectId) {
-        var url = "http://localhost:5242/api/TeamManagersBI/projectworkbymembers/ " + projectId;
-        return this.httpClient.get(url);
-    };
     BIserviceService.prototype.getProjectsStatusCount = function (teamManagerId) {
         var url = "http://localhost:5242/api/TeamManagersBI/projectstatuscount/" + teamManagerId;
         return this.httpClient.get(url);
@@ -30,6 +26,10 @@ var BIserviceService = /** @class */ (function () {
     };
     BIserviceService.prototype.getTotalHoursOfMembers = function (projectId, givenDate, dateRange) {
         var url = "http://localhost:5242/api/TeamManagersBI/memberworkhours/" + projectId + "/" + givenDate + "/" + dateRange;
+        return this.httpClient.get(url);
+    };
+    BIserviceService.prototype.getAllocatedTaskOverview = function (teamMemberId) {
+        var url = "http://localhost:5242/api/TeamManagersBI/allocatedtasks/" + teamMemberId;
         return this.httpClient.get(url);
     };
     BIserviceService = __decorate([

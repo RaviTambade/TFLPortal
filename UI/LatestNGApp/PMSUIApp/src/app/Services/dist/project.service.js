@@ -78,6 +78,10 @@ var ProjectService = /** @class */ (function () {
         var url = "http://localhost:5248/api/projects/managerprojects/" + managerId;
         return this.httpClient.get(url);
     };
+    ProjectService.prototype.getTeamMemberIds = function (teamManagerId) {
+        var url = "http://localhost:5248/api/projects/teammemberids/" + teamManagerId;
+        return this.httpClient.get(url);
+    };
     ProjectService = __decorate([
         core_1.Injectable({
             providedIn: 'root'

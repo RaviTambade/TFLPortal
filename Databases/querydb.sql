@@ -420,11 +420,14 @@ WHERE taskallocations.teammemberid IN (7) AND (timesheets.date >="2023-08-01 00:
 
 
 SELECT * FROM projecttasks;
-
+SELECT * FROM projects;
 SELECT * FROM projectmembers;
 SELECT * FROM taskallocations;
 
-
+SELECT projectmembers.teammemberid 
+FROM projects
+INNER JOIN projectmembers ON projects.id = projectmembers.projectid
+WHERE projects.teammanagerid=4 GROUP BY projectmembers.teammemberid;
 
 
 --average task duration 
@@ -455,19 +458,12 @@ GROUP BY projecttasks.status,projecttasks.projectid,employees.userid;
 
 
 
-DELIMITER //
-CREATE PROCEDURE getTaskAllocationsCount(IN teamMemberId VARCHAR(10))
-BEGIN
+
+
 SELECT employees.userid AS UserId,COUNT(taskallocations.id) AS TaskAllocationCount,projects.title AS Title,projecttasks.status AS Status
 FROM employees
 INNER JOIN taskallocations ON employees.id=taskallocations.teammemberid
 INNER JOIN projecttasks ON taskallocations.projecttaskid = projecttasks.id
 INNER JOIN projects ON projecttasks.projectid = projects.id
-WHERE  taskallocations.teammemberid IN (teamMemberId) 
-GROUP BY projecttasks.status,projecttasks.projectid,employees.userid;
-END //
-DELIMITER ;
-
-DROP PROCEDURE getOverDueTasks;
-
-
+WHERE  taskallocations.teammemberid IN (7,8,12,13,16) 
+GROUP BY Status,projecttasks.projectid,UserId;

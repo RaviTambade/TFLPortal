@@ -11,5 +11,6 @@ namespace Transflower.PMSApp.BIService.Models
         public int TaskAllocationCount{get;set;}
         public string? Title{get;set;}
         public string? Status{get;set;}
+        public int ProjectId{get;set;}
     }
 }

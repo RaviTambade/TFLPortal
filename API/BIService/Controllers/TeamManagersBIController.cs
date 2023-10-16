@@ -29,7 +29,7 @@ namespace Transflower.PMSApp.BIService.Controllers
         public async Task<List<ProjectTaskStatus>> GetProjectStatusCount(int teamManagerId) =>
             await _service.GetProjectStatusCount(teamManagerId);
 
-        [HttpPost("allocatedtasks/{teamMemberId}")]
+        [HttpGet("allocatedtasks/{teamMemberId}")]
         public async Task<List<AllocatedTaskOverview>> GetAllocatedTaskOverview(
             string teamMemberId
         ) => await _service.GetAllocatedTaskOverview(teamMemberId);

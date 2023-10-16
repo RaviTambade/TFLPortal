@@ -91,4 +91,9 @@ export class ProjectService {
     let url="http://localhost:5248/api/projects/managerprojects/" + managerId
     return this.httpClient.get<Projectname[]>(url)
   }
+
+  getTeamMemberIds(teamManagerId:number):Observable<number[]>{
+    let url="http://localhost:5248/api/projects/teammemberids/" +teamManagerId
+    return this.httpClient.get<number[]>(url)
+  }
 }

@@ -124,7 +124,7 @@ GROUP BY employees.userid;";
 
         if (await reader.ReadAsync())
         {
-            double averageTime = reader.GetDouble(0); // Assuming the average time is in the first column
+            double averageTime = reader.GetDouble(0);
             await reader.CloseAsync();
             return averageTime;
         }

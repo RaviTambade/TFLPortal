@@ -100,4 +100,8 @@ public class ProjectService : IProjectService
         return await _repository.GetProjectOfManager(managerId);
      }
 
+        public async Task<List<int>> GetTeamMemberIds(int teamManagerId)
+        {
+            return await _repository.GetTeamMemberIds(teamManagerId);
+        }
 }

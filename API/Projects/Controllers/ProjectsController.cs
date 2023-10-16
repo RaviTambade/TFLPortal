@@ -112,5 +112,14 @@ public class ProjectsController : ControllerBase
      }
 
 
+    [HttpGet("teammemberids/{teamManagerId}")]
+
+      public async Task<List<int>> GetTeamMemberIds(int teamManagerId)
+        {
+            return await _service.GetTeamMemberIds(teamManagerId);
+        }
+
+
+
 
 }

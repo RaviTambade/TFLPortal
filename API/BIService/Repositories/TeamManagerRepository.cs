@@ -118,15 +118,16 @@ WHERE  projects.teammanagerid=@teamManagerId AND (timesheets.date >=@startDate) 
             MySqlConnection connection = new(_connectionString);
             try
             {
-                string query =
-                    @"
-SELECT employees.userid AS UserId,COUNT(taskallocations.id) AS TaskAllocationCount,projects.title AS Title,projecttasks.status AS Status
+             string query = $@"
+SELECT employees.userid AS UserId, projecttasks.projectid AS ProjectId, COUNT(taskallocations.id) AS TaskAllocationCount, projects.title AS Title, projecttasks.status AS Status
 FROM employees
-INNER JOIN taskallocations ON employees.id=taskallocations.teammemberid
+INNER JOIN taskallocations ON employees.id = taskallocations.teammemberid
 INNER JOIN projecttasks ON taskallocations.projecttaskid = projecttasks.id
 INNER JOIN projects ON projecttasks.projectid = projects.id
-WHERE  taskallocations.teammemberid IN (@teamMemberId) 
-GROUP BY projecttasks.status,projecttasks.projectid,employees.userid";
+WHERE taskallocations.teammemberid IN ({teamMemberId})
+GROUP BY Status, ProjectId, UserId;
+";
+
                 MySqlCommand command = new(query, connection);
                 command.Parameters.AddWithValue("@teamMemberId", teamMemberId);
                 await connection.OpenAsync();
@@ -139,7 +140,8 @@ GROUP BY projecttasks.status,projecttasks.projectid,employees.userid";
                             UserId = reader.GetInt32("UserId"),
                             TaskAllocationCount = reader.GetInt32("TaskAllocationCount"),
                             Title = reader.GetString("Title"),
-                            Status = reader.GetString("Status")
+                            Status = reader.GetString("Status"),
+                            ProjectId= reader.GetInt32("ProjectId")
                         }
                     );
                 }
