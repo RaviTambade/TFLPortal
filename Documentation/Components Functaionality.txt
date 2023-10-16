@@ -7,7 +7,7 @@ Team Manager -
             6) employeelist component             --  fetching emplyee list from db
             7) filteredtasks component            --  task filteration like today yesterday weakly monthly yearly
             8) getallocatedtaskoverview           --  tasks statuswise count 
-            9) managerprojects                   --  for gating project of whose managr is loged in
+            9) managerprojects                    --  for gating project of whose managr is loged in
             10) projectcompletion                 --  project completion progress barr
             11) projectsstatuscount               --  task statuswise count of each project
             12) projectworkbyteammembers          --  total working houres of each employee on each project
@@ -15,11 +15,11 @@ Team Manager -
             14) teammanagerdashboard              --  dashbord for when manager was loged in thate time some data will shown on dashboaerd
             15) timesheetlist                     --  for fetching team managers assigned employees timesheet
             16) totalprojectworkhours             --  for calculating total work dooing by teammembers on this projects
-            17) nassignedtasksbymanager          --  for getting unussigned tasks
-            18) pdateproject                     --  for get access to update any details of previous projects
-            19) atetask                        --  for geting access to update any details of previous tasks
-            20 updatetasksstatus                 --  for updating status of task when any emplyee get complete therin tasks or not
-            21 unassignedtasks                   -- unassigned task of selected project
+            17) unassignedtasksbymanager           --  for getting unussigned tasks
+            18) updateproject                      --  for get access to update any details of previous projects
+            19) updatetask                         --  for geting access to update any details of previous tasks
+            20) updatetasksstatus                  --  for updating status of task when any emplyee get complete therin tasks or not
+            21) unassignedtasks                    -- unassigned task of selected project
 
 
 Team Member - 
