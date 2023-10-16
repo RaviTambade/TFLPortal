@@ -58,7 +58,7 @@ dateRangeOptions: string[] = ['today', 'yesterday', 'weekly', 'monthly', 'custom
     datasets: [
       {
         data: [],
-        label: 'Employees',
+        label: 'Hours',
         backgroundColor: '#a506b4',
       },
     ],
