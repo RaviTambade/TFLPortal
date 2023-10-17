@@ -337,7 +337,7 @@ Token required : No
 
 <hr>
 
-<h4>HRServiceController </h4>
+<h4 align="center">HRServiceController </h4>
 <hr>
 
 URL            
@@ -465,20 +465,328 @@ Project  -
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Tasks -
-     TaskController -
-        1)  http://localhost:5283/api/tasks/count/{projectId}  =>  Return Completed tasks count and total tasks count of that project
-        2)  http://localhost:5283/api/tasks/mytasks/{teamMemberId}/{timePeriod} => Return Employees tasks
-        3)  http://localhost:5283/api/tasks/taskdetail/{taskId} =>  Retun Normal Detail of task which id passes
-        4)  http://localhost:5283/api/tasks/moretaskdetail/{taskId} =>  Retrun Total Details of tasks ehich id passes
-        5)  http://localhost:5283/api/tasks/alltasks/{employeeId}/{timePeriod} => 
-        6)  http://localhost:5283/api/tasks/tasktitle/{employeeId}/{projectId}/{status} => When Passes empid proid and status that time it returns taskid and title
-        7)  http://localhost:5283/api/tasks/addtask => for inserting or adding new tasks
-        8)  http://localhost:5283/api/tasks/details/{taskId} =>  retrn only id title desc of tasks
-        9)  http://localhost:5283/api/tasks/status/{taskId}/{updateStatus} => for updating previous tasks details
+<h3 align="center">Tasks </h3>
+<hr>
+<h4>TaskController</h4>
 
-     TaskAllocationsController- 
-         1)  http://localhost:5283/api/taskallocation =>  for allocating task of certain project id to certain teammember on certain date
+URL            
+
+```console
+ http://localhost:5283/api/tasks/count/{projectId} 
+```
+
+Description    :  Return Completed tasks count and total tasks count of that project
+
+Parameter      : projectId
+
+Body           : None
+
+              
+Response       : 
+
+```console
+ {
+  "completedTaskCount": 200,
+  "totalTaskCount": 600
+}
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+  http://localhost:5283/api/tasks/mytasks/{teamMemberId}/{timePeriod} 
+```
+
+Description    :  Return Employees tasks
+
+Parameter      : teamMemberId , timePeriod
+
+Body           : None
+
+              
+Response       : 
+
+```console
+ {
+    "taskId": 276,
+    "projectId": 1,
+    "title": "Task 276",
+    "assignedOn": "2023-10-17T00:00:00",
+    "projectName": "PMSAPP",
+    "status": "Pending"
+  },
+  {
+    "taskId": 376,
+    "projectId": 1,
+    "title": "Task 376",
+    "assignedOn": "2023-10-17T00:00:00",
+    "projectName": "PMSAPP",
+    "status": "Completed"
+  },
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+ http://localhost:5283/api/tasks/taskdetail/{taskId}
+```
+
+Description    :  Retun Normal Detail of task which id passes
+
+Parameter      : taskId
+
+Body           : None
+
+              
+Response       : 
+
+```console
+{
+  "taskId": 276,
+  "task": "Task 276",
+  "status": "Pending",
+  "projectId": 1,
+  "projectName": "PMSAPP"
+}
+```
+
+Token required : No
+
+<hr>
+
+
+URL            
+
+```console
+http://localhost:5283/api/tasks/moretaskdetail/{taskId}
+```
+
+Description    : Retrun Total Details of tasks which id passes
+
+Parameter      : taskId
+
+Body           : None
+
+              
+Response       : 
+
+```console
+{
+  "taskId": 276,
+  "date": "2023-10-04T00:00:00",
+  "assignedTaskDate": "2023-10-17T00:00:00",
+  "description": "Description 276",
+  "fromTime": "2023-10-04T00:00:00",
+  "toTime": "2023-10-04T01:00:00"
+}
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5283/api/tasks/alltasks/{employeeId}/{timePeriod} 
+```
+
+Description    : when passing emp id and time period that time gives lists between that time period
+
+Parameter      : empId, timePeriod (weakly)
+
+Body           : None
+
+              
+Response       : 
+
+```console
+ {
+    "taskId": 275,
+    "projectName": "PMSAPP",
+    "taskTitle": "Task 275",
+    "assignedTaskDate": "2023-10-16T00:00:00",
+    "teamMemberId": 16,
+    "teamMemberUserId": 19
+  },
+  {
+    "taskId": 375,
+    "projectName": "PMSAPP",
+    "taskTitle": "Task 375",
+    "assignedTaskDate": "2023-10-16T00:00:00",
+    "teamMemberId": 16,
+    "teamMemberUserId": 19
+  },
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5283/api/tasks/tasktitle/{employeeId}/{projectId}/{status}
+```
+
+Description    : When Passes empid projid and status that time it returns tasklist of that status
+
+Parameter      : empId, projectId , status
+
+Body           : None
+
+              
+Response       : 
+
+```console
+{
+    "taskId": 6,
+    "title": "Task 6"
+  },
+  {
+    "taskId": 21,
+    "title": "Task 21"
+  },
+  {
+    "taskId": 36,
+    "title": "Task 36"
+  },
+  {
+    "taskId": 51,
+    "title": "Task 51"
+  },
+  {
+    "taskId": 66,
+    "title": "Task 66"
+  },
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5283/api/tasks/addtask
+```
+
+Description    :  for inserting or adding new tasks
+
+Parameter      : empId, timePeriod (weakly)
+
+Body           : 
+
+```console
+{
+  "id": 0,
+  "title": "string",
+  "description": "string"
+}
+```
+
+              
+Response       : 
+
+```console
+true/false
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5283/api/tasks/details/{taskId}
+```
+
+Description    :  retrn only id title desc of tasks
+
+Parameter      : taskId
+
+Body           : None
+              
+Response       : 
+
+```console
+{
+  "id": 276,
+  "title": "Task 276",
+  "description": "Description 276"
+}
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5283/api/tasks/status/{taskId}/{updateStatus}
+```
+
+Description    :  for updating previous tasks details
+
+Parameter      : taskId , updatestatus
+
+Body           : None
+              
+Response       : 
+
+```console
+true/false
+```
+
+Token required : No
+
+<hr>
+
+<h4>TaskAllocationsController</h4>
+
+
+URL            
+
+```console
+http://localhost:5283/api/taskallocation
+```
+
+Description    :  for allocating task of certain project id to certain teammember on certain date
+
+Parameter      : None
+
+Body           : 
+
+```console
+{
+  "id": 0,
+  "assignedOn": "2023-10-17T10:25:34.627Z",
+  "projectTaskId": 0,
+  "teamMemberId": 0
+}
+```
+              
+Response       : 
+
+```console
+true/false
+```
+
+Token required : No
+
+<hr>
+
+    
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
