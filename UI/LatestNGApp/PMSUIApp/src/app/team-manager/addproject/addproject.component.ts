@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Addproject } from 'src/app/Models/addproject';
 import { EmployeeService } from 'src/app/Services/employee.service';
 import { ProjectService } from 'src/app/Services/project.service';
@@ -15,7 +16,8 @@ export class AddprojectComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private employeeService: EmployeeService,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private router:Router
   ) {
     this.addProjectForm = this.formBuilder.group({
       title: ['', Validators.required],
@@ -47,6 +49,7 @@ export class AddprojectComponent implements OnInit {
       this.projectService.addProject(project).subscribe((res) => {
         if (res) {
           alert('project added Sucessfully');
+          this.router.navigate(["teammanager/projects"])
           this.addProjectForm.reset();
         }
       });

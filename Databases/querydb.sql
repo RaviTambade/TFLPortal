@@ -467,3 +467,4 @@ INNER JOIN projecttasks ON taskallocations.projecttaskid = projecttasks.id
 INNER JOIN projects ON projecttasks.projectid = projects.id
 WHERE  taskallocations.teammemberid IN (7,8,12,13,16) 
 GROUP BY Status,projecttasks.projectid,UserId;
+SELECT * FROM projects;

@@ -8,7 +8,7 @@
               <th>Employee Name</th>
               <th>Project Title</th>
               <th>Status</th>
-              <th>Task Allocation Count</th>
+              <th>Task Allocation</th>
             </tr>
           </thead>
           <tbody>
@@ -19,7 +19,7 @@
               <td>
                 <div class="progress">
                   <div class="progress-bar bg-success" role="progressbar" [style.width]="employee.taskAllocationCount + '%'">
-                    {{ employee.taskAllocationCount }}%
+                    {{ employee.taskAllocationCount }}
                   </div>
                 </div>
               </td>

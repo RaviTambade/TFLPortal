@@ -25,6 +25,13 @@ var ManagerprojectsComponent = /** @class */ (function () {
             totalTaskCount: 0
         };
     }
+    ManagerprojectsComponent.prototype.parseDate = function (dateString) {
+        var dateParts = dateString.split(' ')[0].split('-');
+        var year = parseInt(dateParts[2], 10);
+        var month = parseInt(dateParts[1], 10) - 1;
+        var day = parseInt(dateParts[0], 10);
+        return new Date(year, month, day);
+    };
     ManagerprojectsComponent.prototype.ngOnInit = function () {
         var _this = this;
         var userId = localStorage.getItem('userId');

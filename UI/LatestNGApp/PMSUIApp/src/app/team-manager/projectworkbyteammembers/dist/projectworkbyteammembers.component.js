@@ -48,8 +48,8 @@ var ProjectworkbyteammembersComponent = /** @class */ (function () {
             datasets: [
                 {
                     data: [],
-                    label: 'Employees',
-                    backgroundColor: '#a506b4'
+                    label: 'Hours',
+                    backgroundColor: '#a306b4'
                 },
             ]
         };

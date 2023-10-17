@@ -10,10 +10,11 @@ exports.AddprojectComponent = void 0;
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var AddprojectComponent = /** @class */ (function () {
-    function AddprojectComponent(formBuilder, employeeService, projectService) {
+    function AddprojectComponent(formBuilder, employeeService, projectService, router) {
         this.formBuilder = formBuilder;
         this.employeeService = employeeService;
         this.projectService = projectService;
+        this.router = router;
         this.managerId = 0;
         this.addProjectForm = this.formBuilder.group({
             title: ['', forms_1.Validators.required],
@@ -48,6 +49,7 @@ var AddprojectComponent = /** @class */ (function () {
             this.projectService.addProject(project).subscribe(function (res) {
                 if (res) {
                     alert('project added Sucessfully');
+                    _this.router.navigate(["teammanager/projects"]);
                     _this.addProjectForm.reset();
                 }
             });

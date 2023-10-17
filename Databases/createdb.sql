@@ -45,7 +45,7 @@
         projects(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             title VARCHAR(40),
-            startdate DATETIME NOT NULL,
+            startdate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
             enddate DATETIME,
             description TEXT,
             teammanagerid INT NOT NULL,
