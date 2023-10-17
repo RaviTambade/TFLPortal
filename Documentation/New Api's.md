@@ -14,7 +14,7 @@ Parameter      : teamManagerId
 
 Body           : None
               
-Response        
+Response        :
 
 ```console
 {
@@ -40,7 +40,7 @@ Parameter      : teamManagerId
 
 Body           : None
               
-Response        
+Response       : 
 
 ```console
  {
