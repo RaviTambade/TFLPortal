@@ -49,7 +49,7 @@ var ProjectworkbyteammembersComponent = /** @class */ (function () {
                 {
                     data: [],
                     label: 'Hours',
-                    backgroundColor: '#a306b4'
+                    backgroundColor: '#a506b4'
                 },
             ]
         };

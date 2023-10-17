@@ -59,7 +59,7 @@ dateRangeOptions: string[] = ['today', 'yesterday', 'weekly', 'monthly', 'custom
       {
         data: [],
         label: 'Hours',
-        backgroundColor: '#a306b4',
+        backgroundColor: '#a506b4',
       },
     ],
   };
