@@ -1,3 +1,17 @@
+Format----------
+
+URL            : http://localhost:5242/api/TeamManagersBIController/projectwork/{teamManagerId}
+Description    :
+Parameter      :
+Body           :
+Response       : {
+                 }
+Token required : Yes/No
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+
 BIService- 
          TeamManagerBiController -
                                   1) http://localhost:5242/api/TeamManagersBIController/projectwork/{teamManagerId}
@@ -13,9 +27,13 @@ BIService-
                                  2) http://localhost:5242/api/TeamMemberBIController/memberworkhours/{teamMemberId}/{givenDate}/{dateRange} 
                                  3) http://localhost:5242/api/TeamMemberBIController/memberaveragheworkhours/{userId}
                                  4) http://localhost:5242/api/TeamMemberBIController/memberoverduetasks/{userId}
-              
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+          
 HRService  - 
             1) http://localhost:5230/api/EmployeesController/employeeid/{userId}
             2) http://localhost:5230/api/EmployeesController/userId/{employeeId}
             3) http://localhost:5230/api/EmployeesController/employeeinfo/{employeeId}v
-            4) http://localhost:5230/api/EmployeesController/useridbymanager/{managerId}              
+            4) http://localhost:5230/api/EmployeesController/useridbymanager/{managerId}     
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------         
