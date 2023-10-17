@@ -1,4 +1,6 @@
-Format----------
+<h3 align="center">BIService </h3>
+
+<h4>TeamManagerBiController </h4>
 
 URL            
 
@@ -10,7 +12,7 @@ Description    : Return Total Project Work Hours
 
 Parameter      : teamManagerId
 
-Body           :
+Body           : None
               
 Response        
 
@@ -22,7 +24,7 @@ Response
   }
 ```
 
-Token required : Yes/No
+Token required : No
 
 <hr>
 
@@ -36,7 +38,7 @@ Description    : Return Project Status Wise Count
 
 Parameter      : teamManagerId
 
-Body           :
+Body           : None
               
 Response        
 
@@ -48,7 +50,7 @@ Response
   }
 ```
 
-Token required : Yes/No
+Token required : No
 
 <hr>
 -------------------------------------------------------------------------------------------------------------------------------------------
