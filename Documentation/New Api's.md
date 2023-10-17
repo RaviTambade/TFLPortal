@@ -1,18 +1,26 @@
 <h3 align="center">BIService </h3>
 
 <h4>TeamManagerBiController </h4>
+<hr>
 
 URL            
 
 ```console
-http://localhost:5242/api/TeamManagersBIController/projectwork/{teamManagerId}
+http://localhost:5242/api/TeamManagersBI/projectwork/{teamManagerId}
 ```
 
 Description    : Return Total Project Work Hours
 
 Parameter      : teamManagerId
 
-Body           : None
+Body           : 
+
+```console
+{
+  "startDate": "2023-08-17T08:53:55.542Z",
+  "endDate": "2023-10-17T08:53:55.542Z"
+}
+```
               
 Response        :
 
@@ -20,7 +28,17 @@ Response        :
 {
     "id": 1,
     "title": "PMSAPP",
-    "totalTimeSpend": 23
+    "totalTimeSpend": 637
+  },
+  {
+    "id": 4,
+    "title": "Inventory",
+    "totalTimeSpend": 600
+  },
+  {
+    "id": 5,
+    "title": "OMTB",
+    "totalTimeSpend": 600
   }
 ```
 
@@ -43,10 +61,161 @@ Body           : None
 Response       : 
 
 ```console
+  {
+    "projectTitle": "PMSAPP",
+    "status": "Pending",
+    "taskStatusCount": 201
+  },
+  {
+    "projectTitle": "PMSAPP",
+    "status": "In-Progress",
+    "taskStatusCount": 199
+  },
+  {
+    "projectTitle": "PMSAPP",
+    "status": "Completed",
+    "taskStatusCount": 200
+  },
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5242/api/TeamManagersBIController/allocatedtasks/{teamMemberId}
+```
+
+Description    : Return Allocated Task Overview
+
+Parameter      : teamMemberId
+
+Body           : None
+              
+Response       : 
+
+```console
+  {
+    "userId": 10,
+    "taskAllocationCount": 38,
+    "title": "PMSAPP",
+    "status": "In-Progress",
+    "projectId": 1
+  },
+  {
+    "userId": 10,
+    "taskAllocationCount": 38,
+    "title": "Inventory",
+    "status": "Pending",
+    "projectId": 4
+  },
+  {
+    "userId": 10,
+    "taskAllocationCount": 41,
+    "title": "Inventory",
+    "status": "Completed",
+    "projectId": 4
+  },
+```
+
+Token required : No
+
+<hr>
+
+
+URL            
+
+```console
+http://localhost:5242/api/TeamManagersBIController/totaltimespend/{teamMemberId}
+```
+
+Description    : Return Total Time Spend By Members on project
+
+Parameter      : teamMemberId
+
+Body           : 
+
+```console
+{
+  "startDate": "2023-08-17T09:22:26.915Z",
+  "endDate": "2023-10-17T09:22:26.915Z"
+}
+```
+              
+Response       : 
+
+```console
  {
-    "projectTitle": "PMSApp",
-    "status": "pending",
-    "taskStatusCount": 45
+    "userId": 10,
+    "totalWorkingHour": 244
+  }
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5242/api/TeamManagersBIController/projectpercentage/{projectId}
+```
+
+Description    : Return Projects Completion Percentage
+
+Parameter      : projectId
+
+Body           : none
+              
+Response       : 
+
+```console
+ {
+    "projectId": 1,
+    "completionPercentage": 33.33
+  }
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5242/api/TeamManagersBIController/memberworkhours/{projectId}/{givenDate}/{dateRange}
+```
+
+Description    : Returm Total Project Work Hour Of Team Members
+
+Parameter      : projectId , givenDate, dateRange
+
+Body           : none
+              
+Response       : 
+
+```console
+  {
+    "userId": 12,
+    "totalWorkingHour": 2
+  },
+  {
+    "userId": 13,
+    "totalWorkingHour": 2
+  },
+  {
+    "userId": 17,
+    "totalWorkingHour": 2
+  },
+  {
+    "userId": 20,
+    "totalWorkingHour": 2
+  },
+  {
+    "userId": 23,
+    "totalWorkingHour": 2
   }
 ```
 
@@ -58,12 +227,12 @@ Token required : No
 
 BIService- 
          TeamManagerBiController -
-                                  1) http://localhost:5242/api/TeamManagersBIController/projectwork/{teamManagerId} => Return Total Project Work Hours
-                                  2) http://localhost:5242/api/TeamManagersBIController/projectstatuscount/{teamManagerId} => Return Project Status Wise Count
-                                  3) http://localhost:5242/api/TeamManagersBIController/allocatedtasks/{teamMemberId} => Return Allocated Task Overview
-                                  4) http://localhost:5242/api/TeamManagersBIController/totaltimespend/{teamMemberId} => Return Total Time Spend By Members on project
-                                  5) http://localhost:5242/api/TeamManagersBIController/projectpercentage/{projectId} => Return Projects Completion Percentage
-                                  6) http://localhost:5242/api/TeamManagersBIController/memberworkhours/{projectId}/{givenDate}/{dateRange} => Returm Total Project Work Hour Of Team Members
+                                  1) 
+                                  2) 
+                                  3)  => 
+                                  4)  => 
+                                  5)  => 
+                                  6)  => 
 
 
          TeamMemberBiController  -
