@@ -1,17 +1,59 @@
-Format----------
+<h3 align="center">BIService </h3>
 
-URL            : http://localhost:5242/api/TeamManagersBIController/projectwork/{teamManagerId}
-Description    :
-Parameter      :
-Body           :
-Response       : {
-                 }
-Token required : Yes/No
+<h4>TeamManagerBiController </h4>
+
+URL            
+
+```console
+http://localhost:5242/api/TeamManagersBIController/projectwork/{teamManagerId}
+```
+
+Description    : Return Total Project Work Hours
+
+Parameter      : teamManagerId
+
+Body           : None
+              
+Response        :
+
+```console
+{
+    "id": 1,
+    "title": "PMSAPP",
+    "totalTimeSpend": 23
+  }
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5242/api/TeamManagersBIController/projectstatuscount/{teamManagerId}
+```
+
+Description    : Return Project Status Wise Count
+
+Parameter      : teamManagerId
+
+Body           : None
+              
+Response       : 
+
+```console
+ {
+    "projectTitle": "PMSApp",
+    "status": "pending",
+    "taskStatusCount": 45
+  }
+```
+
+Token required : No
+
+<hr>
 -------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
---------------------------------------------------------------------------------------------------------------------------------------------
 
 
 BIService- 
@@ -29,6 +71,9 @@ BIService-
                                  2) http://localhost:5242/api/TeamMemberBIController/memberworkhours/{teamMemberId}/{givenDate}/{dateRange} => Return Total Project Work Hour Of   Members
                                  3) http://localhost:5242/api/TeamMemberBIController/memberaveragheworkhours/{userId} =>  Return Calculate Average Time of employrr
                                  4) http://localhost:5242/api/TeamMemberBIController/memberoverduetasks/{userId} =>  Return Over Due Task Of Member which have 7 days to get overdue
+
+
+
  
 --------------------------------------------------------------------------------------------------------------------------------------------
           
