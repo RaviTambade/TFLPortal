@@ -941,13 +941,204 @@ Token required : No
 <h4>UserRollsManagementController </h4>
 <hr>
 
+URL            
+
+```console
+ http://localhost:5031/api/userroles
+```
+
+Description    : return lis of empid with userid and roleid 
+
+Parameter      : none
+
+Body           : None
+
+              
+Response       : 
+
+```console
+ {
+    "id": 1,
+    "userId": 1,
+    "roleId": 1
+  },
+  {
+    "id": 2,
+    "userId": 2,
+    "roleId": 1
+  },
+  {
+    "id": 3,
+    "userId": 3,
+    "roleId": 1
+  },
+  {
+    "id": 4,
+    "userId": 4,
+    "roleId": 2
+  },
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5031/api/userroles/{userRoleId}
+```
+
+Description    : getting employyee role by their userid
+
+Parameter      : userId
+
+Body           : none
 
 
-UserRollsManagement -
-         1)  http://localhost:5031/api/userroles => return lis of empid with userid and roleid 
-         2)  http://localhost:5031/api/userroles/{userRoleId} => getting employyee role by their userid
-         3)  http://localhost:5031/api/userroles/roles/{userId} => getting role of this id
-         4)  http://localhost:5031/api/userroles                =>  for inserting new role
-         5)  http://localhost:5031/api/userroles/usersid/{role} => while entering role and then retun their id 
-         6)  http://localhost:5031/api/userroles/               => For updating previous role 
-         7)  http://localhost:5031/api/userroles/{userRoleId} =>  for deleting and users role id
+
+              
+Response       : 
+
+```console
+{
+  "id": 23,
+  "userId": 23,
+  "roleId": 4
+}
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5031/api/userroles/roles/{userId}
+```
+
+Description    : getting role of this id
+
+Parameter      : userId
+
+Body           : none
+
+              
+Response       : 
+
+```console
+"Team Member"
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5031/api/userroles   
+```
+
+Description    :  for inserting new role
+
+Parameter      : none
+
+Body           : 
+
+```console
+{
+  "id": 0,
+  "userId": 0,
+  "roleId": 0
+}
+```
+
+              
+Response       : 
+
+```console
+true/false
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5031/api/userroles/usersid/{role}   
+```
+
+Description    :  while entering role and then retun their id
+
+Parameter      : role (Team Manager)
+
+Body           : None
+              
+Response       : 
+
+```console
+  "7,8,9"
+```
+
+Token required : No
+
+<hr>
+
+
+URL            
+
+```console
+http://localhost:5031/api/userroles/ 
+```
+
+Description    : For updating previous role 
+
+Parameter      : none
+
+Body           : 
+
+```console
+  {
+  "id": 0,
+  "userId": 0,
+  "roleId": 0
+}
+```
+              
+Response       : 
+
+```console
+  true/false
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5031/api/userroles/{userRoleId}
+```
+
+Description    : for deleting and users role id
+
+Parameter      : userRoleId
+
+Body           : none
+
+              
+Response       : 
+
+```console
+  true/false
+```
+
+Token required : No
+
+<hr>
+
