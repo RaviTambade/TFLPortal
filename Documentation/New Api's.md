@@ -1,28 +1,56 @@
 Format----------
 
-URL            :
+URL            
 
-               ```console
-                 http://localhost:5242/api/TeamManagersBIController/projectwork/{teamManagerId}
-                 ```
+```console
+http://localhost:5242/api/TeamManagersBIController/projectwork/{teamManagerId}
+```
 
 Description    : Return Total Project Work Hours
-Parameter      : teamManagerId
-Body           :
-               ```console
-                 
-                 ```
-Response       : 
 
-                 ```console
-                 {
-                    "Id":
-                    "Title":
-                    "TotalTimeSpend":
-                 }
-                 ```
-                 
+Parameter      : teamManagerId
+
+Body           :
+              
+Response        
+
+```console
+{
+    "id": 1,
+    "title": "PMSAPP",
+    "totalTimeSpend": 23
+  }
+```
+
 Token required : Yes/No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5242/api/TeamManagersBIController/projectstatuscount/{teamManagerId}
+```
+
+Description    : Return Project Status Wise Count
+
+Parameter      : teamManagerId
+
+Body           :
+              
+Response        
+
+```console
+ {
+    "projectTitle": "PMSApp",
+    "status": "pending",
+    "taskStatusCount": 45
+  }
+```
+
+Token required : Yes/No
+
+<hr>
 -------------------------------------------------------------------------------------------------------------------------------------------
 
 
