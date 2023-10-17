@@ -26,7 +26,7 @@ BIService-
 
          TeamMemberBiController  -
                                  1) http://localhost:5242/api/TeamMemberBIController/totaltimespend/{teamMemberId} => Return Total Time Spend By Members 
-                                 2) http://localhost:5242/api/TeamMemberBIController/memberworkhours/{teamMemberId}/{givenDate}/{dateRange} => Return Total Project Work Hour Of Members
+                                 2) http://localhost:5242/api/TeamMemberBIController/memberworkhours/{teamMemberId}/{givenDate}/{dateRange} => Return Total Project Work Hour Of   Members
                                  3) http://localhost:5242/api/TeamMemberBIController/memberaveragheworkhours/{userId} =>  Return Calculate Average Time of employrr
                                  4) http://localhost:5242/api/TeamMemberBIController/memberoverduetasks/{userId} =>  Return Over Due Task Of Member which have 7 days to get overdue
  
@@ -53,16 +53,33 @@ Project  -
           10) http://localhost:5248/api/projects/title/{projectid} =>Returns a project title
           11) http://localhost:5248/api/projects/managerprojects/{managerid} => Returns managers projects 
           12) http://localhost:5248/api/projects/teammemberids/{teammanagerid} => Returns the team member ids works under a team manager
-
-          http://localhost:5248/api/projects/addproject => add a new project
-          http://localhost:5248/api/projects/edit => edit a existing project
-          http://localhost:5248/api/projects/delete/{projectid} => delete a existing project
-          http://localhost:5221/api/timesheets/list/{employeeId}/{timePeriod} => Returns timesheet list of a employee
-          http://localhost:5221/api/timesheets/details/{timesheetid} => Returns timesheet details of a timesheet
-          http://localhost:5221/api/timesheets/add => Add new timesheet
-          http://localhost:5221/api/timesheets/timesheetlist/{managerid}/{timePeriod} => Returns timesheet list of employees by managerid
+          13) http://localhost:5248/api/projects/addproject => add a new project
+          14) http://localhost:5248/api/projects/edit => edit a existing project
+          15) http://localhost:5248/api/projects/delete/{projectid} => delete a existing project
+        
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Tasks -
-        1)
+     TaskController -
+        1)  http://localhost:5283/api/tasks/count/{projectId}  =>  Return Completed tasks count and total tasks count
+        2)  http://localhost:5283/api/tasks/mytasks/{teamMemberId}/{timePeriod} => Return Employees tasks
+        3)  http://localhost:5283/api/tasks/taskdetail/{taskId} =>  Retun Normal Detail of task which id passes
+        4)  http://localhost:5283/api/tasks/moretaskdetail/{taskId} =>  Retrun Total Details of tasks ehich id passes
+        5)  http://localhost:5283/api/tasks/alltasks/{employeeId}/{timePeriod} => 
+        6)  http://localhost:5283/api/tasks/tasktitle/{employeeId}/{projectId}/{status} => When Passes empid proid and status that time it returns taskid and title
+        7)  http://localhost:5283/api/tasks/addtask => for inserting or adding new tasks
+        8)  http://localhost:5283/api/tasks/details/{taskId} =>  retrn only id title desc of tasks
+        9)  http://localhost:5283/api/tasks/status/{taskId}/{updateStatus} => for updating previous tasks details
+
+     TaskAllocationsController- 
+         1)  http://localhost:5283/api/taskallocation
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+TimeSheets -
+         1) http://localhost:5221/api/timesheets/list/{employeeId}/{timePeriod} => Returns timesheet list of a employee
+         2) http://localhost:5221/api/timesheets/details/{timesheetid} => Returns timesheet details of a timesheet
+         3) http://localhost:5221/api/timesheets/add => Add new timesheet
+         4) http://localhost:5221/api/timesheets/timesheetlist/{managerid}/{timePeriod} => Returns timesheet list of employees by managerid
