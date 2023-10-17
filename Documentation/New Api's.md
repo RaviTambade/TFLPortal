@@ -1,17 +1,25 @@
 Format----------
 
-URL            : http://localhost:5242/api/TeamManagersBIController/projectwork/{teamManagerId}
-Description    :
-Parameter      :
+URL            : ```console
+                 http://localhost:5242/api/TeamManagersBIController/projectwork/{teamManagerId}
+                 ```
+Description    : Return Total Project Work Hours
+Parameter      : teamManagerId
 Body           :
-Response       : {
+               ```console
+                 
+                 ```
+Response       : 
+                 ```console
+                 {
+                    "Id":
+                    "Title":
+                    "TotalTimeSpend":
                  }
+                 ```
+                 
 Token required : Yes/No
 -------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
---------------------------------------------------------------------------------------------------------------------------------------------
 
 
 BIService- 
@@ -29,6 +37,9 @@ BIService-
                                  2) http://localhost:5242/api/TeamMemberBIController/memberworkhours/{teamMemberId}/{givenDate}/{dateRange} => Return Total Project Work Hour Of   Members
                                  3) http://localhost:5242/api/TeamMemberBIController/memberaveragheworkhours/{userId} =>  Return Calculate Average Time of employrr
                                  4) http://localhost:5242/api/TeamMemberBIController/memberoverduetasks/{userId} =>  Return Over Due Task Of Member which have 7 days to get overdue
+
+
+
  
 --------------------------------------------------------------------------------------------------------------------------------------------
           
