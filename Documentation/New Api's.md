@@ -1,8 +1,11 @@
 Format----------
 
-URL            : ```console
+URL            :
+
+               ```console
                  http://localhost:5242/api/TeamManagersBIController/projectwork/{teamManagerId}
                  ```
+
 Description    : Return Total Project Work Hours
 Parameter      : teamManagerId
 Body           :
@@ -10,6 +13,7 @@ Body           :
                  
                  ```
 Response       : 
+
                  ```console
                  {
                     "Id":
