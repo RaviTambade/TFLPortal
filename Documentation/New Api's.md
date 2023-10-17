@@ -787,17 +787,161 @@ Token required : No
 <hr>
 
     
+<h3 align="center">TimeSheets </h3>
+
+<h4>TimeSheetsController </h4>
+<hr>
+
+URL            
+
+```console
+http://localhost:5221/api/timesheets/list/{employeeId}/{timePeriod}
+```
+
+Description    :   Returns timesheet list of a employee
+
+Parameter      : employeeId, timePerion (yesterday)
+
+Body           : None
+
+              
+Response       : 
+
+```console
+ {
+    "timeSheetId": 1838,
+    "date": "2023-10-16T00:00:00",
+    "status": "Pending",
+    "taskTitle": "Task 80"
+  }
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5221/api/timesheets/details/{timesheetid}
+```
+
+Description    :  Returns timesheet details of a timesheet
+
+Parameter      : timeSheetId
+
+Body           : None
+
+              
+Response       : 
+
+```console
+{
+  "timeSheetId": 198,
+  "date": "2023-07-06T00:00:00",
+  "fromTime": "14:00:00",
+  "toTime": "16:00:00",
+  "description": "Description ",
+  "status": "Pending",
+  "taskTitle": "Task 486"
+}
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5221/api/timesheets/add
+```
+
+Description    :  Add new timesheet
+
+Parameter      : none
+
+Body           : 
+
+```console
+{
+  "id": 0,
+  "date": "2023-10-17T10:48:15.464Z",
+  "fromTime": {
+    "ticks": 0
+  },
+  "toTime": {
+    "ticks": 0
+  },
+  "description": "string",
+  "status": "string",
+  "taskAllocationId": 0
+}
+```
+
+              
+Response       : 
+
+```console
+true/false
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5221/api/timesheets/timesheetlist/{managerid}/{timePeriod}
+```
+
+Description    : Returns timesheet list of employees by managerid
+
+Parameter      : managerId , timeperion (yesterday)
+
+Body           : None
+
+              
+Response       : 
+
+```console
+{
+    "taskId": 76,
+    "timeSheetId": 116,
+    "projectId": 1,
+    "taskTitle": "Task 76",
+    "employeeUserId": 10,
+    "timeSheetDate": "2023-10-16T00:00:00"
+  },
+  {
+    "taskId": 77,
+    "timeSheetId": 362,
+    "projectId": 1,
+    "taskTitle": "Task 77",
+    "employeeUserId": 11,
+    "timeSheetDate": "2023-10-16T00:00:00"
+  },
+  {
+    "taskId": 78,
+    "timeSheetId": 608,
+    "projectId": 1,
+    "taskTitle": "Task 78",
+    "employeeUserId": 15,
+    "timeSheetDate": "2023-10-16T00:00:00"
+  },
+```
+
+Token required : No
+
+<hr>
+
+<h3 align="center">UserRollsManagement </h3>
+
+<h4>UserRollsManagementController </h4>
+<hr>
 
 
------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-TimeSheets -
-         1) http://localhost:5221/api/timesheets/list/{employeeId}/{timePeriod} => Returns timesheet list of a employee
-         2) http://localhost:5221/api/timesheets/details/{timesheetid} => Returns timesheet details of a timesheet
-         3) http://localhost:5221/api/timesheets/add => Add new timesheet
-         4) http://localhost:5221/api/timesheets/timesheetlist/{managerid}/{timePeriod} => Returns timesheet list of employees by managerid
-
-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 UserRollsManagement -
          1)  http://localhost:5031/api/userroles => return lis of empid with userid and roleid 
