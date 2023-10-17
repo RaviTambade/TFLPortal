@@ -1,0 +1,21 @@
+BIService- 
+         TeamManagerBiController -
+                                  1) http://localhost:5242/api/TeamManagersBIController/projectwork/{teamManagerId}
+                                  2) http://localhost:5242/api/TeamManagersBIController/projectstatuscount/{teamManagerId}
+                                  3) http://localhost:5242/api/TeamManagersBIController/allocatedtasks/{teamMemberId}
+                                  4) http://localhost:5242/api/TeamManagersBIController/totaltimespend/{teamMemberId}
+                                  5) http://localhost:5242/api/TeamManagersBIController/projectpercentage/{projectId}
+                                  6) http://localhost:5242/api/TeamManagersBIController/memberworkhours/{projectId}/{givenDate}/{dateRange}
+
+
+         TeamMemberBiController  -
+                                 1) http://localhost:5242/api/TeamMemberBIController/totaltimespend/{teamMemberId}
+                                 2) http://localhost:5242/api/TeamMemberBIController/memberworkhours/{teamMemberId}/{givenDate}/{dateRange} 
+                                 3) http://localhost:5242/api/TeamMemberBIController/memberaveragheworkhours/{userId}
+                                 4) http://localhost:5242/api/TeamMemberBIController/memberoverduetasks/{userId}
+              
+HRService  - 
+            1) http://localhost:5230/api/EmployeesController/employeeid/{userId}
+            2) http://localhost:5230/api/EmployeesController/userId/{employeeId}
+            3) http://localhost:5230/api/EmployeesController/employeeinfo/{employeeId}v
+            4) http://localhost:5230/api/EmployeesController/useridbymanager/{managerId}              
