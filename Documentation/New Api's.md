@@ -222,29 +222,125 @@ Response       :
 Token required : No
 
 <hr>
+
+<h4>TeamMemberBiController </h4>
+<hr>
+
+URL            
+
+```console
+http://localhost:5242/api/TeamMemberBIController/totaltimespend/{teamMemberId}
+```
+
+Description    : Return Total Time Spend By Members 
+
+Parameter      : teamMemberId
+
+Body           : 
+
+```console
+{
+  "startDate": "2023-08-17T09:31:26.449Z",
+  "endDate": "2023-10-17T09:31:26.449Z"
+}
+```
+              
+Response       : 
+
+```console
+  {
+    "userId": 10,
+    "totalWorkingHour": 244
+  }
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5242/api/TeamMemberBIController/memberworkhours/{teamMemberId}/{givenDate}/{dateRange}
+```
+
+Description    : Return Total Project Work Hour Of   Members
+
+Parameter      : teamMemberId , givenDate, dateRange
+
+Body           : None
+
+              
+Response       : 
+
+```console
+  {
+    "userId": 10,
+    "totalWorkingHour": 4
+  }
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5242/api/TeamMemberBIController/memberaveragheworkhours/{userId}
+```
+
+Description    :  Return Calculate Average Time of employee
+
+Parameter      : userId
+
+Body           : None
+
+              
+Response       : 
+
+```console
+   2.0263
+```
+
+Token required : No
+
+<hr>
+
+
+URL            
+
+```console
+ http://localhost:5242/api/TeamMemberBIController/memberoverduetasks/{userId}
+```
+
+Description    :  Return Over Due Task Of Member which have 7 days to get overdue
+
+Parameter      : userId
+
+Body           : None
+
+              
+Response       : 
+
+```console
+   {
+    "dueDate": "2023-10-17T09:39:46.020Z",
+    "status": "string",
+    "projectTitle": "string",
+    "userId": 0,
+    "taskTitle": "string"
+  }
+```
+
+Token required : No
+
+<hr>
 -------------------------------------------------------------------------------------------------------------------------------------------
 
 
-BIService- 
-         TeamManagerBiController -
-                                  1) 
-                                  2) 
-                                  3)  => 
-                                  4)  => 
-                                  5)  => 
-                                  6)  => 
 
 
-         TeamMemberBiController  -
-                                 1) http://localhost:5242/api/TeamMemberBIController/totaltimespend/{teamMemberId} => Return Total Time Spend By Members 
-                                 2) http://localhost:5242/api/TeamMemberBIController/memberworkhours/{teamMemberId}/{givenDate}/{dateRange} => Return Total Project Work Hour Of   Members
-                                 3) http://localhost:5242/api/TeamMemberBIController/memberaveragheworkhours/{userId} =>  Return Calculate Average Time of employrr
-                                 4) http://localhost:5242/api/TeamMemberBIController/memberoverduetasks/{userId} =>  Return Over Due Task Of Member which have 7 days to get overdue
-
-
-
- 
---------------------------------------------------------------------------------------------------------------------------------------------
           
 HRService  - 
             1) http://localhost:5230/api/EmployeesController/employeeid/{userId} => Return employee ID by user ID
