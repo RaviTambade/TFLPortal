@@ -336,17 +336,112 @@ Response       :
 Token required : No
 
 <hr>
--------------------------------------------------------------------------------------------------------------------------------------------
 
+<h4>HRServiceController </h4>
+<hr>
 
+URL            
 
+```console
+ http://localhost:5230/api/EmployeesController/employeeid/{userId}
+```
 
-          
-HRService  - 
-            1) http://localhost:5230/api/EmployeesController/employeeid/{userId} => Return employee ID by user ID
-            2) http://localhost:5230/api/EmployeesController/userId/{employeeId} => Return user ID by employee ID
-            3) http://localhost:5230/api/EmployeesController/employeeinfo/{employeeId} => Returns Employee Detail Information
-            4) http://localhost:5230/api/EmployeesController/useridbymanager/{managerId} =>   Return list of employee of that manager id 
+Description    :  Return employee ID passing by user ID
+
+Parameter      : userId
+
+Body           : None
+
+              
+Response       : 
+
+```console
+ 20
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5230/api/EmployeesController/userId/{employeeId}
+```
+
+Description    :  Return user ID passing by employee ID
+
+Parameter      : employeeId
+
+Body           : None
+
+              
+Response       : 
+
+```console
+ 23
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5230/api/EmployeesController/employeeinfo/{employeeId}
+```
+
+Description    :  Returns Employee Detail Information
+
+Parameter      : employeeId
+
+Body           : None
+
+              
+Response       : 
+
+```console
+{
+  "department": "Development Team",
+  "position": "Software Architect",
+  "hireDate": "2021-02-15T00:00:00"
+}
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5230/api/EmployeesController/useridbymanager/{managerId}
+```
+
+Description    :  Return list of employeeId of that manager id 
+
+Parameter      : managerId
+
+Body           : None
+
+              
+Response       : 
+
+```console
+  10,
+  11,
+  15,
+  16,
+  19
+```
+
+Token required : No
+
+<hr>
+
+     
+ 
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
