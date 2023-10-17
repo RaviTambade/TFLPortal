@@ -62,7 +62,7 @@ Project  -
 
 Tasks -
      TaskController -
-        1)  http://localhost:5283/api/tasks/count/{projectId}  =>  Return Completed tasks count and total tasks count
+        1)  http://localhost:5283/api/tasks/count/{projectId}  =>  Return Completed tasks count and total tasks count of that project
         2)  http://localhost:5283/api/tasks/mytasks/{teamMemberId}/{timePeriod} => Return Employees tasks
         3)  http://localhost:5283/api/tasks/taskdetail/{taskId} =>  Retun Normal Detail of task which id passes
         4)  http://localhost:5283/api/tasks/moretaskdetail/{taskId} =>  Retrun Total Details of tasks ehich id passes
@@ -73,7 +73,7 @@ Tasks -
         9)  http://localhost:5283/api/tasks/status/{taskId}/{updateStatus} => for updating previous tasks details
 
      TaskAllocationsController- 
-         1)  http://localhost:5283/api/taskallocation
+         1)  http://localhost:5283/api/taskallocation =>  for allocating task of certain project id to certain teammember on certain date
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -83,3 +83,14 @@ TimeSheets -
          2) http://localhost:5221/api/timesheets/details/{timesheetid} => Returns timesheet details of a timesheet
          3) http://localhost:5221/api/timesheets/add => Add new timesheet
          4) http://localhost:5221/api/timesheets/timesheetlist/{managerid}/{timePeriod} => Returns timesheet list of employees by managerid
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+UserRollsManagement -
+         1)  http://localhost:5031/api/userroles => return lis of empid with userid and roleid 
+         2)  http://localhost:5031/api/userroles/{userRoleId} => getting employyee role by their userid
+         3)  http://localhost:5031/api/userroles/roles/{userId} => getting role of this id
+         4)  http://localhost:5031/api/userroles                =>  for inserting new role
+         5)  http://localhost:5031/api/userroles/usersid/{role} => while entering role and then retun their id 
+         6)  http://localhost:5031/api/userroles/               => For updating previous role 
+         7)  http://localhost:5031/api/userroles/{userRoleId} =>  for deleting and users role id
