@@ -48,23 +48,23 @@
   - <b>Body</b>: Not Required
   - <b>JWTToken Header</b>: Not required
   - <b>Response</b> = 
-  
+
             ```console
-            {
-              "projectTitle": "PMSAPP",
-              "status": "Pending",
-              "taskStatusCount": 201
-            },
-            {
-              "projectTitle": "PMSAPP",
-              "status": "In-Progress",
-              "taskStatusCount": 199
-            },
-            {
-              "projectTitle": "PMSAPP",
-              "status": "Completed",
-              "taskStatusCount": 200
-            },
+                {
+                  "projectTitle": "PMSAPP",
+                  "status": "Pending",
+                  "taskStatusCount": 201
+                },
+                {
+                  "projectTitle": "PMSAPP",
+                  "status": "In-Progress",
+                  "taskStatusCount": 199
+                },
+                {
+                  "projectTitle": "PMSAPP",
+                  "status": "Completed",
+                  "taskStatusCount": 200
+                },
             ```
 
 
