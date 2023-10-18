@@ -1,7 +1,7 @@
 ## REST API EndPoints
 ### BIService API
 
-# TeamManagerBiController
+#### TeamManagerBiController
 
  
 
@@ -26,17 +26,17 @@
     "id": 1,
     "title": "PMSAPP",
     "totalTimeSpend": 637
-  },
-  {
+      },
+     {
     "id": 4,
     "title": "Inventory",
     "totalTimeSpend": 600
-  },
-  {
+     },
+     {
     "id": 5,
     "title": "OMTB",
     "totalTimeSpend": 600
-  }
+      }
     ]
     ```
 
