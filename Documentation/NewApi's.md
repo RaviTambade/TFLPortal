@@ -41,62 +41,62 @@
     ```
 
 
-- <b>URL</b> : http://localhost:5242/api/TeamManagersBIController/projectstatuscount/{teamManagerId}
+  - <b>URL</b> : http://localhost:5242/api/TeamManagersBIController/projectstatuscount/{teamManagerId}
   - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
   - <b>Method</b>: GET
   - <b>Description</b>:  Return Project Status Wise Count
   - <b>Body</b>: Not Required
   - <b>JWTToken Header</b>: Not required
   - <b>Response</b> = 
-  ```console
-  {
-    "projectTitle": "PMSAPP",
-    "status": "Pending",
-    "taskStatusCount": 201
-  },
-  {
-    "projectTitle": "PMSAPP",
-    "status": "In-Progress",
-    "taskStatusCount": 199
-  },
-  {
-    "projectTitle": "PMSAPP",
-    "status": "Completed",
-    "taskStatusCount": 200
-  },
-  ```
+            ```console
+            {
+              "projectTitle": "PMSAPP",
+              "status": "Pending",
+              "taskStatusCount": 201
+            },
+            {
+              "projectTitle": "PMSAPP",
+              "status": "In-Progress",
+              "taskStatusCount": 199
+            },
+            {
+              "projectTitle": "PMSAPP",
+              "status": "Completed",
+              "taskStatusCount": 200
+            },
+            ```
 
 
-- <b>URL</b> : http://localhost:5242/api/TeamManagersBIController/allocatedtasks/{teamMemberId}
+  - <b>URL</b> : http://localhost:5242/api/TeamManagersBIController/allocatedtasks/{teamMemberId}
   - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
   - <b>Method</b>: GET
   - <b>Description</b>:  Return Allocated Task Overview
   - <b>Body</b>: Not Required
   - <b>JWTToken Header</b>: Not required
   - <b>Response</b> = 
-      ```console
-      {
-        "userId": 10,
-        "taskAllocationCount": 38,
-        "title": "PMSAPP",
-        "status": "In-Progress",
-        "projectId": 1
-      },
-      {
-        "userId": 10,
-        "taskAllocationCount": 38,
-        "title": "Inventory",
-        "status": "Pending",
-        "projectId": 4
-      },
-      {
-        "userId": 10,
-        "taskAllocationCount": 41,
-        "title": "Inventory",
-        "status": "Completed",
-        "projectId": 4
-      },
-      ```
+            ```console
+            {
+              "userId": 10,
+              "taskAllocationCount": 38,
+              "title": "PMSAPP",
+              "status": "In-Progress",
+              "projectId": 1
+            },
+            {
+              "userId": 10,
+              "taskAllocationCount": 38,
+              "title": "Inventory",
+              "status": "Pending",
+              "projectId": 4
+            },
+            {
+              "userId": 10,
+              "taskAllocationCount": 41,
+              "title": "Inventory",
+              "status": "Completed",
+              "projectId": 4
+            },
+            ```
 
 
 
