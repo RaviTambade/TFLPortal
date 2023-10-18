@@ -520,43 +520,31 @@
 
 
 
+#### TaskAllocationsController
+
+  - <b>URL</b> : http://localhost:5283/api/taskallocation
+  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>Method</b>: POST
+  - <b>Description</b>:  for allocating task of certain project id to certain teammember on certain date
+  - <b>Body</b>: 
+
+    ```console
+      {
+        "id": 0,
+        "assignedOn": "2023-10-17T10:25:34.627Z",
+        "projectTaskId": 0,
+        "teamMemberId": 0
+      }
+    ```
+
+  - <b>JWTToken Header</b>: Not required
+  - <b>Response</b> = 
+
+   ```console
+      true/false
+   ```
 
 
-
-
-<h4>TaskAllocationsController</h4>
-
-
-URL            
-
-```console
-http://localhost:5283/api/taskallocation
-```
-
-Description    :  for allocating task of certain project id to certain teammember on certain date
-
-Parameter      : None
-
-Body           : 
-
-```console
-{
-  "id": 0,
-  "assignedOn": "2023-10-17T10:25:34.627Z",
-  "projectTaskId": 0,
-  "teamMemberId": 0
-}
-```
-              
-Response       : 
-
-```console
-true/false
-```
-
-Token required : No
-
-<hr>
 
     
 <h3 align="center">TimeSheets </h3>
