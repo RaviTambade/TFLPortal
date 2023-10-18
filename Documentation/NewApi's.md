@@ -256,7 +256,7 @@
 
 
 
-### HRServiceController 
+### HRService API
 
   - <b>URL</b> : http://localhost:5230/api/EmployeesController/employeeid/{userId}
   - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
@@ -323,270 +323,193 @@
 
 
 
-<h3 align="center">Tasks </h3>
-<hr>
-<h4>TaskController</h4>
+### Tasks Service API
+
+#### TaskController
+
+  - <b>URL</b> :  http://localhost:5283/api/tasks/count/{projectId} 
+  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>Method</b>: GET
+  - <b>Description</b>:  Return list of employeeId of that manager id 
+  - <b>Body</b>: Not Required
+
+  - <b>JWTToken Header</b>: Not required
+  - <b>Response</b> = 
+     
+    ```console
+      {
+        "completedTaskCount": 200,
+        "totalTaskCount": 600
+      }
+    ```
+
+  - <b>URL</b> :  http://localhost:5283/api/tasks/mytasks/{teamMemberId}/{timePeriod} 
+  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>Method</b>: GET
+  - <b>Description</b>:  Return Employees tasks
+  - <b>Body</b>: Not Required
+
+  - <b>JWTToken Header</b>: Not required
+  - <b>Response</b> = 
+     
+    ```console
+      {
+          "taskId": 276,
+          "projectId": 1,
+          "title": "Task 276",
+          "assignedOn": "2023-10-17T00:00:00",
+          "projectName": "PMSAPP",
+          "status": "Pending"
+        },
+        {
+          "taskId": 376,
+          "projectId": 1,
+          "title": "Task 376",
+          "assignedOn": "2023-10-17T00:00:00",
+          "projectName": "PMSAPP",
+          "status": "Completed"
+        },
+      ```
+
+  - <b>URL</b> :  http://localhost:5283/api/tasks/taskdetail/{taskId}
+  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>Method</b>: GET
+  - <b>Description</b>: Retun Normal Detail of task which id passes
+  - <b>Body</b>: Not Required
+
+  - <b>JWTToken Header</b>: Not required
+  - <b>Response</b> = 
+     
+    ```console
+        {
+          "taskId": 276,
+          "task": "Task 276",
+          "status": "Pending",
+          "projectId": 1,
+          "projectName": "PMSAPP"
+        }
+    ```    
+
+  - <b>URL</b> :  http://localhost:5283/api/tasks/moretaskdetail/{taskId}
+  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>Method</b>: GET
+  - <b>Description</b>: Retrun Total Details of tasks which id passes
+  - <b>Body</b>: Not Required
+
+  - <b>JWTToken Header</b>: Not required
+  - <b>Response</b> = 
+     
+   ```console
+      {
+        "taskId": 276,
+        "date": "2023-10-04T00:00:00",
+        "assignedTaskDate": "2023-10-17T00:00:00",
+        "description": "Description 276",
+        "fromTime": "2023-10-04T00:00:00",
+        "toTime": "2023-10-04T01:00:00"
+      }
+   ``` 
+
+  - <b>URL</b> :  http://localhost:5283/api/tasks/alltasks/{employeeId}/{timePeriod} 
+  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>Method</b>: GET
+  - <b>Description</b>:  when passing emp id and time period that time gives lists between that time period
+  - <b>Body</b>: Not Required
+
+  - <b>JWTToken Header</b>: Not required
+  - <b>Response</b> = 
+     
+     ```console
+        {
+            "taskId": 275,
+            "projectName": "PMSAPP",
+            "taskTitle": "Task 275",
+            "assignedTaskDate": "2023-10-16T00:00:00",
+            "teamMemberId": 16,
+            "teamMemberUserId": 19
+          },
+          {
+            "taskId": 375,
+            "projectName": "PMSAPP",
+            "taskTitle": "Task 375",
+            "assignedTaskDate": "2023-10-16T00:00:00",
+            "teamMemberId": 16,
+            "teamMemberUserId": 19
+          },
+     ```
+  - <b>URL</b> :  http://localhost:5283/api/tasks/tasktitle/{employeeId}/{projectId}/{status} 
+  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>Method</b>: GET
+  - <b>Description</b>:  When Passes empid projid and status that time it returns tasklist of that status
+  - <b>Body</b>: Not Required
+
+  - <b>JWTToken Header</b>: Not required
+  - <b>Response</b> = 
+     
+   ```console
+      {
+          "taskId": 6,
+          "title": "Task 6"
+        },
+        {
+          "taskId": 21,
+          "title": "Task 21"
+        },
+        {
+          "taskId": 36,
+          "title": "Task 36"
+        },
+        {
+          "taskId": 51,
+          "title": "Task 51"
+        },
+        {
+          "taskId": 66,
+          "title": "Task 66"
+        },
+   ```
+
+  - <b>URL</b> : http://localhost:5283/api/tasks/addtask
+  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>Method</b>: POST
+  - <b>Description</b>:  for inserting or adding new tasks
+  - <b>Body</b>: 
+
+    ```console
+      {
+        "id": 0,
+        "title": "string",
+        "description": "string"
+      }
+    ```
+
+  - <b>JWTToken Header</b>: Not required
+  - <b>Response</b> = 
+     
+  ```console
+     true/false
+  ```
+ 
+   - <b>URL</b> : http://localhost:5283/api/tasks/details/{taskId}
+  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>Method</b>: GET
+  - <b>Description</b>:  retrn only id title desc of tasks
+  - <b>Body</b>: Not Required
+  - <b>JWTToken Header</b>: Not required
+  - <b>Response</b> = 
+
+  ```console
+    {
+      "id": 276,
+      "title": "Task 276",
+      "description": "Description 276"
+    }
+  ```
 
-URL            
 
-```console
- http://localhost:5283/api/tasks/count/{projectId} 
-```
 
-Description    :  Return Completed tasks count and total tasks count of that project
 
-Parameter      : projectId
 
-Body           : None
-
-              
-Response       : 
-
-```console
- {
-  "completedTaskCount": 200,
-  "totalTaskCount": 600
-}
-```
-
-Token required : No
-
-<hr>
-
-URL            
-
-```console
-  http://localhost:5283/api/tasks/mytasks/{teamMemberId}/{timePeriod} 
-```
-
-Description    :  Return Employees tasks
-
-Parameter      : teamMemberId , timePeriod
-
-Body           : None
-
-              
-Response       : 
-
-```console
- {
-    "taskId": 276,
-    "projectId": 1,
-    "title": "Task 276",
-    "assignedOn": "2023-10-17T00:00:00",
-    "projectName": "PMSAPP",
-    "status": "Pending"
-  },
-  {
-    "taskId": 376,
-    "projectId": 1,
-    "title": "Task 376",
-    "assignedOn": "2023-10-17T00:00:00",
-    "projectName": "PMSAPP",
-    "status": "Completed"
-  },
-```
-
-Token required : No
-
-<hr>
-
-URL            
-
-```console
- http://localhost:5283/api/tasks/taskdetail/{taskId}
-```
-
-Description    :  Retun Normal Detail of task which id passes
-
-Parameter      : taskId
-
-Body           : None
-
-              
-Response       : 
-
-```console
-{
-  "taskId": 276,
-  "task": "Task 276",
-  "status": "Pending",
-  "projectId": 1,
-  "projectName": "PMSAPP"
-}
-```
-
-Token required : No
-
-<hr>
-
-
-URL            
-
-```console
-http://localhost:5283/api/tasks/moretaskdetail/{taskId}
-```
-
-Description    : Retrun Total Details of tasks which id passes
-
-Parameter      : taskId
-
-Body           : None
-
-              
-Response       : 
-
-```console
-{
-  "taskId": 276,
-  "date": "2023-10-04T00:00:00",
-  "assignedTaskDate": "2023-10-17T00:00:00",
-  "description": "Description 276",
-  "fromTime": "2023-10-04T00:00:00",
-  "toTime": "2023-10-04T01:00:00"
-}
-```
-
-Token required : No
-
-<hr>
-
-URL            
-
-```console
-http://localhost:5283/api/tasks/alltasks/{employeeId}/{timePeriod} 
-```
-
-Description    : when passing emp id and time period that time gives lists between that time period
-
-Parameter      : empId, timePeriod (weakly)
-
-Body           : None
-
-              
-Response       : 
-
-```console
- {
-    "taskId": 275,
-    "projectName": "PMSAPP",
-    "taskTitle": "Task 275",
-    "assignedTaskDate": "2023-10-16T00:00:00",
-    "teamMemberId": 16,
-    "teamMemberUserId": 19
-  },
-  {
-    "taskId": 375,
-    "projectName": "PMSAPP",
-    "taskTitle": "Task 375",
-    "assignedTaskDate": "2023-10-16T00:00:00",
-    "teamMemberId": 16,
-    "teamMemberUserId": 19
-  },
-```
-
-Token required : No
-
-<hr>
-
-URL            
-
-```console
-http://localhost:5283/api/tasks/tasktitle/{employeeId}/{projectId}/{status}
-```
-
-Description    : When Passes empid projid and status that time it returns tasklist of that status
-
-Parameter      : empId, projectId , status
-
-Body           : None
-
-              
-Response       : 
-
-```console
-{
-    "taskId": 6,
-    "title": "Task 6"
-  },
-  {
-    "taskId": 21,
-    "title": "Task 21"
-  },
-  {
-    "taskId": 36,
-    "title": "Task 36"
-  },
-  {
-    "taskId": 51,
-    "title": "Task 51"
-  },
-  {
-    "taskId": 66,
-    "title": "Task 66"
-  },
-```
-
-Token required : No
-
-<hr>
-
-URL            
-
-```console
-http://localhost:5283/api/tasks/addtask
-```
-
-Description    :  for inserting or adding new tasks
-
-Parameter      : empId, timePeriod (weakly)
-
-Body           : 
-
-```console
-{
-  "id": 0,
-  "title": "string",
-  "description": "string"
-}
-```
-
-              
-Response       : 
-
-```console
-true/false
-```
-
-Token required : No
-
-<hr>
-
-URL            
-
-```console
-http://localhost:5283/api/tasks/details/{taskId}
-```
-
-Description    :  retrn only id title desc of tasks
-
-Parameter      : taskId
-
-Body           : None
-              
-Response       : 
-
-```console
-{
-  "id": 276,
-  "title": "Task 276",
-  "description": "Description 276"
-}
-```
-
-Token required : No
-
-<hr>
 
 URL            
 
