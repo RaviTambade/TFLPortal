@@ -256,108 +256,72 @@
 
 
 
-<h4 align="center">HRServiceController </h4>
-<hr>
+### HRServiceController 
 
-URL            
+  - <b>URL</b> : http://localhost:5230/api/EmployeesController/employeeid/{userId}
+  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>Method</b>: GET
+  - <b>Description</b>:  Return employee ID passing by user ID
+  - <b>Body</b>: Not Required
 
-```console
- http://localhost:5230/api/EmployeesController/employeeid/{userId}
-```
+  - <b>JWTToken Header</b>: Not required
+  - <b>Response</b> = 
+     
+    ```console
+      20
+    ```
 
-Description    :  Return employee ID passing by user ID
+  - <b>URL</b> : http://localhost:5230/api/EmployeesController/userId/{employeeId}
+  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>Method</b>: GET
+  - <b>Description</b>:  Return user ID passing by employee ID
+  - <b>Body</b>: Not Required
 
-Parameter      : userId
+  - <b>JWTToken Header</b>: Not required
+  - <b>Response</b> = 
+     
+    ```console
+      23
+    ``` 
 
-Body           : None
+  - <b>URL</b> : http://localhost:5230/api/EmployeesController/employeeinfo/{employeeId}
+  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>Method</b>: GET
+  - <b>Description</b>:  Returns Employee Detail Information
+  - <b>Body</b>: Not Required
 
-              
-Response       : 
+  - <b>JWTToken Header</b>: Not required
+  - <b>Response</b> = 
+     
+    ```console
+      {
+        "department": "Development Team",
+        "position": "Software Architect",
+        "hireDate": "2021-02-15T00:00:00"
+      }
+    ```
 
-```console
- 20
-```
+  - <b>URL</b> : http://localhost:5230/api/EmployeesController/useridbymanager/{managerId}
+  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>Method</b>: GET
+  - <b>Description</b>:  Return list of employeeId of that manager id 
+  - <b>Body</b>: Not Required
 
-Token required : No
+  - <b>JWTToken Header</b>: Not required
+  - <b>Response</b> = 
+     
+    ```console
+      10,
+      11,
+      15,
+      16,
+      19
+    ```
 
-<hr>
 
-URL            
 
-```console
-http://localhost:5230/api/EmployeesController/userId/{employeeId}
-```
 
-Description    :  Return user ID passing by employee ID
 
-Parameter      : employeeId
-
-Body           : None
-
-              
-Response       : 
-
-```console
- 23
-```
-
-Token required : No
-
-<hr>
-
-URL            
-
-```console
-http://localhost:5230/api/EmployeesController/employeeinfo/{employeeId}
-```
-
-Description    :  Returns Employee Detail Information
-
-Parameter      : employeeId
-
-Body           : None
-
-              
-Response       : 
-
-```console
-{
-  "department": "Development Team",
-  "position": "Software Architect",
-  "hireDate": "2021-02-15T00:00:00"
-}
-```
-
-Token required : No
-
-<hr>
-
-URL            
-
-```console
-http://localhost:5230/api/EmployeesController/useridbymanager/{managerId}
-```
-
-Description    :  Return list of employeeId of that manager id 
-
-Parameter      : managerId
-
-Body           : None
-
-              
-Response       : 
-
-```console
-  10,
-  11,
-  15,
-  16,
-  19
-```
-
-Token required : No
-
-<hr>
 
 <h3 align="center">Tasks </h3>
 <hr>
