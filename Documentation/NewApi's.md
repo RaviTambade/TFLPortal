@@ -5,8 +5,8 @@
 
  
 
-  - <b>URL</b> : http://localhost:5242/api/TeamManagersBI/projectwork/{teamManagerId}
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> : /api/TeamManagersBI/projectwork/{teamManagerId}
+  - /api/TeamManagersBI/projectwork/{teamManagerId}
   - <b>Method</b>: POST
   - <b>Description</b>: Return Total Project Work Hours
   - <b>Body</b>:
@@ -41,8 +41,8 @@
     ```
 
 
-  - <b>URL</b> : http://localhost:5242/api/TeamManagersBIController/projectstatuscount/{teamManagerId}
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> : /api/TeamManagersBIController/projectstatuscount/{teamManagerId}
+  - /api/TeamManagersBIController/projectstatuscount/{teamManagerId}
   - <b>Method</b>: GET
   - <b>Description</b>:  Return Project Status Wise Count
   - <b>Body</b>: Not Required
@@ -70,7 +70,7 @@
            
 
 
-  - <b>URL</b> : http://localhost:5242/api/TeamManagersBIController/allocatedtasks/{teamMemberId}
+  - <b>URL</b> :/api/TeamManagersBIController/allocatedtasks/{teamMemberId}
   - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
   - <b>Method</b>: GET
   - <b>Description</b>:  Return Allocated Task Overview
@@ -105,8 +105,8 @@
           
 
 
-  - <b>URL</b> : http://localhost:5242/api/TeamManagersBIController/totaltimespend/{teamMemberId}
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> :/api/TeamManagersBIController/totaltimespend/{teamMemberId}
+  - /api/TeamManagersBIController/totaltimespend/{teamMemberId}
   - <b>Method</b>: POST
   - <b>Description</b>:  Return Total Time Spend By Members on project
   - <b>Body</b>:
@@ -129,8 +129,8 @@
     ```
 
 
-  - <b>URL</b> : http://localhost:5242/api/TeamManagersBIController/projectpercentage/{projectId}
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> : /api/TeamManagersBIController/projectpercentage/{projectId}
+  - /api/TeamManagersBIController/projectpercentage/{projectId}
   - <b>Method</b>: GET
   - <b>Description</b>:  Return Projects Completion Percentage
   - <b>Body</b>: Not Required
@@ -144,8 +144,8 @@
         }
       ```
 
-  - <b>URL</b> : http://localhost:5242/api/TeamManagersBIController/memberworkhours/{projectId}/{givenDate}/{dateRange}
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> : /api/TeamManagersBIController/memberworkhours/{projectId}/{givenDate}/{dateRange}
+  - /api/TeamManagersBIController/memberworkhours/{projectId}/{givenDate}/{dateRange}
   - <b>Method</b>: GET
   - <b>Description</b>:  Returm Total Project Work Hour Of Team Members
   - <b>Body</b>: Not Required
@@ -179,8 +179,8 @@
 
 #### TeamMemberBiController 
 
-  - <b>URL</b> : http://localhost:5242/api/TeamMemberBIController/totaltimespend/{teamMemberId}
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> : /api/TeamMemberBIController/totaltimespend/{teamMemberId}
+  - /api/TeamMemberBIController/totaltimespend/{teamMemberId}
   - <b>Method</b>: POST
   - <b>Description</b>:  Return Total Time Spend By Members 
   - <b>Body</b>: 
@@ -202,8 +202,8 @@
         }
      ```
 
-  - <b>URL</b> : http://localhost:5242/api/TeamMemberBIController/memberworkhours/{teamMemberId}/{givenDate}/{dateRange}
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> : /api/TeamMemberBIController/memberworkhours/{teamMemberId}/{givenDate}/{dateRange}
+  - /api/TeamMemberBIController/memberworkhours/{teamMemberId}/{givenDate}/{dateRange}
   - <b>Method</b>: GET
   - <b>Description</b>:  Return Total Project Work Hour Of  Members
   - <b>Body</b>: Not Required
@@ -218,8 +218,8 @@
         }
      ```
 
-  - <b>URL</b> : http://localhost:5242/api/TeamMemberBIController/memberaveragheworkhours/{userId}
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> : /api/TeamMemberBIController/memberaveragheworkhours/{userId}
+  - /api/TeamMemberBIController/memberaveragheworkhours/{userId}
   - <b>Method</b>: GET
   - <b>Description</b>:  Return Calculate Average Time of employee
   - <b>Body</b>: Not Required
@@ -231,8 +231,8 @@
       2.0263
     ```
 
-  - <b>URL</b> : http://localhost:5242/api/TeamMemberBIController/memberoverduetasks/{userId}
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> : /api/TeamMemberBIController/memberoverduetasks/{userId}
+  - /api/TeamMemberBIController/memberoverduetasks/{userId}
   - <b>Method</b>: GET
   - <b>Description</b>:  Return Over Due Task Of Member which have 7 days to get overdue
   - <b>Body</b>: Not Required
@@ -258,8 +258,8 @@
 
 ### HRService API
 
-  - <b>URL</b> : http://localhost:5230/api/EmployeesController/employeeid/{userId}
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> : /api/EmployeesController/employeeid/{userId}
+  - /api/EmployeesController/employeeid/{userId}
   - <b>Method</b>: GET
   - <b>Description</b>:  Return employee ID passing by user ID
   - <b>Body</b>: Not Required
@@ -271,21 +271,22 @@
       20
     ```
 
-  - <b>URL</b> : http://localhost:5230/api/EmployeesController/userId/{employeeId}
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> : /api/EmployeesController/userId/{employeeId}
+  - /api/EmployeesController/userId/{employeeId}
   - <b>Method</b>: GET
   - <b>Description</b>:  Return user ID passing by employee ID
   - <b>Body</b>: Not Required
-
   - <b>JWTToken Header</b>: Not required
   - <b>Response</b> = 
      
     ```console
+    {
       23
+    }
     ``` 
 
-  - <b>URL</b> : http://localhost:5230/api/EmployeesController/employeeinfo/{employeeId}
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> : /api/EmployeesController/employeeinfo/{employeeId}
+  - /api/EmployeesController/employeeinfo/{employeeId}
   - <b>Method</b>: GET
   - <b>Description</b>:  Returns Employee Detail Information
   - <b>Body</b>: Not Required
@@ -301,8 +302,8 @@
       }
     ```
 
-  - <b>URL</b> : http://localhost:5230/api/EmployeesController/useridbymanager/{managerId}
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> : /api/EmployeesController/useridbymanager/{managerId}
+  - /api/EmployeesController/useridbymanager/{managerId}
   - <b>Method</b>: GET
   - <b>Description</b>:  Return list of employeeId of that manager id 
   - <b>Body</b>: Not Required
@@ -311,11 +312,13 @@
   - <b>Response</b> = 
      
     ```console
+    {
       10,
       11,
       15,
       16,
       19
+    }
     ```
 
 
@@ -327,12 +330,11 @@
 
 #### TaskController
 
-  - <b>URL</b> :  http://localhost:5283/api/tasks/count/{projectId} 
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> : /api/tasks/count/{projectId} 
+  - /api/tasks/count/{projectId} 
   - <b>Method</b>: GET
   - <b>Description</b>:  Return list of employeeId of that manager id 
   - <b>Body</b>: Not Required
-
   - <b>JWTToken Header</b>: Not required
   - <b>Response</b> = 
      
@@ -343,8 +345,8 @@
       }
     ```
 
-  - <b>URL</b> :  http://localhost:5283/api/tasks/mytasks/{teamMemberId}/{timePeriod} 
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> : /api/tasks/mytasks/{teamMemberId}/{timePeriod} 
+  - /api/tasks/mytasks/{teamMemberId}/{timePeriod} 
   - <b>Method</b>: GET
   - <b>Description</b>:  Return Employees tasks
   - <b>Body</b>: Not Required
@@ -371,8 +373,8 @@
         },
       ```
 
-  - <b>URL</b> :  http://localhost:5283/api/tasks/taskdetail/{taskId}
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> :  /api/tasks/taskdetail/{taskId}
+  - /api/tasks/taskdetail/{taskId}
   - <b>Method</b>: GET
   - <b>Description</b>: Retun Normal Detail of task which id passes
   - <b>Body</b>: Not Required
@@ -390,8 +392,8 @@
         }
     ```    
 
-  - <b>URL</b> :  http://localhost:5283/api/tasks/moretaskdetail/{taskId}
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> : /api/tasks/moretaskdetail/{taskId}
+  - /api/tasks/moretaskdetail/{taskId}
   - <b>Method</b>: GET
   - <b>Description</b>: Retrun Total Details of tasks which id passes
   - <b>Body</b>: Not Required
@@ -410,8 +412,8 @@
       }
    ``` 
 
-  - <b>URL</b> :  http://localhost:5283/api/tasks/alltasks/{employeeId}/{timePeriod} 
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> :  /api/tasks/alltasks/{employeeId}/{timePeriod} 
+  - /api/tasks/alltasks/{employeeId}/{timePeriod} 
   - <b>Method</b>: GET
   - <b>Description</b>:  when passing emp id and time period that time gives lists between that time period
   - <b>Body</b>: Not Required
@@ -437,8 +439,8 @@
             "teamMemberUserId": 19
           },
      ```
-  - <b>URL</b> :  http://localhost:5283/api/tasks/tasktitle/{employeeId}/{projectId}/{status} 
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> : /api/tasks/tasktitle/{employeeId}/{projectId}/{status} 
+  - /api/tasks/tasktitle/{employeeId}/{projectId}/{status}
   - <b>Method</b>: GET
   - <b>Description</b>:  When Passes empid projid and status that time it returns tasklist of that status
   - <b>Body</b>: Not Required
@@ -469,8 +471,8 @@
         },
    ```
 
-  - <b>URL</b> : http://localhost:5283/api/tasks/addtask
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> : /api/tasks/addtask
+  - /api/tasks/addtask
   - <b>Method</b>: POST
   - <b>Description</b>:  for inserting or adding new tasks
   - <b>Body</b>: 
@@ -487,11 +489,13 @@
   - <b>Response</b> = 
      
   ```console
+  {
      true/false
+  }
   ```
  
-  - <b>URL</b> : http://localhost:5283/api/tasks/details/{taskId}
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> : /api/tasks/details/{taskId}
+  - /api/tasks/details/{taskId}
   - <b>Method</b>: GET
   - <b>Description</b>:  retrn only id title desc of tasks
   - <b>Body</b>: Not Required
@@ -506,8 +510,8 @@
     }
   ```
 
-  - <b>URL</b> : http://localhost:5283/api/tasks/status/{taskId}/{updateStatus}
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> : /api/tasks/status/{taskId}/{updateStatus}
+  - /api/tasks/status/{taskId}/{updateStatus}
   - <b>Method</b>: PATCH
   - <b>Description</b>:  for updating previous tasks details
   - <b>Body</b>: Not Required
@@ -522,8 +526,8 @@
 
 #### TaskAllocationsController API
 
-  - <b>URL</b> : http://localhost:5283/api/taskallocation
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> : /api/taskallocation
+  - /api/taskallocation
   - <b>Method</b>: POST
   - <b>Description</b>:  for allocating task of certain project id to certain teammember on certain date
   - <b>Body</b>: 
@@ -549,8 +553,8 @@
     
 ### TimeSheets API 
 
-  - <b>URL</b> : http://localhost:5221/api/timesheets/list/{employeeId}/{timePeriod}
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> : /api/timesheets/list/{employeeId}/{timePeriod}
+  - /api/timesheets/list/{employeeId}/{timePeriod}
   - <b>Method</b>: GET
   - <b>Description</b>:  Returns timesheet list of a employee
   - <b>Body</b>: Not Required
@@ -566,8 +570,8 @@
         }
    ```
 
-  - <b>URL</b> : http://localhost:5221/api/timesheets/details/{timesheetid}
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> : /api/timesheets/details/{timesheetid}
+  - /api/timesheets/details/{timesheetid}
   - <b>Method</b>: GET
   - <b>Description</b>:  Returns timesheet details of a timesheet
   - <b>Body</b>: Not Required
@@ -586,8 +590,8 @@
       }
     ```
 
-  - <b>URL</b> : http://localhost:5221/api/timesheets/add
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> : /api/timesheets/add
+  - /api/timesheets/add
   - <b>Method</b>: POST
   - <b>Description</b>: Add new timesheet
   - <b>Body</b>: 
@@ -615,8 +619,8 @@
     true/false
    ```
 
-  - <b>URL</b> : http://localhost:5221/api/timesheets/timesheetlist/{managerid}/{timePeriod}
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> : /api/timesheets/timesheetlist/{managerid}/{timePeriod}
+  - /api/timesheets/timesheetlist/{managerid}/{timePeriod}
   - <b>Method</b>: GET
   - <b>Description</b>: Returns timesheet list of employees by managerid
   - <b>Body</b>: Not Required
@@ -651,26 +655,16 @@
     ```
 
 
+###UserRollsManagement 
+###UserRollsManagementController 
 
-<h3 align="center">UserRollsManagement </h3>
-
-<h4>UserRollsManagementController </h4>
-<hr>
-
-URL            
-
-```console
- http://localhost:5031/api/userroles
-```
-
-Description    : return lis of empid with userid and roleid 
-
-Parameter      : none
-
-Body           : None
-
-              
-Response       : 
+- <b>URL</b>: /api/userroles
+- /api/userroles             
+- <b>Method</b>: GET
+- <b>Description</b>: return list of employeeid with userid and roleid 
+- <b>Body</b>: Not Required
+- <b>JWTToken Header</b>: Not required
+- <b>Response</b> = 
 
 ```console
  {
@@ -695,26 +689,14 @@ Response       :
   },
 ```
 
-Token required : No
 
-<hr>
-
-URL            
-
-```console
-http://localhost:5031/api/userroles/{userRoleId}
-```
-
-Description    : getting employyee role by their userid
-
-Parameter      : userId
-
-Body           : none
-
-
-
-              
-Response       : 
+- <b>URL</b>: /api/userroles/{userRoleId} 
+- /api/userroles/{userRoleId}        
+- <b>Method</b>: GET
+- <b>Description</b>:getting employyee role by their userid
+- <b>Body</b>: Not Required
+- <b>JWTToken Header</b>: Not required
+- <b>Response</b> = 
 
 ```console
 {
@@ -724,44 +706,24 @@ Response       :
 }
 ```
 
-Token required : No
 
-<hr>
-
-URL            
-
-```console
-http://localhost:5031/api/userroles/roles/{userId}
-```
-
-Description    : getting role of this id
-
-Parameter      : userId
-
-Body           : none
-
-              
-Response       : 
+- <b>URL</b>: /api/userroles/roles/{userId}
+- /api/userroles/roles/{userId}
+- <b>Method</b>: GET
+- <b>Description</b>: getting role of given userid
+- <b>Body</b>: Not Required
+- <b>JWTToken Header</b>: Not required
+- <b>Response</b> =  
 
 ```console
 "Team Member"
 ```
 
-Token required : No
-
-<hr>
-
-URL            
-
-```console
-http://localhost:5031/api/userroles   
-```
-
-Description    :  for inserting new role
-
-Parameter      : none
-
-Body           : 
+- <b>URL</b>: /api/userroles   
+- /api/userroles   
+- <b>Method</b>: POST
+- <b>Description</b>:  for inserting new role
+- <b>Body</b>:
 
 ```console
 {
@@ -771,51 +733,32 @@ Body           :
 }
 ```
 
-              
-Response       : 
+- <b>JWTToken Header</b>: Not required
+- <b>Response</b> = 
 
 ```console
+{
 true/false
+}
 ```
 
-Token required : No
-
-<hr>
-
-URL            
-
-```console
-http://localhost:5031/api/userroles/usersid/{role}   
-```
-
-Description    :  while entering role and then retun their id
-
-Parameter      : role (Team Manager)
-
-Body           : None
-              
-Response       : 
+- <b>URL</b>: /api/userroles/userid/{role}   
+- /api/userroles/userid/{role}   
+- <b>Method</b>: GET
+- <b>Description</b>: while entering role and then return their id
+- <b>Body</b>: Not required
+- <b>JWTToken Header</b>: Not required
+- <b>Response</b> = 
 
 ```console
   "7,8,9"
 ```
 
-Token required : No
-
-<hr>
-
-
-URL            
-
-```console
-http://localhost:5031/api/userroles/ 
-```
-
-Description    : For updating previous role 
-
-Parameter      : none
-
-Body           : 
+- <b>URL</b>: /api/userroles/ 
+- /api/userroles/ 
+- <b>Method</b>: PUT
+- <b>Description</b>: For updating previous role 
+- <b>Body</b>: 
 
 ```console
   {
@@ -824,427 +767,35 @@ Body           :
   "roleId": 0
 }
 ```
-              
-Response       : 
+            
+- <b>JWTToken Header</b>: Not required
+- <b>Response</b> = 
 
 ```console
+{
   true/false
+}
 ```
 
-Token required : No
-
-<hr>
-
-URL            
-
-```console
-http://localhost:5031/api/userroles/{userRoleId}
-```
-
-Description    : for deleting and users role id
-
-Parameter      : userRoleId
-
-Body           : none
-
-              
-Response       : 
+- <b>URL</b>: /api/userroles/{userRoleId}
+- /api/userroles/{userRoleId}
+- <b>Method</b>: DELETE
+- <b>Description</b>: for deleting and users role id
+- <b>Body</b>: Not required   
+- <b>JWTToken Header</b>: Not required
+- <b>Response</b> = 
 
 ```console
+{
   true/false
-```
-
-Token required : No
-
-<hr>
-
-<h4>ProjectsController </h4>
-
-URL            
-
-```console
- http://localhost:5248/api/projects/lists/{teammemberid}
-```
-
-Description    : Returns projectlist of teammember
-
-Parameter      : teammemberid
-
-Body           : None
-              
-Response        :
-
-```console
-{
-"Id" :
-"Title" :
-"StartDate" :
-"Status" :
-"TeamManagerId" : 
-"TeamManagerUserId" :
-  }
-```
-
-Token required : No
-
-<hr>
-
-URL            
-
-```console
-http://localhost:5248/api/projects/teammembers/{projectid}
-```
-
-Description    :  Returns teammembers userid of project
-
-Parameter      : projectid
-
-Body           : None
-              
-Response        :
-
-```console
-[{
-    1,2,3,4,5
-}]
-```
-
-Token required : No
-
-<hr>
-
-URL            
-
-```console
-http://localhost:5248/api/projects/tasks/{projectid}/{timeperiod}
-```
-
-Description    : Returns tasks list of a project
-
-Parameter      : projectid
-
-Body           : None
-              
-Response        :
-
-```console
-[{
-"TaskId" :
-"Title" :
-"Status" :
-"TaskAllocationDate" : 
-"TeamMemberUserId" :
-}]
-```
-
-Token required : No
-
-<hr>
-
-URL            
-
-```console
-http://localhost:5248/api/projects/teammember/{teammemberid}
-```
-
-Description    : Returns projectname and its id of a team member
-
-Parameter      : projectid
-
-Body           : None
-              
-Response        :
-
-```console
-[{
-"ProjectId" :
-"Title" :
-}]
-```
-
-Token required : No
-
-<hr>
-
-URL            
-
-```console
-http://localhost:5248/api/projects/manager/{managerid}
-```
-
-Description    : Returns projectlist of team manager
-
-Parameter      : managerid
-
-Body           : None
-              
-Response        :
-
-```console
-{
-"Id" :
-"Title" :
-"StartDate" :
-"Status" :
-"TeamManagerId" : 
-"TeamManagerUserId" :
-  }
-```
-
-Token required : No
-
-<hr>
-
-URL            
-
-```console
-http://localhost:5248/api/projects/unassignedtask/{projectId}/{timePeriod}
-```
-
-Description    : Returns unassigned task of a project
-
-Parameter      : projectid ,timeperiod
-
-Body           : None
-              
-Response        :
-
-```console
-{
-"ProjectId" :
-"TitleId" :
-"title" :
-"Status" :
-"ProjectName" :
 }
 ```
-
-Token required : No
-
-<hr>
-
-URL            
-
-```console
-http://localhost:5248/api/projects/assignedtask/{projectId}/{timePeriod} 
-```
-
-Description    : Returns assigned task of a project
-
-Parameter      : projectid ,timeperiod
-
-Body           : None
-              
-Response        :
-
-```console
-{
-"ProjectId" :
-"TitleId" :
-"title" :
-"Status" :
-"ProjectName" :
-}
-```
-
-Token required : No
-
-<hr>
-
-URL            
-
-```console
-http://localhost:5248/api/projects/employeeidwithuserid/{projectId}
-```
-
-Description    : Returns list of employeeid and userid of teammembers of a project
-
-Parameter      : projectid 
-
-Body           : None
-              
-Response        :
-
-```console
-{
-"EmployeeId" :
-"UserId" :
-}
-```
-
-Token required : No
-
-<hr>
-
-URL            
-
-```console
-http://localhost:5248/api/projects/title/{projectid}
-```
-
-Description    : Returns a project title
-
-Parameter      : projectid 
-
-Body           : None
-              
-Response        :
-
-```console
-{
-"PMSAPP"
-}
-```
-
-Token required : No
-
-<hr>
-
-URL            
-
-```console
-http://localhost:5248/api/projects/managerprojects/{managerid}
-```
-
-Description    : Returns projects under a manager
-
-Parameter      : managerid 
-
-Body           : None
-              
-Response        :
-
-```console
-{
-"ProjectId":
-"Title":
-}
-```
-
-Token required : No
-
-<hr>
-
-URL            
-
-```console
-http://localhost:5248/api/projects/teammemberids/{teammanagerid}
-```
-
-Description    : Returns the team member ids works under a team manager
-
-Parameter      : teammanagerid 
-
-Body           : None
-              
-Response        :
-
-```console
-[{
-1,2,3
-}]
-```
-
-Token required : No
-
-<hr>
-
-URL            
-
-```console
- http://localhost:5248/api/projects/addproject
-```
-
-Description    : add a new project
-
-Parameter      : None 
-
-Body           : 
-
-```console
-{
-"Title":
-"StartDate":
-"EndDate":
-"Description":
-"TeamManagerId":
-"Status":
-}
-```
-              
-Response        :
-
-```console
-{
-    true/false
-}
-```
-
-Token required : No
-
-<hr>
-
-URL            
-
-```console
- http://localhost:5248/api/projects/edit
-```
-
-Description    :edit a existing project
-
-Parameter      : None 
-
-Body           : 
-
-```console
-{
-"Id":
-"Title":
-"StartDate":
-"EndDate":
-"Description":
-"TeamManagerId":
-"Status":
-}
-```
-              
-Response        :
-
-```console
-{
-    true/false
-}
-```
-
-Token required : No
-
-URL            
-
-```console
-http://localhost:5248/api/projects/delete/{projectid}
-```
-
-Description    :delete a existing project
-
-Parameter      : projectid 
-
-Body           : None
-
-              
-Response        :
-
-```console
-{
-    true/false
-}
-```
-
-
 
     
 ###ProjectsController 
 
-- <b>URL</b> : http://localhost:5248/api/projects/lists/{teammemberid}
+- <b>URL</b> : /api/projects/lists/{teammemberid}
+- /api/projects/lists/{teammemberid}
 - <b>Method</b>: GET
 - <b>Description</b>: Returns projectlist of teammember
 - <b>Body</b>: Not Required
@@ -1262,7 +813,8 @@ Response        :
 }]
 ```
 
-- <b>URL</b>: http://localhost:5248/api/projects/teammembers/{projectid}
+- <b>URL</b>: /api/projects/teammembers/{projectid}
+- /api/projects/teammembers/{projectid}
 - <b>Method</b>: GET
 - <b>Description</b>: Returns teammembers userid of Project
 - <b>Body</b>: Not Required
@@ -1275,7 +827,8 @@ Response        :
 }]
 ```
 
-- <b>URL</b>: http://localhost:5248/api/projects/tasks/{projectid}/{timeperiod}
+- <b>URL</b>: /api/projects/tasks/{projectid}/{timeperiod}
+- /api/projects/tasks/{projectid}/{timeperiod}
 - <b>Method</b>: GET
 - <b>Description</b>: Returns tasks list of a project
 - <b>Body</b>: Not Required
@@ -1292,7 +845,8 @@ Response        :
 }]
 ```
 
-- <b>URL</b>: http://localhost:5248/api/projects/teammember/{teammemberid}
+- <b>URL</b>: /api/projects/teammember/{teammemberid}
+- /api/projects/teammember/{teammemberid}
 - <b>Method</b>: GET
 - <b>Description</b>: Returns projectname and its id of a team member
 - <b>Body</b>: Not Required
@@ -1306,7 +860,8 @@ Response        :
 }]
 ```
 
-- <b>URL</b>:http://localhost:5248/api/projects/manager/{managerid}       
+- <b>URL</b>: /api/projects/manager/{managerid}  
+- /api/projects/manager/{managerid}      
 - <b>Method</b>: GET
 - <b>Description</b>: Returns projectlist of team manager
 - <b>Body</b>: Not Required
@@ -1324,7 +879,8 @@ Response        :
   }
 ```
 
-- <b>URL</b>: http://localhost:5248/api/projects/unassignedtask/{projectId}/{timePeriod}
+- <b>URL</b>: /api/projects/unassignedtask/{projectId}/{timePeriod}
+- /api/projects/unassignedtask/{projectId}/{timePeriod}
 - <b>Method</b>: GET
 - <b>Description</b>: Returns unassigned task of a project
 - <b>Body</b>: Not Required
@@ -1341,7 +897,8 @@ Response        :
 }
 ```
 
-- <b>URL</b>: http://localhost:5248/api/projects/assignedtask/{projectId}/{timePeriod} 
+- <b>URL</b>: /api/projects/assignedtask/{projectId}/{timePeriod} 
+- /api/projects/assignedtask/{projectId}/{timePeriod} 
 - <b>Method</b>: GET
 - <b>Description</b>: Returns assigned task of a project
 - <b>Body</b>: Not Required
@@ -1359,6 +916,7 @@ Response        :
 ```
 
 - <b>URL</b>: http://localhost:5248/api/projects/employeeidwithuserid/{projectId}
+- /api/projects/assignedtask/{projectId}/{timePeriod} 
 - <b>Method</b>: GET
 - <b>Description</b>: Returns list of employeeid and userid of teammembers of a project
 - <b>Body</b>: Not Required
@@ -1373,6 +931,7 @@ Response        :
 ```
 
 - <b>URL</b>: http://localhost:5248/api/projects/title/{projectid}
+- /api/projects/assignedtask/{projectId}/{timePeriod} 
 - <b>Method</b>: GET
 - <b>Description</b>: Returns a project title
 - <b>Body</b>: Not Required
@@ -1386,6 +945,7 @@ Response        :
 ```
 
 - <b>URL</b>:http://localhost:5248/api/projects/managerprojects/{managerid}
+- /api/projects/assignedtask/{projectId}/{timePeriod} 
 - <b>Method</b>: GET
 - <b>Description</b>: Returns projects under a manager
 - <b>Body</b>: Not Required
@@ -1400,6 +960,7 @@ Response        :
 ```
 
 - <b>URL</b>: http://localhost:5248/api/projects/teammemberids/{teammanagerid}
+- /api/projects/assignedtask/{projectId}/{timePeriod} 
 - <b>Method</b>: GET
 - <b>Description</b>: Returns the team member ids works under a team manager
 - <b>Body</b>: Not Required
@@ -1413,6 +974,7 @@ Response        :
 ```
 
 - <b>URL</b>: http://localhost:5248/api/projects/addproject
+- /api/projects/assignedtask/{projectId}/{timePeriod} 
 - <b>Method</b>: POST
 - <b>Description</b>: add a new project
 - <b>Body</b> =
@@ -1436,7 +998,8 @@ Response        :
 }
 ```
 
-- <b>URL</b>: http://localhost:5248/api/projects/edit
+- <b>URL</b>: /api/projects/edit
+- /api/projects/edit
 - <b>Method</b>: PUT
 - <b>Description</b>: edit a existing project
 - <b>Body</b> = 
@@ -1461,7 +1024,8 @@ Response        :
 }
 ```
 
-- <b>URL</b>:http://localhost:5248/api/projects/delete/{projectid}
+- <b>URL</b>: /api/projects/delete/{projectid}
+- /api/projects/delete/{projectid}
 - <b>Method</b>: DELETE
 - <b>Description</b>:delete a existing project
 - <b>Body</b>: Not Required
