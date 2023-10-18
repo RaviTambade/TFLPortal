@@ -179,117 +179,82 @@
 
 #### TeamMemberBiController 
 
+  - <b>URL</b> : http://localhost:5242/api/TeamMemberBIController/totaltimespend/{teamMemberId}
+  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>Method</b>: POST
+  - <b>Description</b>:  Return Total Time Spend By Members 
+  - <b>Body</b>: 
 
-URL            
+  ```console
+     {
+       "startDate": "2023-08-17T09:31:26.449Z",
+       "endDate": "2023-10-17T09:31:26.449Z"
+     }
+  ```
 
-```console
-http://localhost:5242/api/TeamMemberBIController/totaltimespend/{teamMemberId}
-```
+  - <b>JWTToken Header</b>: Not required
+  - <b>Response</b> = 
+     
+     ```console
+        {
+          "userId": 10,
+          "totalWorkingHour": 244
+        }
+     ```
 
-Description    : Return Total Time Spend By Members 
+  - <b>URL</b> : http://localhost:5242/api/TeamMemberBIController/memberworkhours/{teamMemberId}/{givenDate}/{dateRange}
+  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>Method</b>: GET
+  - <b>Description</b>:  Return Total Project Work Hour Of  Members
+  - <b>Body</b>: Not Required
 
-Parameter      : teamMemberId
+  - <b>JWTToken Header</b>: Not required
+  - <b>Response</b> = 
+     
+     ```console
+        {
+          "userId": 10,
+          "totalWorkingHour": 4
+        }
+     ```
 
-Body           : 
+  - <b>URL</b> : http://localhost:5242/api/TeamMemberBIController/memberaveragheworkhours/{userId}
+  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>Method</b>: GET
+  - <b>Description</b>:  Return Calculate Average Time of employee
+  - <b>Body</b>: Not Required
 
-```console
-{
-  "startDate": "2023-08-17T09:31:26.449Z",
-  "endDate": "2023-10-17T09:31:26.449Z"
-}
-```
-              
-Response       : 
+  - <b>JWTToken Header</b>: Not required
+  - <b>Response</b> = 
+     
+    ```console
+      2.0263
+    ```
 
-```console
-  {
-    "userId": 10,
-    "totalWorkingHour": 244
-  }
-```
+  - <b>URL</b> : http://localhost:5242/api/TeamMemberBIController/memberoverduetasks/{userId}
+  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>Method</b>: GET
+  - <b>Description</b>:  Return Over Due Task Of Member which have 7 days to get overdue
+  - <b>Body</b>: Not Required
 
-Token required : No
-
-<hr>
-
-URL            
-
-```console
-http://localhost:5242/api/TeamMemberBIController/memberworkhours/{teamMemberId}/{givenDate}/{dateRange}
-```
-
-Description    : Return Total Project Work Hour Of   Members
-
-Parameter      : teamMemberId , givenDate, dateRange
-
-Body           : None
-
-              
-Response       : 
-
-```console
-  {
-    "userId": 10,
-    "totalWorkingHour": 4
-  }
-```
-
-Token required : No
-
-<hr>
-
-URL            
-
-```console
-http://localhost:5242/api/TeamMemberBIController/memberaveragheworkhours/{userId}
-```
-
-Description    :  Return Calculate Average Time of employee
-
-Parameter      : userId
-
-Body           : None
-
-              
-Response       : 
-
-```console
-   2.0263
-```
-
-Token required : No
-
-<hr>
+  - <b>JWTToken Header</b>: Not required
+  - <b>Response</b> = 
+     
+    ```console
+      {
+        "dueDate": "2023-10-17T09:39:46.020Z",
+        "status": "string",
+        "projectTitle": "string",
+        "userId": 0,
+        "taskTitle": "string"
+      }
+    ```
 
 
-URL            
 
-```console
- http://localhost:5242/api/TeamMemberBIController/memberoverduetasks/{userId}
-```
 
-Description    :  Return Over Due Task Of Member which have 7 days to get overdue
 
-Parameter      : userId
 
-Body           : None
-
-              
-Response       : 
-
-```console
-   {
-    "dueDate": "2023-10-17T09:39:46.020Z",
-    "status": "string",
-    "projectTitle": "string",
-    "userId": 0,
-    "taskTitle": "string"
-  }
-```
-
-Token required : No
-
-<hr>
 
 <h4 align="center">HRServiceController </h4>
 <hr>
