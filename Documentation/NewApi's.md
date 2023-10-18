@@ -490,7 +490,7 @@
      true/false
   ```
  
-   - <b>URL</b> : http://localhost:5283/api/tasks/details/{taskId}
+  - <b>URL</b> : http://localhost:5283/api/tasks/details/{taskId}
   - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
   - <b>Method</b>: GET
   - <b>Description</b>:  retrn only id title desc of tasks
@@ -506,32 +506,23 @@
     }
   ```
 
+  - <b>URL</b> : http://localhost:5283/api/tasks/status/{taskId}/{updateStatus}
+  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>Method</b>: PATCH
+  - <b>Description</b>:  for updating previous tasks details
+  - <b>Body</b>: Not Required
+  - <b>JWTToken Header</b>: Not required
+  - <b>Response</b> = 
+
+   ```console
+      true/false
+   ```
 
 
 
 
 
-URL            
 
-```console
-http://localhost:5283/api/tasks/status/{taskId}/{updateStatus}
-```
-
-Description    :  for updating previous tasks details
-
-Parameter      : taskId , updatestatus
-
-Body           : None
-              
-Response       : 
-
-```console
-true/false
-```
-
-Token required : No
-
-<hr>
 
 <h4>TaskAllocationsController</h4>
 
