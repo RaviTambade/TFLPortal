@@ -6,7 +6,7 @@
  
 
   - <b>URL</b> : /api/TeamManagersBI/projectwork/{teamManagerId}
-  - /api/TeamManagersBI/projectwork/{teamManagerId}
+  - /api/TeamManagersBI/projectworkhours/{teamManagerId}
   - <b>Method</b>: POST
   - <b>Description</b>: Return Total Project Work Hours
   - <b>Body</b>:
@@ -41,8 +41,8 @@
     ```
 
 
-  - <b>URL</b> : /api/TeamManagersBIController/projectstatuscount/{teamManagerId}
-  - /api/TeamManagersBIController/projectstatuscount/{teamManagerId}
+  - <b>URL</b> : /api/TeamManagersBI/projectstatuscount/{teamManagerId}
+  - /api/TeamManagersBI/projects/statuscount/{teamManagerId}
   - <b>Method</b>: GET
   - <b>Description</b>:  Return Project Status Wise Count
   - <b>Body</b>: Not Required
@@ -68,10 +68,8 @@
    ```
 
            
-
-
-  - <b>URL</b> :/api/TeamManagersBIController/allocatedtasks/{teamMemberId}
-  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>URL</b> :/api/TeamManagersBI/allocatedtasks/{teamMemberId}
+  - /api/TeamManagersBI/allocatedtasks/{teamMemberId}
   - <b>Method</b>: GET
   - <b>Description</b>:  Return Allocated Task Overview
   - <b>Body</b>: Not Required
@@ -105,8 +103,8 @@
           
 
 
-  - <b>URL</b> :/api/TeamManagersBIController/totaltimespend/{teamMemberId}
-  - /api/TeamManagersBIController/totaltimespend/{teamMemberId}
+  - <b>URL</b> :/api/TeamManagersBI/totaltimespend/{teamMemberId}
+  - /api/TeamManagersBI/totaltimespend/{teamMemberId}
   - <b>Method</b>: POST
   - <b>Description</b>:  Return Total Time Spend By Members on project
   - <b>Body</b>:
@@ -129,8 +127,8 @@
     ```
 
 
-  - <b>URL</b> : /api/TeamManagersBIController/projectpercentage/{projectId}
-  - /api/TeamManagersBIController/projectpercentage/{projectId}
+  - <b>URL</b> : /api/TeamManagersBI/projectpercentage/{projectId}
+  - /api/TeamManagersBI/projectprogress/{projectId}
   - <b>Method</b>: GET
   - <b>Description</b>:  Return Projects Completion Percentage
   - <b>Body</b>: Not Required
@@ -144,8 +142,8 @@
         }
       ```
 
-  - <b>URL</b> : /api/TeamManagersBIController/memberworkhours/{projectId}/{givenDate}/{dateRange}
-  - /api/TeamManagersBIController/memberworkhours/{projectId}/{givenDate}/{dateRange}
+  - <b>URL</b> : /api/TeamManagersBI/memberworkhours/{projectId}/{givenDate}/{dateRange}
+  - /api/TeamManagersBI/members/workinghours/{projectId}/{givenDate}/{dateRange}
   - <b>Method</b>: GET
   - <b>Description</b>:  Returm Total Project Work Hour Of Team Members
   - <b>Body</b>: Not Required
@@ -179,8 +177,8 @@
 
 #### TeamMemberBiController 
 
-  - <b>URL</b> : /api/TeamMemberBIController/totaltimespend/{teamMemberId}
-  - /api/TeamMemberBIController/totaltimespend/{teamMemberId}
+  - <b>URL</b> : /api/TeamMemberBI/totaltimespend/{teamMemberId}
+  - /api/TeamMemberBI/workinghours/{teamMemberId}
   - <b>Method</b>: POST
   - <b>Description</b>:  Return Total Time Spend By Members 
   - <b>Body</b>: 
@@ -202,8 +200,8 @@
         }
      ```
 
-  - <b>URL</b> : /api/TeamMemberBIController/memberworkhours/{teamMemberId}/{givenDate}/{dateRange}
-  - /api/TeamMemberBIController/memberworkhours/{teamMemberId}/{givenDate}/{dateRange}
+  - <b>URL</b> : /api/TeamMemberBI/memberworkhours/{teamMemberId}/{givenDate}/{dateRange}
+  - /api/TeamMemberBI/workinghours/{teamMemberId}/{givenDate}/{dateRange}
   - <b>Method</b>: GET
   - <b>Description</b>:  Return Total Project Work Hour Of  Members
   - <b>Body</b>: Not Required
@@ -218,8 +216,8 @@
         }
      ```
 
-  - <b>URL</b> : /api/TeamMemberBIController/memberaveragheworkhours/{userId}
-  - /api/TeamMemberBIController/memberaveragheworkhours/{userId}
+  - <b>URL</b> : /api/TeamMemberBI/memberaverageworkhours/{userId}
+  - /api/TeamMemberBI/averageworkinghours/{userId}
   - <b>Method</b>: GET
   - <b>Description</b>:  Return Calculate Average Time of employee
   - <b>Body</b>: Not Required
@@ -231,8 +229,8 @@
       2.0263
     ```
 
-  - <b>URL</b> : /api/TeamMemberBIController/memberoverduetasks/{userId}
-  - /api/TeamMemberBIController/memberoverduetasks/{userId}
+  - <b>URL</b> : /api/TeamMemberBI/memberoverduetasks/{userId}
+  - /api/TeamMemberBI/overduetasks/{userId}
   - <b>Method</b>: GET
   - <b>Description</b>:  Return Over Due Task Of Member which have 7 days to get overdue
   - <b>Body</b>: Not Required
@@ -258,10 +256,10 @@
 
 ### HRService API
 
-  - <b>URL</b> : /api/EmployeesController/employeeid/{userId}
-  - /api/EmployeesController/employeeid/{userId}
+  - <b>URL</b> : /api/Employees/employeeid/{userId}
+  - /api/Employees/employeeid/{userId}
   - <b>Method</b>: GET
-  - <b>Description</b>:  Return employee ID passing by user ID
+  - <b>Description</b>:  Return employee ID when passing  user ID
   - <b>Body</b>: Not Required
 
   - <b>JWTToken Header</b>: Not required
@@ -271,8 +269,8 @@
       20
     ```
 
-  - <b>URL</b> : /api/EmployeesController/userId/{employeeId}
-  - /api/EmployeesController/userId/{employeeId}
+  - <b>URL</b> : /api/Employees/userId/{employeeId}
+  - /api/Employees/userId/{employeeId}
   - <b>Method</b>: GET
   - <b>Description</b>:  Return user ID passing by employee ID
   - <b>Body</b>: Not Required
@@ -285,8 +283,8 @@
     }
     ``` 
 
-  - <b>URL</b> : /api/EmployeesController/employeeinfo/{employeeId}
-  - /api/EmployeesController/employeeinfo/{employeeId}
+  - <b>URL</b> : /api/Employees/employeeinfo/{employeeId}
+  - /api/Employees/info/{employeeId}
   - <b>Method</b>: GET
   - <b>Description</b>:  Returns Employee Detail Information
   - <b>Body</b>: Not Required
@@ -302,8 +300,8 @@
       }
     ```
 
-  - <b>URL</b> : /api/EmployeesController/useridbymanager/{managerId}
-  - /api/EmployeesController/useridbymanager/{managerId}
+  - <b>URL</b> : /api/Employees/useridbymanager/{managerId}
+  - /api/Employees/userid/{managerId}
   - <b>Method</b>: GET
   - <b>Description</b>:  Return list of employeeId of that manager id 
   - <b>Body</b>: Not Required
@@ -331,7 +329,7 @@
 #### TaskController
 
   - <b>URL</b> : /api/tasks/count/{projectId} 
-  - /api/tasks/count/{projectId} 
+  - /api/tasks/completed/count/{projectId} 
   - <b>Method</b>: GET
   - <b>Description</b>:  Return list of employeeId of that manager id 
   - <b>Body</b>: Not Required
@@ -374,7 +372,7 @@
       ```
 
   - <b>URL</b> :  /api/tasks/taskdetail/{taskId}
-  - /api/tasks/taskdetail/{taskId}
+  - /api/tasks/details/{taskId}
   - <b>Method</b>: GET
   - <b>Description</b>: Retun Normal Detail of task which id passes
   - <b>Body</b>: Not Required
@@ -393,9 +391,9 @@
     ```    
 
   - <b>URL</b> : /api/tasks/moretaskdetail/{taskId}
-  - /api/tasks/moretaskdetail/{taskId}
+  - /api/tasks/alldetail/{taskId}
   - <b>Method</b>: GET
-  - <b>Description</b>: Retrun Total Details of tasks which id passes
+  - <b>Description</b>: Return All Details of tasks which id passes
   - <b>Body</b>: Not Required
 
   - <b>JWTToken Header</b>: Not required
@@ -440,7 +438,7 @@
           },
      ```
   - <b>URL</b> : /api/tasks/tasktitle/{employeeId}/{projectId}/{status} 
-  - /api/tasks/tasktitle/{employeeId}/{projectId}/{status}
+  - /api/tasks/title/{employeeId}/{projectId}/{status}
   - <b>Method</b>: GET
   - <b>Description</b>:  When Passes empid projid and status that time it returns tasklist of that status
   - <b>Body</b>: Not Required
@@ -495,7 +493,7 @@
   ```
  
   - <b>URL</b> : /api/tasks/details/{taskId}
-  - /api/tasks/details/{taskId}
+  - /api/tasks/{taskId}
   - <b>Method</b>: GET
   - <b>Description</b>:  retrn only id title desc of tasks
   - <b>Body</b>: Not Required
@@ -511,7 +509,7 @@
   ```
 
   - <b>URL</b> : /api/tasks/status/{taskId}/{updateStatus}
-  - /api/tasks/status/{taskId}/{updateStatus}
+  - /api/tasks/{taskId}/{updateStatus}
   - <b>Method</b>: PATCH
   - <b>Description</b>:  for updating previous tasks details
   - <b>Body</b>: Not Required
@@ -620,7 +618,7 @@
    ```
 
   - <b>URL</b> : /api/timesheets/timesheetlist/{managerid}/{timePeriod}
-  - /api/timesheets/timesheetlist/{managerid}/{timePeriod}
+  - /api/timesheets/employees/list/{managerid}/{timePeriod}
   - <b>Method</b>: GET
   - <b>Description</b>: Returns timesheet list of employees by managerid
   - <b>Body</b>: Not Required
@@ -655,8 +653,9 @@
     ```
 
 
-###UserRollsManagement 
-###UserRollsManagementController 
+### UserRollsManagement API
+
+#### UserRollsManagement
 
 - <b>URL</b>: /api/userroles
 - /api/userroles             
@@ -792,10 +791,10 @@ true/false
 ```
 
     
-###ProjectsController 
+### Projects API
 
 - <b>URL</b> : /api/projects/lists/{teammemberid}
-- /api/projects/lists/{teammemberid}
+- /api/projects/list/{teammemberid}
 - <b>Method</b>: GET
 - <b>Description</b>: Returns projectlist of teammember
 - <b>Body</b>: Not Required
@@ -915,8 +914,8 @@ true/false
 }
 ```
 
-- <b>URL</b>: http://localhost:5248/api/projects/employeeidwithuserid/{projectId}
-- /api/projects/assignedtask/{projectId}/{timePeriod} 
+- <b>URL</b>: api/projects/employeeidwithuserid/{projectId}
+- api/projects/employeeidwithuserid/{projectId}
 - <b>Method</b>: GET
 - <b>Description</b>: Returns list of employeeid and userid of teammembers of a project
 - <b>Body</b>: Not Required
@@ -930,8 +929,8 @@ true/false
 }
 ```
 
-- <b>URL</b>: http://localhost:5248/api/projects/title/{projectid}
-- /api/projects/assignedtask/{projectId}/{timePeriod} 
+- <b>URL</b>: api/projects/title/{projectid}
+- api/projects/title/{projectid} 
 - <b>Method</b>: GET
 - <b>Description</b>: Returns a project title
 - <b>Body</b>: Not Required
@@ -944,8 +943,8 @@ true/false
 }
 ```
 
-- <b>URL</b>:http://localhost:5248/api/projects/managerprojects/{managerid}
-- /api/projects/assignedtask/{projectId}/{timePeriod} 
+- <b>URL</b>: api/projects/managerprojects/{managerid}
+- api/projects/managerprojects/{managerid} 
 - <b>Method</b>: GET
 - <b>Description</b>: Returns projects under a manager
 - <b>Body</b>: Not Required
@@ -959,8 +958,8 @@ true/false
 }
 ```
 
-- <b>URL</b>: http://localhost:5248/api/projects/teammemberids/{teammanagerid}
-- /api/projects/assignedtask/{projectId}/{timePeriod} 
+- <b>URL</b>: api/projects/teammemberids/{teammanagerid}
+- api/projects/teammemberids/{teammanagerid}
 - <b>Method</b>: GET
 - <b>Description</b>: Returns the team member ids works under a team manager
 - <b>Body</b>: Not Required
@@ -973,8 +972,8 @@ true/false
 }]
 ```
 
-- <b>URL</b>: http://localhost:5248/api/projects/addproject
-- /api/projects/assignedtask/{projectId}/{timePeriod} 
+- <b>URL</b>: api/projects/addproject
+- api/projects/addproject
 - <b>Method</b>: POST
 - <b>Description</b>: add a new project
 - <b>Body</b> =

@@ -30,7 +30,7 @@ namespace Transflower.PMSApp.BIService.Controllers
         public async Task<List<TotalProjectWorkingByMember>> GetTotalProjectWorkHourOfMembers(int teamMemberId, DateTime givenDate, string dateRange) =>
        await _service.GetTotalProjectWorkHourOfMembers(teamMemberId, givenDate, dateRange);
 
-        [HttpGet("memberaveragheworkhours/{userId}")]
+        [HttpGet("memberaverageworkhours/{userId}")]
         public async Task<double> GetCalculateAverageTime(int userId) =>
        await _service.GetCalculateAverageTime(userId);
 
