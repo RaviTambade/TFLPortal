@@ -64,7 +64,7 @@
     "status": "Completed",
     "taskStatusCount": 200
   },
-```
+  ```
 
 
 - <b>URL</b> : http://localhost:5242/api/TeamManagersBIController/allocatedtasks/{teamMemberId}
