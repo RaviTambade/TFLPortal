@@ -1142,3 +1142,387 @@ Token required : No
 
 <hr>
 
+<h4>ProjectsController </h4>
+
+URL            
+
+```console
+ http://localhost:5248/api/projects/lists/{teammemberid}
+```
+
+Description    : Returns projectlist of teammember
+
+Parameter      : teammemberid
+
+Body           : None
+              
+Response        :
+
+```console
+{
+"Id" :
+"Title" :
+"StartDate" :
+"Status" :
+"TeamManagerId" : 
+"TeamManagerUserId" :
+  }
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5248/api/projects/teammembers/{projectid}
+```
+
+Description    :  Returns teammembers userid of project
+
+Parameter      : projectid
+
+Body           : None
+              
+Response        :
+
+```console
+[{
+    1,2,3,4,5
+}]
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5248/api/projects/tasks/{projectid}/{timeperiod}
+```
+
+Description    : Returns tasks list of a project
+
+Parameter      : projectid
+
+Body           : None
+              
+Response        :
+
+```console
+[{
+"TaskId" :
+"Title" :
+"Status" :
+"TaskAllocationDate" : 
+"TeamMemberUserId" :
+}]
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5248/api/projects/teammember/{teammemberid}
+```
+
+Description    : Returns projectname and its id of a team member
+
+Parameter      : projectid
+
+Body           : None
+              
+Response        :
+
+```console
+[{
+"ProjectId" :
+"Title" :
+}]
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5248/api/projects/manager/{managerid}
+```
+
+Description    : Returns projectlist of team manager
+
+Parameter      : managerid
+
+Body           : None
+              
+Response        :
+
+```console
+{
+"Id" :
+"Title" :
+"StartDate" :
+"Status" :
+"TeamManagerId" : 
+"TeamManagerUserId" :
+  }
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5248/api/projects/unassignedtask/{projectId}/{timePeriod}
+```
+
+Description    : Returns unassigned task of a project
+
+Parameter      : projectid ,timeperiod
+
+Body           : None
+              
+Response        :
+
+```console
+{
+"ProjectId" :
+"TitleId" :
+"title" :
+"Status" :
+"ProjectName" :
+}
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5248/api/projects/assignedtask/{projectId}/{timePeriod} 
+```
+
+Description    : Returns assigned task of a project
+
+Parameter      : projectid ,timeperiod
+
+Body           : None
+              
+Response        :
+
+```console
+{
+"ProjectId" :
+"TitleId" :
+"title" :
+"Status" :
+"ProjectName" :
+}
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5248/api/projects/employeeidwithuserid/{projectId}
+```
+
+Description    : Returns list of employeeid and userid of teammembers of a project
+
+Parameter      : projectid 
+
+Body           : None
+              
+Response        :
+
+```console
+{
+"EmployeeId" :
+"UserId" :
+}
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5248/api/projects/title/{projectid}
+```
+
+Description    : Returns a project title
+
+Parameter      : projectid 
+
+Body           : None
+              
+Response        :
+
+```console
+{
+"PMSAPP"
+}
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5248/api/projects/managerprojects/{managerid}
+```
+
+Description    : Returns projects under a manager
+
+Parameter      : managerid 
+
+Body           : None
+              
+Response        :
+
+```console
+{
+"ProjectId":
+"Title":
+}
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+http://localhost:5248/api/projects/teammemberids/{teammanagerid}
+```
+
+Description    : Returns the team member ids works under a team manager
+
+Parameter      : teammanagerid 
+
+Body           : None
+              
+Response        :
+
+```console
+[{
+1,2,3
+}]
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+ http://localhost:5248/api/projects/addproject
+```
+
+Description    : add a new project
+
+Parameter      : None 
+
+Body           : 
+
+```console
+{
+"Title":
+"StartDate":
+"EndDate":
+"Description":
+"TeamManagerId":
+"Status":
+}
+```
+              
+Response        :
+
+```console
+{
+    true/false
+}
+```
+
+Token required : No
+
+<hr>
+
+URL            
+
+```console
+ http://localhost:5248/api/projects/edit
+```
+
+Description    :edit a existing project
+
+Parameter      : None 
+
+Body           : 
+
+```console
+{
+"Id":
+"Title":
+"StartDate":
+"EndDate":
+"Description":
+"TeamManagerId":
+"Status":
+}
+```
+              
+Response        :
+
+```console
+{
+    true/false
+}
+```
+
+Token required : No
+
+URL            
+
+```console
+http://localhost:5248/api/projects/delete/{projectid}
+```
+
+Description    :delete a existing project
+
+Parameter      : projectid 
+
+Body           : None
+
+              
+Response        :
+
+```console
+{
+    true/false
+}
+```
+
+Token required : No
+    
+        
