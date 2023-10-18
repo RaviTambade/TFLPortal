@@ -1,7 +1,7 @@
 ## REST API EndPoints
 ### BIService API
 
-#TeamManagerBiController
+# TeamManagerBiController
 
  
 
@@ -10,13 +10,13 @@
   - <b>Method</b>: POST
   - <b>Description</b>: Return Total Project Work Hours
   - <b>Body</b>:
-  
-    ```console
-{
-  "startDate": "2023-08-17T08:53:55.542Z",
-  "endDate": "2023-10-17T08:53:55.542Z"
-}
-```
+
+      ```console
+      {
+      "startDate": "2023-08-17T08:53:55.542Z",
+      "endDate": "2023-10-17T08:53:55.542Z"
+      }
+      ```
   - <b>JWTToken Header</b>: Not required
   - <b>Response</b> = 
 
