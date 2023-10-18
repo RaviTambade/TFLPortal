@@ -67,31 +67,14 @@
 ```
 
 
-
-
-
-
-
-
-
-
-
-
-URL            
-
-```console
-http://localhost:5242/api/TeamManagersBIController/allocatedtasks/{teamMemberId}
-```
-
-Description    : Return Allocated Task Overview
-
-Parameter      : teamMemberId
-
-Body           : None
-              
-Response       : 
-
-```console
+- <b>URL</b> : http://localhost:5242/api/TeamManagersBIController/allocatedtasks/{teamMemberId}
+  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>Method</b>: GET
+  - <b>Description</b>:  Return Allocated Task Overview
+  - <b>Body</b>: Not Required
+  - <b>JWTToken Header</b>: Not required
+  - <b>Response</b> = 
+  ```console
   {
     "userId": 10,
     "taskAllocationCount": 38,
@@ -113,11 +96,17 @@ Response       :
     "status": "Completed",
     "projectId": 4
   },
-```
+  ```
 
-Token required : No
 
-<hr>
+
+
+
+
+
+
+
+
 
 
 URL            
