@@ -75,25 +75,7 @@
 
 
 
-URL            
 
-```console
-
-```
-
-Description    :
-
-Parameter      : teamManagerId
-
-Body           : None
-              
-Response       : 
-
-
-
-Token required : No
-
-<hr>
 
 URL            
 
