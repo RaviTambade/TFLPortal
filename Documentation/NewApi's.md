@@ -41,59 +41,14 @@
     ```
 
 
-
-
-
-
-
-
-
-
-
-<h3 align="center">BIService </h3>
-
-<h4> </h4>
-<hr>
-
-URL            
-
-```console
-
-```
-
-Description    : 
-
-Parameter      : teamManagerId
-
-Body           : 
-
-
-              
-Response        :
-
-```console
-
-```
-
-Token required : No
-
-<hr>
-
-URL            
-
-```console
-http://localhost:5242/api/TeamManagersBIController/projectstatuscount/{teamManagerId}
-```
-
-Description    : Return Project Status Wise Count
-
-Parameter      : teamManagerId
-
-Body           : None
-              
-Response       : 
-
-```console
+- <b>URL</b> : http://localhost:5242/api/TeamManagersBIController/projectstatuscount/{teamManagerId}
+  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>Method</b>: GET
+  - <b>Description</b>:  Return Project Status Wise Count
+  - <b>Body</b>: Not Required
+  - <b>JWTToken Header</b>: Not required
+  - <b>Response</b> = 
+    ```console
   {
     "projectTitle": "PMSAPP",
     "status": "Pending",
@@ -110,6 +65,31 @@ Response       :
     "taskStatusCount": 200
   },
 ```
+
+
+
+
+
+
+
+
+
+
+URL            
+
+```console
+
+```
+
+Description    :
+
+Parameter      : teamManagerId
+
+Body           : None
+              
+Response       : 
+
+
 
 Token required : No
 
