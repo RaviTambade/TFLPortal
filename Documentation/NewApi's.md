@@ -124,104 +124,56 @@
         ```
 
 
+  - <b>URL</b> : http://localhost:5242/api/TeamManagersBIController/projectpercentage/{projectId}
+  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>Method</b>: GET
+  - <b>Description</b>:  Return Projects Completion Percentage
+  - <b>Body</b>: Not Required
+  - <b>JWTToken Header</b>: Not required
+  - <b>Response</b> = 
+
+      ```console
+        {
+          "projectId": 1,
+          "completionPercentage": 33.33
+        }
+      ```
+
+  - <b>URL</b> : http://localhost:5242/api/TeamManagersBIController/memberworkhours/{projectId}/{givenDate}/{dateRange}
+  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>Method</b>: GET
+  - <b>Description</b>:  Returm Total Project Work Hour Of Team Members
+  - <b>Body</b>: Not Required
+  - <b>JWTToken Header</b>: Not required
+  - <b>Response</b> = 
+
+      ```console
+        {
+          "userId": 12,
+          "totalWorkingHour": 2
+        },
+        {
+          "userId": 13,
+          "totalWorkingHour": 2
+        },
+        {
+          "userId": 17,
+          "totalWorkingHour": 2
+        },
+        {
+          "userId": 20,
+          "totalWorkingHour": 2
+        },
+        {
+          "userId": 23,
+          "totalWorkingHour": 2
+        }
+      ```
 
 
 
+#### TeamMemberBiController 
 
-
-
-
-
-URL            
-
-```console
-
-```
-
-Description    : 
-
-Parameter      : teamMemberId
-
-Body           : 
-
-
-              
-Response       : 
-
-
-
-Token required : No
-
-<hr>
-
-URL            
-
-```console
-http://localhost:5242/api/TeamManagersBIController/projectpercentage/{projectId}
-```
-
-Description    : Return Projects Completion Percentage
-
-Parameter      : projectId
-
-Body           : none
-              
-Response       : 
-
-```console
- {
-    "projectId": 1,
-    "completionPercentage": 33.33
-  }
-```
-
-Token required : No
-
-<hr>
-
-URL            
-
-```console
-http://localhost:5242/api/TeamManagersBIController/memberworkhours/{projectId}/{givenDate}/{dateRange}
-```
-
-Description    : Returm Total Project Work Hour Of Team Members
-
-Parameter      : projectId , givenDate, dateRange
-
-Body           : none
-              
-Response       : 
-
-```console
-  {
-    "userId": 12,
-    "totalWorkingHour": 2
-  },
-  {
-    "userId": 13,
-    "totalWorkingHour": 2
-  },
-  {
-    "userId": 17,
-    "totalWorkingHour": 2
-  },
-  {
-    "userId": 20,
-    "totalWorkingHour": 2
-  },
-  {
-    "userId": 23,
-    "totalWorkingHour": 2
-  }
-```
-
-Token required : No
-
-<hr>
-
-<h4>TeamMemberBiController </h4>
-<hr>
 
 URL            
 
