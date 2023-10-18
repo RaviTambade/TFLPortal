@@ -1,31 +1,24 @@
-<h3 align="center">BIService </h3>
+## REST API EndPoints
+### BIService API
 
-<h4>TeamManagerBiController </h4>
-<hr>
+ 
 
-URL            
-
-```console
-http://localhost:5242/api/TeamManagersBI/projectwork/{teamManagerId}
-```
-
-Description    : Return Total Project Work Hours
-
-Parameter      : teamManagerId
-
-Body           : 
-
-```console
+  - <b>URL</b> : http://localhost:5242/api/TeamManagersBI/projectwork/{teamManagerId}
+  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>Method</b>: POST
+  - <b>Description</b>: Return Total Project Work Hours
+  - <b>Body</b>:
+    ```console
 {
   "startDate": "2023-08-17T08:53:55.542Z",
   "endDate": "2023-10-17T08:53:55.542Z"
 }
 ```
-              
-Response        :
-
-```console
-{
+  - <b>JWTToken Header</b>: Not required
+  - <b>Response</b> = 
+    ```console
+    [
+      {
     "id": 1,
     "title": "PMSAPP",
     "totalTimeSpend": 637
@@ -40,6 +33,42 @@ Response        :
     "title": "OMTB",
     "totalTimeSpend": 600
   }
+    ]
+    ```
+
+
+
+
+
+
+
+
+
+
+
+<h3 align="center">BIService </h3>
+
+<h4>TeamManagerBiController </h4>
+<hr>
+
+URL            
+
+```console
+
+```
+
+Description    : 
+
+Parameter      : teamManagerId
+
+Body           : 
+
+
+              
+Response        :
+
+```console
+
 ```
 
 Token required : No
