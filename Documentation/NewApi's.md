@@ -1295,6 +1295,239 @@ Response        :
 }
 ```
 
-Token required : No
+
+
     
-        
+###ProjectsController 
+
+- <b>URL</b> : http://localhost:5248/api/projects/lists/{teammemberid}
+- <b>Method</b>: GET
+- <b>Description</b>: Returns projectlist of teammember
+- <b>Body</b>: Not Required
+- <b>JWTToken Header</b>: Not required
+- <b>Response</b> =              :
+
+```console
+[{
+"Id" :
+"Title" :
+"StartDate" :
+"Status" :
+"TeamManagerId" : 
+"TeamManagerUserId" :
+}]
+```
+
+- <b>URL</b>: http://localhost:5248/api/projects/teammembers/{projectid}
+- <b>Method</b>: GET
+- <b>Description</b>: Returns teammembers userid of Project
+- <b>Body</b>: Not Required
+- <b>JWTToken Header</b>: Not required          
+- <b>Response</b> = 
+
+```console
+[{
+    1,2,3,4,5
+}]
+```
+
+- <b>URL</b>: http://localhost:5248/api/projects/tasks/{projectid}/{timeperiod}
+- <b>Method</b>: GET
+- <b>Description</b>: Returns tasks list of a project
+- <b>Body</b>: Not Required
+- <b>JWTToken Header</b>: Not required  
+- <b>Response</b> =
+
+```console
+[{
+"TaskId" :
+"Title" :
+"Status" :
+"TaskAllocationDate" : 
+"TeamMemberUserId" :
+}]
+```
+
+- <b>URL</b>: http://localhost:5248/api/projects/teammember/{teammemberid}
+- <b>Method</b>: GET
+- <b>Description</b>: Returns projectname and its id of a team member
+- <b>Body</b>: Not Required
+- <b>JWTToken Header</b>: Not required  
+- <b>Response</b> =
+
+```console
+[{
+"ProjectId" :
+"Title" :
+}]
+```
+
+- <b>URL</b>:http://localhost:5248/api/projects/manager/{managerid}       
+- <b>Method</b>: GET
+- <b>Description</b>: Returns projectlist of team manager
+- <b>Body</b>: Not Required
+- <b>JWTToken Header</b>: Not required           
+- <b>Response</b> =
+
+```console
+{
+"Id" :
+"Title" :
+"StartDate" :
+"Status" :
+"TeamManagerId" : 
+"TeamManagerUserId" :
+  }
+```
+
+- <b>URL</b>: http://localhost:5248/api/projects/unassignedtask/{projectId}/{timePeriod}
+- <b>Method</b>: GET
+- <b>Description</b>: Returns unassigned task of a project
+- <b>Body</b>: Not Required
+- <b>JWTToken Header</b>: Not required           
+- <b>Response</b> =
+
+```console
+{
+"ProjectId" :
+"TitleId" :
+"title" :
+"Status" :
+"ProjectName" :
+}
+```
+
+- <b>URL</b>: http://localhost:5248/api/projects/assignedtask/{projectId}/{timePeriod} 
+- <b>Method</b>: GET
+- <b>Description</b>: Returns assigned task of a project
+- <b>Body</b>: Not Required
+- <b>JWTToken Header</b>: Not required           
+- <b>Response</b> =
+
+```console
+{
+"ProjectId" :
+"TitleId" :
+"title" :
+"Status" :
+"ProjectName" :
+}
+```
+
+- <b>URL</b>: http://localhost:5248/api/projects/employeeidwithuserid/{projectId}
+- <b>Method</b>: GET
+- <b>Description</b>: Returns list of employeeid and userid of teammembers of a project
+- <b>Body</b>: Not Required
+- <b>JWTToken Header</b>: Not required           
+- <b>Response</b> =
+
+```console
+{
+"EmployeeId" :
+"UserId" :
+}
+```
+
+- <b>URL</b>: http://localhost:5248/api/projects/title/{projectid}
+- <b>Method</b>: GET
+- <b>Description</b>: Returns a project title
+- <b>Body</b>: Not Required
+- <b>JWTToken Header</b>: Not required           
+- <b>Response</b> =
+
+```console
+{
+"PMSAPP"
+}
+```
+
+- <b>URL</b>:http://localhost:5248/api/projects/managerprojects/{managerid}
+- <b>Method</b>: GET
+- <b>Description</b>: Returns projects under a manager
+- <b>Body</b>: Not Required
+- <b>JWTToken Header</b>: Not required           
+- <b>Response</b> =
+
+```console
+{
+"ProjectId":
+"Title":
+}
+```
+
+- <b>URL</b>: http://localhost:5248/api/projects/teammemberids/{teammanagerid}
+- <b>Method</b>: GET
+- <b>Description</b>: Returns the team member ids works under a team manager
+- <b>Body</b>: Not Required
+- <b>JWTToken Header</b>: Not required           
+- <b>Response</b> =
+
+```console
+[{
+1,2,3
+}]
+```
+
+- <b>URL</b>: http://localhost:5248/api/projects/addproject
+- <b>Method</b>: POST
+- <b>Description</b>: add a new project
+- <b>Body</b> =
+
+```console
+{
+"Title":
+"StartDate":
+"EndDate":
+"Description":
+"TeamManagerId":
+"Status":
+}
+```
+- <b>JWTToken Header</b>: Not required           
+- <b>Response</b> = 
+
+```console
+{
+    true/false
+}
+```
+
+- <b>URL</b>: http://localhost:5248/api/projects/edit
+- <b>Method</b>: PUT
+- <b>Description</b>: edit a existing project
+- <b>Body</b> = 
+
+```console
+{
+"Id":
+"Title":
+"StartDate":
+"EndDate":
+"Description":
+"TeamManagerId":
+"Status":
+}
+```
+              
+- <b>Response</b> = 
+
+```console
+{
+    true/false
+}
+```
+
+- <b>URL</b>:http://localhost:5248/api/projects/delete/{projectid}
+- <b>Method</b>: DELETE
+- <b>Description</b>:delete a existing project
+- <b>Body</b>: Not Required
+- <b>JWTToken Header</b>: Not required           
+- <b>Response</b> =
+
+```console
+{
+    true/false
+}
+```
+    
+         
