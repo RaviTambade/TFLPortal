@@ -74,29 +74,29 @@
   - <b>Body</b>: Not Required
   - <b>JWTToken Header</b>: Not required
   - <b>Response</b> = 
-  ```console
-  {
-    "userId": 10,
-    "taskAllocationCount": 38,
-    "title": "PMSAPP",
-    "status": "In-Progress",
-    "projectId": 1
-  },
-  {
-    "userId": 10,
-    "taskAllocationCount": 38,
-    "title": "Inventory",
-    "status": "Pending",
-    "projectId": 4
-  },
-  {
-    "userId": 10,
-    "taskAllocationCount": 41,
-    "title": "Inventory",
-    "status": "Completed",
-    "projectId": 4
-  },
-  ```
+      ```console
+      {
+        "userId": 10,
+        "taskAllocationCount": 38,
+        "title": "PMSAPP",
+        "status": "In-Progress",
+        "projectId": 1
+      },
+      {
+        "userId": 10,
+        "taskAllocationCount": 38,
+        "title": "Inventory",
+        "status": "Pending",
+        "projectId": 4
+      },
+      {
+        "userId": 10,
+        "taskAllocationCount": 41,
+        "title": "Inventory",
+        "status": "Completed",
+        "projectId": 4
+      },
+      ```
 
 
 
