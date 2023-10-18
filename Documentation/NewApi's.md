@@ -48,7 +48,6 @@
   - <b>Body</b>: Not Required
   - <b>JWTToken Header</b>: Not required
   - <b>Response</b> = 
-
             ```console
             {
               "projectTitle": "PMSAPP",
@@ -75,32 +74,54 @@
   - <b>Body</b>: Not Required
   - <b>JWTToken Header</b>: Not required
   - <b>Response</b> = 
-  
-            ```console
-            {
-              "userId": 10,
-              "taskAllocationCount": 38,
-              "title": "PMSAPP",
-              "status": "In-Progress",
-              "projectId": 1
-            },
-            {
-              "userId": 10,
-              "taskAllocationCount": 38,
-              "title": "Inventory",
-              "status": "Pending",
-              "projectId": 4
-            },
-            {
-              "userId": 10,
-              "taskAllocationCount": 41,
-              "title": "Inventory",
-              "status": "Completed",
-              "projectId": 4
-            },
-            ```
+
+          ```console
+          {
+            "userId": 10,
+            "taskAllocationCount": 38,
+            "title": "PMSAPP",
+            "status": "In-Progress",
+            "projectId": 1
+          },
+          {
+            "userId": 10,
+            "taskAllocationCount": 38,
+            "title": "Inventory",
+            "status": "Pending",
+            "projectId": 4
+          },
+          {
+            "userId": 10,
+            "taskAllocationCount": 41,
+            "title": "Inventory",
+            "status": "Completed",
+            "projectId": 4
+          },
+          ```
 
 
+  - <b>URL</b> : http://localhost:5242/api/TeamManagersBIController/totaltimespend/{teamMemberId}
+  - api/collections/farmers/{farmerId}/verifiedstatus/{paymentStatus}
+  - <b>Method</b>: POST
+  - <b>Description</b>:  Return Total Time Spend By Members on project
+  - <b>Body</b>:
+
+          ```console
+        {
+          "startDate": "2023-08-17T09:22:26.915Z",
+          "endDate": "2023-10-17T09:22:26.915Z"
+        }
+        ```
+
+  - <b>JWTToken Header</b>: Not required
+  - <b>Response</b> = 
+
+        ```console
+          {
+           "userId": 10,
+           "totalWorkingHour": 244
+          }
+        ```
 
 
 
@@ -114,30 +135,20 @@
 URL            
 
 ```console
-http://localhost:5242/api/TeamManagersBIController/totaltimespend/{teamMemberId}
+
 ```
 
-Description    : Return Total Time Spend By Members on project
+Description    : 
 
 Parameter      : teamMemberId
 
 Body           : 
 
-```console
-{
-  "startDate": "2023-08-17T09:22:26.915Z",
-  "endDate": "2023-10-17T09:22:26.915Z"
-}
-```
+
               
 Response       : 
 
-```console
- {
-    "userId": 10,
-    "totalWorkingHour": 244
-  }
-```
+
 
 Token required : No
 
