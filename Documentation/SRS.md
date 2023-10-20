@@ -4,27 +4,27 @@
 ## Title: Online Project Management System
 
 ### Objective:
-1. The Online Project Management System Web Application is intended to provide a suitable solution for Project Manager and Project team members to create, assign, complete, update, and find daily Time Sheet of team members' working process.
-2. The ability for the manager is to create daily tasks, assign tasks to team members, check the timesheet of employees, check updates of tasks from employees, also have the ability to update tasks, delete tasks, delete team members from projects, etc.
-3. The ability for team members is to complete tasks assigned by the project manager and update task status and also have the ability to update their daily timesheet.
-4. Timesheet management is also provided for recording the amount of team members' time spent on allocated jobs. Timesheet management is a conventional method of calculating team members' performance done by tabular format using an Excel sheet, etc.
-5. At the beginning, the timesheet was used in fields of payroll calculation and account management.
-6. From the timesheet, the start date and end date of the project can be recorded, and these statistics can be later used for accounting, payroll, billing of clients, tracking, estimation, and calculating hours of team members.
+- The Online Project Management System Web Application is intended to provide a suitable solution for Project Manager and Project team members to create, assign, complete, update, and find daily Time Sheet of team members' working process.
+- The ability for the manager is to create daily tasks, assign tasks to team members, check the timesheet of employees, check updates of tasks from employees, also have the ability to update tasks, delete tasks, delete team members from projects, etc.
+- The ability for team members is to complete tasks assigned by the project manager and update task status and also have the ability to update their daily timesheet.
+- Timesheet management is also provided for recording the amount of team members' time spent on allocated jobs. Timesheet management is a conventional method of calculating team members' performance done by tabular format using an Excel sheet, etc.
+- At the beginning, the timesheet was used in fields of payroll calculation and account management.
+- From the timesheet, the start date and end date of the project can be recorded, and these statistics can be later used for accounting, payroll, billing of clients, tracking, estimation, and calculating hours of team members.
 
 ### Purpose:
-1. This documentation specifies the System Requirements Specification (SRS) for the Project Management System (PMS). It describes the scope of the system, both functional and non-functional requirements for the software, design constraints, and system interfaces.
-2. The main purpose of the Project Management system is to manage overall activities during project development.
-3. In this process, we can control the team managers, team members of the project, and also we can manage or follow the timesheet of team members.
-4. From this Project Management System, managers can define daily tasks for team members on running projects and get updates from members about the project, and know their time period spent on these projects.
+- This documentation specifies the System Requirements Specification (SRS) for the Project Management System (PMS). It describes the scope of the system, both functional and non-functional requirements for the software, design constraints, and system interfaces.
+- The main purpose of the Project Management system is to manage overall activities during project development.
+- In this process, we can control the team managers, team members of the project, and also we can manage or follow the timesheet of team members.
+- From this Project Management System, managers can define daily tasks for team members on running projects and get updates from members about the project, and know their time period spent on these projects.
 
 ### Scope:
-1. The Project Management System addresses the management of software projects. It provides a framework for organizing and managing resources in such a way that these resources deliver all the work required to complete software projects within defined scope, time, and cost constraints.
-2. The system applies only to the management of software projects and is a tool that facilitates decision-making; the PMS does not make decisions.
-3. The SRS describes only the required functionality of PMS, not the functionality of external systems like data storage, change management, or version control systems.
-4. The Project Management System provides an interface for both Managers and team members in the industry to track the daily status of projects and timesheets of members working on these projects.
-5. The system will allow for the management of team members' timesheets working in any IT firms. Team members will be able to log in and look at their own timesheets, while administrators will be able to override worked hours values.
-6. Each User, Manager, Team members have different user interfaces.
-7. The Project manager interface will allow for entering/creating new tasks, providing time periods for tasks, editing previous tasks, deleting tasks, searching tasks, finding timesheets of team members, and finding the status of tasks and project status. Also, they have the authority to assign and delete team members from the project.
+- The Project Management System addresses the management of software projects. It provides a framework for organizing and managing resources in such a way that these resources deliver all the work required to complete software projects within defined scope, time, and cost constraints.
+- The system applies only to the management of software projects and is a tool that facilitates decision-making; the PMS does not make decisions.
+- The SRS describes only the required functionality of PMS, not the functionality of external systems like data storage, change management, or version control systems.
+- The Project Management System provides an interface for both Managers and team members in the industry to track the daily status of projects and timesheets of members working on these projects.
+- The system will allow for the management of team members' timesheets working in any IT firms. Team members will be able to log in and look at their own timesheets, while administrators will be able to override worked hours values.
+- Each User, Manager, Team members have different user interfaces.
+- The Project manager interface will allow for entering/creating new tasks, providing time periods for tasks, editing previous tasks, deleting tasks, searching tasks, finding timesheets of team members, and finding the status of tasks and project status. Also, they have the authority to assign and delete team members from the project.
 
 ## Overall Description
 
@@ -32,8 +32,8 @@
 As of now, every team leader is using a specific software product or no software at all for maintaining the project schedule, organizing project tasks, and storing all project data.
 
 ### Product Perspective:
-1. PMS is a standalone system that provides functionality described in the Product functions section. It includes all subsystems needed to fulfill these software requirements.
-2. PMS has interfaces to external systems, such as Version Control System, Change Management, Bug Tracking System, and Payroll System, implemented according to available industry standards and independent from a specific external system.
+- PMS is a standalone system that provides functionality described in the Product functions section. It includes all subsystems needed to fulfill these software requirements.
+- PMS has interfaces to external systems, such as Version Control System, Change Management, Bug Tracking System, and Payroll System, implemented according to available industry standards and independent from a specific external system.
 
 ### User Characteristics:
 There are two kinds of users: Admin/Project Manager as users and Employee/Team Member as users.
