@@ -469,8 +469,8 @@
         },
    ```
 
-  - <b>URL</b> : /api/tasks/addtask
-  - /api/tasks/addtask
+  - <b>URL</b> : /api/tasks
+  - /api/tasks
   - <b>Method</b>: POST
   - <b>Description</b>:  for inserting or adding new tasks
   - <b>Body</b>: 
@@ -552,7 +552,7 @@
 ### TimeSheets API 
 
   - <b>URL</b> : /api/timesheets/list/{employeeId}/{timePeriod}
-  - /api/timesheets/list/{employeeId}/{timePeriod}
+  - /api/timesheets/{employeeId}/{timePeriod}
   - <b>Method</b>: GET
   - <b>Description</b>:  Returns timesheet list of a employee
   - <b>Body</b>: Not Required
