@@ -120,7 +120,6 @@ Header :Delete Account
 Authentication :
 
 
-
 [Employees Service ]
 
 1)
@@ -189,7 +188,6 @@ Authentication :
 
 
 [Team]
-
 
 1)
 Url  : http:localhost:portnumber/api/teams/getallteams
@@ -262,7 +260,6 @@ Return :Json object of role
 Body   :Null
 Header :Role Details
 Authentication : Admin and Employee only
-
 
 3)
 Url  :http:localhost:portnumber/api/roles/insertrole
@@ -481,7 +478,6 @@ Authentication :
 
 [Client]
 
-
 1)
 Url  : http:localhost:portnumber/api/clients/getallclients
 Mehtod : GET
@@ -541,7 +537,6 @@ Authentication :
 
 [On Project]
 
-
 1)
 Url  : http:localhost:portnumber/api/Onprojects/getalloprojects
 Mehtod : GET
@@ -597,7 +592,6 @@ Header :Delete On-Project
 Authentication :
 
 [Task]
-
 
 1)
 Url  : http:localhost:portnumber/api/tasks/getalltasks
@@ -664,7 +658,6 @@ Authentication :
 
 [Assigned]
 
-
 1)
 Url  : http:localhost:portnumber/api/assigns/getallassignes
 Mehtod : GET
@@ -724,7 +717,6 @@ Authentication :
 
 
 [Pay Role Cycle]
-
 
 1)
 Url  : http:localhost:portnumber/api/payrolecycles/getall
@@ -795,19 +787,3 @@ Return :True or False
 Body   : Null
 Header :Delete payrole cycle
 Authentication
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

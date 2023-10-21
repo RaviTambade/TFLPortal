@@ -18,7 +18,7 @@
                     <tbody>
                         <tr *ngFor="let project of filteredProjects">
                             <td (click)="selectProject(project.id)"><span class="hover-link">{{ project.title }}</span></td>
-                            <td>{{ parseDate(project.startDate) | date: 'longDate' }}</td>
+                            <td>{{ project.startDate | date }}</td>
                             <!-- <td>{{project.completion}}%</td> -->
                             <td>
                                 <button class="btn btn-primary" (click)="selectProject(project.id)">Details</button>&nbsp;
