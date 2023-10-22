@@ -26,7 +26,8 @@ public class Project
     [Column("status")]
     public string? Status { get; set; }
 
-    public override string ToString(){
-        return Id + " "+ Title+ " "+ StartDate+ " "+TeamManagerId;
+    public override string ToString()
+    {
+        return Id + " " + Title + " " + StartDate + " " + TeamManagerId;
     }
 }
