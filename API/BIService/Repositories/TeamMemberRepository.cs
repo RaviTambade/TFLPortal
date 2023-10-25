@@ -110,81 +110,81 @@ GROUP BY employees.userid;";
 
 
     public async Task<double> GetCalculateAverageTime(int userId)
-{
-    MySqlConnection connection = new MySqlConnection(_connectionString);
-    try
     {
-        MySqlCommand command = new MySqlCommand("CalculateAverageTime", connection);
-        command.CommandType = CommandType.StoredProcedure;
-        command.Parameters.AddWithValue("@userId", userId);
-
-        await connection.OpenAsync();
-
-        MySqlDataReader reader = (MySqlDataReader)await command.ExecuteReaderAsync();
-
-        if (await reader.ReadAsync())
+        MySqlConnection connection = new MySqlConnection(_connectionString);
+        try
         {
-            double averageTime = reader.GetDouble(0);
-            await reader.CloseAsync();
-            return averageTime;
-        }
-        else
-        {
-            await reader.CloseAsync();
-            throw new Exception("No data returned from the stored procedure.");
-        }
-    }
-    catch (Exception)
-    {
-        throw;
-    }
-    finally
-    {
-        await connection.CloseAsync();
-    }
-}
+            MySqlCommand command = new MySqlCommand("CalculateAverageTime", connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@userId", userId);
 
-public async Task<List<OverDueTask>> OverDueTaskOfMember(int userId)
-{
-    List<OverDueTask> overduetasks = new List<OverDueTask>();
-    MySqlConnection connection = new MySqlConnection(_connectionString);
+            await connection.OpenAsync();
 
-    try
-    {
-        MySqlCommand command = new MySqlCommand("getOverDueTasks", connection);
-        command.CommandType = CommandType.StoredProcedure;
-        command.Parameters.AddWithValue("@userId", userId);
+            MySqlDataReader reader = (MySqlDataReader)await command.ExecuteReaderAsync();
 
-        await connection.OpenAsync();
-        MySqlDataReader reader = (MySqlDataReader)await command.ExecuteReaderAsync();
-
-        while (await reader.ReadAsync())
-        {
-            OverDueTask overdueTask = new OverDueTask()
+            if (await reader.ReadAsync())
             {
-                DueDate = reader.GetDateTime("dueDate"),
-                Status = reader.GetString("status"),
-                ProjectTitle = reader.GetString("projectTitle"),
-                UserId = reader.GetInt32("userId"),
-                TaskTitle = reader.GetString("taskTitle")
-            };
+                double averageTime = reader.GetDouble(0);
+                await reader.CloseAsync();
+                return averageTime;
+            }
+            else
+            {
+                await reader.CloseAsync();
+                throw new Exception("No data returned from the stored procedure.");
+            }
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+    }
 
-            overduetasks.Add(overdueTask);
+    public async Task<List<OverDueTask>> OverDueTaskOfMember(int userId)
+    {
+        List<OverDueTask> overduetasks = new List<OverDueTask>();
+        MySqlConnection connection = new MySqlConnection(_connectionString);
+
+        try
+        {
+            MySqlCommand command = new MySqlCommand("getOverDueTasks", connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@userId", userId);
+
+            await connection.OpenAsync();
+            MySqlDataReader reader = (MySqlDataReader)await command.ExecuteReaderAsync();
+
+            while (await reader.ReadAsync())
+            {
+                OverDueTask overdueTask = new OverDueTask()
+                {
+                    DueDate = reader.GetDateTime("dueDate"),
+                    Status = reader.GetString("status"),
+                    ProjectTitle = reader.GetString("projectTitle"),
+                    UserId = reader.GetInt32("userId"),
+                    TaskTitle = reader.GetString("taskTitle")
+                };
+
+                overduetasks.Add(overdueTask);
+            }
+
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
         }
 
-        await reader.CloseAsync();
+        return overduetasks;
     }
-    catch (Exception)
-    {
-        throw;
-    }
-    finally
-    {
-        await connection.CloseAsync();
-    }
-
-    return overduetasks;
-}
 
 
 

@@ -25,20 +25,23 @@ namespace Transflower.PMSApp.BIService.Services
         public async Task<List<ProjectTaskStatus>> GetProjectStatusCount(int teamManagerId) =>
             await _repository.GetProjectStatusCount(teamManagerId);
 
+
         public async Task<List<AllocatedTaskOverview>> GetAllocatedTaskOverview(
             string teamMemberId
         ) => await _repository.GetAllocatedTaskOverview(teamMemberId);
+
 
         public async Task<List<TotalProjectWorkingByMember>> GetTotalTimeSpendByMembers(
             string teamMemberId,
             DateFilter dateFilter
         ) => await _repository.GetTotalTimeSpendByMembers(teamMemberId, dateFilter);
 
+
         public async Task<List<ProjectPercentage>> GetCompletionPercentage(string projectId) =>
             await _repository.GetCompletionPercentage(projectId);
 
-       public async Task<List<TotalProjectWorkingByMember>> GetTotalProjectWorkHourOfMembers(int projectId,DateTime givenDate,string dateRange)=>
-       await _repository.GetTotalProjectWorkHourOfMembers(projectId,givenDate,dateRange);
-        
+        public async Task<List<TotalProjectWorkingByMember>> GetTotalProjectWorkHourOfMembers(int projectId, DateTime givenDate, string dateRange) =>
+        await _repository.GetTotalProjectWorkHourOfMembers(projectId, givenDate, dateRange);
+
     }
 }

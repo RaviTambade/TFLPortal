@@ -13,7 +13,7 @@ namespace Transflower.PMSApp.BIService.Repositories
 {
     public class TeamManagerRepository : ITeamManagerRepository
     {
-        private readonly IConfiguration _configuration; 
+        private readonly IConfiguration _configuration;
         private readonly string _connectionString;
 
         public TeamManagerRepository(IConfiguration configuration)
@@ -118,7 +118,7 @@ WHERE  projects.teammanagerid=@teamManagerId AND (timesheets.date >=@startDate) 
             MySqlConnection connection = new(_connectionString);
             try
             {
-             string query = $@"
+                string query = $@"
 SELECT employees.userid AS UserId, projecttasks.projectid AS ProjectId, COUNT(taskallocations.id) AS TaskAllocationCount, projects.title AS Title, projecttasks.status AS Status
 FROM employees
 INNER JOIN taskallocations ON employees.id = taskallocations.teammemberid
@@ -141,7 +141,7 @@ GROUP BY Status, ProjectId, UserId;
                             TaskAllocationCount = reader.GetInt32("TaskAllocationCount"),
                             Title = reader.GetString("Title"),
                             Status = reader.GetString("Status"),
-                            ProjectId= reader.GetInt32("ProjectId")
+                            ProjectId = reader.GetInt32("ProjectId")
                         }
                     );
                 }

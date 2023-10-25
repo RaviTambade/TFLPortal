@@ -15,6 +15,7 @@ namespace Transflower.PMSApp.BIService.Services
       _repository = repository;
     }
 
+
     public async Task<List<TotalProjectWorkingByMember>> GetTotalTimeSpendByMembers(
        string teamMemberId,
        DateFilter dateFilter
@@ -24,8 +25,10 @@ namespace Transflower.PMSApp.BIService.Services
     public async Task<List<TotalProjectWorkingByMember>> GetTotalProjectWorkHourOfMembers(int teamMemberId, DateTime givenDate, string dateRange) =>
   await _repository.GetTotalProjectWorkHourOfMembers(teamMemberId, givenDate, dateRange);
 
+
     public async Task<double> GetCalculateAverageTime(int userId) =>
   await _repository.GetCalculateAverageTime(userId);
+
 
     public async Task<List<OverDueTask>> OverDueTaskOfMember(int userId) =>
   await _repository.OverDueTaskOfMember(userId);
