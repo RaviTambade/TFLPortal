@@ -1,3 +1,4 @@
+-- Active: 1694968636816@@127.0.0.1@3306@pms
 INSERT INTO roles(name)VALUES('Director');
 INSERT INTO roles(name)VALUES('HR Manager');
 INSERT INTO roles(name)VALUES('Team Manager');

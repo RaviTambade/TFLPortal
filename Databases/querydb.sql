@@ -1,4 +1,4 @@
--- Active: 1678339848098@@127.0.0.1@3306@pms
+-- Active: 1694968636816@@127.0.0.1@3306@ekrushi
 select * From timerecords where empid=2;
 select * from employees;
 select * from users;
