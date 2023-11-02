@@ -51,11 +51,9 @@ filterMyTasks(timePeriod:string){
         this.selectedTaskId = id;
       }
         this.taskService.setSelectedTaskId(id);
-        console.log(id)
       }
   }
   filterTasksByStatus(status: string) {
-    console.log(status)
     if (status === 'All') {
       this.filteredTasks = this.tasks;
     } else {
@@ -74,12 +72,4 @@ filterMyTasks(timePeriod:string){
     this.router.navigate(["teammember/projectdetails"])
     this.projectService.setSelectedProjectId(id);
   }
-
-  // showAllTasks() {
-  //   this.selectedDate = '';
-  //   this.taskService.GetMyTaskList(this.teamMemberId).subscribe((res) => {
-  //     this.tasks = res;
-  //     this.filteredTasks=res
-  //   });
-  // }
 }

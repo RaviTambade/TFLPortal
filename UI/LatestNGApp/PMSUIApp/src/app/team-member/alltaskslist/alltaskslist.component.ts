@@ -37,10 +37,8 @@ filterAllTasks(timePeriod:string){
   this.selectedTimePeriod=timePeriod
     this.taskService.getAllTaskList(this.employeeId,timePeriod).subscribe((res) => {
       this.tasks = res;
-      console.log(this.tasks)
       let distinctTeamMemberUserIds=this.tasks.map((item)=>item.teamMemberUserId)
       .filter((number, index, array) => array.indexOf(number) === index);
-      console.log(distinctTeamMemberUserIds)
       let teamMemberIdsString=distinctTeamMemberUserIds.join(",")
       this.userService
       .getUserNamesWithId(teamMemberIdsString)
@@ -54,7 +52,6 @@ filterAllTasks(timePeriod:string){
           if (matchingItem != undefined){
             item.employeeName = matchingItem.name;
             item.teamMemberUserId=matchingItem.id
-          console.log(matchingItem);
           }
         });
     });

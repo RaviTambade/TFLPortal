@@ -26,11 +26,9 @@ projectId: number =0;
         this.projectId=response;
         this.projectService.getProjectMembers(this.projectId).subscribe((res) => {
           this.teamMembersUserId= res
-          console.log(res);
           if (this.teamMembersUserId.length > 0) {
           let teamManagerUserIdString=this.teamMembersUserId.join(",")
           this.userService.getUserNamesWithId(teamManagerUserIdString).subscribe((res)=>{
-            console.log(res)
             this.teamMembers=res
            return this.teamMember=res.map(res=>res.name)
             

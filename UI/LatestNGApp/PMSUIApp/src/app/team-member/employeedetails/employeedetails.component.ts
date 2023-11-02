@@ -37,7 +37,6 @@ constructor(private route:ActivatedRoute,
     })
     this.userService.getUser(this.employeeUserId).subscribe((res)=>{
       this.employeeDetail=res
-      console.log(res)
       this.employeeService.getEmployeeId(this.employeeUserId).subscribe((res)=>{
         this.employeeId=res
         this.employeeService.getEmployeeInfo(this.employeeId).subscribe((res)=>{

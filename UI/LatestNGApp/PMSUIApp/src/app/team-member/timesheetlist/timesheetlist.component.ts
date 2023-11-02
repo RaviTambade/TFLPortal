@@ -17,7 +17,6 @@ teamMemberId: number = 0;
   selectedTimePeriod:string="today"
 constructor(private timeSheetService: TimeSheetService,
     private router: Router,
-    private route: ActivatedRoute,
     private employeeService:EmployeeService) {}
 
   ngOnInit() {

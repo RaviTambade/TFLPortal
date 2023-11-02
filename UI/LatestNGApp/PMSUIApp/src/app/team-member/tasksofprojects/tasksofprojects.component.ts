@@ -32,10 +32,8 @@ export class TasksofprojectsComponent implements OnInit {
         this.selectedTimePeriod=timePeriod
     this.projectService.getTasksOfProject(this.projectId,timePeriod).subscribe((res)=>{
       this.tasks=res
-      console.log(this.tasks)
       let distinctTeamMemberUserIds=this.tasks.map((item)=>item.teamMemberUserId)
       .filter((number, index, array) => array.indexOf(number) === index)
-      console.log(distinctTeamMemberUserIds)
       let teamMemberIdsString=distinctTeamMemberUserIds.join(",")
       this.userService.getUserNamesWithId(teamMemberIdsString).subscribe((res)=>{
         let teamMemberName=res
@@ -45,7 +43,6 @@ export class TasksofprojectsComponent implements OnInit {
           );
           if (matchingItem != undefined)
             item.employeeName = matchingItem.name;
-          console.log(matchingItem);
         });
     })
   })

@@ -25,11 +25,8 @@ ngOnChanges(changes: SimpleChanges){
 // ngOnInit():void{
   if (changes['taskId'] && this.taskId !== null) {
     if(this.taskId != null){
-      console.log(this.taskId)
     this.taskService.getTaskDetails(this.taskId).subscribe(details => {
-      console.log(this.taskId)
       this.taskDetail = details;
-      console.log(this.taskDetail)
     });
   // }
 }

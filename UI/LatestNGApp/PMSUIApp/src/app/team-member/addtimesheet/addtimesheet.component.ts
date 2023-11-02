@@ -51,7 +51,6 @@ export class AddtimesheetComponent implements OnInit {
     let userId = localStorage.getItem('userId');
     this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
       this.employeeId = res;
-      console.log(this.employeeId)
       this.loadProjectNames()
     });
   }
@@ -59,7 +58,6 @@ export class AddtimesheetComponent implements OnInit {
     if (this.employeeId != undefined) {
       this.projectService.getProjectNames(this.employeeId).subscribe((res) => {
         this.projectNames = res;
-        console.log(this.projectNames)
         })
       }
     }
@@ -67,10 +65,6 @@ export class AddtimesheetComponent implements OnInit {
       if (this.employeeId !== undefined && this.selectedProjectId !== undefined) {
         this.taskService.getTaskIdWithTitle(this.employeeId,this.selectedProjectId,this.selectedStatus).subscribe((res)=>{
           this.taskName=res
-          console.log(this.employeeId)
-          console.log(this.selectedProjectId)
-          console.log(this.selectedStatus)
-          console.log(this.taskName)
         })
     }
     }

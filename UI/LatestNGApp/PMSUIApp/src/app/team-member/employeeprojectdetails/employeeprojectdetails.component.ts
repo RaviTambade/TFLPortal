@@ -24,7 +24,6 @@ export class EmployeeprojectdetailsComponent {
   constructor(
     private projectService: ProjectService,
     private router: Router,
-    private route: ActivatedRoute,
     private userService:UserService
   ) {}
   ngOnInit(): void {
@@ -36,8 +35,6 @@ export class EmployeeprojectdetailsComponent {
     this.projectService
         .getProjectDetails(this.projectId)
         .subscribe((details) => {
-          console.log(details)
-          console.log(this.projectId)
           this.projectDetails = details;
           // this.selectProject(this.projectDetails.id);
         });
@@ -72,7 +69,6 @@ updateProject(projectId: number) {
     if (confirmation) {
     
       this.projectService.deleteProject(id).subscribe((res) => {
-        console.log(res);
         window.location.reload()
       });
     } else {

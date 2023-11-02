@@ -22,7 +22,6 @@ export class EmployeeprojectsComponent implements OnInit {
   projectTaskCount: Projecttaskcount;
   constructor(
     private projectService: ProjectService,
-    private router: Router,
     private employeeService: EmployeeService,
     private userService: UserService,
     private taskService: TaskService
@@ -40,12 +39,10 @@ export class EmployeeprojectsComponent implements OnInit {
         .getProjectsList(this.teamMemberId)
         .subscribe((res) => {
           this.projectList = res;
-          console.log(this.projectList);
           this.filteredProjects = res;
           let distinctTeamManagerUserIds = this.projectList
             .map((item) => item.teamManagerUserId)
             .filter((number, index, array) => array.indexOf(number) === index);
-          console.log(distinctTeamManagerUserIds);
           let teamManagerUserIdString = distinctTeamManagerUserIds.join(',');
           this.userService
             .getUserNamesWithId(teamManagerUserIdString)
@@ -58,19 +55,15 @@ export class EmployeeprojectsComponent implements OnInit {
                 );
                 if (matchingItem != undefined)
                   item.teamManager = matchingItem.name;
-                console.log(matchingItem);
               });
               this.projectList.forEach((project) => {
                 this.taskService
                   .GetProjectTaskCount(project.id)
                   .subscribe((res) => {
                     this.projectTaskCount = res;
-                    console.log(this.projectTaskCount);
                     let completedTask =
                       this.projectTaskCount.completedTaskCount;
-                    console.log(completedTask);
                     let totalTask = this.projectTaskCount.totalTaskCount;
-                    console.log(totalTask);
                     project.completion = (completedTask / totalTask) * 100;
                   });
               });
@@ -86,7 +79,6 @@ export class EmployeeprojectsComponent implements OnInit {
       this.filteredProjects = this.projectList.filter(
         (project) => project.status === status
       );
-      console.log(this.filteredProjects);
     }
     this.selectedProjectId = null;
     this.projectService.setSelectedProjectId(this.selectedProjectId);
