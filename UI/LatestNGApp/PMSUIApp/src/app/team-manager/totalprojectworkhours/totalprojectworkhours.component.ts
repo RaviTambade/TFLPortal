@@ -26,9 +26,7 @@ ngOnInit(): void {
   this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
     this.teamManagerId = res;
   this.biService.getTotalProjectWorkHours(this.teamManagerId,this.dateFilter).subscribe((res)=>{
-    console.log(this.dateFilter)
     this.totalProjectWork=res
-    console.log(res)
   })
   })
 }

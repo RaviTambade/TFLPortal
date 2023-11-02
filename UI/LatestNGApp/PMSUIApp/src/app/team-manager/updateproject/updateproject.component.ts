@@ -13,15 +13,7 @@ import { ProjectService } from 'src/app/Services/project.service';
 export class UpdateprojectComponent implements OnInit {
   projectId:number=0
   teamManagerId:number=0
-// project:Addproject={
-//   id:0,
-//   title: '',
-//   startDate: '',
-//   endDate: '',
-//   description: '',
-//   status: '',
-//   teamManagerId: 0
-// }
+
 projectdetail:Project={
   id: 0,
   title: '',
@@ -50,7 +42,7 @@ this.projectService.getProjectDetails(this.projectId).subscribe((res)=>{
 
 OnSubmit(){
   this.projectService.updateProject(this.projectdetail).subscribe((res)=>{
-    console.log(res)
+   
   })
 }
 }

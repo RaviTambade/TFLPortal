@@ -73,7 +73,6 @@ dateRangeOptions: string[] = ['today', 'yesterday', 'weekly', 'monthly', 'custom
       this.projectService
         .getManagerProjectNames(this.teamManagerId)
         .subscribe((res) => {
-          console.log(res);
           this.managerProjects = res;
         });
     });
@@ -82,7 +81,6 @@ dateRangeOptions: string[] = ['today', 'yesterday', 'weekly', 'monthly', 'custom
     this.biService.getTotalHoursOfMembers(projectId,givenDate,dateRange).subscribe((res) => {
       this.projectWorkByMember = res;
       let teamMemberIds = this.projectWorkByMember.map((u) => u.userId);
-      console.log(teamMemberIds);
       if (teamMemberIds !== null) {
         let teamMemberStringIds = teamMemberIds.join(',');
         this.userService

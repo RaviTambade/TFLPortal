@@ -30,24 +30,17 @@ export class UpdatetaskstatusComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.taskId = params['taskId'];
     });
-    console.log(this.taskId);
     this.taskService.getTaskDetail(this.taskId).subscribe((res) => {
-      console.log(res);
       this.task = res;
       this.projectId = res.projectId;
-      console.log(this.projectId);
       this.projectService.getProjectTitle(this.projectId).subscribe((res) => {
         this.projectTitle = res;
-        console.log(res);
-        console.log(this.projectId);
         this.projectService
           .getEmployeeIdWithUserId(this.projectId)
           .subscribe((res) => {
             this.employeeIdWithUserIds = res;
-            console.log(this.employeeIdWithUserIds);
             let userIds = this.employeeIdWithUserIds.map((e) => e.userId);
             let employeeIdWithUserIdsString = userIds.join(',');
-            console.log(employeeIdWithUserIdsString);
             this.userService
               .getUserNamesWithId(employeeIdWithUserIdsString)
               .subscribe((res) => {
@@ -59,7 +52,6 @@ export class UpdatetaskstatusComponent implements OnInit {
                   );
                   if (matchingItem != undefined)
                     item.employeeName = matchingItem.name;
-                  console.log(matchingItem);
                 });
               });
           });

@@ -36,14 +36,10 @@ export class GetallocatedtaskoverviewComponent implements OnInit {
           let distinctTeamMemberUserIds = this.allocatedTaskOverview
             .map((item) => item.userId)
             .filter((number, index, array) => array.indexOf(number) === index);
-          console.log(distinctTeamMemberUserIds);
           let teamMemberrUserIdString = distinctTeamMemberUserIds.join(',');
-          console.log(res)
-          console.log(teamMemberrUserIdString)
           this.userService
           .getUserNamesWithId(teamMemberrUserIdString)
           .subscribe((res) => {
-            console.log(res)
             let teamMemberName = res;
               this.allocatedTaskOverview.forEach((item) => {
                 let matchingItem = teamMemberName.find(
@@ -51,7 +47,6 @@ export class GetallocatedtaskoverviewComponent implements OnInit {
                 );
                 if (matchingItem != undefined)
                   item.employeeName = matchingItem.name;
-                  console.log(item.employeeName)
         })
       })
     });

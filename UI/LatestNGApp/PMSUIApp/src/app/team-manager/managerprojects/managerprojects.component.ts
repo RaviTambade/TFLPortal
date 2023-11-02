@@ -22,10 +22,7 @@ export class ManagerprojectsComponent implements OnInit {
   constructor(
     private projectService: ProjectService,
     private router: Router,
-    private employeeService: EmployeeService,
-    private userService: UserService,
-    private taskService: TaskService
-  ) {
+    private employeeService: EmployeeService  ) {
     this.projectTaskCount = {
       completedTaskCount: 0,
       totalTaskCount: 0,
@@ -47,7 +44,6 @@ export class ManagerprojectsComponent implements OnInit {
         .getManagerProjects(this.teamManagerId)
         .subscribe((res) => {
           this.projectList = res;
-          console.log(this.projectList);
           this.filteredProjects = res;
             });
         });
@@ -60,7 +56,6 @@ export class ManagerprojectsComponent implements OnInit {
       this.filteredProjects = this.projectList.filter(
         (project) => project.status === status
       );
-      console.log(this.filteredProjects);
     }
     this.selectedProjectId = null;
     this.projectService.setSelectedProjectId(this.selectedProjectId);

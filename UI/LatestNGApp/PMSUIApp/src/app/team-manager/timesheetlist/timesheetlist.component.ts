@@ -32,23 +32,19 @@ export class TimesheetlistComponent implements OnInit {
   getTimeSheetList(timePeriod:string){
     this.selectedTimePeriod=timePeriod
     this.timeSheetService.getTimeSheetListByManager(this.managerId,timePeriod).subscribe((res)=>{
-  console.log(res)
   this.timeSheetList=res
   let distinctEmployeeUserId=this.timeSheetList.map((item)=>
     item.employeeUserId
   ).filter((number,index,array)=>array.indexOf(number)==index)
   let employeeUserIdString=distinctEmployeeUserId.join(',')
-  console.log(employeeUserIdString)
   this.userService.getUserNamesWithId(employeeUserIdString).subscribe((res)=>{
     let teamMemberName=res
-    console.log(teamMemberName)
     this.timeSheetList.forEach((item)=> {
       let matchingItem = teamMemberName.find(
         (element) => element.id === item.employeeUserId
       );
       if (matchingItem != undefined)
         item.employeeName = matchingItem.name;
-      console.log(matchingItem);
     });
   })
 

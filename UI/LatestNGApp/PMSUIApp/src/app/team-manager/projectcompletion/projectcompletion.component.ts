@@ -34,12 +34,10 @@ export class ProjectcompletionComponent implements OnInit {
 
   loadCompletionPercentages(): void {
     let projectIds = this.projectNames.map((p) => p.projectId);
-    console.log(projectIds)
+    
     let projectIdsString = projectIds.join(',');
-    console.log(projectIdsString)
-    this.biService.getProjectCompletionPercentage(projectIdsString).subscribe((res) => {
+     this.biService.getProjectCompletionPercentage(projectIdsString).subscribe((res) => {
       this.percentages = res;
-      console.log(this.percentages)
     });
   }
 

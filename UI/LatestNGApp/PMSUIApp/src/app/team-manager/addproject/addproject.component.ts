@@ -32,8 +32,7 @@ export class AddprojectComponent implements OnInit {
     let userId = localStorage.getItem('userId');
     this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
       this.managerId = res;
-      console.log(this.managerId);
-    });
+      });
   }
   onSubmit() {
     if (this.addProjectForm.valid) {
