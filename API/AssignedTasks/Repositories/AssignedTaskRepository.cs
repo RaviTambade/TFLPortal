@@ -120,8 +120,7 @@ public class AssignedTaskRepository : IAssignedTaskRepository
           MySqlConnection con = new MySqlConnection();
           con.ConnectionString=_connectionString;
           try{
-            string query = "UPDATE assignedtasks SET taskid=@taskid, teammemberid=@teammemberid  WHERE id=@Id";   
-             Console.WriteLine(query);
+            string query = "UPDATE assignedtasks SET taskid=@taskid, teammemberid=@teammemberid  WHERE id=@Id";
             await con.OpenAsync();
              MySqlCommand command=new MySqlCommand(query,con) ;
              command.Parameters.AddWithValue("@Id",assignedtask.Id); 

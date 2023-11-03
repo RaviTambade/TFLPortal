@@ -37,10 +37,6 @@ INNER JOIN employees ON taskallocations.teammemberid =employees.id
 INNER JOIN timesheets ON taskallocations.id = timesheets.taskallocationid
 WHERE taskallocations.teammemberid IN (@teamMemberId) AND (timesheets.date >=@startDate) AND (timesheets.date<=@endDate)
 GROUP BY employees.userid;";
-            Console.WriteLine(query);
-            Console.WriteLine(teamMemberId);
-            Console.WriteLine(dateFilter.StartDate);
-            Console.WriteLine(dateFilter.EndDate);
 
             MySqlCommand command = new(query, connection);
             command.Parameters.AddWithValue("@teamMemberId", teamMemberId);
