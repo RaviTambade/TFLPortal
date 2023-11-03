@@ -40,6 +40,7 @@ export class LoginComponent {
                 this.roles = response;
                 console.log(this.roles);
                 const role = this.roles[0];
+                console.log(role);
                 this.navigateByRole(role);
               });
             });
