@@ -31,6 +31,21 @@ public class EmployeeRepository : IEmployeeRepository
     return 0;
   }
 
+
+public async Task<List<int>> GetEmployees()
+  {
+    try
+    {
+      List<int> userid = await _employeeContext.Employees.Select(emp => emp.UserId).ToListAsync();
+
+      return userid ;
+    }
+    catch (Exception)
+    {
+      throw;
+    }
+  
+  }
   public async Task<List<int>> GetUserId(int employeeId)
   {
     try

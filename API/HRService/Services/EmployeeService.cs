@@ -13,8 +13,9 @@ public class EmployeeService : IEmployeesService
         _repo = repo;
     }
     public async Task<int> GetEmployeeId(int userId)=>await _repo.GetEmployeeId(userId);
+    public async Task<List<int>> GetEmployees()=>await _repo.GetEmployees();
     public async Task<List<int>> GetUserId(int employeeId)=>await _repo.GetUserId(employeeId);
-  public async Task<EmployeeInfo> GetEmployeeInfo(int employeeId)=>await _repo.GetEmployeeInfo(employeeId);
+   public async Task<EmployeeInfo> GetEmployeeInfo(int employeeId)=>await _repo.GetEmployeeInfo(employeeId);
 
   public async Task<List<int>> GetEmployeeUserId(int managerId)=>await _repo.GetEmployeeUserId(managerId);
 

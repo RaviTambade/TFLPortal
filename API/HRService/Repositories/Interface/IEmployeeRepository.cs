@@ -6,6 +6,7 @@ public interface IEmployeeRepository
 {
 
     Task<int> GetEmployeeId(int userId);
+    Task<List<int>> GetEmployees();
     Task<List<int>> GetUserId(int employeeId);
     
     Task<EmployeeInfo> GetEmployeeInfo(int employeeId);

@@ -41,6 +41,15 @@ public class EmployeesController : ControllerBase
 
 
 
+    [HttpGet("users")]
+    public async Task<List<int>> GetEmployees()
+    {
+        return await _service.GetEmployees();
+
+    }
+
+
+
 
 
 }

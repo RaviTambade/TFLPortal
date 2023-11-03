@@ -96,7 +96,7 @@ public class AssignedTaskRepository : IAssignedTaskRepository
           try{
               string query ="INSERT INTO assignedtasks(taskid,teammemberid)VALUES"+
                                                   "(@taskid,@teammemberid)";
-             Console.WriteLine(query);
+             
              await con.OpenAsync();
              MySqlCommand command=new MySqlCommand(query,con) ;            
              command.Parameters.AddWithValue("@taskid",director.TaskId);
