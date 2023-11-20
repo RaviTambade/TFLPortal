@@ -5,9 +5,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
@@ -23,9 +20,6 @@ import { CommonModule } from '@angular/common';
   declarations: [
     AppComponent,
     NavMenuComponent,
-    HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
     MenubarComponent
   ],
   imports: [
@@ -38,9 +32,7 @@ import { CommonModule } from '@angular/common';
     TeamMemberModule,
     
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'login', component: LoginComponent },
+      { path: '', component: LoginComponent },
       {path:'director',children:directorRoutes},
       {path:'hrmanager',children:hrmanagerRoutes},
       {path:'teammanager',children:teammanagerRoutes},

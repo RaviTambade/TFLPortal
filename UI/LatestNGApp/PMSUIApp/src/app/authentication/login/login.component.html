@@ -1,4 +1,4 @@
-<h1>Login</h1>
+<!-- <h1>Login</h1>
 <div class="col-sm-3">
   <div class="col">
     <form (ngSubmit)="onSignIn()">
@@ -22,4 +22,26 @@
   </div>
   <div class="col-sm-9"></div>
 
+</div> -->
+
+
+<div class="row justify-content-center align-items-center  ">
+  <div *ngIf="!istokenReceived" class="col-6">
+    <membership-login  (validSignIn)="onReceiveToken($event)"></membership-login>
+
+  </div>
+  <div *ngIf="istokenReceived" class="col-4 ">
+      <div class="card border-0 shadow rounded-3 ">
+          <div class="card-body p-4  ">
+              <div class=" d-grid" *ngFor="let role of roles">
+                  <button class="btn btn-success fw-bold">
+                      <a style=" display: block;" (click)="navigateByRole(role)">
+                          Login As
+                          {{role}} </a>
+                  </button>
+                  <br>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>

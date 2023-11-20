@@ -15,12 +15,10 @@ export class NavMenuComponent implements OnInit {
   role:string=''
   constructor(private router: Router, private userService: UserService,private authService:AuthenticationService) { }
   ngOnInit(): void {
-     let contactNumber =  this.authService.getContactNumberFromToken()
-    if (contactNumber != null) {
-      this.userService.getUserByContact(contactNumber).subscribe((response) => {
-        console.log(response);
-        this.name = response.name;
-            })  
+      // this.userService.getUserByContact(contactNumber).subscribe((response) => {
+      //   console.log(response);
+      //   this.name = response.name;
+      //       })  
             let userId = localStorage.getItem('userId');
             if (userId !== null) {
               this.userService.getUserRole(Number(userId)).subscribe((res) => {
@@ -28,7 +26,7 @@ export class NavMenuComponent implements OnInit {
                 this.role=this.roles[0]
               });
             }  
-    }
+    
   }
 
   collapse() {
@@ -44,13 +42,13 @@ export class NavMenuComponent implements OnInit {
   }
 
   getUserName() {
-    let contactNumber =  this.authService.getContactNumberFromToken()
-    if (contactNumber != null) {
-      this.userService.getUserByContact(contactNumber).subscribe((response) => {
-        console.log(response);
-        this.name = response.name;
-      })    
-    }
+    // let contactNumber =  this.authService.getContactNumberFromToken()
+    // if (contactNumber != null) {
+    //   this.userService.getUserByContact(contactNumber).subscribe((response) => {
+    //     console.log(response);
+    //     this.name = response.name;
+    //   })    
+    // }
 
   }
 

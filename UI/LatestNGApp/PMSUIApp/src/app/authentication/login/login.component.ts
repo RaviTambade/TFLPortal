@@ -10,43 +10,27 @@ import { UserService } from 'src/app/Services/user.service';
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
-  credential: Credential = {
-    contactNumber: '',
-    password: '',
-  };
-  userId: number | undefined;
+ 
   roles: string[] = [];
-
+  istokenReceived: boolean = false;
   constructor(
     private router: Router,
     private authService: AuthenticationService,
     private userService: UserService
   ) { }
 
-  public onSignIn() {
-    console.log('Validating user');
-    this.authService.validate(this.credential).subscribe((response) => {
-      if (response != null) {
-        localStorage.setItem('jwt', response.token);
-        let contactNumber = this.authService.getContactNumberFromToken();
-        if (contactNumber !== null) {
-          this.userService
-            .getUserByContact(contactNumber)
-            .subscribe((response) => {
-              let userId = response.id;
-              localStorage.setItem(LocalStorageKeys.userId, userId.toString());
-              console.log(userId);
-              this.userService.getUserRole(userId).subscribe((response) => {
-                this.roles = response;
-                console.log(this.roles);
-                const role = this.roles[0];
-                console.log(role);
-                this.navigateByRole(role);
-              });
-            });
-        }
+  onReceiveToken(event: any) {
+    if (event.token) {
+      localStorage.setItem(LocalStorageKeys.jwt, event.token);
+      this.roles = this.authService.getRolesFromToken();
+      console.log(this.roles);
+      if (this.roles?.length == 1) {
+        const role = this.roles[0];
+        this.navigateByRole(role);
+      } else if (this.roles?.length > 1) {
+        this.istokenReceived = true;
       }
-    });
+    }
   }
 
   navigateByRole(role: string) {
