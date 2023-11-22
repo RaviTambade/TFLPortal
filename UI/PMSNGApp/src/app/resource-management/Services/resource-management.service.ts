@@ -11,6 +11,7 @@ export class ResourceManagementService {
   constructor(private httpClient:HttpClient) { }
 
   serviceurl:string="http://localhost:5230/api/"
+  svcurl:string="http://localhost:5248/api/"
   
   getEmployeeId(userId: number): Observable<number> {
     let url = this.serviceurl+"Employees/employeeid/" + userId
@@ -27,6 +28,11 @@ export class ResourceManagementService {
 
   getUserIdByManagerId(managerId: number): Observable<number[]> {
     let url = this.serviceurl+"Employees/useridbymanager/" + managerId
+    return this.httpClient.get<number[]>(url)
+  }
+
+  getProjectMembers(projectId: number): Observable<number[]> {
+    let url = this.svcurl+"projects/teammembers/" + projectId
     return this.httpClient.get<number[]>(url)
   }
 }

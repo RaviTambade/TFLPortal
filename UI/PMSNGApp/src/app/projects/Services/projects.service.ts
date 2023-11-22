@@ -30,10 +30,7 @@ export class ProjectsService {
     return this.httpClient.get<Project>(url)
   }
 
-  getProjectMembers(projectId: number): Observable<number[]> {
-    let url = this.serviceurl+"projects/teammembers/" + projectId
-    return this.httpClient.get<number[]>(url)
-  }
+  
 
   getProjectNames(employeeId: number): Observable<Projectname[]> {
     let url = this.serviceurl+"projects/employee/" + employeeId

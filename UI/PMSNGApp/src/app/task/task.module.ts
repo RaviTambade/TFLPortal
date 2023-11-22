@@ -1,13 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule} from '@angular/common/http';
+import { ListComponent } from './Components/list/list.component';
+import { DetailsComponent } from './Components/details/details.component'
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ListComponent,
+    DetailsComponent
+  ],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+  ],
+  exports: [
+    DetailsComponent
   ]
 })
 export class TaskModule { }
