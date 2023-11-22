@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { TokenClaims } from 'src/app/Models/Enums/tokenClaims';
 import { Addproject } from 'src/app/Models/addproject';
 import { Project } from 'src/app/Models/project';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { EmployeeService } from 'src/app/Services/employee.service';
 import { ProjectService } from 'src/app/Services/project.service';
 
@@ -25,12 +27,13 @@ projectdetail:Project={
 }
 constructor(private projectService:ProjectService,
   private route:ActivatedRoute,
-  private employeeService:EmployeeService){}
+  private employeeService:EmployeeService,
+  private authservice:AuthenticationService){}
   ngOnInit(): void {
    this.route.params.subscribe(params=>{
 this.projectId= params['projectId'];
-let userId = localStorage.getItem('userId');
-this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
+let userId = this.authservice.getClaimFromToken(TokenClaims.userId);
+this.employeeService.getEmployeeId(userId).subscribe((res) => {
   this.teamManagerId = res;
   
 this.projectService.getProjectDetails(this.projectId).subscribe((res)=>{

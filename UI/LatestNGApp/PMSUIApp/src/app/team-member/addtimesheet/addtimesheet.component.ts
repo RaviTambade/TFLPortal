@@ -5,9 +5,11 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { TokenClaims } from 'src/app/Models/Enums/tokenClaims';
 import { Projectname } from 'src/app/Models/projectname';
 import { Taskidwithtitle } from 'src/app/Models/taskidwithtitle';
 import { Timesheet } from 'src/app/Models/timesheet';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { EmployeeService } from 'src/app/Services/employee.service';
 import { ProjectService } from 'src/app/Services/project.service';
 import { TaskService } from 'src/app/Services/task.service';
@@ -35,7 +37,8 @@ export class AddtimesheetComponent implements OnInit {
     private userService: UserService,
     private employeeService: EmployeeService,
     private projectService: ProjectService,
-    private taskService:TaskService
+    private taskService:TaskService,
+    private authservice:AuthenticationService
   ) {
     this.timeSheetForm = this.formBuilder.group({
       employeeId: ['', Validators.required],
@@ -48,8 +51,8 @@ export class AddtimesheetComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    let userId = localStorage.getItem('userId');
-    this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
+    let userId = this.authservice.getClaimFromToken(TokenClaims.userId);
+    this.employeeService.getEmployeeId(userId).subscribe((res) => {
       this.employeeId = res;
       this.loadProjectNames()
     });

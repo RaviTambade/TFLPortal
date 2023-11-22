@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TokenClaims } from 'src/app/Models/Enums/tokenClaims';
 import { Alltasklist } from 'src/app/Models/alltasklist';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { EmployeeService } from 'src/app/Services/employee.service';
 import { ProjectService } from 'src/app/Services/project.service';
 import { TaskService } from 'src/app/Services/task.service';
@@ -23,11 +25,12 @@ export class AlltaskslistComponent {
     private projectService: ProjectService,
     private router:Router,
     private employeeService:EmployeeService,
-    private userService:UserService
+    private userService:UserService,
+    private authservice:AuthenticationService
   ) {}
   ngOnInit(): void {
-    let userId = localStorage.getItem('userId');
-    this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
+    let userId = this.authservice.getClaimFromToken(TokenClaims.userId);
+    this.employeeService.getEmployeeId(userId).subscribe((res) => {
       this.employeeId = res;
       this.filterAllTasks(this.selectedTimePeriod)
 
@@ -50,7 +53,7 @@ filterAllTasks(timePeriod:string){
             (element) => element.id === item.teamMemberUserId
           );
           if (matchingItem != undefined){
-            item.employeeName = matchingItem.name;
+            item.employeeName = matchingItem.fullName;
             item.teamMemberUserId=matchingItem.id
           }
         });

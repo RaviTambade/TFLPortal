@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../Services/user.service';
 import { Role } from '../Models/Enums/role';
+import { TokenClaims } from '../Models/Enums/tokenClaims';
+import { AuthenticationService } from '../Services/authentication.service';
 
 @Component({
   selector: 'app-menubar',
@@ -11,16 +13,12 @@ export class MenubarComponent implements OnInit {
   // role:string=''
   Role=Role
   roles: string[] = [];
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private authservice:AuthenticationService) {}
 
   ngOnInit(): void {
-    let userId = localStorage.getItem('userId');
-    if (userId !== null) {
-      this.userService.getUserRole(Number(userId)).subscribe((res) => {
-        this.roles = res;
-      });
+    this.roles=this.authservice.getRolesFromToken();
     }
-  }
+  
 
   isUserHaveRequiredRole( role:string): boolean {
     let userrole = this.roles[0];

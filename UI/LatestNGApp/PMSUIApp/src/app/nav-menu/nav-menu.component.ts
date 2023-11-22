@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../Services/user.service';
 import { AuthenticationService } from '../Services/authentication.service';
+import { TokenClaims } from '../Models/Enums/tokenClaims';
 
 @Component({
   selector: 'app-nav-menu',
@@ -13,20 +14,10 @@ export class NavMenuComponent implements OnInit {
   name: string | undefined
   roles:string[]=[]
   role:string=''
-  constructor(private router: Router, private userService: UserService,private authService:AuthenticationService) { }
+  constructor(private router: Router, private userService: UserService,private authservice:AuthenticationService) { }
   ngOnInit(): void {
-      // this.userService.getUserByContact(contactNumber).subscribe((response) => {
-      //   console.log(response);
-      //   this.name = response.name;
-      //       })  
-            let userId = localStorage.getItem('userId');
-            if (userId !== null) {
-              this.userService.getUserRole(Number(userId)).subscribe((res) => {
-                this.roles = res;
-                this.role=this.roles[0]
-              });
-            }  
-    
+     this.roles=this.authservice.getRolesFromToken(); 
+    this.getUserName();
   }
 
   collapse() {
@@ -42,13 +33,12 @@ export class NavMenuComponent implements OnInit {
   }
 
   getUserName() {
-    // let contactNumber =  this.authService.getContactNumberFromToken()
-    // if (contactNumber != null) {
-    //   this.userService.getUserByContact(contactNumber).subscribe((response) => {
-    //     console.log(response);
-    //     this.name = response.name;
-    //   })    
-    // }
+    let userId = this.authservice.getClaimFromToken(TokenClaims.userId);
+    console.log("hii",userId);
+    if(userId)
+    this.userService.getUserNamesWithId(userId).subscribe((response) => {
+      this.name = response[0].fullName;
+    });
 
   }
 

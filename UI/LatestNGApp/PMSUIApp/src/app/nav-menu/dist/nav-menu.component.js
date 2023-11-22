@@ -25,9 +25,9 @@ var NavMenuComponent = /** @class */ (function () {
                 console.log(response);
                 _this.name = response.name;
             });
-            var userId = localStorage.getItem('userId');
+            var userId = this.authservice.getClaimFromToken(TokenClaims.userId);
             if (userId !== null) {
-                this.userService.getUserRole(Number(userId)).subscribe(function (res) {
+                this.userService.getUserRole(userId).subscribe(function (res) {
                     _this.roles = res;
                     _this.role = _this.roles[0];
                 });

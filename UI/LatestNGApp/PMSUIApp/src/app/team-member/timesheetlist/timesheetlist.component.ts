@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { TokenClaims } from 'src/app/Models/Enums/tokenClaims';
 import { Mytimesheetlist } from 'src/app/Models/mytimesheetlist';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { EmployeeService } from 'src/app/Services/employee.service';
 import { TaskService } from 'src/app/Services/task.service';
 import { TimeSheetService } from 'src/app/Services/timesheet.service';
@@ -17,11 +19,12 @@ teamMemberId: number = 0;
   selectedTimePeriod:string="today"
 constructor(private timeSheetService: TimeSheetService,
     private router: Router,
-    private employeeService:EmployeeService) {}
+    private employeeService:EmployeeService,
+    private authservice:AuthenticationService) {}
 
   ngOnInit() {
-    let userId = localStorage.getItem('userId');
-    this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
+    let userId = this.authservice.getClaimFromToken(TokenClaims.userId);
+    this.employeeService.getEmployeeId(userId).subscribe((res) => {
       this.teamMemberId = res;
       this.getMyTimeSheet(this.selectedTimePeriod)
   })

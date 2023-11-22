@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenClaims } from 'src/app/Models/Enums/tokenClaims';
 import { Assignedtaskbymanager } from 'src/app/Models/assignedtaskbymanager';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { EmployeeService } from 'src/app/Services/employee.service';
 import { ProjectService } from 'src/app/Services/project.service';
 import { UserService } from 'src/app/Services/user.service';
@@ -16,10 +18,10 @@ export class AssignedtasksbymanagerComponent implements OnInit {
   teamManagerId:number=0
   projectName:string =''
   selectedTaskId:number| null=null
-  constructor(private employeeService:EmployeeService,private projectService:ProjectService,private userService:UserService){}
+  constructor( private authservice:AuthenticationService,private employeeService:EmployeeService,private projectService:ProjectService,private userService:UserService){}
   ngOnInit(): void {
-    let userId = localStorage.getItem('userId');
-    this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
+    let userId = this.authservice.getClaimFromToken(TokenClaims.userId);
+    this.employeeService.getEmployeeId(userId).subscribe((res) => {
       this.teamManagerId = res;
       this.getFilteredAssignedTasks(this.selectedTimePeriod)
   })
@@ -43,7 +45,7 @@ getFilteredAssignedTasks(timePeriod:string){
           (element) => element.id === item.teamMemberUserId
         );
         if (matchingItem != undefined)
-          item.teamMember = matchingItem.name;
+          item.teamMember = matchingItem.fullName;
         console.log(matchingItem);
   })
 })

@@ -61,7 +61,7 @@ export class AssigntheunassignedtaskComponent implements OnInit {
                     (element) => element.id === item.userId
                   );
                   if (matchingItem != undefined)
-                    item.employeeName = matchingItem.name;
+                    item.employeeName = matchingItem.fullName;
                 });
               });
           });

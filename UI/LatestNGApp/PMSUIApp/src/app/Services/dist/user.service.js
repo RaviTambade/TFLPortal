@@ -32,9 +32,9 @@ var UserService = /** @class */ (function () {
     };
     UserService.prototype.loadUserRole = function () {
         var _this = this;
-        var userId = localStorage.getItem('userId');
+        var userId = this.authservice.getClaimFromToken(TokenClaims.userId);
         if (userId !== null) {
-            this.getUserRole(Number(userId)).subscribe(function (res) {
+            this.getUserRole(userId).subscribe(function (res) {
                 _this.roles = res;
             });
         }

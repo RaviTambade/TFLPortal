@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TokenClaims } from 'src/app/Models/Enums/tokenClaims';
 import { Projectlist } from 'src/app/Models/projectlist';
 import { Projecttaskcount } from 'src/app/Models/projecttaskcount';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { EmployeeService } from 'src/app/Services/employee.service';
 import { ProjectService } from 'src/app/Services/project.service';
 import { TaskService } from 'src/app/Services/task.service';
@@ -22,7 +24,7 @@ export class ManagerprojectsComponent implements OnInit {
   constructor(
     private projectService: ProjectService,
     private router: Router,
-    private employeeService: EmployeeService  ) {
+    private employeeService: EmployeeService, private authservice:AuthenticationService ) {
     this.projectTaskCount = {
       completedTaskCount: 0,
       totalTaskCount: 0,
@@ -37,8 +39,8 @@ export class ManagerprojectsComponent implements OnInit {
     return new Date(year, month, day);
   }
   ngOnInit() {
-    let userId = localStorage.getItem('userId');
-    this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
+    let userId = this.authservice.getClaimFromToken(TokenClaims.userId);
+    this.employeeService.getEmployeeId(userId).subscribe((res) => {
       this.teamManagerId = res;
       this.projectService
         .getManagerProjects(this.teamManagerId)

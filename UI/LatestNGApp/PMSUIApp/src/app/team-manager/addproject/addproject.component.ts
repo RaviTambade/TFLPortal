@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TokenClaims } from 'src/app/Models/Enums/tokenClaims';
 import { Addproject } from 'src/app/Models/addproject';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { EmployeeService } from 'src/app/Services/employee.service';
 import { ProjectService } from 'src/app/Services/project.service';
 
@@ -17,7 +19,7 @@ export class AddprojectComponent implements OnInit {
     private formBuilder: FormBuilder,
     private employeeService: EmployeeService,
     private projectService: ProjectService,
-    private router:Router
+    private router:Router, private authservice:AuthenticationService
   ) {
     this.addProjectForm = this.formBuilder.group({
       title: ['', Validators.required],
@@ -29,8 +31,8 @@ export class AddprojectComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    let userId = localStorage.getItem('userId');
-    this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
+    let userId = this.authservice.getClaimFromToken(TokenClaims.userId);
+    this.employeeService.getEmployeeId(userId).subscribe((res) => {
       this.managerId = res;
       });
   }

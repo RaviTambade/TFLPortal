@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TokenClaims } from 'src/app/Models/Enums/tokenClaims';
 import { Unassignedtaskbymanager } from 'src/app/Models/unassignedtaskbymanager';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { EmployeeService } from 'src/app/Services/employee.service';
 import { ProjectService } from 'src/app/Services/project.service';
 import { TaskService } from 'src/app/Services/task.service';
@@ -18,10 +20,10 @@ export class UnassignedtasksbymanagerComponent {
   projectName:string =''
   selectedTaskId:number| null=null
   selectedTaskId2:number| null=null
-  constructor(private employeeService:EmployeeService,private taskService:TaskService,private projectService:ProjectService,private router:Router){}
+  constructor( private authservice:AuthenticationService,private employeeService:EmployeeService,private taskService:TaskService,private projectService:ProjectService,private router:Router){}
   ngOnInit(): void {
-    let userId = localStorage.getItem('userId');
-    this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
+    let userId = this.authservice.getClaimFromToken(TokenClaims.userId);
+    this.employeeService.getEmployeeId(userId).subscribe((res) => {
       this.teamManagerId = res;
       this.getFilteredUnAssignedTasks(this.selectedTimePeriod)
   })

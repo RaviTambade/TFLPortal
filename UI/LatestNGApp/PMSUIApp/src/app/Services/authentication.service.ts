@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { Credential } from '../Models/credential';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { LocalStorageKeys } from '../Models/Enums/local-storage-keys';
+import { TokenClaims } from '../Models/Enums/tokenClaims';
 
 
 @Injectable({
@@ -30,6 +31,16 @@ export class AuthenticationService {
       }
     }
     return [];
+  }
+
+
+  getClaimFromToken(claim: TokenClaims) {
+    let token = localStorage.getItem(LocalStorageKeys.jwt);
+    if (token) {
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      return decodedToken[claim];
+    }
+    return null;
   }
 
 }

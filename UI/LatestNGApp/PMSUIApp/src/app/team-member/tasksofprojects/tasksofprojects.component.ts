@@ -42,7 +42,7 @@ export class TasksofprojectsComponent implements OnInit {
             (element) => element.id === item.teamMemberUserId
           );
           if (matchingItem != undefined)
-            item.employeeName = matchingItem.name;
+            item.employeeName = matchingItem.fullName;
         });
     })
   })

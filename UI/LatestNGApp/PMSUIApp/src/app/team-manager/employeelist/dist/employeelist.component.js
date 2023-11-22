@@ -19,8 +19,8 @@ var EmployeelistComponent = /** @class */ (function () {
     }
     EmployeelistComponent.prototype.ngOnInit = function () {
         var _this = this;
-        var userId = localStorage.getItem('userId');
-        this.employeeService.getEmployeeId(Number(userId)).subscribe(function (res) {
+        var userId = this.authservice.getClaimFromToken(TokenClaims.userId);
+        this.employeeService.getEmployeeId(userId).subscribe(function (res) {
             _this.teamManagerId = res;
             _this.employeeService.getUserIdByManagerId(_this.teamManagerId).subscribe(function (res) {
                 var employeeUserIds = res;

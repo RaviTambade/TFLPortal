@@ -4,7 +4,7 @@
 <br>
 <div class="card-container">
     <div *ngFor="let employee of teamMembers" class="card" (click)="onTeamMemberClick(employee.id)">
-        <span class="hover-link">{{employee.name}}</span> 
+        <span class="hover-link">{{employee.fullName}}</span> 
     </div>
   </div>
   

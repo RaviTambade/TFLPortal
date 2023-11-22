@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TokenClaims } from 'src/app/Models/Enums/tokenClaims';
 import { Timesheetlist } from 'src/app/Models/timesheetlist';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { EmployeeService } from 'src/app/Services/employee.service';
 import { TimeSheetService } from 'src/app/Services/timesheet.service';
 import { UserService } from 'src/app/Services/user.service';
@@ -19,11 +21,11 @@ export class TimesheetlistComponent implements OnInit {
     private router:Router,
     private timeSheetService:TimeSheetService,
     private employeeService:EmployeeService,
-    private userService:UserService
+    private userService:UserService, private authservice:AuthenticationService
   ) {}
   ngOnInit(): void {
-    let userId = localStorage.getItem('userId');
-    this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
+    let userId = this.authservice.getClaimFromToken(TokenClaims.userId);
+    this.employeeService.getEmployeeId(userId).subscribe((res) => {
       this.managerId = res;
       this.getTimeSheetList(this.selectedTimePeriod)
 })
@@ -44,7 +46,7 @@ export class TimesheetlistComponent implements OnInit {
         (element) => element.id === item.employeeUserId
       );
       if (matchingItem != undefined)
-        item.employeeName = matchingItem.name;
+        item.employeeName = matchingItem.fullName;
     });
   })
 

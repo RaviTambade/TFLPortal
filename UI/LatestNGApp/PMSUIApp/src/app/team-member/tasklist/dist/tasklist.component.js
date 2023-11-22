@@ -27,8 +27,8 @@ var TasklistComponent = /** @class */ (function () {
         var _this = this;
         this.taskService.selectedTaskId$.subscribe(function (taskId) {
             _this.taskId = taskId;
-            var userId = localStorage.getItem('userId');
-            _this.employeeService.getEmployeeId(Number(userId)).subscribe(function (res) {
+            var userId = this.authservice.getClaimFromToken(TokenClaims.userId);
+            _this.employeeService.getEmployeeId(userId).subscribe(function (res) {
                 _this.teamMemberId = res;
                 _this.filterMyTasks(_this.selectedTimePeriod);
             });

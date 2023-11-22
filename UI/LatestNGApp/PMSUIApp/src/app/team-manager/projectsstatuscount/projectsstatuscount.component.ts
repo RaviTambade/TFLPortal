@@ -4,6 +4,8 @@ import { BaseChartDirective } from 'ng2-charts';
 import { Projectstatuscount } from 'src/app/Models/projectstatuscount';
 import { EmployeeService } from 'src/app/Services/employee.service';
 import { BIserviceService } from 'src/app/Services/biservice.service';
+import { TokenClaims } from 'src/app/Models/Enums/tokenClaims';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 
 @Component({
   selector: 'app-projectsstatuscount',
@@ -15,7 +17,7 @@ export class ProjectsstatuscountComponent implements OnInit {
   projectStatusCount:Projectstatuscount[]=[]
 
   constructor(private employeeService:EmployeeService,
-    private biService:BIserviceService){}
+    private biService:BIserviceService, private authservice:AuthenticationService){}
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
 
   public barChartOptions: ChartConfiguration['options'] = {
@@ -49,8 +51,9 @@ export class ProjectsstatuscountComponent implements OnInit {
     ],
   };
   ngOnInit(): void {
-    let userId = localStorage.getItem('userId');
-    this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
+    let userId = this.authservice.getClaimFromToken(TokenClaims.userId);
+    console.log(userId);
+    this.employeeService.getEmployeeId(userId).subscribe((res) => {
       this.teamManagerId = res;
       this.getProjectStatusCount(this.teamManagerId)
   })

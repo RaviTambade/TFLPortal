@@ -9,6 +9,8 @@ import { UserService } from 'src/app/Services/user.service';
 import 'chartjs-plugin-datalabels';
 import { BIserviceService } from 'src/app/Services/biservice.service';
 import { DateRange } from 'src/app/Models/Enums/date-range';
+import { TokenClaims } from 'src/app/Models/Enums/tokenClaims';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 
 @Component({
   selector: 'app-projectworkbyteammembers',
@@ -29,7 +31,7 @@ dateRangeOptions: string[] = ['today', 'yesterday', 'weekly', 'monthly', 'custom
     private biService: BIserviceService,
     private userService: UserService,
     private projectService: ProjectService,
-    private employeeService: EmployeeService
+    private employeeService: EmployeeService, private authservice:AuthenticationService
   ) {}
   public barChartOptions: ChartConfiguration['options'] = {
     responsive: true,
@@ -65,8 +67,8 @@ dateRangeOptions: string[] = ['today', 'yesterday', 'weekly', 'monthly', 'custom
   };
 
   ngOnInit(): void {
-    let userId = localStorage.getItem('userId');
-    this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
+    let userId = this.authservice.getClaimFromToken(TokenClaims.userId);
+    this.employeeService.getEmployeeId(userId).subscribe((res) => {
       this.teamManagerId = res;
       this.fetchProjectWork(this.selectedProjectId,this.selectedGivenDate,this.selectedDateRange);
       console.log(this.selectedProjectId);
@@ -81,7 +83,7 @@ dateRangeOptions: string[] = ['today', 'yesterday', 'weekly', 'monthly', 'custom
     this.biService.getTotalHoursOfMembers(projectId,givenDate,dateRange).subscribe((res) => {
       this.projectWorkByMember = res;
       let teamMemberIds = this.projectWorkByMember.map((u) => u.userId);
-      if (teamMemberIds !== null) {
+      if (teamMemberIds.length) {
         let teamMemberStringIds = teamMemberIds.join(',');
         this.userService
           .getUserNamesWithId(teamMemberStringIds)
@@ -93,7 +95,7 @@ dateRangeOptions: string[] = ['today', 'yesterday', 'weekly', 'monthly', 'custom
                   (element) => element.id === item.userId
                 );
                 if (matchingItem != undefined)
-                  item.employeeName = matchingItem.name;
+                  item.employeeName = matchingItem.fullName;
                 if (this.projectWorkByMember != undefined) {
                   this.barChartData.labels = this.projectWorkByMember.map(
                     (work) => work.employeeName

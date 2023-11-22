@@ -38,8 +38,8 @@ var UpdateprojectComponent = /** @class */ (function () {
         var _this = this;
         this.route.params.subscribe(function (params) {
             _this.projectId = params['projectId'];
-            var userId = localStorage.getItem('userId');
-            _this.employeeService.getEmployeeId(Number(userId)).subscribe(function (res) {
+            var userId = this.authservice.getClaimFromToken(TokenClaims.userId);
+            _this.employeeService.getEmployeeId(userId).subscribe(function (res) {
                 _this.teamManagerId = res;
                 _this.projectService.getProjectDetails(_this.projectId).subscribe(function (res) {
                     _this.projectdetail = res;

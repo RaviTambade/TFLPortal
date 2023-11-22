@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenClaims } from 'src/app/Models/Enums/tokenClaims';
 import { Allocatedtaskoverview } from 'src/app/Models/allocatedtaskoverview';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { BIserviceService } from 'src/app/Services/biservice.service';
 import { EmployeeService } from 'src/app/Services/employee.service';
 import { ProjectService } from 'src/app/Services/project.service';
@@ -20,13 +22,14 @@ export class GetallocatedtaskoverviewComponent implements OnInit {
     private biService: BIserviceService,
     private employeeService: EmployeeService,
     private projectService:ProjectService,
-    public userService:UserService
+    public userService:UserService, 
+    private authservice:AuthenticationService
   ) {}
 
   ngOnInit(): void {
     this.startCarousel();
-    let userId = localStorage.getItem('userId');
-    this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
+    let userId = this.authservice.getClaimFromToken(TokenClaims.userId);
+    this.employeeService.getEmployeeId(userId).subscribe((res) => {
       this.teamManagerId = res;
       this.projectService.getTeamMemberIds(this.teamManagerId).subscribe((res)=>{
         this.teamMemberIds = res
@@ -46,7 +49,7 @@ export class GetallocatedtaskoverviewComponent implements OnInit {
                   (element) => element.id === item.userId
                 );
                 if (matchingItem != undefined)
-                  item.employeeName = matchingItem.name;
+                  item.employeeName = matchingItem.fullName;
         })
       })
     });

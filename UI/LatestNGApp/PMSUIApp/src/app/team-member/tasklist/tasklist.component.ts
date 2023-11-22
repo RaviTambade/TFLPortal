@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TokenClaims } from 'src/app/Models/Enums/tokenClaims';
 import { Mytasklist } from 'src/app/Models/mytasklist';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { EmployeeService } from 'src/app/Services/employee.service';
 import { ProjectService } from 'src/app/Services/project.service';
 import { TaskService } from 'src/app/Services/task.service';
@@ -20,6 +22,7 @@ export class TasklistComponent implements OnInit {
   teamMemberId: number = 0;
   selectedTimePeriod:string="today"
   constructor(
+    public authservice:AuthenticationService,
     public taskService: TaskService,
     public projectService: ProjectService,
     public employeeService:EmployeeService,
@@ -28,8 +31,8 @@ export class TasklistComponent implements OnInit {
   ngOnInit(): void {
     this.taskService.selectedTaskId$.subscribe((taskId) => {
       this.taskId = taskId;
-    let userId = localStorage.getItem('userId');
-    this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
+    let userId = this.authservice.getClaimFromToken(TokenClaims.userId);
+    this.employeeService.getEmployeeId(userId).subscribe((res) => {
       this.teamMemberId = res;
       this.filterMyTasks(this.selectedTimePeriod) 
    

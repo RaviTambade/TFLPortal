@@ -22,8 +22,8 @@ var GetallocatedtaskoverviewComponent = /** @class */ (function () {
     GetallocatedtaskoverviewComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.startCarousel();
-        var userId = localStorage.getItem('userId');
-        this.employeeService.getEmployeeId(Number(userId)).subscribe(function (res) {
+        var userId = this.authservice.getClaimFromToken(TokenClaims.userId);
+        this.employeeService.getEmployeeId(userId).subscribe(function (res) {
             _this.teamManagerId = res;
             _this.projectService.getTeamMemberIds(_this.teamManagerId).subscribe(function (res) {
                 _this.teamMemberIds = res;

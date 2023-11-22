@@ -4,42 +4,35 @@ import { Observable } from 'rxjs';
 import { User } from '../Models/user';
 import { NameId } from '../Models/name-id';
 import { Userinfo } from '../Models/userinfo';
+import { TokenClaims } from '../Models/Enums/tokenClaims';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   private roles: string[] = [];
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private authservice:AuthenticationService) {
     this.loadUserRole();
   }
 
   getUserByContact(contactNumber: string): Observable<User> {
-    let url = 'http://localhost:5102/api/users/username/' + contactNumber;
+    let url = 'http://localhost:5142/api/users/username/' + contactNumber;
     return this.httpClient.get<User>(url);
   }
 
-  getUserRole(userId: number): Observable<string[]> {
-    let url = 'http://localhost:5031/api/userroles/roles/' + userId;
-    return this.httpClient.get<string[]>(url);
-  }
 
   getUserNamesWithId(userId: string): Observable<NameId[]> {
-    let url = 'http://localhost:5102/api/users/name/' + userId;
+    let url = 'http://localhost:5142/api/users/name/' + userId;
     return this.httpClient.get<NameId[]>(url);
   }
   getUser(id: number): Observable<Userinfo> {
-    let url = 'http://localhost:5102/api/users/' + id;
+    let url = 'http://localhost:5142/api/users/' + id;
     return this.httpClient.get<Userinfo>(url);
   }
   
   private loadUserRole() {
-    const userId = localStorage.getItem('userId');
-    if (userId !== null) {
-      this.getUserRole(Number(userId)).subscribe((res) => {
-        this.roles = res;
-      });
-    }
+  this.roles=this.authservice.getRolesFromToken();
   }
 
   isUserHaveRequiredRole(role: string): boolean {

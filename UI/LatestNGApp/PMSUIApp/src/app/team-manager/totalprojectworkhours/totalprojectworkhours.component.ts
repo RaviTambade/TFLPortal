@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenClaims } from 'src/app/Models/Enums/tokenClaims';
 import { Datefilter } from 'src/app/Models/datefilter';
 import { Totalprojectwork } from 'src/app/Models/totalprojectwork';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { BIserviceService } from 'src/app/Services/biservice.service';
 import { EmployeeService } from 'src/app/Services/employee.service';
 import { ProjectService } from 'src/app/Services/project.service';
@@ -20,10 +22,10 @@ dateFilter:Datefilter={
 selectedProjectId: number | null = null;
 constructor(private biService:BIserviceService,
   private projectService:ProjectService,
-  private employeeService:EmployeeService){}
+  private employeeService:EmployeeService, private authservice:AuthenticationService){}
 ngOnInit(): void {
-  let userId = localStorage.getItem('userId');
-  this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
+  let userId = this.authservice.getClaimFromToken(TokenClaims.userId);
+  this.employeeService.getEmployeeId(userId).subscribe((res) => {
     this.teamManagerId = res;
   this.biService.getTotalProjectWorkHours(this.teamManagerId,this.dateFilter).subscribe((res)=>{
     this.totalProjectWork=res

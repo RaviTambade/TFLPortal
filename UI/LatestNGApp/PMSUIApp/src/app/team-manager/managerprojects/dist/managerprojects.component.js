@@ -34,8 +34,8 @@ var ManagerprojectsComponent = /** @class */ (function () {
     };
     ManagerprojectsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        var userId = localStorage.getItem('userId');
-        this.employeeService.getEmployeeId(Number(userId)).subscribe(function (res) {
+        var userId = this.authservice.getClaimFromToken(TokenClaims.userId);
+        this.employeeService.getEmployeeId(userId).subscribe(function (res) {
             _this.teamManagerId = res;
             _this.projectService
                 .getManagerProjects(_this.teamManagerId)

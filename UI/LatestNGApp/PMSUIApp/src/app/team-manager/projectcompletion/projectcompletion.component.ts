@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenClaims } from 'src/app/Models/Enums/tokenClaims';
 import { Projectname } from 'src/app/Models/projectname';
 import { Projectpercentage } from 'src/app/Models/projectpercentage';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { BIserviceService } from 'src/app/Services/biservice.service';
 import { EmployeeService } from 'src/app/Services/employee.service';
 import { ProjectService } from 'src/app/Services/project.service';
@@ -18,12 +20,13 @@ export class ProjectcompletionComponent implements OnInit {
   constructor(
     private employeeService: EmployeeService,
     private projectService: ProjectService,
-    private biService: BIserviceService
+    private biService: BIserviceService,
+    private authservice:AuthenticationService
   ) {}
 
   ngOnInit(): void {
-    let userId = localStorage.getItem('userId');
-    this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
+    let userId = Number(this.authservice.getClaimFromToken(TokenClaims.userId));
+    this.employeeService.getEmployeeId(userId).subscribe((res) => {
       this.teamManagerId = res;
       this.projectService.getManagerProjectNames(this.teamManagerId).subscribe((res) => {
         this.projectNames = res;

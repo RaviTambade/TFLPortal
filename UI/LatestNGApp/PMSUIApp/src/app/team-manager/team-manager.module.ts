@@ -27,6 +27,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { ProjectsstatuscountComponent } from './projectsstatuscount/projectsstatuscount.component';
 import { ProjectcompletionComponent } from './projectcompletion/projectcompletion.component';
 import { GetallocatedtaskoverviewComponent } from './getallocatedtaskoverview/getallocatedtaskoverview.component';
+import { ProjectListComponent } from './project-list/project-list.component';
 
 
 export const teammanagerRoutes:Routes=[
@@ -70,6 +71,7 @@ export const teammanagerRoutes:Routes=[
     ProjectsstatuscountComponent,
     ProjectcompletionComponent,
     GetallocatedtaskoverviewComponent,
+    ProjectListComponent,
   ],
   imports: [
     CommonModule,

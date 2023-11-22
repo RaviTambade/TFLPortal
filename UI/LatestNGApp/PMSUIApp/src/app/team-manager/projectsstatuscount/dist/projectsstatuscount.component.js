@@ -47,8 +47,8 @@ var ProjectsstatuscountComponent = /** @class */ (function () {
     }
     ProjectsstatuscountComponent.prototype.ngOnInit = function () {
         var _this = this;
-        var userId = localStorage.getItem('userId');
-        this.employeeService.getEmployeeId(Number(userId)).subscribe(function (res) {
+        var userId = this.authservice.getClaimFromToken(TokenClaims.userId);
+        this.employeeService.getEmployeeId(userId).subscribe(function (res) {
             _this.teamManagerId = res;
             _this.getProjectStatusCount(_this.teamManagerId);
         });

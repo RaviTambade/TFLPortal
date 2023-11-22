@@ -30,7 +30,7 @@ projectId: number =0;
           let teamManagerUserIdString=this.teamMembersUserId.join(",")
           this.userService.getUserNamesWithId(teamManagerUserIdString).subscribe((res)=>{
             this.teamMembers=res
-           return this.teamMember=res.map(res=>res.name)
+           return this.teamMember=res.map(res=>res.fullName)
             
           })
         }

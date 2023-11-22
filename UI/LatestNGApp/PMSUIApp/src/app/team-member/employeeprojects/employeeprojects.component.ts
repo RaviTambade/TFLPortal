@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TokenClaims } from 'src/app/Models/Enums/tokenClaims';
 import { NameId } from 'src/app/Models/name-id';
 import { Projectlist } from 'src/app/Models/projectlist';
 import { Projecttaskcount } from 'src/app/Models/projecttaskcount';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { EmployeeService } from 'src/app/Services/employee.service';
 import { ProjectService } from 'src/app/Services/project.service';
 import { TaskService } from 'src/app/Services/task.service';
@@ -24,7 +26,8 @@ export class EmployeeprojectsComponent implements OnInit {
     private projectService: ProjectService,
     private employeeService: EmployeeService,
     private userService: UserService,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private authService:AuthenticationService
   ) {
     this.projectTaskCount = {
       completedTaskCount: 0,
@@ -32,8 +35,9 @@ export class EmployeeprojectsComponent implements OnInit {
     };
   }
   ngOnInit() {
-    let userId = localStorage.getItem('userId');
-    this.employeeService.getEmployeeId(Number(userId)).subscribe((res) => {
+    let userId =this.authService.getClaimFromToken(TokenClaims.userId);
+    console.log(userId);
+    this.employeeService.getEmployeeId(userId).subscribe((res) => {
       this.teamMemberId = res;
       this.projectService
         .getProjectsList(this.teamMemberId)
@@ -54,7 +58,7 @@ export class EmployeeprojectsComponent implements OnInit {
                   (element) => element.id === item.teamManagerUserId
                 );
                 if (matchingItem != undefined)
-                  item.teamManager = matchingItem.name;
+                  item.teamManager = matchingItem.fullName;
               });
               this.projectList.forEach((project) => {
                 this.taskService
