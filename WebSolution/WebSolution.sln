@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFLOBL", "TFLOBL\TFLOBL.csproj", "{BF5B01C3-61BD-4547-A617-F12788B2DC7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFLDAL", "TFLDAL\TFLDAL.csproj", "{2AB2BB70-2811-4A39-87B7-287E794149A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFLSAL", "TFLSAL\TFLSAL.csproj", "{322364A8-37E9-4D73-B2E8-988A5BBF0D1A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF5B01C3-61BD-4547-A617-F12788B2DC7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF5B01C3-61BD-4547-A617-F12788B2DC7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF5B01C3-61BD-4547-A617-F12788B2DC7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF5B01C3-61BD-4547-A617-F12788B2DC7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AB2BB70-2811-4A39-87B7-287E794149A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AB2BB70-2811-4A39-87B7-287E794149A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AB2BB70-2811-4A39-87B7-287E794149A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AB2BB70-2811-4A39-87B7-287E794149A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{322364A8-37E9-4D73-B2E8-988A5BBF0D1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{322364A8-37E9-4D73-B2E8-988A5BBF0D1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{322364A8-37E9-4D73-B2E8-988A5BBF0D1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{322364A8-37E9-4D73-B2E8-988A5BBF0D1A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
