@@ -1,4 +1,4 @@
--- Active: 1694968636816@@127.0.0.1@3306@pms
+-- Active: 1696576841746@@127.0.0.1@3306@pms
 
     DROP DATABASE IF EXISTS PMS;
     CREATE DATABASE PMS;
@@ -7,7 +7,7 @@
     CREATE TABLE
         employees(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-            userid INT NOT NULL,
+            userid INT NOT NULL UNIQUE,
             hiredate DATETIME,
             reportingid INT,
             CONSTRAINT fk_employees FOREIGN KEY(reportingid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
