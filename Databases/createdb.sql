@@ -1,4 +1,4 @@
--- Active: 1696576841746@@127.0.0.1@3306@pms
+-- Active: 1694968636816@@127.0.0.1@3306@pms
 
     DROP DATABASE IF EXISTS PMS;
     CREATE DATABASE PMS;
@@ -75,9 +75,9 @@
             id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
             date DATETIME,
         status ENUM (     
-                'Pending',
-                'In-Progress',
-                'Completed') DEFAULT 'Pending', 
+                'NotStarted',
+                'InProgress',
+                'Completed') DEFAULT 'NotStarted', 
             employeeid INT NOT NULL,
             CONSTRAINT fk_timesheets_taskallocations FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
         );
