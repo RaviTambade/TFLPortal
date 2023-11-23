@@ -23,11 +23,9 @@
             teammanagerid INT NOT NULL,
             CONSTRAINT fk_employees_projects FOREIGN KEY(teammanagerid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
             status enum(
-                'Pending',
-                'In-Progress',
-                'Completed',
-                'Canceled'
-            ) DEFAULT 'Pending'
+                'NotStarted',
+                'InProgress',
+                'Completed') DEFAULT 'NotStarted'
         );
 
     CREATE TABLE
