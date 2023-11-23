@@ -37,4 +37,52 @@ INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VA
 INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('OMTB','2021-10-10','2025-02-02','Ticket booking Management App',8,'Completed');
 INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('HMApp','2021-10-10','2025-02-02','Hospital Management App',9,'Completed');
 
- 
+INSERT INTO tasks (title, description,assigneddate,startdate,duedate,assignedto,assignedby,projectid) VALUES('task1','description1','2023-07-22 00:00:00','2023-07-29 00:00:00','2023-07-12 00:00:00',10,7,1);
+INSERT INTO tasks (title, description,assigneddate,startdate,duedate,assignedto,assignedby,projectid) VALUES('task1','description1','2023-11-23 00:00:00','2023-07-29 00:00:00','2023-07-12 00:00:00',11,8,2);
+INSERT INTO tasks (title, description,assigneddate,startdate,duedate,assignedto,assignedby,projectid) VALUES('task1','description1','2023-07-24 00:00:00','2023-07-22 00:00:00','2023-07-12 00:00:00',12,9,4);
+INSERT INTO tasks (title, description,assigneddate,startdate,duedate,assignedto,assignedby,projectid) VALUES('task1','description1','2023-06-25 00:00:00','2023-07-21 00:00:00','2023-07-12 00:00:00',13,7,5);
+INSERT INTO tasks (title, description,assigneddate,startdate,duedate,assignedto,assignedby,projectid) VALUES('task1','description1','2023-08-26 00:00:00','2023-07-24 00:00:00','2023-07-12 00:00:00',14,9,8);
+INSERT INTO tasks (title, description,assigneddate,startdate,duedate,assignedto,assignedby,projectid) VALUES('task1','description1','2023-07-27 00:00:00','2023-07-23 00:00:00','2023-07-12 00:00:00',15,7,3);
+INSERT INTO tasks (title, description,assigneddate,startdate,duedate,assignedto,assignedby,projectid) VALUES('task1','description1','2023-07-22 00:00:00','2023-07-27 00:00:00','2023-07-12 00:00:00',16,8,6);
+INSERT INTO tasks (title, description,assigneddate,startdate,duedate,assignedto,assignedby,projectid) VALUES('task1','description1','2023-07-28 00:00:00','2023-07-28 00:00:00','2023-07-12 00:00:00',17,9,7);
+INSERT INTO tasks (title, description,assigneddate,startdate,duedate,assignedto,assignedby,projectid) VALUES('task1','description1','2023-07-29 00:00:00','2023-07-29 00:00:00','2023-07-12 00:00:00',18,7,8);
+INSERT INTO tasks (title, description,assigneddate,startdate,duedate,assignedto,assignedby,projectid) VALUES('task1','description1','2023-07-30 00:00:00','2023-07-29 00:00:00','2023-07-12 00:00:00',15,8,9);
+INSERT INTO tasks (title, description,assigneddate,startdate,duedate,assignedto,assignedby,projectid) VALUES('task1','description1','2023-07-22 00:00:00','2023-07-29 00:00:00','2023-07-12 00:00:00',14,9,10);
+
+
+
+
+
+
+VALUES
+(1, 'Pending', '2023-07-21', '2023-07-21 00:00:00', '2023-07-21 01:00:00', 201),
+(1, 'In-Progress', '2023-07-22', '2023-07-22 00:00:00', '2023-07-22 01:00:00', 202),
+(1, 'Completed', '2023-07-23', '2023-07-23 00:00:00', '2023-07-23 01:00:00', 203),
+(1, 'Pending', '2023-07-24', '2023-07-24 00:00:00', '2023-07-24 01:00:00', 204),
+(1, 'In-Progress', '2023-07-25', '2023-07-25 00:00:00', '2023-07-25 01:00:00', 205),
+(1, 'Completed', '2023-07-26', '2023-07-26 00:00:00', '2023-07-26 01:00:00', 206),
+(1, 'Pending', '2023-07-27', '2023-07-27 00:00:00', '2023-07-27 01:00:00', 207),
+(1, 'In-Progress', '2023-07-28', '2023-07-28 00:00:00', '2023-07-28 01:00:00', 208),
+(1, 'Completed', '2023-07-29', '2023-07-29 00:00:00', '2023-07-29 01:00:00', 209),
+
+ CREATE TABLE
+        tasks(
+            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            title VARCHAR(50),
+            description TEXT,
+            assigneddate DATETIME,
+            startdate DATETIME,
+            duedate DATETIME,
+            assignedto INT NOT NULL, 10-18
+            CONSTRAINT fk_taskallocations_employees FOREIGN KEY (assignedto) REFERENCES members(id) ON UPDATE CASCADE ON DELETE CASCADE,
+            assignedby INT,7,8,9
+            CONSTRAINT fk_tasks_members FOREIGN KEY (assignedby) REFERENCES members(id) ON UPDATE CASCADE ON DELETE CASCADE,
+            projectid INT NOT NULL,
+            CONSTRAINT fk_tasks_projects FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
+            status ENUM (     
+                'NotStarted',
+                'InProgress',
+                'Completed') DEFAULT 'NotStarted'
+           
+          
+        );

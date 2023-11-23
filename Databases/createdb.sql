@@ -47,9 +47,9 @@
             assigneddate DATETIME,
             startdate DATETIME,
             duedate DATETIME,
-            assignedto INT NOT NULL,
+            assignedto INT NOT NULL, 10-18
             CONSTRAINT fk_taskallocations_employees FOREIGN KEY (assignedto) REFERENCES members(id) ON UPDATE CASCADE ON DELETE CASCADE,
-            assignedby INT,
+            assignedby INT,7,8,9
             CONSTRAINT fk_tasks_members FOREIGN KEY (assignedby) REFERENCES members(id) ON UPDATE CASCADE ON DELETE CASCADE,
             projectid INT NOT NULL,
             CONSTRAINT fk_tasks_projects FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
