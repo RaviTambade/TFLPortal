@@ -1,0 +1,15 @@
+<!-- <app-insert></app-insert> -->
+
+<project-list (selectedProjectId)="onReceiveProjectId($event)"></project-list>
+<div class="card">
+    <div *ngIf="project" class="row">
+        <div class="col-6">
+            <project-details [project]="project"></project-details>
+        </div>
+        <div class="col-6">
+            <projectmember-list [projectId]="project.id"> </projectmember-list>
+        </div>
+    </div>
+</div>
+
+<!-- <task-details></task-details> -->
