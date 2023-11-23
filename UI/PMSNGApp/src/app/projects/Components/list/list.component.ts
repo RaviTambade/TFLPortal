@@ -8,7 +8,7 @@ import { Project } from '../../Models/project';
   styleUrls: ['./list.component.css'],
 })
 export class ListComponent implements OnInit {
-  @Output() selectedProjectId = new EventEmitter<number>();
+  @Output() selectedProjectId = new EventEmitter<Project>();
   constructor(private service: ProjectsService) {}
 
   projects: Project[] = [];
@@ -16,12 +16,12 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.service.getProjectsList(this.teammemberId).subscribe((res) => {
       this.projects = res;
-      this.selectedProjectId.emit(this.projects[0].id); 
+      this.selectedProjectId.emit(this.projects[0]); 
     });
   }
 
-  onClickProject(projectId: number) {
-    this.selectedProjectId.emit(projectId);
+  onClickProject(project: Project) {
+    this.selectedProjectId.emit(project);
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Project } from './projects/Models/project';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'PMSNGApp';
-  projectId: number | undefined;
+  project: Project | undefined;
 
-  onReceiveProjectId(selectedProjectIdevent: number) {
-    this.projectId = selectedProjectIdevent;
+  onReceiveProjectId(selectedProjectevent: Project) {
+    this.project = selectedProjectevent;
   }
 }

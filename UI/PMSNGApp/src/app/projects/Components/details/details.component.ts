@@ -8,24 +8,15 @@ import { ResourceManagementService } from 'src/app/resource-management/Services/
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css'],
 })
-export class DetailsComponent  {
-  projectDetails: Project = {
-    id: 0,
-    title: '',
-    startDate: '',
-    status: '',
-    teamManagerUserId: 0,
-    teamManagerId: 0,
-  };
+export class DetailsComponent {
+  constructor(
+    private service: ProjectsService,
+    private resourceSvc: ResourceManagementService
+  ) {}
 
-  constructor(private service: ProjectsService,private resourceSvc:ResourceManagementService) {}
-
-  @Input() projectId!: number;
+  @Input() project!: Project;
 
   ngOnChanges(changes: SimpleChanges) {
-    this.service.getProjectDetailsById(changes["projectId"].currentValue).subscribe((res) => {
-      this.projectDetails = res;
-      console.log("🚀 ~ this.service.getProjectDetailsById ~ res:", res);
-    });
+    this.project = changes['project'].currentValue;
   }
 }
