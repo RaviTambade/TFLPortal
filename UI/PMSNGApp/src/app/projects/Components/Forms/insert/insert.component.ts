@@ -41,8 +41,8 @@ export class InsertComponent implements OnInit {
         id: 0,
         title: this.addProjectForm.get('title')?.value,
         startDate: this.addProjectForm.get('startDate')?.value,
-        endDate: this.addProjectForm.get('endDate')?.value,
-        description: this.addProjectForm.get('description')?.value,
+        // endDate: this.addProjectForm.get('endDate')?.value,
+        // description: this.addProjectForm.get('description')?.value,
         status: this.addProjectForm.get('status')?.value,
         teamManagerId: this.addProjectForm.get('teamManagerId')?.value,
         teamManagerUserId: 0
