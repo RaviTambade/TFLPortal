@@ -1,9 +1,8 @@
-<div *ngFor="let project of projects">
-    <!-- <p>{{project.id}}</p>  -->
-    {{project.title}}
-     <!-- <p>{{project.startDate}}</p>
-    <p>{{project.teamManagerId}}</p>
-    <p>{{project.teamManagerUserId}}</p> -->
-    {{project.status}}
-    
+<div class="row">
+    <div class="d-flex justify-content-start ">
+        <div class="card m-3" *ngFor="let project of projects">
+            <div class="p-2" (click)="onClickProject(project.id)">{{project.title}}
+            </div>
+        </div>
+    </div>
 </div>
