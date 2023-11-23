@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Transflower.PMSApp.Tasks.Repositories.Interfaces;
 using Transflower.PMSApp.Tasks.Models;
 using Transflower.PMSApp.Tasks.Repositories.Contexts;
+using Task=System.Threading.Tasks.Task;
 namespace Transflower.PMSApp.Tasks.Repositories;
 public class TaskRepository : ITaskRepository
 {
@@ -88,6 +89,31 @@ public class TaskRepository : ITaskRepository
         {
             throw;
         }
+    }
+
+
+    public async Task<List<TaskResponse>> GetTasks(int projectId,int teamMemberId){
+         
+
+         var taskList = await (
+                from project in _taskContext.Projects
+                join projecttask in _taskContext.ProjectTasks
+                on project.Id equals projecttask.ProjectId
+                join task in _taskContext.Tasks
+                on projecttask.TaskId equals task.Id
+                join taskallocation in _taskContext.TaskAllocations
+                on projecttask.Id equals taskallocation.ProjectTaskId
+                where taskallocation.TeamMemberId == teamMemberId &&project.Id==projectId orderby taskallocation.AssignedOn descending
+                select new TaskResponse()
+                {
+                    TaskId = projecttask.Id,
+                    Title = task.Title,
+                    StartDate=projecttask.FromTime,
+                    EndDate=projecttask.ToTime,
+                    Status=projecttask.Status
+                }).ToListAsync();
+
+        return taskList;
     }
 
     public async Task<TaskDetail> GetTaskDetail(int taskId)

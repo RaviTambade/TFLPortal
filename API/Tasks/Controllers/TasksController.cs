@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Transflower.PMSApp.Tasks.Entities;
-using Transflower.PMSApp.Tasks.Models;
+ using Transflower.PMSApp.Tasks.Models;
 using Transflower.PMSApp.Tasks.Services.Interfaces;
 namespace Transflower.PMSApp.Tasks.Controller;
 [ApiController]
@@ -23,6 +23,13 @@ public class TasksController : ControllerBase
     public async Task<List<MyTaskList>> GetMyTasksList(int teamMemberId, string timePeriod)
     {
         return await _service.GetMyTasksList(teamMemberId, timePeriod);
+    }
+
+
+    [HttpGet("{projectId}/{teamMemberId}")]
+     public async Task<List<TaskResponse>> GetTasks(int projectId,int teamMemberId)
+    {
+        return await _service.GetTasks( projectId,teamMemberId);
     }
 
     [HttpGet("taskdetail/{taskId}")]

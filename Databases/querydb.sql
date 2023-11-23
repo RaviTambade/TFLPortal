@@ -1,7 +1,10 @@
 -- Active: 1694968636816@@127.0.0.1@3306@pms
 select * From timerecords where empid=2;
 select * from employees;
-select * from users;
+show TABLE
+
+desc projecttasks;
+select * from taskallocations;
 select * from roles;
 select * from userroles;
 select * from projectmembers;

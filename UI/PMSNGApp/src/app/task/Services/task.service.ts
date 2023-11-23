@@ -1,10 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Unassignedtask } from '../Models/unassignedtask';
-import { Projecttask } from '../Models/projecttask';
-import { Unassignedtaskbymanager } from '../Models/unassignedtaskbymanager';
-import { Assignedtaskbymanager } from '../Models/assignedtaskbymanager';
 import { task } from '../Models/task';
 
 @Injectable({

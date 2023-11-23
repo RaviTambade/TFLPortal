@@ -5,40 +5,12 @@
     USE PMS;
 
     CREATE TABLE
-        roles(
-            id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-            name varchar(20)
-        );
-
-    CREATE TABLE
-        userroles(
-            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-            userid INT NOT NULL,
-            roleid INT NOT NULL,
-            CONSTRAINT uc_userroles UNIQUE (userid, roleid),
-            CONSTRAINT fk_userroles_roles FOREIGN KEY(roleid) REFERENCES roles(id) ON UPDATE CASCADE ON DELETE CASCADE
-        );
-
-    CREATE TABLE
-        directors(
-            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-            corporateid INT NOT NULL,
-            userid INT NOT NULL,
-            CONSTRAINT fk_userroles_directors FOREIGN KEY(userid) REFERENCES userroles(userid) ON UPDATE CASCADE ON DELETE CASCADE
-        );
-
-    CREATE TABLE
         employees(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             userid INT NOT NULL,
-            department VARCHAR(50),
-            position VARCHAR(50),
             hiredate DATETIME,
-            directorid INT NOT NULL,
-            managerid INT,
-            CONSTRAINT fk_directors_employees FOREIGN KEY(directorid) REFERENCES directors(id) ON UPDATE CASCADE ON DELETE CASCADE,
-            CONSTRAINT fk_userroles_employees FOREIGN KEY(userid) REFERENCES userroles(userid) ON UPDATE CASCADE ON DELETE CASCADE,
-            CONSTRAINT fk_employees FOREIGN KEY(managerid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
+            reportingid INT,
+            CONSTRAINT fk_employees FOREIGN KEY(reportingid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
         );
 
     CREATE TABLE
@@ -59,59 +31,68 @@
         );
 
     CREATE TABLE
-        projectmembers(
+        members(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            membership VARCHAR(20),
+            membershipdate DATETIME,
             projectid INT NOT NULL,
             CONSTRAINT fk_projects_projectmembers FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
-            teammemberid INT NOT NULL,
-            CONSTRAINT fk_employee_projectmembers FOREIGN KEY(teammemberid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
+            employeeid INT NOT NULL,
+            CONSTRAINT fk_employee_projectmembers FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
         );
 
-
-    CREATE TABLE tasks(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                            title VARCHAR(50),
-                            description TEXT
-                            );
     CREATE TABLE
-        projecttasks(
+        tasks(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            title VARCHAR(50),
+            description TEXT,
+            assigneddate DATETIME,
+            startdate DATETIME,
+            duedate DATETIME,
+            assignedto INT NOT NULL,
+            CONSTRAINT fk_taskallocations_employees FOREIGN KEY (assignedto) REFERENCES members(id) ON UPDATE CASCADE ON DELETE CASCADE,
+            assignedby INT,
+            CONSTRAINT fk_tasks_members FOREIGN KEY (assignedby) REFERENCES members(id) ON UPDATE CASCADE ON DELETE CASCADE,
             projectid INT NOT NULL,
             CONSTRAINT fk_tasks_projects FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
             status ENUM (     
-                'Pending',
-                'In-Progress',
-                'Completed') DEFAULT 'Pending',
-            date DATETIME DEFAULT CURRENT_TIMESTAMP,
-            fromtime DATETIME,
-            totime DATETIME,
-            taskid INT NOT NULL,
-            CONSTRAINT fk_projecttasks_tasks FOREIGN KEY (taskid) REFERENCES tasks(id) ON UPDATE CASCADE ON DELETE CASCADE
+                'NotStarted',
+                'InProgress',
+                'Completed') DEFAULT 'NotStarted',
+           
+          
         );
 
-    CREATE TABLE
-        taskallocations(
-            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-            assignedon DATETIME DEFAULT CURRENT_TIMESTAMP ,
-            projecttaskid INT NOT NULL,
-            CONSTRAINT fk_taskallocations_projecttasks FOREIGN KEY (projecttaskid) REFERENCES projecttasks(id) ON UPDATE CASCADE ON DELETE CASCADE,
-            teammemberid INT NOT NULL,
-            CONSTRAINT fk_taskallocations_employees FOREIGN KEY (teammemberid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
-        );
+    -- CREATE TABLE
+    --     taskallocations(
+    --         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+           
+    --         projecttaskid INT NOT NULL,
+    --         CONSTRAINT fk_taskallocations_projecttasks FOREIGN KEY (projecttaskid) REFERENCES projecttasks(id) ON UPDATE CASCADE ON DELETE CASCADE,
+            
+    --     );
 
     CREATE TABLE
         timesheets(
             id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
             date DATETIME,
-            fromtime TIME,
-            totime TIME,
-            description TEXT,
         status ENUM (     
                 'Pending',
                 'In-Progress',
                 'Completed') DEFAULT 'Pending', 
-            taskallocationid INT NOT NULL,
-            CONSTRAINT fk_timesheets_taskallocations FOREIGN KEY(taskallocationid) REFERENCES taskallocations(id) ON UPDATE CASCADE ON DELETE CASCADE
+            employeeid INT NOT NULL,
+            CONSTRAINT fk_timesheets_taskallocations FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
         );
+
+
+        CREATE TABLE TimeSheetEntries(
+            id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+            description VARCHAR(225),
+            fromtime TIME,
+            totime TIME,
+            timesheetid INT NOT NULL,
+            CONSTRAINT fk_timesheets_timesheetentries FOREIGN KEY(timesheetid) REFERENCES timesheets(id) ON UPDATE CASCADE ON DELETE CASCADE
+            )
 
     -- CREATE TABLE projectchats(
     --     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,

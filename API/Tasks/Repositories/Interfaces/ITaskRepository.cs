@@ -4,6 +4,7 @@ namespace Transflower.PMSApp.Tasks.Repositories.Interfaces;
 public interface ITaskRepository{
     Task<ProjectTaskCount> GetProjectTaskCount(int projectId);
     Task<List<MyTaskList>> GetMyTasksList(int teamMemberId,string timePeriod);
+     Task<List<TaskResponse>> GetTasks(int projectId,int teamMemberId);
     Task<TaskDetail> GetTaskDetail(int taskId ); 
     Task<MoreTaskDetail> GetMoreTaskDetail(int taskId);
     Task<List<AllTaskList>> GetAllTaskList(int employeeId,string timePeriod);
