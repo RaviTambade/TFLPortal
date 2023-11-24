@@ -1,5 +1,12 @@
-<div *ngIf="taskdDetails">
-    <p>{{taskdDetails.id}}</p>
-    <p>{{taskdDetails.title}}</p>
-    <p>{{taskdDetails.description}}</p>
+<div *ngIf="tasks">
+    <!-- <p>{{tasks.id}}</p>
+    <p>{{tasks.title}}</p> -->
+    <!-- <p>Description:{{tasks.description}}</p> -->
+    <p>AssignDate:{{tasks.assignDate}}</p>
+    <p>StartDate:{{tasks.startDate}}</p>
+    <p>DueDate:{{tasks.dueDate}}</p>
+    <p>AssignedTo:{{tasks.assignedTo}}</p>
+    <p>AssignBy:{{tasks.assignedBy}}</p>
+    <p>ProjectId:{{tasks.projectId}}</p>
+    <p>Status:{{tasks.status}}</p>
 </div>

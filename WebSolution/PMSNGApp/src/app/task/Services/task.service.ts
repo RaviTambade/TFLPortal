@@ -16,4 +16,10 @@ export class TaskService {
     let url = this.serviceurl+"tasks/" + projectId +"/"+ memberId;
     return this.httpClient.get<task[]>(url);
   }
+
+
+  getTaskDetails(taskId:number): Observable<task> {
+    let url = this.serviceurl+"tasks/taskdetails/" +taskId;
+    return this.httpClient.get<task>(url);
+  }
 }

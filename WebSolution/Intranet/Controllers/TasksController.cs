@@ -21,4 +21,11 @@ public class TasksController : ControllerBase
         List<Transflower.TFLPortal.TFLOBL.Entities.Task> tasks = await _service.GetTasksOfMember(projectId,memberId);
         return tasks;
     }
+
+    [HttpGet("taskdetails/{taskId}")]
+    public async Task<Transflower.TFLPortal.TFLOBL.Entities.Task> GetTaskDetails(int taskId)
+    {
+        Transflower.TFLPortal.TFLOBL.Entities.Task task = await _service.GetTaskDetails(taskId);
+        return task;
+    }
 }

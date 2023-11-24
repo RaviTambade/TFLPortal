@@ -6,6 +6,7 @@ export class task{
         public startDate:string,
         public dueDate:string,
         public assignedTo:number,
+        public assignedBy:number,
         public projectId:number,
         public status:string){
 
