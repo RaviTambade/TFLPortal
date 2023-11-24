@@ -16,6 +16,7 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.service.getProjectsList(this.employeeId).subscribe((res) => {
       this.projects = res;
+      console.log(res);
       this.selectedProjectId.emit(this.projects[0]); 
     });
   }
