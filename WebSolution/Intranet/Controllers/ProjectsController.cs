@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Transflower.TFLPortal.TFLOBL.Services;
+using Transflower.TFLPortal.TFLOBL.Entities;
 
 namespace Intranet.Controllers;
 
@@ -6,11 +8,21 @@ namespace Intranet.Controllers;
 [Route("[controller]")]
 public class ProjectsController : ControllerBase
 {
-    private readonly ILogger<WeatherForecastController> _logger;
+    private readonly IProjectService _service;
 
-    public ProjectsController(ILogger<public class ProjectsController : ControllerBase> logger)
+
+    public ProjectsController(IProjectService service)
     {
-        _logger = logger;
+        _service = service;
     }
+
+
+
+   [HttpGet]
+    public async Task<List<Project>> GetAllProject(){
+        
+        List<Project> projects= await _service.GetAllProject();
+        return projects;
+      }
     
 }

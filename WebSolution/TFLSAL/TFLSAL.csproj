@@ -5,5 +5,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TFLOBL\TFLOBL.csproj" />
+    <ProjectReference Include="..\TFLDAL\TFLDAL.csproj" />
+  </ItemGroup>
+
 
 </Project>

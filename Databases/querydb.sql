@@ -108,3 +108,7 @@ VALUES ('User Feedback Analysis', 'Analyze user feedback and propose improvement
 -- Task 10
 INSERT INTO tasks (title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status)
 VALUES ('Database Optimization', 'Optimize database queries for improved performance', '2023-12-02', '2023-12-03', '2023-12-10', 26, 18, 4, 'NotStarted');
+
+
+
+SELECT * from projects where  teammanagerid=7;
