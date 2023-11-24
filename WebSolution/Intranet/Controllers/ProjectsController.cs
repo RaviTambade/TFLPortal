@@ -10,27 +10,22 @@ public class ProjectsController : ControllerBase
 {
     private readonly IProjectService _service;
 
-
     public ProjectsController(IProjectService service)
     {
         _service = service;
     }
 
-
-
-   [HttpGet]
-    public async Task<List<Project>> GetAllProject(){
-        
-        List<Project> projects= await _service.GetAllProject();
+    [HttpGet]
+    public async Task<List<Project>> GetAllProject()
+    {
+        List<Project> projects = await _service.GetAllProject();
         return projects;
-      }
+    }
 
-
-       [HttpGet("employees/{employeeid}")]
-    public async Task<List<Project>> GetProjectsOfEmployee(int employeeid){
-        
-        List<Project> projects= await _service.GetProjectsOfEmployee(employeeid);
+    [HttpGet("employees/{employeeid}")]
+    public async Task<List<Project>> GetProjectsOfEmployee(int employeeid)
+    {
+        List<Project> projects = await _service.GetProjectsOfEmployee(employeeid);
         return projects;
-      }
-    
+    }
 }
