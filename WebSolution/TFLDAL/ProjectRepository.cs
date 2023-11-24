@@ -64,7 +64,7 @@ public class ProjectRepository : IProjectRepository
             connection.ConnectionString = connectionString;
             try
             {
-                string query = "select * from projects inner join members on projects.id=members.projectid where members.id=@employeeid";
+                string query = "select * from projects inner join members on projects.id=members.projectid where members.employeeid=@employeeid";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@employeeid",employeeid);
                 await connection.OpenAsync();
