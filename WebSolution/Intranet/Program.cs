@@ -1,16 +1,14 @@
-using Transflower.TFLPortal.TFLOBL.Repositories;
-using Transflower.TFLPortal.TFLOBL.Services;
-using Transflower.TFLPortal.TFLDAL.Repositories;
-using Transflower.TFLPortal.TFLSAL.Services;
-
+using Transflower.TFLPortal.TFLSAL;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddCors();
 builder.Services.AddControllers();
-builder.Services.AddScoped<IProjectRepository,ProjectRepository>();
-builder.Services.AddScoped<IProjectService,ProjectService>();
+
+// builder.Services.AddScoped<IProjectRepository,ProjectRepository>();
+// builder.Services.AddScoped<IProjectService,ProjectService>();
+builder.Services.AddSAL();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -26,7 +24,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseCors(policy=>policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+app.UseCors(policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 app.UseAuthorization();
 
 app.MapControllers();
