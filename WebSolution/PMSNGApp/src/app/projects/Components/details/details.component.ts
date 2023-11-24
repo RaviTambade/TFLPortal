@@ -1,7 +1,6 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { Project } from '../../Models/project';
 import { ProjectsService } from '../../Services/projects.service';
-import { ResourceManagementService } from 'src/app/resource-management/Services/resource-management.service';
 
 @Component({
   selector: 'project-details',
@@ -11,7 +10,6 @@ import { ResourceManagementService } from 'src/app/resource-management/Services/
 export class DetailsComponent {
   constructor(
     private service: ProjectsService,
-    private resourceSvc: ResourceManagementService
   ) {}
 
   @Input() project!: Project;

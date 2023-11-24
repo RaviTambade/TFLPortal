@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Member } from 'src/app/resource-management/Models/Member';
 import { UserDetail } from 'src/app/resource-management/Models/UserDetail';
-import { ResourceManagementService } from 'src/app/resource-management/Services/resource-management.service';
+import { MembersService } from 'src/app/resource-management/Services/members.service';
 
 @Component({
   selector: 'projectmember-list',
@@ -8,18 +9,19 @@ import { ResourceManagementService } from 'src/app/resource-management/Services/
   styleUrls: ['./list.component.css'],
 })
 export class ListComponent {
-  members: UserDetail[] = [];
+  members: Member[] = [];
   @Input() projectId!: number;
 
-  constructor(private resourceSvc: ResourceManagementService) {}
+  constructor(private membersSvc: MembersService) {}
 
   ngOnChanges(changes: SimpleChanges) {
-
-    this.resourceSvc.getProjectMembers(changes["projectId"].currentValue).subscribe((res) => {
-      let memberIds = res.join(',');
-      this.resourceSvc.getUserDetails(memberIds).subscribe((response) => {
-        this.members = response;
+    this.membersSvc
+      .getProjectMembers(changes['projectId'].currentValue)
+      .subscribe((res) => {
+        this.members = res;
+        // let memberIds = res.join(',');
+        // this.resourceSvc.getUserDetails(memberIds).subscribe((response) => {
+        //   });
       });
-    });
   }
 }

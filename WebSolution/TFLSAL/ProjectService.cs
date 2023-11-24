@@ -38,7 +38,7 @@ public class ProjectService : IProjectService
                 int teamManagerId = int.Parse(reader["teammanagerid"].ToString());
                 string status = reader["status"].ToString();
                 DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
-                DateTime enddate = DateTime.Parse(reader["startdate"].ToString());
+                DateTime enddate = DateTime.Parse(reader["enddate"].ToString());
 
                 Project project = new Project()
                 {
@@ -86,7 +86,7 @@ public class ProjectService : IProjectService
                 int teamManagerId = int.Parse(reader["teammanagerid"].ToString());
                 string status = reader["status"].ToString();
                 DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
-                DateTime enddate = DateTime.Parse(reader["startdate"].ToString());
+                DateTime enddate = DateTime.Parse(reader["enddate"].ToString());
 
                 Project project = new Project()
                 {
