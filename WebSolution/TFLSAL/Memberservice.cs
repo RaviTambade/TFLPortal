@@ -25,7 +25,8 @@ public class MemberService : IMemberService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select * from members where projectid=@projectId";
+            string query =
+                "SELECT members.*, employees.userid as userid FROM members INNER JOIN employees on members.employeeid =employees.id  WHERE projectid=@projectId";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);
             await connection.OpenAsync();
@@ -39,6 +40,7 @@ public class MemberService : IMemberService
                     EmployeeId = reader.GetInt32("employeeid"),
                     Membership = reader.GetString("membership"),
                     MembershipDate = reader.GetDateTime("membershipdate"),
+                    Employee = new Employee { UserId = reader.GetInt32("userid") }
                 };
                 members.Add(member);
             }
