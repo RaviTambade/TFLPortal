@@ -39,6 +39,7 @@ private readonly IConfiguration _configuration;
                 DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime duedate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
+                int managerId = int.Parse(reader["assignedby"].ToString());
                
                 Transflower.TFLPortal.TFLOBL.Entities.Task task = new Transflower.TFLPortal.TFLOBL.Entities.Task()
                 {
@@ -51,6 +52,7 @@ private readonly IConfiguration _configuration;
                     DueDate=duedate,
                     AssignedTo=memberId,
                     Status = status,
+                    AssignedBy=managerId,
                     
                 };
                 tasks.Add(task);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { TaskService } from '../../Services/task.service';
 import { task } from '../../Models/task';
 
@@ -7,16 +7,19 @@ import { task } from '../../Models/task';
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css']
 })
-export class DetailsComponent implements OnInit{
+export class DetailsComponent{
   
   constructor(private service:TaskService){
   }
-  taskId:number=5;
-  taskdDetails:task|undefined;
-  ngOnInit(): void {
-  //  this.service.getTaskDetails(this.taskId).subscribe((res)=>{
-  //   this.taskdDetails=res;
-  //  })
+  
+  
+  @Input() taskId!:number;
+    tasks:task|undefined;
+  ngOnChanges(changes: SimpleChanges) {
+    console.log( changes['taskId'].currentValue);
+    this.service.getTaskDetails(changes['taskId'].currentValue).subscribe((res)=>{
+      this.tasks=res;
+    })
   }
 
 }
