@@ -12,9 +12,9 @@ export class ListComponent implements OnInit {
   constructor(private service: ProjectsService) {}
 
   projects: Project[] = [];
-  teammemberId: number = 10;
+  employeeId: number = 4;
   ngOnInit(): void {
-    this.service.getProjectsList(this.teammemberId).subscribe((res) => {
+    this.service.getProjectsList(this.employeeId).subscribe((res) => {
       this.projects = res;
       this.selectedProjectId.emit(this.projects[0]); 
     });
