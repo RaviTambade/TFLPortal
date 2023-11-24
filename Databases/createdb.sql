@@ -47,18 +47,16 @@
             assigneddate DATETIME,
             startdate DATETIME,
             duedate DATETIME,
-            assignedto INT NOT NULL, 10-18
+            assignedto INT NOT NULL, 
             CONSTRAINT fk_taskallocations_employees FOREIGN KEY (assignedto) REFERENCES members(id) ON UPDATE CASCADE ON DELETE CASCADE,
-            assignedby INT,7,8,9
+            assignedby INT,
             CONSTRAINT fk_tasks_members FOREIGN KEY (assignedby) REFERENCES members(id) ON UPDATE CASCADE ON DELETE CASCADE,
             projectid INT NOT NULL,
             CONSTRAINT fk_tasks_projects FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
             status ENUM (     
                 'NotStarted',
                 'InProgress',
-                'Completed') DEFAULT 'NotStarted'
-           
-          
+                'Completed') DEFAULT 'NotStarted'        
         );
 
     -- CREATE TABLE

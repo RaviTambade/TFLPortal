@@ -10,4 +10,5 @@ public class Task
    public int AssignedTo{get;set;}
    public int ProjectId{get;set;}
    public string? Status{get;set;}
+   public int AssignedBy{get; set;}
 }

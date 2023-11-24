@@ -67,4 +67,57 @@ private readonly IConfiguration _configuration;
         }
         return tasks;
     }
+
+
+    public async Task<Transflower.TFLPortal.TFLOBL.Entities.Task> GetTaskDetails(int taskId)
+    {
+        Transflower.TFLPortal.TFLOBL.Entities.Task  task = null;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query ="select * from tasks where id=@taskId";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@taskId", taskId);
+           
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {
+                string title = reader["title"].ToString();
+                string description = reader["description"].ToString();
+                DateTime assigndate = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
+                DateTime duedate = DateTime.Parse(reader["duedate"].ToString());
+                string status = reader["status"].ToString();
+                int projectId = int.Parse(reader["projectid"].ToString());
+                int memberId = int.Parse(reader["assignedto"].ToString());
+                int managerId = int.Parse(reader["assignedby"].ToString());
+               
+                task = new Transflower.TFLPortal.TFLOBL.Entities.Task()
+                {
+                    Id = taskId,
+                    Title = title,
+                    Description = description,
+                    ProjectId=projectId,
+                    AssignDate=assigndate,
+                    StartDate=startdate,
+                    AssignedTo=memberId,
+                    AssignedBy=managerId,
+                    DueDate=duedate,
+                    Status = status,      
+                };
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return task;
+    }
 }
