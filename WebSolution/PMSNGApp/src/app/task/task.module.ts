@@ -15,7 +15,8 @@ import { DetailsComponent } from './Components/details/details.component'
     HttpClientModule,
   ],
   exports: [
-    DetailsComponent
+    DetailsComponent,
+    ListComponent
   ]
 })
 export class TaskModule { }

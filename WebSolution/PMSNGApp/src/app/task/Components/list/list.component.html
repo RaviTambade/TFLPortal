@@ -1,1 +1,10 @@
-<p>list works!</p>
+<div class="row">
+    <div class="d-flex justify-content-start ">
+        <div class="card m-3" *ngFor="let task of tasks">
+            <div class="p-2">{{task.title}}
+            </div>
+            <div class="p-2">{{task.description}}
+            </div>
+        </div>
+    </div>
+</div>

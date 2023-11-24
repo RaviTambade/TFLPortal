@@ -10,28 +10,10 @@ export class TaskService {
 
   constructor(private httpClient:HttpClient) { }
 
-  serviceurl :string="http://localhost:5283/api/"
+  serviceurl :string="http://localhost:5263/api/"
 
-  // unAssignedTask(projectId: number, timePeriod: string): Observable<Unassignedtask[]> {
-  //   let url =this.serviceurl+ "projects/unassignedtask/" + projectId + "/" + timePeriod
-  //   return this.httpClient.get<Unassignedtask[]>(url)
-  // }
-  // assignedTasksByManager(managerId:number,timePeriod:string):Observable<Assignedtaskbymanager[]>{
-  //   let url=this.serviceurl+"projects/assignedtasksbymanager/" + managerId + "/" +timePeriod
-  //   return this.httpClient.get<Assignedtaskbymanager[]>(url)
-  // }
-  // unAssignedTasksByManager(managerId:number,timePeriod:string):Observable<Unassignedtaskbymanager[]>{
-  //   let url=this.serviceurl+"/projects/unassignedtasksbymanager/" + managerId + "/" +timePeriod
-  //   return this.httpClient.get<Unassignedtaskbymanager[]>(url)
-  // }
-
-  // getTasksOfProject(projectId: number, timePeriod: string): Observable<Projecttask[]> {
-  //   let url = this.serviceurl+"projects/tasks/" + projectId + "/" + timePeriod
-  //   return this.httpClient.get<Projecttask[]>(url)
-  // }
-
-  getTaskDetails(taskId:number): Observable<task> {
-    let url = this.serviceurl+"tasks/details/" + taskId 
-    return this.httpClient.get<task>(url)
+  getTaskOfMembers(projectId:number,memberId:number): Observable<task[]> {
+    let url = this.serviceurl+"tasks/" + projectId +"/"+ memberId;
+    return this.httpClient.get<task[]>(url);
   }
 }

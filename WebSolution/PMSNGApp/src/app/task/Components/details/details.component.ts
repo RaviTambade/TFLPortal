@@ -14,9 +14,9 @@ export class DetailsComponent implements OnInit{
   taskId:number=5;
   taskdDetails:task|undefined;
   ngOnInit(): void {
-   this.service.getTaskDetails(this.taskId).subscribe((res)=>{
-    this.taskdDetails=res;
-   })
+  //  this.service.getTaskDetails(this.taskId).subscribe((res)=>{
+  //   this.taskdDetails=res;
+  //  })
   }
 
 }
