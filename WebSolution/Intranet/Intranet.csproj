@@ -13,8 +13,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TFLOBL\TFLOBL.csproj" />
-    <ProjectReference Include="..\TFLDAL\TFLDAL.csproj" />
     <ProjectReference Include="..\TFLSAL\TFLSAL.csproj" />
+
   </ItemGroup>
 
 </Project>

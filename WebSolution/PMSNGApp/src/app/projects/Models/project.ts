@@ -5,6 +5,7 @@ export class Project{
         public startDate:string,
         public teamManagerId:number,
         public status:string,
-        public teamManagerUserId:number,
+        public endDate:string,
+        public description:string
         ){}
 }

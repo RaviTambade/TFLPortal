@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 -- director
 INSERT INTO employees(userid,hiredate,reportingid) VALUES (1,'2013-01-01',1);
@@ -86,3 +87,5 @@ VALUES
            
           
         );
+=======
+>>>>>>> 99d85799a59c224a326edb2cd917674b41cae9d9

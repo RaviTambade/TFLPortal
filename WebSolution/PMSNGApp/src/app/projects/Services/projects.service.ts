@@ -8,7 +8,7 @@ import { Project } from '../Models/project';
 })
 export class ProjectsService {
   
-  private serviceurl :string="http://localhost:5248/api/";
+  private serviceurl :string="http://localhost:5263/api/";
   constructor(private httpClient: HttpClient) { }
   private selectedProjectIdSubject = new BehaviorSubject<any>(null);
   selectedProjectId$ = this.selectedProjectIdSubject.asObservable();
@@ -17,8 +17,8 @@ export class ProjectsService {
     this.selectedProjectIdSubject.next(id)
   }
 
-  getProjectsList(teamMemberId: number): Observable<Project[]> {
-    let url = this.serviceurl+"projects/list/" + teamMemberId
+  getProjectsList(employeeId: number): Observable<Project[]> {
+    let url = this.serviceurl+"projects/employees/" + employeeId
     return this.httpClient.get<Project[]>(url)
   }
 

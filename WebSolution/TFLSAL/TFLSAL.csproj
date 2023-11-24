@@ -5,5 +5,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TFLOBL\TFLOBL.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="mysql.data" Version="8.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+  </ItemGroup>
+
 
 </Project>
