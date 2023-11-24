@@ -1,9 +1,9 @@
 using Microsoft.Extensions.DependencyInjection;
-using Transflower.TFLPortal.TFLDAL;
+using Transflower.TFLPortal.TFLDAL.Cofiguration;
 using Transflower.TFLPortal.TFLOBL.Services;
 using Transflower.TFLPortal.TFLSAL.Services;
 
-namespace Transflower.TFLPortal.TFLSAL;
+namespace Transflower.TFLPortal.TFLSAL.Cofiguration;
 
 public static class DALConfiguration
 {
