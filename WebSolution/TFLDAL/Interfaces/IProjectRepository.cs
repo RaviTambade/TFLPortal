@@ -1,6 +1,6 @@
 using Transflower.TFLPortal.TFLOBL.Entities;
 
-namespace Transflower.TFLPortal.TFLOBL.Repositories;
+namespace Transflower.TFLPortal.TFLDAL.Repositories.Interfaces;
 
 public interface IProjectRepository
 {

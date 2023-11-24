@@ -14,6 +14,8 @@
   <ItemGroup>
     <ProjectReference Include="..\TFLOBL\TFLOBL.csproj" />
     <ProjectReference Include="..\TFLSAL\TFLSAL.csproj" />
+    <ProjectReference Include="..\TFLDAL\TFLDAL.csproj" />
+
   </ItemGroup>
 
 </Project>

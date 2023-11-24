@@ -1,8 +1,8 @@
 ﻿
 
-using Transflower.TFLPortal.TFLOBL.Services;
 using Transflower.TFLPortal.TFLOBL.Entities;
-using Transflower.TFLPortal.TFLOBL.Repositories;
+using Transflower.TFLPortal.TFLDAL.Repositories.Interfaces;
+using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 namespace Transflower.TFLPortal.TFLSAL.Services;
 
 public class ProjectService : IProjectService

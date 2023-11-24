@@ -1,6 +1,6 @@
 using MySql.Data.MySqlClient;
-using Transflower.TFLPortal.TFLOBL.Repositories;
 using Microsoft.Extensions.Configuration;
+using Transflower.TFLPortal.TFLDAL.Repositories.Interfaces;
 public class TaskRepository : ITaskRepository
 {
 private readonly IConfiguration _configuration;
@@ -42,20 +42,20 @@ private readonly IConfiguration _configuration;
                 string status = reader["status"].ToString();
                
                
-                Task task = new Task()
-                {
-                    Id = id,
-                    Title = title,
-                    Description = description,
-                    ProjectId=projectId,
-                    AssignDate=assigndate,
-                    StartDate=startdate,
-                    DueDate=duedate,
-                    AssignedTo=assignedTo,
-                    Status = status,
+                // Task task = new Task();
+                // {
+                //     Id = id,
+                //     Title = title,
+                //     Description = description,
+                //     ProjectId=projectId,
+                //     AssignDate=assigndate,
+                //     StartDate=startdate,
+                //     DueDate=duedate,
+                //     AssignedTo=assignedTo,
+                //     Status = status,
                     
-                };
-                tasks.Add(task);
+                // };
+                // tasks.Add(task);
             }
             await reader.CloseAsync();
         }

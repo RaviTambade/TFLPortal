@@ -1,7 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using Transflower.TFLPortal.TFLOBL.Entities;
-using Transflower.TFLPortal.TFLOBL.Repositories;
 using Microsoft.Extensions.Configuration;
+using Transflower.TFLPortal.TFLDAL.Repositories.Interfaces;
 
 namespace Transflower.TFLPortal.TFLDAL.Repositories;
 

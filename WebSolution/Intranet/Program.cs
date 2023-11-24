@@ -1,4 +1,7 @@
-using Transflower.TFLPortal.TFLSAL.Cofiguration;
+using Transflower.TFLPortal.TFLDAL.Repositories;
+using Transflower.TFLPortal.TFLDAL.Repositories.Interfaces;
+using Transflower.TFLPortal.TFLSAL.Services;
+using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,7 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors();
 builder.Services.AddControllers();
 
-builder.Services.AddSAL();
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+builder.Services.AddScoped<IMemberRepository, MemberRepository>();
+builder.Services.AddScoped<IProjectService, ProjectService>();
+builder.Services.AddScoped<IMemberService, MemberService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
