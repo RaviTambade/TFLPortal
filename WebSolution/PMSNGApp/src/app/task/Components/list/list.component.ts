@@ -1,33 +1,53 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { TaskService } from '../../Services/task.service';
 import { task } from '../../Models/task';
+import { MemberResponse } from 'src/app/resource-management/Models/Member';
+import { MembersService } from 'src/app/resource-management/Services/members.service';
 
 @Component({
   selector: 'task-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  styleUrls: ['./list.component.css'],
 })
-export class ListComponent implements OnInit{
-  constructor(private service:TaskService){
+export class ListComponent {
+  constructor(
+    private service: TaskService,
+    private membersvc: MembersService
+  ) {}
 
+  tasks: task[] = [];
+  @Input() projectId!: number;
+  member: MemberResponse | undefined;
+  employeeId = 6;
+
+  @Output() selectedTaskId = new EventEmitter<number>();
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.membersvc
+      .getMember(changes['projectId'].currentValue, this.employeeId)
+      .subscribe((res) => {
+        this.member = res;
+
+        this.service
+          .getTaskOfMembers(
+            changes['projectId'].currentValue,
+            this.member.memberId
+          )
+          .subscribe((res) => {
+            this.tasks = res;
+            this.selectedTaskId.emit(this.tasks[0].id);
+          });
+      });
   }
-  tasks:task[]=[];
-  projectId:number=1;
-  memberId:number=19;
 
-  @Output() selectedTaskId=new EventEmitter<number>();
-  ngOnInit(): void {
-    this.service.getTaskOfMembers(this.projectId,this.memberId).subscribe((res)=>{
-     this.tasks=res;
-     console.log(res);
-     this.selectedTaskId.emit(this.tasks[0].id);
-    })
-    
-  }
-
-
-  OnClickTask(taskId:number){
+  OnClickTask(taskId: number) {
     this.selectedTaskId.emit(taskId);
   }
-
 }

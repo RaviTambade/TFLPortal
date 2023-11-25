@@ -1,9 +1,10 @@
-export class Member {
+export class MemberResponse {
   constructor(
-    public id: number,
+    public memberId: number,
     public projectId: number,
     public membership: string,
-    public membershipadte: string,
-    public employeeId: number
+    public membershipDate: string,
+    public fullName: string,
+    public imageUrl: string
   ) {}
 }

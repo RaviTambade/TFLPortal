@@ -1,4 +1,4 @@
--- Active: 1694968636816@@127.0.0.1@3306@pms
+-- Active: 1696576841746@@127.0.0.1@3306@pms
 
 -- director
 INSERT INTO employees(userid,hiredate,reportingid) VALUES (1,'2013-01-01',1);
@@ -125,5 +125,3 @@ VALUES ('API crude operation', 'Create comprehensive crude operations for the AP
 INSERT INTO tasks (title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status)
 VALUES ('Database Optimization', 'Optimize database queries for improved performance', '2023-12-02', '2023-12-03', '2023-12-10', 3, 2, 3, 'NotStarted');
 
-
-SELECT * from projects where  teammanagerid=7;

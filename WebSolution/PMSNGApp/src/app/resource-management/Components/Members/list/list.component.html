@@ -1,5 +1,12 @@
-<div *ngFor="let member of members">
-    {{member.id}}
-    {{member.membership}}
-    {{member.membershipadte}}
+<div *ngFor="let member of members" class="card shadow rounded-3 mb-2">
+    <div class="d-flex flex-row">
+        <img [src]="ImageServerUrl + member.imageUrl" alt="{{member.fullName}}" class="card-img-top rounded-circle" style="width: 100px; height: 100px; object-fit: cover;">
+        <div class="card-body">
+            <h5 class="card-title" (click)="onClickMember(member.memberId)">{{member.fullName}}</h5>
+            <p class="card-text">
+                <strong>Membership:</strong> {{member.membership}}<br>
+                <strong>Membership Date:</strong> {{member.membershipDate |date}}
+            </p>
+        </div>
+    </div>
 </div>

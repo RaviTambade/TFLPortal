@@ -28,7 +28,6 @@ public class MembersController : ControllerBase
         foreach (var member in members)
         {
             var userDetail = users.FirstOrDefault(u => u.Id == member.Employee.UserId);
-
             if (userDetail != null)
             {
                 var memberResponse = new MemberResponse
@@ -36,13 +35,32 @@ public class MembersController : ControllerBase
                     FullName = userDetail.FullName,
                     MemberId = member.Id,
                     Membership = member.Membership,
-                    MembershipDate = member.MembershipDate
+                    MembershipDate = member.MembershipDate,
+                    ImageUrl = userDetail.ImageUrl
                 };
 
                 membersResponse.Add(memberResponse);
             }
         }
         return membersResponse;
+    }
+
+    [HttpGet("projects/{projectId}/employees/{employeeId}")]
+    public async Task<MemberResponse> GetMember(int projectId, int employeeId)
+    {
+        var member = await _service.GetMember(projectId, employeeId);
+        var users = await GetUsersFromService(member.Employee.UserId.ToString());
+
+        MemberResponse memberResponse = new MemberResponse()
+        {
+            MemberId = member.Id,
+            Membership = member.Membership,
+            MembershipDate = member.MembershipDate,
+            FullName = users[0].FullName,
+            ImageUrl = users[0].ImageUrl,
+        };
+
+        return memberResponse;
     }
 
     [HttpGet("users/{userIds}")]

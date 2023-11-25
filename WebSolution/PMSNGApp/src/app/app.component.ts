@@ -19,4 +19,5 @@ export class AppComponent {
   onReceiveTaskId(selectedTaskId: number) {
     this.taskId = selectedTaskId;
   }
+ 
 }

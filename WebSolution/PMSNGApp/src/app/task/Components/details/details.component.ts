@@ -16,7 +16,6 @@ export class DetailsComponent{
   @Input() taskId!:number;
     tasks:task|undefined;
   ngOnChanges(changes: SimpleChanges) {
-    console.log( changes['taskId'].currentValue);
     this.service.getTaskDetails(changes['taskId'].currentValue).subscribe((res)=>{
       this.tasks=res;
     })

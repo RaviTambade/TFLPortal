@@ -1,12 +1,14 @@
 <div *ngIf="tasks">
-    <!-- <p>{{tasks.id}}</p>
-    <p>{{tasks.title}}</p> -->
-    <!-- <p>Description:{{tasks.description}}</p> -->
-    <p>AssignDate:{{tasks.assignDate}}</p>
-    <p>StartDate:{{tasks.startDate}}</p>
-    <p>DueDate:{{tasks.dueDate}}</p>
-    <p>AssignedTo:{{tasks.assignedTo}}</p>
+    <p>{{tasks.title}}</p>
+    <p>Description:{{tasks.description}}</p>
+    <p>AssignDate:{{tasks.assignDate |date}}</p>
+    <p>StartDate:{{tasks.startDate |date}}</p>
+    <p>DueDate:{{tasks.dueDate |date}}</p>
     <p>AssignBy:{{tasks.assignedBy}}</p>
-    <p>ProjectId:{{tasks.projectId}}</p>
     <p>Status:{{tasks.status}}</p>
+    <div class="d-flex gap-2">
+        <button>NotStarted </button>
+        <button>InProgress </button>
+        <button>Completed </button>
+    </div>
 </div>

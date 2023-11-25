@@ -56,4 +56,43 @@ public class MemberService : IMemberService
         }
         return members;
     }
+
+    public async Task<Member> GetMember(int projectId, int employeeId)
+    {
+        Member member = null;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query =
+                "SELECT members.*, employees.userid as userid FROM members INNER JOIN employees on members.employeeid =employees.id  WHERE projectid=@ProjectId and employeeid=@employeeId";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@projectId", projectId);
+            command.Parameters.AddWithValue("@employeeId", employeeId);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            if (await reader.ReadAsync())
+            {
+                member = new Member
+                {
+                    Id = reader.GetInt32("id"),
+                    ProjectId = reader.GetInt32("projectid"),
+                    EmployeeId = reader.GetInt32("employeeid"),
+                    Membership = reader.GetString("membership"),
+                    MembershipDate = reader.GetDateTime("membershipdate"),
+                    Employee = new Employee { UserId = reader.GetInt32("userid") }
+                };
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return member;
+    }
 }

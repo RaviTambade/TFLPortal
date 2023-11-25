@@ -1,7 +1,14 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { Member } from 'src/app/resource-management/Models/Member';
-import { UserDetail } from 'src/app/resource-management/Models/UserDetail';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+import { MemberResponse } from 'src/app/resource-management/Models/Member';
 import { MembersService } from 'src/app/resource-management/Services/members.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'projectmember-list',
@@ -9,8 +16,11 @@ import { MembersService } from 'src/app/resource-management/Services/members.ser
   styleUrls: ['./list.component.css'],
 })
 export class ListComponent {
-  members: Member[] = [];
+  members: MemberResponse[] = [];
   @Input() projectId!: number;
+
+  ImageServerUrl = environment.imagerServerUrl;
+  @Output() selectedMemberId = new EventEmitter<number>();
 
   constructor(private membersSvc: MembersService) {}
 
@@ -19,9 +29,11 @@ export class ListComponent {
       .getProjectMembers(changes['projectId'].currentValue)
       .subscribe((res) => {
         this.members = res;
-        // let memberIds = res.join(',');
-        // this.resourceSvc.getUserDetails(memberIds).subscribe((response) => {
-        //   });
+        this.selectedMemberId.emit(this.members[0].memberId);
       });
+  }
+  
+  onClickMember(memberId: number) {
+    this.selectedMemberId.emit(memberId);
   }
 }
