@@ -1,0 +1,24 @@
+<div class="container">
+    <h2> Projects</h2>
+    <div class="card">
+        <table class="table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>StartDate</th>
+                    <th>EndDate</th>
+                    <th>Status</th>
+                    <th>Manager</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let project of projects">
+                <tr>
+                    <td > {{project.title}}</td>
+                    <td> {{project.startDate | date}}</td>
+                    <td> {{project.endDate | date}}</td>
+                    <td> {{project.status}}</td>
+                    <td> {{project.teamManagerId }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
