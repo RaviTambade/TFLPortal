@@ -125,3 +125,42 @@ VALUES ('API crude operation', 'Create comprehensive crude operations for the AP
 INSERT INTO tasks (title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status)
 VALUES ('Database Optimization', 'Optimize database queries for improved performance', '2023-12-02', '2023-12-03', '2023-12-10', 3, 2, 3, 'NotStarted');
 
+
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-01','NotStarted',10);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-02','InProgress',11);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-13','NotStarted',12);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-21','Completed',13);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-11','InProgress',14);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-09','NotStarted',15);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-01','Completed',16);
+
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-04-01','InProgress',17);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-06-01','NotStarted',18);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-11','InProgress',1);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-21','Completed',2);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-02-01','Completed',2);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-03-01','Completed',2);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-05-01','NotStarted',3);
+
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-01','NotStarted',17);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-22','NotStarted',18);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-23','NotStarted',1);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2023-02-24','InProgress',2);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2023-04-25','InProgress',2);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2023-05-26','InProgress',2);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-27','NotStarted',3);
+
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-16','NotStarted',17);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-15','NotStarted',18);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-14','NotStarted',1);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-13','Completed',2);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-19','Completed',2);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-20','Completed',2);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-21','NotStarted',3);
+
+INSERT INTO TimeSheetEntries(description,fromtime,totime,timesheetid) VALUES ("Meeting With Client","00:07:55","11:00:56",1);
+INSERT INTO TimeSheetEntries(description,fromtime,totime,timesheetid) VALUES ("Research","10:07:55","12:20:56",2);
+INSERT INTO TimeSheetEntries(description,fromtime,totime,timesheetid) VALUES ("Development","12:07:55","01:30:56",3);
+INSERT INTO TimeSheetEntries(description,fromtime,totime,timesheetid) VALUES ("Testing","01:07:55","02:33:56",4);
+INSERT INTO TimeSheetEntries(description,fromtime,totime,timesheetid) VALUES ("Sprint Meeting","04:07:55","06:08:56",5);
+INSERT INTO TimeSheetEntries(description,fromtime,totime,timesheetid) VALUES ("Code Review","06:07:55","07:09:56",6);
