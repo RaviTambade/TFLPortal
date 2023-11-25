@@ -8,7 +8,7 @@ import { MemberResponse } from '../Models/Member';
   providedIn: 'root',
 })
 export class MembersService {
-  membersAPIUrl = environment.membersAPIUrl;
+  membersAPIUrl = environment.apiUrl;
   constructor(private httpClient: HttpClient) {}
 
   getProjectMembers(projectId: number): Observable<MemberResponse[]> {
@@ -20,5 +20,5 @@ export class MembersService {
     let url = `${this.membersAPIUrl}/members/projects/${projectId}/employees/${employeeId}`;
     return this.httpClient.get<MemberResponse>(url);
   }
-  
+
 }

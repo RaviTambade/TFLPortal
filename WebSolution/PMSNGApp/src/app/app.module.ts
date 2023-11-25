@@ -7,10 +7,14 @@ import { ProjectsModule } from './projects/projects.module';
 import { HttpClientModule } from '@angular/common/http';
 import { TaskModule } from './task/task.module';
 import { ResourceManagementModule } from './resource-management/resource-management.module';
+import { CalenderComponent } from './calender/calender.component';
+import { ChunkPipe } from './calender/chunk.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CalenderComponent,
+    ChunkPipe
   ],
   imports: [
     BrowserModule,
