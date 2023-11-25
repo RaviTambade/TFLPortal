@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProjectsModule } from './projects/projects.module';
@@ -9,6 +8,7 @@ import { TaskModule } from './task/task.module';
 import { ResourceManagementModule } from './resource-management/resource-management.module';
 import { CalenderComponent } from './calender/calender.component';
 import { ChunkPipe } from './calender/chunk.pipe';
+import { TimeSheetModule } from './time-sheet/time-sheet.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,9 @@ import { ChunkPipe } from './calender/chunk.pipe';
     AppRoutingModule,
     ProjectsModule,
     HttpClientModule,
-    TaskModule,ResourceManagementModule
+    TaskModule,
+    ResourceManagementModule,
+    TimeSheetModule
   ],
   providers: [],
   bootstrap: [AppComponent]
