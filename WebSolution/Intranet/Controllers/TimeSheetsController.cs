@@ -22,5 +22,12 @@ public class TimeSheetsController : ControllerBase
         List<TimeSheet> timesheets=  await _service.GetTimeSheetsOfEmployee(employeeId);
         return timesheets;
     }
+
+
+    [HttpGet("TimeSheetEntry/{timeSheetId}")]
+    public async Task<TimeSheetDetails> GetTimeSheetDetails(int timeSheetId){
+        TimeSheetDetails timesheet=  await _service.GetTimeSheetDetails(timeSheetId);
+        return timesheet;
+    }
     
 }

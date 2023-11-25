@@ -32,7 +32,7 @@ private readonly IConfiguration _configuration;
             while (await reader.ReadAsync())
             {
                 int id = int.Parse(reader["id"].ToString());
-                DateTime assigndate = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime assigndate = DateTime.Parse(reader["date"].ToString());
                 string status = reader["status"].ToString();
                
                 TimeSheet timesheet = new TimeSheet()
@@ -58,6 +58,50 @@ private readonly IConfiguration _configuration;
         return timesheets;
     }
 
+
+
+ public async Task<TimeSheetDetails> GetTimeSheetDetails(int timeSheetId)
+    {    
+
+        TimeSheetDetails timesheet = new TimeSheetDetails();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query ="select * from timesheetentries where  timesheetid =@timeSheetId";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@timeSheetId", timeSheetId);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            if (await reader.ReadAsync())
+            {
+                int id = int.Parse(reader["id"].ToString());
+                DateTime fromtime = DateTime.Parse(reader["fromtime"].ToString());
+                DateTime totime = DateTime.Parse(reader["totime"].ToString());
+                string description = reader["description"].ToString();
+               
+                timesheet = new TimeSheetDetails()
+                {
+                    Id = id,
+                    Description=description,
+                    FromTime = fromtime,
+                    ToTime=totime,
+                    
+                };
+               
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return timesheet;
+    }
 
     
 }
