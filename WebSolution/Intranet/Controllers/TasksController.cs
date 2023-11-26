@@ -28,4 +28,11 @@ public class TasksController : ControllerBase
         Transflower.TFLPortal.TFLOBL.Entities.Task task = await _service.GetTaskDetails(taskId);
         return task;
     }
+
+    [HttpGet("insert")]
+    public async Task<bool> Insert(Transflower.TFLPortal.TFLOBL.Entities.Task task)
+    {
+        bool status = await _service.Insert(task);
+        return status;
+    }
 }
