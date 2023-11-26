@@ -7,6 +7,7 @@ import { ProjectsModule } from './projects/projects.module';
 import { HttpClientModule } from '@angular/common/http';
 import { TaskModule } from './task/task.module';
 import { ResourceManagementModule } from './resource-management/resource-management.module';
+import { TimeSheetModule } from './time-sheet/time-sheet.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,9 @@ import { ResourceManagementModule } from './resource-management/resource-managem
     AppRoutingModule,
     ProjectsModule,
     HttpClientModule,
-    TaskModule,ResourceManagementModule
+    TaskModule,
+    ResourceManagementModule,
+    TimeSheetModule
   ],
   providers: [],
   bootstrap: [AppComponent]

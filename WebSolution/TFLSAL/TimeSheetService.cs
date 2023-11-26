@@ -60,10 +60,10 @@ private readonly IConfiguration _configuration;
 
 
 
- public async Task<TimeSheetDetails> GetTimeSheetDetails(int timeSheetId)
+ public async Task<TimeSheetEntry> GetTimeSheetDetails(int timeSheetId)
     {    
 
-        TimeSheetDetails timesheet = new TimeSheetDetails();
+        TimeSheetEntry timesheet = new TimeSheetEntry();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -80,7 +80,7 @@ private readonly IConfiguration _configuration;
                 DateTime totime = DateTime.Parse(reader["totime"].ToString());
                 string description = reader["description"].ToString();
                
-                timesheet = new TimeSheetDetails()
+                timesheet = new TimeSheetEntry()
                 {
                     Id = id,
                     Description=description,
@@ -103,5 +103,47 @@ private readonly IConfiguration _configuration;
         return timesheet;
     }
 
-    
+    public async Task<List<TimeSheetEntry>> GetDatewiseTimeSheetsOfEmployee(DateTime date,int employeeId)
+    {
+        List<TimeSheetEntry> timesheets = new List<TimeSheetEntry>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query ="select * from TimeSheetEntries inner join timesheets on timesheets.id=TimeSheetEntries.timesheetid where date=@date and employeeid=@employeeId";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@date", date);
+            command.Parameters.AddWithValue("@employeeId", employeeId);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while(await reader.ReadAsync())
+            {
+                int id = int.Parse(reader["id"].ToString());
+                DateTime fromtime = DateTime.Parse(reader["fromtime"].ToString());
+                DateTime totime = DateTime.Parse(reader["totime"].ToString());
+                string description = reader["description"].ToString();
+               
+                TimeSheetEntry timesheet = new TimeSheetEntry()
+                {
+                    Id = id,
+                    Description=description,
+                    FromTime = fromtime,
+                    ToTime=totime,
+                    
+                };
+                timesheets.Add(timesheet);
+               
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return timesheets;
+    }   
 }
