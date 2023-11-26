@@ -28,4 +28,12 @@ public class ProjectsController : ControllerBase
         List<Project> projects = await _service.GetProjectsOfEmployee(employeeid);
         return projects;
     }
+
+    [HttpPost]
+    [Route ("addproject")]
+    public async Task<bool> AddProject(Project project)
+    {
+        bool status =await _service.AddProject(project);
+        return status;
+    }
 }
