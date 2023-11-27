@@ -1,4 +1,4 @@
--- Active: 1696576841746@@127.0.0.1@3306@pms
+-- Active: 1694968636816@@127.0.0.1@3306@pms
 
 -- director
 INSERT INTO employees(userid,hiredate,reportingid) VALUES (1,'2013-01-01',1);
@@ -126,37 +126,42 @@ INSERT INTO tasks (title, description, assigneddate, startdate, duedate, assigne
 VALUES ('Database Optimization', 'Optimize database queries for improved performance', '2023-12-02', '2023-12-03', '2023-12-10', 3, 2, 3, 'NotStarted');
 
 
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-01','NotStarted',10);
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-02','InProgress',11);
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-13','NotStarted',12);
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-21','Completed',13);
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-11','InProgress',14);
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-09','NotStarted',15);
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-01','Completed',16);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-01','Rejected',10);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-02','Approved',10);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-03','Approved',10);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-04','Approved',10);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-05','Approved',10);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-06','Approved',10);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-02','Approved',11);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-13','Approved',12);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-21','Approved',13);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-11','Approved',14);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-09','Approved',15);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-01','Approved',16);
 
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-04-01','InProgress',17);
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-06-01','NotStarted',18);
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-11','InProgress',1);
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-21','Completed',2);
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-02-01','Completed',2);
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-03-01','Completed',2);
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-05-01','NotStarted',3);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-04-01','Approved',17);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-06-01','Approved',18);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-11','Approved',1);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-21','Approved',2);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-02-01','Approved',2);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-03-01','Approved',2);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-05-01','Approved',3);
 
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-01','NotStarted',17);
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-22','NotStarted',18);
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-23','NotStarted',1);
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2023-02-24','InProgress',2);
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2023-04-25','InProgress',2);
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2023-05-26','InProgress',2);
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-27','NotStarted',3);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-01','Approved',17);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-22','Approved',18);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-23','Approved',1);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2023-02-24','Approved',2);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2023-04-25','Approved',2);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2023-05-26','Approved',2);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-27','Approved',3);
 
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-16','NotStarted',17);
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-15','NotStarted',18);
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-14','NotStarted',1);
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-13','Completed',2);
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-19','Completed',2);
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-20','Completed',2);
-INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-21','NotStarted',3);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-16','Approved',17);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-15','Approved',18);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-14','Approved',1);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-13','Approved',2);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-19','Approved',2);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-20','Approved',2);
+INSERT INTO timesheets(date,status,employeeid) VALUES ('2013-01-21','Approved',3);
 
 INSERT INTO TimeSheetEntries(description,fromtime,totime,timesheetid) VALUES ("Meeting With Client","00:07:55","11:00:56",1);
 INSERT INTO TimeSheetEntries(description,fromtime,totime,timesheetid) VALUES ("Research","10:07:55","12:20:56",2);
@@ -164,3 +169,65 @@ INSERT INTO TimeSheetEntries(description,fromtime,totime,timesheetid) VALUES ("D
 INSERT INTO TimeSheetEntries(description,fromtime,totime,timesheetid) VALUES ("Testing","01:07:55","02:33:56",4);
 INSERT INTO TimeSheetEntries(description,fromtime,totime,timesheetid) VALUES ("Sprint Meeting","04:07:55","06:08:56",5);
 INSERT INTO TimeSheetEntries(description,fromtime,totime,timesheetid) VALUES ("Code Review","06:07:55","07:09:56",6);
+
+
+INSERT INTO TimeSheetEntries(description,fromtime,totime,timesheetid) VALUES ("Meeting With Client","00:07:55","11:00:56",1);
+INSERT INTO TimeSheetEntries(description,fromtime,totime,timesheetid) VALUES ("Research","10:07:55","12:20:56",1);
+INSERT INTO TimeSheetEntries(description,fromtime,totime,timesheetid) VALUES ("Development","12:07:55","01:30:56",1);
+INSERT INTO TimeSheetEntries(description,fromtime,totime,timesheetid) VALUES ("Testing","01:07:55","02:33:56",1);
+INSERT INTO TimeSheetEntries(description,fromtime,totime,timesheetid) VALUES ("Sprint Meeting","04:07:55","06:08:56",1);
+INSERT INTO TimeSheetEntries(description,fromtime,totime,timesheetid) VALUES ("Code Review","06:07:55","07:09:56",1);
+
+
+
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Project Planning", "09:00:00", "10:30:00", 2);
+ 
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Client Meeting", "10:45:00", "12:00:00", 2);
+ 
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Lunch Break", "12:00:00", "13:00:00", 2);
+ 
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Coding", "13:00:00", "15:30:00", 2);
+ 
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Testing and Debugging", "15:45:00", "17:00:00", 2);
+ 
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Documentation", "17:15:00", "18:30:00", 2);
+
+
+
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Project Planning", "09:00:00", "10:30:00", 3);
+ 
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Client Meeting", "10:45:00", "12:00:00", 3);
+ 
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Lunch Break", "12:00:00", "13:00:00", 3);
+ 
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Coding", "13:00:00", "15:30:00", 4);
+ 
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Testing and Debugging", "15:45:00", "17:00:00", 4);
+ 
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Documentation", "17:15:00", "18:30:00", 4);
+
+
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Project Planning", "09:00:00", "10:30:00", 5);
+ 
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Client Meeting", "10:45:00", "12:00:00", 5);
+ 
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Lunch Break", "12:00:00", "13:00:00", 5);
+ 
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Coding", "13:00:00", "15:30:00", 5);
+ 
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Testing and Debugging", "15:45:00", "17:00:00", 5);
+ 
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Documentation", "17:15:00", "18:30:00", 5);
+
+
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Project Planning", "09:00:00", "10:30:00", 6);
+ 
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Client Meeting", "10:45:00", "12:00:00", 6);
+ 
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Lunch Break", "12:00:00", "13:00:00", 6);
+ 
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Coding", "13:00:00", "15:30:00", 6);
+ 
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Testing and Debugging", "15:45:00", "17:00:00", 6);
+ 
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Documentation", "17:15:00", "18:30:00", 6);

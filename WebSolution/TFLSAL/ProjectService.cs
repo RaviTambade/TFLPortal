@@ -112,4 +112,41 @@ public class ProjectService : IProjectService
         }
         return projects;
     }
+
+
+
+  public async Task<bool> AddProject(Project project){
+        bool status = false;
+        MySqlConnection connection =new MySqlConnection();
+        connection.ConnectionString=_connectionString;
+        try{
+            
+            MySqlCommand command= new MySqlCommand();
+            command.CommandText="Insert into projects (title,startdate,enddate,description,teammanagerid,status) values(@title,@startdate,@enddate,@description,@teammanagerid,@status)";
+            command.Connection=connection; 
+            await connection.OpenAsync();
+            command.Parameters.AddWithValue("@title",project.Title);
+            command.Parameters.AddWithValue("@startdate",project.StartDate);
+            command.Parameters.AddWithValue("@enddate",project.EndDate);
+            command.Parameters.AddWithValue("@description",project.Description);
+            command.Parameters.AddWithValue("@teammanagerid",project.TeamManagerId);
+            command.Parameters.AddWithValue("@status",project.Status);
+          
+          int rowsAffected = await command.ExecuteNonQueryAsync(); // Execute the query asynchronously
+
+        if (rowsAffected > 0)
+        {
+            status = true;
+        }
+        }
+        catch(Exception ee){
+            throw ee;
+
+        }
+        finally{
+            connection.Close();
+        }
+
+        return status;
+    }
 }

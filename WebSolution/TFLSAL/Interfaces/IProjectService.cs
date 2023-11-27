@@ -5,4 +5,6 @@ public interface IProjectService{
     Task<List<Project>> GetAllProject();
     Task<List<Project>> GetProjectsOfEmployee(int employeeid);
 
+    Task<bool> AddProject(Project project);
+
 }

@@ -1,7 +1,9 @@
 <timesheet-list (selectedTimeSheetId)="onReceiveTimeSheetId($event)"></timesheet-list>
+
+<p>TimeSheetDEtails</p>
 <div *ngIf="timeSheet">
-<p>{{timeSheet.id}}</p>
-<p>{{timeSheet.description}}</p>
-<p>{{timeSheet.fromTime}}</p>
-<p>{{timeSheet.toTime}}</p>
+<p> id :{{timeSheet.id}}</p>
+<p>description:{{timeSheet.description}}</p>
+<p>fromtime :{{timeSheet.fromTime}}</p>
+<p>toTime:{{timeSheet.toTime}}</p>
 </div>
