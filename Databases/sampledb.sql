@@ -191,22 +191,12 @@ INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES (
 INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Testing and Debugging", "15:45:00", "17:00:00", 2);
  
 INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Documentation", "17:15:00", "18:30:00", 2);
-
-
-
 INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Project Planning", "09:00:00", "10:30:00", 3);
- 
 INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Client Meeting", "10:45:00", "12:00:00", 3);
- 
 INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Lunch Break", "12:00:00", "13:00:00", 3);
- 
 INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Coding", "13:00:00", "15:30:00", 4);
- 
 INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Testing and Debugging", "15:45:00", "17:00:00", 4);
- 
 INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Documentation", "17:15:00", "18:30:00", 4);
-
-
 INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Project Planning", "09:00:00", "10:30:00", 5);
  
 INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Client Meeting", "10:45:00", "12:00:00", 5);
@@ -231,3 +221,20 @@ INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES (
 INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Testing and Debugging", "15:45:00", "17:00:00", 6);
  
 INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Documentation", "17:15:00", "18:30:00", 6);
+
+
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Project Planning", "09:00:00", "10:30:00", 7);
+ 
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Sprint Meeting", "10:45:00", "12:00:00", 7);
+ 
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Lunch Break", "12:00:00", "13:00:00", 7);
+ 
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Coding", "13:00:00", "15:30:00", 7);
+ 
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Testing and Debugging", "15:45:00", "17:00:00", 7);
+ 
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Documentation", "17:15:00", "18:30:00", 7);
+
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Development", "17:15:00", "18:30:00", 7);
+
+INSERT INTO TimeSheetEntries(description, fromtime, totime, timesheetid)VALUES ("Code Review ", "17:15:00", "18:30:00", 7);
