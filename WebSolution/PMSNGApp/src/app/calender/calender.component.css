@@ -28,13 +28,7 @@
     max-height: 12vh;
     cursor: pointer;
   }
-  
-  .calendar-items-wrapper {
-    margin-left: -10px;
-    margin-right: -10px;
-    overflow-y: auto;
-    max-height: calc(100% - 20px);
-  }
+
   
   .calendar-day.past-date {
     background-color: rgb(248, 248, 248);
@@ -48,3 +42,17 @@
     color: rgb(16, 110, 190);
   }
   
+  .calendar-day.red-date{
+    background-color: rgb(195, 117, 117);
+  }
+  .calendar-day.blue-date{
+    background-color:  rgb(106, 169, 225);
+    color: black;
+
+  }
+  .green-project {
+    margin-top: 15px;
+    height: 2px;
+    border: 3px solid green;
+    color:green;
+  }

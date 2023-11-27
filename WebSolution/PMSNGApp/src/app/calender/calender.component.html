@@ -1,12 +1,13 @@
 <div>
-    <div>
+    <h4 class=" container-fluid">
         {{displayMonth}}
-    </div>
+
+    </h4>
+
     <div>
-        <input type="button" (click)="setCurrentMonth()" value="today" />
-        <input type="button" (click)="decreaseMonth()" value="-" />
-        <input type="button" (click)="increaseMonth()" value="+" />
-        <!-- <input style="float: left;" type="date" (input)="GoToSpecificDate(date)" value="+"  #date/> -->
+        <input type="button" class="mx-2" (click)="setCurrentMonth()" value="today" />
+        <input type="button" class="mx-2" (click)="decreaseMonth()" value="<" />
+        <input type="button" class="mx-2" (click)="increaseMonth()" value=">" />
     </div>
 </div>
 
@@ -24,13 +25,18 @@
     </thead>
     <tbody>
         <tr *ngFor="let row of calendar | chunk: 7; let i = index">
-            <td class="calendar-day" [ngClass]="{'past-date': c.isPastDate, 'today': c.isToday}"
-                *ngFor="let c of row; let j = index">
-                <div class="calendar-day-header" [ngClass]="{'blue-date': c.isToday}">
-                    <strong>{{c.date.getDate()}}</strong> <strong
-                        *ngIf="c.isToday || (i==0 && j==0) || (c.date.getDate() == 1)">
-                        {{monthNames[c.date.getMonth()]}}</strong></div>
-            </td>
+            <ng-container *ngFor="let c of row; let j = index">
+                <td class="calendar-day" [ngClass]="{ 'blue-date': isDateClicked(c.date) ,'red-date': isholiday(c.date),'past-date': c.isPastDate}"
+                    (click)="onClick(c.date)">
+                    <div [ngClass]="{'blue-date': c.isToday } ">
+                        <strong>{{c.date.getDate()}}</strong> <strong
+                            *ngIf="c.isToday || (i==0 && j==0) || (c.date.getDate() == 1)">
+                            {{monthNames[c.date.getMonth()]}}</strong>
+
+                        <div class="green-project" *ngIf="isProjectOngoing(c.date)">  </div>
+                    </div>
+                </td>
+            </ng-container>
         </tr>
     </tbody>
 </table>

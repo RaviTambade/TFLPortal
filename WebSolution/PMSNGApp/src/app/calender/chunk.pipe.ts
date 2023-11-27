@@ -14,12 +14,10 @@ export class ChunkPipe implements PipeTransform {
         // here we need to use ++ in front of the variable else index increase 
         //will happen after the evaluation but we need it to happen BEFORE
         if (++index % chunkSize  === 0) {
-          console.log("🚀 ~ calendarDaysArray.map ~ ++index:", ++index);
           calendarDays.push(weekDays);
           weekDays = [];
         }
     });
-    console.log("🚀 ~ transform ~ calendarDays:", calendarDays);
     return calendarDays;
   }
 }
