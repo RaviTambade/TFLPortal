@@ -33,13 +33,13 @@ public class TimeSheetService : ITimeSheetService
             while (await reader.ReadAsync())
             {
                 int id = int.Parse(reader["id"].ToString());
-                DateTime assigndate = DateTime.Parse(reader["date"].ToString());
+                DateTime date = DateTime.Parse(reader["date"].ToString());
                 string status = reader["status"].ToString();
 
                 TimeSheet timesheet = new TimeSheet()
                 {
                     Id = id,
-                    AssignDate = assigndate,
+                    Date = date,
                     Status = status,
                     EmployeeId = employeeId,
                 };

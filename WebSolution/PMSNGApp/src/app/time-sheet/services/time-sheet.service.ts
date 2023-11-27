@@ -19,9 +19,9 @@ export class TimeSheetService {
     return this.http.get<TimeSheet[]>(url)
   } 
 
-  getTaskDetails(timeSheetId:number): Observable<TimeSheetEntry> {
+  getTimeSheetDetails(timeSheetId:number): Observable<TimeSheetEntry[]> {
   let url = this.timeSheetUrl+"timesheets/timesheetentry/" + timeSheetId 
-  return this.http.get<TimeSheetEntry>(url)
+  return this.http.get<TimeSheetEntry[]>(url)
   } 
 
   getDatewiseTimeSheetsOfEmployee(date:string,employeeId:number): Observable<TimeSheetEntry>{

@@ -1,9 +1,25 @@
 <timesheet-list (selectedTimeSheetId)="onReceiveTimeSheetId($event)"></timesheet-list>
 
-<p>TimeSheetDEtails</p>
-<div *ngIf="timeSheet">
-<p> id :{{timeSheet.id}}</p>
-<p>description:{{timeSheet.description}}</p>
-<p>fromtime :{{timeSheet.fromTime}}</p>
-<p>toTime:{{timeSheet.toTime}}</p>
-</div>
+
+<div class="container">
+    <h2> TimeSheet Entries</h2>
+    <div class="card">
+        <table class="table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>description</th>
+                    <th>fromtime</th>
+                    <th>toTime</th>
+                </tr>
+            </thead>
+            <tbody *ngFor=" let entry of timeSheetEntries">
+                <tr>
+                    <td >{{entry.id}}</td>
+                    <td> {{entry.description}}</td>
+                    <td> {{entry.fromTime | date :"HH:mm"}}</td>
+                    <td> {{entry.toTime | date :"HH:mm"}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>

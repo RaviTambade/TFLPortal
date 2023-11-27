@@ -11,7 +11,7 @@ import { TimeSheetEntry } from '../../models/TimeSheetEntry';
 export class DetailsComponent {
 
   timeSheetId:number |undefined;
-  timeSheet:TimeSheetEntry |undefined;
+  timeSheetEntries:TimeSheetEntry[]=[];
   
 
   constructor(private timeSheetSvc:TimeSheetService){}
@@ -20,8 +20,8 @@ export class DetailsComponent {
     this.timeSheetId=event;
     console.log(this.timeSheetId);
     if(this.timeSheetId)
-    this.timeSheetSvc.getTaskDetails(this.timeSheetId).subscribe((res)=>{
-      this.timeSheet=res;
+    this.timeSheetSvc.getTimeSheetDetails(this.timeSheetId).subscribe((res)=>{
+      this.timeSheetEntries=res;
     })
   }
 }
