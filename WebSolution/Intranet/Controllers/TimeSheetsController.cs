@@ -10,30 +10,35 @@ namespace Transflower.TFLPortal.Intranet.Controllers;
 public class TimeSheetsController : ControllerBase
 {
     private readonly ITimeSheetService _service;
+
     public TimeSheetsController(ITimeSheetService service)
     {
         _service = service;
     }
 
-    
-
     [HttpGet("{employeeId}")]
-    public async Task<List<TimeSheet>> GetTimeSheetsOfEmployee(int employeeId){
-        List<TimeSheet> timesheets=  await _service.GetTimeSheetsOfEmployee(employeeId);
+    public async Task<List<TimeSheet>> GetTimeSheetsOfEmployee(int employeeId)
+    {
+        List<TimeSheet> timesheets = await _service.GetTimeSheetsOfEmployee(employeeId);
         return timesheets;
     }
 
-
     [HttpGet("TimeSheetEntry/{timeSheetId}")]
-    public async Task<TimeSheetEntry> GetTimeSheetDetails(int timeSheetId){
-        TimeSheetEntry timesheet=  await _service.GetTimeSheetDetails(timeSheetId);
-        return timesheet;
+    public async Task<List<TimeSheetEntry>> GetTimeSheetDetails(int timeSheetId)
+    {
+        return await _service.GetTimeSheetDetails(timeSheetId);
     }
 
     [HttpGet("TimeSheetEntry/{date}/{employeeId}")]
-    public async Task<List<TimeSheetEntry>> GetDatewiseTimeSheetsOfEmployee(DateTime date,int employeeId){
-        List<TimeSheetEntry> timesheets=  await _service.GetDatewiseTimeSheetsOfEmployee(date,employeeId);
+    public async Task<List<TimeSheetEntry>> GetDatewiseTimeSheetsOfEmployee(
+        DateTime date,
+        int employeeId
+    )
+    {
+        List<TimeSheetEntry> timesheets = await _service.GetDatewiseTimeSheetsOfEmployee(
+            date,
+            employeeId
+        );
         return timesheets;
     }
-    
 }

@@ -4,9 +4,10 @@ using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 using Transflower.TFLPortal.TFLOBL.Entities;
 
 namespace Transflower.TFLPortal.TFLSAL.Services;
+
 public class TimeSheetService : ITimeSheetService
 {
-private readonly IConfiguration _configuration;
+    private readonly IConfiguration _configuration;
     private readonly string _connectionString;
 
     public TimeSheetService(IConfiguration configuration)
@@ -24,7 +25,7 @@ private readonly IConfiguration _configuration;
         connection.ConnectionString = _connectionString;
         try
         {
-            string query ="select * from timesheets where  employeeid =@employeeId";
+            string query = "select * from timesheets where  employeeid =@employeeId";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@employeeId", employeeId);
             await connection.OpenAsync();
@@ -34,14 +35,13 @@ private readonly IConfiguration _configuration;
                 int id = int.Parse(reader["id"].ToString());
                 DateTime assigndate = DateTime.Parse(reader["date"].ToString());
                 string status = reader["status"].ToString();
-               
+
                 TimeSheet timesheet = new TimeSheet()
                 {
                     Id = id,
-                    AssignDate=assigndate,
+                    AssignDate = assigndate,
                     Status = status,
-                    EmployeeId=employeeId,
-                    
+                    EmployeeId = employeeId,
                 };
                 timesheets.Add(timesheet);
             }
@@ -58,37 +58,33 @@ private readonly IConfiguration _configuration;
         return timesheets;
     }
 
-
-
- public async Task<TimeSheetEntry> GetTimeSheetDetails(int timeSheetId)
-    {    
-
-        TimeSheetEntry timesheet = new TimeSheetEntry();
+    public async Task<List<TimeSheetEntry>> GetTimeSheetDetails(int timeSheetId)
+    {
+        List<TimeSheetEntry> timeSheetEntries = new List<TimeSheetEntry>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query ="select * from timesheetentries where  timesheetid =@timeSheetId";
+            string query = "select * from timesheetentries where  timesheetid =@timeSheetId";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@timeSheetId", timeSheetId);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
-            if (await reader.ReadAsync())
+            while (await reader.ReadAsync())
             {
                 int id = int.Parse(reader["id"].ToString());
                 DateTime fromtime = DateTime.Parse(reader["fromtime"].ToString());
                 DateTime totime = DateTime.Parse(reader["totime"].ToString());
                 string description = reader["description"].ToString();
-               
-                timesheet = new TimeSheetEntry()
+
+                TimeSheetEntry timesheet = new TimeSheetEntry()
                 {
                     Id = id,
-                    Description=description,
+                    Description = description,
                     FromTime = fromtime,
-                    ToTime=totime,
-                    
+                    ToTime = totime,
                 };
-               
+                timeSheetEntries.Add(timesheet);
             }
             await reader.CloseAsync();
         }
@@ -100,39 +96,41 @@ private readonly IConfiguration _configuration;
         {
             await connection.CloseAsync();
         }
-        return timesheet;
+        return timeSheetEntries;
     }
 
-    public async Task<List<TimeSheetEntry>> GetDatewiseTimeSheetsOfEmployee(DateTime date,int employeeId)
+    public async Task<List<TimeSheetEntry>> GetDatewiseTimeSheetsOfEmployee(
+        DateTime date,
+        int employeeId
+    )
     {
         List<TimeSheetEntry> timesheets = new List<TimeSheetEntry>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query ="select * from TimeSheetEntries inner join timesheets on timesheets.id=TimeSheetEntries.timesheetid where date=@date and employeeid=@employeeId";
+            string query =
+                "select * from TimeSheetEntries inner join timesheets on timesheets.id=TimeSheetEntries.timesheetid where date=@date and employeeid=@employeeId";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@date", date);
             command.Parameters.AddWithValue("@employeeId", employeeId);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
-            while(await reader.ReadAsync())
+            while (await reader.ReadAsync())
             {
                 int id = int.Parse(reader["id"].ToString());
                 DateTime fromtime = DateTime.Parse(reader["fromtime"].ToString());
                 DateTime totime = DateTime.Parse(reader["totime"].ToString());
                 string description = reader["description"].ToString();
-               
+
                 TimeSheetEntry timesheet = new TimeSheetEntry()
                 {
                     Id = id,
-                    Description=description,
+                    Description = description,
                     FromTime = fromtime,
-                    ToTime=totime,
-                    
+                    ToTime = totime,
                 };
                 timesheets.Add(timesheet);
-               
             }
             await reader.CloseAsync();
         }
@@ -145,5 +143,5 @@ private readonly IConfiguration _configuration;
             await connection.CloseAsync();
         }
         return timesheets;
-    }   
+    }
 }

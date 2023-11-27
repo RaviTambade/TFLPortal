@@ -4,7 +4,7 @@ public interface ITimeSheetService{
 
      public Task<List<TimeSheet>> GetTimeSheetsOfEmployee(int employeeId);
 
-     public Task<TimeSheetEntry> GetTimeSheetDetails(int timeSheetId);
+     public Task<List<TimeSheetEntry>> GetTimeSheetDetails(int timeSheetId);
 
      public Task<List<TimeSheetEntry>> GetDatewiseTimeSheetsOfEmployee(DateTime date,int employeeId);
 
