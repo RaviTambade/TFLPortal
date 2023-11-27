@@ -1,28 +1,4 @@
-.calendar-table {
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 100%;
-    margin-bottom: 1rem;
-    border: 1px solid #dee2e6;
-    background-color: #fff;
-  }
-  
-  .calendar-table thead th {
-    vertical-align: bottom;
-    border-bottom: 2px solid #dee2e6;
-    width: 14.2%;
-  }
-  
-  .calendar-table td, .calendar-table th {
-    border: 1px solid #dee2e6;
-  }
-  
-  .calendar-table td, .calendar-table th {
-    padding: .75rem;
-    vertical-align: top;
-    border-top: 1px solid #dee2e6;
-  }
-  
+
   .calendar-day {
     height: 12vh;
     max-height: 12vh;
@@ -51,8 +27,6 @@
 
   }
   .green-project {
-    margin-top: 15px;
-    height: 2px;
     border: 3px solid green;
-    color:green;
   }
+
