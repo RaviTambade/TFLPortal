@@ -11,27 +11,28 @@ import { TimeSheetService } from 'src/app/time-sheet/services/time-sheet.service
 export class InsertTimeSheetEntryComponent {
   constructor(private timeSheetService: TimeSheetService) {}
 
-  // @Output() selectedTimeSheetEntries= new EventEmitter<TimeSheetEntry>();
   timeSheetEntry: TimeSheetEntry = {
     id: 0,
     description: '',
     fromTime: '',
     toTime: '',
-    duration: ''
+    durationInMinutes: 0,
+    durationInHours: ''
   };
 
+  showHours:string=''
   onClick() {
     let timeSheetEntry: TimeSheetEntry = {
       id: 0,
       description: this.timeSheetEntry.description,
       fromTime: this.timeSheetEntry.fromTime,
       toTime: this.timeSheetEntry.toTime,
-      duration: this.timeSheetEntry.duration
+      durationInMinutes: this.timeSheetEntry.durationInMinutes,
+      durationInHours: this.timeSheetEntry.durationInHours
     };
 
     this.timeSheetService.AddTimeSheetEntries(timeSheetEntry);
   
-    //  this.selectedTimeSheetEntries.emit(this.timeSheetEntry);
   }
 
   getDuration() {
@@ -43,12 +44,13 @@ export class InsertTimeSheetEntryComponent {
       const endDate = new Date(`1970-01-01T${endTime}`);
 
       const durationMilliseconds = endDate.getTime() - startDate.getTime();
-      const hours = Math.floor(durationMilliseconds / (60 * 60 * 1000));
-      const minutes = Math.floor(
-        (durationMilliseconds % (60 * 60 * 1000)) / (60 * 1000)
-      );
-
-      this.timeSheetEntry.duration = `${hours}h ${minutes}m `;
+      this.timeSheetEntry.durationInMinutes = (durationMilliseconds /(1000*60));
+      this.timeSheetEntry.durationInHours=this.convertMinutesintoHours(this.timeSheetEntry.durationInMinutes);
     }
+  }
+
+  convertMinutesintoHours(minutes:number){
+    let str=`${(minutes/60).toFixed(0)}h: ${(minutes%60)}m`;
+    return str;
   }
 }

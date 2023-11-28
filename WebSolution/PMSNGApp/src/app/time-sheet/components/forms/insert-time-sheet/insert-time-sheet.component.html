@@ -1,14 +1,3 @@
-
-<!-- <label>TimeSheetDate:</label>
-<input type="date" name="date">
-<label>Status:</label>
-<input type="text" name="status">
-<label>Employee Id:</label>
-<input type="number" name="employeeId">
-<button type="submit"> submit</button> -->
-
-
-<!-- <app-insert-time-sheet-entry (selectedTimeSheetEntries)="onReceiveTimeSheetEntries($event)"></app-insert-time-sheet-entry> -->
 <app-insert-time-sheet-entry></app-insert-time-sheet-entry>
 
 <table class="table-bordered">
@@ -25,9 +14,13 @@
             <td>{{timeSheetEntry.fromTime }}</td>
             <td>{{timeSheetEntry.toTime}}</td>
             <td>{{timeSheetEntry.description}}</td>
-            <td>{{timeSheetEntry.duration}}</td>
+            <td>{{timeSheetEntry.durationInHours}}</td>
         </tr>
+       
     </tbody>
+    
 </table>
+
+<p>Total Hours{{totalminutes}}</p>
 
 <button type="submit" (click)="onSubmit()"> submit </button> 

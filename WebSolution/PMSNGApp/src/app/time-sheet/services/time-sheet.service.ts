@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { TimeSheetEntry } from '../models/TimeSheetEntry';
 import { TimeSheet } from '../models/timesheet';
 
@@ -16,12 +16,13 @@ export class TimeSheetService {
   private timeSheetUrl:string ="http://localhost:5263/api/";
 
   timeSheetEntries:TimeSheetEntry[]=[];
-  private subject = new BehaviorSubject<TimeSheetEntry[]>(this.timeSheetEntries);
+  private subject = new Subject<TimeSheetEntry[]>();
   
   AddTimeSheetEntries(timeSheetEntry:TimeSheetEntry){
-    timeSheetEntry.fromTime=timeSheetEntry.fromTime+":02"
-    timeSheetEntry.toTime=timeSheetEntry.toTime+":03"
-  this.timeSheetEntries.push(timeSheetEntry);
+    // timeSheetEntry.fromTime=timeSheetEntry.fromTime+":00"
+    // timeSheetEntry.toTime=timeSheetEntry.toTime+":00"
+    this.timeSheetEntries.push(timeSheetEntry);
+    this.subject.next(this.timeSheetEntries);
   }
 
   ReceiveTimeSheetEntries():Observable<TimeSheetEntry[]>{
