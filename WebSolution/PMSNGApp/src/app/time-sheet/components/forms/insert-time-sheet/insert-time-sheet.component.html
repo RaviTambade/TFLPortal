@@ -1,0 +1,30 @@
+
+<!-- <label>TimeSheetDate:</label>
+<input type="date" name="date">
+<label>Status:</label>
+<input type="text" name="status">
+<label>Employee Id:</label>
+<input type="number" name="employeeId">
+<button type="submit"> submit</button> -->
+
+
+<!-- <app-insert-time-sheet-entry (selectedTimeSheetEntries)="onReceiveTimeSheetEntries($event)"></app-insert-time-sheet-entry> -->
+<app-insert-time-sheet-entry></app-insert-time-sheet-entry>
+
+<table>
+    <thead>
+        <tr>
+            <th>StartTime:</th>
+            <th>EndTime:</th>
+            <th>Description:</th>
+            <th>Duration:</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let timeSheetEntry of timeSheetEntries">
+        <tr>
+            <td>{{timeSheetEntry.fromTime}}</td>
+            <td>{{timeSheetEntry.toTime}}</td>
+            <td>{{timeSheetEntry.description}}</td>
+        </tr>
+    </tbody>
+</table>
