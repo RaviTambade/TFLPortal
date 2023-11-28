@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { TimeSheetEntry } from 'src/app/time-sheet/models/TimeSheetEntry';
+import { TimeSheet } from 'src/app/time-sheet/models/timesheet';
 import { TimeSheetService } from 'src/app/time-sheet/services/time-sheet.service';
 
 @Component({
@@ -12,12 +13,13 @@ export class InsertTimeSheetComponent implements OnInit {
   
   constructor(private timeSheetSvc:TimeSheetService){}
   
+
+
   timeSheetEntries:TimeSheetEntry[]=[];
 
   subscription:Subscription |undefined;
 
-  startTime: string|undefined; // Assuming you have a variable representing the start timestamp
-  endTime: string |undefined; 
+ 
   ngOnInit(): void {
     this.subscription=this.timeSheetSvc.ReceiveTimeSheetEntries().subscribe((res)=>{
       this.timeSheetEntries=res;
@@ -25,6 +27,24 @@ export class InsertTimeSheetComponent implements OnInit {
     })
     
   }
+
+  onSubmit(){
+    let obj={
+    id: 0,
+    date: new Date().toISOString().slice(0,10),
+    status: '',
+    employeeId: 10,
+    timeSheetEntries:this.timeSheetEntries
+    }
+
+    console.log(obj);
+      this.timeSheetSvc.addTimeSheet(obj).subscribe((res)=>{
+      console.log(res);
+      alert("timesheet added")
+    });
+
+  }
+
 
 
 

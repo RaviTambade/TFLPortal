@@ -2,6 +2,9 @@ using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Configuration;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 using Transflower.TFLPortal.TFLOBL.Entities;
+using System.Text;
+using System.Diagnostics.Metrics;
+using System.Data;
 
 namespace Transflower.TFLPortal.TFLSAL.Services;
 
@@ -73,8 +76,8 @@ public class TimeSheetService : ITimeSheetService
             while (await reader.ReadAsync())
             {
                 int id = int.Parse(reader["id"].ToString());
-                DateTime fromtime = DateTime.Parse(reader["fromtime"].ToString());
-                DateTime totime = DateTime.Parse(reader["totime"].ToString());
+                TimeOnly fromtime = TimeOnly.Parse(reader["fromtime"].ToString());
+                TimeOnly totime = TimeOnly.Parse(reader["totime"].ToString());
                 string description = reader["description"].ToString();
 
                 TimeSheetEntry timesheet = new TimeSheetEntry()
@@ -119,8 +122,8 @@ public class TimeSheetService : ITimeSheetService
             while (await reader.ReadAsync())
             {
                 int id = int.Parse(reader["id"].ToString());
-                DateTime fromtime = DateTime.Parse(reader["fromtime"].ToString());
-                DateTime totime = DateTime.Parse(reader["totime"].ToString());
+                TimeOnly fromtime = TimeOnly.Parse(reader["fromtime"].ToString());
+                TimeOnly totime = TimeOnly.Parse(reader["totime"].ToString());
                 string description = reader["description"].ToString();
 
                 TimeSheetEntry timesheet = new TimeSheetEntry()
@@ -143,5 +146,78 @@ public class TimeSheetService : ITimeSheetService
             await connection.CloseAsync();
         }
         return timesheets;
+    }
+
+    public async Task<bool> InsertTimeSheet(TimeSheet timeSheet)
+    {
+        int timeSheetId = await GetTimeSheetId(timeSheet);
+
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+  
+
+        var query = new StringBuilder("INSERT INTO timesheetentries(description, fromtime, totime, timesheetid) VALUES ");
+        var parameters = new List<MySqlParameter>();
+
+        for (int i = 0; i < timeSheet.TimeSheetEntries.Count; i++)
+        {
+            var timeSheetEntry = timeSheet.TimeSheetEntries[i];
+
+            query.Append($"(@Description{i}, @FromTime{i}, @ToTime{i}, @TimeSheetId{i}), ");
+
+            parameters.Add(new MySqlParameter($"@Description{i}",timeSheetEntry.Description ));
+            parameters.Add(new MySqlParameter($"@FromTime{i}",timeSheetEntry.FromTime ));
+            parameters.Add(new MySqlParameter($"@ToTime{i}",timeSheetEntry.ToTime ));
+            parameters.Add(new MySqlParameter($"@TimeSheetId{i}",  timeSheetId ));
+        }
+
+        query.Length -= 2;
+
+        Console.WriteLine(query.ToString());
+        try
+        {
+            MySqlCommand command = new MySqlCommand(query.ToString(), connection);
+            command.Parameters.AddRange(parameters.ToArray());
+            await connection.OpenAsync();
+            int rowsAffected = await command.ExecuteNonQueryAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return true;
+    }
+
+    public async Task<int> GetTimeSheetId(TimeSheet timeSheet)
+    {
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        int timesheetId = 0;
+        try
+        {
+            MySqlCommand cmd = new MySqlCommand("getorcreatetimesheet", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@timesheetdate", timeSheet.Date);
+            cmd.Parameters.AddWithValue("@empid", timeSheet.EmployeeId);
+            cmd.Parameters.AddWithValue("@timesheetid", MySqlDbType.Int32);
+            cmd.Parameters["@timesheetid"].Direction = ParameterDirection.Output;
+            await connection.OpenAsync();
+
+            cmd.ExecuteNonQuery();
+            timesheetId = (int)cmd.Parameters["@timesheetid"].Value;
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            connection.Close();
+        }
+        return timesheetId;
     }
 }

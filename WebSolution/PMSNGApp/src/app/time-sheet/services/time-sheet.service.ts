@@ -42,6 +42,11 @@ export class TimeSheetService {
   } 
 
 
+  addTimeSheet(obj:any): Observable<boolean>{
+    let url = this.timeSheetUrl+"timesheets"; 
+    return this.http.post<boolean>(url,{obj});
+  } 
+
 
 
 }

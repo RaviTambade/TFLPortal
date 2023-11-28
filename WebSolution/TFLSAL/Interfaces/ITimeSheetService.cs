@@ -1,15 +1,15 @@
 using Transflower.TFLPortal.TFLOBL.Entities;
+
 namespace Transflower.TFLPortal.TFLSAL.Services.Interfaces;
-public interface ITimeSheetService{
 
-     public Task<List<TimeSheet>> GetTimeSheetsOfEmployee(int employeeId);
+public interface ITimeSheetService
+{
+    Task<List<TimeSheet>> GetTimeSheetsOfEmployee(int employeeId);
 
-     public Task<List<TimeSheetEntry>> GetTimeSheetDetails(int timeSheetId);
+    Task<List<TimeSheetEntry>> GetTimeSheetDetails(int timeSheetId);
 
-     public Task<List<TimeSheetEntry>> GetDatewiseTimeSheetsOfEmployee(DateTime date,int employeeId);
+    Task<List<TimeSheetEntry>> GetDatewiseTimeSheetsOfEmployee(DateTime date, int employeeId);
 
-     public Task<bool> InsertTimeSheet(TimeSheetEntry timeSheet);
-
-     public Task<bool> InsertTimeSheetEntry(TimeSheetEntry timeSheet);
-
+    Task<bool> InsertTimeSheet(TimeSheet timeSheet);
+    Task<int> GetTimeSheetId(TimeSheet timeSheet);
 }

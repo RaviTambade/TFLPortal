@@ -35,10 +35,12 @@ public class TimeSheetsController : ControllerBase
         int employeeId
     )
     {
-        List<TimeSheetEntry> timesheets = await _service.GetDatewiseTimeSheetsOfEmployee(
-            date,
-            employeeId
-        );
-        return timesheets;
+        return await _service.GetDatewiseTimeSheetsOfEmployee(date, employeeId);
+    }
+
+    [HttpPost]
+    public async Task<bool> InsertTimeSheet(TimeSheet timeSheet)
+    {
+        return await _service.InsertTimeSheet(timeSheet);
     }
 }

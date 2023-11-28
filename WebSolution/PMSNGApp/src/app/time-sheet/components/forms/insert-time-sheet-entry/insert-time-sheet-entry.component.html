@@ -1,11 +1,10 @@
 
 <label>fromTime:</label>
-<input type="time" name="fromTime" [(ngModel)]="timeSheetEntry.fromTime">
+<input type="time" name="fromTime" [(ngModel)]="timeSheetEntry.fromTime"(change)="getDuration()">
 <label>toTime:</label>
-<input type="time" name="toTime" [(ngModel)]="timeSheetEntry.toTime"> 
+<input type="time" name="toTime" [(ngModel)]="timeSheetEntry.toTime" (change)="getDuration()"> 
 <label>Description:</label>
 <input type="text" name="toTime"  [(ngModel)]="timeSheetEntry.description"> 
+<p >duration:{{timeSheetEntry.duration}}</p>
 <button type="submit" (click)="onClick()">submit</button>
 
-
-<p>duration:{{duration}}</p>
