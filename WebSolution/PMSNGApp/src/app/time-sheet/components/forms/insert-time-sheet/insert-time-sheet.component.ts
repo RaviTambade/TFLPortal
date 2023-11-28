@@ -16,6 +16,8 @@ export class InsertTimeSheetComponent implements OnInit {
 
   subscription:Subscription |undefined;
 
+  startTime: string|undefined; // Assuming you have a variable representing the start timestamp
+  endTime: string |undefined; 
   ngOnInit(): void {
     this.subscription=this.timeSheetSvc.ReceiveTimeSheetEntries().subscribe((res)=>{
       this.timeSheetEntries=res;

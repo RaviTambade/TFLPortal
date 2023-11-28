@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TimeSheetEntry } from 'src/app/time-sheet/models/TimeSheetEntry';
 import { TimeSheetService } from 'src/app/time-sheet/services/time-sheet.service';
@@ -11,6 +11,7 @@ import { TimeSheetService } from 'src/app/time-sheet/services/time-sheet.service
 export class InsertTimeSheetEntryComponent {
 
   constructor(private timeSheetService:TimeSheetService){}
+ 
 
   // @Output() selectedTimeSheetEntries= new EventEmitter<TimeSheetEntry>();
   timeSheetEntry:TimeSheetEntry={
@@ -19,7 +20,9 @@ export class InsertTimeSheetEntryComponent {
     fromTime: '',
     toTime: ''
   }
-
+  startTime: string = '';
+  endTime: string = '';
+  duration: string = '';
   onClick(){
     let timeSheetEntry:TimeSheetEntry={
       id: 0,
@@ -29,6 +32,16 @@ export class InsertTimeSheetEntryComponent {
     };
     
     console.log(timeSheetEntry);
+    this.startTime=timeSheetEntry.fromTime;
+    this.endTime=timeSheetEntry.toTime;
+    const startDate = new Date(`1970-01-01T${this.startTime}`);
+    const endDate = new Date(`1970-01-01T${this.endTime}`);
+
+    const durationMilliseconds = endDate.getTime() - startDate.getTime();
+    const hours = Math.floor(durationMilliseconds / (60 * 60 * 1000));
+    const minutes = Math.floor((durationMilliseconds % (60 * 60 * 1000)) / (60 * 1000));
+
+    this.duration = `${hours} hours, ${minutes} minutes`;
     this.timeSheetService.AddTimeSheetEntries(timeSheetEntry);
    console.log(this.timeSheetEntry.fromTime);
    console.log(this.timeSheetEntry.toTime);
