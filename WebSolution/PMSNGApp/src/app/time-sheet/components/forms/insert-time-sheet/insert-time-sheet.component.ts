@@ -19,26 +19,32 @@ export class InsertTimeSheetComponent implements OnInit {
 
   subscription:Subscription |undefined;
 
+
  
   ngOnInit(): void {
     this.subscription=this.timeSheetSvc.ReceiveTimeSheetEntries().subscribe((res)=>{
       this.timeSheetEntries=res;
       console.log(this.timeSheetEntries);
+    
     })
     
   }
 
   onSubmit(){
-    let obj={
-    id: 0,
-    date: new Date().toISOString().slice(0,10),
-    status: '',
-    employeeId: 10,
-    timeSheetEntries:this.timeSheetEntries
-    }
+   
 
-    console.log(obj);
-      this.timeSheetSvc.addTimeSheet(obj).subscribe((res)=>{
+
+   let timesheet:TimeSheet={
+     id: 0,
+     date: new Date().toISOString().slice(0,10),
+     status: '',
+     employeeId: 10,
+     timeSheetEntries: this.timeSheetEntries
+   }
+   
+ 
+ 
+      this.timeSheetSvc.addTimeSheet(timesheet).subscribe((res)=>{
       console.log(res);
       alert("timesheet added")
     });
@@ -46,6 +52,10 @@ export class InsertTimeSheetComponent implements OnInit {
   }
 
 
+  getTotalHours(){
+    let sum=0;
+    var arr=this.timeSheetEntries.map((te)=>te.duration);
+  }
 
 
   // onReceiveTimeSheetEntries(event:TimeSheetEntry){

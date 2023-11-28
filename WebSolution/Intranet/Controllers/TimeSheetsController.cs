@@ -39,7 +39,7 @@ public class TimeSheetsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<bool> InsertTimeSheet(TimeSheet timeSheet)
+    public async Task<bool> InsertTimeSheet([FromBody] TimeSheet timeSheet)
     {
         return await _service.InsertTimeSheet(timeSheet);
     }

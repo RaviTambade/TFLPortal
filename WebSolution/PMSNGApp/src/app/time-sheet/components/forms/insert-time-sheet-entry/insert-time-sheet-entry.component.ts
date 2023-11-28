@@ -48,7 +48,7 @@ export class InsertTimeSheetEntryComponent {
         (durationMilliseconds % (60 * 60 * 1000)) / (60 * 1000)
       );
 
-      this.timeSheetEntry.duration = `${hours} h: ${minutes}m `;
+      this.timeSheetEntry.duration = `${hours}h ${minutes}m `;
     }
   }
 }

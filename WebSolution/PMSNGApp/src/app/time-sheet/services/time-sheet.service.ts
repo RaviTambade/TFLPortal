@@ -19,6 +19,8 @@ export class TimeSheetService {
   private subject = new BehaviorSubject<TimeSheetEntry[]>(this.timeSheetEntries);
   
   AddTimeSheetEntries(timeSheetEntry:TimeSheetEntry){
+    timeSheetEntry.fromTime=timeSheetEntry.fromTime+":02"
+    timeSheetEntry.toTime=timeSheetEntry.toTime+":03"
   this.timeSheetEntries.push(timeSheetEntry);
   }
 
@@ -42,9 +44,9 @@ export class TimeSheetService {
   } 
 
 
-  addTimeSheet(obj:any): Observable<boolean>{
+  addTimeSheet(obj:TimeSheet): Observable<any>{
     let url = this.timeSheetUrl+"timesheets"; 
-    return this.http.post<boolean>(url,{obj});
+    return this.http.post(url,obj);
   } 
 
 
