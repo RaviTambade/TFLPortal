@@ -254,7 +254,7 @@ INSERT INTO userstories(title,description, projectid, assignedto, assignedby,cre
 -- Assume projects table has id, project_name, and other fields
 
 -- Inserting user stories
-INSERT INTO userstories (title, description, projectid, assignedto, assignedby, creareddate, status)
+INSERT INTO userstories (title, description, projectid, assignedto, assignedby, createddate, status)
 VALUES
 ('Resource Allocation', 'As a project coordinator, I want a resource allocation tool to assign team members to specific tasks based on their skills and availability', 1, 2, 3, '2023-11-29', 'Todo'),
 
@@ -308,7 +308,8 @@ VALUES
 ', 3, 2, 1, '2023-11-29 13:00:00', 'Todo'),
 
 ('External Stakeholder Visibility', 'As a project manager, I want a feature that facilitates the creation and sharing of project timelines with external stakeholders for visibility.', 2, 3, 2, '2023-11-29 13:15:00', 'Todo');
-=======
+
+
 INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status)VALUES ("Password Reset:","As a new user, I want to be able to register for an account so that I can access the platform.",3,3,3,'2023-11-24',"InProgress");
 INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status)VALUES ("Profile Creation","As a new user, As a user, I want to create and edit my profile with personal information and preferences",4,3,2,'2023-11-30',"Todo");
 INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status)VALUES ("Project Timeline Visualization","As a project manager, I want to create and customize project timelines with milestones to visualize project progress.",5,5,1,'2023-11-08',"Completed");
