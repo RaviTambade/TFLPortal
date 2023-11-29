@@ -95,22 +95,21 @@ CONSTRAINT fk_userStories FOREIGN KEY (userstoryid) REFERENCES userstories(id) O
     CREATE TABLE
         timesheets(
             id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-            timesheetdate DATETIME,
+            timesheetdate DATETIME ,
             status ENUM (   
                 'Submitted',
                 'Approved',
                 'Rejected'
                 ) DEFAULT 'Submitted', 
-            statuschangeddate DATETIME,
+            statuschangeddate DATETIME DEFAULT  CURRENT_TIMESTAMP,
             employeeid INT NOT NULL,
             CONSTRAINT fk_timesheets_taskallocations FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
         );
 
-
         CREATE TABLE timesheetentries(
             id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-            title VARCHAR(20),
-            activitytype ENUM("userstory","task","bug","issues","meeting","learning","mentoring"),
+            title VARCHAR(50),
+            activitytype ENUM("userstory","task","bug","issues","meeting","learning","mentoring","break","other"),
             description VARCHAR(225),
             fromtime TIME,
             totime TIME,
