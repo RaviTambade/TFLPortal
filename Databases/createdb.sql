@@ -59,14 +59,38 @@
                 'Completed') DEFAULT 'NotStarted'        
         );
 
-    -- CREATE TABLE
-    --     taskallocations(
-    --         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-           
-    --         projecttaskid INT NOT NULL,
-    --         CONSTRAINT fk_taskallocations_projecttasks FOREIGN KEY (projecttaskid) REFERENCES projecttasks(id) ON UPDATE CASCADE ON DELETE CASCADE,
-            
-    --     );
+
+   CREATE TABLE userstories(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(40) NOT NULL,
+    description VARCHAR(400),
+    projectid INT NOT NULL,
+    assignedto INT NOT NULL, 
+    assignedby INT NOT NULL,
+    creareddate DATETIME NOT NULL,
+    status ENUM ( 'Todo','InProgress','Completed') DEFAULT 'Todo' , 
+    CONSTRAINT fk_userstories_members FOREIGN KEY (assignedby) REFERENCES members(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT fk_userstories_members2 FOREIGN KEY (assignedto) REFERENCES members(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT fk_userstories_projects FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE
+   );
+
+
+
+CREATE TABLE sprints(
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(40) NOT NULL,  
+  startdate DATETIME NOT NULL,
+  enddate DATETIME NOT NULL,
+  goal VARCHAR(200)
+);
+
+CREATE TABLE sprintUserstories(
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  sprintid INT NOT NULL,
+  userstoryid INT NOT NULL,
+CONSTRAINT fk_sprints FOREIGN KEY (sprintid) REFERENCES sprints(id) ON UPDATE CASCADE ON DELETE CASCADE,
+CONSTRAINT fk_userStories FOREIGN KEY (userstoryid) REFERENCES userstories(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
 
     CREATE TABLE
         timesheets(
@@ -90,26 +114,3 @@
             timesheetid INT NOT NULL,
             CONSTRAINT fk_timesheets_timesheetentries FOREIGN KEY(timesheetid) REFERENCES timesheets(id) ON UPDATE CASCADE ON DELETE CASCADE
             )
-
-    -- CREATE TABLE projectchats(
-    --     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    --     projectid INT NOT NULL,
-    --     comment TEXT,
-    --     createdat DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    --     CONSTRAINT fk_projectchats_projects FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    --     employeeid INT NOT NULL,
-    --     CONSTRAINT fk_timerecords_employees FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
-    --     );
-
-    -- CREATE TABLE attachments (
-    --     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    --     -- projectid INT,
-    --     task_id INT,
-    --     comment_id INT,
-    --     file_name VARCHAR(40) NOT NULL,
-    --     file_path VARCHAR(80) NOT NULL,
-    --     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    --     -- CONSTRAINT fk_projects_attachments FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    --     CONSTRAINT fk_tasks_attachments FOREIGN KEY (taskid) REFERENCES tasks(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    --     CONSTRAINT fk_projectchats_attachments FOREIGN KEY (commentid) REFERENCES projectchats(id) ON UPDATE CASCADE ON DELETE CASCADE
-    -- );
