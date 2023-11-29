@@ -29,14 +29,6 @@ public class TimeSheetsController : ControllerBase
         return await _service.GetTimeSheetDetails(timeSheetId);
     }
 
-    [HttpGet("TimeSheetEntry/{date}/{employeeId}")]
-    public async Task<List<TimeSheetEntry>> GetDatewiseTimeSheetsOfEmployee(
-        DateTime date,
-        int employeeId
-    )
-    {
-        return await _service.GetDatewiseTimeSheetsOfEmployee(date, employeeId);
-    }
 
     [HttpPost]
     public async Task<bool> InsertTimeSheet([FromBody] TimeSheet timeSheet)

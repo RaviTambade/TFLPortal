@@ -8,8 +8,6 @@ public interface ITimeSheetService
 
     Task<List<TimeSheetEntry>> GetTimeSheetDetails(int timeSheetId);
 
-    Task<List<TimeSheetEntry>> GetDatewiseTimeSheetsOfEmployee(DateTime date, int employeeId);
-
     Task<bool> InsertTimeSheet(TimeSheet timeSheet);
-    Task<int> GetTimeSheetId(TimeSheet timeSheet);
+    
 }

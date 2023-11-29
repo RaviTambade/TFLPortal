@@ -9,7 +9,7 @@ import { TimeSheetService } from 'src/app/time-sheet/services/time-sheet.service
   styleUrls: ['./insert-time-sheet-entry.component.css'],
 })
 export class InsertTimeSheetEntryComponent {
-  constructor(private timeSheetService: TimeSheetService) {}
+  activitiyTypes:string[]=["task","userstory","bug","issues","meeting","learning","mentoring","break","other"];
 
   timeSheetEntry: TimeSheetEntry = {
     id: 0,
@@ -17,10 +17,14 @@ export class InsertTimeSheetEntryComponent {
     fromTime: '',
     toTime: '',
     durationInMinutes: 0,
-    durationInHours: ''
+    durationInHours: '',
+    title: '',
+    activityType: this.activitiyTypes[0]
   };
 
-  showHours:string=''
+  constructor(private timeSheetService: TimeSheetService) {}
+
+  
   onClick() {
     let timeSheetEntry: TimeSheetEntry = {
       id: 0,
@@ -28,7 +32,9 @@ export class InsertTimeSheetEntryComponent {
       fromTime: this.timeSheetEntry.fromTime,
       toTime: this.timeSheetEntry.toTime,
       durationInMinutes: this.timeSheetEntry.durationInMinutes,
-      durationInHours: this.timeSheetEntry.durationInHours
+      durationInHours: this.timeSheetEntry.durationInHours,
+      title: this.timeSheetEntry.title,
+      activityType: this.timeSheetEntry.activityType
     };
 
     this.timeSheetService.AddTimeSheetEntries(timeSheetEntry);

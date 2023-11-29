@@ -36,6 +36,7 @@ export class InsertTimeSheetComponent implements OnInit {
   }
 
   onSubmit() {
+
     this.timeSheetEntries.forEach((r) => {
       r.fromTime = r.fromTime + ':00';
       r.toTime = r.toTime + ':00';
@@ -43,14 +44,16 @@ export class InsertTimeSheetComponent implements OnInit {
 
     let timesheet: TimeSheet = {
       id: 0,
-      date: new Date().toISOString().slice(0, 10),
+      timeSheetDate: new Date().toISOString().slice(0, 10),
       status: '',
       employeeId: 10,
       timeSheetEntries: this.timeSheetEntries,
+      statusChangedDate: new Date().toISOString().slice(0, 10)
     };
 
     this.timeSheetSvc.addTimeSheet(timesheet).subscribe((res) => {
       console.log(res);
+      
       alert('timesheet added');
     });
   }
