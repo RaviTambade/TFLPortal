@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Transflower.TFLPortal.Intranet.Requests;
 using Transflower.TFLPortal.Intranet.Responses;
 using Transflower.TFLPortal.TFLOBL.Entities;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
@@ -63,13 +64,79 @@ public class MembersController : ControllerBase
         return memberResponse;
     }
 
-    [HttpGet("users/{userIds}")]
-    public async Task<List<UserDetailResponse>> GetUsersFromService(string userIds)
+
+
+    [HttpGet("employees/{employeeId}")]
+    public async Task<EmployeeResponse> GetEmployeeDetails(int employeeId)
+    {
+        Employee employee = await _service.GetEmployeeDetails(employeeId);
+        var user = await GetUser(employee.UserId);
+        EmployeeResponse emp = new EmployeeResponse()
+        {
+            HireDate=employee.HireDate,
+            Salary = employee.Salary,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            Gender = user.Gender,
+            Email= user.Email,
+            ContactNumber = user.ContactNumber
+        };
+        return emp;
+    }
+
+    [HttpPost("employee/salary/{employeeId}")]
+    public async Task<bool> PaySalary(int employeeId)
+    {
+        Employee employee = await _service.GetEmployeeDetails(employeeId);
+        var userAccount = await GetUserAccount(employee.UserId,"I");
+        FundTransferRequest request = new FundTransferRequest()
+        {
+            FromAcct="39025546601",
+            FromIfsc ="MAHB0000286",
+            ToAcct = userAccount.AccountNumber,
+            ToIfsc = userAccount.IFSCCode,
+            Amount =employee.Salary
+
+        };
+        var transactionId = await FundTransfer(request);
+        return transactionId >0;
+        
+        }
+    
+    private async Task<User> GetUser(int userId)
+    {
+        var httpClient = _httpClientFactory.CreateClient();
+        var response = await httpClient.GetFromJsonAsync<User>(
+            $"http://localhost:5142/api/users/{userId}"
+        );
+        return response;
+    }
+
+    private async Task<List<UserDetailResponse>> GetUsersFromService(string userIds)
     {
         var httpClient = _httpClientFactory.CreateClient();
         var response = await httpClient.GetFromJsonAsync<List<UserDetailResponse>>(
             $"http://localhost:5142/api/users/name/{userIds}"
         );
         return response;
+    }
+
+    private async Task<BankAccount> GetUserAccount(int userId,string userType)
+    {
+        var httpClient = _httpClientFactory.CreateClient();
+        var response = await httpClient.GetFromJsonAsync<BankAccount>(
+        $"http://localhost:5053/api/accounts/details/{userId}/{userType}"
+        );
+        return response;
+    }
+
+  
+    private async Task<int> FundTransfer(FundTransferRequest request)
+    {
+        var httpClient = _httpClientFactory.CreateClient();
+        var response = await httpClient.GetFromJsonAsync<BankAccount>(
+        $"http://localhost:5001/api/fundstransfer"
+        );
+        return 0;
     }
 }
