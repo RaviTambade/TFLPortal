@@ -84,7 +84,7 @@ CREATE TABLE sprints(
   goal VARCHAR(200)
 );
 
-CREATE TABLE sprintUserstories(
+CREATE TABLE sprintuserstories(
   id INT PRIMARY KEY AUTO_INCREMENT,
   sprintid INT NOT NULL,
   userstoryid INT NOT NULL,
