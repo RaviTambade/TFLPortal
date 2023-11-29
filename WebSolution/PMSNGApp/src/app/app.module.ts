@@ -9,6 +9,7 @@ import { ResourceManagementModule } from './resource-management/resource-managem
 import { CalenderComponent } from './calender/calender.component';
 import { ChunkPipe } from './calender/chunk.pipe';
 import { TimeSheetModule } from './time-sheet/time-sheet.module';
+import { ProjectplanningModule } from './ProjectPlanning/projectplanning/projectplanning.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { TimeSheetModule } from './time-sheet/time-sheet.module';
     HttpClientModule,
     TaskModule,
     ResourceManagementModule,
-    TimeSheetModule
+    TimeSheetModule,
+    ProjectplanningModule
   ],
   providers: [],
   bootstrap: [AppComponent]
