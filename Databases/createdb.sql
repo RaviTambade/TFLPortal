@@ -67,7 +67,7 @@
     projectid INT NOT NULL,
     assignedto INT NOT NULL, 
     assignedby INT NOT NULL,
-    creareddate DATETIME NOT NULL,
+    createddate DATETIME NOT NULL,
     status ENUM ( 'Todo','InProgress','Completed') DEFAULT 'Todo' , 
     CONSTRAINT fk_userstories_members FOREIGN KEY (assignedby) REFERENCES members(id) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT fk_userstories_members2 FOREIGN KEY (assignedto) REFERENCES members(id) ON UPDATE CASCADE ON DELETE CASCADE,
