@@ -1,4 +1,4 @@
--- Active: 1696576841746@@127.0.0.1@3306@pms
+-- Active: 1694968636816@@127.0.0.1@3306@pms
 
 -- director
 INSERT INTO employees(userid,hiredate,reportingid) VALUES (1,'2013-01-01',1);
@@ -258,3 +258,64 @@ INSERT INTO userstories(title,description, projectid, assignedto, assignedby,cre
 INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status,)VALUES ("Security Measures","As a user, I want assurance that my personal and payment information is secure on the platform.",2,3,4,'2023-11-11',"Completed");
 INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status,)VALUES ("Language Preferences","As a user, I want to choose my preferred language for the platform.",3,7,3,'2023-11-30',"Todo");
 INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status,)VALUES ("Accessibility Features","As a user with accessibility needs, I want the platform to be accessible and user-friendly.",4,6,3,'2023-11-29',"Completed");
+
+
+
+-- Assume members table has id, name, and other fields
+-- Assume projects table has id, project_name, and other fields
+
+-- Inserting user stories
+INSERT INTO userstories (title, description, projectid, assignedto, assignedby, creareddate, status)
+VALUES
+('Resource Allocation', 'As a project coordinator, I want a resource allocation tool to assign team members to specific tasks based on their skills and availability', 1, 2, 3, '2023-11-29', 'Todo'),
+
+('Communication Platform', 'As a stakeholder, I want a communication platform that facilitates discussions and updates among project team members.
+', 2, 3, 1, '2023-11-29 09:15:00', 'Todo'),
+
+('Budget Tracking and Alerts', 'As a project manager, I want a budget tracking feature that monitors expenses and alerts me if the project is at risk of exceeding the budget.
+', 3, 4, 5, '2023-11-29 09:30:00', 'Todo'),
+
+('Build and Deployment Streamlining', 'As a developer, I want an integrated build and deployment system to streamline the process of releasing new features.
+', 4, 5, 1, '2023-11-29 09:45:00', 'Todo'),
+
+('Feedback Mechanism', 'As a team member, I want a feedback mechanism within the project management tool to provide input on the teams collaboration and processes.', 5, 6, 7, '2023-11-29 10:00:00', 'Todo'),
+
+('Client Deliverable Feedback', 'As a client, I want a feature that allows me to provide feedback on project deliverables and request revisions if necessary.
+', 3, 4, 2, '2023-11-29 10:15:00', 'Todo'),
+
+('Retrospective Tool', 'As a project manager, I want a retrospective tool to conduct post-project evaluations and gather insights for continuous improvement.
+', 4, 4, 3, '2023-11-29 10:30:00', 'Todo'),
+
+('User Acceptance Testing', 'As a product owner, I want a feature that allows me to conduct user acceptance testing within the project management platform.
+', 5, 7, 1, '2023-11-29 10:45:00', 'Todo'),
+
+('Velocity Tracking', 'As a Scrum Master, I want a velocity tracking tool to monitor the teams progress and adjust future sprint planning accordingly.
+', 1, 1, 2, '2023-11-29 11:00:00', 'Todo'),
+
+('Gantt Chart Visualization', 'As a team member, I want a visual representation of the projects progress using a Gantt chart for better understanding and planning.
+', 2, 1, 13, '2023-11-29 11:15:00', 'Todo'),
+
+('Onboarding Facilitation', 'As a project coordinator, I want a tool that facilitates the onboarding process for new team members, providing them with necessary resources.
+', 3, 2, 3, '2023-11-29 11:30:00', 'Todo'),
+
+('Integrated Collaboration', 'As a stakeholder, I want a project management tool that supports multiple integrations with other productivity tools for seamless collaboration.
+', 1, 3, 4, '2023-11-29 11:45:00', 'Todo'),
+
+('Risk Register Management', 'As a project manager, I want a risk register that captures and prioritizes identified risks along with proposed mitigation strategies.
+', 2, 4, 5, '2023-11-29 12:00:00', 'Todo'),
+
+('Automated Testing Framework', 'As a developer, I want an automated testing framework integrated into the project to ensure the stability of new features.
+', 3, 5, 3, '2023-11-29 12:15:00', 'Todo'),
+
+('Retrospective Documentation', 'As a project manager, I want a retrospective tool to capture both positive and negative aspects of the project for future reference.
+', 3, 4, 1, '2023-11-29 12:30:00', 'Todo'),
+
+('Knowledge Base Access', 'As a team member, I want a knowledge base within the project management platform to access documentation and guidelines.
+
+
+', 2, 3, 1, '2023-11-29 12:45:00', 'Todo'),
+
+('Milestone Tracking for Clients', 'As a client, I want a feature that allows me to track project milestones and receive notifications when key deliverables are achieved.
+', 3, 2, 1, '2023-11-29 13:00:00', 'Todo'),
+
+('External Stakeholder Visibility', 'As a project manager, I want a feature that facilitates the creation and sharing of project timelines with external stakeholders for visibility.', 2, 3, 2, '2023-11-29 13:15:00', 'Todo');
