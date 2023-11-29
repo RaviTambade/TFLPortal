@@ -238,3 +238,23 @@ INSERT INTO timesheetentries(description, fromtime, totime, timesheetid)VALUES (
 INSERT INTO timesheetentries(description, fromtime, totime, timesheetid)VALUES ("Development", "17:15:00", "18:30:00", 7);
 
 INSERT INTO timesheetentries(description, fromtime, totime, timesheetid)VALUES ("Code Review ", "17:15:00", "18:30:00", 7);
+
+
+
+INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status,)VALUES ("User Registration","As a new user, I want to be able to register for an account so that I can access the platform.",1,1,3,'2023-11-02',"InProgress");
+INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status,)VALUES ("Login Functionality","As a forgetful user, I want to be able to reset my password via email verification.",2,1,3,'2023-11-10',"Todo");
+
+INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status,)VALUES ("Password Reset:","As a new user, I want to be able to register for an account so that I can access the platform.",3,3,3,'2023-11-24',"InProgress");
+INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status,)VALUES ("Profile Creation","As a new user, As a user, I want to create and edit my profile with personal information and preferences",4,3,2,'2023-11-30',"Todo");
+INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status,)VALUES ("Project Timeline Visualization","As a project manager, I want to create and customize project timelines with milestones to visualize project progress.",5,5,1,'2023-11-08',"Completed");
+INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status,)VALUES ("Automated Notifications"," As a team member, I want to receive automatic notifications for upcoming meetings and deadlines to stay organized.",6,4,3,'2023-11-09',"Completed");
+INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status,)VALUES ("Resource Allocation","As a project coordinator, I want a resource allocation tool to assign team members to specific tasks based on their skills and availability.",7,4,3,'2023-11-05',"InProgress");
+INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status,)VALUES ("Feedback Mechanism","As a team member, I want a feedback mechanism within the project management tool to provide input on the team's collaboration and processes.",8,3,3,'2023-11-06',"Todo");
+INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status,)VALUES ("Gantt Chart Visualization","As a team member, I want a visual representation of the project's progress using a Gantt chart for better understanding and planning.",9,6,3,'2023-11-10',"InProgress");
+INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status,)VALUES ("Automated Testing Framework","As a developer, I want an automated testing framework integrated into the project to ensure the stability of new features.",2,3,4,'2023-11-11',"Completed");
+INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status,)VALUES ("User Survey Participation","As a user, I want the opportunity to participate in surveys to provide feedback and improve the platform.",3,7,3,'2023-11-19',"Todo");
+INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status,)VALUES ("Privacy Settings","As a user, I want to control my privacy settings and data sharing preferences.",4,6,3,'2023-11-20',"Completed");
+
+INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status,)VALUES ("Security Measures","As a user, I want assurance that my personal and payment information is secure on the platform.",2,3,4,'2023-11-11',"Completed");
+INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status,)VALUES ("Language Preferences","As a user, I want to choose my preferred language for the platform.",3,7,3,'2023-11-30',"Todo");
+INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status,)VALUES ("Accessibility Features","As a user with accessibility needs, I want the platform to be accessible and user-friendly.",4,6,3,'2023-11-29',"Completed");
