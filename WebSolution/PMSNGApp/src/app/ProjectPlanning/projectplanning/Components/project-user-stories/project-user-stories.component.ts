@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProjectplanningService } from '../../Services/projectplanning.service';
-import { userstories } from '../../Models/userstories';
+import { userstory } from '../../Models/userstory';
 
 @Component({
   selector: 'userstoriesList',
@@ -9,19 +9,19 @@ import { userstories } from '../../Models/userstories';
 })
 export class ProjectUserStoriesComponent implements OnInit{
 constructor(private service :ProjectplanningService){}
+
+@Output()  userStory=new EventEmitter<userstory>();
 projectId:number=1;
+userstories:userstory[]=[];
   ngOnInit(): void {
-   this.getAllUserStories(this.projectId); 
+   this.service.getAllUserStories(this.projectId).subscribe((res)=>{
+    this.userstories=res;
+    this.userStory.emit(this.userstories[0]);
+   console.log(this.userstories[0]);
+  })}
+
+
+  onClickUserStory(userstory:userstory){
+    this.userStory.emit(userstory);
   }
-
-userstory:userstories[]=[];
-
-
-getAllUserStories(projectId:number){
-  this.service.getAllUserStories(projectId).subscribe((res)=>{
-    this.userstory=res;
-
-  })
-
-}
 }

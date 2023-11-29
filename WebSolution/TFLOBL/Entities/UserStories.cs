@@ -15,6 +15,7 @@ public class UserStories
 
     public DateTime CreatedDate { get; set; }
 
+  public string? Status { get; set; }
 
 
 }

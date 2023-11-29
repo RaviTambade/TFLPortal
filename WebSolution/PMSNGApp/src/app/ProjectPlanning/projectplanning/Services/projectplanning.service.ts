@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { userstories } from '../Models/userstories';
+import { userstory } from '../Models/userstory';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,9 +11,9 @@ export class ProjectplanningService {
   constructor(private httpClient:HttpClient) { }
      serviceurl:string="http://localhost:5263/api/ProjectPlanning/";
 
-  getAllUserStories(projectId: number): Observable<userstories[]> {
+  getAllUserStories(projectId: number): Observable<userstory[]> {
     let url = this.serviceurl + 'userstories/' + projectId;
-    return this.httpClient.get<userstories[]>(url);
+    return this.httpClient.get<userstory[]>(url);
   }
 
 }

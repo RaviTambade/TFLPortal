@@ -42,7 +42,7 @@ public class ProjectPlanningService : IProjectPlanningService
                 int assignedTo = int.Parse(reader["assignedto"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
                 DateTime createdDate = DateTime.Parse(reader["createddate"].ToString());
-
+                 string status = reader["status"].ToString();
                 UserStories userstory = new UserStories()
                 {
                     Id = id,
@@ -51,7 +51,8 @@ public class ProjectPlanningService : IProjectPlanningService
                     ProjectId=projectId,
                     AssignedTo=assignedTo,
                     AssignedBy=assignedBy,
-                    CreatedDate=createdDate
+                    CreatedDate=createdDate,
+                    Status=status
                 };
                 userStories.Add(userstory);
             }

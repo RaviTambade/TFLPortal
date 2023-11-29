@@ -24,9 +24,9 @@
                     <th>description</th>
                 </tr>
             </thead>
-            <tbody *ngFor="let userstory of userstory">
+            <tbody *ngFor="let userstory of userstories">
                 <tr>
-                    <a href="#"><td >{{userstory.title}}</td></a>
+                    <a href="#" (click)="onClickUserStory(userstory)" ><td >{{userstory.title}}</td></a>
                     <td> {{userstory.description}}</td>
                     
                 </tr>
