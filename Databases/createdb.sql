@@ -1,4 +1,4 @@
--- Active: 1694968636816@@127.0.0.1@3306@pms
+-- Active: 1696576841746@@127.0.0.1@3306@pms
 
     DROP DATABASE IF EXISTS PMS;
     CREATE DATABASE PMS;
@@ -95,12 +95,13 @@ CONSTRAINT fk_userStories FOREIGN KEY (userstoryid) REFERENCES userstories(id) O
     CREATE TABLE
         timesheets(
             id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-            date DATETIME,
+            timesheetdate DATETIME,
             status ENUM (   
                 'Submitted',
                 'Approved',
                 'Rejected'
                 ) DEFAULT 'Submitted', 
+            statuschangeddate DATETIME,
             employeeid INT NOT NULL,
             CONSTRAINT fk_timesheets_taskallocations FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
         );
@@ -108,9 +109,11 @@ CONSTRAINT fk_userStories FOREIGN KEY (userstoryid) REFERENCES userstories(id) O
 
         CREATE TABLE timesheetentries(
             id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+            title VARCHAR(20),
+            activitytype ENUM("userstory","task","bug","issues","meeting","learning","mentoring"),
             description VARCHAR(225),
             fromtime TIME,
             totime TIME,
             timesheetid INT NOT NULL,
             CONSTRAINT fk_timesheets_timesheetentries FOREIGN KEY(timesheetid) REFERENCES timesheets(id) ON UPDATE CASCADE ON DELETE CASCADE
-            )
+        );
