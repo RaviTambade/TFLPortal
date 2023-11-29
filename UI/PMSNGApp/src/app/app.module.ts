@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TaskModule } from './task/task.module';
 import { ResourceManagementModule } from './resource-management/resource-management.module';
 import { TimeSheetModule } from './time-sheet/time-sheet.module';
+import { ProjectplanningModule } from './ProjectPlanning/projectplanning/projectplanning.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TimeSheetModule } from './time-sheet/time-sheet.module';
     HttpClientModule,
     TaskModule,
     ResourceManagementModule,
-    TimeSheetModule
+    TimeSheetModule,
+    ProjectplanningModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

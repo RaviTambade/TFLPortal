@@ -10,7 +10,7 @@ import { TimeSheetEntry } from '../../models/TimeSheetEntry';
 })
 export class DetailsComponent {
 
-  @Input() timeSheetId:number |undefined;
+  @Input() timeSheetId:number | undefined;
   timeSheet:TimeSheetEntry |undefined;
   selectedTimeSheetId:TimeSheet |undefined;
 
