@@ -25,12 +25,12 @@ export class MembersService {
   }
 
   getEmployeeDetails(employeeId: number): Observable<any> {
-    let url = this.membersAPIUrl + '/members/employees/' + employeeId;
+    let url = this.membersAPIUrl + '/api/hr/employees/employee/' + employeeId;
     return this.httpClient.get<any>(url);
   }
 
   paySalary(employeeId: number): Observable<any> {
-    let url = this.membersAPIUrl + '/members/employee/salary/' + employeeId;
+    let url = this.membersAPIUrl + '/api/hr/employees/employee/salary/' + employeeId;
     return this.httpClient.post<any>(url,employeeId);
   }
 
