@@ -3,10 +3,12 @@
 <div *ngIf="employee">
    <p>First Name:{{employee.firstName}}</p> 
    <p>Last Name:{{employee.lastName}}</p> 
-   <p>AadharId:{{employee.aadharId}}</p> 
+   <p>AadharId:{{employee.contactNumber}}</p> 
    <p>Gender:{{employee.gender}}</p> 
    <p>Email:{{employee.email}}</p> 
+   <p>Salary:{{employee.salary}}</p> 
+   <p>hireDate:{{employee.hireDate}}</p>
 </div>
 
-<button> Payment processing</button>
+<button (click)="paySalary(employee.id)"> Payment processing </button>
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MembersService } from '../../Services/members.service';
-import { User } from '../../Models/User';
+
 
 @Component({
   selector: 'employee-details',
@@ -11,13 +11,21 @@ export class DetailsComponent implements OnInit{
 
   constructor(private svc:MembersService){}
 
-  employee:User | undefined;
+  employee:any | undefined;
   employeeId:number=1;
+  status:boolean= false;
   
   ngOnInit(): void {
     this.svc.getEmployeeDetails(this.employeeId).subscribe((res)=>{
     this.employee =res;
     console.log(res);
+    })
+  }
+
+  paySalary(employeeId: number){
+    this.svc.paySalary(this.employeeId).subscribe((res)=>{
+      this.status =res;
+      console.log(res);
     })
   }
 

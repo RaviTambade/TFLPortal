@@ -24,9 +24,18 @@ export class MembersService {
     return this.httpClient.get<MemberResponse>(url);
   }
 
-  getEmployeeDetails(employeeId: number): Observable<User> {
-    let url = this.employeeAPIUrl + 'api/users/' + employeeId;
-    return this.httpClient.get<User>(url);
+  getEmployeeDetails(employeeId: number): Observable<any> {
+    let url = this.membersAPIUrl + '/members/employees/' + employeeId;
+    return this.httpClient.get<any>(url);
   }
+
+  paySalary(employeeId: number): Observable<any> {
+    let url = this.membersAPIUrl + '/members/employee/salary/' + employeeId;
+    return this.httpClient.post<any>(url,employeeId);
+  }
+
+ 
+
+
 
 }

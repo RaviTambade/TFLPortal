@@ -77,6 +77,7 @@ public class MembersController : ControllerBase
         var user = await GetUser(employee.UserId);
         EmployeeResponse emp = new EmployeeResponse()
         {
+            Id = employee.EmployeeId,
             HireDate=employee.HireDate,
             Salary = employee.Salary,
             FirstName = user.FirstName,
