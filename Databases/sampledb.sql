@@ -182,8 +182,6 @@ INSERT INTO activities (activitytype,title, description, assigneddate, startdate
 ("userstory","Accessibility Features","As a user with accessibility needs, I want the platform to be accessible and user-friendly.",'2023-12-04','2023-12-04','2023-12-08',4,6,3,"todo",'2023-12-04');
 
 
-
-
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-11-01','Rejected',10);
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-11-02','Approved',10);
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-11-03','Approved',10);

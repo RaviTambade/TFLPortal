@@ -5,7 +5,7 @@ using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 namespace Intranet.Controllers;
 
 [ApiController]
-[Route("/api/projects")]
+[Route("/api/projectmgmt/projects")]
 public class ProjectsController : ControllerBase
 {
     private readonly IProjectService _service;

@@ -96,40 +96,5 @@ public class MemberService : IMemberService
         return member;
     }
 
-    public async Task<Employee> GetEmployeeDetails( int employeeId)
-    {
-        Employee employee = null;
-        MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _connectionString;
-        try
-        {
-            string query =
-                "select * from employees where id=@employeeId";
-            MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@employeeId", employeeId);
-            await connection.OpenAsync();
-            MySqlDataReader reader = command.ExecuteReader();
-            if (await reader.ReadAsync())
-            {
-                employee = new Employee
-                {
-                    Id = reader.GetInt32("id"),
-                    UserId = reader.GetInt32("userid"),
-                    HireDate = reader.GetDateTime("hiredate"),
-                    ReportingId = reader.GetInt32("reportingid"),
-                    Salary = reader.GetInt32("salary"),
-                };
-            }
-            await reader.CloseAsync();
-        }
-        catch (Exception)
-        {
-            throw;
-        }
-        finally
-        {
-            await connection.CloseAsync();
-        }
-        return employee;
-    }
+   
 }

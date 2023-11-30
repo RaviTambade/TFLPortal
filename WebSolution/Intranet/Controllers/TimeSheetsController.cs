@@ -8,7 +8,7 @@ using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 namespace Transflower.TFLPortal.Intranet.Controllers;
 
 [ApiController]
-[Route("/api/TimeSheets")]
+[Route("/api/workmgmt/TimeSheets")]
 public class TimeSheetsController : ControllerBase
 {
     private readonly ITimeSheetService _service;
