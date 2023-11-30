@@ -97,4 +97,15 @@ public class MemberService : IMemberService
     }
 
    
+
+    public async Task<Member> AssignMemberToProject(int employeeId,int projectId, ){
+
+    }
+
+    public async Task<Member> RleaseMemberFromProject(int employeeId,int projectId, ){
+
+    }
+    
+
+
 }
