@@ -5,7 +5,7 @@ using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 namespace Intranet.Controllers;
 
 [ApiController]
-[Route("/api/activity")]
+[Route("/api/workmgmt/activities")]
 public class ActivityController : ControllerBase
 {
     private readonly IActivityService _service;
