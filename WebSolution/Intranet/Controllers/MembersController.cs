@@ -1,8 +1,12 @@
+// using System;
 using Microsoft.AspNetCore.Mvc;
 using Transflower.TFLPortal.Intranet.Requests;
 using Transflower.TFLPortal.Intranet.Responses;
 using Transflower.TFLPortal.TFLOBL.Entities;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
+using System.Text.Json;
+using System.Text;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Transflower.TFLPortal.Intranet.Controllers;
 
@@ -95,12 +99,13 @@ public class MembersController : ControllerBase
             FromIfsc ="MAHB0000286",
             ToAcct = userAccount.AccountNumber,
             ToIfsc = userAccount.IFSCCode,
-            Amount =employee.Salary
+            Amount = employee.Salary,
+            TransactionType ="Transfer"
 
         };
         var transactionId = await FundTransfer(request);
-        return transactionId >0;
-        
+        Console.WriteLine(transactionId);
+        return transactionId >0;    
         }
     
     private async Task<User> GetUser(int userId)
@@ -130,13 +135,19 @@ public class MembersController : ControllerBase
         return response;
     }
 
-  
+    [HttpPost]
     private async Task<int> FundTransfer(FundTransferRequest request)
     {
         var httpClient = _httpClientFactory.CreateClient();
-        var response = await httpClient.GetFromJsonAsync<BankAccount>(
-        $"http://localhost:5001/api/fundstransfer"
-        );
-        return 0;
+        var requestJson =new StringContent(
+            JsonSerializer.Serialize(request),
+            Encoding.UTF8,
+            Application.Json);
+
+        // int Response =await httpClient.PostAsync("http://localhost:5001/api/fundstransfer",requestJson);
+        var url ="http://localhost:5001/api/fundstransfer";
+        HttpResponseMessage response = await httpClient.PostAsync(url, requestJson);
+        int result = (int)response.StatusCode;
+         return result;
     }
 }
