@@ -23,9 +23,9 @@
             teammanagerid INT NOT NULL,
             CONSTRAINT fk_employees_projects FOREIGN KEY(teammanagerid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
             status enum(
-                'NotStarted',
-                'InProgress',
-                'Completed') DEFAULT 'NotStarted'
+                'notstarted',
+                'inprogress',
+                'completed') DEFAULT 'notstarted'
         );
 
     CREATE TABLE
@@ -62,7 +62,7 @@
 CREATE TABLE activities(
     id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(40) NOT NULL,
-    activitytype ENUM("userstory","task","bug","issues","meeting","learning","mentoring","break","other"),
+    activitytype ENUM("userstory","task","bug","issues","meeting","learning","mentoring","other"),
     description VARCHAR(400),
     projectid INT NOT NULL,
     assignedto INT NOT NULL, 
@@ -114,10 +114,10 @@ CONSTRAINT fk_activity FOREIGN KEY (activityid) REFERENCES activities(id) ON UPD
             id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
             timesheetdate DATETIME ,
             status ENUM (   
-                'Submitted',
-                'Approved',
-                'Rejected'
-                ) DEFAULT 'Submitted', 
+                'submitted',
+                'approved',
+                'rejected'
+                ) DEFAULT 'submitted', 
             statuschangeddate DATETIME DEFAULT  CURRENT_TIMESTAMP,
             employeeid INT NOT NULL,
             CONSTRAINT fk_timesheets_taskallocations FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
@@ -125,11 +125,10 @@ CONSTRAINT fk_activity FOREIGN KEY (activityid) REFERENCES activities(id) ON UPD
 
         CREATE TABLE timesheetentries(
             id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-            title VARCHAR(50),
-            activitytype ENUM("userstory","task","bug","issues","meeting","learning","mentoring","break","other"),
-            description VARCHAR(225),
+            activityid INT NOT NULL,
             fromtime TIME,
             totime TIME,
             timesheetid INT NOT NULL,
+            CONSTRAINT fk_timesheetentry_activities FOREIGN KEY(activityid) REFERENCES activities(id) ON UPDATE CASCADE ON DELETE CASCADE,
             CONSTRAINT fk_timesheets_timesheetentries FOREIGN KEY(timesheetid) REFERENCES timesheets(id) ON UPDATE CASCADE ON DELETE CASCADE
         );

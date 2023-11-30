@@ -9,10 +9,11 @@ namespace Intranet.Controllers;
 public class TasksController : ControllerBase
 {
     private readonly ITaskService _service;
-
+   
     public TasksController(ITaskService service)
     {
         _service = service;
+
     }
 
     [HttpGet("{projectId}/{memberId}")]
@@ -34,5 +35,6 @@ public class TasksController : ControllerBase
     {
         bool status = await _service.Insert(task);
         return status;
+
     }
 }
