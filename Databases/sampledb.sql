@@ -1,30 +1,30 @@
 -- Active: 1696576841746@@127.0.0.1@3306@pms
 
 -- director
-INSERT INTO employees(userid,hiredate,reportingid) VALUES (1,'2013-01-01',1);
-INSERT INTO employees(userid,hiredate,reportingid) VALUES (2,'2013-11-03',1);
-INSERT INTO employees(userid,hiredate,reportingid) VALUES (3,'2013-08-11',1);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (1,'2013-01-01',1,80000);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (2,'2013-11-03',1,80000);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (3,'2013-08-11',1,80000);
 -- HR Manager
-INSERT INTO employees(userid,hiredate,reportingid) VALUES (4,'2013-10-06',1);
-INSERT INTO employees(userid,hiredate,reportingid) VALUES (5,'2014-09-07',2);
-INSERT INTO employees(userid,hiredate,reportingid) VALUES (6,'2014-11-01',3);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (4,'2013-10-06',1,70000);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (5,'2014-09-07',2,70000);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (6,'2014-11-01',3,70000);
 
 -- Team Manager
-INSERT INTO employees(userid,hiredate,reportingid) VALUES (7,'2013-11-01',4);
-INSERT INTO employees(userid,hiredate,reportingid) VALUES (8,'2013-04-14',5);
-INSERT INTO employees(userid,hiredate,reportingid) VALUES (9,'2015-12-01',6);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (7,'2013-11-01',4,60000);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (8,'2013-04-14',5,60000);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (9,'2015-12-01',6,60000);
 
 -- Team MEMBER 
 
-INSERT INTO employees(userid,hiredate,reportingid) VALUES (10,'2013-03-17',7);
-INSERT INTO employees(userid,hiredate,reportingid) VALUES (11,'2014-02-12',7);
-INSERT INTO employees(userid,hiredate,reportingid) VALUES (12,'2014-05-21',7);
-INSERT INTO employees(userid,hiredate,reportingid) VALUES (13,'2014-05-21',8);
-INSERT INTO employees(userid,hiredate,reportingid) VALUES (14,'2015-11-11',8);
-INSERT INTO employees(userid,hiredate,reportingid) VALUES (15,'2015-09-15',8);
-INSERT INTO employees(userid,hiredate,reportingid) VALUES (16,'2015-07-16',9);
-INSERT INTO employees(userid,hiredate,reportingid) VALUES (17,'2015-04-23',9);
-INSERT INTO employees(userid,hiredate,reportingid) VALUES (18,'2015-05-13',9);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (10,'2013-03-17',7,40000);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (11,'2014-02-12',7,40000);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (12,'2014-05-21',7,40000);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (13,'2014-05-21',8,40000);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (14,'2015-11-11',8,40000);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (15,'2015-09-15',8,40000);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (16,'2015-07-16',9,40000);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (17,'2015-04-23',9,40000);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (18,'2015-05-13',9,40000);
 
 
 

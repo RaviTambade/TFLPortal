@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListComponent } from './Components/Members/list/list.component';
-import { DetailsComponent } from './Components/Members/details/details.component';
+import { DetailsComponent } from './Components/details/details.component';
 
 
 
@@ -14,7 +14,8 @@ import { DetailsComponent } from './Components/Members/details/details.component
     CommonModule
   ],
   exports: [
-    ListComponent
+    ListComponent,
+    DetailsComponent
   ]
 })
 export class ResourceManagementModule { }
