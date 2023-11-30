@@ -69,61 +69,64 @@ INSERT INTO members(membership,membershipdate,projectid,employeeid) VALUES ('Dev
 INSERT INTO members(membership,membershipdate,projectid,employeeid) VALUES ('Developer','2016-10-10',9,18);
 
 
+
 -- Task 1
-INSERT INTO tasks (title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status)
-VALUES ('Complete Feature X', 'Implement and test Feature X according to specifications', '2023-11-23', '2023-11-24', '2023-12-01', 19, 9, 1, 'NotStarted');
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('task','Complete Feature X', 'Implement and test Feature X according to specifications', '2023-11-23', '2023-11-24', '2023-12-01', 19, 9, 1, 'todo','2023-11-23');
 
 -- Task 2
-INSERT INTO tasks (title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status)
-VALUES ('Review Project Proposal', 'Review the project proposal document and provide feedback', '2023-11-24', '2023-11-25', '2023-12-02', 20, 10, 2, 'InProgress');
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('task','Review Project Proposal', 'Review the project proposal document and provide feedback', '2023-11-24', '2023-11-25', '2023-12-02', 20, 10, 2, 'todo','2023-11-23');
 
 -- Task 3
-INSERT INTO tasks (title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status)
-VALUES ('QA Testing for Module Y', 'Conduct QA testing for Module Y and document any issues found', '2023-11-25', '2023-11-26', '2023-12-03', 21, 11, 3, 'Completed');
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('task','QA Testing for Module Y', 'Conduct QA testing for Module Y and document any issues found', '2023-11-25', '2023-11-26', '2023-12-03', 21, 11, 3, 'Completed','2023-11-24');
 
 -- Task 4
-INSERT INTO tasks (title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status)
-VALUES ('Update User Interface', 'Modify the user interface to improve user experience', '2023-11-26', '2023-11-27', '2023-12-04', 22, 12, 4, 'NotStarted');
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('task','Update User Interface', 'Modify the user interface to improve user experience', '2023-11-26', '2023-11-27', '2023-12-04', 22, 12, 4, 'todo','2023-11-25');
 
 -- Task 5
-INSERT INTO tasks (title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status)
-VALUES ('Bug Fixing in Module Z', 'Identify and fix bugs in Module Z reported by QA', '2023-11-27', '2023-11-28', '2023-12-05', 23, 13, 5, 'InProgress');
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('task','Bug Fixing in Module Z', 'Identify and fix bugs in Module Z reported by QA', '2023-11-27', '2023-11-28', '2023-12-05', 23, 13, 5, 'inprogress','2023-11-26');
 
 -- Task 6
-INSERT INTO tasks (title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status)
-VALUES ('Documentation for API', 'Create comprehensive documentation for the new API', '2023-11-28', '2023-11-29', '2023-12-06', 24, 14, 6, 'Completed');
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('task','Documentation for API', 'Create comprehensive documentation for the new API', '2023-11-28', '2023-11-29', '2023-12-06', 24, 14, 6, 'Completed','2023-11-27');
 
 -- Task 7
-INSERT INTO tasks (title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status)
-VALUES ('Sprint Planning Meeting', 'Participate in the sprint planning meeting to discuss upcoming tasks', '2023-11-29', '2023-11-30', '2023-12-07', 19, 15, 1, 'NotStarted');
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('task','Sprint Planning Meeting', 'Participate in the sprint planning meeting to discuss upcoming tasks', '2023-11-29', '2023-11-30', '2023-12-07', 19, 15, 1, 'todo','2023-11-28');
 
 -- Task 8
-INSERT INTO tasks (title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status)
-VALUES ('Code Review for Module W', 'Perform code review for the implementation of Module W', '2023-11-30', '2023-12-01', '2023-12-08', 26, 16, 2, 'InProgress');
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('task','Code Review for Module W', 'Perform code review for the implementation of Module W', '2023-11-30', '2023-12-01', '2023-12-08', 26, 16, 2, 'todo','2023-11-29');
 
 -- Task 9
-INSERT INTO tasks (title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status)
-VALUES ('User Feedback Analysis', 'Analyze user feedback and propose improvements for the next release', '2023-12-01', '2023-12-02', '2023-12-09', 27, 17, 3, 'Completed');
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('task','User Feedback Analysis', 'Analyze user feedback and propose improvements for the next release', '2023-12-01', '2023-12-02', '2023-12-09', 27, 17, 3, 'Completed','2023-11-30');
 
 -- Task 10
-INSERT INTO tasks (title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status)
-VALUES ('Database restructuring', 'improved performance', '2023-12-02', '2023-12-03', '2023-12-10', 26, 18, 4, 'NotStarted');
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('task','Database restructuring', 'improved performance', '2023-12-02', '2023-12-03', '2023-12-10', 26, 18, 4, 'todo','2023-12-01');
 
 -- Task 11
-INSERT INTO tasks (title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status)
-VALUES ('Database Optimization', 'Optimize database queries for improved performance', '2023-12-02', '2023-12-03', '2023-12-10', 3, 1, 3, 'NotStarted');
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('task','Database Optimization', 'Optimize database queries for improved performance', '2023-12-02', '2023-12-03', '2023-12-10', 3, 1, 3, 'todo','2023-12-02');
 
 -- Task 12
-INSERT INTO tasks (title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status)
-VALUES ('Remove unnecessary variable', 'improved performance', '2023-12-02', '2023-12-03', '2023-12-10', 3, 2, 3, 'NotStarted');
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('task','Remove unnecessary variable', 'improved performance', '2023-12-02', '2023-12-03', '2023-12-10', 3, 2, 3, 'todo','2023-12-02');
 
 -- Task 13
-INSERT INTO tasks (title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status)
-VALUES ('API crude operation', 'Create comprehensive crude operations for the API', '2023-12-02', '2023-12-03', '2023-12-10', 3, 1, 3, 'NotStarted');
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('task','API crude operation', 'Create comprehensive crude operations for the API', '2023-12-04', '2023-12-05', '2023-12-10', 3, 1, 3, 'todo','2023-12-03');
 
 -- Task 14
-INSERT INTO tasks (title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status)
-VALUES ('Database Optimization', 'Optimize database queries for improved performance', '2023-12-02', '2023-12-03', '2023-12-10', 3, 2, 3, 'NotStarted');
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('task','Database Optimization', 'Optimize database queries for improved performance', '2023-12-05', '2023-12-06', '2023-12-10', 3, 2, 3, 'todo','2023-12-04');
+
+
 
 
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-11-01','Rejected',10);
@@ -235,84 +238,60 @@ VALUES
 
 
 
-INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status)VALUES ("User Registration","As a new user, I want to be able to register for an account so that I can access the platform.",1,1,3,'2023-10-30',"InProgress");
-INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status)VALUES ("Login Functionality","As a forgetful user, I want to be able to reset my password via email verification.",2,1,3,'2023-10-30',"Todo");
-INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status)VALUES ("Security Measures","As a user, I want assurance that my personal and payment information is secure on the platform.",2,3,4,'2023-10-30',"Completed");
-INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status)VALUES ("Language Preferences","As a user, I want to choose my preferred language for the platform.",3,7,3,'2023-10-30',"Todo");
-INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status)VALUES ("Accessibility Features","As a user with accessibility needs, I want the platform to be accessible and user-friendly.",4,6,3,'2023-10-30',"Completed");
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ("userstory","User Registration","As a new user, I want to be able to register for an account so that I can access the platform.",'2023-10-29','2023-10-30','2023-11-01',1,1,3,'todo','2023-10-30');
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ("userstory","Login Functionality","As a forgetful user, I want to be able to reset my password via email verification.",'2023-10-30','2023-11-02','2023-11-04',2,1,3,"todo",'2023-10-30');
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ("userstory","Security Measures","As a user, I want assurance that my personal and payment information is secure on the platform.",'2023-10-30','2023-11-02','2023-11-04',2,3,4,"completed",'2023-10-30');
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ("userstory","Language Preferences","As a user, I want to choose my preferred language for the platform.",'2023-10-29','2023-11-02','2023-11-04',3,7,3,"todo",'2023-10-30');
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ("userstory","Accessibility Features","As a user with accessibility needs, I want the platform to be accessible and user-friendly.",'2023-10-29','2023-11-03','2023-11-05',4,6,3,"completed",'2023-10-30');
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES("userstory",'Resource Allocation', 'As a project coordinator, I want a resource allocation tool to assign team members to specific tasks based on their skills and availability','2023-10-29','2023-11-02','2023-11-05',1, 2, 3,'todo','2023-10-30');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)VALUES
+("userstory",'Communication Platform', 'As a stakeholder, I want a communication platform that facilitates discussions and updates among project team members.','2023-11-06','2023-11-07','2023-11-08', 2, 3, 1, 'todo','2023-11-06 09:15:00'),
+("userstory",'Budget Tracking and Alerts', 'As a project manager, I want a budget tracking feature that monitors expenses and alerts me if the project is at risk of exceeding the budget.','2023-11-06','2023-11-07','2023-11-09', 3, 4, 5, 'todo','2023-11-06 09:30:00'),
+("userstory",'Build and Deployment Streamlining', 'As a developer, I want an integrated build and deployment system to streamline the process of releasing new features.','2023-11-06','2023-11-07','2023-11-12', 4, 5, 1, 'todo','2023-11-06 09:45:00'),
+("userstory",'Feedback Mechanism', 'As a team member, I want a feedback mechanism within the project management tool to provide input on the teams collaboration and processes.','2023-11-06','2023-11-07','2023-11-11', 5, 6, 7,'todo', '2023-11-06 10:00:00'),
+("userstory",'Client Deliverable Feedback', 'As a client, I want a feature that allows me to provide feedback on project deliverables and request revisions if necessary.','2023-11-06','2023-11-07','2023-11-09', 3, 4, 2, 'todo','2023-11-06 10:15:00'),
+("userstory",'Retrospective Tool', 'As a project manager, I want a retrospective tool to conduct post-project evaluations and gather insights for continuous improvement.','2023-11-06','2023-11-07','2023-11-10', 4, 4, 3, 'todo','2023-11-06 10:30:00');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)VALUES
+("userstory",'User Acceptance Testing', 'As a product owner, I want a feature that allows me to conduct user acceptance testing within the project management platform.','2023-11-13','2023-11-13','2023-11-14', 5, 7, 1,  'todo','2023-11-13 10:45:00'),
+("userstory",'Velocity Tracking', 'As a Scrum Master, I want a velocity tracking tool to monitor the teams progress and adjust future sprint planning accordingly.','2023-11-13','2023-11-14','2023-11-14', 1, 1, 2,  'todo','2023-11-13 11:00:00'),
+("userstory",'Gantt Chart Visualization', 'As a team member, I want a visual representation of the projects progress using a Gantt chart for better understanding and planning.','2023-11-13','2023-11-13','2023-11-14', 2, 1, 3, 'todo', '2023-11-13 11:15:00'),
+("userstory",'Onboarding Facilitation', 'As a project coordinator, I want a tool that facilitates the onboarding process for new team members, providing them with necessary resources.','2023-11-13','2023-11-13','2023-11-17', 3, 2, 3,  'todo','2023-11-13 11:30:00'),
+("userstory",'Integrated Collaboration', 'As a stakeholder, I want a project management tool that supports multiple integrations with other productivity tools for seamless collaboration.','2023-11-13','2023-11-13','2023-11-16', 1, 3, 4, 'todo', '2023-11-13 11:45:00'),
+("userstory",'Risk Register Management', 'As a project manager, I want a risk register that captures and prioritizes identified risks along with proposed mitigation strategies.','2023-11-13','2023-11-15','2023-11-17', 2, 4, 5,  'todo','2023-11-13 12:00:00');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)VALUES
+("userstory",'Automated Testing Framework', 'As a developer, I want an automated testing framework integrated into the project to ensure the stability of new features.','2023-11-20','2023-11-21','2023-11-22', 3, 5, 3,'todo', '2023-11-20 12:15:00' ),
+("userstory",'Retrospective Documentation', 'As a project manager, I want a retrospective tool to capture both positive and negative aspects of the project for future reference.','2023-11-20','2023-11-22','2023-11-24', 3, 4, 1, 'todo', '2023-11-20 12:30:00'),
+("userstory",'Knowledge Base Access', 'As a team member, I want a knowledge base within the project management platform to access documentation and guidelines.','2023-11-20','2023-11-22','2023-11-25', 2, 3, 1, 'todo','2023-11-20 12:45:00'),
+("userstory",'Milestone Tracking for Clients', 'As a client, I want a feature that allows me to track project milestones and receive notifications when key deliverables are achieved.','2023-11-20','2023-11-21','2023-11-23', 3, 2, 1, 'todo','2023-11-20 13:00:00'),
+("userstory",'External Stakeholder Visibility', 'As a project manager, I want a feature that facilitates the creation and sharing of project timelines with external stakeholders for visibility.','2023-11-20','2023-11-21','2023-11-25', 2, 3, 2, 'todo','2023-11-20 13:15:00'),
+("userstory","Password Reset:","As a new user, I want to be able to register for an account so that I can access the platform.",'2023-11-20','2023-11-21','2023-11-21',3,3,3,'todo','2023-11-20');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)VALUES
+("userstory","Profile Creation","As a new user, As a user, I want to create and edit my profile with personal information and preferences",'2023-11-27','2023-11-28','2023-11-29',4,3,2,"todo",'2023-11-27'),
+("userstory","Project Timeline Visualization","As a project manager, I want to create and customize project timelines with milestones to visualize project progress.",'2023-11-27','2023-11-27','2023-11-30',5,5,1,"todo",'2023-11-27'),
+("userstory","Automated Notifications"," As a team member, I want to receive automatic notifications for upcoming meetings and deadlines to stay organized.",'2023-11-27','2023-11-28','2023-12-01',6,4,3,"todo",'2023-11-27'),
+("userstory","Resource Allocation","As a project coordinator, I want a resource allocation tool to assign team members to specific tasks based on their skills and availability.",'2023-11-27','2023-11-27','2023-12-03',7,4,3,"todo",'2023-11-27'),
+("userstory","Feedback Mechanism","As a team member, I want a feedback mechanism within the project management tool to provide input on the team's collaboration and processes.",'2023-11-27','2023-11-27','2023-11-04',8,3,3,"todo",'2023-11-27'),
+("userstory","Gantt Chart Visualization","As a team member, I want a visual representation of the project's progress using a Gantt chart for better understanding and planning.",'2023-11-27','2023-11-28','2023-11-04',9,6,3,"todo",'2023-11-27');
 
 
-
-INSERT INTO userstories (title, description, projectid, assignedto, assignedby, createddate, status)
-VALUES
-('Resource Allocation', 'As a project coordinator, I want a resource allocation tool to assign team members to specific tasks based on their skills and availability', 1, 2, 3, '2023-10-30', 'Todo'),
-
-('Communication Platform', 'As a stakeholder, I want a communication platform that facilitates discussions and updates among project team members.
-', 2, 3, 1, '2023-11-06 09:15:00', 'Todo'),
-
-('Budget Tracking and Alerts', 'As a project manager, I want a budget tracking feature that monitors expenses and alerts me if the project is at risk of exceeding the budget.
-', 3, 4, 5, '2023-11-06 09:30:00', 'Todo'),
-
-('Build and Deployment Streamlining', 'As a developer, I want an integrated build and deployment system to streamline the process of releasing new features.
-', 4, 5, 1, '2023-11-06 09:45:00', 'Todo'),
-
-('Feedback Mechanism', 'As a team member, I want a feedback mechanism within the project management tool to provide input on the teams collaboration and processes.', 5, 6, 7, '2023-11-06 10:00:00', 'Todo'),
-
-('Client Deliverable Feedback', 'As a client, I want a feature that allows me to provide feedback on project deliverables and request revisions if necessary.
-', 3, 4, 2, '2023-11-06 10:15:00', 'Todo'),
-
-('Retrospective Tool', 'As a project manager, I want a retrospective tool to conduct post-project evaluations and gather insights for continuous improvement.
-', 4, 4, 3, '2023-11-06 10:30:00', 'Todo'),
-
-('User Acceptance Testing', 'As a product owner, I want a feature that allows me to conduct user acceptance testing within the project management platform.
-', 5, 7, 1, '2023-11-13 10:45:00', 'Todo'),
-
-('Velocity Tracking', 'As a Scrum Master, I want a velocity tracking tool to monitor the teams progress and adjust future sprint planning accordingly.
-', 1, 1, 2, '2023-11-13 11:00:00', 'Todo'),
-
-('Gantt Chart Visualization', 'As a team member, I want a visual representation of the projects progress using a Gantt chart for better understanding and planning.
-', 2, 1, 13, '2023-11-13 11:15:00', 'Todo'),
-
-('Onboarding Facilitation', 'As a project coordinator, I want a tool that facilitates the onboarding process for new team members, providing them with necessary resources.
-', 3, 2, 3, '2023-11-13 11:30:00', 'Todo'),
-
-('Integrated Collaboration', 'As a stakeholder, I want a project management tool that supports multiple integrations with other productivity tools for seamless collaboration.
-', 1, 3, 4, '2023-11-13 11:45:00', 'Todo'),
-
-('Risk Register Management', 'As a project manager, I want a risk register that captures and prioritizes identified risks along with proposed mitigation strategies.
-', 2, 4, 5, '2023-11-13 12:00:00', 'Todo'),
-
-('Automated Testing Framework', 'As a developer, I want an automated testing framework integrated into the project to ensure the stability of new features.
-', 3, 5, 3, '2023-11-20 12:15:00', 'Todo'),
-
-('Retrospective Documentation', 'As a project manager, I want a retrospective tool to capture both positive and negative aspects of the project for future reference.
-', 3, 4, 1, '2023-11-20 12:30:00', 'Todo'),
-
-('Knowledge Base Access', 'As a team member, I want a knowledge base within the project management platform to access documentation and guidelines.
-
-
-', 2, 3, 1, '2023-11-20 12:45:00', 'Todo'),
-
-('Milestone Tracking for Clients', 'As a client, I want a feature that allows me to track project milestones and receive notifications when key deliverables are achieved.
-', 3, 2, 1, '2023-11-20 13:00:00', 'Todo'),
-
-('External Stakeholder Visibility', 'As a project manager, I want a feature that facilitates the creation and sharing of project timelines with external stakeholders for visibility.', 2, 3, 2, '2023-11-20 13:15:00', 'Todo');
-
-
-INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status)VALUES ("Password Reset:","As a new user, I want to be able to register for an account so that I can access the platform.",3,3,3,'2023-11-20',"InProgress");
-INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status)VALUES ("Profile Creation","As a new user, As a user, I want to create and edit my profile with personal information and preferences",4,3,2,'2023-11-27',"Todo");
-INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status)VALUES ("Project Timeline Visualization","As a project manager, I want to create and customize project timelines with milestones to visualize project progress.",5,5,1,'2023-11-27',"Completed");
-INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status)VALUES ("Automated Notifications"," As a team member, I want to receive automatic notifications for upcoming meetings and deadlines to stay organized.",6,4,3,'2023-11-27',"Completed");
-INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status)VALUES ("Resource Allocation","As a project coordinator, I want a resource allocation tool to assign team members to specific tasks based on their skills and availability.",7,4,3,'2023-11-27',"InProgress");
-INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status)VALUES ("Feedback Mechanism","As a team member, I want a feedback mechanism within the project management tool to provide input on the team's collaboration and processes.",8,3,3,'2023-11-27',"Todo");
-INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status)VALUES ("Gantt Chart Visualization","As a team member, I want a visual representation of the project's progress using a Gantt chart for better understanding and planning.",9,6,3,'2023-11-27',"InProgress");
-INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status)VALUES ("Automated Testing Framework","As a developer, I want an automated testing framework integrated into the project to ensure the stability of new features.",2,3,4,'2023-12-04',"Completed");
-INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status)VALUES ("User Survey Participation","As a user, I want the opportunity to participate in surveys to provide feedback and improve the platform.",3,7,3,'2023-12-04',"Todo");
-INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status)VALUES ("Privacy Settings","As a user, I want to control my privacy settings and data sharing preferences.",4,6,3,'2023-12-04',"Completed");
-
-INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status)VALUES ("Security Measures","As a user, I want assurance that my personal and payment information is secure on the platform.",2,3,4,'2023-12-04',"Completed");
-INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status)VALUES ("Language Preferences","As a user, I want to choose my preferred language for the platform.",3,7,3,'2023-12-04',"Todo");
-INSERT INTO userstories(title,description, projectid, assignedto, assignedby,createddate,status)VALUES ("Accessibility Features","As a user with accessibility needs, I want the platform to be accessible and user-friendly.",4,6,3,'2023-12-04',"Completed");
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)VALUES
+("userstory","Automated Testing Framework","As a developer, I want an automated testing framework integrated into the project to ensure the stability of new features.",'2023-12-04','2023-12-05','2023-12-06',2,3,4,"todo",'2023-12-04'),
+("userstory","User Survey Participation","As a user, I want the opportunity to participate in surveys to provide feedback and improve the platform.",'2023-12-04','2023-12-04','2023-12-06',3,7,3,"todo",'2023-12-04'),
+("userstory","Privacy Settings","As a user, I want to control my privacy settings and data sharing preferences.",'2023-12-04','2023-12-07','2023-12-08',4,6,3,"todo",'2023-12-04'),
+("userstory","Security Measures","As a user, I want assurance that my personal and payment information is secure on the platform.",'2023-12-04','2023-12-04','2023-12-07',2,3,4,"todo",'2023-12-04'),
+("userstory","Language Preferences","As a user, I want to choose my preferred language for the platform.",'2023-12-04','2023-12-05','2023-12-06',3,7,3,"todo",'2023-12-04'),
+("userstory","Accessibility Features","As a user with accessibility needs, I want the platform to be accessible and user-friendly.",'2023-12-04','2023-12-04','2023-12-08',4,6,3,"todo",'2023-12-04');
 
 
 INSERT INTO sprints(title,startdate,enddate,goal) VALUES ('sprint 1',"2023-10-30","2023-11-04","Resolve critical and high-priority bugs");
@@ -322,82 +301,82 @@ INSERT INTO sprints(title,startdate,enddate,goal) VALUES ('sprint 4',"2023-11-20
 INSERT INTO sprints(title,startdate,enddate,goal) VALUES ('sprint 5',"2023-11-27","2023-12-02","Integration Testing");
 INSERT INTO sprints(title,startdate,enddate,goal) VALUES ('sprint 6',"2023-12-04","2023-12-09","Integration Testing");
 
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (1,1);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (1,2);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (1,3);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (1,4);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (1,5);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (1,6);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (2,7);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (2,8);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (2,9);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (2,10);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (2,11);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (2,12);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (3,13);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (3,14);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (3,15);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (3,16);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (3,17);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (3,18);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (4,19);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (4,20);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (4,21);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (4,22);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (4,23);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (4,24);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (5,25);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (5,26);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (5,27);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (5,28);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (5,29);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (5,30);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (6,31);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (6,32);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (6,33);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (6,34);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (6,35);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (6,36);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (1,1);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (1,2);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (1,3);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (1,4);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (1,5);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (1,6);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (2,7);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (2,8);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (2,9);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (2,10);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (2,11);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (2,12);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (3,13);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (3,14);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (3,15);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (3,16);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (3,17);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (3,18);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (4,19);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (4,20);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (4,21);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (4,22);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (4,23);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (4,24);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (5,25);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (5,26);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (5,27);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (5,28);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (5,29);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (5,30);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (6,31);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (6,32);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (6,33);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (6,34);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (6,35);
+INSERT INTO sprintactivities(sprintid,activityid) VALUES (6,36);
 
 
 
 
 
 
-INSERT INTO sprints(title,startdate,enddate,goal) VALUES ('sprint 1',"2023-10-30","2023-11-04","Resolve critical and high-priority bugs");
-INSERT INTO sprints(title,startdate,enddate,goal) VALUES ('sprint 2',"2023-11-06","2023-11-11","Enhance system performance by optimizing database queries");
-INSERT INTO sprints(title,startdate,enddate,goal) VALUES ('sprint 3',"2023-11-13","2023-11-18","Refactor codebase");
-INSERT INTO sprints(title,startdate,enddate,goal) VALUES ('sprint 4',"2023-11-20","2023-11-25","Improve project documentation");
-INSERT INTO sprints(title,startdate,enddate,goal) VALUES ('sprint 5',"2023-11-27","2023-12-02","Integration Testing");
+-- INSERT INTO sprints(title,startdate,enddate,goal) VALUES ('sprint 1',"2023-10-30","2023-11-04","Resolve critical and high-priority bugs");
+-- INSERT INTO sprints(title,startdate,enddate,goal) VALUES ('sprint 2',"2023-11-06","2023-11-11","Enhance system performance by optimizing database queries");
+-- INSERT INTO sprints(title,startdate,enddate,goal) VALUES ('sprint 3',"2023-11-13","2023-11-18","Refactor codebase");
+-- INSERT INTO sprints(title,startdate,enddate,goal) VALUES ('sprint 4',"2023-11-20","2023-11-25","Improve project documentation");
+-- INSERT INTO sprints(title,startdate,enddate,goal) VALUES ('sprint 5',"2023-11-27","2023-12-02","Integration Testing");
 
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (1,1);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (1,2);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (1,3);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (1,4);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (1,5);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (1,6);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (2,7);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (2,8);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (2,9);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (2,10);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (2,11);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (2,12);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (3,13);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (3,14);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (3,15);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (3,16);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (3,17);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (3,18);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (4,19);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (4,20);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (4,21);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (4,22);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (4,23);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (4,24);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (5,25);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (5,26);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (5,27);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (5,28);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (5,29);
-INSERT INTO sprintuserstories(sprintid,userstoryid) VALUES (5,30);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (1,1);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (1,2);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (1,3);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (1,4);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (1,5);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (1,6);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (2,7);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (2,8);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (2,9);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (2,10);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (2,11);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (2,12);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (3,13);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (3,14);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (3,15);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (3,16);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (3,17);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (3,18);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (4,19);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (4,20);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (4,21);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (4,22);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (4,23);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (4,24);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (5,25);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (5,26);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (5,27);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (5,28);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (5,29);
+-- INSERT INTO sprintactivities(sprintid,activityid) VALUES (5,30);
 
