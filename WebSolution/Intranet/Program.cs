@@ -13,7 +13,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<IMemberService, MemberService>();
-builder.Services.AddScoped<ITaskService, TaskService>();
+builder.Services.AddScoped<IActivityService, ActivityService>();
 builder.Services.AddScoped<ITimeSheetService, TimeSheetService>();
 builder.Services.AddScoped<IProjectPlanningService, ProjectPlanningService>();
 
