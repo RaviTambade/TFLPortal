@@ -1,4 +1,4 @@
--- Active: 1696576841746@@127.0.0.1@3306@pms
+-- Active: 1694968636816@@127.0.0.1@3306@pms
 
 -- director
 INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (1,'2013-01-01',1,80000);
@@ -180,8 +180,6 @@ INSERT INTO activities (activitytype,title, description, assigneddate, startdate
 ("userstory","Security Measures","As a user, I want assurance that my personal and payment information is secure on the platform.",'2023-12-04','2023-12-04','2023-12-07',2,3,4,"todo",'2023-12-04'),
 ("userstory","Language Preferences","As a user, I want to choose my preferred language for the platform.",'2023-12-04','2023-12-05','2023-12-06',3,7,3,"todo",'2023-12-04'),
 ("userstory","Accessibility Features","As a user with accessibility needs, I want the platform to be accessible and user-friendly.",'2023-12-04','2023-12-04','2023-12-08',4,6,3,"todo",'2023-12-04');
-
-
 
 
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-11-01','Rejected',10);

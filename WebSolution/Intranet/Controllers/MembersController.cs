@@ -11,7 +11,7 @@ using static System.Net.Mime.MediaTypeNames;
 namespace Transflower.TFLPortal.Intranet.Controllers;
 
 [ApiController]
-[Route("/api/members")]
+[Route("/api/projectmgmt/members")]
 public class MembersController : ControllerBase
 {
     private readonly IMemberService _service;
@@ -68,55 +68,6 @@ public class MembersController : ControllerBase
     }
 
 
-
-    [HttpGet("employees/{employeeId}")]
-    public async Task<EmployeeResponse> GetEmployeeDetails(int employeeId)
-    {
-        Employee employee = await _service.GetEmployeeDetails(employeeId);
-        var user = await GetUser(employee.UserId);
-        EmployeeResponse emp = new EmployeeResponse()
-        {
-            Id = employee.EmployeeId,
-            HireDate=employee.HireDate,
-            Salary = employee.Salary,
-            FirstName = user.FirstName,
-            LastName = user.LastName,
-            Gender = user.Gender,
-            Email= user.Email,
-            ContactNumber = user.ContactNumber
-        };
-        return emp;
-    }
-
-    [HttpPost("employee/salary/{employeeId}")]
-    public async Task<bool> PaySalary(int employeeId)
-    {
-        Employee employee = await _service.GetEmployeeDetails(employeeId);
-        var userAccount = await GetUserAccount(employee.UserId,"I");
-        FundTransferRequest request = new FundTransferRequest()
-        {
-            FromAcct="39025546601",
-            FromIfsc ="MAHB0000286",
-            ToAcct = userAccount.AccountNumber,
-            ToIfsc = userAccount.IFSCCode,
-            Amount = employee.Salary,
-            TransactionType ="Transfer"
-
-        };
-        var transactionId = await FundTransfer(request);
-        Console.WriteLine(transactionId);
-        return transactionId >0;    
-        }
-    
-    private async Task<User> GetUser(int userId)
-    {
-        var httpClient = _httpClientFactory.CreateClient();
-        var response = await httpClient.GetFromJsonAsync<User>(
-            $"http://localhost:5142/api/users/{userId}"
-        );
-        return response;
-    }
-
     private async Task<List<UserDetailResponse>> GetUsersFromService(string userIds)
     {
         var httpClient = _httpClientFactory.CreateClient();
@@ -126,14 +77,8 @@ public class MembersController : ControllerBase
         return response;
     }
 
-    private async Task<BankAccount> GetUserAccount(int userId,string userType)
-    {
-        var httpClient = _httpClientFactory.CreateClient();
-        var response = await httpClient.GetFromJsonAsync<BankAccount>(
-        $"http://localhost:5053/api/accounts/details/{userId}/{userType}"
-        );
-        return response;
-    }
+   
+
 
     [HttpPost]
     private async Task<int> FundTransfer(FundTransferRequest request)
@@ -148,5 +93,19 @@ public class MembersController : ControllerBase
         HttpResponseMessage response = await httpClient.PostAsync(url, requestJson);
         int result = (int)response.StatusCode;
         return result;
+    }
+
+    [HttpPost("addmember")]
+    public async Task<bool> AssignMemberToProject(Member member)
+    {
+        bool status= await _service.AssignMemberToProject(member);
+        return status;
+    }
+
+    [HttpDelete("delete")]
+    public async Task<bool> DeleteMemberFromProject(int id)
+    {
+        bool status= await _service.DeleteMemberFromProject(id);
+        return status;
     }
 }

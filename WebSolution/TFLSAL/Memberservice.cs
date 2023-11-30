@@ -64,8 +64,7 @@ public class MemberService : IMemberService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query =
-                "SELECT members.*, employees.userid as userid FROM members INNER JOIN employees on members.employeeid =employees.id  WHERE projectid=@ProjectId and employeeid=@employeeId";
+            string query = "SELECT members.*, employees.userid as userid FROM members INNER JOIN employees on members.employeeid =employees.id  WHERE projectid=@ProjectId and employeeid=@employeeId";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);
             command.Parameters.AddWithValue("@employeeId", employeeId);
@@ -96,40 +95,76 @@ public class MemberService : IMemberService
         return member;
     }
 
-    public async Task<Employee> GetEmployeeDetails( int employeeId)
+    public async Task<bool> AssignMemberToProject(Member member){
     {
-        Employee employee = null;
+        bool status=false;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query =
-                "select * from employees where id=@employeeId";
-            MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@employeeId", employeeId);
+            string query = "INSERT INTO members(projectid,employeeid,membership,membershipdate) VALUES(@projectId,@employeeId,@membership,@membershipDate)";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@projectId", member.ProjectId);
+            cmd.Parameters.AddWithValue("@employeeId", member.EmployeeId);
+            cmd.Parameters.AddWithValue("@membership", member.Membership);
+            cmd.Parameters.AddWithValue("@membershipDate", member.MembershipDate);
             await connection.OpenAsync();
-            MySqlDataReader reader = command.ExecuteReader();
-            if (await reader.ReadAsync())
+            int rowsAffected = cmd.ExecuteNonQuery();
+            if (rowsAffected > 0)
             {
-                employee = new Employee
-                {
-                    EmployeeId = reader.GetInt32("id"),
-                    UserId = reader.GetInt32("userid"),
-                    HireDate = reader.GetDateTime("hiredate"),
-                    ReportingId = reader.GetInt32("reportingid"),
-                    Salary = reader.GetInt32("salary"),
-                };
+                status = true;
             }
-            await reader.CloseAsync();
+            await connection.CloseAsync();
+
         }
-        catch (Exception)
+        catch (Exception e)
         {
-            throw;
+            throw e;
         }
         finally
         {
             await connection.CloseAsync();
         }
-        return employee;
+        return status;
     }
-}
+    }
+
+    public async Task<bool> DeleteMemberFromProject(int id )
+    {
+        bool status=false;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query = "Delete from members where id=@id";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@id", id);
+            await connection.OpenAsync();
+            int rowsAffected = cmd.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                status = true;
+            }
+            await connection.CloseAsync();
+
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return status;
+    }
+
+}  
+
+    // public async Task<Member> ReleaseMemberFromProject(int employeeId,int projectId )
+    // {
+
+    // }  
+
+
+
