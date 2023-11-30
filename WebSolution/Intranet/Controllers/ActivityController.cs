@@ -1,39 +1,62 @@
-// using Microsoft.AspNetCore.Mvc;
-// using Transflower.TFLPortal.TFLOBL.Entities;
-// using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using Transflower.TFLPortal.TFLOBL.Entities;
+using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 
-// namespace Intranet.Controllers;
+namespace Intranet.Controllers;
 
-// [ApiController]
-// [Route("/api/workmgmt/activities")]
-// public class ActivityController : ControllerBase
-// {
-//     private readonly IActivityService _service;
+[ApiController]
+[Route("/api/workmgmt/activities")]
+public class ActivityController : ControllerBase
+{
+    private readonly IActivityService _service;
    
-//     public ActivityController(IActivityService service)
-//     {
-//         _service = service;
+    public ActivityController(IActivityService service)
+    {
+        _service = service;
 
-//     }
+    }
 
-//     [HttpGet("{projectId}/{memberId}")]
-//     public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>> GetTasksOfMember(int projectId, int memberId)
-//     {
-//         List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetTasksOfMember(projectId,memberId);
-//         return activities;
-//     }
+    [HttpGet("{projectId}")]
+    public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>> GetAllActivitiesByProject(int projectId)
+    {
+        List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetAllActivitiesByProject(projectId);
+        return activities;
+    }
 
-//     [HttpGet("activity/{activityId}")]
-//     public async Task<Transflower.TFLPortal.TFLOBL.Entities.Activity> GetTaskDetails(int activityId)
-//     {
-//         Transflower.TFLPortal.TFLOBL.Entities.Activity activity = await _service.GetTaskDetails(activityId);
-//         return activity;
-//     }
+    [HttpGet("{projectId}/{activityType}")]
+    public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>>GetAllActivitiesByProject(int projectId, string activityType)
+    {
+        List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetAllActivitiesByProject(projectId,activityType);
+        return activities;
+    }
 
-//     [HttpGet("insert")]
-//     public async Task<bool> Insert(Transflower.TFLPortal.TFLOBL.Entities.Activity activity)
-//     {
-//         bool status = await _service.Insert(activity);
-//         return status;
-//     }
-// }
+     [HttpGet("activity/{projectId}/{assignedTo}")]
+    public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>> GetActivitiesByProject(int projectId,int assignedTo)
+    {
+        List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetActivitiesByProject(projectId,assignedTo);
+        return activities;
+    }
+
+
+     [HttpGet("activity/{projectId}/{assignedTo}/{activityType}")]
+    public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>> GetAllActivitiesByProject(int projectId, int assignedTo,string activityType)
+    {
+        List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetActivitiesByProject(projectId,assignedTo,activityType);
+        return activities;
+    }
+
+    [HttpGet("activity/{activityId}")]
+    public async Task<Transflower.TFLPortal.TFLOBL.Entities.Activity> GetActivityDetails(int activityId)
+    {
+        Transflower.TFLPortal.TFLOBL.Entities.Activity activity = await _service.GetActivityDetails(activityId);
+        return activity;
+    }
+
+    [HttpPost("insert")]
+    public async Task<bool> Insert(Transflower.TFLPortal.TFLOBL.Entities.Activity activity)
+    {
+        bool status = await _service.Insert(activity);
+        return status;
+
+    }
+}
