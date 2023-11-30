@@ -54,7 +54,7 @@ private readonly IConfiguration _configuration;
                     AssignDate=assigndate,
                     StartDate=startdate,
                     DueDate=duedate,
-                    AssignedTo=memberId,
+                    AssignedTo=1,
                     Status = status,
                     AssignedBy=managerId,
                     
@@ -74,7 +74,7 @@ private readonly IConfiguration _configuration;
         return activities;
     }
 
-    public async Task<TFLOBL.Entities.Activity> GetAllActivitiesByProject(int projectId,string activityType){
+    public async Task<List<TFLOBL.Entities.Activity>> GetAllActivitiesByProject(int projectId,string activityType){
 
         List<TFLOBL.Entities.Activity> activities = new List<TFLOBL.Entities.Activity>();
         MySqlConnection connection = new MySqlConnection();
@@ -91,7 +91,7 @@ private readonly IConfiguration _configuration;
             {
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
-                string activityType = reader["activitytype"].ToString();
+                string activityType1 = reader["activitytype"].ToString();
                 string description = reader["description"].ToString();
                 DateTime createdate = DateTime.Parse(reader["createddate"].ToString());
                 int assignedto = int.Parse(reader["assignedto"].ToString());
@@ -106,13 +106,13 @@ private readonly IConfiguration _configuration;
                 {
                     Id = id,
                     Title = title,
-                    ActivityType=activitytype,
+                    ActivityType="",
                     Description = description,
                     ProjectId=projectId,
                     AssignDate=assigndate,
                     StartDate=startdate,
                     DueDate=duedate,
-                    AssignedTo=memberId,
+                    AssignedTo=1,
                     Status = status,
                     AssignedBy=managerId,
                     
@@ -132,7 +132,7 @@ private readonly IConfiguration _configuration;
         return activities;
     }
 
-    public async Task<TFLOBL.Entities.Activity> GetActivitiesByProject(int projectId, int assignedTo){
+    public async Task<List<TFLOBL.Entities.Activity>> GetActivitiesByProject(int projectId, int assignedTo){
 
         List<TFLOBL.Entities.Activity> activities = new List<TFLOBL.Entities.Activity>();
         MySqlConnection connection = new MySqlConnection();
@@ -166,13 +166,13 @@ private readonly IConfiguration _configuration;
                 {
                     Id = id,
                     Title = title,
-                    ActivityType=activitytype,
+                    ActivityType="activitytype",
                     Description = description,
                     ProjectId=projectId,
                     AssignDate=assigndate,
                     StartDate=startdate,
                     DueDate=duedate,
-                    AssignedTo=memberId,
+                    AssignedTo=1,
                     Status = status,
                     AssignedBy=managerId,
                     
@@ -191,7 +191,7 @@ private readonly IConfiguration _configuration;
         }
         return activities;
     }
-    public async Task<TFLOBL.Entities.Activity> GetActivitiesByProject(int projectId, int assignedTo,string activityType){
+    public async Task<List<TFLOBL.Entities.Activity>> GetActivitiesByProject(int projectId, int assignedTo,string activityType){
 
         List<TFLOBL.Entities.Activity> activities = new List<TFLOBL.Entities.Activity>();
         MySqlConnection connection = new MySqlConnection();
@@ -210,7 +210,7 @@ private readonly IConfiguration _configuration;
             {
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
-                string activityType = reader["activitytype"].ToString();
+                string activityType1 = reader["activitytype"].ToString();
                 string description = reader["description"].ToString();
                 DateTime createdate = DateTime.Parse(reader["createddate"].ToString());
                 int assignedto = int.Parse(reader["assignedto"].ToString());
@@ -225,13 +225,13 @@ private readonly IConfiguration _configuration;
                 {
                     Id = id,
                     Title = title,
-                    ActivityType=activitytype,
+                    ActivityType="activitytype",
                     Description = description,
                     ProjectId=projectId,
                     AssignDate=assigndate,
                     StartDate=startdate,
                     DueDate=duedate,
-                    AssignedTo=memberId,
+                    AssignedTo=1,
                     Status = status,
                     AssignedBy=managerId,
                     
@@ -348,4 +348,13 @@ private readonly IConfiguration _configuration;
 
     }
 
+    public Task<List<TFLOBL.Entities.Activity>> GetTasksOfMember(int projectId, int memberId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<TFLOBL.Entities.Activity> GetTaskDetails(int activityId)
+    {
+        throw new NotImplementedException();
+    }
 }

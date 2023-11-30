@@ -96,16 +96,13 @@ public class MemberService : IMemberService
         return member;
     }
 
-   
-
-    public async Task<Member> AssignMemberToProject(int employeeId,int projectId, ){
-
+    public async Task<Member> AssignMemberToProject(int employeeId, int projectId)
+    {
+        throw new NotImplementedException();
     }
 
-    public async Task<Member> RleaseMemberFromProject(int employeeId,int projectId, ){
-
+    public async Task<Member> RleaseMemberFromProject(int employeeId, int projectId)
+    {
+        throw new NotImplementedException();
     }
-    
-
-
 }
