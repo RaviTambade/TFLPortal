@@ -7,7 +7,8 @@
         <table class="table-bordered text-center">
             <thead>
                 <tr>
-                    <th>id</th>
+                    <th>Activity:</th>
+                    <th>Title:</th>
                     <th>description</th>
                     <th>fromtime</th>
                     <th>toTime</th>
@@ -15,10 +16,11 @@
             </thead>
             <tbody *ngFor=" let entry of timeSheetEntries">
                 <tr>
-                    <td >{{entry.id}}</td>
+                    <td>{{entry.activityType}}</td>
+                    <td> {{entry.title}}</td>
                     <td> {{entry.description}}</td>
-                    <td> {{entry.fromTime | date :"HH:mm"}}</td>
-                    <td> {{entry.toTime | date :"HH:mm"}}</td>
+                    <td> {{entry.fromTime }}</td>
+                    <td> {{entry.toTime }}</td>
                 </tr>
             </tbody>
         </table>

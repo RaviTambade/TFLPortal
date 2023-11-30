@@ -1,10 +1,13 @@
 import { TimeSheetEntry } from "./TimeSheetEntry";
 
 export class TimeSheet{
-    constructor(public id:number,
-        public date:string,
+    constructor(
+        public id:number,
         public status:string,
-        public employeeId:number){
+        public timeSheetDate:string,
+        public statusChangedDate:string,
+        public employeeId:number
+        ){
         }
         public timeSheetEntries:TimeSheetEntry[]=[]
 }

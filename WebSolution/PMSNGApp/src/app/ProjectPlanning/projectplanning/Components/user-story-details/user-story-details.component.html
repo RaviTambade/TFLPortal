@@ -1,0 +1,27 @@
+<userstoriesList (userStory)="onReciveEvent($event)"></userstoriesList>
+<div class="container">
+    <h2> UserStories Details</h2>
+    <div class="card">
+        <table class="table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>Project Id</th>
+                    <th>AssignedTo</th>
+                    <th>AssignedBy</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="userstories ">
+                <tr>
+                    <td >{{userstories.projectId}}</td>
+                    <td> {{userstories.assignedTo}}</td>
+                    <td> {{userstories.assignedBy}}</td>
+                    <td> {{userstories.status}}</td>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
