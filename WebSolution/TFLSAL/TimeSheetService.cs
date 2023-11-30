@@ -77,21 +77,16 @@ public class TimeSheetService : ITimeSheetService
             while (await reader.ReadAsync())
             {
                 int id = int.Parse(reader["id"].ToString());
-               
-                string title = reader["title"].ToString();
-                string activityType = reader["activitytype"].ToString();
-                string description = reader["description"].ToString();
+                int activityId =int.Parse(reader["activityid"].ToString());
                 TimeOnly fromtime = TimeOnly.Parse(reader["fromtime"].ToString());
                 TimeOnly totime = TimeOnly.Parse(reader["totime"].ToString());
 
                 TimeSheetEntry timesheet = new TimeSheetEntry()
                 {
                     Id = id,
-                    Description = description,
                     FromTime = fromtime,
                     ToTime = totime,
-                    Title=title,
-                    ActivityType=activityType
+                    ActivityId=activityId
                 };
                 timeSheetEntries.Add(timesheet);
             }
@@ -116,7 +111,7 @@ public class TimeSheetService : ITimeSheetService
         connection.ConnectionString = _connectionString;
 
         var query = new StringBuilder(
-            "INSERT INTO timesheetentries(title, activitytype, description, fromtime, totime, timesheetid) VALUES "
+            "INSERT INTO timesheetentries(activityid, fromtime, totime, timesheetid) VALUES "
         );
         var parameters = new List<MySqlParameter>();
 
@@ -124,11 +119,9 @@ public class TimeSheetService : ITimeSheetService
         {
             var timeSheetEntry = timeSheet.TimeSheetEntries[i];
 
-            query.Append($"( @Title{i},@Activitytype{i},@Description{i}, @FromTime{i}, @ToTime{i}, @TimeSheetId{i}), ");
+            query.Append($"( @ActivityId{i} , @FromTime{i}, @ToTime{i}, @TimeSheetId{i}), ");
 
-            parameters.Add(new MySqlParameter($"@Title{i}", timeSheetEntry.Title));
-            parameters.Add(new MySqlParameter($"@Activitytype{i}", timeSheetEntry.ActivityType));
-            parameters.Add(new MySqlParameter($"@Description{i}", timeSheetEntry.Description));
+            parameters.Add(new MySqlParameter($"@ActivityId{i}", timeSheetEntry.ActivityId));
             parameters.Add(new MySqlParameter($"@FromTime{i}", timeSheetEntry.FromTime));
             parameters.Add(new MySqlParameter($"@ToTime{i}", timeSheetEntry.ToTime));
             parameters.Add(new MySqlParameter($"@TimeSheetId{i}", timeSheetId));
