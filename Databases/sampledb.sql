@@ -1,4 +1,4 @@
--- Active: 1696576841746@@127.0.0.1@3306@pms
+-- Active: 1694968636816@@127.0.0.1@3306@pms
 
 -- director
 INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (1,'2013-01-01',1,80000);

@@ -10,12 +10,16 @@ import { CalenderComponent } from './calender/calender.component';
 import { ChunkPipe } from './calender/chunk.pipe';
 import { TimeSheetModule } from './time-sheet/time-sheet.module';
 import { ProjectplanningModule } from './ProjectPlanning/projectplanning/projectplanning.module';
+import { ActivitiesListComponent } from './activity/Component/activities-list/activities-list.component';
+import { ActivitiesDetailsComponent } from './activity/Component/activities-details/activities-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CalenderComponent,
-    ChunkPipe
+    ChunkPipe,
+    ActivitiesListComponent,
+    ActivitiesDetailsComponent
   ],
   imports: [
     BrowserModule,

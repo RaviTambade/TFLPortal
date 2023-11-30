@@ -1,4 +1,4 @@
--- Active: 1696576841746@@127.0.0.1@3306@pms
+-- Active: 1694968636816@@127.0.0.1@3306@pms
 
     DROP DATABASE IF EXISTS PMS;
     CREATE DATABASE PMS;
@@ -34,6 +34,9 @@
             projectid INT NOT NULL,
             CONSTRAINT fk_projects_projectmembers FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
             employeeid INT NOT NULL,
+
+            CONSTRAINT fk_employee_projectmembers FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
+
             CONSTRAINT fk_employee_projectmembers FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
     );
 
