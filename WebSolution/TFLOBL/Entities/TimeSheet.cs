@@ -9,5 +9,6 @@ public class TimeSheet
    public DateTime TimeSheetDate{get;set;}
    public DateTime StatusChangedDate{get;set;}
 
+   //navigational property
    public List<TimeSheetEntry> TimeSheetEntries {get;set;}  
 }

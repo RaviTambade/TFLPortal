@@ -43,7 +43,6 @@ public class MembersController : ControllerBase
                     MembershipDate = member.MembershipDate,
                     ImageUrl = userDetail.ImageUrl
                 };
-
                 membersResponse.Add(memberResponse);
             }
         }
@@ -145,10 +144,9 @@ public class MembersController : ControllerBase
             Encoding.UTF8,
             Application.Json);
 
-        // int Response =await httpClient.PostAsync("http://localhost:5001/api/fundstransfer",requestJson);
         var url ="http://localhost:5001/api/fundstransfer";
         HttpResponseMessage response = await httpClient.PostAsync(url, requestJson);
         int result = (int)response.StatusCode;
-         return result;
+        return result;
     }
 }

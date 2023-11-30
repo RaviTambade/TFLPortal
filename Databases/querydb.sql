@@ -1,16 +1,5 @@
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
--- Active: 1696576841746@@127.0.0.1@3306@pmsDROP PROCEDURE if exists getorcreatetimesheet;
-=======
-<<<<<<< HEAD
->>>>>>> 5e898ea863ae66396eea5c03a95312801780d666
--- Active: 1694968636816@@127.0.0.1@3306@pms
-SELECT * from userstories;
-
-
 -- Active: 1696576841746@@127.0.0.1@3306@pms
+
 SELECT * from timesheetEntries;
 SELECT * FROM userstories;
 show tables;
@@ -26,6 +15,5 @@ ELSE
  SET timesheetid=tid;
 END IF;
 END;
->>>>>>> 2ee57852441242e9f1b34676583da61a22432d37
 
 
