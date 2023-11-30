@@ -8,7 +8,7 @@ using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 namespace Transflower.TFLPortal.Intranet.Controllers;
 
 [ApiController]
-[Route("/api/workmgmt/TimeSheets")]
+[Route("/api/workmgmt/timesheets")]
 public class TimeSheetsController : ControllerBase
 {
     private readonly ITimeSheetService _service;
@@ -25,7 +25,7 @@ public class TimeSheetsController : ControllerBase
         return timesheets;
     }
 
-    [HttpGet("TimeSheetEntry/{timeSheetId}")]
+    [HttpGet("timesheetentries/{timeSheetId}")]
     public async Task<List<TimeSheetEntry>> GetTimeSheetDetails(int timeSheetId)
     {
         return await _service.GetTimeSheetDetails(timeSheetId);

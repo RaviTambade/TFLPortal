@@ -17,3 +17,6 @@ END IF;
 END;
 
 
+
+select timesheetentries.*,activities.title,activities.activitytype  from timesheetentries join activities on timesheetentries.activityid=activities.id WHERE timesheetid=1;
+SELECT * FROM activities;

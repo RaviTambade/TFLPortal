@@ -1,4 +1,4 @@
--- Active: 1694968636816@@127.0.0.1@3306@pms
+-- Active: 1696576841746@@127.0.0.1@3306@pms
 
 -- director
 INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (1,'2013-01-01',1,80000);
@@ -125,7 +125,6 @@ VALUES ('task','API crude operation', 'Create comprehensive crude operations for
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ('task','Database Optimization', 'Optimize database queries for improved performance', '2023-12-05', '2023-12-06', '2023-12-10', 3, 2, 3, 'todo','2023-12-04');
 
-SELECT * FROM activities;
 
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ("userstory","User Registration","As a new user, I want to be able to register for an account so that I can access the platform.",'2023-10-29','2023-10-30','2023-11-04',19,10,1,'todo','2023-10-30');
@@ -219,53 +218,53 @@ INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-01-21','Ap
 
 INSERT INTO timesheetentries(activityid,fromtime, totime, timesheetid)
 VALUES
-  (1, "09:00:00", "10:30:00", 1),
-  (2, "10:30:00", "12:00:00", 1),
-  (3,"12:00:00", "13:00:00", 1);
+  (15, "09:00:00", "10:30:00", 1),
+  (16, "10:30:00", "12:00:00", 1),
+  (17,"12:00:00", "13:00:00", 1);
 
   
 INSERT INTO timesheetentries(activityid, fromtime, totime, timesheetid)
 VALUES
-  (1,"09:00:00", "10:30:00", 2),
-  (2, "13:00:00", "14:30:00", 2),
-  (3, "14:30:00", "15:15:00", 2);
+  (15,"09:00:00", "10:30:00", 2),
+  (16, "13:00:00", "14:30:00", 2),
+  (17, "14:30:00", "15:15:00", 2);
 
 INSERT INTO timesheetentries(activityid, fromtime, totime, timesheetid)
 VALUES
-  (1,"10:30:00", "12:00:00", 3),
-  (2, "13:00:00", "14:30:00", 3),
-  (3, "14:30:00", "15:15:00", 3);
+  (15,"10:30:00", "12:00:00", 3),
+  (16, "13:00:00", "14:30:00", 3),
+  (17, "14:30:00", "15:15:00", 3);
 
 INSERT INTO timesheetentries(activityid, fromtime, totime, timesheetid)
 VALUES
-  (1, "09:00:00", "10:30:00", 4),
-  (2,"10:30:00", "12:00:00", 4),
-  (3, "15:15:00", "16:45:00", 4);
+  (15, "09:00:00", "10:30:00", 4),
+  (16,"10:30:00", "12:00:00", 4),
+  (17, "15:15:00", "16:45:00", 4);
 
 INSERT INTO timesheetentries(activityid, fromtime, totime, timesheetid)
 VALUES
-  (4, "09:00:00", "10:30:00", 5),
-  (5, "10:30:00", "12:00:00", 5),
-  (6, "13:00:00", "16:45:00", 5);
+  (18, "09:00:00", "10:30:00", 5),
+  (19, "10:30:00", "12:00:00", 5),
+  (20, "13:00:00", "16:45:00", 5);
   
 INSERT INTO timesheetentries(activityid,fromtime, totime, timesheetid)
 VALUES
-  (4, "09:00:00", "12:00:00", 6),
-  (5,"13:00:00", "14:30:00", 6),
-  (6, "15:15:00", "16:45:00", 6);
+  (18, "09:00:00", "12:00:00", 6),
+  (19,"13:00:00", "14:30:00", 6),
+  (20, "15:15:00", "16:45:00", 6);
 
 INSERT INTO timesheetentries(activityid,fromtime, totime, timesheetid)
 VALUES
-  (4, "09:00:00", "10:30:00", 7),
-  (5, "10:30:00", "12:00:00", 7),
-  (6, "12:00:00", "16:45:00", 7);
+  (18, "09:00:00", "10:30:00", 7),
+  (19, "10:30:00", "12:00:00", 7),
+  (20, "12:00:00", "16:45:00", 7);
 
 
 INSERT INTO timesheetentries(activityid, fromtime, totime, timesheetid)
 VALUES
-  (4, "09:00:00", "10:30:00", 8),
-  (5, "10:30:00", "14:30:00", 8),
-  (6, "14:30:00", "16:45:00", 8);
+  (18, "09:00:00", "10:30:00", 8),
+  (19, "10:30:00", "14:30:00", 8),
+  (20, "14:30:00", "16:45:00", 8);
 
 
 

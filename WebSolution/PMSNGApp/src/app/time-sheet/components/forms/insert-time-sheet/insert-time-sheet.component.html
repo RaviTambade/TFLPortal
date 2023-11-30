@@ -6,7 +6,6 @@
             <th>StartTime:</th>
             <th>EndTime:</th>
             <th>Activity:</th>
-            <th>Title:</th>
             <th>Duration:</th>
         </tr>
     </thead>
@@ -14,9 +13,7 @@
         <tr>
             <td>{{timeSheetEntry.fromTime }}</td>
             <td>{{timeSheetEntry.toTime}}</td>
-            <td>{{timeSheetEntry.activityType}}</td>
-            <td>{{timeSheetEntry.title}}</td>
-            <td>{{timeSheetEntry.description}}</td>
+            <td>{{timeSheetEntry.activity?.activityType}}</td>
             <td>{{timeSheetEntry.durationInHours}}</td>
         </tr>
        

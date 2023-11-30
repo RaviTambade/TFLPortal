@@ -9,16 +9,14 @@
                 <tr>
                     <th>Activity:</th>
                     <th>Title:</th>
-                    <th>description</th>
                     <th>fromtime</th>
                     <th>toTime</th>
                 </tr>
             </thead>
             <tbody *ngFor=" let entry of timeSheetEntries">
                 <tr>
-                    <td>{{entry.activityType}}</td>
-                    <td> {{entry.title}}</td>
-                    <td> {{entry.description}}</td>
+                    <td>{{entry.activity?.activityType}}</td>
+                    <td> {{entry.activity?.title}}</td>
                     <td> {{entry.fromTime }}</td>
                     <td> {{entry.toTime }}</td>
                 </tr>

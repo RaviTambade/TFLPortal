@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { TimeSheet } from 'src/app/time-sheet/models/TimeSheet';
 import { TimeSheetEntry } from 'src/app/time-sheet/models/TimeSheetEntry';
-import { TimeSheet } from 'src/app/time-sheet/models/timesheet';
+
 import { TimeSheetService } from 'src/app/time-sheet/services/time-sheet.service';
 
 @Component({
