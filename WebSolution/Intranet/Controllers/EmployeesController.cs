@@ -96,7 +96,10 @@ public class EmployeesController : ControllerBase
         // int Response =await httpClient.PostAsync("http://localhost:5001/api/fundstransfer",requestJson);
         var url ="http://localhost:5001/api/fundstransfer";
         HttpResponseMessage response = await httpClient.PostAsync(url, requestJson);
-        int result = (int)response.StatusCode;
-         return result;
+        int transactionId=0;
+        if(response.IsSuccessStatusCode){
+            transactionId=  await response.Content.ReadFromJsonAsync<int>();
+        }
+        return transactionId;
     }
 }
