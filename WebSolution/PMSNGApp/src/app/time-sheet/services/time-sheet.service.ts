@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { TimeSheetEntry } from '../models/TimeSheetEntry';
-import { TimeSheet } from '../models/TimeSheet';
+import { TimeSheetEntry } from '../models/timesheetentry';
+import { TimeSheet } from '../models/timesheet';
 
 
 @Injectable({

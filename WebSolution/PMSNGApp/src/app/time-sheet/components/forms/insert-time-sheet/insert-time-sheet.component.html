@@ -1,5 +1,14 @@
-<app-insert-time-sheet-entry></app-insert-time-sheet-entry>
 
+<ng-template #insertTimesheetEnrty>
+<app-insert-time-sheet-entry></app-insert-time-sheet-entry>
+</ng-template>
+
+<button (click)="onClickAddTimesheetEntry()"> Add </button>
+<app-popup *ngIf="showaddTimesheetEntry" [templateToRender]="insertTimesheetEnrty" (closePopup)="onClosePopup()"></app-popup>
+
+<br><br><br>
+<p> Date : {{todaysDate}}</p>
+ 
 <table class="table-bordered">
     <thead>
         <tr>

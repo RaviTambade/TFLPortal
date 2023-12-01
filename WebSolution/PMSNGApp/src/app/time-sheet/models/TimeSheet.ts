@@ -1,4 +1,4 @@
-import { TimeSheetEntry } from "./TimeSheetEntry";
+import { TimeSheetEntry } from "./timesheetentry";
 
 export class TimeSheet{
     constructor(

@@ -9,6 +9,6 @@ public class Member
     public DateTime MembershipDate { get; set; }
 
     //Navigational property
-    public Employee Employee{get;set;}
+    public Employee? Employee{get;set;}
 
 }

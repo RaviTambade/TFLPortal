@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { TimeSheet } from 'src/app/time-sheet/models/TimeSheet';
-import { TimeSheetEntry } from 'src/app/time-sheet/models/TimeSheetEntry';
+import { TimeSheet } from 'src/app/time-sheet/models/timesheet';
+import { TimeSheetEntry } from 'src/app/time-sheet/models/timesheetentry';
 
 import { TimeSheetService } from 'src/app/time-sheet/services/time-sheet.service';
 
@@ -17,6 +17,8 @@ export class InsertTimeSheetComponent implements OnInit {
 
   subscription: Subscription | undefined;
   totalminutes: any = 0;
+  showaddTimesheetEntry:boolean=false;
+  todaysDate:string=new Date().toISOString().slice(0, 10);
 
   ngOnInit(): void {
     this.subscription = this.timeSheetSvc
@@ -28,7 +30,8 @@ export class InsertTimeSheetComponent implements OnInit {
           .forEach((i) => {
             this.totalminutes += i;
           });
-
+        
+        this.showaddTimesheetEntry=false;
         this.totalminutes = this.convertMinutesintoHours(this.totalminutes);
 
         this.timeSheetEntries = res;
@@ -37,7 +40,6 @@ export class InsertTimeSheetComponent implements OnInit {
   }
 
   onSubmit() {
-
     this.timeSheetEntries.forEach((r) => {
       r.fromTime = r.fromTime + ':00';
       r.toTime = r.toTime + ':00';
@@ -64,5 +66,11 @@ export class InsertTimeSheetComponent implements OnInit {
     return str;
   }
 
+  onClickAddTimesheetEntry(){
+    this.showaddTimesheetEntry=true;
+  }
+  onClosePopup(){
+    this.showaddTimesheetEntry=false;
+  }
   
 }

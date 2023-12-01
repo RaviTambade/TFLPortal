@@ -6,6 +6,7 @@
                 <tr>
                     <th>ActivityType</th>
                     <th>Title</th>
+                    <th>Description</th>
                     <th>Status</th>
                     <th>AssignedBy</th>
                     <th>AssignedDate</th>
@@ -13,8 +14,9 @@
             </thead>
             <tbody *ngFor="let activity of activities">
                 <tr>
-                    <td>{{activity.activityType}}</td>
+                    <td ><a href="#"(click)="sendEvent(activity)">{{activity.activityType}}</a></td>
                     <td>{{activity.title}}</td>
+                    <td>{{activity.description}}</td>
                     <td> {{activity.status}}</td>
                     <td> {{activity.assignedBy}}</td>
                     <td> {{activity.assignDate |date}}</td>

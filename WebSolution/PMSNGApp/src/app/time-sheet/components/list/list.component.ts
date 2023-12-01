@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { TimeSheetService } from '../../services/time-sheet.service';
-import { TimeSheet } from '../../models/TimeSheet';
+import { TimeSheet } from '../../models/timesheet';
 
 @Component({
   selector: 'timesheet-list',
