@@ -20,3 +20,17 @@ END;
 
 select timesheetentries.*,activities.title,activities.activitytype  from timesheetentries join activities on timesheetentries.activityid=activities.id WHERE timesheetid=1;
 SELECT * FROM activities;
+
+
+-- show me the list of employees who are in the bench.
+select * from projectallocations where status="no";
+
+-- show the list of employees who are on the project.
+select * from projectallocations where status="yes";
+--  give me  projects of particular empoloyee.
+select * from projectallocations where employeeid=1;
+--  give me the projects in particular dates.
+select * from projectallocations where assigndate BETWEEN "2023-11-03" AND "2023-12-01";
+
+-- give me list of empoyees particular project
+select * from projectallocations where projectid=1;
