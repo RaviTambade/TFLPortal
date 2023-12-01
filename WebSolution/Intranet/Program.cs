@@ -15,6 +15,7 @@ builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<IMemberService, MemberService>();
 builder.Services.AddScoped<IActivityService, ActivityService>();
 builder.Services.AddScoped<ITimeSheetService, TimeSheetService>();
+builder.Services.AddScoped<IProjectAllocationService, ProjectAllocationService>();
 
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 

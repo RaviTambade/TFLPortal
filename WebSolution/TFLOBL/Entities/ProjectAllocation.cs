@@ -8,6 +8,6 @@ public class ProjectAllocation
     public string? Membership { get; set; }
     public DateTime AssignDate { get; set; }
     public DateTime ReleaseDate { get; set; }
-    public string? status { get; set; }
+    public string? Status { get; set; }
 
 }
