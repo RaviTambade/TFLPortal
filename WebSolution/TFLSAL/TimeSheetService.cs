@@ -69,7 +69,8 @@ public class TimeSheetService : ITimeSheetService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select * from timesheetentries where  timesheetid =@timeSheetId";
+            string query =
+                "SELECT timesheetentries.*,activities.title,activities.activitytype  from timesheetentries join activities on timesheetentries.activityid=activities.id WHERE timesheetid=@timeSheetId";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@timeSheetId", timeSheetId);
             await connection.OpenAsync();
@@ -77,17 +78,22 @@ public class TimeSheetService : ITimeSheetService
             while (await reader.ReadAsync())
             {
                 int id = int.Parse(reader["id"].ToString());
-                int activityId =int.Parse(reader["activityid"].ToString());
+                int activityId = int.Parse(reader["activityid"].ToString());
                 TimeOnly fromtime = TimeOnly.Parse(reader["fromtime"].ToString());
                 TimeOnly totime = TimeOnly.Parse(reader["totime"].ToString());
-
+                string title = reader["title"].ToString();
+                string activityType = reader["activitytype"].ToString();
+                
+                Activity activity = new Activity() { ActivityType = activityType, Title = title };
                 TimeSheetEntry timesheet = new TimeSheetEntry()
                 {
                     Id = id,
                     FromTime = fromtime,
                     ToTime = totime,
-                    ActivityId=activityId
+                    ActivityId = activityId,
+                    Activity=activity
                 };
+                
                 timeSheetEntries.Add(timesheet);
             }
             await reader.CloseAsync();
