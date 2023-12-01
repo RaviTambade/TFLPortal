@@ -15,12 +15,12 @@ export class MembersService {
   constructor(private httpClient: HttpClient) {}
 
   getProjectMembers(projectId: number): Observable<MemberResponse[]> {
-    let url = this.membersAPIUrl + '/members/projects/' + projectId;
+    let url = this.membersAPIUrl + '/projectmgmt/members/projects/' + projectId;
     return this.httpClient.get<MemberResponse[]>(url);
   }
 
   getMember(projectId: number, employeeId: number): Observable<MemberResponse> {
-    let url = `${this.membersAPIUrl}/members/projects/${projectId}/employees/${employeeId}`;
+    let url = `${this.membersAPIUrl}/projectmgmt/members/projects/${projectId}/employees/${employeeId}`;
     return this.httpClient.get<MemberResponse>(url);
   }
 
