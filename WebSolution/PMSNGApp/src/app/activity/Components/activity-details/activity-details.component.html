@@ -19,19 +19,26 @@
                     <th>id</th>
                     <th>ProjectId:</th>
                     <th>AssignedDate:</th>
-                    <th>AssignedBy:</th>
+                    <th>AssignedTo:</th>
                     <th>StartDate:</th>
                     <th>DueDate:</th>
+                    <th>ActivityType</th>
+                    <th>Description</th>
+                    <th>AssignedBy</th>
+
                 </tr>
             </thead>
-            <tbody *ngIf="activity">
+            <tbody *ngIf="activity" >
                 <tr>
                     <td >{{activity.id}}</td>
-                    <td>{{activity.projectId}}</td>
+                    <td>{{project.title}}</td>
                     <td>{{activity.assignDate}}</td>
-                    <td>{{activity.assignedBy}}</td>
+                    <td>{{employee?.firstName}} {{employee?.lastName}}</td>
                     <td>{{activity.startDate}}</td>
                     <td>{{activity.dueDate|date}}</td>
+                    <td>{{activity.activityType}}</td>
+                    <td>{{activity.description}}</td>
+                    <td>{{activity.assignedBy}}</td>
                 </tr>
             </tbody>
         </table>

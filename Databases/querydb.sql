@@ -1,7 +1,7 @@
 -- Active: 1694968636816@@127.0.0.1@3306@pms
-SELECT * from projectallocations;
+SELECT * from projects;
 SELECT * from timesheetEntries;
-SELECT * FROM userstories;
+SELECT * FROM employees;
 show tables;
 DROP PROCEDURE if exists getorcreatetimesheet;
 CREATE PROCEDURE getorcreatetimesheet(IN timesheetdate date,IN empid INT,OUT timesheetid INT)
@@ -34,3 +34,10 @@ select * from projectallocations where assigndate BETWEEN "2023-11-03" AND "2023
 
 -- give me list of empoyees particular project
 select * from projectallocations where projectid=1;
+select * FROM activities;
+
+select activities.* ,e1.userid as assignbyuserid,e2.userid as assigntouserid,projects.title
+from activities 
+INNER JOIN employees e1  on activities.assignedto =e1.id 
+INNER JOIN employees e2   on  activities.assignedby=e2.id
+INNER JOIN projects ON activities.projectid =projects.id WHERE activities.id=1;

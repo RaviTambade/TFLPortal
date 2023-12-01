@@ -2,11 +2,12 @@ using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Configuration;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 using System.Diagnostics;
+using Transflower.TFLPortal.TFLOBL.Entities;
 
 namespace Transflower.TFLPortal.TFLSAL.Services;
 public class ActivityService : IActivityService
 {
-private readonly IConfiguration _configuration;
+    private readonly IConfiguration _configuration;
     private readonly string _connectionString;
 
     public ActivityService(IConfiguration configuration)
@@ -24,7 +25,7 @@ private readonly IConfiguration _configuration;
         connection.ConnectionString = _connectionString;
         try
         {
-            string query ="select * from activities where  projectid =@projectId";
+            string query = "select * from activities where  projectid =@projectId";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);
             await connection.OpenAsync();
@@ -43,21 +44,21 @@ private readonly IConfiguration _configuration;
                 DateTime duedate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
-               
+
                 TFLOBL.Entities.Activity act = new TFLOBL.Entities.Activity
                 {
                     Id = id,
                     Title = title,
-                    ActivityType=activitytype,
+                    ActivityType = activitytype,
                     Description = description,
-                    ProjectId=projectId,
-                    AssignDate=assigndate,
-                    StartDate=startdate,
-                    DueDate=duedate,
-                    AssignedTo=assignedto,
+                    ProjectId = projectId,
+                    AssignDate = assigndate,
+                    StartDate = startdate,
+                    DueDate = duedate,
+                    AssignedTo = assignedto,
                     Status = status,
-                    AssignedBy=managerId,
-                    
+                    AssignedBy = managerId,
+
                 };
                 activities.Add(act);
             }
@@ -74,18 +75,19 @@ private readonly IConfiguration _configuration;
         return activities;
     }
 
-    public async Task<List<TFLOBL.Entities.Activity>> GetAllActivitiesByProject(int projectId,string activityType){
+    public async Task<List<TFLOBL.Entities.Activity>> GetAllActivitiesByProject(int projectId, string activityType)
+    {
 
         List<TFLOBL.Entities.Activity> activities = new List<TFLOBL.Entities.Activity>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query ="select * from activities where  projectid =@projectId and activitytype=@activitytype";
+            string query = "select * from activities where  projectid =@projectId and activitytype=@activitytype";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);
             command.Parameters.AddWithValue("@activitytype", activityType);
-            
+
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
@@ -101,21 +103,21 @@ private readonly IConfiguration _configuration;
                 DateTime duedate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
-                
+
                 TFLOBL.Entities.Activity act = new TFLOBL.Entities.Activity
                 {
                     Id = id,
                     Title = title,
-                    ActivityType=activityType,
+                    ActivityType = activityType,
                     Description = description,
-                    ProjectId=projectId,
-                    AssignDate=assigndate,
-                    StartDate=startdate,
-                    DueDate=duedate,
-                    AssignedTo=assignedto,
+                    ProjectId = projectId,
+                    AssignDate = assigndate,
+                    StartDate = startdate,
+                    DueDate = duedate,
+                    AssignedTo = assignedto,
                     Status = status,
-                    AssignedBy=managerId,
-                    
+                    AssignedBy = managerId,
+
                 };
 
                 activities.Add(act);
@@ -133,19 +135,20 @@ private readonly IConfiguration _configuration;
         return activities;
     }
 
-    public async Task<List<TFLOBL.Entities.Activity>> GetActivitiesByProject(int projectId, int assignedTo){
+    public async Task<List<TFLOBL.Entities.Activity>> GetActivitiesByProject(int projectId, int assignedTo)
+    {
 
         List<TFLOBL.Entities.Activity> activities = new List<TFLOBL.Entities.Activity>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query ="select * from activities where  projectid =@projectId and assignedto=@assignedto";
+            string query = "select * from activities where  projectid =@projectId and assignedto=@assignedto";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);
-         
+
             command.Parameters.AddWithValue("@assignedto", assignedTo);
-           
+
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
@@ -161,21 +164,21 @@ private readonly IConfiguration _configuration;
                 DateTime duedate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
-               
+
                 TFLOBL.Entities.Activity act = new TFLOBL.Entities.Activity
                 {
                     Id = id,
                     Title = title,
-                    ActivityType=activityType,
+                    ActivityType = activityType,
                     Description = description,
-                    ProjectId=projectId,
-                    AssignDate=assigndate,
-                    StartDate=startdate,
-                    DueDate=duedate,
-                    AssignedTo=assignedTo,
+                    ProjectId = projectId,
+                    AssignDate = assigndate,
+                    StartDate = startdate,
+                    DueDate = duedate,
+                    AssignedTo = assignedTo,
                     Status = status,
-                    AssignedBy=managerId,
-                    
+                    AssignedBy = managerId,
+
                 };
                 activities.Add(act);
             }
@@ -191,19 +194,20 @@ private readonly IConfiguration _configuration;
         }
         return activities;
     }
-    public async Task<List<TFLOBL.Entities.Activity>> GetActivitiesByProject(int projectId, int assignedTo,string activityType){
+    public async Task<List<TFLOBL.Entities.Activity>> GetActivitiesByProject(int projectId, int assignedTo, string activityType)
+    {
 
         List<TFLOBL.Entities.Activity> activities = new List<TFLOBL.Entities.Activity>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query ="select * from activities where  projectid =@projectId and activitytype=@activityType and assignedto=@assignedto";
+            string query = "select * from activities where  projectid =@projectId and activitytype=@activityType and assignedto=@assignedto";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);
             command.Parameters.AddWithValue("@activityType", activityType);
             command.Parameters.AddWithValue("@assignedto", assignedTo);
-           
+
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
@@ -218,21 +222,21 @@ private readonly IConfiguration _configuration;
                 DateTime duedate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
-               
+
                 TFLOBL.Entities.Activity act = new TFLOBL.Entities.Activity
                 {
                     Id = id,
                     Title = title,
-                    ActivityType=activityType,
+                    ActivityType = activityType,
                     Description = description,
-                    ProjectId=projectId,
-                    AssignDate=assigndate,
-                    StartDate=startdate,
-                    DueDate=duedate,
-                    AssignedTo=assignedTo,
+                    ProjectId = projectId,
+                    AssignDate = assigndate,
+                    StartDate = startdate,
+                    DueDate = duedate,
+                    AssignedTo = assignedTo,
                     Status = status,
-                    AssignedBy=managerId,
-                    
+                    AssignedBy = managerId,
+
                 };
                 activities.Add(act);
             }
@@ -251,15 +255,15 @@ private readonly IConfiguration _configuration;
 
     public async Task<TFLOBL.Entities.Activity> GetActivityDetails(int activityId)
     {
-        TFLOBL.Entities.Activity  activity = null;
+        TFLOBL.Entities.Activity activity = null;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query ="select * from activities where id=@activityId";
+            string query = "select activities.* ,e1.userid as assignbyuserid,e2.userid as assigntouserid,projects.title as projectname from activities INNER JOIN employees e1  on activities.assignedto =e1.id INNER JOIN employees e2   on  activities.assignedby=e2.id INNER JOIN projects ON activities.projectid =projects.id WHERE activities.id=@activityId";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@activityId", activityId);
-           
+
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
@@ -267,7 +271,7 @@ private readonly IConfiguration _configuration;
                 string title = reader["title"].ToString();
                 string description = reader["description"].ToString();
                 string activitytype = reader["activitytype"].ToString();
-                 DateTime createdate = DateTime.Parse(reader["createddate"].ToString());
+                DateTime createdate = DateTime.Parse(reader["createddate"].ToString());
                 DateTime assigndate = DateTime.Parse(reader["assigneddate"].ToString());
                 DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime duedate = DateTime.Parse(reader["duedate"].ToString());
@@ -275,21 +279,37 @@ private readonly IConfiguration _configuration;
                 int projectId = int.Parse(reader["projectid"].ToString());
                 int memberId = int.Parse(reader["assignedto"].ToString());
                 int managerId = int.Parse(reader["assignedby"].ToString());
-               
+                int assignToUserId = int.Parse(reader["assigntouserid"].ToString());
+                int assignByUserId = int.Parse(reader["assignbyuserid"].ToString());
+                string projectName = reader["projectname"].ToString();
                 activity = new TFLOBL.Entities.Activity()
                 {
                     Id = activityId,
-                    ActivityType=activitytype,
+                    ActivityType = activitytype,
                     Title = title,
-                    CreatedDate=createdate,
+                    CreatedDate = createdate,
                     Description = description,
-                    ProjectId=projectId,
-                    AssignDate=assigndate,
-                    StartDate=startdate,
-                    AssignedTo=memberId,
-                    AssignedBy=managerId,
-                    DueDate=duedate,
-                    Status = status,      
+                    ProjectId = projectId,
+                    AssignDate = assigndate,
+                    StartDate = startdate,
+                    AssignedTo = memberId,
+                    AssignedBy = managerId,
+                    DueDate = duedate,
+                    Status = status,
+                    AssignByEmployee = new Employee
+                    {
+                        UserId = assignByUserId,
+
+                    },
+                    AssigntoEmployee = new Employee
+                    {
+                        UserId = assignToUserId
+                    },
+
+                    Project = new Project
+                    {
+                        Title = title
+                    }
                 };
             }
             await reader.CloseAsync();
@@ -305,9 +325,9 @@ private readonly IConfiguration _configuration;
         return activity;
     }
 
-    public async Task<bool> Insert(TFLOBL.Entities.Activity  activity)
+    public async Task<bool> Insert(TFLOBL.Entities.Activity activity)
     {
-        bool status=false;
+        bool status = false;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try

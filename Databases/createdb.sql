@@ -27,15 +27,15 @@
                 'completed') DEFAULT 'notstarted'
     );
 
-    CREATE TABLE members(
-            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-            membership VARCHAR(20),
-            membershipdate DATETIME,
-            projectid INT NOT NULL,
-            CONSTRAINT fk_projects_projectmembers FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
-            employeeid INT NOT NULL,
-            CONSTRAINT fk_employee_projectmembers FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
-    );
+--     CREATE TABLE members(
+--             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--             membership VARCHAR(20),
+--             membershipdate DATETIME,
+--             projectid INT NOT NULL,
+--             CONSTRAINT fk_projects_projectmembers FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
+--             employeeid INT NOT NULL,
+--             CONSTRAINT fk_employee_projectmembers FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
+--     );
 
     CREATE TABLE projectallocations(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -62,8 +62,8 @@
             startdate DATETIME,
             duedate DATETIME,
             status ENUM ( 'todo','inprogress','completed') DEFAULT 'todo' , 
-            CONSTRAINT fk_activitiess_members FOREIGN KEY (assignedby) REFERENCES members(id) ON UPDATE CASCADE ON DELETE CASCADE,
-            CONSTRAINT fk_activities_members2 FOREIGN KEY (assignedto) REFERENCES members(id) ON UPDATE CASCADE ON DELETE CASCADE,
+            CONSTRAINT fk_activitiess_members FOREIGN KEY (assignedby) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
+            CONSTRAINT fk_activities_members2 FOREIGN KEY (assignedto) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
             CONSTRAINT fk_activities_projects FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
