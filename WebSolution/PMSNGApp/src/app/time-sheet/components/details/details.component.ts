@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { TimeSheetService } from '../../services/time-sheet.service';
-import { TimeSheetEntry } from '../../models/TimeSheetEntry';
+import { TimeSheetEntry } from '../../models/timesheetentry';
 ;
 
 @Component({

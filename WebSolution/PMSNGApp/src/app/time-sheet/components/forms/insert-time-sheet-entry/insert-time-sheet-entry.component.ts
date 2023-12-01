@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { TimeSheetEntry } from 'src/app/time-sheet/models/TimeSheetEntry';
+import { TimeSheetEntry } from 'src/app/time-sheet/models/timesheetentry';
 import { TimeSheetService } from 'src/app/time-sheet/services/time-sheet.service';
 
 @Component({
@@ -9,8 +9,6 @@ import { TimeSheetService } from 'src/app/time-sheet/services/time-sheet.service
   styleUrls: ['./insert-time-sheet-entry.component.css'],
 })
 export class InsertTimeSheetEntryComponent {
-  activitiyTypes:string[]=["task","userstory","bug","issues","meeting","learning","mentoring","break","other"];
-
   timeSheetEntry: TimeSheetEntry = {
     id: 0,
     fromTime: '',
