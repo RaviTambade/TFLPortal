@@ -19,7 +19,7 @@ export class ProjectsService {
   }
 
   getProjectOfEmployee(employeeId: number): Observable<Project[]> {
-    let url = this.serviceurl+"/projects/employees/" + employeeId
+    let url = this.serviceurl+"/projectmgmt/projects/employees/" + employeeId
     return this.httpClient.get<Project[]>(url)
   }
  

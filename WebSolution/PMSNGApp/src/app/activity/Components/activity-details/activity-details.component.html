@@ -1,0 +1,41 @@
+<app-activity-list (selectedActivities)="getEvent($event)"></app-activity-list>
+<!-- <div class="card-body" *ngIf="activity">
+    <p class="card-text"><strong>id:</strong> {{ activity.id }}</p>
+    <p class="card-text"><strong>ProjectId:</strong> {{ activity.projectId }}</p>
+    <p class="card-text"><strong>AssignedDate:</strong> {{ activity.assignDate }} </p>
+    <p class="card-text"><strong>AssignedBy:</strong> {{ activity.assignedBy}}</p>
+    <p class="card-text"><strong>StartDate:</strong> {{ activity.startDate | date }}</p>
+    <p class="card-text"><strong>DueDate:</strong> {{ activity.dueDate | date }}</p>
+</div> -->
+
+
+
+<div class="container">
+    <h2> My Activity Details</h2>
+    <div class="card">
+        <table class="table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>ProjectId:</th>
+                    <th>AssignedDate:</th>
+                    <th>AssignedBy:</th>
+                    <th>StartDate:</th>
+                    <th>DueDate:</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="activity">
+                <tr>
+                    <td >{{activity.id}}</td>
+                    <td>{{activity.projectId}}</td>
+                    <td>{{activity.assignDate}}</td>
+                    <td>{{activity.assignedBy}}</td>
+                    <td>{{activity.startDate}}</td>
+                    <td>{{activity.dueDate|date}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+

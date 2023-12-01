@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { MembersService } from '../../Services/members.service';
-
+import { Component } from '@angular/core';
+import { MembersService } from 'src/app/resource-management/Services/members.service';
 
 @Component({
   selector: 'employee-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css']
 })
-export class DetailsComponent implements OnInit{
+export class DetailsComponent {
 
   constructor(private svc:MembersService){}
 
@@ -28,9 +27,5 @@ export class DetailsComponent implements OnInit{
       console.log(res);
     })
   }
-
-  
-
-
 
 }

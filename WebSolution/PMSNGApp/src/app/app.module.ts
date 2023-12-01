@@ -10,16 +10,13 @@ import { CalenderComponent } from './calender/calender.component';
 import { ChunkPipe } from './calender/chunk.pipe';
 import { TimeSheetModule } from './time-sheet/time-sheet.module';
 import { ProjectplanningModule } from './ProjectPlanning/projectplanning/projectplanning.module';
-import { ActivitiesListComponent } from './activity/Component/activities-list/activities-list.component';
-import { ActivitiesDetailsComponent } from './activity/Component/activities-details/activities-details.component';
+import { ActivityModule } from './activity/activity.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     CalenderComponent,
     ChunkPipe,
-    ActivitiesListComponent,
-    ActivitiesDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +26,8 @@ import { ActivitiesDetailsComponent } from './activity/Component/activities-deta
     TaskModule,
     ResourceManagementModule,
     TimeSheetModule,
-    ProjectplanningModule
+    ProjectplanningModule,
+    ActivityModule
   ],
   providers: [],
   bootstrap: [AppComponent]

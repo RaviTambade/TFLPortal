@@ -16,7 +16,7 @@ builder.Services.AddScoped<IMemberService, MemberService>();
 builder.Services.AddScoped<IActivityService, ActivityService>();
 builder.Services.AddScoped<ITimeSheetService, TimeSheetService>();
 
-// builder.Services.AddScoped<IProjectPlanningService, ProjectPlanningService>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
 
 builder.Services.AddHttpClient();

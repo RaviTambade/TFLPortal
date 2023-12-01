@@ -15,22 +15,22 @@ export class MembersService {
   constructor(private httpClient: HttpClient) {}
 
   getProjectMembers(projectId: number): Observable<MemberResponse[]> {
-    let url = this.membersAPIUrl + '/members/projects/' + projectId;
+    let url = this.membersAPIUrl + '/projectmgmt/members/projects/' + projectId;
     return this.httpClient.get<MemberResponse[]>(url);
   }
 
   getMember(projectId: number, employeeId: number): Observable<MemberResponse> {
-    let url = `${this.membersAPIUrl}/members/projects/${projectId}/employees/${employeeId}`;
+    let url = `${this.membersAPIUrl}/projectmgmt/members/projects/${projectId}/employees/${employeeId}`;
     return this.httpClient.get<MemberResponse>(url);
   }
 
   getEmployeeDetails(employeeId: number): Observable<any> {
-    let url = this.membersAPIUrl + '/api/hr/employees/employee/' + employeeId;
+    let url = this.membersAPIUrl + '/hr/employees/employee/' + employeeId;
     return this.httpClient.get<any>(url);
   }
 
   paySalary(employeeId: number): Observable<any> {
-    let url = this.membersAPIUrl + '/api/hr/employees/employee/salary/' + employeeId;
+    let url = this.membersAPIUrl + '/hr/employees/employee/salary/' + employeeId;
     return this.httpClient.post<any>(url,employeeId);
   }
 
