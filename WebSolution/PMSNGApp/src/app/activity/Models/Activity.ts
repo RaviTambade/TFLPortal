@@ -1,16 +1,14 @@
 export class Activity{
     constructor(public id:number,
-                public title:string,
-                public  activitytype:string,
-                public  description:string,
-                public projectid:number,
-                public  assignedby:number,
-                public assignedto:number,
-                public createddate:string,
-                public assigndate:string,
-                public startdate:string,
-                public duedate:string,
-                public status:string){
-
-    }
+        public  title:string,
+        public  description:string,
+        public  activityType:string,
+        public  projectId:number,
+        public  assignedBy:number,
+        public  assignedTo:number,
+        public  assignDate:string,
+        public  startDate:string,
+        public  createdDate:string,
+        public  dueDate:string,
+        public  status:string){}
 }
