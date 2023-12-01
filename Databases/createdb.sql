@@ -37,6 +37,18 @@
             CONSTRAINT fk_employee_projectmembers FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
+    CREATE TABLE projectallocations(
+            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            membership VARCHAR(20),
+            assigndate DATETIME,
+            releasedate DATETIME default null,
+            status enum('yes','no') default 'yes' ,
+            projectid INT NOT NULL,
+            CONSTRAINT fk_projects_project1 FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
+            employeeid INT NOT NULL,
+            CONSTRAINT fk_employee_projectmembers1 FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
+    );
+
     CREATE TABLE activities(
             id INT PRIMARY KEY AUTO_INCREMENT,
             title VARCHAR(40) NOT NULL,

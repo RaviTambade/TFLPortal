@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { TaskService } from '../../Services/task.service';
 import { task } from '../../Models/task';
-import { MemberResponse } from 'src/app/resource-management/Models/Member';
+import { MemberResponse } from 'src/app/resource-management/Models/MemberResponse';
 import { MembersService } from 'src/app/resource-management/Services/members.service';
 
 @Component({

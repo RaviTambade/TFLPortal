@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { MemberResponse } from '../Models/Member';
-import { User } from '../Models/User';
+import { MemberResponse } from '../Models/MemberResponse';
+import { Member } from '../Models/Member';
 
 @Injectable({
   providedIn: 'root',
@@ -34,7 +34,10 @@ export class MembersService {
     return this.httpClient.post<any>(url,employeeId);
   }
 
- 
+  insertMember(member: Member): Observable<any> {
+    let url = this.membersAPIUrl + '/projectmgmt/members/insertmember';
+    return this.httpClient.post<any>(url,member);
+  }
 
 
 

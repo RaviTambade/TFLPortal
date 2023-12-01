@@ -6,7 +6,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { MemberResponse } from 'src/app/resource-management/Models/Member';
+import { MemberResponse } from 'src/app/resource-management/Models/MemberResponse';
 import { MembersService } from 'src/app/resource-management/Services/members.service';
 import { environment } from 'src/environments/environment';
 

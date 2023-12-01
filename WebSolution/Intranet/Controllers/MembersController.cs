@@ -1,12 +1,9 @@
 // using System;
 using Microsoft.AspNetCore.Mvc;
-using Transflower.TFLPortal.Intranet.Requests;
 using Transflower.TFLPortal.Intranet.Responses;
 using Transflower.TFLPortal.TFLOBL.Entities;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
-using System.Text.Json;
-using System.Text;
-using static System.Net.Mime.MediaTypeNames;
+
 
 namespace Transflower.TFLPortal.Intranet.Controllers;
 
@@ -77,25 +74,7 @@ public class MembersController : ControllerBase
         return response;
     }
 
-   
-
-
-    [HttpPost]
-    private async Task<int> FundTransfer(FundTransferRequest request)
-    {
-        var httpClient = _httpClientFactory.CreateClient();
-        var requestJson =new StringContent(
-            JsonSerializer.Serialize(request),
-            Encoding.UTF8,
-            Application.Json);
-
-        var url ="http://localhost:5001/api/fundstransfer";
-        HttpResponseMessage response = await httpClient.PostAsync(url, requestJson);
-        int result = (int)response.StatusCode;
-        return result;
-    }
-
-    [HttpPost("addmember")]
+    [HttpPost("insertmember")]
     public async Task<bool> AssignMemberToProject(Member member)
     {
         bool status= await _service.AssignMemberToProject(member);

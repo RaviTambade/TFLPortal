@@ -1,0 +1,21 @@
+<form [formGroup]="contactform" (ngSubmit)="onSubmit()">
+    <p>
+      <label for="membership">Membership </label>
+      <input type="text" id="membership" name="membership" formControlName="membership">
+    </p>
+   
+    <p>
+      <label for="membershipDate">MembershipDate </label>
+      <input type="text" id="membershipDate" name="membershipDate" formControlName="membershipDate">
+    </p>
+   
+    <p>
+      <label for="projectId">ProjectId </label>
+      <input type="text" id="projectId" name="projectId" formControlName="projectId">
+    </p>
+   
+    <p>
+      <label for="employeeId">EmployeeId </label>
+      <input type="text" id="email" name="email" formControlName="email">   
+    </p>
+  </form>

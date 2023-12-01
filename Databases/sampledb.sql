@@ -68,6 +68,20 @@ INSERT INTO members(membership,membershipdate,projectid,employeeid) VALUES ('Dev
 INSERT INTO members(membership,membershipdate,projectid,employeeid) VALUES ('Developer','2016-10-10',9,18);
 
 
+INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Manager','2017-10-10','yes',5,8);
+INSERT INTO projectallocations(membership,assigndate,releasedate,status,projectid,employeeid) VALUES ('Manager','2017-10-10','2017-10-10','no',6,9);
+INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Manager','2016-02-02','yes',7,7);
+INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Manager','2016-10-10','yes',8,8);
+INSERT INTO projectallocations(membership,assigndate,releasedate,status,projectid,employeeid) VALUES ('Manager','2016-10-10','2017-10-10','no',9,9);
+INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2023-11-02','yes',1,10);
+INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2023-11-03','yes',2,11);
+INSERT INTO projectallocations(membership,assigndate,releasedate,status,projectid,employeeid) VALUES ('Developer','2023-11-13','2017-10-10','no',3,12);
+INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2017-02-02','yes',4,13);
+INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2017-10-10','yes',5,14);
+INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2017-10-10','yes',6,15);
+INSERT INTO projectallocations(membership,assigndate,releasedate,status,projectid,employeeid) VALUES ('Developer','2016-02-02','2017-10-10','no',7,16);
+INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',8,17);
+INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',9,18);
 
 -- Task 1
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
