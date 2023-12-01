@@ -13,13 +13,13 @@ export class InsertTimeSheetEntryComponent {
 
   timeSheetEntry: TimeSheetEntry = {
     id: 0,
-    description: '',
     fromTime: '',
     toTime: '',
     durationInMinutes: 0,
     durationInHours: '',
-    title: '',
-    activityType: this.activitiyTypes[0]
+    activityId: 0,
+    timeSheetId: 0,
+    activity: undefined
   };
 
   constructor(private timeSheetService: TimeSheetService) {}
@@ -28,13 +28,13 @@ export class InsertTimeSheetEntryComponent {
   onClick() {
     let timeSheetEntry: TimeSheetEntry = {
       id: 0,
-      description: this.timeSheetEntry.description,
       fromTime: this.timeSheetEntry.fromTime,
       toTime: this.timeSheetEntry.toTime,
       durationInMinutes: this.timeSheetEntry.durationInMinutes,
       durationInHours: this.timeSheetEntry.durationInHours,
-      title: this.timeSheetEntry.title,
-      activityType: this.timeSheetEntry.activityType
+      activityId: this.timeSheetEntry.activityId,
+      timeSheetId: 0,
+      activity: undefined
     };
 
     this.timeSheetService.AddTimeSheetEntries(timeSheetEntry);

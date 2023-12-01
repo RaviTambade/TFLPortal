@@ -8,6 +8,6 @@ public class TimeSheetEntry
    public int ActivityId { get; set; }
    public int TimeSheetId { get; set; }
 
-   public Activity Activity {get;set;}
+   public Activity? Activity {get;set;}
    
 }

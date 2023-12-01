@@ -11,4 +11,5 @@ export class Activity{
         public  createdDate:string,
         public  dueDate:string,
         public  status:string){}
+
 }

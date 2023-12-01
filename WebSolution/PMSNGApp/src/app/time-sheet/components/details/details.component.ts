@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { TimeSheetService } from '../../services/time-sheet.service';
-import { TimeSheet } from '../../models/timesheet';
 import { TimeSheetEntry } from '../../models/TimeSheetEntry';
+;
 
 @Component({
   selector: 'timesheet-details',
@@ -22,6 +22,7 @@ export class DetailsComponent {
     if(this.timeSheetId)
     this.timeSheetSvc.getTimeSheetDetails(this.timeSheetId).subscribe((res)=>{
       this.timeSheetEntries=res;
+      console.log("🚀 ~ this.timeSheetSvc.getTimeSheetDetails ~ res:", res);
     })
   }
 }

@@ -158,7 +158,6 @@ public class MemberService : IMemberService
         }
         return status;
     }
-
 }  
 
     // public async Task<Member> ReleaseMemberFromProject(int employeeId,int projectId )

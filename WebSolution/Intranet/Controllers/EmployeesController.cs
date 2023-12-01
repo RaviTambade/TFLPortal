@@ -23,7 +23,7 @@ public class EmployeesController : ControllerBase
         _httpClientFactory = httpClientFactory;
     }
 
-    [HttpGet("employees/{employeeId}")]
+    [HttpGet("employee/{employeeId}")]
     public async Task<EmployeeResponse> GetEmployeeDetails(int employeeId)
     {
         Employee employee = await _service.GetEmployeeDetails(employeeId);
