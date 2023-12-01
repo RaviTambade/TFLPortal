@@ -8,7 +8,6 @@ export class Activity{
         public  assignedTo:number,
         public  assignDate:string,
         public  startDate:string,
-        public  createdDate:string,
         public  dueDate:string,
         public  status:string){}
 

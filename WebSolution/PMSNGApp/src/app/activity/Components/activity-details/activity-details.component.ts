@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Activity } from '../../Models/Activity';
 
 @Component({
   selector: 'app-activity-details',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./activity-details.component.css']
 })
 export class ActivityDetailsComponent {
+activity:Activity|undefined;
+ getEvent(event:Activity){
+  this.activity=event;
+ }
 
 }
