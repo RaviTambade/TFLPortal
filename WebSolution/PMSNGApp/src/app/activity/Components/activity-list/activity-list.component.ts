@@ -11,10 +11,10 @@ export class ActivityListComponent implements OnInit{
   @Output() selectedActivities=new EventEmitter<Activity>()
   constructor(private service :ActivityService){}
   activities:Activity[]=[];
-  projectId:number=1;
-  assignedTo:number=2;
+  projectId:number=2;
+  assignedto:number=11;
   ngOnInit(): void {
-   this.service.getAllActivities(this.projectId,this.assignedTo).subscribe((res)=>{
+   this.service.getAllActivities(this.projectId,this.assignedto).subscribe((res)=>{
    this.activities=res;
    this.selectedActivities.emit(this.activities[0]);
    })

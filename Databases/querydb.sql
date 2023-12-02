@@ -41,3 +41,18 @@ from activities
 INNER JOIN employees e1  on activities.assignedto =e1.id 
 INNER JOIN employees e2   on  activities.assignedby=e2.id
 INNER JOIN projects ON activities.projectid =projects.id WHERE activities.id=1;
+
+
+
+
+-- show all activities for a particular project
+select * from activities where assignedto=11;
+-- show all activities fromdate todate
+select * FROM activities where assigneddate BETWEEN '2023-10-29' AND '2023-12-02' ORDER BY assigneddate;
+
+
+-- show all activities of project
+SELECT * from activities where projectid=1;
+
+-- SHOW all activities;
+SELECT * from activities;

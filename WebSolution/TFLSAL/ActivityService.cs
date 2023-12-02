@@ -366,4 +366,62 @@ public class ActivityService : IActivityService
 
     }
 
+
+
+     public async Task<List<TFLOBL.Entities.Activity>> GetAllActivitiesOfEmployee(int employeeId){
+      List<TFLOBL.Entities.Activity> activities = new List<TFLOBL.Entities.Activity>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query = "select * from activities where  projectid =@employeeId";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@projectId", employeeId);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {
+                int id = int.Parse(reader["id"].ToString());
+                string title = reader["title"].ToString();
+                string activitytype = reader["activitytype"].ToString();
+                string description = reader["description"].ToString();
+                int projectId = int.Parse(reader["projectid"].ToString());
+                DateTime createdate = DateTime.Parse(reader["createddate"].ToString());
+                int assignedto = int.Parse(reader["assignedto"].ToString());
+                int assignedby = int.Parse(reader["assignedby"].ToString());
+                DateTime assigndate = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
+                DateTime duedate = DateTime.Parse(reader["duedate"].ToString());
+                string status = reader["status"].ToString();
+                int managerId = int.Parse(reader["assignedby"].ToString());
+
+                TFLOBL.Entities.Activity act = new TFLOBL.Entities.Activity
+                {
+                    Id = id,
+                    Title = title,
+                    ActivityType = activitytype,
+                    Description = description,
+                    ProjectId = projectId,
+                    AssignDate = assigndate,
+                    StartDate = startdate,
+                    DueDate = duedate,
+                    AssignedTo = assignedto,
+                    Status = status,
+                    AssignedBy = managerId,
+
+                };
+                activities.Add(act);
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return activities;
+     } 
 }
