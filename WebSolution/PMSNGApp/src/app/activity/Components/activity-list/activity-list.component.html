@@ -4,22 +4,16 @@
         <table class="table-bordered text-center">
             <thead>
                 <tr>
-                    <th>ActivityType</th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Status</th>
-                    <th>AssignedBy</th>
                     <th>AssignedDate</th>
-                </tr>
+                    <th>Title</th>
+                    <th>Status</th>
+                   </tr>
             </thead>
             <tbody *ngFor="let activity of activities">
                 <tr>
-                    <td ><a href="#"(click)="sendEvent(activity)">{{activity.activityType}}</a></td>
-                    <td>{{activity.title}}</td>
-                    <td>{{activity.description}}</td>
-                    <td> {{activity.status}}</td>
-                    <td> {{activity.assignedBy}}</td>
                     <td> {{activity.assignDate |date}}</td>
+                    <td><a href="#"(click)="sendEvent(activity)">{{activity.title}}</a></td>
+                    <td> {{activity.status}}</td>
                 </tr>
             </tbody>
         </table>

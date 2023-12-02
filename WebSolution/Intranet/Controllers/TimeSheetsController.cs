@@ -20,22 +20,10 @@ public class TimeSheetsController : ControllerBase
         _service = service;
     }
 
-    // public TimeSheetsController(ITimeSheetService service)
-    // {
-    //     _service = service;
-    // }
-[HttpGet("get")]
-
-    public async Task<bool> GetData()
-    {
-        return await _apiservice.GetData();
-    }
-
     [HttpGet("{employeeId}")]
     public async Task<List<TimeSheet>> GetTimeSheetsOfEmployee(int employeeId)
     {
         List<TimeSheet> timesheets = await _service.GetTimeSheetsOfEmployee(employeeId);
-
         return timesheets;
     }
 
