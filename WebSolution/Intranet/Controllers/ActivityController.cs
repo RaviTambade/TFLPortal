@@ -23,6 +23,16 @@ public class ActivityController : ControllerBase
         return activities;
     }
 
+
+//this method gives all activities of employee.
+   
+    [HttpGet("employees/{employeeId}")]
+    public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>> GetAllActivitiesOfEmployee(int employeeId)
+    {
+        List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetAllActivitiesOfEmployee(employeeId);
+        return activities;
+    }
+   
     [HttpGet("{projectId}/{activityType}")]
     public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>>GetAllActivitiesByProject(int projectId, string activityType)
     {
@@ -37,7 +47,7 @@ public class ActivityController : ControllerBase
         return activities;
     }
 
-
+     
      [HttpGet("activity/{projectId}/{assignedTo}/{activityType}")]
     public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>> GetAllActivitiesByProject(int projectId, int assignedTo,string activityType)
     {
@@ -59,4 +69,10 @@ public class ActivityController : ControllerBase
         return status;
 
     }
+ 
+
+
+
+
+
 }

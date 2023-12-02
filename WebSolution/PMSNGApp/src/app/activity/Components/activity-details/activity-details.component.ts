@@ -17,7 +17,8 @@ activity:Activity|undefined;
 employee:Employee|undefined;
  getEvent(event:Activity){
   this.activity=event;
-  this.service.getEmployeeDetails(event.assignedTo).subscribe((res)=>{
+  console.log(event);
+  this.service.getEmployeeDetails(event.assignedBy).subscribe((res)=>{
    this.employee=res;
   })
   this.service.getProjectDetails(event.projectId).subscribe((res)=>{

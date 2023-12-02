@@ -16,29 +16,25 @@
         <table class="table-bordered text-center">
             <thead>
                 <tr>
-                    <th>id</th>
-                    <th>ProjectId:</th>
-                    <th>AssignedDate:</th>
-                    <th>AssignedTo:</th>
-                    <th>StartDate:</th>
-                    <th>DueDate:</th>
+                    
+                    <th>Project Name</th>
+                    <th>ActivityTitle</th>
                     <th>ActivityType</th>
                     <th>Description</th>
+                    <th>DueDate:</th>
                     <th>AssignedBy</th>
 
                 </tr>
             </thead>
             <tbody *ngIf="activity" >
                 <tr>
-                    <td >{{activity.id}}</td>
-                    <td>{{project.title}}</td>
-                    <td>{{activity.assignDate}}</td>
-                    <td>{{employee?.firstName}} {{employee?.lastName}}</td>
-                    <td>{{activity.startDate}}</td>
-                    <td>{{activity.dueDate|date}}</td>
+            
+                    <td><a href="#">{{project.title}}</a></td>
+                    <td>{{activity.title}}</td>
                     <td>{{activity.activityType}}</td>
                     <td>{{activity.description}}</td>
-                    <td>{{activity.assignedBy}}</td>
+                    <td>{{activity.dueDate|date}}</td>
+                    <td><a href="#">{{employee?.firstName}} {{employee?.lastName}}</a></td>
                 </tr>
             </tbody>
         </table>
