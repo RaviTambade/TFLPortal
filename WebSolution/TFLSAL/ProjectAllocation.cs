@@ -170,6 +170,87 @@ public class ProjectAllocationService : IProjectAllocationService
         }
         return employees;
     }
+
+    public async Task<List<ProjectAllocation>> GetAllProjectsBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate)
+    {
+        List<ProjectAllocation> projects = new List<ProjectAllocation>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query = "select * from projectallocations where assigndate BETWEEN @fromAssignedDate AND @toAssignedDate";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@fromAssignedDate", fromAssignedDate);
+            command.Parameters.AddWithValue("@toAssignedDate", toAssignedDate);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {
+                ProjectAllocation project = new ProjectAllocation
+                {
+                    Id = reader.GetInt32("id"),
+                    ProjectId = reader.GetInt32("projectid"),
+                    EmployeeId = reader.GetInt32("employeeid"),
+                    Membership = reader.GetString("membership"),
+                    AssignDate = reader.GetDateTime("assigndate"),
+                    Status=reader.GetString("status")
+
+                };
+                projects.Add(project);
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return projects;
+    }
+    
+    public async Task<List<ProjectAllocation>> GetAllEmployeesOfProject(int projectId)
+    {
+        List<ProjectAllocation> employees= new List<ProjectAllocation>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query ="Select * from projectallocations where projectid=@projectId";
+                
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@projectId", projectId);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {
+                ProjectAllocation employee = new ProjectAllocation
+                {
+                    Id = reader.GetInt32("id"),
+                    ProjectId = reader.GetInt32("projectid"),
+                    EmployeeId = reader.GetInt32("employeeid"),
+                    Membership = reader.GetString("membership"),
+                    AssignDate = reader.GetDateTime("assigndate"),
+                    Status=reader.GetString("status")
+
+                };
+                employees.Add(employee);
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return employees;
+    }
+
 }  
 
   

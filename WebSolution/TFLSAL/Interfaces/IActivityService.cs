@@ -10,6 +10,9 @@ public interface IActivityService
      public Task<TFLOBL.Entities.Activity> GetActivityDetails(int activityId);
      public Task<bool> Insert(TFLOBL.Entities.Activity activity);
 
-     public Task<List<TFLOBL.Entities.Activity>> GetAllActivitiesOfEmployee(int employeeId);
+     Task<List<TFLOBL.Entities.Activity>> GetAllActivitiesOfEmployee(int employeeId);
+
+     Task<List<TFLOBL.Entities.Activity>> GetAllActivitiesBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate);
+
 
 }
