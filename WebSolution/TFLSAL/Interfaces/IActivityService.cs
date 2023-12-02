@@ -13,6 +13,8 @@ public interface IActivityService
      Task<List<TFLOBL.Entities.Activity>> GetAllActivitiesOfEmployee(int employeeId);
 
      Task<List<TFLOBL.Entities.Activity>> GetAllActivitiesBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate);
+     
+     Task<List<TFLOBL.Entities.Activity>> GetAllActivitiesBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate);
 
 
 }

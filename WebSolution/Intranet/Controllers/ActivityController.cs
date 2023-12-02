@@ -86,6 +86,13 @@ public class ActivityController : ControllerBase
     }
 
     
+
+     [HttpGet("{employeeId}/fromassigneddate/{fromAssignedDate}/toassigneddate/{toAssignedDate}")]
+    public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>> GetAllActivitiesBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
+    {
+        List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetAllActivitiesBetweenDates(employeeId,fromAssignedDate,toAssignedDate);
+        return activities;
+    }
  
 
 
