@@ -374,9 +374,9 @@ public class ActivityService : IActivityService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select * from activities where  projectid =@employeeId";
+            string query = "select * from activities where  assignedto =@employeeId";
             MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@projectId", employeeId);
+            command.Parameters.AddWithValue("@employeeId", employeeId);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
@@ -387,7 +387,6 @@ public class ActivityService : IActivityService
                 string description = reader["description"].ToString();
                 int projectId = int.Parse(reader["projectid"].ToString());
                 DateTime createdate = DateTime.Parse(reader["createddate"].ToString());
-                int assignedto = int.Parse(reader["assignedto"].ToString());
                 int assignedby = int.Parse(reader["assignedby"].ToString());
                 DateTime assigndate = DateTime.Parse(reader["assigneddate"].ToString());
                 DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
@@ -405,7 +404,7 @@ public class ActivityService : IActivityService
                     AssignDate = assigndate,
                     StartDate = startdate,
                     DueDate = duedate,
-                    AssignedTo = assignedto,
+                    AssignedTo = employeeId,
                     Status = status,
                     AssignedBy = managerId,
 
