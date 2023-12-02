@@ -18,8 +18,6 @@ public class ActivityService : IActivityService
             ?? throw new ArgumentNullException("connectionString");
     }
 
-
-
     public async Task<List<TFLOBL.Entities.Activity>> GetAllActivities(){
         List<TFLOBL.Entities.Activity> activities = new List<TFLOBL.Entities.Activity>();
         MySqlConnection connection = new MySqlConnection();

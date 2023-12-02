@@ -15,4 +15,7 @@ public interface IProjectAllocationService {
 
     Task<List<ProjectAllocation>> GetAllEmployeesOfProject(int projectId);
 
+    Task<List<ProjectAllocation>> GetAllProjectsOfEmployeeBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate);
+
+
 }

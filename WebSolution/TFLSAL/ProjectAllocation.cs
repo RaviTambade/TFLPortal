@@ -251,6 +251,48 @@ public class ProjectAllocationService : IProjectAllocationService
         return employees;
     }
 
+    public async Task<List<ProjectAllocation>> GetAllProjectsOfEmployeeBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
+    {
+        List<ProjectAllocation> projects = new List<ProjectAllocation>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {                  
+
+            string query = "select * from projectallocations where employeeid=@employeeId and assigndate BETWEEN @fromAssignedDate AND @toAssignedDate";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@fromAssignedDate", fromAssignedDate);
+            command.Parameters.AddWithValue("@toAssignedDate", toAssignedDate);
+            command.Parameters.AddWithValue("@employeeId", employeeId);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {
+                ProjectAllocation project = new ProjectAllocation
+                {
+                    Id = reader.GetInt32("id"),
+                    ProjectId = reader.GetInt32("projectid"),
+                    EmployeeId =employeeId,
+                    Membership = reader.GetString("membership"),
+                    AssignDate = reader.GetDateTime("assigndate"),
+                    Status=reader.GetString("status")
+
+                };
+                projects.Add(project);
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return projects;
+    }
+
 }  
 
   

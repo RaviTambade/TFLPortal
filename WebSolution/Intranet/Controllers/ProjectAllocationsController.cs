@@ -55,6 +55,16 @@ public class ProjectAllocationController : ControllerBase
         return projects;
     }
 
+
+
+    [HttpGet("projects/{employeeId}/fromassigneddate/{fromAssignedDate}/toassigneddate/{toAssignedDate}")]
+    public async Task<List<ProjectAllocation>> GetAllProjectsOfEmployeeBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
+    {
+        List<ProjectAllocation> projects = await _service.GetAllProjectsOfEmployeeBetweenDates(employeeId,fromAssignedDate,toAssignedDate);
+        return projects;
+    }
+
+
     [HttpGet("employees/{projectId}")]
     public async Task<List<ProjectAllocation>> GetAllEmployeesOfProject(int projectId)
     {
@@ -63,6 +73,3 @@ public class ProjectAllocationController : ControllerBase
     }
     
 }
-// all activities according to project id
-// all acctivity of particular project
-// all activity from date todate
