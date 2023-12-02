@@ -1,6 +1,7 @@
-using Transflower.TFLPortal.Intranet.Responses;
 
-public class MemberResponse:UserDetailResponse
+using Transflower.TFLPortal.TFLSAL.DTO;
+
+public class MemberResponse:UserDetailsDTO
 {
     public int MemberId { get; set; }
     public string? Membership { get; set; }

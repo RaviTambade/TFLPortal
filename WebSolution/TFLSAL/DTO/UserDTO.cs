@@ -1,7 +1,7 @@
 
-namespace Transflower.TFLPortal.Intranet.Responses;
+namespace Transflower.TFLPortal.TFLSAL.DTO;
 
-public class User
+public class UserDTO
 {
     public int Id { get; set; }
     public string? ImageUrl { get; set; }
