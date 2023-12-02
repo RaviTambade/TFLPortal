@@ -24,6 +24,14 @@ public class ActivityController : ControllerBase
     }
 
 
+     [HttpGet]
+    public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>> GetAllActivities()
+    {
+        List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetAllActivities();
+        return activities;
+    }
+
+
 //this method gives all activities of employee.
    
     [HttpGet("employees/{employeeId}")]
