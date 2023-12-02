@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Project } from '../Models/project';
 import { environment } from 'src/environments/environment';
+import { ProjectAllocation } from '../Models/projectallocation';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,10 @@ export class ProjectsService {
   getProjectDetailsById(projectId :number):Observable<Project>{
     let url=this.serviceurl+"projects/"+ projectId
     return this.httpClient.get<Project>(url);
+  }
+
+  assignedEmployeeToProject(projectId:number,employeeId:number,project:ProjectAllocation):Observable<ProjectAllocation>{
+    let url=this.serviceurl+"/projectmgmt/projectallocation/assignproject/"+ projectId +"/"+employeeId;
+    return this.httpClient.post<ProjectAllocation>(url,project);
   }
 }

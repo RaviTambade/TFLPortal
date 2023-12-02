@@ -15,7 +15,8 @@ import { ActivityDetailsComponent } from './Components/activity-details/activity
   ],
   exports: [
     ActivityDetailsComponent,
-    ActivityListComponent
+    ActivityListComponent,
+    
   ]
 })
 export class ActivityModule { }
