@@ -35,7 +35,7 @@ export class ProjectsService {
     return this.httpClient.post<ProjectAllocation>(url,project);
   }
 
-  releaseEmployeeToProject(projectId:number,employeeId:number,project:any):Observable<any>{
+  releaseEmployeeFromProject(projectId:number,employeeId:number,project:any):Observable<any>{
     let url=this.serviceurl+"/projectmgmt/projectallocation/releaseproject/"+ projectId +"/"+employeeId;
     return this.httpClient.post<any>(url,project);
   }

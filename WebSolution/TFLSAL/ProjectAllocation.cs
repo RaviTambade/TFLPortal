@@ -102,7 +102,7 @@ public class ProjectAllocationService : IProjectAllocationService
             string query ="Select * from projectallocations where status=@status";
                 
             MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@status", status);
+            command.Parameters.AddWithValue("@status", "no");
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())

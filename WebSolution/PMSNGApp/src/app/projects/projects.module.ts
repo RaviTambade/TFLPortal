@@ -6,6 +6,7 @@ import { ListComponent } from './Components/list/list.component';
 import { AllProjectsListComponent } from './Components/all-projects-list/all-projects-list.component';
 import { InsertProjectAllocationComponent } from './Components/insert-project-allocation/insert-project-allocation.component';
 import { UpdateProjectAllocationComponent } from './Components/update-project-allocation/update-project-allocation.component';
+import { AllUnassignedEmployeeComponent } from './Components/all-unassigned-employee/all-unassigned-employee.component';
 
 
 
@@ -16,6 +17,7 @@ import { UpdateProjectAllocationComponent } from './Components/update-project-al
     ListComponent,
     InsertProjectAllocationComponent,
     UpdateProjectAllocationComponent,
+    AllUnassignedEmployeeComponent,
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,9 @@ import { UpdateProjectAllocationComponent } from './Components/update-project-al
     ListComponent,
     AllProjectsListComponent,
     InsertProjectAllocationComponent,
-    UpdateProjectAllocationComponent
+    UpdateProjectAllocationComponent,
+    AllUnassignedEmployeeComponent
+
   ]
 })
 export class ProjectsModule { }

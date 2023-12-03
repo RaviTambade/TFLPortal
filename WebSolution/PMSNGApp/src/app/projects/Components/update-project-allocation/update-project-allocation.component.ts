@@ -29,7 +29,7 @@ export class UpdateProjectAllocationComponent {
     this.updateProject.employeeId=2;
     this.updateProject.projectId=3;
     console.log(this.updateProject);
-    this.service.releaseEmployeeToProject(this.updateProject.employeeId,this.updateProject.projectId,this.updateProject).subscribe((res)=>{
+    this.service.releaseEmployeeFromProject(this.updateProject.employeeId,this.updateProject.projectId,this.updateProject).subscribe((res)=>{
       console.log(res);
     })
   }
