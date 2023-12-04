@@ -27,6 +27,21 @@ INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (17,'2015-04-23
 INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (18,'2015-05-13',9,40000);
 
 
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (19,'2014-05-21',8,40000);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (20,'2015-11-11',8,40000);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (21,'2015-09-15',8,40000);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (22,'2015-07-16',9,40000);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (23,'2015-04-23',9,40000);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (24,'2015-05-13',9,40000);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (25,'2014-05-21',8,40000);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (26,'2015-11-11',8,40000);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (27,'2015-09-15',8,40000);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (28,'2015-07-16',9,40000);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (29,'2015-04-23',9,40000);
+INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (30,'2015-05-13',9,40000);
+
+
+
 
 INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('PMSAPP','2023-11-02','2024-02-02','Project Management System App',7,'notstarted');
 INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('EKrushi','2023-11-03','2024-02-02','Krushi Product Management',8,'notstarted');
