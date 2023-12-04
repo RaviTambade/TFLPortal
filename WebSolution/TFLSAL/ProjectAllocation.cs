@@ -26,6 +26,8 @@ public class ProjectAllocationService : IProjectAllocationService
         bool status=false;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
+        var assigndate =DateTime.Now;
+
         try
         {
             string query = "INSERT INTO projectallocations(projectid,employeeid,membership,assigndate,status) VALUES(@projectId,@employeeId,@membership,@assigndate,@status)";
@@ -33,7 +35,7 @@ public class ProjectAllocationService : IProjectAllocationService
             cmd.Parameters.AddWithValue("@projectId", projectId);
             cmd.Parameters.AddWithValue("@employeeId", employeeId);
             cmd.Parameters.AddWithValue("@membership", project.Membership);
-            cmd.Parameters.AddWithValue("@assigndate", project.AssignDate);
+            cmd.Parameters.AddWithValue("@assigndate", assigndate);
               cmd.Parameters.AddWithValue("@status", project.Status);
             await connection.OpenAsync();
             int rowsAffected = cmd.ExecuteNonQuery();
@@ -100,7 +102,7 @@ public class ProjectAllocationService : IProjectAllocationService
             string query ="Select * from projectallocations where status=@status";
                 
             MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@status", status);
+            command.Parameters.AddWithValue("@status", "no");
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())

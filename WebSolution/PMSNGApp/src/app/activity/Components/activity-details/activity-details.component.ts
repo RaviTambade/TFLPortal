@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Activity } from '../../Models/Activity';
 import { ActivityService } from '../../Services/activity.service';
 import { Employee } from '../../Models/Employee';
+import { ProjectsService } from 'src/app/projects/Services/projects.service';
 
 @Component({
   selector: 'app-activity-details',
@@ -10,7 +11,7 @@ import { Employee } from '../../Models/Employee';
 })
 export class ActivityDetailsComponent{
 
-  constructor(private service :ActivityService){}
+  constructor(private service :ActivityService,private projectService:ProjectsService){}
 
 project:any|undefined;
 activity:Activity|undefined;
