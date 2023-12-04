@@ -30,7 +30,7 @@ INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (18,'2015-05-13
 
 INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('PMSAPP','2023-11-02','2024-02-02','Project Management System App',7,'notstarted');
 INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('EKrushi','2023-11-03','2024-02-02','Krushi Product Management',8,'notstarted');
-INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('Agro','2023-11-13','2025-02-02','Agri Produst Supplying App',9,'notstarted');
+INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('EAgroServices','2023-11-13','2025-02-02','Farmers Goods Management',9,'notstarted');
 INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('Inventory','2017-02-02','2024-02-02','Store Management App',7,'inprogress');
 INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('OMTB','2017-10-10','2025-02-02','Ticket booking Management App',8,'inprogress');
 INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('HMApp','2017-10-10','2025-02-02','Hospital Management App',9,'inprogress');
@@ -427,7 +427,7 @@ VALUES ('userstory','As a farmer, I want to view the charges details of a collec
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ('userstory','As a farmer, I want to  view a list of payment details so that I can see payments of goodscollection.','', '2023-11-23', '2023-11-24', '2023-12-01', 10, 9, 3, 'todo','2023-11-23');
 
-
+-- -------------------
 -- Task 3
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ('task','QA Testing for Module Y', 'Conduct QA testing for Module Y and document any issues found', '2023-11-25', '2023-11-26', '2023-12-03', 8, 11, 3, 'completed','2023-11-24');
@@ -520,15 +520,13 @@ INSERT INTO activities (activitytype,title, description, assigneddate, startdate
 ("userstory","Language Preferences","As a user, I want to choose my preferred language for the platform.",'2023-12-04','2023-12-05','2023-12-06',13,7,7,"todo",'2023-12-04'),
 ("userstory","Accessibility Features","As a user with accessibility needs, I want the platform to be accessible and user-friendly.",'2023-12-04','2023-12-04','2023-12-08',14,6,8,"todo",'2023-12-04');
 
-
-INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-11-01','Rejected',10);
-INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-11-02','Approved',10);
-INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-11-03','Approved',10);
-INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-11-04','Rejected',10);
-INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-11-01','Approved',11);
-INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-11-02','Approved',11);
-INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-11-03','Approved',11);
-INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-11-04','Approved',11);
+INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-12-01','Approved',10);
+INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-12-02','Approved',10);
+INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-12-03','Approved',10);
+INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-12-04','Rejected',10);
+INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-12-05','Approved',10);
+INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-12-06','Approved',10);
+INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-12-07','Approved',10);
 
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-01-21','Approved',13);
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-01-11','Approved',14);
@@ -558,46 +556,66 @@ INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-01-21','Ap
 
 INSERT INTO timesheetentries(activityid,fromtime, totime, timesheetid)
 VALUES
-  (15, "09:00:00", "10:30:00", 1),
-  (16, "10:30:00", "12:00:00", 1),
-  (17,"12:00:00", "13:00:00", 1);
+  (90,"09:00:00", "10:30:00", 1),
+  (91,"10:30:00", "12:00:00", 1),
+  (92,"12:00:00", "13:00:00", 1),
+  (93,"13:00:00", "14:30:00", 1),
+  (94,"14:30:00", "16:00:00", 1),
+  (95,"16:00:00", "18:00:00", 1);
+INSERT INTO timesheetentries(activityid,fromtime, totime, timesheetid)
+VALUES
+  (96,"09:00:00","10:30:00", 2),
+  (97,"10:30:00","11:30:00", 2),
+  (98,"11:30:00", "13:00:00", 2),
+  (99,"13:00:00", "15:30:00", 2),
+  (100,"15:30:00", "16:00:00", 2),
+  (101,"16:00:00", "18:00:00", 2);
 
   
 INSERT INTO timesheetentries(activityid, fromtime, totime, timesheetid)
 VALUES
-  (15,"09:00:00", "10:30:00", 2),
-  (16, "13:00:00", "14:30:00", 2),
-  (17, "14:30:00", "15:15:00", 2);
+  (102, "09:00:00","10:30:00", 3),
+  (103, "10:30:00","12:00:00", 3),
+  (104,"12:00:00", "13:00:00", 3),
+  (105,"13:00:00", "14:00:00", 3),
+  (106,"14:00:00", "16:00:00", 3),
+  (107,"16:00:00", "18:00:00", 3);
 
 INSERT INTO timesheetentries(activityid, fromtime, totime, timesheetid)
 VALUES
-  (15,"10:30:00", "12:00:00", 3),
-  (16, "13:00:00", "14:30:00", 3),
-  (17, "14:30:00", "15:15:00", 3);
+  (108, "09:00:00","10:00:00", 4),
+  (109, "10:00:00","12:00:00", 4),
+  (100,"12:00:00", "13:00:00", 4),
+  (111,"13:00:00", "14:30:00", 4),
+  (112,"14:30:00", "15:00:00", 4),
+  (113,"15:00:00", "18:00:00", 4);
 
 INSERT INTO timesheetentries(activityid, fromtime, totime, timesheetid)
 VALUES
-  (15, "09:00:00", "10:30:00", 4),
-  (16,"10:30:00", "12:00:00", 4),
-  (17, "15:15:00", "16:45:00", 4);
-
+  (114, "09:00:00","10:30:00", 5),
+  (115, "10:30:00","12:00:00", 5),
+  (116,"12:00:00", "12:30:00", 5),
+  (117,"13:30:00", "14:30:00", 5),
+  (118,"14:30:00", "16:30:00", 5),
+  (119,"16:30:00", "18:00:00", 5);
 INSERT INTO timesheetentries(activityid, fromtime, totime, timesheetid)
 VALUES
-  (18, "09:00:00", "10:30:00", 5),
-  (19, "10:30:00", "12:00:00", 5),
-  (20, "13:00:00", "16:45:00", 5);
-  
+  (120, "09:00:00","10:30:00", 6),
+  (121, "10:30:00","12:00:00", 6),
+  (122,"12:00:00", "13:00:00", 6),
+  (123,"13:00:00", "14:30:00", 6),
+  (124,"14:30:00", "16:00:00", 6),
+  (125,"16:00:00", "18:00:00", 6);
+
 INSERT INTO timesheetentries(activityid,fromtime, totime, timesheetid)
 VALUES
-  (18, "09:00:00", "12:00:00", 6),
-  (19,"13:00:00", "14:30:00", 6),
-  (20, "15:15:00", "16:45:00", 6);
+  (126, "09:00:00","10:30:00", 7),
+  (127, "10:30:00","12:00:00", 7),
+  (128,"12:00:00", "13:00:00", 7),
+  (129,"13:00:00", "14:30:00", 7),
+  (130,"14:30:00", "17:00:00", 7),
+  (131,"17:00:00", "18:00:00", 7);
 
-INSERT INTO timesheetentries(activityid,fromtime, totime, timesheetid)
-VALUES
-  (18, "09:00:00", "10:30:00", 7),
-  (19, "10:30:00", "12:00:00", 7),
-  (20, "12:00:00", "16:45:00", 7);
 
 
 INSERT INTO timesheetentries(activityid, fromtime, totime, timesheetid)
