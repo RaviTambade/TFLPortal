@@ -56,7 +56,7 @@ INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid
 
 -- Task 1
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
-VALUES ('task','Complete Feature X', 'Implement and test Feature X according to specifications', '2023-11-23', '2023-11-24', '2023-12-01', 10, 9, 1, 'todo','2023-11-23');
+VALUES ('task','Complete Feature X', 'Implement and test Feature X according to specifications', '2023-11-27', '2023-12-01', '2023-12-30', 10, 9, 1, 'todo','2023-11-23');
 
 -- Task 2
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
@@ -65,98 +65,98 @@ VALUES ('userstory',' As a farmer, I need to authenticate myself so that I can s
 
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ('userstory',' As a farmer, I want to submit feedback so that the shop owner can consider my opinion related to krushi products and consulting.
-', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-09-05');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
-VALUES ('userstory',' As a farmer, I want to ask queries related to farming so that I can get feedback on issues.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+VALUES ('userstory',' As a farmer, I want to ask queries related to farming so that I can get feedback on issues.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-09-11');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ('userstory','As a farmer, I want to create an account and save my payment information so that I can have a personalized shopping experience.
-', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-09-01');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
-VALUES ('userstory','As a farmer, I want to view my order history so that I can easily track my purchases.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+VALUES ('userstory','As a farmer, I want to view my order history so that I can easily track my purchases.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-10-01');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
-VALUES ('userstory','As a farmer, I want to view product details, including images, descriptions, prices, so that I can make informed purchasing decisions.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+VALUES ('userstory','As a farmer, I want to view product details, including images, descriptions, prices, so that I can make informed purchasing decisions.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-01');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
-VALUES ('userstory',' As a farmer, I want to see the status of my orders (processing, shipped, delivered) so that I am aware of their progress.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+VALUES ('userstory',' As a farmer, I want to see the status of my orders (processing, shipped, delivered) so that I am aware of their progress.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-02');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ('userstory','As a farmer, I want to search for krushi products by category so that I can find krushi products easily.
-', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-03');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
-VALUES ('userstory','As a farmer, I want to view a dashboard that displays graphical representations of my monthly, yearly, and weekly orders so that I can check my order information.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+VALUES ('userstory','As a farmer, I want to view a dashboard that displays graphical representations of my monthly, yearly, and weekly orders so that I can check my order information.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-08-23');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
-VALUES ('userstory','As a farmer, I want to add products to my cart so that I can continue shopping and complete the checkout process later.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+VALUES ('userstory','As a farmer, I want to add products to my cart so that I can continue shopping and complete the checkout process later.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-01');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
-VALUES ('userstory',' As a farmer, I want to update product quantities in my cart so that I can order the accurate quantity.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+VALUES ('userstory',' As a farmer, I want to update product quantities in my cart so that I can order the accurate quantity.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-10-23');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ('userstory','As a farmer, I want to remove krushi products from my cart so that I can manage my cart list.
-', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-09-11');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ('userstory',' As a farmer, I want to purchase the required amount of products so that I can save time.
-', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-08-13');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
-VALUES ('userstory','As a farmer, I want to view different answers to a particular question in my questions so that I can get many solutions.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+VALUES ('userstory','As a farmer, I want to view different answers to a particular question in my questions so that I can get many solutions.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-10-13');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ('userstory','As a farmer, I want to remove questions from my list so that I can manage my question list.
-', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-10-11');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
-VALUES ('userstory',' As a farmer, I want to view my bill so that I can make a payment.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+VALUES ('userstory',' As a farmer, I want to view my bill so that I can make a payment.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-09-15');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
-VALUES ('userstory',' As a farmer, I want to buy agri equipment so that I can engage in precision farming.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+VALUES ('userstory',' As a farmer, I want to buy agri equipment so that I can engage in precision farming.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-09-08');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ('userstory',' As a signed-in user, I want to view my profile so that I can check my personal information.
-', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-07-12');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ('userstory','  As a shop owner, I want to see a dashboard so that I can evaluate consultant performance.
-', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-10-13');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ('userstory',' As a shop owner, I want to manage my krushi product inventory and update product details so that I can effectively manage my online krushi store.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ('userstory','As a shop owner, I want to track sales and revenue so that I can make data-driven decisions about my business.
-', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-10-02');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
-VALUES ('userstory','As a shop owner, I want to add new sellers so that I can manage my application.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+VALUES ('userstory','As a shop owner, I want to add new sellers so that I can manage my application.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-13');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
-VALUES ('userstory','As a shop owner, I want to create new categories of products and assign products to these categories so that I can maintain new krushi products.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+VALUES ('userstory','As a shop owner, I want to create new categories of products and assign products to these categories so that I can maintain new krushi products.', '', '2023-10-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-09-30');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ('userstory','As a shop owner, I want to check orders of farmers so that I can deliver them within time.
-', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+', '', '2023-10-24', '2023-10-25', '2023-12-02', 7, 10, 2, 'todo','2023-09-23');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ('userstory','As a shop owner, I want to be able to see farmer reviews for products so that I can make more informed purchasing decisions.
-', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+', '', '2023-10-24', '2023-10-25', '2023-11-02', 7, 10, 2, 'todo','2023-08-23');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ('userstory','As a shop owner, I want to add new agri product categories so that I can manage my application.
-', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-08-23');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ('userstory','As a Subject Matter Expert, I want to see queries related to farming so that I can solve them anytime and anywhere.
-', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-09-23');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ('userstory','As a Subject Matter Expert, I want to view graphical representations of my monthly, yearly, and weekly question answers information so that it helps me check my performance.
-', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+', '', '2023-11-04', '2023-11-10', '2023-11-22', 7, 10, 2, 'todo','2023-10-23');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ('userstory','As a Subject Matter Expert, I want to view a dashboard that displays graphical representations of my monthly, yearly, and weekly answers so that I can check my answers information.
-', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-10-23');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ('userstory',' As a registered user, I want to be able to buy listed products so that I can use the products I buy.
-', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-10-02');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ('userstory',' As a registered user, I want to update my profile information so that it can be accurate and up to date.
-', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+', '', '2023-10-24', '2023-11-01', '2023-11-25', 7, 10, 2, 'todo','2023-08-11');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
-VALUES ('userstory','As a registered user, I want to be securely enter my payment information and complete my purchase so that I can buy the products I want.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+VALUES ('userstory','As a registered user, I want to be securely enter my payment information and complete my purchase so that I can buy the products I want.', '', '2023-09-24', '2023-10-25', '2023-11-02', 7, 10, 2, 'todo','2023-08-23');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ('userstory','As a registered user, I want to be able to login to my account so that I can access my saved information.
-', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+', '', '2023-10-24', '2023-11-25', '2023-12-05', 7, 10, 2, 'todo','2023-10-23');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ('userstory',' As a registered user, I want to update my profile information so that it can be accurate and up to date.
-', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+', '', '2023-10-24', '2023-10-25', '2023-12-02', 7, 10, 2, 'todo','2023-10-23');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
-VALUES ('userstory','As a registered user, I want to securely enter my payment information and complete my purchase so that I can buy the products I want.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+VALUES ('userstory','As a registered user, I want to securely enter my payment information and complete my purchase so that I can buy the products I want.', '', '2023-10-24', '2023-10-25', '2023-12-02', 7, 10, 2, 'todo','2023-09-23');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
-VALUES ('userstory','As a registered user, I want to store my credit card information in the app so I can make my next purchases fast.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+VALUES ('userstory','As a registered user, I want to store my credit card information in the app so I can make my next purchases fast.', '', '2023-10-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-09-23');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ('userstory',' As a visitor, I want to register on the website so that I can browse and buy listed products from the krushi application.
-', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+', '', '2023-10-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-10-23');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
-VALUES ('userstory',' As a visitor, I want to register on the website so that I can browse and buy listed products from the krushi application.', '', '2023-11-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-11-23');
+VALUES ('userstory',' As a visitor, I want to register on the website so that I can browse and buy listed products from the krushi application.', '', '2023-10-24', '2023-11-25', '2023-12-02', 7, 10, 2, 'todo','2023-10-03');
 
 -- Task 3
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
