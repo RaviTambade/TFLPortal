@@ -33,10 +33,12 @@
                         <strong>{{c.date.getDate()}}</strong> <strong
                             *ngIf="c.isToday || (i==0 && j==0) || (c.date.getDate() == 1)">
                             {{monthNames[c.date.getMonth()]}}</strong>
-
-                        <div class="green-project my-2" *ngIf="isProjectOngoing(c.date)" data-bs-toggle="tooltip"
-                            title="{{project.projectName}}">
-                        </div>
+                        <ng-container *ngFor="let project of projects">
+                            <div class="my-1" 
+                                [ngStyle]="{'border': isProjectOngoing(c.date, project.projectName) ? '2px solid '+project.color : ''}"
+                                data-bs-toggle="tooltip" title="{{project.projectName}}">
+                            </div>
+                        </ng-container>
                     </div>
                 </td>
             </ng-container>

@@ -12,17 +12,20 @@
 <table class="table-bordered">
     <thead>
         <tr>
-            <th>StartTime:</th>
-            <th>EndTime:</th>
-            <th>Activity:</th>
-            <th>Duration:</th>
+            
+            <th>Category</th>
+            <th>work</th>
+            <th>StartTime</th>
+            <th>EndTime</th>
+            <th>Duration</th>
         </tr>
     </thead>
     <tbody *ngFor="let timeSheetEntry of timeSheetEntries">
         <tr>
+            <td>{{timeSheetEntry.workCategory }}</td>
+            <td>{{timeSheetEntry.work }}</td>
             <td>{{timeSheetEntry.fromTime }}</td>
             <td>{{timeSheetEntry.toTime}}</td>
-            <td>{{timeSheetEntry.activity?.activityType}}</td>
             <td>{{timeSheetEntry.durationInHours}}</td>
         </tr>
        

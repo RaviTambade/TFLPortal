@@ -11,6 +11,7 @@ export class AppComponent {
   title = 'PMSNGApp';
   project: Project | undefined;
   taskId:number|undefined;
+  timeSheetId:number|undefined;
 
   onReceiveProjectId(selectedProjectevent: Project) {
     this.project = selectedProjectevent;
@@ -20,4 +21,8 @@ export class AppComponent {
     this.taskId = selectedTaskId;
   }
  
+
+  onReceiveTimeSheetId(timesheetId:number){
+    this.timeSheetId=timesheetId;
+  }
 }

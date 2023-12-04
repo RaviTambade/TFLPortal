@@ -1,15 +1,4 @@
-<!-- <div class="row">
-    <div class="d-flex justify-content-start ">
-        <div class="card m-3" *ngFor="let timesheet of timeSheets">
-            <div class="p-2" (click)="onSelectedTimeSheetId(timesheet.id)">
-                <p> Date :{{timesheet.date | date}}</p>
-                <p> Status :{{timesheet.status}}</p>
-               
-            </div>
-        </div>
-    </div>
-</div>
- -->
+
 
 <div class="container">
     <h2> TimeSheet List</h2>
@@ -24,9 +13,7 @@
             </thead>
             <tbody *ngFor="let timesheet of timeSheets">
                 <tr>
-                    <a href="#">
-                        <td (click)="onSelectedTimeSheetId(timesheet.id)"> {{timesheet.timeSheetDate | date}}</td>
-                    </a>
+                    <td  style="cursor: pointer; text-decoration: underline ; color:  #0000EE;" (click)="onSelectedTimeSheetId(timesheet.id)"> {{timesheet.timeSheetDate | date}}</td>
                     <td> {{timesheet.status}}</td>
                     <td>{{timesheet.statusChangedDate |date}}</td>
                 </tr>
