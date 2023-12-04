@@ -51,7 +51,7 @@
 
     CREATE TABLE activities(
             id INT PRIMARY KEY AUTO_INCREMENT,
-            title VARCHAR(40) NOT NULL,
+            title VARCHAR(500) NOT NULL,
             activitytype ENUM("userstory","task","bug","issues","meeting","learning","mentoring","other"),
             description VARCHAR(400),
             projectid INT NOT NULL,
