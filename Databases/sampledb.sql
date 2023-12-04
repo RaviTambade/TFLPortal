@@ -571,6 +571,14 @@ INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-01-19','Ap
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-01-20','Approved',2);
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-01-21','Approved',3);
 
+INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-01-14','Approved',15);
+INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-01-13','Approved',16);
+INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-01-19','Approved',17);
+INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-01-20','Approved',18);
+INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-01-21','Approved',19);
+INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-01-21','Approved',20);
+
+
 INSERT INTO timesheetentries(activityid,fromtime, totime, timesheetid)
 VALUES
   (15, "09:00:00", "10:30:00", 1),
