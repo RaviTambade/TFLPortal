@@ -98,10 +98,11 @@
 
     CREATE TABLE timesheetentries(
         id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-        activityid INT NOT NULL,
+        work VARCHAR(150) NOT NULL,
+        workcategory ENUM("userstory","task","bug","issues","meeting","learning","mentoring","break","clientcall","other"),
+        description VARCHAR(225),
         fromtime TIME,
         totime TIME,
         timesheetid INT NOT NULL,
-        CONSTRAINT fk_timesheetentry_activities FOREIGN KEY(activityid) REFERENCES activities(id) ON UPDATE CASCADE ON DELETE CASCADE,
         CONSTRAINT fk_timesheets_timesheetentries FOREIGN KEY(timesheetid) REFERENCES timesheets(id) ON UPDATE CASCADE ON DELETE CASCADE
     );

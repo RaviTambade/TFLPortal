@@ -55,7 +55,10 @@ export class InsertTimeSheetComponent implements OnInit {
     };
 
     this.timeSheetSvc.addTimeSheet(timesheet).subscribe((res) => {
-      console.log(res);
+      this.timeSheetEntries.forEach((r) => {
+        r.fromTime = r.fromTime.split(':00').at(0)!;
+        r.toTime = r.toTime.split(':00').at(0)!;
+      });
       
       alert('timesheet added');
     });

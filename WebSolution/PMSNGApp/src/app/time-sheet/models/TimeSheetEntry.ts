@@ -3,7 +3,9 @@ import { Activity } from "src/app/activity/Models/Activity";
 export class TimeSheetEntry{
     constructor(
         public id:number,
-        public activityId:number,
+        public work:string,
+        public workCategory:string,
+        public description:string,
         public fromTime:string,
         public toTime:string,
         public timeSheetId:number,
@@ -13,7 +15,6 @@ export class TimeSheetEntry{
         ){
     }
 
-    public activity:Activity|undefined;
 
 
         

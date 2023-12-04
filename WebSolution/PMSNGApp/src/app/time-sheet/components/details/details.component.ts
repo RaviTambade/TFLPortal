@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { TimeSheetService } from '../../services/time-sheet.service';
 import { TimeSheetEntry } from '../../models/timesheetentry';
 ;
@@ -8,21 +8,18 @@ import { TimeSheetEntry } from '../../models/timesheetentry';
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css']
 })
-export class DetailsComponent {
+export class DetailsComponent  {
 
-  timeSheetId:number |undefined;
+  @Input() timeSheetId!:number ;
   timeSheetEntries:TimeSheetEntry[]=[];
   
 
   constructor(private timeSheetSvc:TimeSheetService){}
-
-  onReceiveTimeSheetId(event:any){
-    this.timeSheetId=event;
-    console.log(this.timeSheetId);
-    if(this.timeSheetId)
-    this.timeSheetSvc.getTimeSheetDetails(this.timeSheetId).subscribe((res)=>{
+  ngOnChanges(changes:SimpleChanges): void {
+    this.timeSheetSvc.getTimeSheetDetails(changes['timeSheetId'].currentValue).subscribe((res)=>{
       this.timeSheetEntries=res;
-      console.log("🚀 ~ this.timeSheetSvc.getTimeSheetDetails ~ res:", res);
     })
   }
+
+  
 }

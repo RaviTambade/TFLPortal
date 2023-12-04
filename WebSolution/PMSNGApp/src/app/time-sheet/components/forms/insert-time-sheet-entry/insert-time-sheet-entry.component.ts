@@ -9,15 +9,17 @@ import { TimeSheetService } from 'src/app/time-sheet/services/time-sheet.service
   styleUrls: ['./insert-time-sheet-entry.component.css'],
 })
 export class InsertTimeSheetEntryComponent {
+  activitiyTypes:string[]=["task","userstory","bug","issues","meeting","learning","mentoring","break","clientcall","other"];
   timeSheetEntry: TimeSheetEntry = {
     id: 0,
     fromTime: '',
     toTime: '',
     durationInMinutes: 0,
     durationInHours: '',
-    activityId: 0,
     timeSheetId: 0,
-    activity: undefined
+    work: '',
+    workCategory: '',
+    description: ''
   };
 
   constructor(private timeSheetService: TimeSheetService) {}
@@ -30,9 +32,10 @@ export class InsertTimeSheetEntryComponent {
       toTime: this.timeSheetEntry.toTime,
       durationInMinutes: this.timeSheetEntry.durationInMinutes,
       durationInHours: this.timeSheetEntry.durationInHours,
-      activityId: this.timeSheetEntry.activityId,
       timeSheetId: 0,
-      activity: undefined
+      work: this.timeSheetEntry.work,
+      workCategory: this.timeSheetEntry.workCategory,
+      description: this.timeSheetEntry.description
     };
 
     this.timeSheetService.AddTimeSheetEntries(timeSheetEntry);

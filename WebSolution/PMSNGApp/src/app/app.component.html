@@ -1,7 +1,7 @@
 <!-- <app-insert></app-insert> -->
 <!-- <app-all-projects-list></app-all-projects-list> -->
 <!-- <app-calender></app-calender> -->
-    
+
 <!-- <app-calender></app-calender> -->
 <!-- <project-list (selectedProjectId)="onReceiveProjectId($event)"></project-list>
 <div class="card">
@@ -24,11 +24,17 @@
         </div>
     </div>
 </div> -->
+<div class="row">
+    <div class="col-6">
+        <timesheet-list (selectedTimeSheetId)="onReceiveTimeSheetId($event)"></timesheet-list>
+    </div>
+    <div class="col-6" *ngIf="timeSheetId">
+        <timesheet-details [timeSheetId]="timeSheetId"></timesheet-details>
+    </div>
+</div>
 
-<!-- <timesheet-details></timesheet-details> -->
 
-
-<!-- <app-insert-time-sheet></app-insert-time-sheet> -->
+<app-insert-time-sheet></app-insert-time-sheet>
 
 
 <!-- <app-activity-details></app-activity-details> -->

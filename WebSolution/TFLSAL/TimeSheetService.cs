@@ -62,6 +62,74 @@ public class TimeSheetService : ITimeSheetService
         return timesheets;
     }
 
+    public async Task<TimeSheet> GetTimeSheetOfEmployee(int employeeId, string date)
+    {
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        TimeSheet timeSheet = null;
+        try
+        {
+            string query =
+                @"SELECT timesheets.id as timesheetid,timesheets.status,timesheets.statuschangeddate,timesheetentries.id as timesheetentryid,
+                timesheetentries.work,timesheetentries.workcategory,timesheetentries.description,timesheetentries.fromtime,timesheetentries.totime
+                FROM timesheetentries 
+                INNER JOIN timesheets  ON timesheetentries.timesheetid = timesheets.id
+                WHERE timesheets.timesheetdate = @timeSheetDate AND timesheets.employeeId = @employeeId";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@timeSheetDate", date);
+            command.Parameters.AddWithValue("@employeeId", employeeId);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            if (await reader.ReadAsync())
+            {
+                int timeSheetId = int.Parse(reader["timesheetid"].ToString());
+                string status = reader["status"].ToString();
+                DateTime statusChangedDate = DateTime.Parse(reader["statuschangeddate"].ToString());
+
+                timeSheet = new TimeSheet()
+                {
+                    Id = timeSheetId,
+                    Status = status,
+                    TimeSheetDate = DateTime.Parse(date),
+                    StatusChangedDate = statusChangedDate,
+                    EmployeeId = employeeId,
+                    TimeSheetEntries = new List<TimeSheetEntry>()
+                };
+                while (await reader.ReadAsync())
+                {
+                    int timeSheetEntryId = int.Parse(reader["timesheetentryid"].ToString());
+                    TimeOnly fromtime = TimeOnly.Parse(reader["fromtime"].ToString());
+                    TimeOnly totime = TimeOnly.Parse(reader["totime"].ToString());
+                    string work = reader["work"].ToString();
+                    string WorkCategory = reader["workcategory"].ToString();
+                    string description = reader["description"].ToString();
+
+                    TimeSheetEntry timeSheetEntry = new TimeSheetEntry()
+                    {
+                        Id = timeSheetEntryId,
+                        FromTime = fromtime,
+                        ToTime = totime,
+                        Work=work,
+                        WorkCategory=WorkCategory,
+                        Description=description
+                    };
+
+                    timeSheet.TimeSheetEntries.Add(timeSheetEntry);
+                }
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return timeSheet;
+    }
+
     public async Task<List<TimeSheetEntry>> GetTimeSheetDetails(int timeSheetId)
     {
         List<TimeSheetEntry> timeSheetEntries = new List<TimeSheetEntry>();
@@ -70,30 +138,30 @@ public class TimeSheetService : ITimeSheetService
         try
         {
             string query =
-                "SELECT timesheetentries.*,activities.title,activities.activitytype  from timesheetentries join activities on timesheetentries.activityid=activities.id WHERE timesheetid=@timeSheetId";
+                "SELECT *  from timesheetentries WHERE timesheetid=@timeSheetId";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@timeSheetId", timeSheetId);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
-                int id = int.Parse(reader["id"].ToString());
-                int activityId = int.Parse(reader["activityid"].ToString());
-                TimeOnly fromtime = TimeOnly.Parse(reader["fromtime"].ToString());
-                TimeOnly totime = TimeOnly.Parse(reader["totime"].ToString());
-                string title = reader["title"].ToString();
-                string activityType = reader["activitytype"].ToString();
-                
-                Activity activity = new Activity() { ActivityType = activityType, Title = title };
+                    int timeSheetEntryId = int.Parse(reader["id"].ToString());
+                    TimeOnly fromtime = TimeOnly.Parse(reader["fromtime"].ToString());
+                    TimeOnly totime = TimeOnly.Parse(reader["totime"].ToString());
+                    string work = reader["work"].ToString();
+                    string WorkCategory = reader["workcategory"].ToString();
+                    string description = reader["description"].ToString();
+
                 TimeSheetEntry timesheet = new TimeSheetEntry()
                 {
-                    Id = id,
+                    Id = timeSheetEntryId,
                     FromTime = fromtime,
                     ToTime = totime,
-                    ActivityId = activityId,
-                    Activity=activity
+                    Work=work,
+                    WorkCategory=WorkCategory,
+                    Description=description
                 };
-                
+
                 timeSheetEntries.Add(timesheet);
             }
             await reader.CloseAsync();
@@ -117,7 +185,7 @@ public class TimeSheetService : ITimeSheetService
         connection.ConnectionString = _connectionString;
 
         var query = new StringBuilder(
-            "INSERT INTO timesheetentries(activityid, fromtime, totime, timesheetid) VALUES "
+            "INSERT INTO timesheetentries(work,workcategory,description,fromtime, totime, timesheetid) VALUES "
         );
         var parameters = new List<MySqlParameter>();
 
@@ -125,9 +193,11 @@ public class TimeSheetService : ITimeSheetService
         {
             var timeSheetEntry = timeSheet.TimeSheetEntries[i];
 
-            query.Append($"( @ActivityId{i} , @FromTime{i}, @ToTime{i}, @TimeSheetId{i}), ");
+            query.Append($"( @work{i},@workCategory{i},@Description{i} , @FromTime{i}, @ToTime{i}, @TimeSheetId{i}), ");
 
-            parameters.Add(new MySqlParameter($"@ActivityId{i}", timeSheetEntry.ActivityId));
+            parameters.Add(new MySqlParameter($"@work{i}", timeSheetEntry.Work));
+            parameters.Add(new MySqlParameter($"@workCategory{i}", timeSheetEntry.WorkCategory));
+            parameters.Add(new MySqlParameter($"@Description{i}", timeSheetEntry.Description));
             parameters.Add(new MySqlParameter($"@FromTime{i}", timeSheetEntry.FromTime));
             parameters.Add(new MySqlParameter($"@ToTime{i}", timeSheetEntry.ToTime));
             parameters.Add(new MySqlParameter($"@TimeSheetId{i}", timeSheetId));
