@@ -54,6 +54,163 @@ INSERT INTO projectallocations(membership,assigndate,releasedate,status,projecti
 INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',8,17);
 INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',9,18);
 
+
+-- Inventory Management
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a  Store Worker, I want to be able to reset my password in case I forget it.','', '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a Store Worker, I want to view a graph that shows my daily, weekly, and monthly delivered orders, so that i can monitor my performance','',  '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory', 'As a Store Worker, I want to mark orders as delivered when I successfully hand over the materials to the manufacturing supervisors so that i can ensure order is delivered.','',  '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory', 'As a Store Worker, I want to access information about the supervisors who will receive the deliveries, including their contact details so that I can efficiently communicate regarding the delivery process and resolve any potential issues.','',  '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a Store Worker, I want to receive notifications for new task that require pickup and delivery, so that i can stay updated on my tasks.','',  '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a Store Worker, I want to access order details including the order-id, and pickup/delivery locations so that i can prepare for the tasks.','',  '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a Store Worker, I want to mark orders as picked up when I collect the materials from the inventory so that i can change status of order.','',   '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a Supervisor Incharge, I want to view an overview of employee information and departments so that I can efficiently manage teams and make informed decisions regarding staffing and resource allocation.','',  '2023-12-10','2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a Supervisors Incharge, I want to view request reports graphs so that i can make data-driven decisions and analyze trends.','',  '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a Supervisors Incharge, I want to add new supervior to the system so that i can seamlessly expand our team, assign roles and responsibilities.', '',  '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a Supervisors Incharge, I want to update  information of supervisors  so that I can ensure that the records are accurate and up-to-date.','',  '2023-12-10','2023-12-05', '2023-12-06', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a Supervisors Incharge, I want to switch the departments of employees when they move to different teams so that I can maintain efficient workflow across teams.','',  '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a Supervisors Incharge, I want request reports of each supervisor,  so that I can assess individual and team performance, track trends in order management.','',   '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a Supervisors Incharge, I want to view a graph showing the total number of requests placed by each supervisor so that I can assess their productivity levels.','',  '2023-12-10','2023-12-05', '2023-12-06', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a Supervisors Incharge, I want to view graphical representations of weekly, monthly, and yearly so that i can analise request trends.','',  '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a Supervisors Incharge, I want to see a graph that displays the number of cancelled requests for each supervisor so that I can identify potential issues in order processing.', '',  '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a  Supervisors Incharge, I want to be able to reset my password in case I forget it.','',  '2023-12-10','2023-12-05', '2023-12-06', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a Store Incharge, I want to view current inventory level so that i can effectively manage stock availability.', '', '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a Store Incharge, I want to view departments and assigned store manager so that I can effectively oversee the organization','',   '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a Store Incharge, I want to add new materials to the inventory along with their details so that i can keep inventory updated.','',  '2023-12-10','2023-12-05', '2023-12-06', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a Store Incharge, I want to update material information such, so that i can keep the inventory data up to date.','',  '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory',' As a Store Incharge, I want to remove materials that are no longer needed from the inventory, so that i can maintain clean and relevant material list.','',   '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a store Incharge, I want to receive notifications when stock levels materials fall below a defined limit so that i can add material before it wents out of stock.','',  '2023-12-10','2023-12-05', '2023-12-06', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a Store Incharge, I want to create new categories of materials and add materials to these categories,so that i can maintain organized inventory.','',  '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a Store Incharge, I want to add new store managers and store workers to the system, so that i can seamlessly expand our team, assign roles and responsibilities.','',   '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a Store Incharge, I want to edit the personal information of store managers and store workers so that i can maintain accurate records.','',  '2023-12-10', '2023-12-05', '2023-12-06',7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a Store Incharge, I want to update information of store manager and store worker so that I can ensure that the records are accurate and up-to-date.','',  '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a Store Incharge, I want to be able to reset my password in case I forget it.','', '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a store manager, I want to view pending orders so that i can fulfill orders efficiently.','', '2023-12-10','2023-12-05', '2023-12-06', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory',' As a store manager, I want to view current inventory level so that i can effectively manage stock availability.','', '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory',' As a store manager, I want to view detailed information about each material,  so that i can see all material details.','',  '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory',' As a store manager, I want to view the availability of materials when approving orders so that i can approve material as per the availability.','', '2023-12-10','2023-12-05', '2023-12-06', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a store manager, I want to view the department and supervisors names associated with request when, so that i can identify the source of the request.','', '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a store manager, I want to sort and filter order requests based on their status (pending, cancelled, completed) so that I can manage them efficiently.','',  '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a store manager, I want to mark materials as "out of stock" when they are no longer available, so that i can provide material accordingly.','', '2023-12-10','2023-12-05', '2023-12-06', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a store manager, I want to choose a specific time frame (monthly, yearly, weekly) for the graph, so that I can focus on the relevant data.','', '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a store manager, I want to be able to reset my password in case I forget it.','',  '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a supervisor, I want to search specific materials from the inventory so that I can request quickly.','', '2023-12-10','2023-12-05', '2023-12-06', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a  supervisor, I want to sort materials by categories so that I can easily find and request materials.','','2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a registered user, I want to be able to save items to my wishlist so that I can keep track of materials that I am interested in and request multiple materials at one time.','',  '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a supervisor, I want to edit or remove materials from the tray so that I can efficiently manage and refine the selection of materials.','', '2023-12-10','2023-12-05', '2023-12-06', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a supervisor, I want to cancel request that I have placed, so that I can cancel request if i ordered incorrectly.','', '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a supervisor, I want to see status of my request (processing, shipped, delivered) so that I can track my requests.','',  '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a supervisor, I want to view the history and details of my past requests so that I can reference them for future planning.','', '2023-12-10','2023-12-05', '2023-12-06', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a supervisor, I want to easily reorder previously ordered materials so that I can save time on repetitive orders.','', '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a supervisor, I want to access a dashboard that displays graphical representations of my monthly, yearly, and weekly material requests, so that I can visualize trends and patterns.','', '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a supervisor, I want to choose a specific time frame (monthly, yearly, weekly) for the graph, so that I can focus on the relevant data.','', '2023-12-10','2023-12-05', '2023-12-06', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a  supervisor, I want the option to download the graph as a file for reporting purposes, so that I can share the information with others.','', '2023-12-10','2023-12-05', '2023-12-06', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory',' As a supervisor, I want verification that an order has been delivered by a store worker, so that I can confirm on materials received.','', '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
+VALUES ('userstory','As a supervisor, I want to be able to reset my password in case I forget it.','',  '2023-12-05', '2023-12-06', '2023-12-10', 7, 2, 4, 'todo','2023-12-04');
+
+
+
+
+
 -- Task 1
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ('task','Complete Feature X', 'Implement and test Feature X according to specifications', '2023-11-27', '2023-12-01', '2023-12-30', 10, 9, 1, 'todo','2023-11-23');
