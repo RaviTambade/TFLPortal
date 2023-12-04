@@ -50,18 +50,18 @@ export class ProjectsService {
     return this.httpClient.get<any>(url);
   }
 
-  GetAllProjectsBetweenDates(fromAssignedDate:string,toAssignedDate:string):Observable<ProjectAllocation[]>{
+  getAllProjectsBetweenDates(fromAssignedDate:string,toAssignedDate:string):Observable<ProjectAllocation[]>{
     let url=this.serviceurl+"/projectmgmt/projectallocation/projects/fromassigneddate/"+ fromAssignedDate+"/toassigneddate"+toAssignedDate ;
     return this.httpClient.get<ProjectAllocation[]>(url);
   }
 
-  GetAllProjectsOfEmployeeBetweenDates(fromAssignedDate:string,toAssignedDate:string,employeeId:number):Observable<ProjectAllocation[]>{
+  getAllProjectsOfEmployeeBetweenDates(fromAssignedDate:string,toAssignedDate:string,employeeId:number):Observable<ProjectAllocation[]>{
     let url=this.serviceurl+"/projectmgmt/projectallocation/projects/"+employeeId+"/fromassigneddate/"+ fromAssignedDate+"/toassigneddate"+toAssignedDate ;
     return this.httpClient.get<ProjectAllocation[]>(url);
   }
 
-  GetAllEmployeesOfProject(projectId:number):Observable<ProjectAllocation[]>{
+  getAssignedEmployeesOfProject(projectId:number):Observable<any>{
     let url=this.serviceurl+"/projectmgmt/projectallocation/employees/" +projectId;  
-    return this.httpClient.get<ProjectAllocation[]>(url);
+    return this.httpClient.get<any>(url);
   }
 }
