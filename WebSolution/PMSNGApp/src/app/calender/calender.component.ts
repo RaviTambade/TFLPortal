@@ -25,9 +25,22 @@ export class CalenderComponent {
   public displayMonth!: string;
   private holidayDays: string[] = ['2023-11-02', '2023-11-17', '2023-11-15'];
   private monthIndex: number = 0;
-  clickedDate:any;
+  clickedDate: any;
 
-  project:any={projectName:"PMS", startDate:'2023-11-02',endDate: '2023-11-17'};
+  projects: any[] = [
+    {
+      projectName: 'Ekrushi',
+      startDate: '2023-12-02',
+      endDate: '2023-12-17',
+      color: 'blue',
+    },
+    {
+      projectName: 'TFLPortal',
+      startDate: '2023-12-02',
+      endDate: '2023-12-29',
+      color: 'green',
+    },
+  ];
 
   ngOnInit(): void {
     this.generateCalendarDays(this.monthIndex);
@@ -39,8 +52,8 @@ export class CalenderComponent {
     let day: Date = new Date(
       new Date().setMonth(new Date().getMonth() + monthIndex)
     );
-    console.log("🚀 ~ generateCalendarDays ~ day:", day);
-      console.log(new Date().getMonth());
+    console.log('🚀 ~ generateCalendarDays ~ day:', day);
+    console.log(new Date().getMonth());
     this.displayMonth = this.monthNames[day.getMonth()] + day.getFullYear();
 
     let startingDateOfCalendar = this.getStartDateForCalendar(day);
@@ -88,25 +101,24 @@ export class CalenderComponent {
   }
 
   onClick(date: Date) {
-    this.clickedDate=date;
+    this.clickedDate = date;
     console.log(this.ConvertDateYYYY_MM_DD(date));
   }
 
   isholiday(date: Date): boolean {
-  
     let formatedDate = this.ConvertDateYYYY_MM_DD(date);
     return this.holidayDays.includes(formatedDate);
   }
 
-  isDateClicked(date:Date):boolean{
-   return this.clickedDate==date
+  isDateClicked(date: Date): boolean {
+    return this.clickedDate == date;
   }
 
-  isProjectOngoing(date:Date):boolean{
+  isProjectOngoing(date: Date, projectName: string): boolean {
     let formatedDate = this.ConvertDateYYYY_MM_DD(date);
-    return formatedDate >= this.project.startDate && formatedDate <= this.project.endDate;
+    let project = this.projects.find((p) => p.projectName == projectName);
+    return formatedDate >= project.startDate && formatedDate <= project.endDate;
   }
-
 
   ConvertDateYYYY_MM_DD(date: Date): string {
     // convert into yyyy-mm-dd

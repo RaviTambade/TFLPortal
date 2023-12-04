@@ -7,6 +7,8 @@ import { AllProjectsListComponent } from './Components/all-projects-list/all-pro
 import { InsertProjectAllocationComponent } from './Components/insert-project-allocation/insert-project-allocation.component';
 import { UpdateProjectAllocationComponent } from './Components/update-project-allocation/update-project-allocation.component';
 import { AllUnassignedEmployeeComponent } from './Components/all-unassigned-employee/all-unassigned-employee.component';
+import { AllAssignedEmployeeComponent } from './Components/all-assigned-employee/all-assigned-employee.component';
+import { AllEmployeesOfProjectComponent } from './Components/all-employees-of-project/all-employees-of-project.component';
 
 
 
@@ -18,6 +20,8 @@ import { AllUnassignedEmployeeComponent } from './Components/all-unassigned-empl
     InsertProjectAllocationComponent,
     UpdateProjectAllocationComponent,
     AllUnassignedEmployeeComponent,
+    AllAssignedEmployeeComponent,
+    AllEmployeesOfProjectComponent,
   ],
   imports: [
     CommonModule,
@@ -30,7 +34,9 @@ import { AllUnassignedEmployeeComponent } from './Components/all-unassigned-empl
     AllProjectsListComponent,
     InsertProjectAllocationComponent,
     UpdateProjectAllocationComponent,
-    AllUnassignedEmployeeComponent
+    AllUnassignedEmployeeComponent,
+    AllAssignedEmployeeComponent,
+    AllEmployeesOfProjectComponent
 
   ]
 })

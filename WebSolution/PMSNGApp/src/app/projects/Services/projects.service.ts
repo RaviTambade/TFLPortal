@@ -40,28 +40,28 @@ export class ProjectsService {
     return this.httpClient.post<any>(url,project);
   }
 
-  getAllUnassignedEmployees(status:string):Observable<ProjectAllocation[]>{
+  getAllUnassignedEmployees(status:string):Observable<any>{
     let url=this.serviceurl+"/projectmgmt/projectallocation/unassignedemployees/"+ status ;
-    return this.httpClient.get<ProjectAllocation[]>(url);
+    return this.httpClient.get<any>(url);
   }
 
-  getAllAssignedEmployees(status:string):Observable<ProjectAllocation[]>{
+  getAllAssignedEmployees(status:string):Observable<any>{
     let url=this.serviceurl+"/projectmgmt/projectallocation/assignedemployees/"+ status ;
-    return this.httpClient.get<ProjectAllocation[]>(url);
+    return this.httpClient.get<any>(url);
   }
 
-  GetAllProjectsBetweenDates(fromAssignedDate:string,toAssignedDate:string):Observable<ProjectAllocation[]>{
+  getAllProjectsBetweenDates(fromAssignedDate:string,toAssignedDate:string):Observable<ProjectAllocation[]>{
     let url=this.serviceurl+"/projectmgmt/projectallocation/projects/fromassigneddate/"+ fromAssignedDate+"/toassigneddate"+toAssignedDate ;
     return this.httpClient.get<ProjectAllocation[]>(url);
   }
 
-  GetAllProjectsOfEmployeeBetweenDates(fromAssignedDate:string,toAssignedDate:string,employeeId:number):Observable<ProjectAllocation[]>{
+  getAllProjectsOfEmployeeBetweenDates(fromAssignedDate:string,toAssignedDate:string,employeeId:number):Observable<ProjectAllocation[]>{
     let url=this.serviceurl+"/projectmgmt/projectallocation/projects/"+employeeId+"/fromassigneddate/"+ fromAssignedDate+"/toassigneddate"+toAssignedDate ;
     return this.httpClient.get<ProjectAllocation[]>(url);
   }
 
-  GetAllEmployeesOfProject(projectId:number):Observable<ProjectAllocation[]>{
+  getAssignedEmployeesOfProject(projectId:number):Observable<any>{
     let url=this.serviceurl+"/projectmgmt/projectallocation/employees/" +projectId;  
-    return this.httpClient.get<ProjectAllocation[]>(url);
+    return this.httpClient.get<any>(url);
   }
 }

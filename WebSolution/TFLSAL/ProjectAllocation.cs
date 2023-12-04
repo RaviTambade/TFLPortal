@@ -213,17 +213,18 @@ public class ProjectAllocationService : IProjectAllocationService
         return projects;
     }
     
-    public async Task<List<ProjectAllocation>> GetAllEmployeesOfProject(int projectId)
+    public async Task<List<ProjectAllocation>> GetAssignedEmployeesOfProject(int projectId)
     {
         List<ProjectAllocation> employees= new List<ProjectAllocation>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query ="Select * from projectallocations where projectid=@projectId";
+            string query ="select projectallocations.*,employees.userid from projectallocations inner join employees on projectallocations.employeeid=employees.id where status=@status and projectid=@projectId" ;
                 
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);
+            command.Parameters.AddWithValue("@status", "yes");
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
@@ -235,7 +236,8 @@ public class ProjectAllocationService : IProjectAllocationService
                     EmployeeId = reader.GetInt32("employeeid"),
                     Membership = reader.GetString("membership"),
                     AssignDate = reader.GetDateTime("assigndate"),
-                    Status=reader.GetString("status")
+                    Status=reader.GetString("status"),
+                    Employee = new Employee { UserId = reader.GetInt32("userid") }
 
                 };
                 employees.Add(employee);

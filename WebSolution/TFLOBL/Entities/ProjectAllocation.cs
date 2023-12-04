@@ -9,5 +9,5 @@ public class ProjectAllocation
     public DateTime AssignDate { get; set; }
     public DateTime ReleaseDate { get; set; }
     public string? Status { get; set; }
-
+    public Employee? Employee{get;set;}
 }

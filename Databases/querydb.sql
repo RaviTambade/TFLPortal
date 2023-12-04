@@ -19,29 +19,12 @@ END;
  SELECT  timesheetentries.*,activities.title,activities.activitytype  from timesheetentries join activities on timesheetentries.activityid=activities.id WHERE timesheetid= (select id from timesheets WHERE timesheetdate='2023-12-02'and employeeid=10 );
 
 
-SELECT 
-    timesheets.id as timesheetid,
-    timesheets.status,
-    timesheets.statuschangeddate,
-    timesheetentries.id as timesheetentryid,
-    timesheetentries.activityid,
-    timesheetentries.fromtime,
-    timesheetentries.totime,
-    activities.title,
-    activities.activitytype  
-FROM 
-    timesheetentries 
-JOIN 
-    activities  ON timesheetentries.activityid = activities.id
-JOIN
-    timesheets  ON timesheetentries.timesheetid = timesheets.id
-WHERE 
-    timesheets.timesheetdate = '2023-12-02' AND timesheets.employeeid = 10;
+
 
 
 
 select timesheetentries.*,activities.title,activities.activitytype  from timesheetentries join activities on timesheetentries.activityid=activities.id WHERE timesheetid=1;
-SELECT * FROM activities;
+SELECT * FROM timesheets;
 
 
 -- show me the list of employees who are in the bench.

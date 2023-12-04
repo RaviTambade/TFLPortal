@@ -12,15 +12,14 @@ export class AllUnassignedEmployeeComponent implements OnInit{
 
   constructor(private service:ProjectsService){}
   status:string="no";
-  employees:ProjectAllocation[]=[];
+  employees:any[]=[];
 
   ngOnInit(): void {
     this.service.getAllUnassignedEmployees(this.status).subscribe((res)=>{
     this.employees = res;
-    const employee =this.employees.map(u=>u.employeeId)
-    console.log(employee);
+    console.log(this.employees);
+    const employees =this.employees.map(u=>u.employeeId)
+    console.log(employees);
     })
   }
-
-
 }
