@@ -40,14 +40,14 @@ export class ProjectsService {
     return this.httpClient.post<any>(url,project);
   }
 
-  getAllUnassignedEmployees(status:string):Observable<ProjectAllocation[]>{
+  getAllUnassignedEmployees(status:string):Observable<any>{
     let url=this.serviceurl+"/projectmgmt/projectallocation/unassignedemployees/"+ status ;
-    return this.httpClient.get<ProjectAllocation[]>(url);
+    return this.httpClient.get<any>(url);
   }
 
-  getAllAssignedEmployees(status:string):Observable<ProjectAllocation[]>{
+  getAllAssignedEmployees(status:string):Observable<any>{
     let url=this.serviceurl+"/projectmgmt/projectallocation/assignedemployees/"+ status ;
-    return this.httpClient.get<ProjectAllocation[]>(url);
+    return this.httpClient.get<any>(url);
   }
 
   GetAllProjectsBetweenDates(fromAssignedDate:string,toAssignedDate:string):Observable<ProjectAllocation[]>{

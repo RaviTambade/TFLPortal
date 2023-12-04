@@ -38,6 +38,7 @@ public class ProjectAllocationController : ControllerBase
     public async Task<List<ProjectAllocation>> GetAllUnassignedEmployees(string status)
     {
         List<ProjectAllocation> employees = await _service.GetAllUnassignedEmployees(status);
+        
         return employees;
     }
 
