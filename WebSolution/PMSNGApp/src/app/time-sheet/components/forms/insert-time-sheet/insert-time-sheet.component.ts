@@ -11,69 +11,86 @@ import { TimeSheetService } from 'src/app/time-sheet/services/time-sheet.service
   styleUrls: ['./insert-time-sheet.component.css'],
 })
 export class InsertTimeSheetComponent implements OnInit {
-  constructor(private timeSheetSvc: TimeSheetService) {}
-
+  timeSheetId!: number;
   timeSheetEntries: TimeSheetEntry[] = [];
-
-  subscription: Subscription | undefined;
   totalminutes: any = 0;
-  showaddTimesheetEntry:boolean=false;
-  todaysDate:string=new Date().toISOString().slice(0, 10);
+  showaddTimesheetEntry: boolean = false;
+  todaysDate: string = new Date().toISOString().slice(0, 10);
+  employeeId = 10;
 
+  constructor(private timeSheetSvc: TimeSheetService) {}
   ngOnInit(): void {
-    this.subscription = this.timeSheetSvc
-      .ReceiveTimeSheetEntries()
-      .subscribe((res) => {
-        this.totalminutes = 0;
-        res
-          .map((r) => r.durationInMinutes)
-          .forEach((i) => {
-            this.totalminutes += i;
-          });
-        
-        this.showaddTimesheetEntry=false;
-        this.totalminutes = this.convertMinutesintoHours(this.totalminutes);
 
-        this.timeSheetEntries = res;
-        console.log(res);
+    this.timeSheetSvc
+      .getTimeSheetId(this.employeeId, this.todaysDate)
+      .subscribe((res) => {
+        this.timeSheetId = res;
+        this.fetchTimeSheetEntries(this.timeSheetId);
       });
   }
 
   onSubmit() {
-    this.timeSheetEntries.forEach((r) => {
-      r.fromTime = r.fromTime + ':00';
-      r.toTime = r.toTime + ':00';
-    });
-
     let timesheet: TimeSheet = {
-      id: 0,
-      timeSheetDate: new Date().toISOString().slice(0, 10),
-      status: '',
+      id: this.timeSheetId,
+      timeSheetDate: this.todaysDate,
+      status: 'Submitted',
       employeeId: 10,
       timeSheetEntries: this.timeSheetEntries,
-      statusChangedDate: new Date().toISOString().slice(0, 10)
+      statusChangedDate: this.todaysDate,
     };
 
-    this.timeSheetSvc.addTimeSheet(timesheet).subscribe((res) => {
-      this.timeSheetEntries.forEach((r) => {
-        r.fromTime = r.fromTime.split(':00').at(0)!;
-        r.toTime = r.toTime.split(':00').at(0)!;
+    this.timeSheetSvc
+      .changeTimeSheetStatus(this.timeSheetId, timesheet)
+      .subscribe((res) => {
+        alert('timesheet added');
       });
-      
-      alert('timesheet added');
+  }
+
+  onClickAddTimesheetEntry() {
+    this.showaddTimesheetEntry = true;
+  }
+  onClosePopup() {
+    this.showaddTimesheetEntry = false;
+  }
+
+  fetchTimeSheetEntries(timeSheetId: number) {
+    this.timeSheetSvc.getTimeSheetDetails(timeSheetId).subscribe((res) => {
+      this.totalminutes = 0;
+      this.timeSheetEntries = res;
+      this.timeSheetEntries.forEach((entry) => {
+        this.getDuration(entry);
+        this.totalminutes += entry.durationInMinutes;
+      });
+      this.totalminutes = this.convertMinutesintoHours(this.totalminutes);
+
+      console.log(res);
     });
   }
 
-  convertMinutesintoHours(minutes: number) {
-    let str = `${(minutes / 60).toFixed(0)}h: ${minutes % 60}m`;
-    return str;
+  onAddStateChange(isupdated: boolean) {
+    if (isupdated) {
+      this.fetchTimeSheetEntries(this.timeSheetId);
+    }
+    this.showaddTimesheetEntry = false;
   }
 
-  onClickAddTimesheetEntry(){
-    this.showaddTimesheetEntry=true;
+  getDuration(timeSheetEntry: TimeSheetEntry) {
+    let startTime = timeSheetEntry.fromTime;
+    let endTime = timeSheetEntry.toTime;
+    console.log(endTime);
+    if (startTime != '' && endTime != '') {
+      const startDate = new Date(`1970-01-01T${startTime}`);
+      const endDate = new Date(`1970-01-01T${endTime}`);
+
+      const durationMilliseconds = endDate.getTime() - startDate.getTime();
+      timeSheetEntry.durationInMinutes = durationMilliseconds / (1000 * 60);
+      timeSheetEntry.durationInHours = this.convertMinutesintoHours(
+        timeSheetEntry.durationInMinutes
+      );
+    }
   }
-  onClosePopup(){
-    this.showaddTimesheetEntry=false;
+  convertMinutesintoHours(minutes: number) {
+    let str = `${Math.floor(minutes / 60)}h: ${minutes % 60}m`;
+    return str;
   }
-  
 }

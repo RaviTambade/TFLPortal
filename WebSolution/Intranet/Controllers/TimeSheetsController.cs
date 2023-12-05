@@ -1,4 +1,3 @@
-using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 using Transflower.TFLPortal.Intranet.Responses;
 using Transflower.TFLPortal.TFLOBL.Entities;
@@ -41,8 +40,20 @@ public class TimeSheetsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<bool> InsertTimeSheet([FromBody] TimeSheet timeSheet)
+    public async Task<bool> InsertTimeSheetEntry([FromBody] TimeSheetEntry timeSheet)
     {
-        return await _service.InsertTimeSheet(timeSheet);
+        return await _service.InsertTimeSheetEntry(timeSheet);
+    }
+
+    [HttpGet("timesheet/id/{employeeId}/{date}")]
+    public async Task<int> GetTimeSheetId(int employeeId, DateTime date)
+    {
+        return await _service.GetTimeSheetId(employeeId, date);
+    }
+
+    [HttpPut("{timeSheetId}")]
+    public async Task<bool> ChangeTimeSheetStatus(int timeSheetId, TimeSheet timeSheet)
+    {
+        return await _service.ChangeTimeSheetStatus(timeSheetId,timeSheet);
     }
 }

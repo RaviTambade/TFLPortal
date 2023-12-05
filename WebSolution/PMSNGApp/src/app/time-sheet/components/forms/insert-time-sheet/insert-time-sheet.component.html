@@ -1,18 +1,18 @@
-
 <ng-template #insertTimesheetEnrty>
-<app-insert-time-sheet-entry></app-insert-time-sheet-entry>
+    <app-insert-time-sheet-entry [timeSheetId]="timeSheetId" (stateChangeEvent)="onAddStateChange($event)"></app-insert-time-sheet-entry>
 </ng-template>
 
 <button (click)="onClickAddTimesheetEntry()"> Add </button>
-<app-popup *ngIf="showaddTimesheetEntry" [templateToRender]="insertTimesheetEnrty" (closePopup)="onClosePopup()"></app-popup>
+<app-popup *ngIf="showaddTimesheetEntry" [templateToRender]="insertTimesheetEnrty"
+    (closePopup)="onClosePopup()"></app-popup>
 
 <br><br><br>
 <p> Date : {{todaysDate}}</p>
- 
+
 <table class="table-bordered">
     <thead>
         <tr>
-            
+
             <th>Category</th>
             <th>work</th>
             <th>StartTime</th>
@@ -28,11 +28,11 @@
             <td>{{timeSheetEntry.toTime}}</td>
             <td>{{timeSheetEntry.durationInHours}}</td>
         </tr>
-       
+
     </tbody>
-    
+
 </table>
 
 <p>Total Hours : {{totalminutes}}</p>
 
-<button type="submit" (click)="onSubmit()"> submit </button> 
+<button type="submit" (click)="onSubmit()"> submit </button>

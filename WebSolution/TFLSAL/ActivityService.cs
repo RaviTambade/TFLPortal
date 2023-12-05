@@ -387,10 +387,10 @@ public class ActivityService : IActivityService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "INSERT INTO activities(title,activitytype,description,createddate,assigneddate,startdate,duedate,assignedto,projectid,status,assignedby)    VALUES(@title,@acivitytype,@description,@createdDate,@assignDate,@startDate,@dueDate,@assignedTo,@projectId,@status,@assignedBy)";
+            string query = "INSERT INTO activities(title,activitytype,description,createddate,assigneddate,startdate,duedate,assignedto,projectid,status,assignedby)    VALUES(@title,@activitytype,@description,@createdDate,@assignDate,@startDate,@dueDate,@assignedTo,@projectId,@status,@assignedBy)";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@title", activity.Title);
-            cmd.Parameters.AddWithValue("@acivitytype", activity.ActivityType);
+            cmd.Parameters.AddWithValue("@activitytype", activity.ActivityType);
             cmd.Parameters.AddWithValue("@description", activity.Description);
             cmd.Parameters.AddWithValue("@createddate", activity.CreatedDate);
             cmd.Parameters.AddWithValue("@assigndate", activity.AssignDate);

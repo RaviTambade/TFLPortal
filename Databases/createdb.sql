@@ -1,4 +1,4 @@
--- Active: 1696576841746@@127.0.0.1@3306@pms
+-- Active: 1694968636816@@127.0.0.1@3306@pms
 
     DROP DATABASE IF EXISTS PMS;
     CREATE DATABASE PMS;
@@ -86,11 +86,12 @@
     CREATE TABLE timesheets(
             id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
             timesheetdate DATETIME ,
-            status ENUM (   
+            status ENUM ( 
+                'inprogress',
                 'submitted',
                 'approved',
                 'rejected'
-                ) DEFAULT 'submitted', 
+                ) DEFAULT 'inprogress', 
             statuschangeddate DATETIME DEFAULT  CURRENT_TIMESTAMP,
             employeeid INT NOT NULL,
             CONSTRAINT fk_timesheets_taskallocations FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE

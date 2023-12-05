@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Activity } from '../Models/Activity';
 import { environment } from 'src/environments/environment';
 import { Employee } from '../Models/Employee';
+import { Project } from 'src/app/projects/Models/project';
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,28 @@ getProjectDetails(projectId:number):Observable<any>{
   return this.httpClient.get<any>(url);
 }
 
+
+addActivity(addactivity:Activity):Observable<boolean>{
+  let url=this.serviceurl+"/workmgmt/activities/insert";
+  console.log("service called");
+  return this.httpClient.post<boolean>(url,addactivity);
+}
+
+
+getAllProject():Observable<Project[]>{
+  let url=this.serviceurl+"/projectmgmt/projects";
+  return this.httpClient.get<Project[]>(url);
+}
+
+
+
+// http://localhost:5263/api/projectmgmt/projectallocation/employees/1
+
+
+
+getAllEmployees(projectId:number):Observable<any[]>{
+  let url=this.serviceurl+"/projectmgmt/projectallocation/employees/"+projectId;
+  return this.httpClient.get<any[]>(url);
+}
 
 }

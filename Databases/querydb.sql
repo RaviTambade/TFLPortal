@@ -1,5 +1,5 @@
--- Active: 1696576841746@@127.0.0.1@3306@pms
-SELECT * from projects;
+-- Active: 1694968636816@@127.0.0.1@3306@pms
+SELECT * from activities;
 SELECT * from timesheetEntries;
 SELECT * FROM employees;
 show tables;
