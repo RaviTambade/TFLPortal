@@ -1,51 +1,60 @@
-<form [formGroup]="activityform" (ngSubmit)="onSubmit()">
+ <!-- <form [formGroup]="activityform" (ngSubmit)="onSubmit()">
+
+<p><label >Project Name :
+  <select id="projectid" name="projectid"  formControlName="projectid"(change)="onChange($event)">
+      <option *ngFor="let project of projects" [value]="project.id"  >{{project.title}}</option>
+    </select>
+  </label>
+
+
+  <label for="assignedto"  >Assign Employee :
+    <select id="assignedto" name="assignedto"  formControlName="assignedto">
+      <option *ngFor="let employee of employees" [value]="employee.employeeId"  >{{employee.fullName}}</option>
+    </select>
+  </label>
+
+
+</p>
+
+
     <p>
-      <label for="title">Title :</label>
+      <label for="title">Activity Title :
       <input type="text" id="title" name="title" formControlName="title">
-    </p>
+    </label>
    
-    <p>
-      <label for="activitytype">Activity Type :</label>
+      <label for="activitytype">Activity Type :
       <select id="activitytype" name="activitytype" formControlName="activitytype">
         <option value="task">task</option>
         <option value="userstory">userstory</option>
       </select>
-    </p>
-   
-    <p>
-      <label for="description">Description :</label>
+    </label>
+    
+      <label for="description">Description :
       <input type="text" id="description" name="description" formControlName="description">
+    </label>
     </p>
 
   
      <p>
-      <label for="assigndate">Assign Date :</label>
+      <label for="assigndate">Assign Date :
       <input type="date" id="assigndate" name="assigndate" formControlName="assigndate">
-     </p>
-      <p>
+    </label>
+
+    <label for="duedate">Due Date :
+      <input type="date" id="duedate" name="duedate" formControlName="duedate">
+    </label>
+     </p> -->
+      <!-- <p>
         <label for="startdate">Start Date :</label>
         <input type="text" id="startdate" name="startdate" formControlName="startdate">
-      </p>
+      </p> -->
 
-      <p>
-        <label for="duedate">Due Date :</label>
-        <input type="date" id="duedate" name="duedate" formControlName="duedate">
-       </p>
-
-       <p>
-        <label >Project : </label>
-        <select id="projectid" name="projectid"  formControlName="projectid"  >
-            <option *ngFor="let project of projects" [value]="project.id">{{project.title}}</option>
-          </select>
-      </p> 
-      <p>
+      
+      <!-- <p>
         <label for="assignedby">Assignedby </label>
         <input type="text" id="assignedby" name="assignedby" formControlName="assignedby">
-      </p> 
-      <p>
-        <label for="assignedto"  >Assigned To :</label>
-        <input type="text" id="assignedto" name="assignedto" formControlName="assignedto">
-      </p>
+      </p>  -->
+      
       <!-- <p>
         <label for="createddate">Created Date </label>
         <input type="text" id="createddate" name="createddate" formControlName="createddate">
@@ -56,7 +65,60 @@
       <input type="text" id="lname" name="lname"   disabled  >
     </p> -->
    
-    <p>
+    <!-- <p>
       <button type="submit" >Submit</button>
     </p>
+
+</form>  -->
+
+
+<form [formGroup]="activityform" (ngSubmit)="onSubmit()">
+
+  <div>
+    <label for="projectid">Project Name:</label>
+    <select id="projectid" name="projectid" formControlName="projectid" (change)="onChange($event)">
+      <option *ngFor="let project of projects" [value]="project.id">{{project.title}}</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="assignedto">Assign Employee:</label>
+    <select id="assignedto" name="assignedto" formControlName="assignedto">
+      <option *ngFor="let employee of employees" [value]="employee.employeeId">{{employee.fullName}}</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="title">Activity Title:</label>
+    <input type="text" id="title" name="title" formControlName="title">
+  </div>
+
+  <div>
+    <label for="activitytype">Activity Type:</label>
+    <select id="activitytype" name="activitytype" formControlName="activitytype">
+      <option value="task">Task</option>
+      <option value="userstory">User Story</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description" formControlName="description">
+  </div>
+
+  <div>
+    <label for="assigndate">Assign Date:</label>
+    <input type="date" id="assigndate" name="assigndate" formControlName="assigndate">
+    <!-- <input type="datetime" data-date="" data-date-format="yy-mm-dd" > -->
+  </div>
+
+  <div>
+    <label for="duedate">Due Date:</label>
+    <input type="date" id="duedate" name="duedate" formControlName="duedate" placeholder="yy-mm-dd">
+  </div>
+
+  <div>
+    <button type="submit">Submit</button>
+  </div>
+
 </form>

@@ -11,7 +11,8 @@ import { Project } from 'src/app/projects/Models/project';
 })
 export class AddActivityComponent implements OnInit {
 constructor(private service:ActivityService) {}
-
+projectId:any;
+employees:any[]=[];
 projects:Project[]=[];
   ngOnInit(): void {
     this.service.getAllProject().subscribe((res)=>{
@@ -53,8 +54,31 @@ activityform=new FormGroup({
 
 
 onSubmit(){
- this.service.addActivity(this.activity);
+  this.activity.activityType=this.activityform.get("activitytype")?.value;
+  this.activity.assignDate=this.activityform.get("activitytype")?.value;
+  this.activity.assignedBy=this.activityform.get("assignedby")?.value;
+  this.activity.assignedTo=this.activityform.get("assignedto")?.value;
+  this.activity.description=this.activityform.get("description")?.value;
+  this.activity.dueDate=this.activityform.get("duedate")?.value;
+  this.activity.projectId=this.activityform.get("projectid")?.value;
+  this.activity.startDate=this.activityform.get("startdate")?.value;
+  this.activity.status=this.activityform.get("activitytype")?.value;
+  this.activity.title=this.activityform.get("title")?.value;
+ this.service.addActivity(this.activity).subscribe((res)=>{
+  console.log(res);
+ });
  console.log(this.activityform.value)
 }
+
+
+onChange(e:any){
+ this.projectId= e.target.value;
+  this.service.getAllEmployees(this.projectId).subscribe((res)=>{
+    console.log(res);
+    this.employees=res;
+  })
+}
+
+
 
 }
