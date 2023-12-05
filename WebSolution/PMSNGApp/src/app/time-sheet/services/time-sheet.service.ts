@@ -4,7 +4,6 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { TimeSheetEntry } from '../models/timesheetentry';
 import { TimeSheet } from '../models/timesheet';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -13,20 +12,6 @@ export class TimeSheetService {
 
   private timeSheetUrl: string =
     'http://localhost:5263/api/workmgmt/timesheets';
-
-  timeSheetEntries: TimeSheetEntry[] = [];
-  private subject = new Subject<TimeSheetEntry[]>();
-
-  AddTimeSheetEntries(timeSheetEntry: TimeSheetEntry) {
-    // timeSheetEntry.fromTime=timeSheetEntry.fromTime+":00"
-    // timeSheetEntry.toTime=timeSheetEntry.toTime+":00"
-    this.timeSheetEntries.push(timeSheetEntry);
-    this.subject.next(this.timeSheetEntries);
-  }
-
-  ReceiveTimeSheetEntries(): Observable<TimeSheetEntry[]> {
-    return this.subject.asObservable();
-  }
 
   getTimeSheetsOfEmployee(employeeId: number): Observable<TimeSheet[]> {
     let url = `${this.timeSheetUrl}/${employeeId}`;
@@ -38,8 +23,21 @@ export class TimeSheetService {
     return this.http.get<TimeSheetEntry[]>(url);
   }
 
-  addTimeSheet(timesheet: TimeSheet): Observable<any> {
+  addTimeSheetEntry(timesheetEntry: TimeSheetEntry): Observable<any> {
     let url = this.timeSheetUrl;
-    return this.http.post(url, timesheet);
+    return this.http.post(url, timesheetEntry);
+  }
+
+  getTimeSheetId(employeeId: number, date: string): Observable<number> {
+    let url = `${this.timeSheetUrl}/timesheet/id/${employeeId}/${date}`;
+    return this.http.get<number>(url);
+  }
+
+  changeTimeSheetStatus(
+    timeSheetId: number,
+    timesheet: TimeSheet
+  ): Observable<boolean> {
+    let url = `${this.timeSheetUrl}/${timeSheetId}`;
+    return this.http.put<boolean>(url, timesheet);
   }
 }
