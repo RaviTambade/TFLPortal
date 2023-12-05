@@ -308,9 +308,9 @@ public class ActivityService : IActivityService
         return activities;
     }
 
-    public async Task<TFLOBL.Entities.Activity> GetActivityDetails(int activityId)
+    public async Task<ActivityDetails> GetActivityDetails(int activityId)
     {
-        TFLOBL.Entities.Activity activity = null;
+       ActivityDetails activity = null;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -337,7 +337,7 @@ public class ActivityService : IActivityService
                 int assignToUserId = int.Parse(reader["assigntouserid"].ToString());
                 int assignByUserId = int.Parse(reader["assignbyuserid"].ToString());
                 string projectName = reader["projectname"].ToString();
-                activity = new TFLOBL.Entities.Activity()
+                activity = new ActivityDetails()
                 {
                     Id = activityId,
                     ActivityType = activitytype,
@@ -387,10 +387,10 @@ public class ActivityService : IActivityService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "INSERT INTO activities(title,activitytype,description,createddate,assigneddate,startdate,duedate,assignedto,projectid,status,assignedby)    VALUES(@title,@acivitytype,@description,@createdDate,@assignDate,@startDate,@dueDate,@assignedTo,@projectId,@status,@assignedBy)";
+            string query = "INSERT INTO activities(title,activitytype,description,createddate,assigneddate,startdate,duedate,assignedto,projectid,status,assignedby)    VALUES(@title,@activitytype,@description,@createdDate,@assignDate,@startDate,@dueDate,@assignedTo,@projectId,@status,@assignedBy)";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@title", activity.Title);
-            cmd.Parameters.AddWithValue("@acivitytype", activity.ActivityType);
+            cmd.Parameters.AddWithValue("@activitytype", activity.ActivityType);
             cmd.Parameters.AddWithValue("@description", activity.Description);
             cmd.Parameters.AddWithValue("@createddate", activity.CreatedDate);
             cmd.Parameters.AddWithValue("@assigndate", activity.AssignDate);

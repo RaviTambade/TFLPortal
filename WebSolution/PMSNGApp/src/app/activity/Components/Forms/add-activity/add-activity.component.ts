@@ -11,7 +11,8 @@ import { Project } from 'src/app/projects/Models/project';
 })
 export class AddActivityComponent implements OnInit {
 constructor(private service:ActivityService) {}
-
+projectId:any;
+employees:any[]=[];
 projects:Project[]=[];
   ngOnInit(): void {
     this.service.getAllProject().subscribe((res)=>{
@@ -53,8 +54,52 @@ activityform=new FormGroup({
 
 
 onSubmit(){
- this.service.addActivity(this.activity);
+ activitytype: "task"
+assigndate: "2023-12-21"
+assignedby: null
+assignedto: "6"
+createddate: null
+description: "gcvnbjmn"
+duedate: "2023-12-27"
+projectid: "1"
+startdate: null
+status: null
+title: "cgcb"
+  this.activity.activityType=this.activityform.get("activitytype")?.value;
+  this.activity.assignDate=this.activityform.get("assigndate")?.value;
+  this.activity.assignedBy=this.activityform.get("assignedby")?.value;
+  this.activity.assignedTo=this.activityform.get("assignedto")?.value;
+  this.activity.description=this.activityform.get("description")?.value;
+  this.activity.dueDate=this.activityform.get("duedate")?.value;
+  this.activity.projectId=this.activityform.get("projectid")?.value;
+  this.activity.startDate=this.activityform.get("startdate")?.value;
+  this.activity.title=this.activityform.get("title")?.value;
+
+  // this.activity.activityType="task";
+  // this.activity.assignDate="2023-12-21";
+  this.activity.assignedBy=1;
+  // this.activity.assignedTo=6
+  // this.activity.description="gcvnbjmn"
+  // this.activity.dueDate="2023-12-27"
+  // this.activity.projectId= 1
+  this.activity.startDate="2023-12-28"
+  // this.activity.title="cgcb"
+  this.activity.status="todo"
+  console.log(this.activity);
+ this.service.addActivity(this.activity).subscribe((res)=>{
+ });
  console.log(this.activityform.value)
 }
+
+
+onChange(e:any){
+ this.projectId= e.target.value;
+  this.service.getAllEmployees(this.projectId).subscribe((res)=>{
+    console.log(res);
+    this.employees=res;
+  })
+}
+
+
 
 }

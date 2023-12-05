@@ -64,9 +64,9 @@ public class ActivityController : ControllerBase
     }
 
     [HttpGet("activity/{activityId}")]
-    public async Task<Transflower.TFLPortal.TFLOBL.Entities.Activity> GetActivityDetails(int activityId)
+    public async Task<ActivityDetails> GetActivityDetails(int activityId)
     {
-        Transflower.TFLPortal.TFLOBL.Entities.Activity activity = await _service.GetActivityDetails(activityId);
+        ActivityDetails activity = await _service.GetActivityDetails(activityId);
         return activity;
     }
 
