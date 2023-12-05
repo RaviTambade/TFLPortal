@@ -13,7 +13,5 @@ public class Activity
    public int ProjectId{get;set;}
    public string? Status{get;set;}
    public int AssignedBy{get; set;}
-   public  Employee AssigntoEmployee{get;set;}
-   public  Employee AssignByEmployee{get;set;}
-   public  Project Project{get;set;}
+  
 }
