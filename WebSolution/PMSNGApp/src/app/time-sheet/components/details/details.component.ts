@@ -16,7 +16,7 @@ export class DetailsComponent  {
 
   constructor(private timeSheetSvc:TimeSheetService){}
   ngOnChanges(changes:SimpleChanges): void {
-    this.timeSheetSvc.getTimeSheetDetails(changes['timeSheetId'].currentValue).subscribe((res)=>{
+    this.timeSheetSvc.getTimeSheetEntries(changes['timeSheetId'].currentValue).subscribe((res)=>{
       this.timeSheetEntries=res;
     })
   }
