@@ -61,3 +61,14 @@ SELECT * from activities where projectid=1;
 
 -- SHOW all activities;
 SELECT * from activities;
+
+-- all unassigned employee
+SELECT id
+FROM employees
+WHERE id not in  
+(SELECT DISTINCT employeeid
+FROM projectallocations
+GROUP BY employeeid
+HAVING COUNT(CASE WHEN status = 'yes' THEN 1 END) > 0);
+
+
