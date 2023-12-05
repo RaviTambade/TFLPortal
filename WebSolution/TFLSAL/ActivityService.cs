@@ -308,9 +308,9 @@ public class ActivityService : IActivityService
         return activities;
     }
 
-    public async Task<TFLOBL.Entities.Activity> GetActivityDetails(int activityId)
+    public async Task<ActivityDetails> GetActivityDetails(int activityId)
     {
-        TFLOBL.Entities.Activity activity = null;
+       ActivityDetails activity = null;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -337,7 +337,7 @@ public class ActivityService : IActivityService
                 int assignToUserId = int.Parse(reader["assigntouserid"].ToString());
                 int assignByUserId = int.Parse(reader["assignbyuserid"].ToString());
                 string projectName = reader["projectname"].ToString();
-                activity = new TFLOBL.Entities.Activity()
+                activity = new ActivityDetails()
                 {
                     Id = activityId,
                     ActivityType = activitytype,

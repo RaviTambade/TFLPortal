@@ -1,21 +1,22 @@
 -- Active: 1696576841746@@127.0.0.1@3306@pms
 
 DROP PROCEDURE IF EXISTS getorcreatetimesheet;
-CREATE PROCEDURE getorcreatetimesheet(IN timesheetdate date,IN empid INT,OUT timesheetid INT)
+CREATE PROCEDURE getorcreatetimesheet(IN timesheetdate date,IN empid INT)
 BEGIN
 DECLARE tid INT;
  SELECT id into tid from timesheets  where timesheets.timesheetdate =timesheetdate and timesheets.employeeid=empid;
  IF tid IS NULL THEN
  INSERT INTO timesheets(timesheetdate,employeeid) VALUES (timesheetdate,empid);
- SET timesheetid=LAST_INSERT_ID();
 ELSE
- SET timesheetid=tid;
+ SELECT * FROM timesheets WHERE id=tid;
 END IF;
 END;
 
--- CALL getorcreatetimesheet('2013-01-15',10,@timesheetid);
--- SELECT * FROM timesheets;
--- SELECT @timesheetid;
+
+
+CALL getorcreatetimesheet('2013-01-15',10);
+SELECT * FROM timesheets;
+SELECT @timesheetid;
 
 
 -- DELIMITER //

@@ -7,6 +7,7 @@ import { CalendarDay } from './CalenderDay';
   styleUrls: ['./calender.component.css'],
 })
 export class CalenderComponent {
+[x: string]: any;
   public calendar: CalendarDay[] = [];
   public monthNames = [
     'January',

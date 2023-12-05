@@ -1,5 +1,5 @@
 export class Activity{
-    constructor(public id:number,
+     constructor(public id:number,
         public  title:string,
         public  description:string,
         public  activityType:string,

@@ -1,14 +1,20 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  SimpleChange,
+  SimpleChanges,
+} from '@angular/core';
 import { TimeSheetEntry } from 'src/app/time-sheet/models/timesheetentry';
 import { TimeSheetService } from 'src/app/time-sheet/services/time-sheet.service';
 
 @Component({
-  selector: 'app-insert-time-sheet-entry',
-  templateUrl: './insert-time-sheet-entry.component.html',
-  styleUrls: ['./insert-time-sheet-entry.component.css'],
+  selector: 'app-update-timesheet-entry',
+  templateUrl: './update-timesheet-entry.component.html',
+  styleUrls: ['./update-timesheet-entry.component.css'],
 })
-export class InsertTimeSheetEntryComponent {
+export class UpdateTimesheetEntryComponent {
   activitiyTypes: string[] = [
     'task',
     'userstory',
@@ -21,42 +27,38 @@ export class InsertTimeSheetEntryComponent {
     'clientcall',
     'other',
   ];
-  timeSheetEntry: TimeSheetEntry = {
-    id: 0,
-    fromTime: '',
-    toTime: '',
-    durationInMinutes: 0,
-    durationInHours: '',
-    timeSheetId: 0,
-    work: '',
-    workCategory: '',
-    description: '',
-  };
 
-  @Input() timeSheetId!: number;
+  @Input() timeSheetEntry!: TimeSheetEntry;
   @Output() stateChangeEvent = new EventEmitter<boolean>();
   constructor(private timeSheetService: TimeSheetService) {}
 
+  ngOnChanges(changes: SimpleChanges) {
+    this.timeSheetEntry = changes['timeSheetEntry'].currentValue;
+    this.timeSheetEntry.fromTime=this.timeSheetEntry.fromTime.split(':00').at(0)!;
+    this.timeSheetEntry.toTime=this.timeSheetEntry.toTime.split(':00').at(0)!;
+  }
+
   onClick() {
     let timeSheetEntry: TimeSheetEntry = {
-      id: 0,
-      fromTime: this.timeSheetEntry.fromTime + ':00',
-      toTime: this.timeSheetEntry.toTime + ':00',
+      id: this.timeSheetEntry.id,
+      fromTime: this.timeSheetEntry.fromTime+':00',
+      toTime: this.timeSheetEntry.toTime+':00',
       durationInMinutes: this.timeSheetEntry.durationInMinutes,
       durationInHours: this.timeSheetEntry.durationInHours,
-      timeSheetId: this.timeSheetId,
+      timeSheetId: this.timeSheetEntry.timeSheetId,
       work: this.timeSheetEntry.work,
       workCategory: this.timeSheetEntry.workCategory,
       description: this.timeSheetEntry.description,
     };
 
-    this.timeSheetService.addTimeSheetEntry(timeSheetEntry).subscribe((res) => {
-      if (res) {
-        this.stateChangeEvent.emit(true);
-      }
-    });
+    this.timeSheetService
+      .updateTimeSheetEntry(timeSheetEntry.id, timeSheetEntry)
+      .subscribe((res) => {
+        if (res) {
+          this.stateChangeEvent.emit(true);
+        }
+      });
   }
-
   getDuration() {
     let startTime = this.timeSheetEntry.fromTime;
     let endTime = this.timeSheetEntry.toTime;

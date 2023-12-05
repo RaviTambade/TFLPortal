@@ -27,33 +27,70 @@ public class TimeSheetsController : ControllerBase
     }
 
     [HttpGet("{employeeId}/date/{date}")]
-    public async Task<TimeSheet> GetTimeSheetOfEmployee(int employeeId, string date)
+    public async Task<TimeSheetResponse> GetTimeSheetOfEmployee(int employeeId, string date)
     {
         TimeSheet timesheet = await _service.GetTimeSheetOfEmployee(employeeId, date);
-        return timesheet;
+
+        if (timesheet.Employee != null)
+        {
+            var user = await _apiservice.GetUserDetails(timesheet.Employee.UserId.ToString());
+            TimeSheetResponse timeSheetResponse = new TimeSheetResponse
+            {
+                Id = timesheet.Id,
+                TimeSheetDate = timesheet.TimeSheetDate,
+                StatusChangedDate = timesheet.StatusChangedDate,
+                Status = timesheet.Status,
+                TimeSheetEntries = timesheet.TimeSheetEntries,
+                EmployeeId = timesheet.EmployeeId,
+                EmployeeName = user[0].FullName
+            };
+            return timeSheetResponse;
+        }
+        return new TimeSheetResponse() { };
     }
 
     [HttpGet("timesheetentries/{timeSheetId}")]
-    public async Task<List<TimeSheetEntry>> GetTimeSheetDetails(int timeSheetId)
+    public async Task<List<TimeSheetEntry>> GetTimeSheetEntries(int timeSheetId)
     {
-        return await _service.GetTimeSheetDetails(timeSheetId);
+        return await _service.GetTimeSheetEntries(timeSheetId);
     }
 
-    [HttpPost]
-    public async Task<bool> InsertTimeSheetEntry([FromBody] TimeSheetEntry timeSheet)
+    [HttpPost("{employeeId}/{date}")]
+    public async Task<bool> InsertTimeSheet(int employeeId, DateTime date)
     {
-        return await _service.InsertTimeSheetEntry(timeSheet);
+        return await _service.InsertTimeSheet(employeeId, date);
     }
 
-    [HttpGet("timesheet/id/{employeeId}/{date}")]
-    public async Task<int> GetTimeSheetId(int employeeId, DateTime date)
+    [HttpPost("timesheetentries")]
+    public async Task<bool> InsertTimeSheetEntry([FromBody] TimeSheetEntry timeSheetEntry)
     {
-        return await _service.GetTimeSheetId(employeeId, date);
+        return await _service.InsertTimeSheetEntry(timeSheetEntry);
     }
 
     [HttpPut("{timeSheetId}")]
     public async Task<bool> ChangeTimeSheetStatus(int timeSheetId, TimeSheet timeSheet)
     {
-        return await _service.ChangeTimeSheetStatus(timeSheetId,timeSheet);
+        return await _service.ChangeTimeSheetStatus(timeSheetId, timeSheet);
+    }
+
+    [HttpPut("timesheetentries/{timeSheetEntryId}")]
+    public async Task<bool> UpdateTimeSheetEntry(
+        int timeSheetEntryId,
+        TimeSheetEntry timeSheetEntry
+    )
+    {
+        return await _service.UpdateTimeSheetEntry(timeSheetEntryId, timeSheetEntry);
+    }
+
+    [HttpDelete("timesheetentries/remove/{timeSheetEntryId}")]
+    public async Task<bool> RemoveTimeSheetEntry(int timeSheetEntryId)
+    {
+        return await _service.RemoveTimeSheetEntry(timeSheetEntryId);
+    }
+
+    [HttpDelete("timesheetentries/removeall/{timeSheetId}")]
+    public async Task<bool> RemoveAllTimeSheetEntry(int timeSheetId)
+    {
+        return await _service.RemoveAllTimeSheetEntry(timeSheetId);
     }
 }
