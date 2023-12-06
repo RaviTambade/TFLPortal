@@ -9,6 +9,7 @@ public interface IActivityService
      public Task<List<TFLOBL.Entities.Activity>> GetActivitiesByProject(int projectId, int assignedTo, string activityType);
      public Task<ActivityDetails> GetActivityDetails(int activityId);
      public Task<bool> Insert(TFLOBL.Entities.Activity activity);
+     public Task<bool> UpdateActivity(TFLOBL.Entities.Activity activity,int projectId,int assignedTo);
 
      Task<List<TFLOBL.Entities.Activity>> GetAllActivitiesOfEmployee(int employeeId);
 

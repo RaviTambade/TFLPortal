@@ -96,6 +96,13 @@ public class ActivityController : ControllerBase
  
 
 
+   [HttpPut("Update")]
+    public async Task<bool> UpdateActivity(Transflower.TFLPortal.TFLOBL.Entities.Activity activity,int projectId,int assignedTo)
+    {
+        bool status = await _service.UpdateActivity(activity,projectId,assignedTo);
+        return status;
+
+    }
 
 
 

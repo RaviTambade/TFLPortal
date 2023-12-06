@@ -598,4 +598,40 @@ public class ActivityService : IActivityService
         }
         return activities;
     } 
+
+
+    public async Task<bool> UpdateActivity(TFLOBL.Entities.Activity activity,int projectId,int assignedTo)
+    {
+        bool status = false;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query = "Update  activities set startdate=@startdate,status=@status where projectid=@projectId  and assignedto=@assignedTo";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@startDate", activity.StartDate);
+            cmd.Parameters.AddWithValue("@assignedTo", assignedTo);
+            cmd.Parameters.AddWithValue("@projectId", projectId);
+            cmd.Parameters.AddWithValue("@status", activity.Status);
+    
+            await connection.OpenAsync();
+            int rowsAffected = cmd.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                status = true;
+            }
+            await connection.CloseAsync();
+
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return status;
+
+    }
 }
