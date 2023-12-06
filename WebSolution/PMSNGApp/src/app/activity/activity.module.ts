@@ -5,13 +5,15 @@ import { ActivityDetailsComponent } from './Components/activity-details/activity
 import { AddActivityComponent } from './Components/Forms/add-activity/add-activity.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateActivityComponent } from './Components/Forms/update-activity/update-activity.component';
+import { ProjectActivitiesComponent } from './Components/project-activities/project-activities.component';
 
 @NgModule({
   declarations: [
     ActivityListComponent,
     ActivityDetailsComponent,
     AddActivityComponent,
-    UpdateActivityComponent
+    UpdateActivityComponent,
+    ProjectActivitiesComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { UpdateActivityComponent } from './Components/Forms/update-activity/upda
     ActivityDetailsComponent,
     ActivityListComponent,
     AddActivityComponent,
-    UpdateActivityComponent
+    UpdateActivityComponent,
+    ProjectActivitiesComponent
     
   ]
 })

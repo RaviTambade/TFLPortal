@@ -74,4 +74,22 @@ updateActivity(status:string,activityId:number):Observable<boolean>{
   let url=this.serviceurl+"/workmgmt/activities/Update/"+status+"/"+activityId;
   return this.httpClient.put<boolean>(url,status);
 }
+
+
+// http://localhost:5263/api/projectmgmt/projects
+
+getAllProjects():Observable<Project[]>{
+  let url=this.serviceurl+"/projectmgmt/projects";
+  return this.httpClient.get<Project[]>(url);
+
+}
+
+// http://localhost:5263/api/workmgmt/activities/1
+
+getAllActivitiesByProject(projectId:number):Observable<Activity[]>{
+  let url=this.serviceurl+"/workmgmt/activities/"+projectId;
+  console.log(url);
+  return this.httpClient.get<Activity[]>(url);
+}
+
 }

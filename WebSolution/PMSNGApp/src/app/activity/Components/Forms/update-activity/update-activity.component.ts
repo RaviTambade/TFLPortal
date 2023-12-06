@@ -55,9 +55,9 @@ export class UpdateActivityComponent implements OnInit{
   }
 
 
-  onChange(activity:Activity){
+  onChange(activityId:number){
 
-  this.activityId=activity.id;
+  this.activityId=activityId;
   this.isFalse=true;
   
    }
