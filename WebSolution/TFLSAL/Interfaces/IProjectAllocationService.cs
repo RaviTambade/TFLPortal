@@ -7,7 +7,7 @@ public interface IProjectAllocationService {
 
     Task<bool> ReleaseMemberFromProject(int projectId,int employeeId);
 
-    Task<List<ProjectAllocation>> GetAllUnassignedEmployees(string status);
+    Task<List<Employee>> GetAllUnassignedEmployees();
 
     Task<List<ProjectAllocation>> GetAllAssignedEmployees(string status);
 
@@ -18,6 +18,5 @@ public interface IProjectAllocationService {
     Task<List<ProjectAllocation>> GetUnassignedEmployeesOfProject(int projectId);
 
     Task<List<ProjectAllocation>> GetAllProjectsOfEmployeeBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate);
-
 
 }

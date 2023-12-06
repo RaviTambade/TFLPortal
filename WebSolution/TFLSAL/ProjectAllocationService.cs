@@ -92,31 +92,27 @@ public class ProjectAllocationService : IProjectAllocationService
         return status;
     }
 
-    public async Task<List<ProjectAllocation>> GetAllUnassignedEmployees(string status)
+    public async Task<List<Employee>> GetAllUnassignedEmployees()
     {
-        List<ProjectAllocation> employees= new List<ProjectAllocation>();
+        List<Employee> employees= new List<Employee>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query ="Select * from projectallocations where status=@status";
+            string query ="SELECT * FROM employees WHERE id not in (SELECT employeeid FROM projectallocations GROUP BY employeeid HAVING COUNT(CASE WHEN status = 'yes' THEN 1 END) > 0)";
                 
             MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@status", "no");
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
-                ProjectAllocation employee = new ProjectAllocation
+                Employee employee = new Employee
                 {
                     Id = reader.GetInt32("id"),
-                    ProjectId = reader.GetInt32("projectid"),
-                    EmployeeId = reader.GetInt32("employeeid"),
-                    Membership = reader.GetString("membership"),
-                    AssignDate = reader.GetDateTime("assigndate"),
-                    ReleaseDate = reader.GetDateTime("releasedate"),
-                    Status=status
-
+                    UserId = reader.GetInt32("userid"),
+                    HireDate = reader.GetDateTime("hiredate"),
+                    ReportingId = reader.GetInt32("reportingid"),
+                    Salary = reader.GetInt32("salary"),
                 };
                 employees.Add(employee);
             }
