@@ -1,0 +1,65 @@
+<div>
+    <label for="project">Project Name:</label>
+    <select id="project" name="project"  (change)="getSelectedProjectId($event)" >
+      <option *ngFor="let project of projects" [value]="project.id">{{project.title}}</option>
+    </select>
+  </div>
+
+
+  <!-- <div  *ngFor="let activity of activities">
+    <p>activityType:{{activity.activityType}}</p>
+    <p>assignDate:{{activity.assignDate}}</p>
+    <p>assignedBy:{{activity.assignedBy}}</p>
+    <p>assignedTo:{{activity.assignedTo}}</p>
+    <p>description:{{activity.description}}</p>
+    <p>dueDate:{{activity.dueDate}}</p>
+    <p>activityId:{{activity.id}}</p>
+    <p>startDate:{{activity.startDate}}</p>
+    <p>status:{{activity.status}}</p>
+    <p>title:{{activity.title}}</p>
+  </div> -->
+
+  
+  <div class="button-container">
+    <button class="button"  (click)="showTasks('todo')">ToDo</button>
+    <button class="button"  (click)="showTasks('inprogress')">Inprogress</button>
+    <button class="button"   (click)="showTasks('completed')">Completed</button>
+  </div>
+
+    <div id="tasksContainer">
+       <div class="container">
+    <h2> My Activities</h2>
+    <div class="card">
+        <table class="table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>activityType</th>
+                    <th>assignDate</th>
+                    <th>assignedBy</th>
+                    <th>assignedTo</th>
+                    <th>description</th>
+                    <th>dueDate</th>
+                    <th>activityId</th>
+                    <th>startDate</th>
+                    <th>status</th>
+                    <th>title</th>
+                   </tr>
+            </thead>
+            <tbody *ngFor="let activity of tasks">
+                <tr>
+                    <td> {{activity.activityType}}</td>
+                    <td>{{activity.assignDate}}</td>
+                    <td> {{activity.assignedBy}}</td>
+                    <td> {{activity.assignedTo}}</td>
+                    <td>{{activity.description}}</td>
+                    <td>{{activity.dueDate}}</td>
+                    <td> {{activity.id}}</td>
+                    <td>{{activity.startDate}}</td>
+                    <td> {{activity.status}}</td>
+                    <td> title:{{activity.title}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    </div>

@@ -3,23 +3,29 @@ import { CommonModule } from '@angular/common';
 import { ActivityListComponent } from './Components/activity-list/activity-list.component';
 import { ActivityDetailsComponent } from './Components/activity-details/activity-details.component';
 import { AddActivityComponent } from './Components/Forms/add-activity/add-activity.component';
-import { ReactiveFormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UpdateActivityComponent } from './Components/Forms/update-activity/update-activity.component';
+import { ProjectActivitiesComponent } from './Components/project-activities/project-activities.component';
 
 @NgModule({
   declarations: [
     ActivityListComponent,
     ActivityDetailsComponent,
-    AddActivityComponent
+    AddActivityComponent,
+    UpdateActivityComponent,
+    ProjectActivitiesComponent
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports: [
     ActivityDetailsComponent,
     ActivityListComponent,
-    AddActivityComponent
+    AddActivityComponent,
+    UpdateActivityComponent,
+    ProjectActivitiesComponent
     
   ]
 })
