@@ -61,3 +61,11 @@ SELECT * from activities where projectid=1;
 
 -- SHOW all activities;
 SELECT * from activities;
+
+
+SELECT id
+FROM employees
+WHERE id not in (
+    SELECT employeeid
+    FROM projectallocations
+    WHERE status = 'no');
