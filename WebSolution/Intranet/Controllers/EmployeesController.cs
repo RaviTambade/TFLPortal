@@ -31,7 +31,6 @@ public class EmployeesController : ControllerBase
             Salary = employee.Salary,
             FirstName = user.FirstName,
             LastName = user.LastName,
-            Gender = user.Gender,
             Email = user.Email,
             ContactNumber = user.ContactNumber
         };

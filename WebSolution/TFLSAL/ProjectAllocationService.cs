@@ -129,14 +129,14 @@ public class ProjectAllocationService : IProjectAllocationService
         return employees;
     }
 
-    public async Task<List<ProjectAllocation>> GetAllAssignedEmployees(string status)
+    public async Task<List<ProjectAllocationDetails>> GetAllAssignedEmployees(string status)
     {
-        List<ProjectAllocation> employees= new List<ProjectAllocation>();
+        List<ProjectAllocationDetails> employees= new List<ProjectAllocationDetails>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query ="Select * from projectallocations where status=@status";
+            string query ="Select * from projectallocations inner join employees where projectallocations.status=@status";
                 
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@status", status);
@@ -144,14 +144,17 @@ public class ProjectAllocationService : IProjectAllocationService
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
-                ProjectAllocation employee = new ProjectAllocation
+                ProjectAllocationDetails employee = new ProjectAllocationDetails
                 {
                     Id = reader.GetInt32("id"),
                     ProjectId = reader.GetInt32("projectid"),
                     EmployeeId = reader.GetInt32("employeeid"),
                     Membership = reader.GetString("membership"),
                     AssignDate = reader.GetDateTime("assigndate"),
-                    Status=status
+                    UserId = reader.GetInt32("userid"),
+                    HireDate = reader.GetDateTime("hiredate"),
+                    ReportingId = reader.GetInt32("reportingid"),
+                    Salary = reader.GetInt32("salary"),
 
                 };
                 employees.Add(employee);
@@ -209,14 +212,14 @@ public class ProjectAllocationService : IProjectAllocationService
         return projects;
     }
     
-    public async Task<List<ProjectAllocation>> GetAssignedEmployeesOfProject(int projectId)
+    public async Task<List<ProjectAllocationDetails>> GetAssignedEmployeesOfProject(int projectId)
     {
-        List<ProjectAllocation> employees= new List<ProjectAllocation>();
+        List<ProjectAllocationDetails> employees= new List<ProjectAllocationDetails>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query ="select projectallocations.*,employees.userid from projectallocations inner join employees on projectallocations.employeeid=employees.id where status=@status and projectid=@projectId" ;
+            string query ="select * from employees inner join projectallocations on projectallocations.employeeid=employees.id where projectallocations.status=@status and projectallocations.projectid=@projectId" ;
                 
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);
@@ -225,16 +228,17 @@ public class ProjectAllocationService : IProjectAllocationService
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
-                ProjectAllocation employee = new ProjectAllocation
+                ProjectAllocationDetails employee = new ProjectAllocationDetails
                 {
                     Id = reader.GetInt32("id"),
+                    UserId = reader.GetInt32("userid"),
+                    HireDate = reader.GetDateTime("hiredate"),
+                    ReportingId = reader.GetInt32("reportingid"),
+                    Salary = reader.GetInt32("salary"),
                     ProjectId = reader.GetInt32("projectid"),
                     EmployeeId = reader.GetInt32("employeeid"),
                     Membership = reader.GetString("membership"),
-                    AssignDate = reader.GetDateTime("assigndate"),
-                    Status=reader.GetString("status"),
-                    Employee = new Employee { UserId = reader.GetInt32("userid") }
-
+                    AssignDate = reader.GetDateTime("assigndate")
                 };
                 employees.Add(employee);
             }
@@ -251,14 +255,14 @@ public class ProjectAllocationService : IProjectAllocationService
         return employees;
     }
 
-    public async Task<List<ProjectAllocation>> GetUnassignedEmployeesOfProject(int projectId)
+    public async Task<List<ProjectAllocationDetails>> GetUnassignedEmployeesOfProject(int projectId)
     {
-        List<ProjectAllocation> employees= new List<ProjectAllocation>();
+        List<ProjectAllocationDetails> employees= new List<ProjectAllocationDetails>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query ="select projectallocations.*,employees.userid from projectallocations inner join employees on projectallocations.employeeid=employees.id where status=@status and projectid=@projectId" ;
+            string query ="select * from employees inner join projectallocations on projectallocations.employeeid=employees.id where projectallocations.status=@status and projectallocations.projectid=@projectId" ;
                 
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);
@@ -267,16 +271,17 @@ public class ProjectAllocationService : IProjectAllocationService
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
-                ProjectAllocation employee = new ProjectAllocation
-                {
+                ProjectAllocationDetails employee = new ProjectAllocationDetails
+                    {
                     Id = reader.GetInt32("id"),
-                    ProjectId = reader.GetInt32("projectid"),
+                    UserId = reader.GetInt32("userid"),
+                    HireDate = reader.GetDateTime("hiredate"),
+                    ReportingId = reader.GetInt32("reportingid"),
+                    Salary = reader.GetInt32("salary"),
+                    ProjectId = projectId,
                     EmployeeId = reader.GetInt32("employeeid"),
                     Membership = reader.GetString("membership"),
                     AssignDate = reader.GetDateTime("assigndate"),
-                    Status=reader.GetString("status"),
-                    Employee = new Employee { UserId = reader.GetInt32("userid") }
-
                 };
                 employees.Add(employee);
             }

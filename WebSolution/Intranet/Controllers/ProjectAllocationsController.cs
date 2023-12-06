@@ -52,15 +52,10 @@ public class ProjectAllocationController : ControllerBase
                 {
                     FirstName = userDetail.FirstName,
                     LastName = userDetail.LastName,
-                    BirthDate = userDetail.BirthDate,
-                    AadharId = userDetail.AadharId,
-                    Gender = userDetail.Gender,
                     Email = userDetail.Email,
                     EmployeeId = employee.Id,
                     ContactNumber = userDetail.ContactNumber,
                     Salary = employee.Salary,
-                    Id = employee.UserId,
-
                 };
                 employeeResponses.Add(employeeResponse);
             }
@@ -72,12 +67,12 @@ public class ProjectAllocationController : ControllerBase
     public async Task<List<ProjectAllocationResponse>> GetAllAssignedEmployees(string status)
     {
         var employees = await _service.GetAllAssignedEmployees(status);
-        string userIds = string.Join(',', employees.Select(m => m.Employee.UserId).ToList());
+        string userIds = string.Join(',', employees.Select(m => m.UserId).ToList());
         var users = await _apiService.GetUserDetails(userIds);
         List<ProjectAllocationResponse> projectAllocationResponse = new();
         foreach (var employee in employees)
         {
-            var userDetail = users.FirstOrDefault(u => u.Id == employee.Employee.UserId);
+            var userDetail = users.FirstOrDefault(u => u.Id == employee.UserId);
             if (userDetail != null)
             {
                 var projectResponse = new ProjectAllocationResponse
@@ -111,12 +106,12 @@ public class ProjectAllocationController : ControllerBase
     public async Task<List<ProjectAllocationResponse>> GetUnassignedEmployeesOfProject(int projectId)
     {
         var employees = await _service.GetUnassignedEmployeesOfProject(projectId);
-        string userIds = string.Join(',', employees.Select(m => m.Employee.UserId).ToList());
+        string userIds = string.Join(',', employees.Select(m => m.UserId).ToList());
         var users = await _apiService.GetUserDetails(userIds);
         List<ProjectAllocationResponse> projectAllocationResponse = new();
         foreach (var employee in employees)
         {
-            var userDetail = users.FirstOrDefault(u => u.Id == employee.Employee.UserId);
+            var userDetail = users.FirstOrDefault(u => u.Id == employee.UserId);
 
             if (userDetail != null)
             {
@@ -124,6 +119,7 @@ public class ProjectAllocationController : ControllerBase
                 {
                     FullName = userDetail.FirstName+" "+userDetail.LastName,
                     EmployeeId = employee.Id,
+                    ProjectId = employee.ProjectId,
                     Membership = employee.Membership,
                     AssignDate = employee.AssignDate,
                 };
@@ -137,12 +133,12 @@ public class ProjectAllocationController : ControllerBase
     public async Task<List<ProjectAllocationResponse>> GetAssignedEmployeesOfProject(int projectId)
     {
         var employees = await _service.GetAssignedEmployeesOfProject(projectId);
-        string userIds = string.Join(',', employees.Select(m => m.Employee.UserId).ToList());
+        string userIds = string.Join(',', employees.Select(m => m.UserId).ToList());
         var users = await _apiService.GetUserDetails(userIds);
         List<ProjectAllocationResponse> projectAllocationResponse = new();
         foreach (var employee in employees)
         {
-            var userDetail = users.FirstOrDefault(u => u.Id == employee.Employee.UserId);
+            var userDetail = users.FirstOrDefault(u => u.Id == employee.UserId);
             if (userDetail != null)
             {
                 var projectResponse = new ProjectAllocationResponse

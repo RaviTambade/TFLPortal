@@ -7,4 +7,5 @@ public class ProjectAllocationDetails : ProjectAllocation
     public int ReportingId { get; set; }
     public double Salary { get; set; }
     public int EmployeeId { get; set; }
+    
 }

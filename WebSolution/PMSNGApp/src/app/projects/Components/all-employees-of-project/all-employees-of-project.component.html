@@ -1,24 +1,24 @@
+ 
+ <select name="project" id="project" (change)="onChange($event)">
+    <option *ngFor="let project of projects" [value]="project.id">{{project.title}}</option>
+  </select>
 
-<h2>currently working on project</h2>
-
-<!-- <div *ngFor="let employee of assignedEmployees">
-    <p>FullName:{{employee.fullName}}</p>
-    <p>Employee:{{employee.employeeId}}</p>
-    <p>membership:{{employee.membership}}</p>
-    <p>AssignDate:{{employee.assignDate}}</p>
-</div> -->
-
-<table>
+  <div *ngIf="selectedProject">
+  <div class="container">
+  <h4>All AssignedEmployee of project</h4>
+    <div class="card">
+<table class="table-bordered text-center">
     <tr>
         <th>FullName</th>
-        <th>Employee</th>
-        <th>membership</th>
+        <th>Role</th>
         <th>AssignDate</th>
     </tr>
     <tr *ngFor="let employee of assignedEmployees">
         <td>{{employee.fullName}}</td>
-        <td>{{employee.employeeId}}</td>
         <td>{{employee.membership}}</td>
-        <td>{{employee.assignDate}}</td>
+        <td>{{employee.assignDate | date}}</td>
     </tr>
 </table>
+</div>
+</div>
+</div>

@@ -9,13 +9,13 @@ public interface IProjectAllocationService {
 
     Task<List<Employee>> GetAllUnassignedEmployees();
 
-    Task<List<ProjectAllocation>> GetAllAssignedEmployees(string status);
+    Task<List<ProjectAllocationDetails>> GetAllAssignedEmployees(string status);
 
     Task<List<ProjectAllocation>> GetAllProjectsBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate);
 
-    Task<List<ProjectAllocation>> GetAssignedEmployeesOfProject(int projectId);
+    Task<List<ProjectAllocationDetails>> GetAssignedEmployeesOfProject(int projectId);
 
-    Task<List<ProjectAllocation>> GetUnassignedEmployeesOfProject(int projectId);
+    Task<List<ProjectAllocationDetails>> GetUnassignedEmployeesOfProject(int projectId);
 
     Task<List<ProjectAllocation>> GetAllProjectsOfEmployeeBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate);
 
