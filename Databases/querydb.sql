@@ -1,4 +1,8 @@
 -- Active: 1694968636816@@127.0.0.1@3306@pms
+select * from activities where  assignedto =15 and projectid=4 and status='todo';
+
+
+select activities.*,projects.title from activities INNER JOIN projects on projects.id=activities.projectid  where  activities.assignedto =15 and activities.projectid=4 and activities.status='todo';
 SELECT * from activities;
 SELECT * from timesheetEntries;
 SELECT * FROM employees;

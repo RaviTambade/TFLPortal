@@ -58,4 +58,20 @@ getAllEmployees(projectId:number):Observable<any[]>{
   return this.httpClient.get<any[]>(url);
 }
 
+
+// http://localhost:5263/api/workmgmt/activities/activity/todo/4/15
+
+getAllNotStartedActivities(projectId:number,employeeId:number):Observable<Activity[]>{
+  let url=this.serviceurl+"/workmgmt/activities/activity/todo/"+projectId+"/"+employeeId;
+  return this.httpClient.get<Activity[]>(url);
+}
+
+
+
+// http://localhost:5263/api/workmgmt/activities/Update/1/4/15
+
+updateActivity(status:string,activityId:number):Observable<boolean>{
+  let url=this.serviceurl+"/workmgmt/activities/Update/"+status+"/"+activityId;
+  return this.httpClient.put<boolean>(url,status);
+}
 }

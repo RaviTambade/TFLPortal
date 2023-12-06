@@ -9,7 +9,7 @@ public interface IActivityService
      public Task<List<TFLOBL.Entities.Activity>> GetActivitiesByProject(int projectId, int assignedTo, string activityType);
      public Task<ActivityDetails> GetActivityDetails(int activityId);
      public Task<bool> Insert(TFLOBL.Entities.Activity activity);
-     public Task<bool> UpdateActivity(TFLOBL.Entities.Activity activity,int projectId,int assignedTo);
+     public Task<bool> UpdateActivity(string Status,int activityId);
 
      Task<List<TFLOBL.Entities.Activity>> GetAllActivitiesOfEmployee(int employeeId);
 
@@ -17,5 +17,6 @@ public interface IActivityService
      
      Task<List<TFLOBL.Entities.Activity>> GetAllActivitiesBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate);
 
+      Task<List<ActivityDetails>> GetAllActivities(int projectId,int employeeId);
 
 }

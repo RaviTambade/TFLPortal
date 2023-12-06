@@ -600,19 +600,18 @@ public class ActivityService : IActivityService
     } 
 
 
-    public async Task<bool> UpdateActivity(TFLOBL.Entities.Activity activity,int projectId,int assignedTo)
+    public async Task<bool> UpdateActivity(string Status,int activityId)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "Update  activities set startdate=@startdate,status=@status where projectid=@projectId  and assignedto=@assignedTo";
+            string query = "Update  activities set startdate=@startdate,status=@status where id =@activityId";
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@startDate", activity.StartDate);
-            cmd.Parameters.AddWithValue("@assignedTo", assignedTo);
-            cmd.Parameters.AddWithValue("@projectId", projectId);
-            cmd.Parameters.AddWithValue("@status", activity.Status);
+            cmd.Parameters.AddWithValue("@startDate", DateTime.Now);
+            cmd.Parameters.AddWithValue("@status", Status);
+            cmd.Parameters.AddWithValue("@activityId",activityId );
     
             await connection.OpenAsync();
             int rowsAffected = cmd.ExecuteNonQuery();
@@ -633,5 +632,66 @@ public class ActivityService : IActivityService
         }
         return status;
 
+    }
+
+
+
+     public async Task<List<ActivityDetails>> GetAllActivities(int projectId,int employeeId){
+      List<ActivityDetails> activities = new List<ActivityDetails>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query = "select activities.*,projects.title as projectname from activities INNER JOIN projects on projects.id=activities.projectid  where  activities.assignedto =@employeeId and activities.projectid=@projectId and activities.status=@status";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@projectId", projectId);
+            command.Parameters.AddWithValue("@employeeId", employeeId);
+              command.Parameters.AddWithValue("@status","todo");
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {
+                int id = int.Parse(reader["id"].ToString());
+                string title = reader["title"].ToString();
+                string activitytype = reader["activitytype"].ToString();
+                string description = reader["description"].ToString();
+                DateTime createdate = DateTime.Parse(reader["createddate"].ToString());
+                int assignedby = int.Parse(reader["assignedby"].ToString());
+                DateTime assigndate = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
+                DateTime duedate = DateTime.Parse(reader["duedate"].ToString());
+                string status = reader["status"].ToString();
+                int managerId = int.Parse(reader["assignedby"].ToString());
+                string projectName = reader["projectname"].ToString();
+
+                ActivityDetails act = new ActivityDetails
+                {
+                    Id = id,
+                    Title = title,
+                    ActivityType = activitytype,
+                    Description = description,
+                    ProjectId = projectId,
+                    AssignDate = assigndate,
+                    StartDate = startdate,
+                    DueDate = duedate,
+                    AssignedTo = employeeId,
+                    Status = status,
+                    AssignedBy = managerId,
+                    ProjectName=projectName,
+
+                };
+                activities.Add(act);
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return activities;
     }
 }

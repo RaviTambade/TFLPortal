@@ -96,12 +96,20 @@ public class ActivityController : ControllerBase
  
 
 
-   [HttpPut("Update")]
-    public async Task<bool> UpdateActivity(Transflower.TFLPortal.TFLOBL.Entities.Activity activity,int projectId,int assignedTo)
+   [HttpPut("Update/{Status}/{activityId}")]
+    public async Task<bool> UpdateActivity(string Status,int activityId)
     {
-        bool status = await _service.UpdateActivity(activity,projectId,assignedTo);
+        bool status = await _service.UpdateActivity(Status, activityId);
         return status;
 
+    }
+
+
+  [HttpGet("activity/todo/{projectId}/{assignedTo}")]
+    public async Task<List<ActivityDetails>> GetAllActivities(int projectId,int assignedTo)
+    {
+        List<ActivityDetails> activities = await _service.GetAllActivities(projectId,assignedTo);
+        return activities;
     }
 
 
