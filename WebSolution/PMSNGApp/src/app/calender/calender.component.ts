@@ -7,7 +7,6 @@ import { CalendarDay } from './CalenderDay';
   styleUrls: ['./calender.component.css'],
 })
 export class CalenderComponent {
-[x: string]: any;
   public calendar: CalendarDay[] = [];
   public monthNames = [
     'January',
@@ -33,17 +32,18 @@ export class CalenderComponent {
       projectName: 'Ekrushi',
       startDate: '2023-12-02',
       endDate: '2023-12-17',
-      color: 'blue',
     },
     {
       projectName: 'TFLPortal',
       startDate: '2023-12-02',
       endDate: '2023-12-29',
-      color: 'green',
     },
   ];
 
   ngOnInit(): void {
+    this.projects.forEach((project) => {
+      project.color = this.randomColorPicker();
+    });
     this.generateCalendarDays(this.monthIndex);
   }
 
@@ -99,6 +99,15 @@ export class CalenderComponent {
   public setCurrentMonth() {
     this.monthIndex = 0;
     this.generateCalendarDays(this.monthIndex);
+  }
+
+  randomColorPicker(): string {
+    let result = '';
+    for (let i = 0; i < 6; ++i) {
+      const value = Math.floor(16 * Math.random());
+      result += value.toString(16);
+    }
+    return '#' + result;
   }
 
   onClick(date: Date) {
