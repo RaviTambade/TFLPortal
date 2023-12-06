@@ -12,6 +12,7 @@ export class ProjectActivitiesComponent implements OnInit {
   projects: Project[] = [];
   activities: Activity[] = [];
   projectId: number = 0;
+  isFalse:boolean=false;
   constructor(private service: ActivityService) {}
 
   ngOnInit(): void {
@@ -31,30 +32,32 @@ export class ProjectActivitiesComponent implements OnInit {
   getActivitiesOfSelectedProject(projectId: number) {
     this.service.getAllActivitiesByProject(projectId).subscribe((res) => {
       this.activities = res;
-   
+
       console.log(res);
     });
-
-
-    
   }
 
   tasks: Activity[] = [];
 
   showTasks(status: string): void {
+    this.isFalse=true;
     switch (status) {
       case 'todo':
-        this.tasks =this.activities.filter(p => p.status.includes('todo'));
+        this.tasks = this.activities.filter((p) => p.status.includes('todo'));
         break;
       case 'inprogress':
-        this.tasks = this.activities.filter(p => p.status.includes('inprogress'));
+        this.tasks = this.activities.filter((p) =>
+          p.status.includes('inprogress')
+        );
         break;
       case 'completed':
-        this.tasks =this.activities.filter(p => p.status.includes('completed'));
+        this.tasks = this.activities.filter((p) =>
+          p.status.includes('completed')
+        );
         break;
       default:
         this.tasks = [];
         break;
     }
-}
+  }
 }
