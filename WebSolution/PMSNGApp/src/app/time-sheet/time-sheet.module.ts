@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { InsertTimeSheetComponent } from './components/forms/insert-time-sheet/insert-time-sheet.component';
 import { PopupComponent } from './components/popup/popup.component';
+import { UpdateTimesheetEntryComponent } from './components/forms/update-timesheet-entry/update-timesheet-entry.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { PopupComponent } from './components/popup/popup.component';
     DetailsComponent,
     InsertTimeSheetEntryComponent,
     InsertTimeSheetComponent,
-    PopupComponent
+    PopupComponent,
+    UpdateTimesheetEntryComponent
   ],
   imports: [
     CommonModule,

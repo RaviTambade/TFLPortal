@@ -39,15 +39,32 @@ public class ProjectAllocationController : ControllerBase
     public async Task<List<ProjectAllocation>> GetAllUnassignedEmployees(string status)
     {
         List<ProjectAllocation> employees = await _service.GetAllUnassignedEmployees(status);
-
         return employees;
     }
 
     [HttpGet("assignedemployees/{status}")]
-    public async Task<List<ProjectAllocation>> GetAllAssignedEmployees(string status)
+    public async Task<List<ProjectAllocationResponse>> GetAllAssignedEmployees(string status)
     {
-        List<ProjectAllocation> employees = await _service.GetAllAssignedEmployees(status);
-        return employees;
+        var employees = await _service.GetAllAssignedEmployees(status);
+        string userIds = string.Join(',', employees.Select(m => m.Employee.UserId).ToList());
+        var users = await _apiService.GetUserDetails(userIds);
+        List<ProjectAllocationResponse> projectAllocationResponse = new();
+        foreach (var employee in employees)
+        {
+            var userDetail = users.FirstOrDefault(u => u.UserId == employee.Employee.UserId);
+            if (userDetail != null)
+            {
+                var projectResponse = new ProjectAllocationResponse
+                {
+                    FullName = userDetail.FullName,
+                    EmployeeId = employee.Id,
+                    Membership = employee.Membership,
+                    AssignDate = employee.AssignDate,
+                };
+                projectAllocationResponse.Add(projectResponse);
+            }
+        }
+        return projectAllocationResponse;
     }
 
     [HttpGet("projects/fromassigneddate/{fromAssignedDate}/toassigneddate/{toAssignedDate}")]
@@ -62,6 +79,31 @@ public class ProjectAllocationController : ControllerBase
     {
         List<ProjectAllocation> projects = await _service.GetAllProjectsOfEmployeeBetweenDates(employeeId,fromAssignedDate,toAssignedDate);
         return projects;
+    }
+
+    [HttpGet("unassignemployees/{projectId}")]
+    public async Task<List<ProjectAllocationResponse>> GetUnassignedEmployeesOfProject(int projectId)
+    {
+        var employees = await _service.GetUnassignedEmployeesOfProject(projectId);
+        string userIds = string.Join(',', employees.Select(m => m.Employee.UserId).ToList());
+        var users = await _apiService.GetUserDetails(userIds);
+        List<ProjectAllocationResponse> projectAllocationResponse = new();
+        foreach (var employee in employees)
+        {
+            var userDetail = users.FirstOrDefault(u => u.UserId == employee.Employee.UserId);
+            if (userDetail != null)
+            {
+                var projectResponse = new ProjectAllocationResponse
+                {
+                    FullName = userDetail.FullName,
+                    EmployeeId = employee.Id,
+                    Membership = employee.Membership,
+                    AssignDate = employee.AssignDate,
+                };
+                projectAllocationResponse.Add(projectResponse);
+            }
+        }
+        return projectAllocationResponse;
     }
 
     [HttpGet("employees/{projectId}")]

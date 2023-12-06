@@ -255,6 +255,48 @@ public class ProjectAllocationService : IProjectAllocationService
         return employees;
     }
 
+    public async Task<List<ProjectAllocation>> GetUnassignedEmployeesOfProject(int projectId)
+    {
+        List<ProjectAllocation> employees= new List<ProjectAllocation>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query ="select projectallocations.*,employees.userid from projectallocations inner join employees on projectallocations.employeeid=employees.id where status=@status and projectid=@projectId" ;
+                
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@projectId", projectId);
+            command.Parameters.AddWithValue("@status", "no");
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {
+                ProjectAllocation employee = new ProjectAllocation
+                {
+                    Id = reader.GetInt32("id"),
+                    ProjectId = reader.GetInt32("projectid"),
+                    EmployeeId = reader.GetInt32("employeeid"),
+                    Membership = reader.GetString("membership"),
+                    AssignDate = reader.GetDateTime("assigndate"),
+                    Status=reader.GetString("status"),
+                    Employee = new Employee { UserId = reader.GetInt32("userid") }
+
+                };
+                employees.Add(employee);
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return employees;
+    }
+
     public async Task<List<ProjectAllocation>> GetAllProjectsOfEmployeeBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
     {
         List<ProjectAllocation> projects = new List<ProjectAllocation>();
