@@ -11,12 +11,14 @@ import { ChunkPipe } from './calender/chunk.pipe';
 import { TimeSheetModule } from './time-sheet/time-sheet.module';
 import { ProjectplanningModule } from './ProjectPlanning/projectplanning/projectplanning.module';
 import { ActivityModule } from './activity/activity.module';
+import { TooltipDirective } from './calender/tooltip.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     CalenderComponent,
     ChunkPipe,
+    TooltipDirective
   ],
   imports: [
     BrowserModule,
@@ -27,7 +29,7 @@ import { ActivityModule } from './activity/activity.module';
     ResourceManagementModule,
     TimeSheetModule,
     ProjectplanningModule,
-    ActivityModule
+    ActivityModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

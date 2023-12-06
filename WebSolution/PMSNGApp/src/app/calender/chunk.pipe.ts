@@ -11,7 +11,7 @@ export class ChunkPipe implements PipeTransform {
 
     calendarDaysArray.map((day: any,index: number) => {
         weekDays.push(day);
-        // here we need to use ++ in front of the variable else index increase 
+        // here we need to use ++ in front of the variable else index incr  ease 
         //will happen after the evaluation but we need it to happen BEFORE
         if (++index % chunkSize  === 0) {
           calendarDays.push(weekDays);
