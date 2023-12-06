@@ -40,8 +40,8 @@ export class ProjectsService {
     return this.httpClient.post<any>(url,project);
   }
 
-  getAllUnassignedEmployees(status:string):Observable<any>{
-    let url=this.serviceurl+"/projectmgmt/projectallocation/unassignedemployees/"+ status ;
+  getAllUnassignedEmployees():Observable<any>{
+    let url=this.serviceurl+"/projectmgmt/projectallocation/unassignedemployees";
     return this.httpClient.get<any>(url);
   }
 

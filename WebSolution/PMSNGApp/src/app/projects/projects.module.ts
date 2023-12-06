@@ -10,6 +10,7 @@ import { AllUnassignedEmployeeComponent } from './Components/all-unassigned-empl
 import { AllAssignedEmployeeComponent } from './Components/all-assigned-employee/all-assigned-employee.component';
 import { AllEmployeesOfProjectComponent } from './Components/all-employees-of-project/all-employees-of-project.component';
 import { UnassignedEmployeeOfProjectComponent } from './Components/unassigned-employee-of-project/unassigned-employee-of-project.component';
+import { AssignEmployeeToProjectComponent } from './Components/assign-employee-to-project/assign-employee-to-project.component';
 
 
 
@@ -24,6 +25,7 @@ import { UnassignedEmployeeOfProjectComponent } from './Components/unassigned-em
     AllAssignedEmployeeComponent,
     AllEmployeesOfProjectComponent,
     UnassignedEmployeeOfProjectComponent,
+    AssignEmployeeToProjectComponent,
   ],
   imports: [
     CommonModule,

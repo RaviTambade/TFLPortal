@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectsService } from '../../Services/projects.service';
+import { ActivityService } from 'src/app/activity/Services/activity.service';
+import { Project } from '../../Models/project';
 
 @Component({
   selector: 'app-all-employees-of-project',
@@ -8,18 +10,30 @@ import { ProjectsService } from '../../Services/projects.service';
 })
 export class AllEmployeesOfProjectComponent implements OnInit{
   
-  projectId:number=5;
   assignedEmployees:any[]=[];
+  projects:Project[]=[];
+  selectedProject:boolean=false;
+  constructor(private service:ProjectsService,private activityService:ActivityService){}
 
-  constructor(private service:ProjectsService){}
-  ngOnInit(): void {
-    this.service.getAssignedEmployeesOfProject(this.projectId).subscribe((res)=>{
+    ngOnInit(): void {
+      this.activityService.getAllProject().subscribe((res)=>{
+      this.projects=res;
+      console.log(res);
+      })
+    }
+    
+
+    onChange(event:any){
+      console.log(event.target.value);
+      const projectId=event.target.value;
+      this.selectedProject=true;
+      this.service.getAssignedEmployeesOfProject(projectId).subscribe((res)=>{
       this.assignedEmployees=res;
       console.log(res);
     })
-    
   }
-
-
-
 }
+
+
+
+
