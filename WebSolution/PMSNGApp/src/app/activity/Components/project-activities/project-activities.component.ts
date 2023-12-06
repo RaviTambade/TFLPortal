@@ -31,7 +31,30 @@ export class ProjectActivitiesComponent implements OnInit {
   getActivitiesOfSelectedProject(projectId: number) {
     this.service.getAllActivitiesByProject(projectId).subscribe((res) => {
       this.activities = res;
+   
       console.log(res);
     });
+
+
+    
   }
+
+  tasks: Activity[] = [];
+
+  showTasks(status: string): void {
+    switch (status) {
+      case 'todo':
+        this.tasks =this.activities.filter(p => p.status.includes('todo'));
+        break;
+      case 'inprogress':
+        this.tasks = this.activities.filter(p => p.status.includes('inprogress'));
+        break;
+      case 'completed':
+        this.tasks =this.activities.filter(p => p.status.includes('completed'));
+        break;
+      default:
+        this.tasks = [];
+        break;
+    }
+}
 }

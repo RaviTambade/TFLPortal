@@ -19,7 +19,15 @@
     <p>title:{{activity.title}}</p>
   </div> -->
 
-  <div class="container">
+  
+  <div class="button-container">
+    <button class="button"  (click)="showTasks('todo')">ToDo</button>
+    <button class="button"  (click)="showTasks('inprogress')">Inprogress</button>
+    <button class="button"   (click)="showTasks('completed')">Completed</button>
+  </div>
+
+    <div id="tasksContainer">
+       <div class="container">
     <h2> My Activities</h2>
     <div class="card">
         <table class="table-bordered text-center">
@@ -37,7 +45,7 @@
                     <th>title</th>
                    </tr>
             </thead>
-            <tbody *ngFor="let activity of activities">
+            <tbody *ngFor="let activity of tasks">
                 <tr>
                     <td> {{activity.activityType}}</td>
                     <td>{{activity.assignDate}}</td>
@@ -52,4 +60,6 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+
     </div>
