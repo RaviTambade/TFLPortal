@@ -4,13 +4,15 @@ import { ActivityListComponent } from './Components/activity-list/activity-list.
 import { ActivityDetailsComponent } from './Components/activity-details/activity-details.component';
 import { AddActivityComponent } from './Components/Forms/add-activity/add-activity.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UpdateActivityComponent } from './Components/forms/update-activity/update-activity.component';
 
 
 @NgModule({
   declarations: [
     ActivityListComponent,
     ActivityDetailsComponent,
-    AddActivityComponent
+    AddActivityComponent,
+    UpdateActivityComponent
   ],
   imports: [
     CommonModule,
