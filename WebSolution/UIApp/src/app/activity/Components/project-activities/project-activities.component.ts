@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivityService } from '../../Services/activity.service';
 import { Project } from 'src/app/projects/Models/project';
 import { Activity } from '../../Models/Activity';
+import { ProjectService } from 'src/app/shared/services/project.service';
+import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 
 @Component({
   selector: 'project-activities',
@@ -19,10 +21,10 @@ export class ProjectActivitiesComponent implements OnInit {
   checkStatusInProgress: boolean = true;
   checkStatusCompleted: boolean = true;
   
-  constructor(private activitySvc: ActivityService,) {}
+  constructor(private projectSvc: ProjectService,private workMgmtSvc:WorkmgmtService) {}
 
   ngOnInit(): void {
-    this.activitySvc.getAllProjects().subscribe((res) => {
+    this.projectSvc.fetchAllProject().subscribe((res) => {
       this.projects = res;
       this.projectId = this.projects[0].id;
 
@@ -36,7 +38,7 @@ export class ProjectActivitiesComponent implements OnInit {
   }
 
   populateActivities(projectId: number) {
-    this.service.fetchActivitiesByProject(projectId).subscribe((res) => {
+    this.workMgmtSvc.fetchActivitiesByProject(projectId).subscribe((res) => {
       this.activities = res;
       this.filterActivities();
     });

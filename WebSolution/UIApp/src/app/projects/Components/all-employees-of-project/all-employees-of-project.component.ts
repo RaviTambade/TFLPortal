@@ -16,10 +16,10 @@ export class AllEmployeesOfProjectComponent implements OnInit{
   constructor(private service:ProjectsService,private activityService:ActivityService){}
 
     ngOnInit(): void {
-      this.activityService.getAllProject().subscribe((res)=>{
-      this.projects=res;
-      console.log(res);
-      })
+      // this.activityService.getAllProject().subscribe((res)=>{
+      // this.projects=res;
+      // console.log(res);
+      // })
     }
     
 

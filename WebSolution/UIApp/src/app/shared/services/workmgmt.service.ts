@@ -42,11 +42,7 @@ export class WorkmgmtService {
     return this.httpClient.get<Activity[]>(url);
   }
 
-  getEmployeeDetails(employeeId: number): Observable<Employee> {
-    let url = this.serviceurl + '/hr/employees/employee' + '/' + employeeId;
-    console.log(url);
-    return this.httpClient.get<Employee>(url);
-  }
+ 
 
   // http://localhost:5263/api/workmgmt/activities/activity/todo/4/15
 

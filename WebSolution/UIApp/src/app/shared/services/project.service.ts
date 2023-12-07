@@ -14,16 +14,16 @@ export class ProjectService {
    
   private serviceurl :string=environment.apiUrl;
 
-  getAllProject():Observable<Project[]>{
+  fetchAllProject():Observable<Project[]>{
     let url=this.serviceurl+"/projectmgmt/projects";
     return this.httpClient.get<Project[]>(url);
   }
   
-  getAllProjects():Observable<Project[]>{
-    let url=this.serviceurl+"/projectmgmt/projects";
-    return this.httpClient.get<Project[]>(url);
+  // getAllProjects():Observable<Project[]>{
+  //   let url=this.serviceurl+"/projectmgmt/projects";
+  //   return this.httpClient.get<Project[]>(url);
   
-  }
+  // }
 
   getProjectDetails(projectId:number):Observable<any>{
     let url=this.serviceurl+"/projectmgmt/projects"+"/"+projectId;
@@ -31,9 +31,6 @@ export class ProjectService {
     return this.httpClient.get<any>(url);
   }
 
-  getAllEmployees(projectId:number):Observable<any[]>{
-    let url=this.serviceurl+"/projectmgmt/projectallocation/employees/"+projectId;
-    return this.httpClient.get<any[]>(url);
-  }
+ 
   
 }
