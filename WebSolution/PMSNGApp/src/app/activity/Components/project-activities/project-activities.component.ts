@@ -46,54 +46,40 @@ export class ProjectActivitiesComponent implements OnInit {
   }
 
 
-  // filterTasks() {
-  //   // Logic to filter tasks and populate todoTasks, inprogressTasks, and completedTasks
-   
-  //   this.todoTasks= this.activities.filter((p) => p.status.includes('todo'));
-  //   this.inprogressTasks= this.activities.filter((p) =>p.status.includes('inprogress'));
-  //   this.completedTasks=this.activities.filter((p) =>p.status.includes('completed'));
-  // }
- 
-  // filterArray(status: string): void {
-  //   switch (status) {
-  //     case 'A':
-  //       this.activities = this.activities.filter(item => item.status === 'todo');
-  //       break;
-  //     case 'B':
-  //       this.activities = this.activities.filter(item => item.status === 'inprogress');
-  //       break;
-
-  //     case 'B':
-  //         this.activities = this.activities.filter(item => item.status === 'completed');
-  //      break;
-  //     // Add more cases as needed
-  //     default:
-  //       this.activities = this.activities;
-  //       break;
-  //   }
-  // }
-  
-
-  filterArray(status: string): void {
-    switch (status) {
-      case 'todo':
-        this.showTodoTasks=true;
-        // this.filteredActivities = this.activities.filter(item => item.status === 'todo');
-        break;
-      case 'inprogress':
-        this.showInProgressTasks=true;
-        // this.filteredActivities = this.activities.filter(item => item.status === 'inprogress');
-        break;
-      case 'completed':
-        this.showCompletedTasks=true;
-        // this.filteredActivities = this.activities.filter(item => item.status === 'completed');
-        break;
-      // Add more cases as needed
-      default:
-        this.filteredActivities = this.activities;
-        break;
+  onTodoChange(e:any):void{
+    if (e.target.checked) {
+          this.showTodoTasks=true;
     }
+    else{
+      this.showTodoTasks=false;
+    }
+    this.filterActivities();
+  }
 
+  onInprogressChange(e:any):void{
+    if (e.target.checked) {
+          this.showInProgressTasks=true;
+    }
+    else{
+      this.showInProgressTasks=false;
+    }
+    this.filterActivities();
+  }
+
+
+  onCompletedChange(e:any):void{
+    if (e.target.checked) {
+          this.showCompletedTasks=true;
+    }
+    else{
+      this.showCompletedTasks=false;
+    }
+    this.filterActivities();
+  }
+
+
+  filterActivities(): void {
+     
     if(this.showTodoTasks && this.showInProgressTasks && this.showCompletedTasks){
       this.filteredActivities = this.activities;
     }
@@ -120,6 +106,5 @@ export class ProjectActivitiesComponent implements OnInit {
     }
   }
 
-  
   
 }

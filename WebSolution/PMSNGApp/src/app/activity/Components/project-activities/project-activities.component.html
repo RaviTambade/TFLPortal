@@ -63,9 +63,9 @@
   
   -->
   <td>
-    <input type="checkbox"  (change)="filterArray('todo')"> Todo
-    <input type="checkbox"  (change)="filterArray('inprogress')"> In Progress
-    <input type="checkbox"  (change)="filterArray('completed')"> Completed
+    <input type="checkbox"  (change)="onTodoChange($event)"> Todo
+    <input type="checkbox"  (change)="OnProgressChange($event)"> In Progress
+    <input type="checkbox"  (change)="OnCompletedChange($event)"> Completed
   </td>
   <table class="table-bordered text-center">
     <thead>
