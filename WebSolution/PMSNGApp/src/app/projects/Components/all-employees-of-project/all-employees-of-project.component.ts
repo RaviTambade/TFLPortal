@@ -13,10 +13,10 @@ export class AllEmployeesOfProjectComponent implements OnInit{
   assignedEmployees:any[]=[];
   projects:Project[]=[];
   selectedProject:boolean=false;
-  constructor(private service:ProjectsService,private activityService:ActivityService){}
+  constructor(private service:ProjectsService){}
 
     ngOnInit(): void {
-      this.activityService.getAllProject().subscribe((res)=>{
+      this.service.getAllProjects().subscribe((res)=>{
       this.projects=res;
       console.log(res);
       })

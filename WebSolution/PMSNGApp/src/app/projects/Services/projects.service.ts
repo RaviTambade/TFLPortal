@@ -15,7 +15,7 @@ export class ProjectsService {
 
 
   getAllProjects(): Observable<Project[]> {
-    let url = `${this.serviceurl}/projects`;
+    let url = `${this.serviceurl}/projectmgmt/projects`;
     return this.httpClient.get<Project[]>(url)
   }
 

@@ -18,9 +18,6 @@ public class ProjectAllocationService : IProjectAllocationService
             ?? throw new ArgumentNullException("connectionString");
     }
 
-   
-   
-
     public async Task<bool> AssignMemberToProject(int projectId,int employeeId,ProjectAllocation project){
     {
         bool status=false;
