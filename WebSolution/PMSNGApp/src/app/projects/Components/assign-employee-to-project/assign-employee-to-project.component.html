@@ -1,1 +1,26 @@
-<p>assign-employee-to-project works!</p>
+<form [formGroup]="assignemployeeform" (ngSubmit)="onSubmit()">
+
+    <div>
+        <label for="membership">Membership</label>
+        <input type="text" id="membership" name="membership" formControlName="membership">
+      </div>
+    <div>
+        <label for="projectId">Project Id:</label>
+        <input type="text" id="projectId" name="projectId" formControlName="projectId">
+      </div>
+    <div>
+        <label for="employeeId">EmployeeId</label>
+        <input type="text" id="employeeId" name="employeeId" formControlName="employeeId">
+      </div>
+  <div>
+      <label for="status">status</label>
+      <input type="text" id="status" name="status" formControlName="status">
+    </div>
+    <div>
+        <label for="assignDate">Assign Date</label>
+        <input type="text" id="assignDate" name="assignDate" formControlName="assignDate">
+      </div>
+      <div>
+        <button type="submit">Submit</button>
+      </div>
+  </form>

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ProjectsService } from '../../Services/projects.service';
+import { ProjectAllocation } from '../../Models/projectallocation';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-assign-employee-to-project',
@@ -7,9 +10,49 @@ import { Component } from '@angular/core';
 })
 export class AssignEmployeeToProjectComponent {
 
-//  constructor(private service:ProjectsService){}
-//   assignedEmployeeToProject(projectId:number,employeeId:number,project:ProjectAllocation):Observable<ProjectAllocation>{
-//     let url=this.serviceurl+"/projectmgmt/projectallocation/assignproject/"+ projectId +"/"+employeeId;
-//     return this.httpClient.post<ProjectAllocation>(url,project);
-//   }
+ constructor(private service:ProjectsService){}
+  projectAllocations:ProjectAllocation={
+    Id: 0,
+    employeeId: 0,
+    projectId: 0,
+    membership: '',
+    assignDate: '',
+    status: ''
+  }
+ assignemployeeform=new FormGroup({
+  employeeId:new FormControl(),
+  projectId:new FormControl(),
+  membership :new FormControl(),
+  assignDate:new FormControl(),
+  status:new FormControl(),
+});
+
+onSubmit(){
+
+  this.projectAllocations.employeeId=this.assignemployeeform.get("employeeId")?.value;
+  this.projectAllocations.projectId=this.assignemployeeform.get("projectId")?.value;
+  this.projectAllocations.membership=this.assignemployeeform.get("membership")?.value;
+  this.projectAllocations.assignDate=this.assignemployeeform.get("assignDate")?.value;
+  this.projectAllocations.status=this.assignemployeeform.get("status")?.value;
+  
+
+  // this.activity.assignedBy=1;
+ 
+  // this.activity.startDate="2023-12-28"
+  this.projectAllocations.employeeId=1;
+  this.projectAllocations.projectId=2;
+  this.projectAllocations.status="yes";
+  // this.activity.status="todo"
+  console.log(this.projectAllocations);
+ this.service.assignedEmployeeToProject(this.projectAllocations.projectId,this.projectAllocations.employeeId,this.projectAllocations).subscribe((res)=>{
+ });
+ console.log(this.assignemployeeform.value)
+}
+
+
+  // assignedEmployeeToProject(projectId:number,employeeId:number,project:ProjectAllocation):Observable<ProjectAllocation>{
+  
+
+
+
 }
