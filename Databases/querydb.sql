@@ -1,4 +1,4 @@
--- Active: 1694968636816@@127.0.0.1@3306@pms
+-- Active: 1696576841746@@127.0.0.1@3306@pms
 SELECT * from activities;
 SELECT * from timesheetEntries;
 SELECT * FROM employees;
@@ -19,9 +19,27 @@ END;
  SELECT  timesheetentries.*,activities.title,activities.activitytype  from timesheetentries join activities on timesheetentries.activityid=activities.id WHERE timesheetid= (select id from timesheets WHERE timesheetdate='2023-12-02'and employeeid=10 );
 
 
+SELECT  COUNT(*), ((SUM(TIME_TO_SEC(TIMEDIFF(totime,fromtime)))/60)/60) as time_in_hour,workcategory  from timesheetentries   
+INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
+WHERE timesheets.employeeid=10  
+GROUP BY timesheetentries.workcategory ; 
+
+
+SELECT  COUNT(*), CAST(((SUM(TIME_TO_SEC(TIMEDIFF(totime,fromtime))))/3600)AS DECIMAL(10,2)) as time_in_hour,workcategory  from timesheetentries   
+INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
+WHERE timesheets.employeeid=10  and timesheets.timesheetdate >= '2023-12-04' and timesheets.timesheetdate<= '2023-12-05'
+GROUP BY timesheetentries.workcategory ;
 
 
 
+
+
+
+
+SELECT totime,fromtime, SUM((TIME_TO_SEC(TIMEDIFF(totime,fromtime)))/3600)  FROM timesheetentries INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id WHERE timesheetid in (4,5);
+SELECT totime,fromtime, TIME_TO_SEC(TIMEDIFF(totime,fromtime)) from timesheetentries;
+
+ 
 
 select timesheetentries.*,activities.title,activities.activitytype  from timesheetentries join activities on timesheetentries.activityid=activities.id WHERE timesheetid=1;
 SELECT * FROM timesheets;

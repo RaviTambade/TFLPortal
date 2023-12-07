@@ -98,12 +98,13 @@ export class InsertTimeSheetComponent implements OnInit {
       this.timeSheet = res;
       this.timeSheetEntries = res.timeSheetEntries;
       this.timeSheetId = res.id;
+      console.log("🚀 ~ this.timeSheetSvc.getTimeSheet ~ timeSheetId:", res.id);
 
       this.timeSheetEntries.forEach((entry) => {
-        this.getDuration(entry);
+       entry= this.timeSheetSvc.getDurationOfWork(entry);
         this.totalminutes += entry.durationInMinutes;
       });
-      this.totalminutes = this.convertMinutesintoHours(this.totalminutes);
+      this.totalminutes = this.timeSheetSvc.convertMinutesintoHours(this.totalminutes);
 
       console.log(res);
     });
@@ -122,24 +123,5 @@ export class InsertTimeSheetComponent implements OnInit {
     }
     this.showupdateTimesheetEntry = false;
     this.selectedTimeSheetEntrytoUpdate = undefined;
-  }
-
-  getDuration(timeSheetEntry: TimeSheetEntry) {
-    let startTime = timeSheetEntry.fromTime;
-    let endTime = timeSheetEntry.toTime;
-    if (startTime != '' && endTime != '') {
-      const startDate = new Date(`1970-01-01T${startTime}`);
-      const endDate = new Date(`1970-01-01T${endTime}`);
-
-      const durationMilliseconds = endDate.getTime() - startDate.getTime();
-      timeSheetEntry.durationInMinutes = durationMilliseconds / (1000 * 60);
-      timeSheetEntry.durationInHours = this.convertMinutesintoHours(
-        timeSheetEntry.durationInMinutes
-      );
-    }
-  }
-  convertMinutesintoHours(minutes: number) {
-    let str = `${Math.floor(minutes / 60)}h: ${minutes % 60}m`;
-    return str;
   }
 }

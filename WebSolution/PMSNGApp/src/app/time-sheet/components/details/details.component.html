@@ -9,6 +9,7 @@
                     <th>Description:</th>
                     <th>fromtime</th>
                     <th>toTime</th>
+                    <th>Duration</th>
                 </tr>
             </thead>
             <tbody *ngFor=" let entry of timeSheetEntries">
@@ -18,7 +19,10 @@
                     <td> {{entry.description}}</td>
                     <td> {{entry.fromTime }}</td>
                     <td> {{entry.toTime }}</td>
+                    <td> {{entry.durationInHours }}</td>
                 </tr>
             </tbody>
         </table>
     </div>
+
+<p>Total Hours : {{totalminutes}}</p>
