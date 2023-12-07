@@ -31,7 +31,7 @@ public class TimeSheetService : ITimeSheetService
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@employeeId", employeeId);
             await connection.OpenAsync();
-            MySqlDataReader reader = command.ExecuteReader();
+            MySqlDataReader reader = (MySqlDataReader)await command.ExecuteReaderAsync();
             while (await reader.ReadAsync())
             {
                 int id = int.Parse(reader["id"].ToString());
@@ -73,8 +73,8 @@ public class TimeSheetService : ITimeSheetService
                 @"SELECT timesheets.id as timesheetid,timesheets.status,timesheets.statuschangeddate,timesheetentries.id as timesheetentryid,
                 timesheetentries.work,timesheetentries.workcategory,timesheetentries.description,timesheetentries.fromtime,timesheetentries.totime,
                 employees.userid
-                FROM timesheetentries 
-                INNER JOIN timesheets  ON timesheetentries.timesheetid = timesheets.id
+                FROM timesheets  
+                LEFT JOIN  timesheetentries ON  timesheets.id= timesheetentries.timesheetid
                 INNER JOIN employees ON timesheets.employeeid =employees.id
                 WHERE timesheets.timesheetdate = @timeSheetDate AND timesheets.employeeId = @employeeId";
             MySqlCommand command = new MySqlCommand(query, connection);
@@ -96,30 +96,32 @@ public class TimeSheetService : ITimeSheetService
                     TimeSheetDate = DateTime.Parse(date),
                     StatusChangedDate = statusChangedDate,
                     EmployeeId = employeeId,
-                    Employee=new Employee{UserId=employeeUserId},
+                    Employee = new Employee { UserId = employeeUserId },
                     TimeSheetEntries = new List<TimeSheetEntry>()
                 };
-                while (await reader.ReadAsync())
+                do
                 {
-                    int timeSheetEntryId = int.Parse(reader["timesheetentryid"].ToString());
-                    TimeOnly fromtime = TimeOnly.Parse(reader["fromtime"].ToString());
-                    TimeOnly totime = TimeOnly.Parse(reader["totime"].ToString());
-                    string work = reader["work"].ToString();
-                    string WorkCategory = reader["workcategory"].ToString();
-                    string description = reader["description"].ToString();
-
-                    TimeSheetEntry timeSheetEntry = new TimeSheetEntry()
+                    if (reader["timesheetentryid"] != DBNull.Value)
                     {
-                        Id = timeSheetEntryId,
-                        FromTime = fromtime,
-                        ToTime = totime,
-                        Work = work,
-                        WorkCategory = WorkCategory,
-                        Description = description
-                    };
+                        int timeSheetEntryId = int.Parse(reader["timesheetentryid"].ToString());
+                        TimeOnly fromtime = TimeOnly.Parse(reader["fromtime"].ToString());
+                        TimeOnly totime = TimeOnly.Parse(reader["totime"].ToString());
+                        string work = reader["work"].ToString();
+                        string WorkCategory = reader["workcategory"].ToString();
+                        string description = reader["description"].ToString();
 
-                    timeSheet.TimeSheetEntries.Add(timeSheetEntry);
-                }
+                        TimeSheetEntry timeSheetEntry = new TimeSheetEntry()
+                        {
+                            Id = timeSheetEntryId,
+                            FromTime = fromtime,
+                            ToTime = totime,
+                            Work = work,
+                            WorkCategory = WorkCategory,
+                            Description = description
+                        };
+                        timeSheet.TimeSheetEntries.Add(timeSheetEntry);
+                    }
+                } while (await reader.ReadAsync());
             }
             await reader.CloseAsync();
         }
@@ -133,7 +135,6 @@ public class TimeSheetService : ITimeSheetService
         }
         return timeSheet;
     }
-
 
     public async Task<bool> InsertTimeSheet(int employeeId, DateTime date)
     {
