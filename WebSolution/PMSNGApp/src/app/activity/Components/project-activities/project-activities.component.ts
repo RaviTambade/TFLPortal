@@ -13,14 +13,11 @@ export class ProjectActivitiesComponent implements OnInit {
   activities: Activity[] = [];
   projectId: number = 0;
   isFalse:boolean=false;
-  todoTasks: Activity[] = []; // Replace 'any' with the actual type of your tasks
-  inprogressTasks: Activity[] = [];
-  completedTasks: Activity[] = [];
   filteredActivities: Activity[]=[];
 
-  showTodoTasks: boolean = false;
-  showInProgressTasks: boolean = false;
-  showCompletedTasks: boolean = false;
+  showTodoTasks: boolean = true;
+  showInProgressTasks: boolean = true;
+  showCompletedTasks: boolean = true;
   
   constructor(private service: ActivityService) {}
 
@@ -29,6 +26,7 @@ export class ProjectActivitiesComponent implements OnInit {
       this.projects = res;
       this.projectId = this.projects[0].id;
       this.getActivitiesOfSelectedProject(this.projectId);
+      
     });
   }
 
@@ -41,6 +39,7 @@ export class ProjectActivitiesComponent implements OnInit {
   getActivitiesOfSelectedProject(projectId: number) {
     this.service.getAllActivitiesByProject(projectId).subscribe((res) => {
       this.activities = res;
+      this.filterActivities();
       console.log(res);
     });
   }
@@ -56,7 +55,7 @@ export class ProjectActivitiesComponent implements OnInit {
     this.filterActivities();
   }
 
-  onInprogressChange(e:any):void{
+  OnProgressChange(e:any):void{
     if (e.target.checked) {
           this.showInProgressTasks=true;
     }
@@ -67,7 +66,7 @@ export class ProjectActivitiesComponent implements OnInit {
   }
 
 
-  onCompletedChange(e:any):void{
+  OnCompletedChange(e:any):void{
     if (e.target.checked) {
           this.showCompletedTasks=true;
     }
@@ -79,7 +78,7 @@ export class ProjectActivitiesComponent implements OnInit {
 
 
   filterActivities(): void {
-     
+    this.isFalse=false; 
     if(this.showTodoTasks && this.showInProgressTasks && this.showCompletedTasks){
       this.filteredActivities = this.activities;
     }
@@ -103,6 +102,11 @@ export class ProjectActivitiesComponent implements OnInit {
     }
     else if(this.showCompletedTasks){
       this.filteredActivities = this.activities.filter(item => item.status === 'completed');
+    }
+
+    else{
+      this.isFalse=true;
+      this.filteredActivities=[];
     }
   }
 
