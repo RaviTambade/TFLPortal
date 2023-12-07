@@ -57,24 +57,8 @@ export class InsertTimeSheetEntryComponent {
     });
   }
 
-  getDuration() {
-    let startTime = this.timeSheetEntry.fromTime;
-    let endTime = this.timeSheetEntry.toTime;
-    if (startTime != '' && endTime != '') {
-      const startDate = new Date(`1970-01-01T${startTime}`);
-      const endDate = new Date(`1970-01-01T${endTime}`);
-
-      const durationMilliseconds = endDate.getTime() - startDate.getTime();
-      this.timeSheetEntry.durationInMinutes =
-        durationMilliseconds / (1000 * 60);
-      this.timeSheetEntry.durationInHours = this.convertMinutesintoHours(
-        this.timeSheetEntry.durationInMinutes
-      );
-    }
-  }
-
-  convertMinutesintoHours(minutes: number) {
-    let str = `${(minutes / 60).toFixed(0)}h: ${minutes % 60}m`;
-    return str;
+  getDuration(timeSheetEnrty: TimeSheetEntry) {
+    this.timeSheetEntry =
+      this.timeSheetService.getDurationOfWork(timeSheetEnrty);
   }
 }

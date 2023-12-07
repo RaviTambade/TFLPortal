@@ -1,0 +1,31 @@
+<p> Date : {{timeSheet?.timeSheetDate |date}}</p>
+<p> Status:{{timeSheet?.status |titlecase}}</p>
+<p> Employee Name:{{timeSheet?.employeeName}}</p>
+
+<table class="table-bordered">
+    <thead>
+        <tr>
+            <th>Category</th>
+            <th>work</th>
+            <th>StartTime</th>
+            <th>EndTime</th>
+            <th>Duration</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let timeSheetEntry of timeSheet?.timeSheetEntries">
+        <tr>
+            <td>{{timeSheetEntry.workCategory }}</td>
+            <td>{{timeSheetEntry.work }}</td>
+            <td>{{timeSheetEntry.fromTime }}</td>
+            <td>{{timeSheetEntry.toTime}}</td>
+            <td>{{timeSheetEntry.durationInHours}}</td>
+        </tr>
+
+    </tbody>
+
+</table>
+
+<p>Total Hours : {{totalminutes}}</p>
+
+<button class="mx-1" (click)="onApprove()"> Approve </button>
+<button class="mx-1" (click)="onReject()">Reject </button>

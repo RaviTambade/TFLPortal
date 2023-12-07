@@ -41,7 +41,8 @@ import { AssignEmployeeToProjectComponent } from './Components/assign-employee-t
     AllUnassignedEmployeeComponent,
     AllAssignedEmployeeComponent,
     AllEmployeesOfProjectComponent,
-    UnassignedEmployeeOfProjectComponent
+    UnassignedEmployeeOfProjectComponent,
+    AssignEmployeeToProjectComponent
   ]
 })
 export class ProjectsModule { }

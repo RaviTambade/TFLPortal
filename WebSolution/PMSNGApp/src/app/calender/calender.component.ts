@@ -23,7 +23,7 @@ export class CalenderComponent {
     'December',
   ];
   public displayMonth!: string;
-  private holidayDays: string[] = ['2023-11-02', '2023-11-17', '2023-11-15'];
+  private holidayDays: string[] = ['2023-12-02', '2023-12-17', '2023-12-15'];
   private monthIndex: number = 0;
   clickedDate: any;
 

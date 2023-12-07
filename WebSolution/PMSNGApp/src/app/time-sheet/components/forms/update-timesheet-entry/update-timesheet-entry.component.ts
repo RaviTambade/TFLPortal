@@ -34,15 +34,17 @@ export class UpdateTimesheetEntryComponent {
 
   ngOnChanges(changes: SimpleChanges) {
     this.timeSheetEntry = changes['timeSheetEntry'].currentValue;
-    this.timeSheetEntry.fromTime=this.timeSheetEntry.fromTime.split(':00').at(0)!;
-    this.timeSheetEntry.toTime=this.timeSheetEntry.toTime.split(':00').at(0)!;
+    this.timeSheetEntry.fromTime = this.timeSheetEntry.fromTime
+      .split(':00')
+      .at(0)!;
+    this.timeSheetEntry.toTime = this.timeSheetEntry.toTime.split(':00').at(0)!;
   }
 
   onClick() {
     let timeSheetEntry: TimeSheetEntry = {
       id: this.timeSheetEntry.id,
-      fromTime: this.timeSheetEntry.fromTime+':00',
-      toTime: this.timeSheetEntry.toTime+':00',
+      fromTime: this.timeSheetEntry.fromTime + ':00',
+      toTime: this.timeSheetEntry.toTime + ':00',
       durationInMinutes: this.timeSheetEntry.durationInMinutes,
       durationInHours: this.timeSheetEntry.durationInHours,
       timeSheetId: this.timeSheetEntry.timeSheetId,
@@ -59,24 +61,8 @@ export class UpdateTimesheetEntryComponent {
         }
       });
   }
-  getDuration() {
-    let startTime = this.timeSheetEntry.fromTime;
-    let endTime = this.timeSheetEntry.toTime;
-    if (startTime != '' && endTime != '') {
-      const startDate = new Date(`1970-01-01T${startTime}`);
-      const endDate = new Date(`1970-01-01T${endTime}`);
-
-      const durationMilliseconds = endDate.getTime() - startDate.getTime();
-      this.timeSheetEntry.durationInMinutes =
-        durationMilliseconds / (1000 * 60);
-      this.timeSheetEntry.durationInHours = this.convertMinutesintoHours(
-        this.timeSheetEntry.durationInMinutes
-      );
-    }
+  getDuration(timeSheetEnrty: TimeSheetEntry) {
+    this.timeSheetService.getDurationOfWork(timeSheetEnrty);
   }
 
-  convertMinutesintoHours(minutes: number) {
-    let str = `${(minutes / 60).toFixed(0)}h: ${minutes % 60}m`;
-    return str;
-  }
 }

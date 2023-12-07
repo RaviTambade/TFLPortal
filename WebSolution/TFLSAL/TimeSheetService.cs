@@ -31,7 +31,7 @@ public class TimeSheetService : ITimeSheetService
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@employeeId", employeeId);
             await connection.OpenAsync();
-            MySqlDataReader reader = command.ExecuteReader();
+            MySqlDataReader reader = (MySqlDataReader)await command.ExecuteReaderAsync();
             while (await reader.ReadAsync())
             {
                 int id = int.Parse(reader["id"].ToString());
@@ -73,8 +73,8 @@ public class TimeSheetService : ITimeSheetService
                 @"SELECT timesheets.id as timesheetid,timesheets.status,timesheets.statuschangeddate,timesheetentries.id as timesheetentryid,
                 timesheetentries.work,timesheetentries.workcategory,timesheetentries.description,timesheetentries.fromtime,timesheetentries.totime,
                 employees.userid
-                FROM timesheetentries 
-                INNER JOIN timesheets  ON timesheetentries.timesheetid = timesheets.id
+                FROM timesheets  
+                LEFT JOIN  timesheetentries ON  timesheets.id= timesheetentries.timesheetid
                 INNER JOIN employees ON timesheets.employeeid =employees.id
                 WHERE timesheets.timesheetdate = @timeSheetDate AND timesheets.employeeId = @employeeId";
             MySqlCommand command = new MySqlCommand(query, connection);
@@ -96,30 +96,32 @@ public class TimeSheetService : ITimeSheetService
                     TimeSheetDate = DateTime.Parse(date),
                     StatusChangedDate = statusChangedDate,
                     EmployeeId = employeeId,
-                    Employee=new Employee{UserId=employeeUserId},
+                    Employee = new Employee { UserId = employeeUserId },
                     TimeSheetEntries = new List<TimeSheetEntry>()
                 };
-                while (await reader.ReadAsync())
+                do
                 {
-                    int timeSheetEntryId = int.Parse(reader["timesheetentryid"].ToString());
-                    TimeOnly fromtime = TimeOnly.Parse(reader["fromtime"].ToString());
-                    TimeOnly totime = TimeOnly.Parse(reader["totime"].ToString());
-                    string work = reader["work"].ToString();
-                    string WorkCategory = reader["workcategory"].ToString();
-                    string description = reader["description"].ToString();
-
-                    TimeSheetEntry timeSheetEntry = new TimeSheetEntry()
+                    if (reader["timesheetentryid"] != DBNull.Value)
                     {
-                        Id = timeSheetEntryId,
-                        FromTime = fromtime,
-                        ToTime = totime,
-                        Work = work,
-                        WorkCategory = WorkCategory,
-                        Description = description
-                    };
+                        int timeSheetEntryId = int.Parse(reader["timesheetentryid"].ToString());
+                        TimeOnly fromtime = TimeOnly.Parse(reader["fromtime"].ToString());
+                        TimeOnly totime = TimeOnly.Parse(reader["totime"].ToString());
+                        string work = reader["work"].ToString();
+                        string WorkCategory = reader["workcategory"].ToString();
+                        string description = reader["description"].ToString();
 
-                    timeSheet.TimeSheetEntries.Add(timeSheetEntry);
-                }
+                        TimeSheetEntry timeSheetEntry = new TimeSheetEntry()
+                        {
+                            Id = timeSheetEntryId,
+                            FromTime = fromtime,
+                            ToTime = totime,
+                            Work = work,
+                            WorkCategory = WorkCategory,
+                            Description = description
+                        };
+                        timeSheet.TimeSheetEntries.Add(timeSheetEntry);
+                    }
+                } while (await reader.ReadAsync());
             }
             await reader.CloseAsync();
         }
@@ -133,7 +135,6 @@ public class TimeSheetService : ITimeSheetService
         }
         return timeSheet;
     }
-
 
     public async Task<bool> InsertTimeSheet(int employeeId, DateTime date)
     {
@@ -374,4 +375,63 @@ public class TimeSheetService : ITimeSheetService
         }
         return status;
     }
+
+    public async Task<List<WorkCategory>> GetWorkDurationOfEmployee(int employeeId,DateTime fromDate,DateTime toDate)
+    {
+        List<WorkCategory> workCategories = new List<WorkCategory>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query = "SELECT CAST(((SUM( CASE WHEN  timesheetentries.workcategory='userstory' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as userstory,CAST(((SUM( CASE WHEN  timesheetentries.workcategory='task' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as task, CAST(((SUM( CASE WHEN  timesheetentries.workcategory='bug' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as bug,CAST(((SUM( CASE WHEN  timesheetentries.workcategory='issues' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as issues, CAST(((SUM( CASE WHEN  timesheetentries.workcategory='meeting' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as meeting,  CAST(((SUM( CASE WHEN  timesheetentries.workcategory='learning' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as learning,CAST(((SUM( CASE WHEN  timesheetentries.workcategory='mentoring' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as mentoring ,CAST(((SUM( CASE WHEN  timesheetentries.workcategory='break' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as break,   CAST(((SUM( CASE WHEN  timesheetentries.workcategory='clientcall' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as clientcall, CAST(((SUM( CASE WHEN  timesheetentries.workcategory='other' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as other from timesheetentries INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id WHERE timesheets.employeeid=@employeeId AND timesheets.timesheetdate>=@fromDate and  timesheets.timesheetdate<=@toDate";
+
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@employeeId", employeeId);
+            command.Parameters.AddWithValue("@fromDate", fromDate);
+            command.Parameters.AddWithValue("@toDate", toDate);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {                
+                string userstory = reader["userstory"].ToString();
+                string task = reader["task"].ToString();
+                string bug = reader["bug"].ToString();
+                string issues = reader["issues"].ToString();
+                string meeting = reader["meeting"].ToString();
+                string learning = reader["learning"].ToString();
+                string mentoring = reader["mentoring"].ToString();
+                // string break = reader["break"].ToString();
+                string clientcall = reader["clientcall"].ToString();
+                string other = reader["other"].ToString();
+
+                WorkCategory workCategory = new WorkCategory()
+                {
+                    UserStory = userstory,
+                    Task = task,
+                    Bug = bug,
+                    Issues = issues,
+                    Meeting = meeting,
+                    Learning = learning,
+                    Mentoring = mentoring,
+                    // Break = break,
+                    ClientCall = clientcall,
+                    Other = other
+                };
+
+                workCategories.Add(workCategory);
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return workCategories;
+
+    }
+
 }

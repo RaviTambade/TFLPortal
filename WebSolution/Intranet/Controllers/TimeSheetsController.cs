@@ -56,7 +56,7 @@ public class TimeSheetsController : ControllerBase
     }
 
     [HttpPost("{employeeId}/{date}")]
-    public async Task<bool> InsertTimeSheet(int employeeId, DateTime date)
+   public async Task<bool> InsertTimeSheet(int employeeId, DateTime date)
     {
         return await _service.InsertTimeSheet(employeeId, date);
     }
@@ -92,5 +92,11 @@ public class TimeSheetsController : ControllerBase
     public async Task<bool> RemoveAllTimeSheetEntry(int timeSheetId)
     {
         return await _service.RemoveAllTimeSheetEntry(timeSheetId);
+    }
+
+    [HttpGet("timesheetentries/duration/workcategory/{employeeId}/{fromDate}/{toDate}")]
+    public async Task<List<WorkCategory>> GetWorkDurationOfEmployee(int employeeId,DateTime fromDate,DateTime toDate)
+    {
+        return await _service.GetWorkDurationOfEmployee(employeeId,fromDate,toDate);
     }
 }

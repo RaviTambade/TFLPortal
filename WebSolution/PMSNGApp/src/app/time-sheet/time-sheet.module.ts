@@ -8,6 +8,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { InsertTimeSheetComponent } from './components/forms/insert-time-sheet/insert-time-sheet.component';
 import { PopupComponent } from './components/popup/popup.component';
 import { UpdateTimesheetEntryComponent } from './components/forms/update-timesheet-entry/update-timesheet-entry.component';
+import { ApproveTimesheetComponent } from './components/forms/approve-timesheet/approve-timesheet.component';
+import { TotalWorkDurationOfEmployeeComponent } from './components/total-work-duration-of-employee/total-work-duration-of-employee.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { UpdateTimesheetEntryComponent } from './components/forms/update-timeshe
     InsertTimeSheetEntryComponent,
     InsertTimeSheetComponent,
     PopupComponent,
-    UpdateTimesheetEntryComponent
+    UpdateTimesheetEntryComponent,
+    ApproveTimesheetComponent,
+    TotalWorkDurationOfEmployeeComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +33,9 @@ import { UpdateTimesheetEntryComponent } from './components/forms/update-timeshe
     ListComponent,
     DetailsComponent,
     InsertTimeSheetEntryComponent,
-    InsertTimeSheetComponent
+    InsertTimeSheetComponent,
+    ApproveTimesheetComponent,
+    TotalWorkDurationOfEmployeeComponent
   ]
 })
 export class TimeSheetModule { }
