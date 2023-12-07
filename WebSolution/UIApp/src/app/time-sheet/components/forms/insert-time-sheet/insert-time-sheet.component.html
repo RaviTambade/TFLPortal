@@ -1,0 +1,54 @@
+<ng-template #insertTimesheetEnrty>
+    <app-insert-time-sheet-entry *ngIf="timeSheet" [timeSheetId]="timeSheet.id"
+        (stateChangeEvent)="onAddStateChange($event)"></app-insert-time-sheet-entry>
+</ng-template>
+
+<ng-template #updateTimeSheetEntry>
+    <app-update-timesheet-entry *ngIf="selectedTimeSheetEntrytoUpdate" [timeSheetEntry]="selectedTimeSheetEntrytoUpdate"
+        (stateChangeEvent)="onUpdateStateChange($event)"></app-update-timesheet-entry>
+</ng-template>
+
+<app-popup *ngIf="showaddTimesheetEntry" [templateToRender]="insertTimesheetEnrty"
+    (closePopup)="onCloseAddPopup()"></app-popup>
+
+<app-popup *ngIf="showupdateTimesheetEntry" [templateToRender]="updateTimeSheetEntry"
+    (closePopup)="onCloseUpdatePopup()"></app-popup>
+
+
+<p> Date : {{timeSheet?.timeSheetDate |date}}</p>
+<p> Status:{{timeSheet?.status |titlecase}}</p>
+<p> Employee Name:{{timeSheet?.employeeName}}</p>
+<button *ngIf="timeSheet?.status=='inprogress'" (click)="onClickAddTimesheetEntry()"> Add </button>
+
+<table class="table-bordered">
+    <thead>
+        <tr>
+            <th>Category</th>
+            <th>work</th>
+            <th>StartTime</th>
+            <th>EndTime</th>
+            <th>Duration</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let timeSheetEntry of timeSheet?.timeSheetEntries">
+        <tr>
+            <td>{{timeSheetEntry.workCategory }}</td>
+            <td>{{timeSheetEntry.work }}</td>
+            <td>{{timeSheetEntry.fromTime }}</td>
+            <td>{{timeSheetEntry.toTime}}</td>
+            <td>{{timeSheetEntry.durationInHours}}</td>
+            <td *ngIf="timeSheet?.status=='inprogress'"><button
+                    (click)="onClickUpdateTimesheetEntry(timeSheetEntry)">Edit</button></td>
+            <td *ngIf="timeSheet?.status=='inprogress'"><button
+                    (click)="onRemoveTimeSheetEntry(timeSheetEntry.id)">Delete</button></td>
+        </tr>
+
+    </tbody>
+
+</table>
+
+<p>Total Hours : {{totalminutes}}</p>
+
+<button type="submit" *ngIf="timeSheet?.status=='inprogress'" (click)="onSubmit()"> submit </button>
+<button class="mx-1" *ngIf="timeSheet?.status=='inprogress ' && timeSheet" (click)="onRemoveAllTimeSheetEntries(timeSheet.id)">
+    ClearAll </button>
