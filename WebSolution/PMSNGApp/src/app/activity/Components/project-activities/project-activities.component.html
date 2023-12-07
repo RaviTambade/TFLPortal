@@ -8,46 +8,93 @@
 </div>&nbsp;&nbsp;&nbsp;&nbsp;
 
 
-<div class="button-container">
-  <button class="button" (click)="showTasks('todo')">ToDo</button>
-  <button class="button" (click)="showTasks('inprogress')">Inprogress</button>
-  <button class="button" (click)="showTasks('completed')">Completed</button>
+
+
+<!-- <div class="checkbox-container">
+  <label>
+    <input type="checkbox" [(ngModel)]="showTodoTasks"> ToDo
+  </label>
+  <label>
+    <input type="checkbox" [(ngModel)]="showInProgressTasks"> Inprogress
+  </label>
+  <label>
+    <input type="checkbox" [(ngModel)]="showCompletedTasks"> Completed
+  </label>
 </div>
 
-<div id="tasksContainer" *ngIf="isFalse">
-  <div class="container">
-    <h2> Activities Of Employees</h2>
-    <div class="card">
-      <table class="table-bordered text-center">
-        <thead>
-          <tr>
-            <th>activityType</th>
-            <th>title</th>
-            <th>description</th>
-            <th>assignDate</th>
-            <th>assignedBy</th>
-            <th>assignedTo</th>
-            <th>startDate</th>
-            <th>dueDate</th>
-            <th>status</th>
-
-          </tr>
-        </thead>
-        <tbody *ngFor="let activity of tasks">
-          <tr>
-            <td> {{activity.activityType}}</td>
-            <td> {{activity.title}}</td>
-            <td>{{activity.description}}</td>
-            <td>{{activity.assignDate}}</td>
-            <td> {{activity.assignedBy}}</td>
-            <td> {{activity.assignedTo}}</td>
-            <td>{{activity.startDate}}</td>
-            <td>{{activity.dueDate}}</td>
-            <td> {{activity.status}}</td>
-
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
+<div class="task-list">
+  <div >
+    <div id="tasksContainer">
+      <div class="container">
+        <div class="card">
+          <table class="table-bordered text-center">
+            <thead>
+              <tr>
+                <th>activityType</th>
+                <th>title</th>
+                <th>description</th>
+                <th>assignDate</th>
+                <th>assignedBy</th>
+                <th>assignedTo</th>
+                <th>startDate</th>
+                <th>dueDate</th>
+                <th>status</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let activity of todoTasks">
+              <tr>
+                <td>{{activity.activityType}}</td>
+                <td>{{activity.title}}</td>
+                <td>{{activity.description}}</td>
+                <td>{{activity.assignDate}}</td>
+                <td>{{activity.assignedBy}}</td>
+                <td>{{activity.assignedTo}}</td>
+                <td>{{activity.startDate}}</td>
+                <td>{{activity.dueDate}}</td>
+                <td>{{activity.status}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div> 
+    
   </div>
+  
+  -->
+  <td>
+    <input type="checkbox"  (change)="filterArray('todo')"> Todo
+    <input type="checkbox"  (change)="filterArray('inprogress')"> In Progress
+    <input type="checkbox"  (change)="filterArray('completed')"> Completed
+  </td>
+  <table class="table-bordered text-center">
+    <thead>
+      <tr>
+       
+        <th>activityType</th>
+        <th>title</th>
+        <th>description</th>
+        <th>assignDate</th>
+        <th>assignedBy</th>
+        <th>assignedTo</th>
+        <th>startDate</th>
+        <th>dueDate</th>
+        <th>status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let activity of filteredActivities">
+       
+        <td>{{activity.activityType}}</td>
+        <td>{{activity.title}}</td>
+        <td>{{activity.description}}</td>
+        <td>{{activity.assignDate}}</td>
+        <td>{{activity.assignedBy}}</td>
+        <td>{{activity.assignedTo}}</td>
+        <td>{{activity.startDate}}</td>
+        <td>{{activity.dueDate}}</td>
+        <td>{{activity.status}}</td>
+      </tr>
+    </tbody>
+  </table>
+  
