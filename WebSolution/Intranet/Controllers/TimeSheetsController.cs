@@ -42,7 +42,7 @@ public class TimeSheetsController : ControllerBase
                 Status = timesheet.Status,
                 TimeSheetEntries = timesheet.TimeSheetEntries,
                 EmployeeId = timesheet.EmployeeId,
-                EmployeeName = user[0].FullName
+                EmployeeName = user[0].FirstName+" "+user[0].LastName,
             };
             return timeSheetResponse;
         }
@@ -56,7 +56,7 @@ public class TimeSheetsController : ControllerBase
     }
 
     [HttpPost("{employeeId}/{date}")]
-    public async Task<bool> InsertTimeSheet(int employeeId, DateTime date)
+   public async Task<bool> InsertTimeSheet(int employeeId, DateTime date)
     {
         return await _service.InsertTimeSheet(employeeId, date);
     }

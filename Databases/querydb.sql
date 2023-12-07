@@ -1,6 +1,6 @@
 -- Active: 1696576841746@@127.0.0.1@3306@pms
 SELECT * from activities;
-SELECT * from timesheetEntries;
+SELECT * from timesheets;
 SELECT * FROM employees;
 show tables;
 DROP PROCEDURE if exists getorcreatetimesheet;
@@ -25,17 +25,49 @@ WHERE timesheets.employeeid=10
 GROUP BY timesheetentries.workcategory ; 
 
 
-SELECT  COUNT(*), CAST(((SUM(TIME_TO_SEC(TIMEDIFF(totime,fromtime))))/3600)AS DECIMAL(10,2)) as time_in_hour,workcategory  from timesheetentries   
+-- monthwise
+SELECT  COUNT(*), MONTHNAME(timesheets.timesheetdate), CAST(((SUM(TIME_TO_SEC(TIMEDIFF(totime,fromtime))))/3600)AS DECIMAL(10,2)) as time_in_hour,workcategory  from timesheetentries   
 INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
-WHERE timesheets.employeeid=10  and timesheets.timesheetdate >= '2023-12-04' and timesheets.timesheetdate<= '2023-12-05'
+WHERE timesheets.employeeid=10  
+GROUP BY timesheetentries.workcategory,MONTH(timesheets.timesheetdate) ;
+
+
+-- particular month (passing year and month)
+SELECT  COUNT(*), MONTHNAME(timesheets.timesheetdate), CAST(((SUM(TIME_TO_SEC(TIMEDIFF(totime,fromtime))))/3600)AS DECIMAL(10,2)) as time_in_hour,workcategory  from timesheetentries   
+INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
+WHERE timesheets.employeeid=10  AND MONTHNAME(timesheets.timesheetdate)='November' AND YEAR(timesheets.timesheetdate)='2023'
 GROUP BY timesheetentries.workcategory ;
 
 
+-- between two dates (can be week , or custom range or single day)
+SELECT  COUNT(*), CAST(((SUM(TIME_TO_SEC(TIMEDIFF(totime,fromtime))))/3600)AS DECIMAL(10,2)) as time_in_hour,workcategory  from timesheetentries   
+INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
+WHERE timesheets.employeeid=10  AND timesheets.timesheetdate>='2023-12-04' and  timesheets.timesheetdate<='2023-12-04'
+GROUP BY timesheetentries.workcategory ;
 
+-- YEAR
+ SELECT  COUNT(*), YEAR(timesheets.timesheetdate), CAST(((SUM(TIME_TO_SEC(TIMEDIFF(totime,fromtime))))/3600)AS DECIMAL(10,2)) as time_in_hour,workcategory  from timesheetentries   
+INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
+WHERE timesheets.employeeid=10  AND YEAR(timesheets.timesheetdate)='2023'
+GROUP BY timesheetentries.workcategory ;
 
+ SELECT  COUNT(*),  YEAR(timesheets.timesheetdate),
+CAST(((SUM( CASE WHEN  timesheetentries.workcategory="userstory" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as userstory,
+CAST(((SUM( CASE WHEN  timesheetentries.workcategory="task" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as task,
+CAST(((SUM( CASE WHEN  timesheetentries.workcategory="bug" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as bug,
+CAST(((SUM( CASE WHEN  timesheetentries.workcategory="issues" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as issues,
+CAST(((SUM( CASE WHEN  timesheetentries.workcategory="meeting" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as meeting,
+CAST(((SUM( CASE WHEN  timesheetentries.workcategory="learning" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as learning,
+CAST(((SUM( CASE WHEN  timesheetentries.workcategory="mentoring" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as mentoring,
+CAST(((SUM( CASE WHEN  timesheetentries.workcategory="leabreakrning" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as break,
+CAST(((SUM( CASE WHEN  timesheetentries.workcategory="clientcall" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as clientcall,
+CAST(((SUM( CASE WHEN  timesheetentries.workcategory="other" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as other
+from timesheetentries   
+INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
+WHERE timesheets.employeeid=10  AND YEAR(timesheets.timesheetdate)='2023';
 
-
-
+SHOW COLUMNS FROM `timesheetentries` WHERE field = 'workcategory';
+-- enum('userstory','task','bug','issues','meeting','learning','mentoring','break','clientcall','other')
 SELECT totime,fromtime, SUM((TIME_TO_SEC(TIMEDIFF(totime,fromtime)))/3600)  FROM timesheetentries INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id WHERE timesheetid in (4,5);
 SELECT totime,fromtime, TIME_TO_SEC(TIMEDIFF(totime,fromtime)) from timesheetentries;
 

@@ -12,7 +12,6 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 });
 builder.Services.AddScoped<ExternalApiService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
-builder.Services.AddScoped<IMemberService, MemberService>();
 builder.Services.AddScoped<IActivityService, ActivityService>();
 builder.Services.AddScoped<ITimeSheetService, TimeSheetService>();
 builder.Services.AddScoped<IProjectAllocationService, ProjectAllocationService>();

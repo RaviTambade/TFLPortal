@@ -49,9 +49,9 @@ public class ExternalApiService
         return transactionId;
     }
 
-    public async Task<List<UserDetailsDTO>> GetUserDetails(string userIds)
+    public async Task<List<UserDTO>> GetUserDetails(string userIds)
     {
-        var response = await httpClient.GetFromJsonAsync<List<UserDetailsDTO>>(
+        var response = await httpClient.GetFromJsonAsync<List<UserDTO>>(
             $"http://localhost:5142/api/users/name/{userIds}"
         );
         return response;

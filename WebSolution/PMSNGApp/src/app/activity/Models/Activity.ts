@@ -4,6 +4,7 @@ export class Activity{
         public  description:string,
         public  activityType:string,
         public  projectId:number,
+        public  projectName:number,
         public  assignedBy:number,
         public  assignedTo:number,
         public  assignDate:string,
