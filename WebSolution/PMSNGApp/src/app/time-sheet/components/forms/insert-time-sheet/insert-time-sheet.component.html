@@ -1,5 +1,5 @@
 <ng-template #insertTimesheetEnrty>
-    <app-insert-time-sheet-entry [timeSheetId]="timeSheetId"
+    <app-insert-time-sheet-entry *ngIf="timeSheet" [timeSheetId]="timeSheet.id"
         (stateChangeEvent)="onAddStateChange($event)"></app-insert-time-sheet-entry>
 </ng-template>
 
@@ -30,7 +30,7 @@
             <th>Duration</th>
         </tr>
     </thead>
-    <tbody *ngFor="let timeSheetEntry of timeSheetEntries">
+    <tbody *ngFor="let timeSheetEntry of timeSheet?.timeSheetEntries">
         <tr>
             <td>{{timeSheetEntry.workCategory }}</td>
             <td>{{timeSheetEntry.work }}</td>
@@ -50,5 +50,5 @@
 <p>Total Hours : {{totalminutes}}</p>
 
 <button type="submit" *ngIf="timeSheet?.status=='inprogress'" (click)="onSubmit()"> submit </button>
-<button class="mx-1" *ngIf="timeSheet?.status=='inprogress'" (click)="onRemoveAllTimeSheetEntries(timeSheetId)">
+<button class="mx-1" *ngIf="timeSheet?.status=='inprogress ' && timeSheet" (click)="onRemoveAllTimeSheetEntries(timeSheet.id)">
     ClearAll </button>

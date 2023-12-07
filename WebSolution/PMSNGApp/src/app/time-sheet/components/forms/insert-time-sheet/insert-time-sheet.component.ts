@@ -12,8 +12,8 @@ import { TimeSheetService } from 'src/app/time-sheet/services/time-sheet.service
   styleUrls: ['./insert-time-sheet.component.css'],
 })
 export class InsertTimeSheetComponent implements OnInit {
-  timeSheetId!: number;
-  timeSheetEntries: TimeSheetEntry[] = [];
+  // timeSheetId!: number;
+  // timeSheetEntries: TimeSheetEntry[] = [];
   totalminutes: any = 0;
   showaddTimesheetEntry: boolean = false;
   showupdateTimesheetEntry: boolean = false;
@@ -43,26 +43,28 @@ export class InsertTimeSheetComponent implements OnInit {
       .removeAllTimeSheetEntries(timeSheetId)
       .subscribe((res) => {
         if (res) {
-          this.timeSheetEntries = [];
+          if (this.timeSheet) this.timeSheet.timeSheetEntries = [];
         }
       });
   }
 
   onSubmit() {
-    let timesheet: TimeSheet = {
-      id: this.timeSheetId,
-      timeSheetDate: this.timeSheet?.timeSheetDate || '',
-      status: 'Submitted',
-      employeeId: 10,
-      timeSheetEntries: this.timeSheetEntries,
-      statusChangedDate: this.todaysDate,
-    };
+    if (this.timeSheet) {
+      let timesheet: TimeSheet = {
+        id: this.timeSheet?.id,
+        timeSheetDate: this.timeSheet.timeSheetDate ,
+        status: 'Submitted',
+        employeeId: this.timeSheet.employeeId,
+        timeSheetEntries: this.timeSheet.timeSheetEntries,
+        statusChangedDate: this.todaysDate,
+      };
 
-    this.timeSheetSvc
-      .changeTimeSheetStatus(this.timeSheetId, timesheet)
-      .subscribe((res) => {
-        alert('timesheet added');
-      });
+      this.timeSheetSvc
+        .changeTimeSheetStatus(this.timeSheet.id, timesheet)
+        .subscribe((res) => {
+          alert('timesheet added');
+        });
+    }
   }
 
   onClickAddTimesheetEntry() {
@@ -96,15 +98,16 @@ export class InsertTimeSheetComponent implements OnInit {
 
       this.totalminutes = 0;
       this.timeSheet = res;
-      this.timeSheetEntries = res.timeSheetEntries;
-      this.timeSheetId = res.id;
-      console.log("🚀 ~ this.timeSheetSvc.getTimeSheet ~ timeSheetId:", res.id);
 
-      this.timeSheetEntries.forEach((entry) => {
-       entry= this.timeSheetSvc.getDurationOfWork(entry);
+      console.log('🚀 ~ this.timeSheetSvc.getTimeSheet ~ timeSheetId:', res.id);
+
+      this.timeSheet.timeSheetEntries.forEach((entry) => {
+        entry = this.timeSheetSvc.getDurationOfWork(entry);
         this.totalminutes += entry.durationInMinutes;
       });
-      this.totalminutes = this.timeSheetSvc.convertMinutesintoHours(this.totalminutes);
+      this.totalminutes = this.timeSheetSvc.convertMinutesintoHours(
+        this.totalminutes
+      );
 
       console.log(res);
     });
