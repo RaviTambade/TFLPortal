@@ -93,4 +93,10 @@ public class TimeSheetsController : ControllerBase
     {
         return await _service.RemoveAllTimeSheetEntry(timeSheetId);
     }
+
+    [HttpGet("timesheetentries/duration/workcategory/{employeeId}/{fromDate}/{toDate}")]
+    public async Task<List<WorkCategory>> GetWorkDurationOfEmployee(int employeeId,DateTime fromDate,DateTime toDate)
+    {
+        return await _service.GetWorkDurationOfEmployee(employeeId,fromDate,toDate);
+    }
 }

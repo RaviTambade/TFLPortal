@@ -375,4 +375,63 @@ public class TimeSheetService : ITimeSheetService
         }
         return status;
     }
+
+    public async Task<List<WorkCategory>> GetWorkDurationOfEmployee(int employeeId,DateTime fromDate,DateTime toDate)
+    {
+        List<WorkCategory> workCategories = new List<WorkCategory>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query = "SELECT CAST(((SUM( CASE WHEN  timesheetentries.workcategory='userstory' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as userstory,CAST(((SUM( CASE WHEN  timesheetentries.workcategory='task' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as task, CAST(((SUM( CASE WHEN  timesheetentries.workcategory='bug' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as bug,CAST(((SUM( CASE WHEN  timesheetentries.workcategory='issues' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as issues, CAST(((SUM( CASE WHEN  timesheetentries.workcategory='meeting' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as meeting,  CAST(((SUM( CASE WHEN  timesheetentries.workcategory='learning' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as learning,CAST(((SUM( CASE WHEN  timesheetentries.workcategory='mentoring' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as mentoring ,CAST(((SUM( CASE WHEN  timesheetentries.workcategory='break' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as break,   CAST(((SUM( CASE WHEN  timesheetentries.workcategory='clientcall' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as clientcall, CAST(((SUM( CASE WHEN  timesheetentries.workcategory='other' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as other from timesheetentries INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id WHERE timesheets.employeeid=@employeeId AND timesheets.timesheetdate>=@fromDate and  timesheets.timesheetdate<=@toDate";
+
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@employeeId", employeeId);
+            command.Parameters.AddWithValue("@fromDate", fromDate);
+            command.Parameters.AddWithValue("@toDate", toDate);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {                
+                string userstory = reader["userstory"].ToString();
+                string task = reader["task"].ToString();
+                string bug = reader["bug"].ToString();
+                string issues = reader["issues"].ToString();
+                string meeting = reader["meeting"].ToString();
+                string learning = reader["learning"].ToString();
+                string mentoring = reader["mentoring"].ToString();
+                // string break = reader["break"].ToString();
+                string clientcall = reader["clientcall"].ToString();
+                string other = reader["other"].ToString();
+
+                WorkCategory workCategory = new WorkCategory()
+                {
+                    UserStory = userstory,
+                    Task = task,
+                    Bug = bug,
+                    Issues = issues,
+                    Meeting = meeting,
+                    Learning = learning,
+                    Mentoring = mentoring,
+                    // Break = break,
+                    ClientCall = clientcall,
+                    Other = other
+                };
+
+                workCategories.Add(workCategory);
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return workCategories;
+
+    }
+
 }
