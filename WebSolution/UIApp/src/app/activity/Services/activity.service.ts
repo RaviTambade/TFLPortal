@@ -16,7 +16,23 @@ export class ActivityService {
 
 private serviceurl :string=environment.apiUrl;
 
-getAllActivities(projectId:number,assignedTo:number):Observable<Activity[]>{
+// http://localhost:5263/api/workmgmt/activities/1
+
+
+addActivity(addactivity:Activity):Observable<boolean>{
+  let url=this.serviceurl+"/workmgmt/activities/insert";
+  console.log("service called");
+  return this.httpClient.post<boolean>(url,addactivity);
+}
+
+fetchActivitiesByProject(projectId:number):Observable<Activity[]>{
+  let url=this.serviceurl+"/workmgmt/activities/"+projectId;
+  console.log(url);
+  return this.httpClient.get<Activity[]>(url);
+}
+
+
+fetchActivitiesByProjectAndAssigner(projectId:number,assignedTo:number):Observable<Activity[]>{
   let url=this.serviceurl+"/workmgmt/activities/activity"+"/"+projectId+"/"+assignedTo;
   console.log(url);
   return this.httpClient.get<Activity[]>(url);
@@ -28,19 +44,19 @@ getEmployeeDetails(employeeId:number):Observable<Employee>{
   return this.httpClient.get<Employee>(url);
 }
 
+
+getAllEmployees(projectId:number):Observable<any[]>{
+  let url=this.serviceurl+"/projectmgmt/projectallocation/employees/"+projectId;
+  return this.httpClient.get<any[]>(url);
+}
+
+
+
 getProjectDetails(projectId:number):Observable<any>{
   let url=this.serviceurl+"/projectmgmt/projects"+"/"+projectId;
   console.log(url);
   return this.httpClient.get<any>(url);
 }
-
-
-addActivity(addactivity:Activity):Observable<boolean>{
-  let url=this.serviceurl+"/workmgmt/activities/insert";
-  console.log("service called");
-  return this.httpClient.post<boolean>(url,addactivity);
-}
-
 
 getAllProject():Observable<Project[]>{
   let url=this.serviceurl+"/projectmgmt/projects";
@@ -49,14 +65,7 @@ getAllProject():Observable<Project[]>{
 
 
 
-// http://localhost:5263/api/projectmgmt/projectallocation/employees/1
 
-
-
-getAllEmployees(projectId:number):Observable<any[]>{
-  let url=this.serviceurl+"/projectmgmt/projectallocation/employees/"+projectId;
-  return this.httpClient.get<any[]>(url);
-}
 
 
 // http://localhost:5263/api/workmgmt/activities/activity/todo/4/15
@@ -84,12 +93,6 @@ getAllProjects():Observable<Project[]>{
 
 }
 
-// http://localhost:5263/api/workmgmt/activities/1
 
-getAllActivitiesByProject(projectId:number):Observable<Activity[]>{
-  let url=this.serviceurl+"/workmgmt/activities/"+projectId;
-  console.log(url);
-  return this.httpClient.get<Activity[]>(url);
-}
 
 }

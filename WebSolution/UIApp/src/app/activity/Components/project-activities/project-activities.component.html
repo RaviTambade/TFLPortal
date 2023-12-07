@@ -1,32 +1,22 @@
-&nbsp;&nbsp;&nbsp;&nbsp;
-
 <div>
-  <label for="project">Project Name:</label>
-  <select id="project" name="project" (change)="getSelectedProjectId($event)">
+  <label for="project">Project:</label>
+  <select id="project" name="project" (change)="onChangeProject($event)">
     <option *ngFor="let project of projects" [value]="project.id">{{project.title}}</option>
   </select>
 </div>&nbsp;&nbsp;&nbsp;&nbsp;
 
+    <input type="checkbox" [(ngModel)]="checkStatusTodo" (change)="filterActivities()"> Todo
+    <input type="checkbox" [(ngModel)]="checkStatusInProgress" (change)="filterActivities()"> In Progress
+    <input type="checkbox" [(ngModel)]="checkStatusCompleted" (change)="filterActivities()"> Completed
 
-
-  <td>
-    <input type="checkbox" [(ngModel)]="showTodoTasks" (change)="filterActivities()"> Todo
-    <input type="checkbox" [(ngModel)]="showInProgressTasks" (change)="filterActivities()"> In Progress
-    <input type="checkbox" [(ngModel)]="showCompletedTasks" (change)="filterActivities()"> Completed
-  </td>
-  <table class="table-bordered text-center"  *ngIf="isFalse==false">
+  <table class="table-bordered text-center" >
     <thead>
       <tr>
-        <th>title</th>
-        <th>startDate</th>
-        <th>dueDate</th>
-        <th>status</th>
+        <th>title</th> <th>startDate</th> <th>dueDate</th> <th>status</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let activity of filteredActivities">
-       
-       
+      <tr *ngFor="let activity of visibleActivities">
         <td>{{activity.title}}</td>
         <td>{{activity.startDate|date}}</td>
         <td>{{activity.dueDate|date}}</td>
