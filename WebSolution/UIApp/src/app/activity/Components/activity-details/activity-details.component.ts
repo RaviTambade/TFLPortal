@@ -3,6 +3,9 @@ import { Activity } from '../../Models/Activity';
 import { ActivityService } from '../../Services/activity.service';
 import { Employee } from '../../Models/Employee';
 import { ProjectsService } from 'src/app/projects/Services/projects.service';
+import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
+import { ProjectService } from 'src/app/shared/services/project.service';
+import { HrService } from 'src/app/shared/services/hr.service';
 
 @Component({
   selector: 'app-activity-details',
@@ -11,7 +14,7 @@ import { ProjectsService } from 'src/app/projects/Services/projects.service';
 })
 export class ActivityDetailsComponent{
 
-  constructor(private service :ActivityService,private projectService:ProjectsService){}
+  constructor(private workMgmtSvc : WorkmgmtService,private projectSvc:ProjectService,private hrSvc:HrService){}
 
 project:any|undefined;
 activity:Activity|undefined;
@@ -19,10 +22,10 @@ employee:Employee|undefined;
  getEvent(event:Activity){
   this.activity=event;
   console.log(event);
-  this.service.getEmployeeDetails(event.assignedBy).subscribe((res)=>{
+  this.hrSvc.getEmployeeDetails(event.assignedBy).subscribe((res)=>{
    this.employee=res;
   })
-  this.service.getProjectDetails(event.projectId).subscribe((res)=>{
+  this.projectSvc.getProjectDetails(event.projectId).subscribe((res)=>{
     this.project=res;
   })
  }

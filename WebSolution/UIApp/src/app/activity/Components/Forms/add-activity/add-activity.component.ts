@@ -3,6 +3,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Activity } from 'src/app/activity/Models/Activity';
 import { ActivityService } from 'src/app/activity/Services/activity.service';
 import { Project } from 'src/app/projects/Models/project';
+import { HrService } from 'src/app/shared/services/hr.service';
+import { ProjectService } from 'src/app/shared/services/project.service';
+import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 
 @Component({
   selector: 'app-add-activity',
@@ -10,12 +13,12 @@ import { Project } from 'src/app/projects/Models/project';
   styleUrls: ['./add-activity.component.css']
 })
 export class AddActivityComponent implements OnInit {
-constructor(private service:ActivityService) {}
+constructor(private projectSvc:ProjectService,private workMgmtSvc:WorkmgmtService,private hrSvc:HrService) {}
 projectId:any;
 employees:any[]=[];
 projects:Project[]=[];
   ngOnInit(): void {
-    this.service.getAllProject().subscribe((res)=>{
+    this.projectSvc.fetchAllProject().subscribe((res)=>{
     this.projects=res;
     console.log(res);
     })
@@ -72,7 +75,7 @@ onSubmit(){
  
   this.activity.status="todo"
   console.log(this.activity);
- this.service.addActivity(this.activity).subscribe((res)=>{
+ this.workMgmtSvc.addActivity(this.activity).subscribe((res)=>{
  });
  console.log(this.activityform.value)
 }
@@ -80,7 +83,8 @@ onSubmit(){
 
 onChange(e:any){
  this.projectId= e.target.value;
-  this.service.getAllEmployees(this.projectId).subscribe((res)=>{
+ console.log(e.target.value);
+  this.hrSvc.getAllEmployees(this.projectId).subscribe((res)=>{
     console.log(res);
     this.employees=res;
   })

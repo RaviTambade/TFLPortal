@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Activity } from 'src/app/activity/Models/Activity';
 import { ActivityService } from 'src/app/activity/Services/activity.service';
+import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 
 @Component({
   selector: 'app-update-activity',
@@ -9,7 +10,7 @@ import { ActivityService } from 'src/app/activity/Services/activity.service';
   styleUrls: ['./update-activity.component.css']
 })
 export class UpdateActivityComponent implements OnInit{
-  constructor(private service:ActivityService){}
+  constructor(private workMgmtSvc:WorkmgmtService){}
   projectId:number=4
   employeeId:number=15
   activityId:number=0;
@@ -48,7 +49,7 @@ export class UpdateActivityComponent implements OnInit{
  status:string="" ;
  activities:Activity[]=[];
   ngOnInit(): void {
-   this.service.getAllNotStartedActivities(this.projectId,this.employeeId).subscribe((res)=>{
+   this.workMgmtSvc.getAllNotStartedActivities(this.projectId,this.employeeId).subscribe((res)=>{
     this.activities=res;
     console.log(res);
    })
@@ -64,7 +65,7 @@ export class UpdateActivityComponent implements OnInit{
 
 update(){
   this.status=this.activityform.get("status")?.value;
-  this.service.updateActivity(this.status,this.activityId).subscribe((res)=>{
+  this.workMgmtSvc.updateActivity(this.status,this.activityId).subscribe((res)=>{
    if(res){
    this.activities= this.activities.filter((activity)=>activity.id!=this.activityId)
    }

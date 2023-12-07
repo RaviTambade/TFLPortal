@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProjectsService } from '../../Services/projects.service';
 import { Project } from '../../Models/project';
+import { ProjectService } from 'src/app/shared/services/project.service';
 
 @Component({
   selector: 'project-list',
@@ -9,7 +10,7 @@ import { Project } from '../../Models/project';
 })
 export class ListComponent implements OnInit {
   @Output() selectedProjectId = new EventEmitter<Project>();
-  constructor(private service: ProjectsService) {}
+  constructor(private service: ProjectService) {}
 
   projects: Project[] = [];
   employeeId: number = 6;

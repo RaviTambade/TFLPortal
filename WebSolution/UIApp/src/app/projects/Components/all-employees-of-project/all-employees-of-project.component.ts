@@ -16,7 +16,7 @@ export class AllEmployeesOfProjectComponent implements OnInit{
   constructor(private service:ProjectService,private svc:ProjectsService){}
 
     ngOnInit(): void {
-      this.service.getAllProjects().subscribe((res)=>{
+      this.service.fetchAllProject().subscribe((res)=>{
       this.projects=res;
       console.log(res);
       })

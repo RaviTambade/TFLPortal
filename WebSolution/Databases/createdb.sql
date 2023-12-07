@@ -107,3 +107,41 @@
         timesheetid INT NOT NULL,
         CONSTRAINT fk_timesheets_timesheetentries FOREIGN KEY(timesheetid) REFERENCES timesheets(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
+
+    CREATE TABLE (
+            id INT PRIMARY KEY AUTO_INCREMENT,
+            sprintid INT NOT NULL,
+            activityid INT NOT NULL,
+            CONSTRAINT fk_sprints FOREIGN KEY (sprintid) REFERENCES sprints(id) ON UPDATE CASCADE ON DELETE CASCADE,
+            CONSTRAINT fk_activity FOREIGN KEY (activityid) REFERENCES activities(id) ON UPDATE CASCADE ON DELETE CASCADE
+    );
+
+    CREATE TABLE employeesalarystructures(
+            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            employeeid INT NOT NULL,
+            CONSTRAINT fk_employee_projectmembers1 FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
+            basicsalary double Not null,
+            hra double Not null,
+            da double Not null,
+            lta double Not null,
+            variablepay double Not null,
+            deduction double Not null
+            );
+
+
+       CREATE TABLE employeesalaries(
+            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            employeeid INT NOT NULL,
+            CONSTRAINT fk_employee2_projectmembers1 FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
+            paydate DateTime,
+            amount double Not null
+            );
+
+             CREATE TABLE employeeleaves(
+            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            employeeid INT NOT NULL,
+            CONSTRAINT fk_employee3_projectmembers1 FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
+            fromdate DateTime,
+            todate DateTime,
+            amount double Not null,
+            leavetype enum("casual","privileged","sick","maternity","marriage","paternity","bereavement","comp off","loss of pay","study","religious festival","sabbatical"));
