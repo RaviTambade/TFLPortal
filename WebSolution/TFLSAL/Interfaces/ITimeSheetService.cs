@@ -17,4 +17,6 @@ public interface ITimeSheetService
     Task<bool> RemoveTimeSheetEntry(int timeSheetEntryId);
     Task<bool> RemoveAllTimeSheetEntry(int timeSheetId);
 
+    Task<List<WorkCategory>> GetWorkDurationOfEmployee(int employeeId,DateTime fromDate,DateTime toDate);
+
 }

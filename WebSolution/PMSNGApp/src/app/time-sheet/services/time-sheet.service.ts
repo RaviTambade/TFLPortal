@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { TimeSheetEntry } from '../models/timesheetentry';
-import { TimeSheet } from '../models/timesheet';
+
 import { TimesheetEmployee } from '../models/timesheet-employee';
+import { TimeSheet } from '../models/timesheet';
+import { TimeSheetEntry } from '../models/timesheetentry';
 
 @Injectable({
   providedIn: 'root',
@@ -91,4 +92,14 @@ export class TimeSheetService {
     let str = `${Math.floor(minutes / 60)}h: ${minutes % 60}m`;
     return str;
   }
+
+
+
+
+  getTotalDurationOfEmployee(employeeId: number,fromDate:string,toDate:string): Observable<any> {
+    let url = `${this.timeSheetUrl}/timesheetentries/duration/workcategory/${employeeId}/${fromDate}/${toDate}`;
+    return this.http.get<any>(url);
+  }
+
+  // http://localhost:5263/api/workmgmt/timesheets/timesheetentries/duration/workcategory/10/2023-01-04/2023-12-04
 }
