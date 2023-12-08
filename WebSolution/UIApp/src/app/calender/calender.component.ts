@@ -8,20 +8,7 @@ import { CalendarDay } from './CalenderDay';
 })
 export class CalenderComponent {
   public calendar: CalendarDay[] = [];
-  public monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
+  public monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December',];
   public displayMonth!: string;
   private holidayDays: string[] = ['2023-12-02', '2023-12-17', '2023-12-15'];
   private monthIndex: number = 0;
@@ -53,8 +40,7 @@ export class CalenderComponent {
     let day: Date = new Date(
       new Date().setMonth(new Date().getMonth() + monthIndex)
     );
-    console.log('🚀 ~ generateCalendarDays ~ day:', day);
-    console.log(new Date().getMonth());
+  
     this.displayMonth = this.monthNames[day.getMonth()] + day.getFullYear();
 
     let startingDateOfCalendar = this.getStartDateForCalendar(day);
@@ -131,7 +117,6 @@ export class CalenderComponent {
   }
 
   ConvertDateYYYY_MM_DD(date: Date): string {
-    // convert into yyyy-mm-dd
     const formattedDate = date
       .toLocaleDateString(undefined, {
         year: 'numeric',
