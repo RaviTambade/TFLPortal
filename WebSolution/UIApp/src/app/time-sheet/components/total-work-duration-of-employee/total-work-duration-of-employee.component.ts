@@ -26,7 +26,4 @@ export class TotalWorkDurationOfEmployeeComponent implements OnInit{
       });
   }
 
-
-
-
 }

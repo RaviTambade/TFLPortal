@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivityService } from '../../Services/activity.service';
 import { Activity } from '../../Models/Activity';
+import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 
 @Component({
   selector: 'app-activity-list',
@@ -9,12 +10,12 @@ import { Activity } from '../../Models/Activity';
 })
 export class ActivityListComponent implements OnInit{
   @Output() selectedActivities=new EventEmitter<Activity>()
-  constructor(private service :ActivityService){}
+  constructor(private workMgmtSvc :WorkmgmtService){}
   activities:Activity[]=[];
   projectId:number=2;
   assignedto:number=11;
   ngOnInit(): void {
-   this.service.getAllActivities(this.projectId,this.assignedto).subscribe((res)=>{
+   this.workMgmtSvc.fetchActivitiesByProjectAndAssigner(this.projectId,this.assignedto).subscribe((res)=>{
    this.activities=res;
    this.selectedActivities.emit(this.activities[0]);
    })

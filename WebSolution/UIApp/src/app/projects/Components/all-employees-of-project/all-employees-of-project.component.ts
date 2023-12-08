@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectsService } from '../../Services/projects.service';
-import { ActivityService } from 'src/app/activity/Services/activity.service';
 import { Project } from '../../Models/project';
+import { ProjectsService } from '../../Services/projects.service';
+import { ProjectService } from 'src/app/shared/services/project.service';
 
 @Component({
   selector: 'app-all-employees-of-project',
@@ -13,10 +13,10 @@ export class AllEmployeesOfProjectComponent implements OnInit{
   assignedEmployees:any[]=[];
   projects:Project[]=[];
   selectedProject:boolean=false;
-  constructor(private service:ProjectsService,private activityService:ActivityService){}
+  constructor(private service:ProjectService,private svc:ProjectsService){}
 
     ngOnInit(): void {
-      this.activityService.getAllProject().subscribe((res)=>{
+      this.service.fetchAllProject().subscribe((res)=>{
       this.projects=res;
       console.log(res);
       })
@@ -27,7 +27,7 @@ export class AllEmployeesOfProjectComponent implements OnInit{
       console.log(event.target.value);
       const projectId=event.target.value;
       this.selectedProject=true;
-      this.service.getAssignedEmployeesOfProject(projectId).subscribe((res)=>{
+      this.svc.getAssignedEmployeesOfProject(projectId).subscribe((res)=>{
       this.assignedEmployees=res;
       console.log(res);
     })

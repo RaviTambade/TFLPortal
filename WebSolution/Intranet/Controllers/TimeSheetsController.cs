@@ -95,7 +95,7 @@ public class TimeSheetsController : ControllerBase
     }
 
     [HttpGet("timesheetentries/duration/workcategory/{employeeId}/{fromDate}/{toDate}")]
-    public async Task<List<WorkCategory>> GetWorkDurationOfEmployee(int employeeId,DateTime fromDate,DateTime toDate)
+    public async Task<WorkCategory> GetWorkDurationOfEmployee(int employeeId,DateTime fromDate,DateTime toDate)
     {
         return await _service.GetWorkDurationOfEmployee(employeeId,fromDate,toDate);
     }

@@ -376,9 +376,9 @@ public class TimeSheetService : ITimeSheetService
         return status;
     }
 
-    public async Task<List<WorkCategory>> GetWorkDurationOfEmployee(int employeeId,DateTime fromDate,DateTime toDate)
+    public async Task<WorkCategory> GetWorkDurationOfEmployee(int employeeId,DateTime fromDate,DateTime toDate)
     {
-        List<WorkCategory> workCategories = new List<WorkCategory>();
+        WorkCategory workCategory = null;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -404,7 +404,7 @@ public class TimeSheetService : ITimeSheetService
                 string clientcall = reader["clientcall"].ToString();
                 string other = reader["other"].ToString();
 
-                WorkCategory workCategory = new WorkCategory()
+                workCategory = new WorkCategory()
                 {
                     UserStory = userstory,
                     Task = task,
@@ -417,8 +417,6 @@ public class TimeSheetService : ITimeSheetService
                     ClientCall = clientcall,
                     Other = other
                 };
-
-                workCategories.Add(workCategory);
             }
             await reader.CloseAsync();
         }
@@ -430,7 +428,7 @@ public class TimeSheetService : ITimeSheetService
         {
             await connection.CloseAsync();
         }
-        return workCategories;
+        return workCategory;
 
     }
 
