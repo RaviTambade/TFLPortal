@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProjectAllocation } from 'src/app/projects/Models/projectallocation';
+import { ProjectAllocationDetails } from 'src/app/projects/Models/projectallocationdetails';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -11,8 +12,9 @@ export class ProjectallocationService {
   
   private serviceurl :string=environment.apiUrl;
   constructor(private httpClient: HttpClient) { }
+
   assignedEmployeeToProject(projectId:number,employeeId:number,project:ProjectAllocation):Observable<ProjectAllocation>{
-    let url=this.serviceurl+"/projectmgmt/projectallocation/assignproject/"+ projectId +"/"+employeeId;
+    let url=this.serviceurl+"/projectmgmt/projectallocation/projects/"+ projectId +"/allocate/employee/"+employeeId;
     return this.httpClient.post<ProjectAllocation>(url,project);
   }
 
@@ -21,9 +23,9 @@ export class ProjectallocationService {
     return this.httpClient.post<any>(url,project);
   }
 
-  getAllUnassignedEmployees():Observable<any>{
+  getAllUnassignedEmployees():Observable<ProjectAllocationDetails>{
     let url=this.serviceurl+"/projectmgmt/projectallocation/unassignedemployees";
-    return this.httpClient.get<any>(url);
+    return this.httpClient.get<ProjectAllocationDetails>(url);
   }
 
   getAllAssignedEmployees(status:string):Observable<any>{

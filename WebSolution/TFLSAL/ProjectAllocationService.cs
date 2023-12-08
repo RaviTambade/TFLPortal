@@ -58,6 +58,9 @@ public class ProjectAllocationService : IProjectAllocationService
     public async Task<bool> ReleaseMemberFromProject(int projectId ,int employeeId,ReleaseEmployee project)
     {
         bool status=false;
+        Console.WriteLine(projectId);
+        Console.WriteLine(employeeId);
+        Console.WriteLine(project);
         // DateTime localDate = DateTime.Now;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
@@ -86,6 +89,7 @@ public class ProjectAllocationService : IProjectAllocationService
         {
             await connection.CloseAsync();
         }
+        Console.WriteLine(status);
         return status;
     }
 

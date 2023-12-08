@@ -50,7 +50,7 @@ export class ProjectsService {
     return this.httpClient.get<any>(url);
   }
 
-  getUnssignedEmployeesOfProject(projectId:number){
+  getUnassignedEmployeesOfProject(projectId:number){
     let url=this.serviceurl+"/projectmgmt/projectallocation/projects/" +projectId +"/releaseemployees";  
     return this.httpClient.get<any>(url);
   }

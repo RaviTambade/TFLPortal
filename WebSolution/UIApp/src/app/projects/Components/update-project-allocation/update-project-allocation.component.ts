@@ -23,9 +23,11 @@ export class UpdateProjectAllocationComponent {
   }
 
   onSubmit(){
-    this.updateProject.employeeId=30;
-    this.updateProject.projectId=9;
+    this.updateProject.employeeId=14;
+    this.updateProject.projectId=6;
     console.log(this.updateProject);
+    console.log(this.updateProject.employeeId);
+    console.log(this.updateProject.projectId);
     this.service.releaseEmployeeFromProject(this.updateProject.employeeId,this.updateProject.projectId,this.updateProject).subscribe((res)=>{
       console.log(res);
     })

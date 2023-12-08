@@ -1,49 +1,57 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ProjectsService } from '../../Services/projects.service';
 import { ProjectAllocation } from '../../Models/projectallocation';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Project } from '../../Models/project';
+import { ProjectService } from 'src/app/shared/services/project.service';
+import { ProjectallocationService } from 'src/app/shared/services/projectallocation.service';
 
 @Component({
   selector: 'app-assign-employee-to-project',
   templateUrl: './assign-employee-to-project.component.html',
   styleUrls: ['./assign-employee-to-project.component.css']
 })
-export class AssignEmployeeToProjectComponent {
+export class AssignEmployeeToProjectComponent implements OnInit{
 
- constructor(private service:ProjectsService){}
-  projectAllocations:ProjectAllocation={
-    Id: 0,
-    employeeId: 0,
-    projectId: 0,
-    membership: '',
-    assignDate: '',
-    status: ''
-  }
+  projects:Project[]=[];
+  projectId:number |undefined;
+
+  @Input() employeeId :number=0;
+  @Input() Name :string='';
+
+ constructor(private svc:ProjectService,private service:ProjectallocationService){}
+ ngOnInit(): void {
+  this.svc.fetchAllProject().subscribe((res)=>{
+  this.projects=res;
+  console.log(res);
+  })
+ }
+ 
  assignemployeeform=new FormGroup({
-  employeeId:new FormControl(),
   projectId:new FormControl(),
-  membership :new FormControl(),
-  assignDate:new FormControl(),
-  status:new FormControl(),
+  membership :new FormControl()
 });
 
 onSubmit(){
+  let projectAllocations:ProjectAllocation={
+    Id: 0,
+    employeeId: this.employeeId,
+    projectId: this.assignemployeeform.get("projectId")?.value,
+    membership: this.assignemployeeform.get("membership")?.value,
+    assignDate: new Date().toISOString().slice(0,10),
+    status: "yes"
+  }
 
-  this.projectAllocations.employeeId=this.assignemployeeform.get("employeeId")?.value;
-  this.projectAllocations.projectId=this.assignemployeeform.get("projectId")?.value;
-  this.projectAllocations.membership=this.assignemployeeform.get("membership")?.value;
-  this.projectAllocations.assignDate=this.assignemployeeform.get("assignDate")?.value;
-  this.projectAllocations.status=this.assignemployeeform.get("status")?.value;
-  
-  this.projectAllocations.employeeId=28;
-  this.projectAllocations.projectId=2;
-  this.projectAllocations.status="yes";
-  this.projectAllocations.assignDate=new Date().toISOString();
-
-  console.log(this.projectAllocations);
- this.service.assignedEmployeeToProject(this.projectAllocations.projectId,this.projectAllocations.employeeId,this.projectAllocations).subscribe((res)=>{
+  console.log(projectAllocations);
+  this.service.assignedEmployeeToProject(projectAllocations.projectId,projectAllocations.employeeId,projectAllocations).subscribe((res)=>{
   console.log(res);
  });
  console.log(this.assignemployeeform.value)
 }
+
+onChange(event:any){
+  console.log(event.target.value);
+      this.projectId=event.target.value;
+      console.log(this.projectId);
+ }
 }
