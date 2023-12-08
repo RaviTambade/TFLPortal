@@ -1,3 +1,9 @@
+<label> From </label>
+<input type="date" [(ngModel)]="fromDate">
+<label> To </label>
+<input class="mb-3" type="date" [(ngModel)]="toDate">
+
+<button (click)="getWorkHours()"> Get </button>
 <div *ngFor="let workCategory of WorkCategories">
     <p>UserStory:{{workCategory.userStory}}</p>
     <p>Task:{{workCategory.task}}</p>

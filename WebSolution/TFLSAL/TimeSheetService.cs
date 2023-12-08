@@ -28,7 +28,7 @@ public class TimeSheetService : ITimeSheetService
         try
         {
             string query = "select * from timesheets where  employeeid =@employeeId";
-            MySqlCommand command = new MySqlCommand(query, connection);
+            MySqlCommand command =  new MySqlCommand(query,connection);
             command.Parameters.AddWithValue("@employeeId", employeeId);
             await connection.OpenAsync();
             MySqlDataReader reader = (MySqlDataReader)await command.ExecuteReaderAsync();
