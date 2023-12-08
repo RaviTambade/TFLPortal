@@ -18,25 +18,29 @@ export class TimeSheetService {
     let url = `${this.timeSheetUrl}/${employeeId}`;
     return this.http.get<TimeSheet[]>(url);
   }
+  getTimeSheet( employeeId: number, date: string): Observable<TimesheetView> {
+    let url = `${this.timeSheetUrl}/${employeeId}/date/${date}`;
+    return this.http.get<TimesheetView>(url);
+  }
 
   getTimeSheetDetails(timeSheetId: number): Observable<TimeSheetDetails[]> {
     let url = `${this.timeSheetUrl}/timesheetentries/${timeSheetId}`;
     return this.http.get<TimeSheetDetails[]>(url);
   }
 
+  getWorkDurationOfEmployee(employeeId: number,fromDate:string,toDate:string): Observable<any> {
+    let url = `${this.timeSheetUrl}/timesheetentries/duration/workcategory/${employeeId}/${fromDate}/${toDate}`;
+    return this.http.get<any>(url);
+  }
+
+  addTimeSheet(employeeId: number, date: string): Observable<boolean> {
+    let url = `${this.timeSheetUrl}/${employeeId}/${date}`;
+    return this.http.post<boolean>(url,{});
+  }
+
   addTimeSheetDetails(TimeSheetDetails: TimeSheetDetails): Observable<any> {
     let url = `${this.timeSheetUrl}/timesheetentries`;
     return this.http.post(url, TimeSheetDetails);
-  }
-
-  getTimeSheet( employeeId: number, date: string): Observable<TimesheetView> {
-    let url = `${this.timeSheetUrl}/${employeeId}/date/${date}`;
-    return this.http.get<TimesheetView>(url);
-  }
-
-  insertTimeSheet(employeeId: number, date: string): Observable<boolean> {
-    let url = `${this.timeSheetUrl}/${employeeId}/${date}`;
-    return this.http.get<boolean>(url);
   }
 
   changeTimeSheetStatus( timeSheetId: number, timesheet: TimeSheet): Observable<boolean> {
@@ -54,7 +58,7 @@ export class TimeSheetService {
     return this.http.delete<boolean>(url);
   }
 
-  removeAllTimeSheetEntries(timeSheetId: number): Observable<boolean> {
+  removeAllTimeSheetDetails(timeSheetId: number): Observable<boolean> {
     let url = `${this.timeSheetUrl}/timesheetentries/removeall/${timeSheetId}`;
     return this.http.delete<boolean>(url);
   }
@@ -80,13 +84,4 @@ export class TimeSheetService {
     return str;
   }
 
-
-
-
-  getTotalDurationOfEmployee(employeeId: number,fromDate:string,toDate:string): Observable<any> {
-    let url = `${this.timeSheetUrl}/timesheetentries/duration/workcategory/${employeeId}/${fromDate}/${toDate}`;
-    return this.http.get<any>(url);
-  }
-
-  // http://localhost:5263/api/workmgmt/timesheets/timesheetentries/duration/workcategory/10/2023-01-04/2023-12-04
 }

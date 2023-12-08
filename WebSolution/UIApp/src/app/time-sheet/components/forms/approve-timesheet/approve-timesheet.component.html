@@ -12,13 +12,13 @@
             <th>Duration</th>
         </tr>
     </thead>
-    <tbody *ngFor="let timeSheetEntry of timeSheet?.timeSheetEntries">
+    <tbody *ngFor="let timeSheetDetail of timeSheet?.timeSheetDetails">
         <tr>
-            <td>{{timeSheetEntry.workCategory }}</td>
-            <td>{{timeSheetEntry.work }}</td>
-            <td>{{timeSheetEntry.fromTime }}</td>
-            <td>{{timeSheetEntry.toTime}}</td>
-            <td>{{timeSheetEntry.durationInHours}}</td>
+            <td>{{timeSheetDetail.workCategory }}</td>
+            <td>{{timeSheetDetail.work }}</td>
+            <td>{{timeSheetDetail.fromTime }}</td>
+            <td>{{timeSheetDetail.toTime}}</td>
+            <td>{{timeSheetDetail.durationInHours}}</td>
         </tr>
 
     </tbody>
