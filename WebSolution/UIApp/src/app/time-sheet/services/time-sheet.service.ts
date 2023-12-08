@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
-import { TimesheetEmployee } from '../models/timesheet-employee';
+import { TimesheetView } from '../models/TimesheetView';
 import { TimeSheet } from '../models/timesheet';
-import { TimeSheetEntry } from '../models/timesheetentry';
+import { TimeSheetDetails } from '../models/TimeSheetDetails';
 
 @Injectable({
   providedIn: 'root',
@@ -12,30 +12,26 @@ import { TimeSheetEntry } from '../models/timesheetentry';
 export class TimeSheetService {
   constructor(private http: HttpClient) {}
 
-  private timeSheetUrl: string =
-    'http://localhost:5263/api/workmgmt/timesheets';
+  private timeSheetUrl: string = 'http://localhost:5263/api/workmgmt/timesheets';
 
-  getTimeSheetsOfEmployee(employeeId: number): Observable<TimeSheet[]> {
+  getAllTimeSheets(employeeId: number): Observable<TimeSheet[]> {
     let url = `${this.timeSheetUrl}/${employeeId}`;
     return this.http.get<TimeSheet[]>(url);
   }
 
-  getTimeSheetEntries(timeSheetId: number): Observable<TimeSheetEntry[]> {
+  getTimeSheetDetails(timeSheetId: number): Observable<TimeSheetDetails[]> {
     let url = `${this.timeSheetUrl}/timesheetentries/${timeSheetId}`;
-    return this.http.get<TimeSheetEntry[]>(url);
+    return this.http.get<TimeSheetDetails[]>(url);
   }
 
-  addTimeSheetEntry(timesheetEntry: TimeSheetEntry): Observable<any> {
+  addTimeSheetDetails(TimeSheetDetails: TimeSheetDetails): Observable<any> {
     let url = `${this.timeSheetUrl}/timesheetentries`;
-    return this.http.post(url, timesheetEntry);
+    return this.http.post(url, TimeSheetDetails);
   }
 
-  getTimeSheet(
-    employeeId: number,
-    date: string
-  ): Observable<TimesheetEmployee> {
+  getTimeSheet( employeeId: number, date: string): Observable<TimesheetView> {
     let url = `${this.timeSheetUrl}/${employeeId}/date/${date}`;
-    return this.http.get<TimesheetEmployee>(url);
+    return this.http.get<TimesheetView>(url);
   }
 
   insertTimeSheet(employeeId: number, date: string): Observable<boolean> {
@@ -43,24 +39,18 @@ export class TimeSheetService {
     return this.http.get<boolean>(url);
   }
 
-  changeTimeSheetStatus(
-    timeSheetId: number,
-    timesheet: TimeSheet
-  ): Observable<boolean> {
+  changeTimeSheetStatus( timeSheetId: number, timesheet: TimeSheet): Observable<boolean> {
     let url = `${this.timeSheetUrl}/${timeSheetId}`;
     return this.http.put<boolean>(url, timesheet);
   }
 
-  updateTimeSheetEntry(
-    timeSheetEntryId: number,
-    timeSheetEntry: TimeSheetEntry
-  ): Observable<boolean> {
-    let url = `${this.timeSheetUrl}/timesheetentries/${timeSheetEntryId}`;
-    return this.http.put<boolean>(url, timeSheetEntry);
+  updateTimeSheetDetails(TimeSheetDetailsId: number,TimeSheetDetails: TimeSheetDetails): Observable<boolean> {
+    let url = `${this.timeSheetUrl}/timesheetentries/${TimeSheetDetailsId}`;
+    return this.http.put<boolean>(url, TimeSheetDetails);
   }
 
-  removeTimeSheetEntry(timeSheetEntryId: number): Observable<boolean> {
-    let url = `${this.timeSheetUrl}/timesheetentries/remove/${timeSheetEntryId}`;
+  removeTimeSheetDetails(TimeSheetDetailsId: number): Observable<boolean> {
+    let url = `${this.timeSheetUrl}/timesheetentries/remove/${TimeSheetDetailsId}`;
     return this.http.delete<boolean>(url);
   }
 
@@ -71,21 +61,18 @@ export class TimeSheetService {
 
   //helper functions
 
-  getDurationOfWork(timeSheetEntry: TimeSheetEntry): TimeSheetEntry {
-    let startTime = timeSheetEntry.fromTime;
-    let endTime = timeSheetEntry.toTime;
+  getDurationOfWork(TimeSheetDetails: TimeSheetDetails): TimeSheetDetails {
+    let startTime = TimeSheetDetails.fromTime;
+    let endTime = TimeSheetDetails.toTime;
+    
     if (startTime != '' && endTime != '') {
       const startDate = new Date(`1970-01-01T${startTime}`);
       const endDate = new Date(`1970-01-01T${endTime}`);
-
       const durationMilliseconds = endDate.getTime() - startDate.getTime();
-      timeSheetEntry.durationInMinutes = durationMilliseconds / (1000 * 60);
-      timeSheetEntry.durationInHours = this.convertMinutesintoHours(
-        timeSheetEntry.durationInMinutes
-      );
+      TimeSheetDetails.durationInMinutes = durationMilliseconds / (1000 * 60);
+      TimeSheetDetails.durationInHours = this.convertMinutesintoHours(TimeSheetDetails.durationInMinutes);
     }
-    
-    return timeSheetEntry;
+    return TimeSheetDetails;
   }
 
   convertMinutesintoHours(minutes: number) {

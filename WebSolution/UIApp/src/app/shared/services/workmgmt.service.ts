@@ -27,47 +27,24 @@ export class WorkmgmtService {
     return this.httpClient.get<Activity[]>(url);
   }
 
-  fetchActivitiesByProjectAndAssigner(
-    projectId: number,
-    assignedTo: number
-  ): Observable<Activity[]> {
-    let url =
-      this.serviceurl +
-      '/workmgmt/activities/activity' +
-      '/' +
-      projectId +
-      '/' +
-      assignedTo;
+  fetchActivitiesByProjectAndAssigner(projectId: number,assignedTo: number ): Observable<Activity[]> {
+    let url =this.serviceurl + '/workmgmt/activities/activity' + '/' + projectId +'/' +assignedTo;
     console.log(url);
     return this.httpClient.get<Activity[]>(url);
   }
 
  
-
   // http://localhost:5263/api/workmgmt/activities/activity/todo/4/15
 
-  getAllNotStartedActivities(
-    projectId: number,
-    employeeId: number
-  ): Observable<Activity[]> {
-    let url =
-      this.serviceurl +
-      '/workmgmt/activities/activity/todo/' +
-      projectId +
-      '/' +
-      employeeId;
+  getAllNotStartedActivities(projectId: number, employeeId: number ): Observable<Activity[]> {
+    let url =this.serviceurl +'/workmgmt/activities/activity/todo/' + projectId +'/' + employeeId;
     return this.httpClient.get<Activity[]>(url);
   }
 
   // http://localhost:5263/api/workmgmt/activities/Update/1/4/15
 
   updateActivity(status: string, activityId: number): Observable<boolean> {
-    let url =
-      this.serviceurl +
-      '/workmgmt/activities/Update/' +
-      status +
-      '/' +
-      activityId;
+    let url = this.serviceurl +'/workmgmt/activities/Update/' +status +'/' + activityId;
     return this.httpClient.put<boolean>(url, status);
   }
 }

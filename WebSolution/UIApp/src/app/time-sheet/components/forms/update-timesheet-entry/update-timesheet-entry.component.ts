@@ -6,7 +6,7 @@ import {
   SimpleChange,
   SimpleChanges,
 } from '@angular/core';
-import { TimeSheetEntry } from 'src/app/time-sheet/models/timesheetentry';
+import { TimeSheetEntry } from 'src/app/time-sheet/models/TimeSheetDetails';
 import { TimeSheetService } from 'src/app/time-sheet/services/time-sheet.service';
 
 @Component({

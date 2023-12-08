@@ -1,7 +1,5 @@
 import { TimeSheet } from "./timesheet";
 
-export class TimesheetEmployee extends TimeSheet{
+export class TimesheetView extends TimeSheet{
     public employeeName:string=''
-    
-
 }

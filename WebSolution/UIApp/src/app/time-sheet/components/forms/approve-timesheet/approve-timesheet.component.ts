@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TimeSheet } from 'src/app/time-sheet/models/timesheet';
-import { TimesheetEmployee } from 'src/app/time-sheet/models/timesheet-employee';
-import { TimeSheetEntry } from 'src/app/time-sheet/models/timesheetentry';
+import { TimesheetEmployee } from 'src/app/time-sheet/models/TimesheetView';
+import { TimeSheetEntry } from 'src/app/time-sheet/models/TimeSheetDetails';
 import { TimeSheetService } from 'src/app/time-sheet/services/time-sheet.service';
 
 @Component({

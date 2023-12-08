@@ -6,7 +6,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { TimeSheetService } from '../../services/time-sheet.service';
-import { TimeSheetEntry } from '../../models/timesheetentry';
+import { TimeSheetEntry } from '../../models/TimeSheetDetails';
 @Component({
   selector: 'timesheet-details',
   templateUrl: './details.component.html',
