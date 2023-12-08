@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { TimeSheetEntry } from 'src/app/time-sheet/models/TimeSheetDetails';
+import { TimeSheetDetails } from 'src/app/time-sheet/models/TimeSheetDetails';
 import { TimeSheetService } from 'src/app/time-sheet/services/time-sheet.service';
 
 @Component({
@@ -21,7 +20,7 @@ export class InsertTimeSheetEntryComponent {
     'clientcall',
     'other',
   ];
-  timeSheetEntry: TimeSheetEntry = {
+  timeSheetDetail: TimeSheetDetails = {
     id: 0,
     fromTime: '',
     toTime: '',
@@ -38,27 +37,27 @@ export class InsertTimeSheetEntryComponent {
   constructor(private timeSheetService: TimeSheetService) {}
 
   onClick() {
-    let timeSheetEntry: TimeSheetEntry = {
+    let timeSheetDetail: TimeSheetDetails = {
       id: 0,
-      fromTime: this.timeSheetEntry.fromTime + ':00',
-      toTime: this.timeSheetEntry.toTime + ':00',
-      durationInMinutes: this.timeSheetEntry.durationInMinutes,
-      durationInHours: this.timeSheetEntry.durationInHours,
+      fromTime: this.timeSheetDetail.fromTime + ':00',
+      toTime: this.timeSheetDetail.toTime + ':00',
+      durationInMinutes: this.timeSheetDetail.durationInMinutes,
+      durationInHours: this.timeSheetDetail.durationInHours,
       timeSheetId: this.timeSheetId,
-      work: this.timeSheetEntry.work,
-      workCategory: this.timeSheetEntry.workCategory,
-      description: this.timeSheetEntry.description,
+      work: this.timeSheetDetail.work,
+      workCategory: this.timeSheetDetail.workCategory,
+      description: this.timeSheetDetail.description,
     };
 
-    this.timeSheetService.addTimeSheetEntry(timeSheetEntry).subscribe((res) => {
+    this.timeSheetService.addTimeSheetDetails(timeSheetDetail).subscribe((res) => {
       if (res) {
         this.stateChangeEvent.emit(true);
       }
     });
   }
 
-  getDuration(timeSheetEnrty: TimeSheetEntry) {
-    this.timeSheetEntry =
-      this.timeSheetService.getDurationOfWork(timeSheetEnrty);
+  getDuration(timeSheetDetail: TimeSheetDetails) {
+    this.timeSheetDetail =
+      this.timeSheetService.getDurationOfWork(timeSheetDetail);
   }
 }

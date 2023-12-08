@@ -97,7 +97,7 @@ public class TimeSheetService : ITimeSheetService
                     StatusChangedDate = statusChangedDate,
                     EmployeeId = employeeId,
                     Employee = new Employee { UserId = employeeUserId },
-                    TimeSheetEntries = new List<TimeSheetEntry>()
+                    TimeSheetDetails = new List<TimeSheetEntry>()
                 };
                 do
                 {
@@ -119,7 +119,7 @@ public class TimeSheetService : ITimeSheetService
                             WorkCategory = WorkCategory,
                             Description = description
                         };
-                        timeSheet.TimeSheetEntries.Add(timeSheetEntry);
+                        timeSheet.TimeSheetDetails.Add(timeSheetEntry);
                     }
                 } while (await reader.ReadAsync());
             }

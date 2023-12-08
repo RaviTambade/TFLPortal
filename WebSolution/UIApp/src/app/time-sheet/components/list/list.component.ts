@@ -17,7 +17,7 @@ export class ListComponent implements OnInit{
   constructor(private timeSheetSvc:TimeSheetService){}
 
   ngOnInit(): void {
-  this.timeSheetSvc.getTimeSheetsOfEmployee(this.employeeId).subscribe((res)=>{
+  this.timeSheetSvc.getAllTimeSheets(this.employeeId).subscribe((res)=>{
   this.timeSheets=res;
   console.log(res);
   this.selectedTimeSheetId.emit(this.timeSheets[0].id);

@@ -40,7 +40,7 @@ public class TimeSheetsController : ControllerBase
                 TimeSheetDate = timesheet.TimeSheetDate,
                 StatusChangedDate = timesheet.StatusChangedDate,
                 Status = timesheet.Status,
-                TimeSheetEntries = timesheet.TimeSheetEntries,
+                TimeSheetDetails = timesheet.TimeSheetDetails,
                 EmployeeId = timesheet.EmployeeId,
                 EmployeeName = user[0].FirstName+" "+user[0].LastName,
             };

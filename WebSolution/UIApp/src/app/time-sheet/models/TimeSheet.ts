@@ -6,5 +6,6 @@ export class TimeSheet{
                 public timeSheetDate:string,
                 public statusChangedDate:string,
                 public employeeId:number){}
-    public timeSheetEntries:TimeSheetDetails[]=[]
+                
+    public timeSheetDetails:TimeSheetDetails[]=[]
 }

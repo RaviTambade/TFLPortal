@@ -1,20 +1,20 @@
 <h2> Update TimeSheetEntry</h2>
 <label>Activity:</label>
-<select [(ngModel)]="timeSheetEntry.workCategory">
+<select [(ngModel)]="timesheetDetails.workCategory">
     <option *ngFor="let activity of activitiyTypes;let i=index" [value]="activity">{{activity |titlecase}}</option>
 </select><br>
 <label>Title:</label>
-<input type="text" [(ngModel)]="timeSheetEntry.work"> <br /><br>
+<input type="text" [(ngModel)]="timesheetDetails.work"> <br /><br>
 
 <label>Description:</label>
-<textarea name="" id="" cols="30" rows="1" [(ngModel)]="timeSheetEntry.description"></textarea><br>
+<textarea name="" id="" cols="30" rows="1" [(ngModel)]="timesheetDetails.description"></textarea><br>
 <label>From :</label>
-<input type="time" name="fromTime" [(ngModel)]="timeSheetEntry.fromTime" (change)="getDuration(timeSheetEntry)">
+<input type="time" name="fromTime" [(ngModel)]="timesheetDetails.fromTime" (change)="getDuration(timesheetDetails)">
 <label>TO:</label>
-<input type="time" name="toTime" [(ngModel)]="timeSheetEntry.toTime" (change)="getDuration(timeSheetEntry)"> <br />
+<input type="time" name="toTime" [(ngModel)]="timesheetDetails.toTime" (change)="getDuration(timesheetDetails)"> <br />
 <br />
 
 
-<p>duration:{{timeSheetEntry.durationInHours}}</p>
+<p>duration:{{timesheetDetails.durationInHours}}</p>
 <br>
 <button type="submit" (click)="onClick()">Update</button>

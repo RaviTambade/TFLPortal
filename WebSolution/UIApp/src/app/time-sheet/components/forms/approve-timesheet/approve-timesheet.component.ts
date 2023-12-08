@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TimeSheet } from 'src/app/time-sheet/models/timesheet';
-import { TimesheetEmployee } from 'src/app/time-sheet/models/TimesheetView';
-import { TimeSheetEntry } from 'src/app/time-sheet/models/TimeSheetDetails';
+import { TimesheetView } from 'src/app/time-sheet/models/TimesheetView';
+import { TimeSheetDetails } from 'src/app/time-sheet/models/TimeSheetDetails';
 import { TimeSheetService } from 'src/app/time-sheet/services/time-sheet.service';
 
 @Component({
@@ -11,16 +11,13 @@ import { TimeSheetService } from 'src/app/time-sheet/services/time-sheet.service
 })
 export class ApproveTimesheetComponent {
   totalminutes: any = 0;
-  showaddTimesheetEntry: boolean = false;
-  showupdateTimesheetEntry: boolean = false;
   todaysDate: string = new Date().toISOString().slice(0, 10);
   employeeId = 10;
-  timeSheet: TimesheetEmployee | undefined;
-  selectedTimeSheetEntrytoUpdate: TimeSheetEntry | undefined;
+  timeSheet: TimesheetView | undefined;
 
   constructor(private timeSheetSvc: TimeSheetService) {}
   ngOnInit(): void {
-    this.fetchTimeSheetEntries(this.employeeId, this.todaysDate);
+    this.fetchTimeSheetDetails(this.employeeId, this.todaysDate);
   }
 
   onApprove() {
@@ -30,7 +27,7 @@ export class ApproveTimesheetComponent {
         timeSheetDate: this.timeSheet.timeSheetDate,
         status: 'approved',
         employeeId: this.timeSheet.employeeId,
-        timeSheetEntries: this.timeSheet.timeSheetEntries,
+        timeSheetDetails: this.timeSheet.timeSheetDetails,
         statusChangedDate: this.todaysDate,
       };
 
@@ -51,7 +48,7 @@ export class ApproveTimesheetComponent {
         timeSheetDate: this.timeSheet.timeSheetDate,
         status: 'rejected',
         employeeId: this.timeSheet.employeeId,
-        timeSheetEntries: this.timeSheet.timeSheetEntries,
+        timeSheetDetails: this.timeSheet.timeSheetDetails,
         statusChangedDate: this.todaysDate,
       };
 
@@ -66,12 +63,12 @@ export class ApproveTimesheetComponent {
     }
   }
 
-  fetchTimeSheetEntries(employeeId: number, date: string) {
+  fetchTimeSheetDetails(employeeId: number, date: string) {
     this.timeSheetSvc.getTimeSheet(employeeId, date).subscribe((res) => {
       this.totalminutes = 0;
       this.timeSheet = res;
 
-      this.timeSheet.timeSheetEntries.forEach((entry) => {
+      this.timeSheet.timeSheetDetails.forEach((entry) => {
         entry = this.timeSheetSvc.getDurationOfWork(entry);
         this.totalminutes += entry.durationInMinutes;
       });

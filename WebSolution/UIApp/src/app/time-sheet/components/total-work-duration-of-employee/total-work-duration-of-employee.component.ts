@@ -19,7 +19,7 @@ export class TotalWorkDurationOfEmployeeComponent implements OnInit{
 
   getWorkHours() {
     this.timesheetService
-      .getTotalDurationOfEmployee(this.employeeId, this.fromDate, this.toDate)
+      .getWorkDurationOfEmployee(this.employeeId, this.fromDate, this.toDate)
       .subscribe((res) => {
         console.log(res);
         this.WorkCategories = res;
