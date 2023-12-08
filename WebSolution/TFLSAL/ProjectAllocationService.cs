@@ -55,18 +55,18 @@ public class ProjectAllocationService : IProjectAllocationService
     }
     }
 
-    public async Task<bool> ReleaseMemberFromProject(int projectId ,int employeeId)
+    public async Task<bool> ReleaseMemberFromProject(int projectId ,int employeeId,ReleaseEmployee project)
     {
         bool status=false;
-        DateTime localDate = DateTime.Now;
+        // DateTime localDate = DateTime.Now;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
             string query = "Update projectallocations set releasedate=@releasedate,status=@status where projectid=@projectId and employeeId=@employeeId";
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@releasedate", localDate);
-            cmd.Parameters.AddWithValue("@status", "no");
+            cmd.Parameters.AddWithValue("@releasedate", project.ReleaseDate);
+            cmd.Parameters.AddWithValue("@status", project.Status);
             cmd.Parameters.AddWithValue("@projectId", projectId);
             cmd.Parameters.AddWithValue("@employeeId", employeeId);
             await connection.OpenAsync();

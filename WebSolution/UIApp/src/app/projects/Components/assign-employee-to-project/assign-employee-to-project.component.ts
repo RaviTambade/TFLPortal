@@ -35,24 +35,16 @@ onSubmit(){
   this.projectAllocations.assignDate=this.assignemployeeform.get("assignDate")?.value;
   this.projectAllocations.status=this.assignemployeeform.get("status")?.value;
   
-
-  // this.activity.assignedBy=1;
- 
-  // this.activity.startDate="2023-12-28"
   this.projectAllocations.employeeId=1;
   this.projectAllocations.projectId=2;
   this.projectAllocations.status="yes";
-  // this.activity.status="todo"
+  this.projectAllocations.assignDate=new Date().toISOString();
+
   console.log(this.projectAllocations);
+  console.log(this.assignemployeeform.value)
  this.service.assignedEmployeeToProject(this.projectAllocations.projectId,this.projectAllocations.employeeId,this.projectAllocations).subscribe((res)=>{
+  console.log(res);
  });
- console.log(this.assignemployeeform.value)
+ 
 }
-
-
-  // assignedEmployeeToProject(projectId:number,employeeId:number,project:ProjectAllocation):Observable<ProjectAllocation>{
-  
-
-
-
 }

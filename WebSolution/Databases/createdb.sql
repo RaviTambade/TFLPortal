@@ -116,7 +116,7 @@
             CONSTRAINT fk_activity FOREIGN KEY (activityid) REFERENCES activities(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
-    CREATE TABLE employeesalarystructures(
+    CREATE TABLE salaries(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             employeeid INT NOT NULL,
             CONSTRAINT fk_employee_projectmembers1 FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -129,7 +129,7 @@
             );
 
 
-       CREATE TABLE employeesalaries(
+       CREATE TABLE salarydisbursement(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             employeeid INT NOT NULL,
             CONSTRAINT fk_employee2_projectmembers1 FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -137,7 +137,7 @@
             amount double Not null
             );
 
-             CREATE TABLE employeeleaves(
+        CREATE TABLE leaves(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             employeeid INT NOT NULL,
             CONSTRAINT fk_employee3_projectmembers1 FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,

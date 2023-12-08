@@ -5,7 +5,7 @@ public interface IProjectAllocationService {
 
     Task<bool> AssignMemberToProject(int employeeId,int projectId,ProjectAllocation project);
 
-    Task<bool> ReleaseMemberFromProject(int projectId,int employeeId);
+    Task<bool> ReleaseMemberFromProject(int projectId,int employeeId,ReleaseEmployee project);
 
     Task<List<Employee>> GetAllUnassignedEmployees();
 
