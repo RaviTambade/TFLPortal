@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { TimeSheet } from 'src/app/time-sheet/models/timesheet';
 import { TimesheetView } from 'src/app/time-sheet/models/TimesheetView';
-import { TimeSheetDetails } from 'src/app/time-sheet/models/TimeSheetDetails';
-import { TimeSheetService } from 'src/app/time-sheet/services/time-sheet.service';
+import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 
 @Component({
   selector: 'app-approve-timesheet',
@@ -15,7 +14,7 @@ export class ApproveTimesheetComponent {
   employeeId = 10;
   timeSheet: TimesheetView | undefined;
 
-  constructor(private timeSheetSvc: TimeSheetService) {}
+  constructor(private workmgmtSvc: WorkmgmtService) {}
   ngOnInit(): void {
     this.fetchTimeSheetDetails(this.employeeId, this.todaysDate);
   }
@@ -31,7 +30,7 @@ export class ApproveTimesheetComponent {
         statusChangedDate: this.todaysDate,
       };
 
-      this.timeSheetSvc
+      this.workmgmtSvc
         .changeTimeSheetStatus(timesheet.id, timesheet)
         .subscribe((res) => {
           if (res) {
@@ -52,7 +51,7 @@ export class ApproveTimesheetComponent {
         statusChangedDate: this.todaysDate,
       };
 
-      this.timeSheetSvc
+      this.workmgmtSvc
         .changeTimeSheetStatus(this.timeSheet.id, timesheet)
         .subscribe((res) => {
           if (res) {
@@ -64,15 +63,15 @@ export class ApproveTimesheetComponent {
   }
 
   fetchTimeSheetDetails(employeeId: number, date: string) {
-    this.timeSheetSvc.getTimeSheet(employeeId, date).subscribe((res) => {
+    this.workmgmtSvc.getTimeSheet(employeeId, date).subscribe((res) => {
       this.totalminutes = 0;
       this.timeSheet = res;
 
       this.timeSheet.timeSheetDetails.forEach((entry) => {
-        entry = this.timeSheetSvc.getDurationOfWork(entry);
+        entry = this.workmgmtSvc.getDurationOfWork(entry);
         this.totalminutes += entry.durationInMinutes;
       });
-      this.totalminutes = this.timeSheetSvc.convertMinutesintoHours(
+      this.totalminutes = this.workmgmtSvc.convertMinutesintoHours(
         this.totalminutes
       );
 

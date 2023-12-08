@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 import { TimeSheetDetails } from 'src/app/time-sheet/models/TimeSheetDetails';
-import { TimeSheetService } from 'src/app/time-sheet/services/time-sheet.service';
 
 @Component({
   selector: 'app-insert-time-sheet-entry',
@@ -34,7 +34,7 @@ export class InsertTimeSheetEntryComponent {
 
   @Input() timeSheetId!: number;
   @Output() stateChangeEvent = new EventEmitter<boolean>();
-  constructor(private timeSheetService: TimeSheetService) {}
+  constructor(private workmgmtSvc: WorkmgmtService) {}
 
   onClick() {
     let timeSheetDetail: TimeSheetDetails = {
@@ -49,7 +49,7 @@ export class InsertTimeSheetEntryComponent {
       description: this.timeSheetDetail.description,
     };
 
-    this.timeSheetService.addTimeSheetDetails(timeSheetDetail).subscribe((res) => {
+    this.workmgmtSvc.addTimeSheetDetails(timeSheetDetail).subscribe((res) => {
       if (res) {
         this.stateChangeEvent.emit(true);
       }
@@ -58,6 +58,6 @@ export class InsertTimeSheetEntryComponent {
 
   getDuration(timeSheetDetail: TimeSheetDetails) {
     this.timeSheetDetail =
-      this.timeSheetService.getDurationOfWork(timeSheetDetail);
+      this.workmgmtSvc.getDurationOfWork(timeSheetDetail);
   }
 }

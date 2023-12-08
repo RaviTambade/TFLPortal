@@ -1,5 +1,5 @@
 import { Component, OnInit, Type } from '@angular/core';
-import { TimeSheetService } from '../../services/time-sheet.service';
+import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 
 type Week = {
   startDate: string;
@@ -30,13 +30,13 @@ export class TotalWorkDurationOfEmployeeComponent implements OnInit {
   selectedWeek: number = 0;
 
 
-  constructor(private timesheetService: TimeSheetService) { }
+  constructor(private workmgmtSvc: WorkmgmtService) {}
   ngOnInit(): void {
     this.onIntervalChange();
   }
 
   getWorkHours(employeeId: number, fromDate: string, toDate: string) {
-    this.timesheetService
+    this.workmgmtSvc
       .getWorkDurationOfEmployee(employeeId, fromDate, toDate)
       .subscribe((res) => {
         console.log(res);
