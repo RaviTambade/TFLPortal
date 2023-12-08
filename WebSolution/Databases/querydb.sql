@@ -106,3 +106,21 @@ GROUP BY employeeid
 HAVING COUNT(CASE WHEN status = 'yes' THEN 1 END) > 0);
 
 
+-- Assign member to project
+INSERT INTO projectallocations(projectid,employeeid,membership,assigndate,status) VALUES(1,2,"developer","2023-03-01","yes");
+
+-- Release employee from project
+Update projectallocations set releasedate="2023-03-03",status="no" where projectid=1 and employeeId=2;
+
+-- All assigned employees
+Select * from projectallocations inner join employees where projectallocations.status="yes";
+
+-- get project allocations between "2023-02-03" and "2023-04-05"
+select * from projectallocations where assigndate BETWEEN "2023-02-03" AND "2023-04-05";
+
+
+-- get unassigned project of employee
+select * from employees inner join projectallocations on projectallocations.employeeid=employees.id where projectallocations.status="no" and projectallocations.projectid=1;
+
+-- get project allocations of particular employee between dates "2023-02-03" and "2023-04-05"
+select * from projectallocations where employeeid=1 and assigndate BETWEEN "2023-02-03" AND "2023-04-05";

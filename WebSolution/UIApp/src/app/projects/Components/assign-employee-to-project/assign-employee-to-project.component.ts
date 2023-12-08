@@ -35,16 +35,15 @@ onSubmit(){
   this.projectAllocations.assignDate=this.assignemployeeform.get("assignDate")?.value;
   this.projectAllocations.status=this.assignemployeeform.get("status")?.value;
   
-  this.projectAllocations.employeeId=1;
+  this.projectAllocations.employeeId=28;
   this.projectAllocations.projectId=2;
   this.projectAllocations.status="yes";
   this.projectAllocations.assignDate=new Date().toISOString();
 
   console.log(this.projectAllocations);
-  console.log(this.assignemployeeform.value)
  this.service.assignedEmployeeToProject(this.projectAllocations.projectId,this.projectAllocations.employeeId,this.projectAllocations).subscribe((res)=>{
   console.log(res);
  });
- 
+ console.log(this.assignemployeeform.value)
 }
 }

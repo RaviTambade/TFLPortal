@@ -32,6 +32,7 @@ public class ProjectAllocationController : ControllerBase
     public async Task<bool> ReleaseMemberFromProject(int projectId,int employeeId,ReleaseEmployee project)
     {
         bool status= await _service.ReleaseMemberFromProject(projectId,employeeId,project);
+        Console.WriteLine(status);
         return status;
     }
 
