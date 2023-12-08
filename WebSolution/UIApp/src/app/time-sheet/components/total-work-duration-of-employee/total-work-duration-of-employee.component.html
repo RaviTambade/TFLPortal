@@ -1,17 +1,77 @@
-<label> From </label>
-<input type="date" [(ngModel)]="fromDate">
-<label> To </label>
-<input class="mb-3" type="date" [(ngModel)]="toDate">
+<div class="container">
+    <p> StatDate :{{fromDate}}</p>
+    <p> EndDate :{{toDate}}</p>
+    <hr>
+    <div>
+        <label>Select Interval</label>
+        <select [(ngModel)]="selectedInterval" (change)="onIntervalChange()">
+            <option *ngFor="let interval of intervals" [value]="interval"> {{interval}}</option>
+        </select>
+    </div>
+    
+    <div *ngIf="selectedInterval=='year'">
+        <ng-container *ngTemplateOutlet="yearTemplate"></ng-container>
+    </div>
+    <br>
 
-<button (click)="getWorkHours()"> Get </button>
-<div *ngFor="let workCategory of WorkCategories">
-    <p>UserStory:{{workCategory.userStory}}</p>
-    <p>Task:{{workCategory.task}}</p>
-    <p>Bug:{{workCategory.bug}}</p>
-    <p>Mentoring:{{workCategory.mentoring}}</p>
-    <p>Monitoring:{{workCategory.monitoring}}</p>
-    <p>Learning:{{workCategory.learning}}</p>
-    <p>Clientcall:{{workCategory.clientcall}}</p>
-    <p>Issues:{{workCategory.issues}}</p>
-    <p>Meeting:{{workCategory.meeting}}</p>
+    <div *ngIf="selectedInterval=='month'">
+        <ng-container *ngTemplateOutlet="yearTemplate"></ng-container>
+        <ng-container *ngTemplateOutlet="monthTemplate"></ng-container>
+    </div>
+    <br>
+
+    <div *ngIf="selectedInterval=='week'">
+        <ng-container *ngTemplateOutlet="yearTemplate"></ng-container>
+        <ng-container *ngTemplateOutlet="monthTemplate"></ng-container>
+
+        <div> <label>Select Week</label>
+            <select [(ngModel)]="selectedWeek" (change)="onIntervalChange()">
+                <option *ngFor="let week of weeks;let i=index" [value]="i">
+                    {{week.startDate |date}} | {{week.endDate|date}}
+                </option>
+            </select>
+        </div>
+
+    </div>
+    <br>
+
+    <div *ngIf="selectedInterval=='custom'">
+        <label> From </label>
+        <input type="date" [(ngModel)]="fromDate">
+        <label> To </label>
+        <input class="mb-3" type="date" [(ngModel)]="toDate">
+        <button (click)="onIntervalChange()"> Get </button>
+        <br>
+    </div>
+
+
+    <div *ngIf="workCategory!=undefined">
+        <p>UserStory:{{workCategory.userStory}}</p>
+        <p>Task:{{workCategory.task}}</p>
+        <p>Bug:{{workCategory.bug}}</p>
+        <p>Mentoring:{{workCategory.mentoring}}</p>
+        <p>Learning:{{workCategory.learning}}</p>
+        <p>Clientcall:{{workCategory.clientCall}}</p>
+        <p>Issues:{{workCategory.issues}}</p>
+        <p>Meeting:{{workCategory.meeting}}</p>
+        <p>Other:{{workCategory.other}}</p>
+    </div>
+
 </div>
+
+
+<ng-template #yearTemplate>
+
+    <label>Select Year</label>
+    <select [(ngModel)]="selectedYear" (change)="onIntervalChange()">
+        <option *ngFor="let year of years" [value]="year"> {{year}}</option>
+    </select>
+</ng-template>
+
+<ng-template #monthTemplate>
+
+    <label>Select Month</label>
+    <select [(ngModel)]="selectedMonth" (change)="onIntervalChange()">
+        <option *ngFor="let month of monthNames;let i=index" [value]="i"> {{month}}</option>
+    </select>
+</ng-template>

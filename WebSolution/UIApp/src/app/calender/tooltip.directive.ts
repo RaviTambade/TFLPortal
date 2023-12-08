@@ -1,9 +1,4 @@
-import {
-  Directive,
-  HostListener,
-  Input,
-  Renderer2,
-} from '@angular/core';
+import {Directive,HostListener,Input, Renderer2} from '@angular/core';
 
 @Directive({
   selector: '[Tooltip]',

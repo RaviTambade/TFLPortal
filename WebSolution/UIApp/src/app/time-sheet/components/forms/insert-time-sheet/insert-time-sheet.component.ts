@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 import { TimeSheetDetails } from 'src/app/time-sheet/models/TimeSheetDetails';
 import { TimesheetView } from 'src/app/time-sheet/models/TimesheetView';
 import { TimeSheet } from 'src/app/time-sheet/models/timesheet';
-import { TimeSheetService } from 'src/app/time-sheet/services/time-sheet.service';
 
 @Component({
   selector: 'app-insert-time-sheet',
@@ -19,14 +19,14 @@ export class InsertTimeSheetComponent implements OnInit {
   timeSheet: TimesheetView | undefined;
   selectedTimeSheetDetailstoUpdate: TimeSheetDetails | undefined;
 
-  constructor(private timeSheetSvc: TimeSheetService) { }
+  constructor(private workmgmtSvc: WorkmgmtService) {}
 
   ngOnInit(): void {
     this.fetchTimeSheet(this.employeeId, this.todaysDate);
   }
 
   onRemoveTimeSheetDetails(timesheetDetailsId: number) {
-    this.timeSheetSvc.removeTimeSheetDetails(timesheetDetailsId).subscribe((res) => {
+    this.workmgmtSvc.removeTimeSheetDetails(timesheetDetailsId).subscribe((res) => {
       if (res) {
         this.fetchTimeSheet(this.employeeId, this.todaysDate);
       }
@@ -34,7 +34,7 @@ export class InsertTimeSheetComponent implements OnInit {
   }
 
   onRemoveAllTimeSheetDetails(timeSheetId: number) {
-    this.timeSheetSvc
+    this.workmgmtSvc
       .removeAllTimeSheetDetails(timeSheetId)
       .subscribe((res) => {
         if (res) {
@@ -57,7 +57,7 @@ export class InsertTimeSheetComponent implements OnInit {
         statusChangedDate: this.todaysDate,
       };
 
-      this.timeSheetSvc
+      this.workmgmtSvc
         .changeTimeSheetStatus(this.timeSheet.id, timesheet)
         .subscribe((res) => {
           alert('timesheet added');
@@ -84,13 +84,17 @@ export class InsertTimeSheetComponent implements OnInit {
   }
 
   fetchTimeSheet(employeeId: number, date: string) {
-    this.timeSheetSvc.getTimeSheet(employeeId, date).subscribe((res) => {
+    this.workmgmtSvc.getTimeSheet(employeeId, date).subscribe((res) => {
       if (res.id == 0) {
-        this.timeSheetSvc.addTimeSheet(employeeId, date).subscribe((res) => {
+        const timesheetInsertModel = {
+          timeSheetDate: new Date().toISOString().slice(0, 10),
+          employeeId: this.employeeId,
+        }
+        this.workmgmtSvc.addTimeSheet(timesheetInsertModel).subscribe((res) => {
           if (res) {
             this.fetchTimeSheet(employeeId, date);
           }
-        }); 
+        });
         return;
       }
 
@@ -99,10 +103,10 @@ export class InsertTimeSheetComponent implements OnInit {
 
 
       this.timeSheet.timeSheetDetails.forEach((timeSheetDetail) => {
-        timeSheetDetail = this.timeSheetSvc.getDurationOfWork(timeSheetDetail);
+        timeSheetDetail = this.workmgmtSvc.getDurationOfWork(timeSheetDetail);
         this.totalminutes += timeSheetDetail.durationInMinutes;
       });
-      this.totalminutes = this.timeSheetSvc.convertMinutesintoHours(
+      this.totalminutes = this.workmgmtSvc.convertMinutesintoHours(
         this.totalminutes
       );
 

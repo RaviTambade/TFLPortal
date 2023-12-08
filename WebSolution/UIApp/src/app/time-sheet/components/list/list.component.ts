@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { TimeSheetService } from '../../services/time-sheet.service';
 import { TimeSheet } from '../../models/timesheet';
+import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 
 @Component({
   selector: 'timesheet-list',
@@ -14,10 +14,10 @@ export class ListComponent implements OnInit{
 
   @Output() selectedTimeSheetId= new EventEmitter<number>();
 
-  constructor(private timeSheetSvc:TimeSheetService){}
+  constructor(private workmgmtSvc: WorkmgmtService) {}
 
   ngOnInit(): void {
-  this.timeSheetSvc.getAllTimeSheets(this.employeeId).subscribe((res)=>{
+  this.workmgmtSvc.getAllTimeSheets(this.employeeId).subscribe((res)=>{
   this.timeSheets=res;
   console.log(res);
   this.selectedTimeSheetId.emit(this.timeSheets[0].id);
