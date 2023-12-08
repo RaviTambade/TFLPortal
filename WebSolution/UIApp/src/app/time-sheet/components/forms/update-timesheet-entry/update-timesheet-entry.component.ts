@@ -1,12 +1,5 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  SimpleChange,
-  SimpleChanges,
-} from '@angular/core';
-import { TimeSheetEntry } from 'src/app/time-sheet/models/timesheetentry';
+import {Component,EventEmitter,Input,Output, SimpleChanges} from '@angular/core';
+import { TimeSheetDetails } from 'src/app/time-sheet/models/TimeSheetDetails';
 import { TimeSheetService } from 'src/app/time-sheet/services/time-sheet.service';
 
 @Component({
@@ -28,41 +21,38 @@ export class UpdateTimesheetEntryComponent {
     'other',
   ];
 
-  @Input() timeSheetEntry!: TimeSheetEntry;
+  @Input() timesheetDetails!: TimeSheetDetails;
   @Output() stateChangeEvent = new EventEmitter<boolean>();
   constructor(private timeSheetService: TimeSheetService) {}
 
   ngOnChanges(changes: SimpleChanges) {
-    this.timeSheetEntry = changes['timeSheetEntry'].currentValue;
-    this.timeSheetEntry.fromTime = this.timeSheetEntry.fromTime
-      .split(':00')
-      .at(0)!;
-    this.timeSheetEntry.toTime = this.timeSheetEntry.toTime.split(':00').at(0)!;
+    this.timesheetDetails = changes['timesheetDetails'].currentValue;
+    this.timesheetDetails.fromTime = this.timesheetDetails.fromTime.split(':00').at(0)!;
+    this.timesheetDetails.toTime = this.timesheetDetails.toTime.split(':00').at(0)!;
   }
 
   onClick() {
-    let timeSheetEntry: TimeSheetEntry = {
-      id: this.timeSheetEntry.id,
-      fromTime: this.timeSheetEntry.fromTime + ':00',
-      toTime: this.timeSheetEntry.toTime + ':00',
-      durationInMinutes: this.timeSheetEntry.durationInMinutes,
-      durationInHours: this.timeSheetEntry.durationInHours,
-      timeSheetId: this.timeSheetEntry.timeSheetId,
-      work: this.timeSheetEntry.work,
-      workCategory: this.timeSheetEntry.workCategory,
-      description: this.timeSheetEntry.description,
+    let timesheetDetails: TimeSheetDetails = {
+      id: this.timesheetDetails.id,
+      fromTime: this.timesheetDetails.fromTime + ':00',
+      toTime: this.timesheetDetails.toTime + ':00',
+      durationInMinutes: this.timesheetDetails.durationInMinutes,
+      durationInHours: this.timesheetDetails.durationInHours,
+      timeSheetId: this.timesheetDetails.timeSheetId,
+      work: this.timesheetDetails.work,
+      workCategory: this.timesheetDetails.workCategory,
+      description: this.timesheetDetails.description,
     };
 
     this.timeSheetService
-      .updateTimeSheetEntry(timeSheetEntry.id, timeSheetEntry)
+      .updateTimeSheetDetails(timesheetDetails.id, timesheetDetails)
       .subscribe((res) => {
         if (res) {
           this.stateChangeEvent.emit(true);
         }
       });
   }
-  getDuration(timeSheetEnrty: TimeSheetEntry) {
+  getDuration(timeSheetEnrty: TimeSheetDetails) {
     this.timeSheetService.getDurationOfWork(timeSheetEnrty);
   }
-
 }

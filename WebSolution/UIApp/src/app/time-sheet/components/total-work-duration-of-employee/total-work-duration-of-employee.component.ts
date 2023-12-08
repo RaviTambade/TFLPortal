@@ -7,24 +7,23 @@ import { TimeSheetService } from '../../services/time-sheet.service';
   styleUrls: ['./total-work-duration-of-employee.component.css']
 })
 export class TotalWorkDurationOfEmployeeComponent implements OnInit{
+  employeeId: number = 10;
+  fromDate: string = '2023-01-04';
+  toDate: string = '2023-12-04';
+  WorkCategories: any[] = [];
 
-  employeeId:any;
-  fromDate:string="";
-  toDate:string="";
-  workCategory:any ;
-
-  constructor(private timesheetService:TimeSheetService){}
+  constructor(private timesheetService: TimeSheetService) {}
   ngOnInit(): void {
-   
+    this.getWorkHours();
   }
 
-  submit(employeeId:number,fromDate:string,toDate:string){
-    console.log(employeeId);
-    console.log(fromDate);
-    console.log(toDate);
-    this.timesheetService.getTotalDurationOfEmployee(this.employeeId,this.fromDate,this.toDate).subscribe((res)=>{
-    console.log(res);
-    this.workCategory=res;
-   }) 
+  getWorkHours() {
+    this.timesheetService
+      .getWorkDurationOfEmployee(this.employeeId, this.fromDate, this.toDate)
+      .subscribe((res) => {
+        console.log(res);
+        this.WorkCategories = res;
+      });
   }
+
 }

@@ -28,7 +28,7 @@ public class TimeSheetService : ITimeSheetService
         try
         {
             string query = "select * from timesheets where  employeeid =@employeeId";
-            MySqlCommand command = new MySqlCommand(query, connection);
+            MySqlCommand command =  new MySqlCommand(query,connection);
             command.Parameters.AddWithValue("@employeeId", employeeId);
             await connection.OpenAsync();
             MySqlDataReader reader = (MySqlDataReader)await command.ExecuteReaderAsync();
@@ -97,7 +97,7 @@ public class TimeSheetService : ITimeSheetService
                     StatusChangedDate = statusChangedDate,
                     EmployeeId = employeeId,
                     Employee = new Employee { UserId = employeeUserId },
-                    TimeSheetEntries = new List<TimeSheetEntry>()
+                    TimeSheetDetails = new List<TimeSheetEntry>()
                 };
                 do
                 {
@@ -119,7 +119,7 @@ public class TimeSheetService : ITimeSheetService
                             WorkCategory = WorkCategory,
                             Description = description
                         };
-                        timeSheet.TimeSheetEntries.Add(timeSheetEntry);
+                        timeSheet.TimeSheetDetails.Add(timeSheetEntry);
                     }
                 } while (await reader.ReadAsync());
             }

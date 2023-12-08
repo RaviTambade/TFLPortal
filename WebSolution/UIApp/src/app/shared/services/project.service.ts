@@ -4,15 +4,10 @@ import { Observable } from 'rxjs';
 import { Project } from 'src/app/projects/Models/project';
 import { environment } from 'src/environments/environment';
 
-
-
-
-
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
-
 
   private serviceurl :string=environment.apiUrl;
   constructor(private httpClient: HttpClient) { }

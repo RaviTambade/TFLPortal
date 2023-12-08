@@ -1,16 +1,10 @@
-<label>EmployeeId:</label>
-<input type="text" name="employeeId" [(ngModel)]="employeeId">
+<label> From </label>
+<input type="date" [(ngModel)]="fromDate">
+<label> To </label>
+<input class="mb-3" type="date" [(ngModel)]="toDate">
 
-<label>FromDate:</label>
-<input type="text" name="fromDate" [(ngModel)]="fromDate">
-
-<label>ToDate:</label>
-<input type="text" name="toDate" [(ngModel)]="toDate">
-
-<button (click)="submit(employeeId,fromDate,toDate)">submit</button>
-
-
-<div *ngIf="workCategory">
+<button (click)="getWorkHours()"> Get </button>
+<div *ngFor="let workCategory of WorkCategories">
     <p>UserStory:{{workCategory.userStory}}</p>
     <p>Task:{{workCategory.task}}</p>
     <p>Bug:{{workCategory.bug}}</p>

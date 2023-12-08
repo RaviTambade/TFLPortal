@@ -13,9 +13,9 @@ public class TimeSheetsController : ControllerBase
     private readonly ExternalApiService _apiservice;
     private readonly ITimeSheetService _service;
 
-    public TimeSheetsController(ExternalApiService apiservice, ITimeSheetService service)
+    public TimeSheetsController(ExternalApiService apiService, ITimeSheetService service)
     {
-        _apiservice = apiservice;
+        _apiservice = apiService;
         _service = service;
     }
 
@@ -29,7 +29,7 @@ public class TimeSheetsController : ControllerBase
     [HttpGet("{employeeId}/date/{date}")]
     public async Task<TimeSheetResponse> GetTimeSheetOfEmployee(int employeeId, string date)
     {
-        TimeSheet timesheet = await _service.GetTimeSheetOfEmployee(employeeId, date);
+        TimeSheet timesheet = await _service.GetTimeSheetOfEmployee(employeeId,date);
 
         if (timesheet.Employee != null)
         {
@@ -40,7 +40,7 @@ public class TimeSheetsController : ControllerBase
                 TimeSheetDate = timesheet.TimeSheetDate,
                 StatusChangedDate = timesheet.StatusChangedDate,
                 Status = timesheet.Status,
-                TimeSheetEntries = timesheet.TimeSheetEntries,
+                TimeSheetDetails = timesheet.TimeSheetDetails,
                 EmployeeId = timesheet.EmployeeId,
                 EmployeeName = user[0].FirstName+" "+user[0].LastName,
             };

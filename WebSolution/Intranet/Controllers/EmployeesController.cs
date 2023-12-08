@@ -23,7 +23,7 @@ public class EmployeesController : ControllerBase
     [HttpGet("employee/{employeeId}")]
     public async Task<EmployeeResponse> GetEmployeeDetails(int employeeId)
     {
-        Employee employee = await _service.GetEmployeeDetails(employeeId);
+        Employee employee = await _service.GetEmployeeDetails(employeeId: employeeId);
         var user = await _apiService.GetUser(employee.UserId);
         EmployeeResponse emp = new EmployeeResponse()
         {
@@ -40,8 +40,8 @@ public class EmployeesController : ControllerBase
     [HttpPost("employee/salary/{employeeId}")]
     public async Task<bool> PaySalary(int employeeId)
     {
-        Employee employee = await _service.GetEmployeeDetails(employeeId);
-        var userAccount = await _apiService.GetUserBankAccount(employee.UserId, "I");
+        Employee employee = await _service.GetEmployeeDetails( employeeId);
+        var userAccount = await _apiService.GetUserBankAccount(userId: employee.UserId, userType: "I");
         FundTransferRequestDTO request = new FundTransferRequestDTO()
         {
             FromAcct = "39025546601",

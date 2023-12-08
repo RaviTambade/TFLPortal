@@ -6,7 +6,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { TimeSheetService } from '../../services/time-sheet.service';
-import { TimeSheetEntry } from '../../models/timesheetentry';
+import { TimeSheetDetails } from '../../models/TimeSheetDetails';
 @Component({
   selector: 'timesheet-details',
   templateUrl: './details.component.html',
@@ -14,18 +14,18 @@ import { TimeSheetEntry } from '../../models/timesheetentry';
 })
 export class DetailsComponent {
   @Input() timeSheetId!: number;
-  timeSheetEntries: TimeSheetEntry[] = [];
+  timeSheetDetails: TimeSheetDetails[] = [];
   totalminutes: any = 0;
 
 
   constructor(private timeSheetSvc: TimeSheetService) {}
   ngOnChanges(changes: SimpleChanges): void {
     this.timeSheetSvc
-      .getTimeSheetEntries(changes['timeSheetId'].currentValue)
+      .getTimeSheetDetails(changes['timeSheetId'].currentValue)
       .subscribe((res) => {
         this.totalminutes = 0;
-        this.timeSheetEntries = res;
-        this.timeSheetEntries.forEach((entry) => {
+        this.timeSheetDetails = res;
+        this.timeSheetDetails.forEach((entry) => {
           entry = this.timeSheetSvc.getDurationOfWork(entry);
           this.totalminutes += entry.durationInMinutes;
         });
