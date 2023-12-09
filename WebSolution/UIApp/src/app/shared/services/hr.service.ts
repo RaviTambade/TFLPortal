@@ -12,6 +12,7 @@ export class HrService {
   constructor(private httpClient: HttpClient) {}
 
   private serviceurl: string = environment.apiUrl;
+  private commonUrl:string =environment.imagerServerUrl;
 
 
   getEmployeeDetails(employeeId: number): Observable<Employee> {
@@ -22,6 +23,11 @@ export class HrService {
 
   getAllEmployees(projectId:number):Observable<any[]>{
     let url=this.serviceurl+"/projectmgmt/projectallocation/employees/"+projectId;
+    return this.httpClient.get<any[]>(url);
+  }
+
+  getEmployee(contactNumber:string):Observable<any[]>{
+    let url=this.commonUrl+"/users/contact/"+contactNumber;
     return this.httpClient.get<any[]>(url);
   }
 }
