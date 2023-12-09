@@ -1,4 +1,4 @@
--- Active: 1696576841746@@127.0.0.1@3306@pms
+-- Active: 1694968636816@@127.0.0.1@3306@tflportal
 
 
 
@@ -105,4 +105,9 @@ FROM projectallocations
 GROUP BY employeeid
 HAVING COUNT(CASE WHEN status = 'yes' THEN 1 END) > 0);
 
+select * from projectallocations;
 
+
+SELECT * from activities WHERE status="inprogress" and projectid=4;
+SELECT * from activities WHERE status="completed"  and projectid=4;
+SELECT * from activities WHERE status="todo"    and projectid=4;

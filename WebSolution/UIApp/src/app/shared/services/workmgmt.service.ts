@@ -16,19 +16,19 @@ export class WorkmgmtService {
   // http://localhost:5263/api/workmgmt/activities/1
 
   addActivity(addactivity: Activity): Observable<boolean> {
-    let url = this.serviceurl + '/workmgmt/activities/insert';
+    let url = this.serviceurl + '/workmgmt/activities';
     console.log('service called');
     return this.httpClient.post<boolean>(url, addactivity);
   }
 
   fetchActivitiesByProject(projectId: number): Observable<Activity[]> {
-    let url = this.serviceurl + '/workmgmt/activities/' + projectId;
+    let url = this.serviceurl + '/workmgmt/activities/projects/' + projectId;
     console.log(url);
     return this.httpClient.get<Activity[]>(url);
   }
 
   fetchActivitiesByProjectAndAssigner(projectId: number,assignedTo: number ): Observable<Activity[]> {
-    let url =this.serviceurl + '/workmgmt/activities/activity' + '/' + projectId +'/' +assignedTo;
+    let url =this.serviceurl + '/workmgmt/activities/projects' + '/' + projectId +'/'+'/employees/' +assignedTo;
     console.log(url);
     return this.httpClient.get<Activity[]>(url);
   }
@@ -44,7 +44,7 @@ export class WorkmgmtService {
   // http://localhost:5263/api/workmgmt/activities/Update/1/4/15
 
   updateActivity(status: string, activityId: number): Observable<boolean> {
-    let url = this.serviceurl +'/workmgmt/activities/Update/' +status +'/' + activityId;
+    let url = this.serviceurl +'/workmgmt/activities/project/'+ activityId+'/status/'+status ;
     return this.httpClient.put<boolean>(url, status);
   }
 }

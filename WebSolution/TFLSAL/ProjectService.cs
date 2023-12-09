@@ -73,7 +73,7 @@ public class ProjectService : IProjectService
         try
         {
             string query =
-                "select * from projects inner join members on projects.id=members.projectid where members.employeeid=@employeeid";
+                "select * from projects inner join projectallocations  on projects.id=projectallocations.projectid where projectallocations.employeeid=@employeeid";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@employeeid", employeeid);
             await connection.OpenAsync();
