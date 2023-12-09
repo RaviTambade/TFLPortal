@@ -1,0 +1,66 @@
+<div class="container">
+    <p> StatDate :{{fromDate |date}}</p>
+    <p> EndDate :{{toDate |date}}</p>
+    <hr>
+
+    <div>
+        <label>Select Interval</label>
+        <select [(ngModel)]="selectedInterval" (change)="onIntervalChange()">
+            <option *ngFor="let interval of intervals" [value]="interval"> {{interval}}</option>
+        </select>
+    </div>
+
+
+    <!-- <div *ngIf="selectedInterval=='custom'">
+        <label> From </label>
+        <input type="date" [(ngModel)]="fromDate">
+        <label> To </label>
+        <input class="mb-3" type="date" [(ngModel)]="toDate">
+        <button (click)="onIntervalChange()"> Get </button>
+        <br>
+    </div> -->
+
+    <br>
+    <br>
+    <br>
+
+    <div *ngIf="workCategory!=undefined">
+        <table class="table-bordered border-2">
+            <thead>
+                <tr>
+                    <th>UserStory</th>
+                    <th>Task</th>
+                    <th>Bug</th>
+                    <th>Mentoring</th>
+                    <th>Learning</th>
+                    <th>Clientcall</th>
+                    <th>Issues</th>
+                    <th>Meeting</th>
+                    <th>Other</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{workCategory.userStory}}</td>
+                    <td>{{workCategory.task}}</td>
+                    <td>{{workCategory.bug}}</td>
+                    <td>{{workCategory.mentoring}}</td>
+                    <td>{{workCategory.learning}}</td>
+                    <td>{{workCategory.clientCall}}</td>
+                    <td>{{workCategory.issues}}</td>
+                    <td>{{workCategory.meeting}}</td>
+                    <td>{{workCategory.other}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+
+<div class="col-8">
+    <canvas id="MyChart">{{ chart }}</canvas>
+</div>

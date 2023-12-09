@@ -15,6 +15,7 @@ public class ExternalApiService
         this.httpClient = factory.CreateClient();
     }
 
+
     public async Task<UserDTO?> GetUser(int userId)
     {
         var response = await httpClient.GetFromJsonAsync<UserDTO>(

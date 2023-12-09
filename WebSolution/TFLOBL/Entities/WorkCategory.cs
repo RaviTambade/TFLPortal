@@ -16,7 +16,6 @@ public class WorkCategory
 
     public string? Mentoring { get; set; }
   
-    public string? Break { get; set; }
     public string? ClientCall { get; set; }
     public string? Other { get; set; }
 

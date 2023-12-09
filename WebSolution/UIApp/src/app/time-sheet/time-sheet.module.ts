@@ -9,6 +9,7 @@ import { PopupComponent } from './components/popup/popup.component';
 import { UpdateTimesheetEntryComponent } from './components/forms/update-timesheet-entry/update-timesheet-entry.component';
 import { ApproveTimesheetComponent } from './components/forms/approve-timesheet/approve-timesheet.component';
 import { TotalWorkDurationOfEmployeeComponent } from './components/total-work-duration-of-employee/total-work-duration-of-employee.component';
+import { WorkDurationComponent } from './components/work-duration/work-duration.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { TotalWorkDurationOfEmployeeComponent } from './components/total-work-du
     PopupComponent,
     UpdateTimesheetEntryComponent,
     ApproveTimesheetComponent,
-    TotalWorkDurationOfEmployeeComponent
+    TotalWorkDurationOfEmployeeComponent,
+    WorkDurationComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +35,8 @@ import { TotalWorkDurationOfEmployeeComponent } from './components/total-work-du
     InsertTimeSheetEntryComponent,
     InsertTimeSheetComponent,
     ApproveTimesheetComponent,
-    TotalWorkDurationOfEmployeeComponent
+    TotalWorkDurationOfEmployeeComponent,
+    WorkDurationComponent
   ]
 })
 export class TimeSheetModule { }
