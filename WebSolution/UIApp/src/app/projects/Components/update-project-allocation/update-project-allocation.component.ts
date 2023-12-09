@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ProjectsService } from '../../Services/projects.service';
 import { ReleaseEmployee } from '../../Models/ReleaseEmployee';
 
@@ -9,7 +9,11 @@ import { ReleaseEmployee } from '../../Models/ReleaseEmployee';
 })
 export class UpdateProjectAllocationComponent {
 
+  @Input() selectedEmployeeId :number=0;
+  @Input() selectedProjectId :number=0;
+
   constructor(private service:ProjectsService){}
+
 
   updateProject:ReleaseEmployee={
     employeeId: 0,
@@ -23,13 +27,13 @@ export class UpdateProjectAllocationComponent {
   }
 
   onSubmit(){
-    this.updateProject.employeeId=14;
-    this.updateProject.projectId=6;
+    this.updateProject.employeeId=this.selectedEmployeeId ;
+    this.updateProject.projectId=this.selectedProjectId;
     console.log(this.updateProject);
     console.log(this.updateProject.employeeId);
     console.log(this.updateProject.projectId);
-    this.service.releaseEmployeeFromProject(this.updateProject.employeeId,this.updateProject.projectId,this.updateProject).subscribe((res)=>{
-      console.log(res);
+    this.service.releaseEmployeeFromProject(this.updateProject.projectId,this.updateProject.employeeId,this.updateProject).subscribe((res)=>{
+    console.log(res);
     })
   }
 }

@@ -12,7 +12,10 @@ export class AllEmployeesOfProjectComponent implements OnInit{
   
   assignedEmployees:any[]=[];
   projects:Project[]=[];
+  selectedEmployeeId:number |undefined;
+  selectedProjectId:number |undefined;
   selectedProject:boolean=false;
+
   constructor(private service:ProjectService,private svc:ProjectsService){}
 
     ngOnInit(): void {
@@ -25,11 +28,18 @@ export class AllEmployeesOfProjectComponent implements OnInit{
     onChange(event:any){
       console.log(event.target.value);
       const projectId=event.target.value;
-      this.selectedProject=true;
+      // this.selectedProject=true;
       this.svc.getAssignedEmployeesOfProject(projectId).subscribe((res)=>{
       this.assignedEmployees=res;
       console.log(res);
     })
+  }
+
+  onClick(employeeId:number,projectId:number){
+    this.selectedProject=true;
+  this.selectedEmployeeId=employeeId;
+  this.selectedProjectId=projectId;
+  console.log(employeeId);
   }
 }
 

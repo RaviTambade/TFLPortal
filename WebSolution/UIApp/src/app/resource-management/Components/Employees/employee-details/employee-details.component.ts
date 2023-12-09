@@ -15,8 +15,7 @@ export class EmployeeDetailsComponent implements OnInit{
   @Output() selectedEmployeeId = new EventEmitter<number>();
   constructor(private svc:HrService){}
 
-  ngOnInit(): void {
-    
+  ngOnInit(): void {   
   }
 
   onSearch(contactNumber:string){
