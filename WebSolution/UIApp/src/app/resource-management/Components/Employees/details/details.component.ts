@@ -27,5 +27,4 @@ export class DetailsComponent {
       console.log(res);
     })
   }
-
 }
