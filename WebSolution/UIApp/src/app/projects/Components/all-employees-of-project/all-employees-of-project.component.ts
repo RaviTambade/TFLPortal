@@ -20,8 +20,7 @@ export class AllEmployeesOfProjectComponent implements OnInit{
       this.projects=res;
       console.log(res);
       })
-    }
-    
+    }  
 
     onChange(event:any){
       console.log(event.target.value);

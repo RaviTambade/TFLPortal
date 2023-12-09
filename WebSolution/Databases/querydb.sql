@@ -23,8 +23,8 @@ WHERE timesheets.employeeid=10  AND YEAR(timesheets.timesheetdate)='2023'
 GROUP BY timesheetentries.workcategory ;
 
 
--- Get overall time spent  between dates of employee
-SELECT  COUNT(*),  YEAR(timesheets.timesheetdate),
+-- Get overall time spent between dates by specific employee
+SELECT
 CAST(((SUM( CASE WHEN  timesheetentries.workcategory="userstory" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as userstory,
 CAST(((SUM( CASE WHEN  timesheetentries.workcategory="task" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as task,
 CAST(((SUM( CASE WHEN  timesheetentries.workcategory="bug" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as bug,
@@ -39,18 +39,37 @@ from timesheetentries
 INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
 WHERE timesheets.employeeid=10  AND timesheets.timesheetdate>='2023-12-04' and  timesheets.timesheetdate<='2023-12-04';
 
+-- Get overall time spent between dates by all  employees
+SELECT  COUNT(*),  YEAR(timesheets.timesheetdate),
+CAST(((SUM( CASE WHEN  timesheetentries.workcategory="userstory" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as userstory,
+CAST(((SUM( CASE WHEN  timesheetentries.workcategory="task" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as task,
+CAST(((SUM( CASE WHEN  timesheetentries.workcategory="bug" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as bug,
+CAST(((SUM( CASE WHEN  timesheetentries.workcategory="issues" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as issues,
+CAST(((SUM( CASE WHEN  timesheetentries.workcategory="meeting" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as meeting,
+CAST(((SUM( CASE WHEN  timesheetentries.workcategory="learning" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as learning,
+CAST(((SUM( CASE WHEN  timesheetentries.workcategory="mentoring" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as mentoring,
+CAST(((SUM( CASE WHEN  timesheetentries.workcategory="break" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as break,
+CAST(((SUM( CASE WHEN  timesheetentries.workcategory="clientcall" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as clientcall,
+CAST(((SUM( CASE WHEN  timesheetentries.workcategory="other" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as other
+from timesheetentries   
+INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
+WHERE  timesheets.timesheetdate>='2023-12-04' and  timesheets.timesheetdate<='2023-12-04';
 
 
-SHOW COLUMNS FROM `timesheetentries` WHERE field = 'workcategory';
--- enum('userstory','task','bug','issues','meeting','learning','mentoring','break','clientcall','other')
-SELECT totime,fromtime, SUM((TIME_TO_SEC(TIMEDIFF(totime,fromtime)))/3600)  FROM timesheetentries INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id WHERE timesheetid in (4,5);
-SELECT totime,fromtime, TIME_TO_SEC(TIMEDIFF(totime,fromtime)) from timesheetentries;
+-- list of timesheets of employee
+select * from timesheets where  employeeid =10;
 
- 
+-- show a  timesheet and its details by employee and  date
+SELECT timesheets.id as timesheetid,timesheets.status,timesheets.statuschangeddate,timesheetentries.id as timesheetentryid,
+timesheetentries.work,timesheetentries.workcategory,timesheetentries.description,timesheetentries.fromtime,timesheetentries.totime,
+employees.userid
+FROM timesheets  
+LEFT JOIN  timesheetentries ON  timesheets.id= timesheetentries.timesheetid
+INNER JOIN employees ON timesheets.employeeid =employees.id
+WHERE timesheets.timesheetdate = @timeSheetDate AND timesheets.employeeId = @employeeId
 
-select timesheetentries.*,activities.title,activities.activitytype  from timesheetentries join activities on timesheetentries.activityid=activities.id WHERE timesheetid=1;
-SELECT * FROM timesheets;
-
+-- show timesheetdtials of  a timesheet.
+SELECT *  from timesheetentries WHERE timesheetid=@timeSheetId
 
 -- show me the list of employees who are in the bench.
 select * from projectallocations where status="no";
@@ -107,7 +126,28 @@ HAVING COUNT(CASE WHEN status = 'yes' THEN 1 END) > 0);
 
 select * from projectallocations;
 
+<<<<<<< HEAD
 
 SELECT * from activities WHERE status="inprogress" and projectid=4;
 SELECT * from activities WHERE status="completed"  and projectid=4;
 SELECT * from activities WHERE status="todo"    and projectid=4;
+=======
+-- Assign member to project
+INSERT INTO projectallocations(projectid,employeeid,membership,assigndate,status) VALUES(1,2,"developer","2023-03-01","yes");
+
+-- Release employee from project
+Update projectallocations set releasedate="2023-03-03",status="no" where projectid=1 and employeeId=2;
+
+-- All assigned employees
+Select * from projectallocations inner join employees where projectallocations.status="yes";
+
+-- get project allocations between "2023-02-03" and "2023-04-05"
+select * from projectallocations where assigndate BETWEEN "2023-02-03" AND "2023-04-05";
+
+
+-- get unassigned project of employee
+select * from employees inner join projectallocations on projectallocations.employeeid=employees.id where projectallocations.status="no" and projectallocations.projectid=1;
+
+-- get project allocations of particular employee between dates "2023-02-03" and "2023-04-05"
+select * from projectallocations where employeeid=1 and assigndate BETWEEN "2023-02-03" AND "2023-04-05";
+>>>>>>> 0a94afcda6037f8453144df8ab9619a2515cc426

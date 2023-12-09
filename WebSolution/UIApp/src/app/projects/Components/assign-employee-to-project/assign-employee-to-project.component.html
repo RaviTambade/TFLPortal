@@ -4,23 +4,32 @@
         <label for="membership">Membership</label>
         <input type="text" id="membership" name="membership" formControlName="membership">
       </div>
-    <div>
-        <label for="projectId">Project Id:</label>
-        <input type="text" id="projectId" name="projectId" formControlName="projectId">
-      </div>
-    <div>
-        <label for="employeeId">EmployeeId</label>
-        <input type="text" id="employeeId" name="employeeId" formControlName="employeeId">
+    <!-- <div>
+        <label hidden for="projectId">Project Id:</label>
+        <input type="number" id="projectId" name="projectId" formControlName="projectId" type="hidden">
+      </div> -->
+      <select name="projectId" id="projectId" (change)="onChange($event)" formControlName="projectId" >
+        <option *ngFor="let project of projects" [value]="project.id">{{project.title}}</option>
+      </select>
+    <!-- <div>
+        <label hidden for="employeeId">EmployeeId</label>
+        <input type="number" id="employeeId" name="employeeId"   type="hidden">
       </div>
   <div>
-      <label for="status">status</label>
-      <input type="text" id="status" name="status" formControlName="status">
+      <label hidden for="status">status</label>
+      <input type="text" id="status" name="status"  type="hidden">
     </div>
     <div>
-        <label for="assignDate">Assign Date</label>
-        <input type="text" id="assignDate" name="assignDate" formControlName="assignDate">
-      </div>
+        <label hidden for="assignDate">Assign Date</label>
+        <input type="date" id="assignDate" name="assignDate" type="hidden">
+      </div> -->
+      <div>EmployeeId:{{employeeId}}</div>
+      <div>EmployeeName:{{Name}}</div>
       <div>
         <button type="submit">Submit</button>
       </div>
+      
+      <br>
+      <br>
+      <br>
   </form>

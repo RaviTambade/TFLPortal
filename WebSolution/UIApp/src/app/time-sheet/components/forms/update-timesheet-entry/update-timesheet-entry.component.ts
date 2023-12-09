@@ -1,6 +1,6 @@
 import {Component,EventEmitter,Input,Output, SimpleChanges} from '@angular/core';
+import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 import { TimeSheetDetails } from 'src/app/time-sheet/models/TimeSheetDetails';
-import { TimeSheetService } from 'src/app/time-sheet/services/time-sheet.service';
 
 @Component({
   selector: 'app-update-timesheet-entry',
@@ -23,7 +23,7 @@ export class UpdateTimesheetEntryComponent {
 
   @Input() timesheetDetails!: TimeSheetDetails;
   @Output() stateChangeEvent = new EventEmitter<boolean>();
-  constructor(private timeSheetService: TimeSheetService) {}
+  constructor(private workmgmtSvc: WorkmgmtService) {}
 
   ngOnChanges(changes: SimpleChanges) {
     this.timesheetDetails = changes['timesheetDetails'].currentValue;
@@ -44,7 +44,7 @@ export class UpdateTimesheetEntryComponent {
       description: this.timesheetDetails.description,
     };
 
-    this.timeSheetService
+    this.workmgmtSvc
       .updateTimeSheetDetails(timesheetDetails.id, timesheetDetails)
       .subscribe((res) => {
         if (res) {
@@ -53,6 +53,6 @@ export class UpdateTimesheetEntryComponent {
       });
   }
   getDuration(timeSheetEnrty: TimeSheetDetails) {
-    this.timeSheetService.getDurationOfWork(timeSheetEnrty);
+    this.workmgmtSvc.getDurationOfWork(timeSheetEnrty);
   }
 }

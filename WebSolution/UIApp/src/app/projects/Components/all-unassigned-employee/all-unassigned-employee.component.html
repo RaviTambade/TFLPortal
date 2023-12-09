@@ -5,19 +5,22 @@
             <thead>
                 <tr>
                     <th>FullName</th>
-                    <th>Email</th>
-                    <th>contactNumber</th>
+                    <!-- <th>Email</th>
+                    <th>contactNumber</th> -->
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody *ngFor="let employee of employees">
                 <tr>
-                    <td > {{employee.firstName}} {{employee.lastName}}</td>
-                    <td> {{employee.email}}</td>
-                    <td> {{employee.contactNumber}}</td>
-                    <td><button>Assign Employee</button></td>
+   <td><a href="">{{employee?.firstName}} {{employee?.lastName}}</a></td>                
+    <!-- <td > {{employee.firstName}} {{employee.lastName}}</td> -->
+                    <!-- <td> {{employee.email}}</td>
+                    <td> {{employee.contactNumber}}</td> -->
+                    <td><button (click)="onClick(employee.employeeId,employee.firstName,employee.lastName)">Assign Employee</button></td>
                 </tr>
                 
             </tbody>
         </table>
     </div>
+
+<app-assign-employee-to-project [employeeId]="selectedEmployeeId"  [Name]="fullName" *ngIf="visibleForm && selectedEmployeeId && fullName"></app-assign-employee-to-project>

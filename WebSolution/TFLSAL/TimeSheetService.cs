@@ -136,7 +136,7 @@ public class TimeSheetService : ITimeSheetService
         return timeSheet;
     }
 
-    public async Task<bool> InsertTimeSheet(int employeeId, DateTime date)
+    public async Task<bool> InsertTimeSheet(TimeSheet timeSheet)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
@@ -146,8 +146,8 @@ public class TimeSheetService : ITimeSheetService
             string query =
                 "INSERT INTO timesheets(timesheetdate,employeeid) VALUES (@timesheetdate,@empid)";
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@timesheetdate", date);
-            cmd.Parameters.AddWithValue("@empid", employeeId);
+            cmd.Parameters.AddWithValue("@timesheetdate", timeSheet.TimeSheetDate);
+            cmd.Parameters.AddWithValue("@empid", timeSheet.EmployeeId);
             await connection.OpenAsync();
             int rowsAffected = await cmd.ExecuteNonQueryAsync();
             if (rowsAffected > 0)
@@ -383,7 +383,18 @@ public class TimeSheetService : ITimeSheetService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "SELECT CAST(((SUM( CASE WHEN  timesheetentries.workcategory='userstory' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as userstory,CAST(((SUM( CASE WHEN  timesheetentries.workcategory='task' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as task, CAST(((SUM( CASE WHEN  timesheetentries.workcategory='bug' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as bug,CAST(((SUM( CASE WHEN  timesheetentries.workcategory='issues' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as issues, CAST(((SUM( CASE WHEN  timesheetentries.workcategory='meeting' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as meeting,  CAST(((SUM( CASE WHEN  timesheetentries.workcategory='learning' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as learning,CAST(((SUM( CASE WHEN  timesheetentries.workcategory='mentoring' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as mentoring ,CAST(((SUM( CASE WHEN  timesheetentries.workcategory='break' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as break,   CAST(((SUM( CASE WHEN  timesheetentries.workcategory='clientcall' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as clientcall, CAST(((SUM( CASE WHEN  timesheetentries.workcategory='other' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as other from timesheetentries INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id WHERE timesheets.employeeid=@employeeId AND timesheets.timesheetdate>=@fromDate and  timesheets.timesheetdate<=@toDate";
+            string query = @"SELECT
+             CAST(((SUM( CASE WHEN  timesheetentries.workcategory='userstory' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as userstory,
+             CAST(((SUM( CASE WHEN  timesheetentries.workcategory='task' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as task,
+             CAST(((SUM( CASE WHEN  timesheetentries.workcategory='bug' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as bug,CAST(((SUM( CASE WHEN  timesheetentries.workcategory='issues' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as issues, 
+             CAST(((SUM( CASE WHEN  timesheetentries.workcategory='meeting' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as meeting, 
+             CAST(((SUM( CASE WHEN  timesheetentries.workcategory='learning' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as learning,
+             CAST(((SUM( CASE WHEN  timesheetentries.workcategory='mentoring' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as mentoring ,
+             CAST(((SUM( CASE WHEN  timesheetentries.workcategory='break' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as break, 
+             CAST(((SUM( CASE WHEN  timesheetentries.workcategory='clientcall' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as clientcall,
+             CAST(((SUM( CASE WHEN  timesheetentries.workcategory='other' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as other
+             from timesheetentries INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
+             WHERE timesheets.employeeid=@employeeId AND timesheets.timesheetdate>=@fromDate and  timesheets.timesheetdate<=@toDate";
 
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@employeeId", employeeId);
@@ -400,7 +411,7 @@ public class TimeSheetService : ITimeSheetService
                 string meeting = reader["meeting"].ToString();
                 string learning = reader["learning"].ToString();
                 string mentoring = reader["mentoring"].ToString();
-                // string break = reader["break"].ToString();
+                string breaktime = reader["break"].ToString();
                 string clientcall = reader["clientcall"].ToString();
                 string other = reader["other"].ToString();
 
@@ -413,7 +424,7 @@ public class TimeSheetService : ITimeSheetService
                     Meeting = meeting,
                     Learning = learning,
                     Mentoring = mentoring,
-                    // Break = break,
+                    Break = breaktime,
                     ClientCall = clientcall,
                     Other = other
                 };
