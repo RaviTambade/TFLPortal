@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { ListComponent } from './Components/Members/list/list.component';
 import { DetailsComponent } from './Components/Employees/details/details.component';
 import { InsertMemberComponent } from './Components/Members/forms/insert-member/insert-member.component';
+import { EmployeeDetailsComponent } from './Components/Employees/employee-details/employee-details.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EmployeeSalaryStructureComponent } from './Components/forms/employee-salary-structure/employee-salary-structure.component';
 
 
 
@@ -10,14 +13,20 @@ import { InsertMemberComponent } from './Components/Members/forms/insert-member/
   declarations: [
     ListComponent,
     DetailsComponent,
-    InsertMemberComponent
+    InsertMemberComponent,
+    EmployeeDetailsComponent,
+    EmployeeSalaryStructureComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     ListComponent,
-    DetailsComponent
+    DetailsComponent,
+    EmployeeDetailsComponent,
+    EmployeeSalaryStructureComponent
   ]
 })
 export class ResourceManagementModule { }

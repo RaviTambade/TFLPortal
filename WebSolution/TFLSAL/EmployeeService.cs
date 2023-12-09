@@ -54,7 +54,46 @@ public class EmployeeService : IEmployeeService
             }
             return employee;
         }
+
+    public async Task<bool> InsertSalaryStructure(SalaryStructure salaryStructure)
+    {
+        bool status=false;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        var assigndate =DateTime.Now;
+
+        try
+        {
+            string query = "Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(@employeeId,@basicSalary,@hra,@da,@lta,@variablePay,@deduction)";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@employeeId",salaryStructure.EmployeeId);
+            cmd.Parameters.AddWithValue("@basicSalary", salaryStructure.BasicSalary);
+            cmd.Parameters.AddWithValue("@hra", salaryStructure.HRA);
+            cmd.Parameters.AddWithValue("@da", salaryStructure.DA);
+            cmd.Parameters.AddWithValue("@lta", salaryStructure.LTA);
+            cmd.Parameters.AddWithValue("@variablePay", salaryStructure.VariablePay);
+            cmd.Parameters.AddWithValue("@deduction", salaryStructure.Deduction);
+            await connection.OpenAsync();
+            int rowsAffected = cmd.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                status = true;
+            }
+            await connection.CloseAsync();
+
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return status;
+    }
+}
    
    
    
-   }
+   

@@ -131,7 +131,7 @@ select * from projectallocations;
 SELECT * from activities WHERE status="inprogress" and projectid=4;
 SELECT * from activities WHERE status="completed"  and projectid=4;
 SELECT * from activities WHERE status="todo"    and projectid=4;
-=======
+
 -- Assign member to project
 INSERT INTO projectallocations(projectid,employeeid,membership,assigndate,status) VALUES(1,2,"developer","2023-03-01","yes");
 
