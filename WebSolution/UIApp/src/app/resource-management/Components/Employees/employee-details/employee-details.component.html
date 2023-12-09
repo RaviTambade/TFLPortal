@@ -1,1 +1,12 @@
-<p>employee-details works!</p>
+<h2>Employee Details</h2>
+
+<label>Contact Number</label>
+<input type="text" name="contactNumber" [(ngModel)]="contactNumber">
+<button (click)="onSearch(contactNumber)">Search</button>
+
+<div *ngIf="employee">
+   <p>Name:{{employee.firstName}}  {{employee.lastName}}</p> 
+   <p>Email:{{employee.email}}</p> 
+   <p>ImageUrl:{{employee.imageUrl}}</p> 
+   <p>BirthDate:{{employee.birthDate}}</p>
+</div>

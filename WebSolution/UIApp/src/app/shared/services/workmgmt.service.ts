@@ -51,7 +51,7 @@ export class WorkmgmtService {
 
   updateActivity(status: string, activityId: number): Observable<boolean> {
     let url = this.serviceurl +'/workmgmt/activities/project/'+ activityId+'/status/'+status ;
-    return this.htt.put<boolean>(url, status);
+    return this.http.put<boolean>(url, status);
 
     // let url = this.serviceurl +'/workmgmt/activities/Update/' +status +'/' + activityId;
     // return this.http.put<boolean>(url, status);

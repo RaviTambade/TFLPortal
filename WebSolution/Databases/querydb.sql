@@ -126,12 +126,12 @@ HAVING COUNT(CASE WHEN status = 'yes' THEN 1 END) > 0);
 
 select * from projectallocations;
 
-<<<<<<< HEAD
+
 
 SELECT * from activities WHERE status="inprogress" and projectid=4;
 SELECT * from activities WHERE status="completed"  and projectid=4;
 SELECT * from activities WHERE status="todo"    and projectid=4;
-=======
+
 -- Assign member to project
 INSERT INTO projectallocations(projectid,employeeid,membership,assigndate,status) VALUES(1,2,"developer","2023-03-01","yes");
 
@@ -150,4 +150,3 @@ select * from employees inner join projectallocations on projectallocations.empl
 
 -- get project allocations of particular employee between dates "2023-02-03" and "2023-04-05"
 select * from projectallocations where employeeid=1 and assigndate BETWEEN "2023-02-03" AND "2023-04-05";
->>>>>>> 0a94afcda6037f8453144df8ab9619a2515cc426

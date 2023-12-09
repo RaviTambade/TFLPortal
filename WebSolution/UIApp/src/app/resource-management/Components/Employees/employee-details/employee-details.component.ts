@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { User } from 'src/app/resource-management/Models/User';
 import { MembersService } from 'src/app/resource-management/Services/members.service';
 import { HrService } from 'src/app/shared/services/hr.service';
 
@@ -8,17 +9,22 @@ import { HrService } from 'src/app/shared/services/hr.service';
   styleUrls: ['./employee-details.component.css']
 })
 export class EmployeeDetailsComponent implements OnInit{
-
-  contactNumber:string='8456123654';
-
+  employeeId:number |undefined;
+  contactNumber:string='';
+  employee:User |undefined;
+  @Output() selectedEmployeeId = new EventEmitter<number>();
   constructor(private svc:HrService){}
 
   ngOnInit(): void {
-    this.svc.getEmployee(this.contactNumber).subscribe((res)=>{
-      console.log(res);
-    })
+    
   }
 
-
-
+  onSearch(contactNumber:string){
+    this.svc.getEmployee(contactNumber).subscribe((res)=>{
+      console.log(res);
+      this.employee=res;
+      this.employeeId=this.employee.id;
+      this.selectedEmployeeId.emit(this.employeeId);
+    })
+  }
 }

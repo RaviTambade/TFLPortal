@@ -55,4 +55,11 @@ public class EmployeesController : ControllerBase
         Console.WriteLine(transactionId);
         return transactionId > 0;
     }
+
+    [HttpPost("employee/salary")]
+    public async Task<bool> InsertSalaryStructure(SalaryStructure salaryStructure)
+    {
+        bool status =await _service.InsertSalaryStructure(salaryStructure);
+        return status;
+    }
 }
