@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 using System.Diagnostics;
 using Transflower.TFLPortal.TFLOBL.Entities;
+using System.Data;
 
 namespace Transflower.TFLPortal.TFLSAL.Services;
 public class ActivityService : IActivityService
@@ -694,4 +695,54 @@ public class ActivityService : IActivityService
         }
         return activities;
     }
+
+
+
+    public async Task<ActivityCountSp> GetAllActivitiesCount()
+{
+    ActivityCountSp countSp = null;
+    MySqlConnection con = new MySqlConnection();
+    con.ConnectionString = _connectionString;
+
+    try
+    {
+        await con.OpenAsync();
+
+        MySqlCommand cmd = new MySqlCommand("getActivityCounts", con);
+        cmd.CommandType = CommandType.StoredProcedure;
+
+        cmd.Parameters.AddWithValue("@todo", MySqlDbType.Int32);
+        cmd.Parameters["@todo"].Direction = ParameterDirection.Output;
+
+        cmd.Parameters.AddWithValue("@inprogress", MySqlDbType.Int32);
+        cmd.Parameters["@inprogress"].Direction = ParameterDirection.Output;
+
+        cmd.Parameters.AddWithValue("@completed", MySqlDbType.Int32);
+        cmd.Parameters["@completed"].Direction = ParameterDirection.Output;
+
+        await cmd.ExecuteNonQueryAsync();
+
+        int todo = Convert.ToInt32(cmd.Parameters["@todo"].Value);
+        int inprogress = Convert.ToInt32(cmd.Parameters["@inprogress"].Value);
+        int completed = Convert.ToInt32(cmd.Parameters["@completed"].Value);
+
+        countSp = new ActivityCountSp()
+        {
+            Todo = todo,
+            InProgress = inprogress,
+            Completed = completed
+        };
+    }
+    catch (Exception)
+    {
+        throw;
+    }
+    finally
+    {
+        await con.CloseAsync();
+    }
+
+    return countSp;
+}
+
 }

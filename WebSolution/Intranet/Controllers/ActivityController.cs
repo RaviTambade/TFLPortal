@@ -113,5 +113,12 @@ public class ActivityController : ControllerBase
     }
 
 
+ [HttpGet("ActivitySp")]
+    public async Task<ActivityCountSp> GetAllActivitiesCount()
+    {
+        ActivityCountSp activities = await _service.GetAllActivitiesCount();
+        return activities;
+    }
+
 
 }

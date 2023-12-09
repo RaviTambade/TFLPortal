@@ -19,4 +19,6 @@ public interface IActivityService
 
       Task<List<ActivityDetails>> GetAllActivities(int projectId,int employeeId);
 
+     public Task<ActivityCountSp> GetAllActivitiesCount();
+
 }
