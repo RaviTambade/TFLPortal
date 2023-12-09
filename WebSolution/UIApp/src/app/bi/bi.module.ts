@@ -27,7 +27,8 @@ import { ProjectactivitiesPiechartComponent } from './projectactivities-piechart
     DailyreviewprogressComponent,
     WeeklyprogreessreviewComponent,
     MonthlyprogressreviewComponent,
-    ProjectactivitiesPiechartComponent
+    ProjectactivitiesPiechartComponent,
+    BarchartComponent
   ]
 })
 export class BiModule { }

@@ -24,14 +24,13 @@ export class ProjectactivitiesPiechartComponent implements OnInit{
           {
             label: "workingHoursOnActivities",
             data: ['40','57', '52', '60'],
-            backgroundColor: 'blue'
+            backgroundColor: ['red', 'green', 'blue','yellow']
           },
           // {
-          //   label: "",
-          //   data: ['542', '542', '536', '327', '17',
-					// 				 '0.00', '538', '541'],
-          //   backgroundColor: 'limegreen'
-          // }  
+          //   label: "NotworkingHoursOnActivities",
+          //   data: ['10','7', '2', '2'],
+          //   backgroundColor: ['red', 'green', 'blue','yellow']
+          // },
         ]
       },
       options: {
