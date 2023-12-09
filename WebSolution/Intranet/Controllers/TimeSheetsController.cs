@@ -19,17 +19,17 @@ public class TimeSheetsController : ControllerBase
         _service = service;
     }
 
-    [HttpGet("{employeeId}")]
-    public async Task<List<TimeSheet>> GetTimeSheetsOfEmployee(int employeeId)
+    [HttpGet("employees/{employeeId}")]
+    public async Task<List<TimeSheet>> GetAllTimeSheets(int employeeId)
     {
         List<TimeSheet> timesheets = await _service.GetTimeSheetsOfEmployee(employeeId);
         return timesheets;
     }
 
-    [HttpGet("{employeeId}/date/{date}")]
+    [HttpGet("employees/{employeeId}/date/{date}")]
     public async Task<TimeSheetResponse> GetTimeSheetOfEmployee(int employeeId, string date)
     {
-        TimeSheet timesheet = await _service.GetTimeSheetOfEmployee(employeeId,date);
+        TimeSheet timesheet = await _service.GetTimeSheetOfEmployee(employeeId, date);
 
         if (timesheet.Employee != null)
         {
@@ -42,7 +42,7 @@ public class TimeSheetsController : ControllerBase
                 Status = timesheet.Status,
                 TimeSheetDetails = timesheet.TimeSheetDetails,
                 EmployeeId = timesheet.EmployeeId,
-                EmployeeName = user[0].FirstName+" "+user[0].LastName,
+                EmployeeName = user[0].FirstName + " " + user[0].LastName,
             };
             return timeSheetResponse;
         }
@@ -55,10 +55,16 @@ public class TimeSheetsController : ControllerBase
         return await _service.GetTimeSheetEntries(timeSheetId);
     }
 
-    [HttpPost("{employeeId}/{date}")]
-   public async Task<bool> InsertTimeSheet(int employeeId, DateTime date)
+    [HttpGet("workduration/employees/{employeeId}/from/{fromDate}/to/{toDate}")]
+    public async Task<WorkCategory> GetWorkDurationOfEmployee( int employeeId, DateTime fromDate, DateTime toDate)
     {
-        return await _service.InsertTimeSheet(employeeId, date);
+        return await _service.GetWorkDurationOfEmployee(employeeId, fromDate, toDate);
+    }
+
+    [HttpPost]
+    public async Task<bool> InsertTimeSheet(TimeSheet timeSheet)
+    {
+        return await _service.InsertTimeSheet(timeSheet);
     }
 
     [HttpPost("timesheetentries")]
@@ -74,10 +80,7 @@ public class TimeSheetsController : ControllerBase
     }
 
     [HttpPut("timesheetentries/{timeSheetEntryId}")]
-    public async Task<bool> UpdateTimeSheetEntry(
-        int timeSheetEntryId,
-        TimeSheetEntry timeSheetEntry
-    )
+    public async Task<bool> UpdateTimeSheetEntry( int timeSheetEntryId,  TimeSheetEntry timeSheetEntry  )
     {
         return await _service.UpdateTimeSheetEntry(timeSheetEntryId, timeSheetEntry);
     }
@@ -92,11 +95,5 @@ public class TimeSheetsController : ControllerBase
     public async Task<bool> RemoveAllTimeSheetEntry(int timeSheetId)
     {
         return await _service.RemoveAllTimeSheetEntry(timeSheetId);
-    }
-
-    [HttpGet("timesheetentries/duration/workcategory/{employeeId}/{fromDate}/{toDate}")]
-    public async Task<WorkCategory> GetWorkDurationOfEmployee(int employeeId,DateTime fromDate,DateTime toDate)
-    {
-        return await _service.GetWorkDurationOfEmployee(employeeId,fromDate,toDate);
     }
 }

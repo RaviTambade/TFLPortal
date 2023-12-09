@@ -8,7 +8,7 @@
             <option *ngFor="let interval of intervals" [value]="interval"> {{interval}}</option>
         </select>
     </div>
-    
+
     <div *ngIf="selectedInterval=='year'">
         <ng-container *ngTemplateOutlet="yearTemplate"></ng-container>
     </div>

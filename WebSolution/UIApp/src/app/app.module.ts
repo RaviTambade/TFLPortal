@@ -12,6 +12,8 @@ import { TimeSheetModule } from './time-sheet/time-sheet.module';
 import { ProjectplanningModule } from './ProjectPlanning/projectplanning/projectplanning.module';
 import { ActivityModule } from './activity/activity.module';
 import { TooltipDirective } from './calender/tooltip.directive';
+import { BiModule } from './bi/bi.module';
+
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { TooltipDirective } from './calender/tooltip.directive';
     TooltipDirective
   ],
   imports: [
+    BiModule,
     BrowserModule,
     AppRoutingModule,
     ProjectsModule,

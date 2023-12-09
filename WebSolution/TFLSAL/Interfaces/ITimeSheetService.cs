@@ -10,7 +10,7 @@ public interface ITimeSheetService
 
     
 
-    Task<bool> InsertTimeSheet(int employeeId, DateTime date);
+    Task<bool> InsertTimeSheet(TimeSheet timeSheet);
     Task<bool> InsertTimeSheetEntry(TimeSheetEntry timeSheetEntry);
     Task<bool> ChangeTimeSheetStatus(int timeSheetId, TimeSheet timeSheet);
     Task<bool> UpdateTimeSheetEntry(int timeSheetEntryId,TimeSheetEntry timeSheetEntry);
