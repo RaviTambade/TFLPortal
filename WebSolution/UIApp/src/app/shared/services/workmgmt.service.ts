@@ -131,5 +131,11 @@ export class WorkmgmtService {
   }
 
 
+  getAllActivitiesCount(): Observable<any> {
+    let url =this.serviceurl +'/workmgmt/activities/ActivitySp';
+    return this.http.get<any>(url);
+  }
+
+
 
 }
