@@ -185,13 +185,8 @@ FROM projectallocations
 GROUP BY employeeid
 HAVING COUNT(CASE WHEN status = 'yes' THEN 1 END) > 0);
 
-select * from projectallocations;
 
 
-SELECT * from activities WHERE status="inprogress" and projectid=4;
-SELECT * from activities WHERE status="completed"  and projectid=4;
-SELECT * from activities WHERE status="todo"    and projectid=4;
--- Assign member to project
 INSERT INTO projectallocations(projectid,employeeid,membership,assigndate,status) VALUES(1,2,"developer","2023-03-01","yes");
 
 -- Release employee from project
@@ -209,3 +204,15 @@ select * from employees inner join projectallocations on projectallocations.empl
 
 -- get project allocations of particular employee between dates "2023-02-03" and "2023-04-05"
 select * from projectallocations where employeeid=1 and assigndate BETWEEN "2023-02-03" AND "2023-04-05";
+
+DROP Procedure getActivityCounts;
+
+CREATE PROCEDURE getActivityCounts(OUT  todo INT,OUT inprogress INT,OUT completed INT)
+BEGIN
+    SELECT COUNT(*) INTO todo FROM activities WHERE status = 'todo';
+    SELECT COUNT(*) INTO inprogress FROM activities WHERE status = 'inprogress';
+    SELECT COUNT(*) INTO completed FROM activities WHERE status = 'completed';
+END;
+
+call getActivityCounts(@todo,@inprogress,@completed);
+SELECT @todo,@inprogress,@completed;

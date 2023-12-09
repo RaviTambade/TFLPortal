@@ -2,20 +2,20 @@
 <form #projectForm="ngForm" (ngSubmit)="onSubmit()">
     <table>
          <tr>
-           <td><label >projectId:</label></td>
-           <td><input type="number" name="projectId" [(ngModel)]="updateProject.projectId"  ></td>
+           <td><label hidden>projectId:</label></td>
+           <td><input type="number" name="projectId" [(ngModel)]="updateProject.projectId"  type="hidden"></td>
          </tr>
          <tr>
-           <td><label >EmployeeId:</label></td>
-           <td><input type="number" name="employeeId" [(ngModel)]="updateProject.employeeId" ></td>
+           <td><label hidden>EmployeeId:</label></td>
+           <td><input type="number" name="employeeId" [(ngModel)]="updateProject.employeeId" type="hidden"></td>
          </tr>        
           <tr>
-            <td> <label>Release Date:</label></td>
-            <td><input type="text" name="releaseDate" [(ngModel)]="updateProject.releaseDate"></td>
+            <td> <label hidden>Release Date:</label></td>
+            <td><input type="text" name="releaseDate" [(ngModel)]="updateProject.releaseDate" type="hidden"></td>
           </tr>        
           <tr>
-             <td><label>Status</label></td>
-            <td><input type="text" name="status" [(ngModel)]="updateProject.status"></td>
+             <td><label hidden>Status</label></td>
+            <td><input type="text" name="status" [(ngModel)]="updateProject.status" type="hidden"></td>
           </tr>
           <tr>
             <td><button type="submit" >Submit</button></td>

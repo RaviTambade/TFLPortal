@@ -148,6 +148,7 @@ public class ProjectAllocationController : ControllerBase
                     EmployeeId = employee.Id,
                     Membership = employee.Membership,
                     AssignDate = employee.AssignDate,
+                    ProjectId = employee.ProjectId,
                 };
                 projectAllocationResponse.Add(projectResponse);
             }

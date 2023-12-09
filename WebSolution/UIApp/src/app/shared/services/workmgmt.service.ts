@@ -52,7 +52,7 @@ export class WorkmgmtService {
   // http://localhost:5263/api/workmgmt/activities/Update/1/4/15
 
   updateActivity(status: string, activityId: number): Observable<boolean> {
-    let url = this.serviceurl + '/workmgmt/activities/project/' + activityId + '/status/' + status;
+    let url = this.serviceurl +'/workmgmt/activities/project/'+ activityId+'/status/'+status ;
     return this.http.put<boolean>(url, status);
 
     // let url = this.serviceurl +'/workmgmt/activities/Update/' +status +'/' + activityId;
@@ -136,6 +136,12 @@ export class WorkmgmtService {
   convertMinutesintoHours(minutes: number) {
     let str = `${Math.floor(minutes / 60)}h: ${minutes % 60}m`;
     return str;
+  }
+
+
+  getAllActivitiesCount(): Observable<any> {
+    let url =this.serviceurl +'/workmgmt/activities/ActivitySp';
+    return this.http.get<any>(url);
   }
 
 
