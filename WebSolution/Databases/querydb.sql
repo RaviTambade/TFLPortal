@@ -150,3 +150,15 @@ select * from employees inner join projectallocations on projectallocations.empl
 
 -- get project allocations of particular employee between dates "2023-02-03" and "2023-04-05"
 select * from projectallocations where employeeid=1 and assigndate BETWEEN "2023-02-03" AND "2023-04-05";
+
+DROP Procedure getActivityCounts;
+
+CREATE PROCEDURE getActivityCounts(OUT  todo INT,OUT inprogress INT,OUT completed INT)
+BEGIN
+    SELECT COUNT(*) INTO todo FROM activities WHERE status = 'todo';
+    SELECT COUNT(*) INTO inprogress FROM activities WHERE status = 'inprogress';
+    SELECT COUNT(*) INTO completed FROM activities WHERE status = 'completed';
+END;
+
+call getActivityCounts(@todo,@inprogress,@completed);
+SELECT @todo,@inprogress,@completed;

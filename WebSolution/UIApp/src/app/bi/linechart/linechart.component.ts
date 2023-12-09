@@ -16,7 +16,7 @@ export class LinechartComponent implements OnInit{
   createChart(){
   
     this.chart = new Chart("MyChart", {
-      type: 'bar', //this denotes tha type of chart
+      type: 'pie', //this denotes tha type of chart
 
       data: {// values on X-Axis
         labels: ['2022-05-10', '2022-05-11', '2022-05-12','2022-05-13',
