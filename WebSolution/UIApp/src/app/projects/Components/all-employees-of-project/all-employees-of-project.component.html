@@ -18,13 +18,39 @@
         <td>{{employee.fullName}}</td>
         <td>{{employee.membership}}</td>
         <td>{{employee.assignDate | date}}</td>
-        <td><button  (click)="onClick(employee.employeeId,employee.projectId)">Release Employee</button></td>
+        <td><button (click)="onSubmit(employee.projectId,employee.employeeId)">Release Employee</button></td>
     </tr>
 </table>
+<div >
 </div>
 </div>
 </div>
 
-<app-update-project-allocation [selectedEmployeeId]="selectedEmployeeId" [selectedProjectId]="selectedProjectId" *ngIf="selectedEmployeeId && selectedProject && selectedProjectId"></app-update-project-allocation>
 
-
+<!-- <app-update-project-allocation [selectedEmployeeId]="selectedEmployeeId" [selectedProjectId]="selectedProjectId" *ngIf="selectedEmployeeId && selectedProject && selectedProjectId"></app-update-project-allocation> -->
+<!-- <div >
+<form #projectForm="ngForm" (ngSubmit)="onSubmit()">
+    <table>
+         <tr>
+           <td><label >projectId:</label></td>
+           <td><input type="number" name="projectId" [(ngModel)]="updateProject.projectId"  ></td>
+         </tr>
+         <tr>
+           <td><label hidden>EmployeeId:</label></td>
+           <td><input type="number" name="employeeId" [(ngModel)]="updateProject.employeeId" type="hidden"></td>
+         </tr>        
+          <tr>
+            <td> <label hidden>Release Date:</label></td>
+            <td><input type="text" name="releaseDate" [(ngModel)]="updateProject.releaseDate" type="hidden"></td>
+          </tr>        
+          <tr>
+             <td><label hidden>Status</label></td>
+            <td><input type="text" name="status" [(ngModel)]="updateProject.status" type="hidden"></td>
+          </tr>
+          <tr>
+            <td><button type="submit" >Submit</button></td>
+          </tr>
+     </table>
+   </form>
+</div>
+ -->

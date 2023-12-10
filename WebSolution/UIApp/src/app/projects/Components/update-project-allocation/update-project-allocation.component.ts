@@ -9,31 +9,31 @@ import { ReleaseEmployee } from '../../Models/ReleaseEmployee';
 })
 export class UpdateProjectAllocationComponent {
 
-  @Input() selectedEmployeeId :number=0;
-  @Input() selectedProjectId :number=0;
+  // @Input() selectedEmployeeId :number=0;
+  // @Input() selectedProjectId :number=0;
 
-  constructor(private service:ProjectsService){}
+  // constructor(private service:ProjectsService){}
 
 
-  updateProject:ReleaseEmployee={
-    employeeId: 0,
-    projectId: 0,
-    releaseDate: new Date().toISOString(),
-    status: 'no'
-  };
+  // updateProject:ReleaseEmployee={
+  //   employeeId: 0,
+  //   projectId: 0,
+  //   releaseDate: new Date().toISOString(),
+  //   status: 'no'
+  // };
 
-  ngOnInit(): void {
+  // ngOnInit(): void {
     
-  }
+  // }
 
-  onSubmit(){
-    this.updateProject.employeeId=this.selectedEmployeeId ;
-    this.updateProject.projectId=this.selectedProjectId;
-    console.log(this.updateProject);
-    console.log(this.updateProject.employeeId);
-    console.log(this.updateProject.projectId);
-    this.service.releaseEmployeeFromProject(this.updateProject.projectId,this.updateProject.employeeId,this.updateProject).subscribe((res)=>{
-    console.log(res);
-    })
-  }
+  // onSubmit(){
+  //   this.updateProject.employeeId=this.selectedEmployeeId ;
+  //   this.updateProject.projectId=this.selectedProjectId;
+  //   console.log(this.updateProject);
+  //   console.log(this.updateProject.employeeId);
+  //   console.log(this.updateProject.projectId);
+  //   this.service.releaseEmployeeFromProject(this.updateProject.projectId,this.updateProject.employeeId,this.updateProject).subscribe((res)=>{
+  //   console.log(res);
+  //   })
+  // }
 }

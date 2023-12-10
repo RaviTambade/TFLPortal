@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Project } from '../../Models/project';
 import { ProjectsService } from '../../Services/projects.service';
 import { ProjectService } from 'src/app/shared/services/project.service';
+import { ReleaseEmployee } from '../../Models/ReleaseEmployee';
 
 @Component({
   selector: 'app-all-employees-of-project',
@@ -12,8 +13,8 @@ export class AllEmployeesOfProjectComponent implements OnInit{
   
   assignedEmployees:any[]=[];
   projects:Project[]=[];
-  selectedEmployeeId:number |undefined;
-  selectedProjectId:number |undefined;
+  EmployeeId:number |undefined;
+  ProjectId:number |undefined;
   selectedProject:boolean=false;
 
   constructor(private service:ProjectService,private svc:ProjectsService){}
@@ -28,18 +29,28 @@ export class AllEmployeesOfProjectComponent implements OnInit{
     onChange(event:any){
       console.log(event.target.value);
       const projectId=event.target.value;
-      // this.selectedProject=true;
       this.svc.getAssignedEmployeesOfProject(projectId).subscribe((res)=>{
       this.assignedEmployees=res;
-      console.log(res);
+      console.log(res);      
     })
   }
 
-  onClick(employeeId:number,projectId:number){
-    this.selectedProject=true;
-  this.selectedEmployeeId=employeeId;
-  this.selectedProjectId=projectId;
-  console.log(employeeId);
+  updateProject:ReleaseEmployee={
+    employeeId: 0,
+    projectId: 0,
+    releaseDate: new Date().toISOString(),
+    status: 'no'
+  };
+
+  onSubmit(projectId:number,employeeId:number){
+    this.updateProject.employeeId= employeeId;
+    this.updateProject.projectId=projectId;
+    console.log(this.updateProject);
+    console.log(this.updateProject.employeeId);
+    console.log(this.updateProject.projectId);
+    this.svc.releaseEmployeeFromProject(this.updateProject.projectId,this.updateProject.employeeId,this.updateProject).subscribe((res)=>{
+    console.log(res);
+    })
   }
 }
 
