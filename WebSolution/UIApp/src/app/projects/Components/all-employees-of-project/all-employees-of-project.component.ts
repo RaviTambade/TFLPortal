@@ -16,6 +16,12 @@ export class AllEmployeesOfProjectComponent implements OnInit{
   EmployeeId:number |undefined;
   ProjectId:number |undefined;
   selectedProject:boolean=false;
+  updateProject:ReleaseEmployee={
+    employeeId: 0,
+    projectId: 0,
+    releaseDate: new Date().toISOString(),
+    status: 'no'
+  };
 
   constructor(private service:ProjectService,private svc:ProjectsService){}
 
@@ -35,12 +41,6 @@ export class AllEmployeesOfProjectComponent implements OnInit{
     })
   }
 
-  updateProject:ReleaseEmployee={
-    employeeId: 0,
-    projectId: 0,
-    releaseDate: new Date().toISOString(),
-    status: 'no'
-  };
 
   onSubmit(projectId:number,employeeId:number){
     this.updateProject.employeeId= employeeId;
