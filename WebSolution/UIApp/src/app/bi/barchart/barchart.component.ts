@@ -35,6 +35,7 @@ export class BarchartComponent implements OnInit {
         ]
       },
       options: {
+        indexAxis:'y',
         aspectRatio: 2.5
       }
     });
