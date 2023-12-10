@@ -55,8 +55,18 @@ public class TimeSheetsController : ControllerBase
         return await _service.GetTimeSheetEntries(timeSheetId);
     }
 
+    [HttpGet("workduration/{intervalType}")]
+    public async Task<List<WorkCategoryDetails>> GetActivityWiseHours(string intervalType)
+    {
+        return await _service.GetActivityWiseHours(intervalType);
+    }
+
     [HttpGet("workduration/employees/{employeeId}/from/{fromDate}/to/{toDate}")]
-    public async Task<WorkCategory> GetWorkDurationOfEmployee( int employeeId, DateTime fromDate, DateTime toDate)
+    public async Task<WorkCategory> GetWorkDurationOfEmployee(
+        int employeeId,
+        DateTime fromDate,
+        DateTime toDate
+    )
     {
         return await _service.GetWorkDurationOfEmployee(employeeId, fromDate, toDate);
     }
@@ -80,7 +90,10 @@ public class TimeSheetsController : ControllerBase
     }
 
     [HttpPut("timesheetentries/{timeSheetEntryId}")]
-    public async Task<bool> UpdateTimeSheetEntry( int timeSheetEntryId,  TimeSheetEntry timeSheetEntry  )
+    public async Task<bool> UpdateTimeSheetEntry(
+        int timeSheetEntryId,
+        TimeSheetEntry timeSheetEntry
+    )
     {
         return await _service.UpdateTimeSheetEntry(timeSheetEntryId, timeSheetEntry);
     }

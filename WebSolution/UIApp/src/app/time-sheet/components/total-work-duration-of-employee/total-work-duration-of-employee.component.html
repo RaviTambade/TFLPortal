@@ -8,7 +8,6 @@
             <option *ngFor="let interval of intervals" [value]="interval"> {{interval}}</option>
         </select>
     </div>
-
     <div *ngIf="selectedInterval=='year'">
         <ng-container *ngTemplateOutlet="yearTemplate"></ng-container>
     </div>
@@ -46,15 +45,44 @@
 
 
     <div *ngIf="workCategory!=undefined">
-        <p>UserStory:{{workCategory.userStory}}</p>
-        <p>Task:{{workCategory.task}}</p>
-        <p>Bug:{{workCategory.bug}}</p>
-        <p>Mentoring:{{workCategory.mentoring}}</p>
-        <p>Learning:{{workCategory.learning}}</p>
-        <p>Clientcall:{{workCategory.clientCall}}</p>
-        <p>Issues:{{workCategory.issues}}</p>
-        <p>Meeting:{{workCategory.meeting}}</p>
-        <p>Other:{{workCategory.other}}</p>
+        <table>
+            <tr>
+                <th>UserStory</th>
+                <td>{{workCategory.userStory}}</td>
+            </tr>
+            <tr>
+                <th>Task</th>
+                <td>{{workCategory.task}}</td>
+            </tr>
+            <tr>
+                <th>Bug</th>
+                <td>{{workCategory.bug}}</td>
+            </tr>
+            <tr>
+                <th>Mentoring</th>
+                <td>{{workCategory.mentoring}}</td>
+            </tr>
+            <tr>
+                <th>Learning</th>
+                <td>{{workCategory.learning}}</td>
+            </tr>
+            <tr>
+                <th>Clientcall</th>
+                <td>{{workCategory.clientCall}}</td>
+            </tr>
+            <tr>
+                <th>Issues</th>
+                <td>{{workCategory.issues}}</td>
+            </tr>
+            <tr>
+                <th>Meeting</th>
+                <td>{{workCategory.meeting}}</td>
+            </tr>
+            <tr>
+                <th>Other</th>
+                <td>{{workCategory.other}}</td>
+            </tr>
+        </table>
     </div>
 
 </div>

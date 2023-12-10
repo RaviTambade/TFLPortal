@@ -33,6 +33,12 @@ export class LinechartComponent implements OnInit{
             data: ['542', '542', '536', '327', '17',
 									 '0.00', '538', '541'],
             backgroundColor: 'limegreen'
+          },
+          {
+            label: "margin",
+            data: ['120', '125', '127', '70', '0',
+									 '0.00', '129', '200'],
+            backgroundColor: 'green'
           }  
         ]
       },

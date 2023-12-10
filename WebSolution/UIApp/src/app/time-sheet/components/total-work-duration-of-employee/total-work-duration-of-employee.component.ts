@@ -1,5 +1,6 @@
 import { Component, OnInit, Type } from '@angular/core';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
+import { WorkCategory } from '../../models/workCategory';
 
 type Week = {
   startDate: string;
@@ -17,7 +18,7 @@ export class TotalWorkDurationOfEmployeeComponent implements OnInit {
   employeeId: number = 10;
   fromDate: string | undefined;
   toDate: string | undefined;
-  workCategory: any;
+  workCategory: WorkCategory|undefined;
 
   intervals: string[] = ["today", "week", "month", "year", "custom"]
   years = [2021, 2022, 2023]

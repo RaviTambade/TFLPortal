@@ -8,7 +8,20 @@ import { CalendarDay } from './CalenderDay';
 })
 export class CalenderComponent {
   public calendar: CalendarDay[] = [];
-  public monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December',];
+  public monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
   public displayMonth!: string;
   private holidayDays: string[] = ['2023-12-02', '2023-12-17', '2023-12-15'];
   private monthIndex: number = 0;
@@ -40,7 +53,7 @@ export class CalenderComponent {
     let day: Date = new Date(
       new Date().setMonth(new Date().getMonth() + monthIndex)
     );
-  
+
     this.displayMonth = this.monthNames[day.getMonth()] + day.getFullYear();
 
     let startingDateOfCalendar = this.getStartDateForCalendar(day);
@@ -114,6 +127,23 @@ export class CalenderComponent {
     let formatedDate = this.ConvertDateYYYY_MM_DD(date);
     let project = this.projects.find((p) => p.projectName == projectName);
     return formatedDate >= project.startDate && formatedDate <= project.endDate;
+  }
+
+  goToSpecificDate(e: any) {
+    let date:Date = new Date(e.target.value + '-01');
+    if (date) {
+      this.displayMonth = this.monthNames[date.getMonth()] + date.getFullYear();
+
+      let startingDateOfCalendar = this.getStartDateForCalendar(date);
+
+      let dateToAdd = startingDateOfCalendar;
+      this.calendar = [];
+
+      for (var i = 0; i < 35; i++) {
+        this.calendar.push(new CalendarDay(new Date(dateToAdd)));
+        dateToAdd = new Date(dateToAdd.setDate(dateToAdd.getDate() + 1));
+      }
+    }
   }
 
   ConvertDateYYYY_MM_DD(date: Date): string {

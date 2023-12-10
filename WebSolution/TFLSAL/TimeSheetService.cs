@@ -4,6 +4,7 @@ using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 using Transflower.TFLPortal.TFLOBL.Entities;
 using System.Text;
 using System.Data;
+using System.Reflection.Emit;
 
 namespace Transflower.TFLPortal.TFLSAL.Services;
 
@@ -28,7 +29,7 @@ public class TimeSheetService : ITimeSheetService
         try
         {
             string query = "select * from timesheets where  employeeid =@employeeId";
-            MySqlCommand command =  new MySqlCommand(query,connection);
+            MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@employeeId", employeeId);
             await connection.OpenAsync();
             MySqlDataReader reader = (MySqlDataReader)await command.ExecuteReaderAsync();
@@ -376,14 +377,19 @@ public class TimeSheetService : ITimeSheetService
         return status;
     }
 
-    public async Task<WorkCategory> GetWorkDurationOfEmployee(int employeeId,DateTime fromDate,DateTime toDate)
+    public async Task<WorkCategory> GetWorkDurationOfEmployee(
+        int employeeId,
+        DateTime fromDate,
+        DateTime toDate
+    )
     {
         WorkCategory workCategory = null;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = @"SELECT
+            string query =
+                @"SELECT
              CAST(((SUM( CASE WHEN  timesheetentries.workcategory='userstory' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as userstory,
              CAST(((SUM( CASE WHEN  timesheetentries.workcategory='task' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as task,
              CAST(((SUM( CASE WHEN  timesheetentries.workcategory='bug' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as bug,CAST(((SUM( CASE WHEN  timesheetentries.workcategory='issues' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as issues, 
@@ -403,7 +409,7 @@ public class TimeSheetService : ITimeSheetService
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
-            {                
+            {
                 string userstory = reader["userstory"].ToString();
                 string task = reader["task"].ToString();
                 string bug = reader["bug"].ToString();
@@ -411,7 +417,6 @@ public class TimeSheetService : ITimeSheetService
                 string meeting = reader["meeting"].ToString();
                 string learning = reader["learning"].ToString();
                 string mentoring = reader["mentoring"].ToString();
-                string breaktime = reader["break"].ToString();
                 string clientcall = reader["clientcall"].ToString();
                 string other = reader["other"].ToString();
 
@@ -424,7 +429,6 @@ public class TimeSheetService : ITimeSheetService
                     Meeting = meeting,
                     Learning = learning,
                     Mentoring = mentoring,
-                    Break = breaktime,
                     ClientCall = clientcall,
                     Other = other
                 };
@@ -440,7 +444,59 @@ public class TimeSheetService : ITimeSheetService
             await connection.CloseAsync();
         }
         return workCategory;
-
     }
 
+    public async Task<List<WorkCategoryDetails>> GetActivityWiseHours(string intervalType)
+    {
+        List<WorkCategoryDetails> workCategoryDetails = new();
+
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+
+        string query = "CALL getworkhoursbyactivity(@interval_type)";
+        try
+        {
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@interval_type", intervalType);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {
+                string userstory = reader["userstory"].ToString();
+                string label = reader["label"].ToString();
+                string task = reader["task"].ToString();
+                string bug = reader["bug"].ToString();
+                string issues = reader["issues"].ToString();
+                string meeting = reader["meeting"].ToString();
+                string learning = reader["learning"].ToString();
+                string mentoring = reader["mentoring"].ToString();
+                string clientcall = reader["clientcall"].ToString();
+                string other = reader["other"].ToString();
+
+                WorkCategoryDetails workCategoryDetail = new WorkCategoryDetails()
+                {
+                    Label = label,
+                    UserStory = userstory,
+                    Task = task,
+                    Bug = bug,
+                    Issues = issues,
+                    Meeting = meeting,
+                    Learning = learning,
+                    Mentoring = mentoring,
+                    ClientCall = clientcall,
+                    Other = other
+                };
+                workCategoryDetails.Add(workCategoryDetail);
+            }
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return workCategoryDetails;
+    }
 }

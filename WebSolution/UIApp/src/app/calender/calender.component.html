@@ -9,6 +9,7 @@
         <input type="button" class="mx-2" (click)="setCurrentMonth()" value="today" />
         <input type="button" class="mx-2" (click)="decreaseMonth()" value="<" />
         <input type="button" class="mx-2" (click)="increaseMonth()" value=">" />
+        <input type="month" class="mx-2"  (change)="goToSpecificDate($event)"  />
     </div>
 </div>
 
