@@ -1,0 +1,22 @@
+
+
+<div class="container">
+    <h2> TimeSheet List</h2>
+    <div class="card">
+        <table class="table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Status Change Date</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let timesheet of timeSheets">
+                <tr>
+                    <td  style="cursor: pointer; text-decoration: underline ; color:  #0000EE;" (click)="onSelectedTimeSheetId(timesheet.id)"> {{timesheet.timeSheetDate | date}}</td>
+                    <td> {{timesheet.status}}</td>
+                    <td>{{timesheet.statusChangedDate |date}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
