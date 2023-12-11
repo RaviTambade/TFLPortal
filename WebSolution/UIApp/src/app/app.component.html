@@ -79,7 +79,7 @@
 <!-- <app-employee-details (selectedEmployeeId)="onReceiveEmployee($event)"></app-employee-details>
 <app-employee-salary-structure [employeeId]="employeeId" *ngIf="visibleSalaryStructure && employeeId" ></app-employee-salary-structure> -->
 
-<app-all-employees-of-project></app-all-employees-of-project>
+<!-- <app-all-employees-of-project></app-all-employees-of-project> -->
 <!-- <app-barchart></app-barchart> -->
 
 <!-- <app-employee-details (selectedEmployeeId)="onReceiveEmployee($event)"></app-employee-details>
@@ -87,4 +87,21 @@
 
 <!-- <app-all-unassigned-employee></app-all-unassigned-employee> -->
 
-<app-barchart></app-barchart>
+<div class="row">
+    <div class="col-sm-3">
+        <app-barchart></app-barchart>
+        <p>History of All project Activities By status</p>
+    </div>
+
+    <div class="col-sm-3">
+        <app-vertical-barchart></app-vertical-barchart>
+    </div>
+
+    <div class="col-sm-3">
+        <app-piechart></app-piechart>
+    </div>
+
+    <div class="col-sm-3">
+        <linechart></linechart>
+    </div>
+</div>
