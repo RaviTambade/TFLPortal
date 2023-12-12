@@ -1,0 +1,28 @@
+
+
+<div class="container">
+    <h2> My Projects</h2>
+    <div class="card">
+        <table class="table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Status</th>
+                   </tr>
+            </thead>
+            <tbody *ngFor="let project of projects">
+                <tr>
+                    
+                    <td ><a (click)="onClickProject(project)">{{project.title}}</a></td>
+                    <td > {{project.status}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="selectedProject" class="row">
+        <div class="col-6">
+         <app-employee-project-details [project]="selectedProject"></app-employee-project-details>
+    </div>
+
+

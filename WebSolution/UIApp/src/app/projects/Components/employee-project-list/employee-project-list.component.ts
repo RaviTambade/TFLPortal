@@ -1,28 +1,26 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ProjectsService } from '../../Services/projects.service';
 import { Project } from '../../Models/project';
 import { ProjectService } from 'src/app/shared/services/project.service';
 
 @Component({
-  selector: 'project-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css'],
+  selector: 'app-employee-project-list',
+  templateUrl: './employee-project-list.component.html',
+  styleUrls: ['./employee-project-list.component.css']
 })
-export class ListComponent implements OnInit {
-  @Output() selectedProjectId = new EventEmitter<Project>();
+export class EmployeeProjectListComponent implements OnInit {
+ // @Output() selectedProjectId = new EventEmitter<Project>();
   constructor(private service: ProjectService) {}
-
+selectedProject:Project|undefined;
   projects: Project[] = [];
-  employeeId: number = 6;
+  employeeId: number = 10;
   ngOnInit(): void {
     this.service.getProjectOfEmployee(this.employeeId).subscribe((res) => {
       this.projects = res;
-      this.selectedProjectId.emit(this.projects[0]); 
+      this.selectedProject=this.projects[0];
     });
   }
 
   onClickProject(project: Project) {
-    this.selectedProjectId.emit(project);
+    this.selectedProject=project;
   }
-
 }

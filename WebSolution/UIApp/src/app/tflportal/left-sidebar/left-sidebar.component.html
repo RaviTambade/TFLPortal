@@ -15,7 +15,7 @@
   
 
     <div *ngIf="role=='Employee'">
-        <div class="p-2" *ngFor="let employeelink of EmployeeRoutes" [routerLink]="['timesheet']"> {{employeelink}}</div>
+        <div class="p-2" *ngFor="let employeelink of EmployeeRoutes" [routerLink]="['projects']"> {{employeelink}}</div>
     </div>
 
     <div *ngIf="role=='Director'">
