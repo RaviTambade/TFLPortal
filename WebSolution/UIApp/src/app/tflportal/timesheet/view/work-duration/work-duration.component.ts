@@ -30,17 +30,12 @@ export class WorkDurationComponent {
 
   chart: any;
 
-  chartType :any='line';
 
-  chartTypes=['line','pie','bar','scatter'];
-
-
- 
 
   createChart() {
 
     this.chart = new Chart("MyChart", {
-      type: this.chartType, //this denotes tha type of chart
+      type: 'line', //this denotes tha type of chart
 
       data: {// values on X-Axis
         labels: ["userStory", "task", "clientCall", "meeting", "issues", "bug", "mentoring", "learning", "other"],
@@ -61,16 +56,6 @@ export class WorkDurationComponent {
     this.onIntervalChange();
 
     this.createChart();
-
-  }
-
-  onChangeChartType(){
-
-    console.log(this.chartType);
-    this.chart.destroy();
-    this.createChart();
-    this.getChartData();
-
 
   }
 
@@ -133,7 +118,6 @@ export class WorkDurationComponent {
           borderColor:cl ,
         }
         this.chart.data.datasets.push(obj)
-        // this.chart.type=this.chartType;
       })
       this.chart.update();
     })
