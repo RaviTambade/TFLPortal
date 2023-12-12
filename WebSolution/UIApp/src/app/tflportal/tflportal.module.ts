@@ -25,6 +25,10 @@ import { LeftSidebarComponent } from './left-sidebar/left-sidebar.component';
 import { AddLeaveComponent } from '../leaves/Components/forms/add-leave/add-leave.component';
 import { LeavesModule } from '../leaves/leaves.module';
 import { LeavesComponent } from './leaves/leaves.component';
+import { ActivityModule } from '../activity/activity.module';
+import { ProjectsModule } from '../projects/projects.module';
+import { EmployeeProjectListComponent } from '../projects/Components/employee-project-list/employee-project-list.component';
+import { EmployeeProjectDetailsComponent } from '../projects/Components/employee-project-details/employee-project-details.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -45,7 +49,10 @@ export const routes: Routes = [
       { path: 'analytics', component: AnalyticasComponent },
     ],
   },
-  { path: 'projects', component: ProjectsComponent },
+  { path: 'projects', component: ProjectsComponent,
+  children: [
+    { path: 'list', component: EmployeeProjectListComponent },
+  ]},
   { path: 'activities', component: ActivitiesComponent },
   { path: 'hr', component: HrComponent },
   { path: 'login', component: LoginComponent },
@@ -92,6 +99,8 @@ export const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     LeavesModule,
+    ActivityModule,
+    ProjectsModule,
     RouterModule.forRoot(routes)],
   exports: [MainComponent],
 })
