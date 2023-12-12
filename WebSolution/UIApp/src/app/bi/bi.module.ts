@@ -7,6 +7,7 @@ import { WeeklyprogreessreviewComponent } from './weeklyprogreessreview/weeklypr
 import { MonthlyprogressreviewComponent } from './monthlyprogressreview/monthlyprogressreview.component';
 import { DailyreviewprogressComponent } from './dailyreviewprogress/dailyreviewprogress.component';
 import { ProjectactivitiesPiechartComponent } from './projectactivities-piechart/projectactivities-piechart.component';
+import { VerticalBarchartComponent } from './vertical-barchart/vertical-barchart.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ProjectactivitiesPiechartComponent } from './projectactivities-piechart
     WeeklyprogreessreviewComponent,
     MonthlyprogressreviewComponent,
     DailyreviewprogressComponent,
-    ProjectactivitiesPiechartComponent
+    ProjectactivitiesPiechartComponent,
+    VerticalBarchartComponent
   ],
   imports: [
     CommonModule
@@ -28,7 +30,10 @@ import { ProjectactivitiesPiechartComponent } from './projectactivities-piechart
     WeeklyprogreessreviewComponent,
     MonthlyprogressreviewComponent,
     ProjectactivitiesPiechartComponent,
-    BarchartComponent
+    BarchartComponent,
+    VerticalBarchartComponent,
+    PiechartComponent
+
   ]
 })
 export class BiModule { }
