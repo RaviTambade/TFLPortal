@@ -1,4 +1,4 @@
-<div class="container">
+ <div class="container">
     <p> StatDate :{{fromDate |date}}</p>
     <p> EndDate :{{toDate |date}}</p>
     <hr>
@@ -11,6 +11,13 @@
     </div>
 
 
+    <div>
+        <label>Select ChartType</label>
+        <select [(ngModel)]="chartType" (change)="onChangeChartType()" >
+            <option *ngFor="let chart of chartTypes" [value]="chart"> {{chart}}</option>
+        </select>
+    </div>
+
     <!-- <div *ngIf="selectedInterval=='custom'">
         <label> From </label>
         <input type="date" [(ngModel)]="fromDate">
@@ -20,7 +27,7 @@
         <br>
     </div> -->
 
-    <br>
+    <!-- <br>
     <br>
     <br>
 
@@ -57,7 +64,7 @@
         </table>
     </div>
 
-</div>
+</div>  -->
 
 
 

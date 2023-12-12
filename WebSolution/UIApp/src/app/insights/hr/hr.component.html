@@ -1,0 +1,6 @@
+<div class="row">
+        <timesheet-list (selectedTimeSheetId)="onReceiveTimeSheetId($event)"></timesheet-list>
+    </div>
+    <div class="row" *ngIf="timeSheetId">
+        <timesheet-details [timeSheetId]="timeSheetId"></timesheet-details>
+    </div>

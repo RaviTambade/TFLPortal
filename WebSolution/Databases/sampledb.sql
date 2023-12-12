@@ -738,29 +738,35 @@ INSERT INTO sprintactivities(sprintid,activityid) VALUES (6,36);
 -- INSERT INTO sprintactivities(sprintid,activityid) VALUES (5,29);
 -- INSERT INTO sprintactivities(sprintid,activityid) VALUES (5,30);
 
-Insert Into employeesalarystructures(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(1,30000,3000,200,300,200,2000);
-Insert Into employeesalarystructures(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(1,40000,2200,300,200,250,4000);
-Insert Into employeesalarystructures(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(1,30000,1000,400,400,330,3000);
-Insert Into employeesalarystructures(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(1,45000,5000,500,500,350,3300);
-Insert Into employeesalarystructures(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(1,20000,6000,600,500,400,4000);
-Insert Into employeesalarystructures(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(1,19000,3200,600,600,600,2000);
+Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(1,30000,3000,200,300,200,2000);
+Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(2,40000,2200,300,200,250,4000);
+Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(3,30000,1000,400,400,330,3000);
+Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(4,45000,5000,500,500,350,3300);
+Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(5,20000,6000,600,500,400,4000);
+Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(6,19000,3200,600,600,600,2000);
+Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(7,45000,5000,500,500,350,3300);
+Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(8,20000,6000,600,500,400,4000);
+Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(9,19000,3200,600,600,600,2000);
  
 
+Insert Into salarydisbursement(employeeid,paydate,amount) values(1,'2023-12-07',25000);
+Insert Into salarydisbursement(employeeid,paydate,amount) values(2,'2023-12-06',25000);
+Insert Into salarydisbursement(employeeid,paydate,amount) values(3,'2023-12-05',25000);
+Insert Into salarydisbursement(employeeid,paydate,amount) values(4,'2023-12-04',25000);
+Insert Into salarydisbursement(employeeid,paydate,amount) values(5,'2023-12-03',25000);
+Insert Into salarydisbursement(employeeid,paydate,amount) values(6,'2023-12-02',25000);
 
-Insert Into employeesalaries(employeeid,paydate,amount) values(1,'2023-12-07',25000);
-Insert Into employeesalaries(employeeid,paydate,amount) values(1,'2023-12-06',25000);
-Insert Into employeesalaries(employeeid,paydate,amount) values(1,'2023-12-05',25000);
-Insert Into employeesalaries(employeeid,paydate,amount) values(1,'2023-12-04',25000);
-Insert Into employeesalaries(employeeid,paydate,amount) values(1,'2023-12-03',25000);
-Insert Into employeesalaries(employeeid,paydate,amount) values(1,'2023-12-02',25000);
-
-
-Insert Into employeeleaves(employeeid,fromdate,todate,amount,leavetype) values(2,'2023-04-03','2023-05-05',26000,"casual");
-Insert Into employeeleaves(employeeid,fromdate,todate,amount,leavetype) values(3,'2023-05-03','2023-05-20',30000,"paternity");
-Insert Into employeeleaves(employeeid,fromdate,todate,amount,leavetype) values(4,'2023-06-03','2023-05-15',40000,"sick");
-Insert Into employeeleaves(employeeid,fromdate,todate,amount,leavetype) values(5,'2023-07-03','2023-05-25',50000,"study");
-Insert Into employeeleaves(employeeid,fromdate,todate,amount,leavetype) values(6,'2023-08-03','2023-05-15',40000,"comp off");
-Insert Into employeeleaves(employeeid,fromdate,todate,amount,leavetype) values(4,'2023-06-03','2023-05-13',40000,"bereavement");
-Insert Into employeeleaves(employeeid,fromdate,todate,amount,leavetype) values(5,'2023-01-03','2023-05-25',50000,"study");
-Insert Into employeeleaves(employeeid,fromdate,todate,amount,leavetype) values(6,'2023-08-03','2023-07-15',40000,"comp off");
-    
+Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(1,'2023-04-03','2023-05-05',26000,"notstarted","casual");
+Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(2,'2023-04-03','2023-05-05',26000,"notstarted","casual");
+Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(3,'2023-05-03','2023-05-20',30000,"approved","paternity");
+Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(4,'2023-06-03','2023-05-15',40000,"approved","sick");
+Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(5,'2023-07-03','2023-05-25',50000,"rejected","study");
+Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(6,'2023-08-03','2023-05-15',40000,"approved","comp off");
+Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(7,'2023-06-03','2023-05-13',40000,"rejected","bereavement");
+Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(8,'2023-01-03','2023-05-25',50000,"approved","study");
+Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(9,'2023-08-03','2023-07-15',40000,"rejected","comp off");
+Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(10,'2023-07-03','2023-05-25',50000,"rejected","study");
+Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(11,'2023-08-03','2023-05-15',40000,"approved","comp off");
+Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(12,'2023-06-03','2023-05-13',40000,"rejected","bereavement");
+Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(13,'2023-01-03','2023-05-25',50000,"approved","study");
+Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(14,'2023-08-03','2023-07-15',40000,"rejected","comp off");
