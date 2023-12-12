@@ -14,6 +14,7 @@ import { ActivityModule } from './activity/activity.module';
 import { TooltipDirective } from './calender/tooltip.directive';
 import { BiModule } from './bi/bi.module';
 import { InsightsModule } from './insights/Insights.module';
+import { LeavesModule } from './leaves/leaves.module';
 
 @NgModule({
   declarations: [AppComponent, CalenderComponent, ChunkPipe, TooltipDirective],
@@ -29,6 +30,7 @@ import { InsightsModule } from './insights/Insights.module';
     ProjectplanningModule,
     ActivityModule,
     InsightsModule,
+    LeavesModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,0 +1,25 @@
+<form [formGroup]="leaveForm" (ngSubmit)="onSubmit()">
+
+    <div>
+        <label for="employeeId">employee ID</label>
+        <input type="number" id="employeeId" name="employeeId" formControlName="employeeId">
+      </div>
+      <div>
+        <label for="fromDate">From Date:</label>
+        <input type="text" id="fromDate" name="fromDate" formControlName="fromDate">
+      </div>
+      <div>
+        <label for="toDate">To Date:</label>
+        <input type="text" id="toDate" name="toDate" formControlName="toDate">
+      </div>
+      <div>
+        <label for="status">Status:</label>
+        <input type="text" id="status" name="status" formControlName="status">
+      </div>
+      <select name="leaveType" id="leaveType" formControlName="leaveType" >
+        <option *ngFor="let leave of leaveType">{{ leave }}</option>
+      </select>
+      <div>
+        <button type="submit">Submit</button>
+      </div>
+  </form>
