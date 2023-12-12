@@ -100,8 +100,7 @@ public class ProjectAllocationService : IProjectAllocationService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query ="SELECT * FROM employees WHERE id not in (SELECT employeeid FROM projectallocations GROUP BY employeeid HAVING COUNT(CASE WHEN status = 'yes' THEN 1 END) > 0)";
-                
+            string query ="SELECT * FROM employees WHERE id not in (SELECT employeeid FROM projectallocations GROUP BY employeeid HAVING COUNT(CASE WHEN status = 'yes' THEN 1 END) > 0)";       
             MySqlCommand command = new MySqlCommand(query, connection);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();

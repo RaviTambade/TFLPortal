@@ -13,7 +13,11 @@ import { ProjectplanningModule } from './ProjectPlanning/projectplanning/project
 import { ActivityModule } from './activity/activity.module';
 import { TooltipDirective } from './calender/tooltip.directive';
 import { BiModule } from './bi/bi.module';
+
+import { LeavesModule } from './leaves/leaves.module';
+
 import{TFLPortalModule} from './tflportal/tflportal.module'
+
 
 
 @NgModule({
@@ -29,7 +33,9 @@ import{TFLPortalModule} from './tflportal/tflportal.module'
     TimeSheetModule,
     ProjectplanningModule,
     ActivityModule,
+    LeavesModule,
     TFLPortalModule  ],
+
   providers: [],
   bootstrap: [AppComponent],
 })
