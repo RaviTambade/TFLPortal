@@ -15,11 +15,11 @@
   
 
     <div *ngIf="role=='Employee'">
-        <div class="p-2" *ngFor="let employeelink of EmployeeRoutes" [routerLink]="['timesheet']"> {{employeelink}}</div>
+        <div class="p-2" *ngFor="let employeelink of EmployeeRoutes" (click)="onClick(employeelink.Url)"> {{employeelink.displayName}}</div>
     </div>
 
     <div *ngIf="role=='Director'">
-        <div class="p-2" *ngFor="let directorlink of DirectorRoutes"  > {{directorlink}}</div>
+        <div class="p-2" *ngFor="let directorlink of DirectorRoutes"  > {{directorlink.displayName}}</div>
     </div>
 </div>
 
