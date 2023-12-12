@@ -18,8 +18,10 @@ import { UpdateTimesheetComponent } from './timesheet/view/update-timesheet/upda
 import { ChartComponent } from './timesheet/view/chart/chart.component';
 import { BarchartComponent } from './timesheet/view/barchart/barchart.component';
 import { WorkDurationComponent } from './timesheet/view/work-duration/work-duration.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HrComponent } from './hr/hr.component';
+import { LoginComponent } from './login/login.component';
+import { LeftSidebarComponent } from './left-sidebar/left-sidebar.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -43,6 +45,7 @@ export const routes: Routes = [
   { path: 'projects', component: ProjectsComponent },
   { path: 'activities', component: ActivitiesComponent },
   { path: 'hr', component: HrComponent },
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
@@ -62,12 +65,14 @@ export const routes: Routes = [
     UpdateTimesheetComponent,
     BarchartComponent,
     WorkDurationComponent,
-    HrComponent
+    HrComponent,
+    LoginComponent,
+    LeftSidebarComponent
   ],
   imports: [CommonModule,
     FormsModule,
-    
-     RouterModule.forRoot(routes)],
+    ReactiveFormsModule,
+    RouterModule.forRoot(routes)],
   exports: [MainComponent],
 })
-export class InsightsModule {}
+export class TFLPortalModule {}

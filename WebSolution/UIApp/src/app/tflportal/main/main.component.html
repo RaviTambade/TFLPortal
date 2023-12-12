@@ -13,28 +13,22 @@
                 <a class="nav-link">Notifications</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link">Login</a>
+                <a *ngIf="userName==''" class="nav-link" (click)="onLogInClick()" [routerLink]="['login']">Login</a>
+                <a *ngIf="userName.length>1" class="nav-link"> welcome {{userName}}</a>
             </li>
-        </ul>
+            <li class="nav-item">
+                <a *ngIf="userName.length>1" class="nav-link" [routerLink]="['home']" (click)="onClickLogOut()"> LogOut
+                </a>
+            </li>
+        </ul>   
     </div>
 </nav>
 
-<div class="row h-100">
-    <div class="col-sm-1 col-md-1  bg-secondary  ">
-        <div class="p-2">
-            <label [routerLink]="['timesheet']">Timesheet </label>
-        </div>
-        <div class="p-2">
-            <label [routerLink]="['projects']">Projects</label>
-        </div>
-        <div class="p-2">
-            <label [routerLink]="['activities']">Activities</label>
-        </div>
-        <div class="p-2">
-            <label [routerLink]="['hr']">Hr</label>
-        </div>
-    </div>
-    <div class="col-11">
-        <router-outlet></router-outlet>
-    </div>
+
+<!-- <div > -->
+    <app-left-sidebar *ngIf="isLogInClicked==false"></app-left-sidebar>
+<!-- </div> -->
+
+<div *ngIf="isLogInClicked">
+    <router-outlet></router-outlet>
 </div>

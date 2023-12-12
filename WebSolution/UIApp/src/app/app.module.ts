@@ -13,7 +13,8 @@ import { ProjectplanningModule } from './ProjectPlanning/projectplanning/project
 import { ActivityModule } from './activity/activity.module';
 import { TooltipDirective } from './calender/tooltip.directive';
 import { BiModule } from './bi/bi.module';
-import { InsightsModule } from './insights/Insights.module';
+import{TFLPortalModule} from './tflportal/tflportal.module'
+
 
 @NgModule({
   declarations: [AppComponent, CalenderComponent, ChunkPipe, TooltipDirective],
@@ -28,8 +29,7 @@ import { InsightsModule } from './insights/Insights.module';
     TimeSheetModule,
     ProjectplanningModule,
     ActivityModule,
-    InsightsModule,
-  ],
+    TFLPortalModule  ],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -11,13 +11,6 @@
     </div>
 
 
-    <div>
-        <label>Select ChartType</label>
-        <select [(ngModel)]="chartType" (change)="onChangeChartType()" >
-            <option *ngFor="let chart of chartTypes" [value]="chart"> {{chart}}</option>
-        </select>
-    </div>
-
     <!-- <div *ngIf="selectedInterval=='custom'">
         <label> From </label>
         <input type="date" [(ngModel)]="fromDate">

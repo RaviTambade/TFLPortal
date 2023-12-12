@@ -1,0 +1,81 @@
+
+<!-- <form (ngSubmit)="onSubmit()">
+<label>Conatct Number</label>
+<input type="text" [(ngModel)]="contactNumber" name="contactNumber">
+
+<label>Password </label>
+<input type="text" [(ngModel)]="password" name="password">
+<button type="submit"> Submit</button>
+</form> -->
+
+
+
+<div class="row">
+    <div class="jumbotron text-center">
+        <h1>Welcome To Transflower </h1>
+        <p>Resize this responsive page to see the effect!</p>
+    </div>
+    <div class="col-8">
+        <!-- <img src="assets/tfl.jpg" height="300px" width="px"> -->
+     
+      </div>
+    
+    <div class="col-4">
+    <div class="card border-0  rounded-3 ">
+      <div class="card-body p-4 ">
+        <h5 class="card-title  text-center mb-5  fs-5">Sign In</h5>
+  
+        <form [formGroup]="loginForm">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" formControlName="contactNumber" placeholder="ContactNumber"
+              [class.is-invalid]="contactnumber.invalid && (contactnumber.dirty || contactnumber.touched)">
+            <label for="contactNumber" class="form-label">ContactNumber</label>
+            <div *ngIf="contactnumber.invalid && (contactnumber.dirty || contactnumber.touched )"
+              class="invalid-feedback ">
+              <div *ngIf="contactnumber.errors?.['required']">
+                This field is required.
+              </div>
+              <div *ngIf="contactnumber.errors?.['minlength']">
+                Contact Number should Contain 10 digits only.
+              </div>
+              <div *ngIf=" !contactnumber.errors?.['minlength'] && contactnumber.errors?.['maxlength']">
+                Contact Number should Contain 10 digits only.
+              </div>
+              <div
+                *ngIf="!contactnumber.errors?.['minlength'] && !contactnumber.errors?.['maxlength'] && contactnumber.errors?.['pattern']">
+                Contact Number should Contain 10 digits only.
+              </div>
+            </div>
+          </div>
+  
+          <div class="form-floating mb-2 input-group">
+            <input [type]="showPassword ? 'text' : 'password'" formControlName="password" class="form-control "
+              placeholder="Password" [class.is-invalid]="password.invalid && (password.dirty || password.touched)">
+            <label for="password" class="form-label">Password</label>
+            <!-- <button type="button" class="btn btn-outline-secondary" (click)="showPassword = !showPassword">
+              <i class="bi" [ngClass]="{'bi-eye': !showPassword, 'bi-eye-slash-fill': showPassword}"></i>
+            </button> -->
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="invalid-feedback">
+              <div *ngIf="password.errors?.['required']">
+                This field is required.
+              </div>
+              <div *ngIf="password.errors?.['minlength']">
+                password must have at least 8 characters.
+              </div>
+              <div *ngIf="password.errors?.['maxlength']">
+                Maximum 25 characters are allowed for this field .
+              </div>
+            </div>
+          </div>
+          <div class="text-danger mb-3" style="height: 14px;">
+            <small *ngIf="isCredentialInvalid">
+              Invalid Credentials please check again</small>
+          </div>
+          <button type="submit" class="btn btn-primary" (click)="onSubmit()">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  
+</div>
