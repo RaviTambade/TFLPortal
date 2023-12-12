@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+type UrlType={displayName:string,Url:string}
 
 @Component({
   selector: 'app-left-sidebar',
@@ -7,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeftSidebarComponent implements OnInit {
   role = '';
-
+ 
+   constructor(private router:Router){}
   ngOnInit(): void {
     let role = localStorage.getItem('role');
     if (role != null) {
@@ -15,13 +18,22 @@ export class LeftSidebarComponent implements OnInit {
     }
   }
 
-  EmployeeRoutes:string[]=["Projects","TimeSheet","Leaves","Payroll","Events"];
+  EmployeeRoutes:UrlType[]=[{displayName:"projects",Url:"projects"},
+                            {displayName:"timesheet",Url:"timesheet"},
+                            {displayName:"Events",Url:"Events"},
+                            {displayName:"Leaves",Url:"leave"},
+                            {displayName:"Payroll",Url:"Payroll"}];
 
-  DirectorRoutes:string[]=["Director Link 1","Director Link 2","Director Link 3","Director Link 4"];
+  DirectorRoutes:UrlType[]=[{displayName:"Director Link 1",Url:"Director Link 1"},
+                            {displayName:"Director Link 2",Url:"Director Link 2"},
+                            {displayName:"Director Link 3",Url:"Director Link 3"},
+                            {displayName:"Director Link 4",Url:"Director Link 4"},
+                            {displayName:"Director Link 5",Url:"Director Link 5"}];
 
-//  obj={
-//   displayName:'',
-//   Url:''
-// }
 
+
+onClick(link:any){
+  console.log(link);
+  this.router.navigate([link]);
+ }
 }

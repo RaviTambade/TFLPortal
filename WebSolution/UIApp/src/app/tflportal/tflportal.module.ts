@@ -22,6 +22,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HrComponent } from './hr/hr.component';
 import { LoginComponent } from './login/login.component';
 import { LeftSidebarComponent } from './left-sidebar/left-sidebar.component';
+import { AddLeaveComponent } from '../leaves/Components/forms/add-leave/add-leave.component';
+import { LeavesModule } from '../leaves/leaves.module';
+import { LeavesComponent } from './leaves/leaves.component';
 import { ActivityModule } from '../activity/activity.module';
 import { ProjectsModule } from '../projects/projects.module';
 import { EmployeeProjectListComponent } from '../projects/Components/employee-project-list/employee-project-list.component';
@@ -53,7 +56,22 @@ export const routes: Routes = [
   { path: 'activities', component: ActivitiesComponent },
   { path: 'hr', component: HrComponent },
   { path: 'login', component: LoginComponent },
-];
+  {
+  path: 'leave',
+  component: LeavesComponent,
+  children: [
+    {
+      path: 'leaveform',
+      component: AddLeaveComponent,     
+    }
+  ],
+},
+]
+
+
+
+
+  
 
 @NgModule({
   declarations: [
@@ -74,11 +92,13 @@ export const routes: Routes = [
     WorkDurationComponent,
     HrComponent,
     LoginComponent,
-    LeftSidebarComponent
+    LeftSidebarComponent,
+    LeavesComponent
   ],
   imports: [CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    LeavesModule,
     ActivityModule,
     ProjectsModule,
     RouterModule.forRoot(routes)],
