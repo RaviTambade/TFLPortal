@@ -9,15 +9,13 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  // contactNumber: string = '';
-  // passWord: string = '';
+
 
   constructor(private tflSvc:TflportalService ,private router:Router){}
  
 
 
 
-  // credential: ICredential;
   loginForm!: FormGroup;
   showPassword: boolean = false;
 
@@ -60,8 +58,6 @@ export class LoginComponent {
       localStorage.setItem("name","Akash");
       this.tflSvc.onSucess();
       this.router.navigate(['/']);
-
-      // alert('login sucessfully');
     }
   }
 
