@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { TflportalService } from '../tflportal.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
+import { JwtService } from 'src/app/shared/services/jwt.service';
+import { TokenClaims } from 'src/app/shared/Enums/tokenclaims';
 
 @Component({
   selector: 'insight-main',
@@ -11,14 +14,19 @@ import { filter } from 'rxjs';
 export class MainComponent implements OnInit {
   isLogInClicked: boolean = false;
   showsidebar = false;
-  constructor(private tflSvc: TflportalService, private router: Router) {}
+  constructor(private tflSvc: TflportalService, private jwtSvc:JwtService, private router: Router) {}
 
-  userName: string = '';
+  userName: string = 'Akash';
+  isLoggedIn:boolean=false;
+
   ngOnInit(): void {
-    let name = localStorage.getItem('name');
-    if (name != null) {
-      this.userName = name;
+    let jwt = localStorage.getItem(LocalStorageKeys.jwt);
+    if (jwt != null) {
+      this.isLoggedIn = true;
     }
+
+    this.userName=this.jwtSvc.getClaimFromToken(TokenClaims.userName);
+    
 
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
@@ -31,17 +39,19 @@ export class MainComponent implements OnInit {
         }
       });
 
+
     this.tflSvc.loginSuccess$.subscribe(() => {
-      // this.showsidebar = true;
-      let name = localStorage.getItem('name');
-      if (name != null) {
-        this.userName = name;
+      let jwt = localStorage.getItem(LocalStorageKeys.jwt);
+      if (jwt != null) {
+        this.isLoggedIn = true;
+        this.userName=this.jwtSvc.getClaimFromToken(TokenClaims.userName);
       }
+
     });
   }
 
   onClickLogOut() {
     localStorage.clear();
-    this.userName = '';
+    this.isLoggedIn = false;
   }
 }

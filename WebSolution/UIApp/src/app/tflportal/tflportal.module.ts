@@ -20,7 +20,6 @@ import { BarchartComponent } from './timesheet/view/barchart/barchart.component'
 import { WorkDurationComponent } from './timesheet/view/work-duration/work-duration.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HrComponent } from './hr/hr.component';
-import { LoginComponent } from './login/login.component';
 import { LeftSidebarComponent } from './left-sidebar/left-sidebar.component';
 import { AddLeaveComponent } from '../leaves/Components/forms/add-leave/add-leave.component';
 import { LeavesModule } from '../leaves/leaves.module';
@@ -29,6 +28,8 @@ import { ActivityModule } from '../activity/activity.module';
 import { ProjectsModule } from '../projects/projects.module';
 import { EmployeeProjectListComponent } from '../projects/Components/employee-project-list/employee-project-list.component';
 import { EmployeeProjectDetailsComponent } from '../projects/Components/employee-project-details/employee-project-details.component';
+import { AuthenticationModule } from '../authentication/authentication.module';
+import { LoginComponent } from '../authentication/Components/login/login.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -91,7 +92,6 @@ export const routes: Routes = [
     BarchartComponent,
     WorkDurationComponent,
     HrComponent,
-    LoginComponent,
     LeftSidebarComponent,
     LeavesComponent
   ],
@@ -101,6 +101,7 @@ export const routes: Routes = [
     LeavesModule,
     ActivityModule,
     ProjectsModule,
+    AuthenticationModule,
     RouterModule.forRoot(routes)],
   exports: [MainComponent],
 })

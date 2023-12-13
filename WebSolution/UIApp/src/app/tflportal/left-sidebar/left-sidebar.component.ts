@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Role } from 'src/app/shared/Enums/role';
+import { TokenClaims } from 'src/app/shared/Enums/tokenclaims';
+import { JwtService } from 'src/app/shared/services/jwt.service';
 type UrlType={displayName:string,Url:string}
 
 @Component({
@@ -8,14 +11,21 @@ type UrlType={displayName:string,Url:string}
   styleUrls: ['./left-sidebar.component.css'],
 })
 export class LeftSidebarComponent implements OnInit {
+  Role=Role;
+
+
   role = '';
  
-   constructor(private router:Router){}
+   
+  constructor( private jwtSvc:JwtService,private router:Router ){}
   ngOnInit(): void {
-    let role = localStorage.getItem('role');
+
+    let role = this.jwtSvc.getClaimFromToken(TokenClaims.role);
     if (role != null) {
       this.role = role;
+      console.log("🚀 ~ ngOnInit ~ role:", role);
     }
+
   }
 
   EmployeeRoutes:UrlType[]=[{displayName:"projects",Url:"projects"},
