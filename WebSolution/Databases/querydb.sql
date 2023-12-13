@@ -1,8 +1,8 @@
--- Active: 1696576841746@@127.0.0.1@3306@tflportal
+-- Active: 1694968636816@@127.0.0.1@3306@tflportal
 
 SELECT * FROM timesheets;
 
-
+select * from employees;
 -- activitywise time spent of month 
 SELECT  COUNT(*), MONTHNAME(timesheets.timesheetdate), CAST(((SUM(TIME_TO_SEC(TIMEDIFF(totime,fromtime))))/3600)AS DECIMAL(10,2)) as time_in_hour,workcategory  from timesheetentries   
 INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id

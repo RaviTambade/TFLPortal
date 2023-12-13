@@ -1,4 +1,4 @@
--- Active: 1694968636816@@127.0.0.1@3306@pms
+-- Active: 1694968636816@@127.0.0.1@3306@tflportal
 
     DROP DATABASE IF EXISTS TFLPortal;
     CREATE DATABASE TFLPortal;
@@ -46,7 +46,7 @@
             projectid INT NOT NULL,
             CONSTRAINT fk_projects_project1 FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
             employeeid INT NOT NULL,
-            CONSTRAINT fk_employee_projectmembers1 FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
+            CONSTRAINT fk_employee_projectmemberss FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
     CREATE TABLE activities(
@@ -147,5 +147,5 @@
         casualleaves INT NOT NULL,
         paidleaves INT NOT NULL ,
         unpaidleaves INT NOT NULL,
-        CONSTRAINT fk_employees FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
+        CONSTRAINT fk_employeess FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
         );

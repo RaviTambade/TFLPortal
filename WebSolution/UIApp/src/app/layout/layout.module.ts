@@ -5,6 +5,7 @@ import { LeftSidebarComponent } from './Components/left-sidebar/left-sidebar.com
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './Components/home/home.component';
 import { TimesheetComponent } from './Components/timesheet/timesheet.component';
+import { ProjectComponent } from './Components/project/project.component';
 
 
 
@@ -14,12 +15,14 @@ import { TimesheetComponent } from './Components/timesheet/timesheet.component';
     MainComponent,
     LeftSidebarComponent,
     HomeComponent,
-    TimesheetComponent
+    TimesheetComponent,
+    ProjectComponent
   ],
   imports: [
     CommonModule,
     RouterModule
   ],
-  exports:[MainComponent]
+  exports:[MainComponent,
+  ProjectComponent]
 })
 export class LayoutModule { }
