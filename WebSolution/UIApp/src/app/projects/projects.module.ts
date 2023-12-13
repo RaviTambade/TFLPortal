@@ -10,9 +10,14 @@ import { AllEmployeesOfProjectComponent } from './Components/all-employees-of-pr
 import { UnassignedEmployeeOfProjectComponent } from './Components/unassigned-employee-of-project/unassigned-employee-of-project.component';
 import { AssignEmployeeToProjectComponent } from './Components/assign-employee-to-project/assign-employee-to-project.component';
 import { EmployeeProjectListComponent } from './Components/employee-project-list/employee-project-list.component';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { EmployeeProjectDetailsComponent } from './Components/employee-project-details/employee-project-details.component';
 import { BiModule } from '../bi/bi.module';
+
+
+export const projectRoutes: Routes = [
+  { path: '', component: EmployeeProjectListComponent }
+];
 
 
 
