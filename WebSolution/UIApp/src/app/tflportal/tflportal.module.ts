@@ -57,16 +57,7 @@ export const routes: Routes = [
   { path: 'activities', component: ActivitiesComponent },
   { path: 'hr', component: HrComponent },
   { path: 'login', component: LoginComponent },
-  {
-  path: 'leave',
-  component: LeavesComponent,
-  children: [
-    {
-      path: 'leaveform',
-      component: AddLeaveComponent,     
-    }
-  ],
-}]
+  ]
 
 @NgModule({
   declarations: [
