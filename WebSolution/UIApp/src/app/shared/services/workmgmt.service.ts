@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Activity } from 'src/app/activity/Models/Activity';
-import { Employee } from 'src/app/activity/Models/Employee';
 import { TimeSheetDetails } from 'src/app/time-sheet/models/TimeSheetDetails';
 import { TimesheetView } from 'src/app/time-sheet/models/TimesheetView';
 import { TimeSheet } from 'src/app/time-sheet/models/timesheet';
@@ -35,8 +34,8 @@ export class WorkmgmtService {
     return this.http.get<Activity[]>(url);
   }
 
-  fetchActivitiesByProjectAndAssigner(projectId: number, assignedTo: number): Observable<Activity[]> {
-    let url = this.serviceurl + '/workmgmt/activities/projects' + '/' + projectId + '/' + '/employees/' + assignedTo;
+  fetchAllActivitiesOfEmployee(assignedTo: number): Observable<Activity[]> {
+    let url = this.serviceurl + '/workmgmt/activities/employees/' + assignedTo;
     console.log(url);
     return this.http.get<Activity[]>(url);
   }

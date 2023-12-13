@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Project } from '../../Models/project';
 import { ProjectService } from 'src/app/shared/services/project.service';
+import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
 
 @Component({
   selector: 'app-employee-project-list',
@@ -9,10 +10,11 @@ import { ProjectService } from 'src/app/shared/services/project.service';
 })
 export class EmployeeProjectListComponent implements OnInit {
  // @Output() selectedProjectId = new EventEmitter<Project>();
-  constructor(private service: ProjectService) {}
+ employeeId: any;
+  constructor(private service: ProjectService) {this.employeeId=localStorage.getItem(LocalStorageKeys.employeeId)}
 selectedProject:Project|undefined;
   projects: Project[] = [];
-  employeeId: number = 10;
+  
   ngOnInit(): void {
     this.service.getProjectOfEmployee(this.employeeId).subscribe((res) => {
       this.projects = res;
