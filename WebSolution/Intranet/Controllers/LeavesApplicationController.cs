@@ -22,4 +22,13 @@ public class LeavesApplicationController : ControllerBase
         bool status =await _service.AddLeave(leave);
         return status;
     }
+
+
+    [HttpGet]
+    [Route ("pendingleave/{employeeId}")]
+    public async Task<PendingLeave> GetPendingLeaves(int employeeId)
+    {
+        PendingLeave leave =await _service.GetPendingLeaves(employeeId);
+        return leave;
+    }
 }

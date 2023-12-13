@@ -5,4 +5,6 @@ public interface ILeaveApplicationService{
 
     Task<bool> AddLeave(Leave leave);
 
+    Task<PendingLeave> GetPendingLeaves(int employeeId);
+
 }

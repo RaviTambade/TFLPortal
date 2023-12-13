@@ -1,0 +1,31 @@
+<!-- <div *ngIf="pendingLeave" >
+   <p>Casual Leave:{{pendingLeave.casualLeave}}</p>
+   <p>Sick Leave:{{pendingLeave.sickLeave}}</p>
+   <p>Paid Leave:{{pendingLeave.paidLeave}}</p>
+   <p>Unpaid Leave:{{pendingLeave.unpaidLeave}}</p>
+</div> -->
+
+
+<div class="container">
+    <h2> Pending Leave</h2>
+    <div class="card col-6">
+        <table class="table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>Casual Leave:</th>
+                    <th>Sick Leave</th>
+                    <th>Paid Leave</th>
+                    <th>Unpaid Leave</th>
+                   </tr>
+            </thead>
+            <tbody *ngIf="pendingLeave">
+                <tr>
+                    <td> {{pendingLeave.casualLeave}}</td>
+                    <td>{{pendingLeave.sickLeave}}</td>
+                    <td>{{pendingLeave.paidLeave}}</td>
+                    <td>{{pendingLeave.unpaidLeave}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
