@@ -8,14 +8,17 @@ import { TaskModule } from './task/task.module';
 import { ResourceManagementModule } from './resource-management/resource-management.module';
 import { CalenderComponent } from './calender/calender.component';
 import { ChunkPipe } from './calender/chunk.pipe';
-import { TimeSheetModule } from './time-sheet/time-sheet.module';
+import { TimeSheetModule, timeSheetRoutes } from './time-sheet/time-sheet.module';
 import { ProjectplanningModule } from './ProjectPlanning/projectplanning/projectplanning.module';
 import { ActivityModule } from './activity/activity.module';
 import { TooltipDirective } from './calender/tooltip.directive';
 import { BiModule } from './bi/bi.module';
 import { LeavesModule } from './leaves/leaves.module';
-import {TFLPortalModule} from './tflportal/tflportal.module'
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
+import { LayoutModule } from './layout/layout.module';
+import { AuthenticationModule } from './authentication/authentication.module';
+
+
 
 @NgModule({
   declarations: [AppComponent, CalenderComponent, ChunkPipe, TooltipDirective],
@@ -23,6 +26,7 @@ import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
     BiModule,
     BrowserModule,
     AppRoutingModule,
+    // AuthenticationModule,
     ProjectsModule,
     HttpClientModule,
     TaskModule,
@@ -31,7 +35,9 @@ import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
     ProjectplanningModule,
     ActivityModule,
     LeavesModule,
-    TFLPortalModule],
+    LayoutModule
+
+  ],
 
   providers: [
     {

@@ -10,7 +10,13 @@ import { UpdateTimesheetEntryComponent } from './components/forms/update-timeshe
 import { ApproveTimesheetComponent } from './components/forms/approve-timesheet/approve-timesheet.component';
 import { TotalWorkDurationOfEmployeeComponent } from './components/total-work-duration-of-employee/total-work-duration-of-employee.component';
 import { WorkDurationComponent } from './components/work-duration/work-duration.component';
+import { RouterModule, Routes } from '@angular/router';
 
+export const timeSheetRoutes: Routes = [
+  { path: '', component: ListComponent },
+  { path: 'view', component: ListComponent  },
+  { path: 'analytics', component: WorkDurationComponent },
+];
 
 @NgModule({
   declarations: [
@@ -22,13 +28,9 @@ import { WorkDurationComponent } from './components/work-duration/work-duration.
     UpdateTimesheetEntryComponent,
     ApproveTimesheetComponent,
     TotalWorkDurationOfEmployeeComponent,
-    WorkDurationComponent
+    WorkDurationComponent,
   ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule
-  ],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   exports: [
     ListComponent,
     DetailsComponent,
@@ -36,7 +38,7 @@ import { WorkDurationComponent } from './components/work-duration/work-duration.
     InsertTimeSheetComponent,
     ApproveTimesheetComponent,
     TotalWorkDurationOfEmployeeComponent,
-    WorkDurationComponent
-  ]
+    WorkDurationComponent,
+  ],
 })
-export class TimeSheetModule { }
+export class TimeSheetModule {}

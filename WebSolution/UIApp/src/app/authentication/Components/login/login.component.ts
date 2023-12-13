@@ -5,9 +5,9 @@ import { ICredential } from '../../Models/icredential';
 import { AuthService } from '../../Services/auth.service';
 import { TokenClaims } from '../../../shared/Enums/tokenclaims';
 import { JwtService } from 'src/app/shared/services/jwt.service';
-import { TflportalService } from 'src/app/tflportal/tflportal.service';
 import { LocalStorageKeys } from '../../../shared/Enums/local-storage-keys';
 import { HrService } from 'src/app/shared/services/hr.service';
+import { LayoutService } from 'src/app/layout/Services/layout.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,6 @@ export class LoginComponent {
   loginForm!: FormGroup;
   showPassword: boolean = false;
 
-  // @Output() validSignIn = new EventEmitter<any>();
   isCredentialInvalid: boolean = false;
   lob: string = 'PMS';
   role: string = '';
@@ -27,7 +26,7 @@ export class LoginComponent {
     private jwtSvc: JwtService,
     private hrSvc: HrService,
     private router: Router,
-    private tflportalSvc: TflportalService
+    private layoutSvc: LayoutService
   ) {}
 
   ngOnInit(): void {
@@ -78,10 +77,7 @@ export class LoginComponent {
         }
         if (response.token != '') {
           localStorage.setItem(LocalStorageKeys.jwt, response.token);
-          this.role = this.jwtSvc.getClaimFromToken(TokenClaims.role);
-          if (this.role.length > 1) {
             this.navigate();
-          }
         }
       },
       error: (error) => {
@@ -93,11 +89,10 @@ export class LoginComponent {
 
   navigate() {
     let userId = Number(this.jwtSvc.getClaimFromToken(TokenClaims.userId));
-    this.hrSvc.getEmployeeId(userId).subscribe((res) => {
-      localStorage.setItem(LocalStorageKeys.employeeId, res.toString());
-      console.log("🚀 ~ this.hrSvc.getEmployeeId ~ res:", res);
+    this.hrSvc.getEmployeeByUserId(userId).subscribe((res) => {
+      localStorage.setItem(LocalStorageKeys.employeeId, res.id.toString());
       this.router.navigate(['/']);
-      this.tflportalSvc.onSucess();
+      this.layoutSvc.onSucess();
     });
   }
 }

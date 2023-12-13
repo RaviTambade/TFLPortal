@@ -1,5 +1,6 @@
 export class Employee{
-constructor(public hireDate:string,
+constructor(public id:number,
+            public hireDate:string,
             public salary:number,
             public firstName:string,
             public lastName:string,

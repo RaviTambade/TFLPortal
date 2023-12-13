@@ -16,9 +16,10 @@ export class HrService {
   private serviceurl: string = environment.apiUrl;
   private commonUrl:string ="http://localhost:5142/api";
 
-  getEmployeeId(userId:number):Observable<number>{
+  getEmployeeByUserId(userId:number):Observable<Employee>{
     let url = this.serviceurl + '/hr/employees/users/'+userId;
-    return this.httpClient.get<number>(url);
+    console.log(url)
+    return this.httpClient.get<Employee>(url);
   }
 
   getEmployeeDetails(employeeId: number): Observable<Employee> {

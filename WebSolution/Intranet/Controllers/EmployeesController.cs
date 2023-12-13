@@ -63,7 +63,7 @@ public class EmployeesController : ControllerBase
         return status;
     }
 
-    [HttpGet("{userId}")]
+    [HttpGet("users/{userId}")]
     public async Task<Employee> GetEmployee(int userId)
     {
         Employee employee = await _service.GetEmployee(userId);
