@@ -5,6 +5,7 @@ import { LeftSidebarComponent } from './Components/left-sidebar/left-sidebar.com
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './Components/home/home.component';
 import { TimesheetComponent } from './Components/timesheet/timesheet.component';
+import { LeavesComponent } from './Components/leaves/leaves.component';
 
 
 
@@ -14,7 +15,8 @@ import { TimesheetComponent } from './Components/timesheet/timesheet.component';
     MainComponent,
     LeftSidebarComponent,
     HomeComponent,
-    TimesheetComponent
+    TimesheetComponent,
+    LeavesComponent
   ],
   imports: [
     CommonModule,

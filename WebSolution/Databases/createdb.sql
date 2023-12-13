@@ -138,7 +138,7 @@
             todate DateTime,
             amount double Not null,
             status enum("notstarted","approved","rejected")DEFAULT 'notstarted',
-            leavetype enum("casual","privileged","sick","maternity","marriage","paternity","bereavement","comp off","loss of pay","study","religious festival","sabbatical"));
+            leavetype enum("casual","sick","paid","unpaid"));
 
   CREATE TABLE leavespending(
         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
