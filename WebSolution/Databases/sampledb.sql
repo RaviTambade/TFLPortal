@@ -770,3 +770,17 @@ Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(11
 Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(12,'2023-06-03','2023-05-13',40000,"rejected","bereavement");
 Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(13,'2023-01-03','2023-05-25',50000,"approved","study");
 Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(14,'2023-08-03','2023-07-15',40000,"rejected","comp off");
+
+
+Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(10,3,1,2,1);
+Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(11,1,1,2,1);
+Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(12,3,1,5,1);
+Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(13,6,1,2,1);
+Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(14,3,1,7,1);
+Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(15,3,1,2,1);
+Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(16,1,6,2,1);
+Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(17,3,2,5,2);
+Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(18,6,5,2,1);
+Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(19,3,2,1,1);
+
+ 
