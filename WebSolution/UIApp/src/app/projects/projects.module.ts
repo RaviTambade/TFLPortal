@@ -13,10 +13,15 @@ import { EmployeeProjectListComponent } from './Components/employee-project-list
 import { RouterModule, Routes } from '@angular/router';
 import { EmployeeProjectDetailsComponent } from './Components/employee-project-details/employee-project-details.component';
 import { BiModule } from '../bi/bi.module';
+import { ActivityModule } from '../activity/activity.module';
+import { ActivityListComponent } from '../activity/Components/activity-list/activity-list.component';
+import { ActivityDetailsComponent } from '../activity/Components/activity-details/activity-details.component';
 
 
 export const projectRoutes: Routes = [
-  { path: '', component: EmployeeProjectListComponent }
+  { path: '', component: EmployeeProjectListComponent },
+  { path: 'list', component: EmployeeProjectListComponent },
+  { path: 'activityList', component: ActivityDetailsComponent }
 ];
 
 
@@ -38,6 +43,7 @@ export const projectRoutes: Routes = [
     CommonModule,
     ReactiveFormsModule,
     BiModule,
+    ActivityModule,
     FormsModule
   ],
   exports: [

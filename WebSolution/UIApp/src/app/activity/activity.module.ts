@@ -6,6 +6,7 @@ import { AddActivityComponent } from './Components/Forms/add-activity/add-activi
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateActivityComponent } from './Components/Forms/update-activity/update-activity.component';
 import { ProjectActivitiesComponent } from './Components/project-activities/project-activities.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ProjectActivitiesComponent } from './Components/project-activities/proj
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   exports: [
     ActivityDetailsComponent,

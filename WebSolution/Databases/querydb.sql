@@ -1,6 +1,6 @@
 -- Active: 1694968636816@@127.0.0.1@3306@tflportal
 
-SELECT * FROM timesheets;
+SELECT * FROM activities;
 
 select * from employees;
 -- activitywise time spent of month 
