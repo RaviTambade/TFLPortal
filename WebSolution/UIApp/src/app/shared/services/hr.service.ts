@@ -26,10 +26,7 @@ export class HrService {
     return this.httpClient.get<Employee>(url);
   }
 
-  getAllEmployees(projectId:number):Observable<any[]>{
-    let url=this.serviceurl+"/projectmgmt/projectallocation/employees/"+projectId;
-    return this.httpClient.get<any[]>(url);
-  }
+ 
 
   getEmployee(contactNumber:string):Observable<User>{
     let url=this.commonUrl+"/users/contact/"+contactNumber;

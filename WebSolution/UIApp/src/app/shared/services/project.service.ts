@@ -32,4 +32,9 @@ export class ProjectService {
     console.log(url);
     return this.httpClient.get<any>(url);
   }
+
+  getAllEmployees(projectId:number):Observable<any[]>{
+    let url=this.serviceurl+"/projectmgmt/projectallocation/employees/"+projectId;
+    return this.httpClient.get<any[]>(url);
+  }
 }
