@@ -65,13 +65,7 @@ export const routes: Routes = [
       component: AddLeaveComponent,     
     }
   ],
-},
-]
-
-
-
-
-  
+}]
 
 @NgModule({
   declarations: [
@@ -95,7 +89,8 @@ export const routes: Routes = [
     LeftSidebarComponent,
     LeavesComponent
   ],
-  imports: [CommonModule,
+
+  imports:[CommonModule,
     FormsModule,
     ReactiveFormsModule,
     LeavesModule,
@@ -104,4 +99,5 @@ export const routes: Routes = [
     RouterModule.forRoot(routes)],
   exports: [MainComponent],
 })
+
 export class TFLPortalModule {}

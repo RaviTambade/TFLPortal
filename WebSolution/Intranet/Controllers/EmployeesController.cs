@@ -62,4 +62,11 @@ public class EmployeesController : ControllerBase
         bool status =await _service.InsertSalaryStructure(salaryStructure);
         return status;
     }
+
+    [HttpGet("{userId}")]
+    public async Task<Employee> GetEmployee(int userId)
+    {
+        Employee employee = await _service.GetEmployee(userId);
+        return employee;
+    }
 }

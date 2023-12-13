@@ -32,8 +32,8 @@ export class LeftSidebarComponent implements OnInit {
 
 
 
-onClick(link:any){
-  console.log(link);
-  this.router.navigate([link]);
+onClick(url:string){
+  console.log(url);
+  this.router.navigate([url]);
  }
 }

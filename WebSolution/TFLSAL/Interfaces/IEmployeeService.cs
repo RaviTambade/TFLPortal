@@ -5,5 +5,7 @@ public interface IEmployeeService {
 
     Task<Employee> GetEmployeeDetails(int employeeId); 
 
+    Task<Employee> GetEmployee(int userId); 
+
     Task<bool> InsertSalaryStructure(SalaryStructure salaryStructure); 
  }
