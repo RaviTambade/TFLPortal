@@ -12,6 +12,7 @@ import { AssignEmployeeToProjectComponent } from './Components/assign-employee-t
 import { EmployeeProjectListComponent } from './Components/employee-project-list/employee-project-list.component';
 import { RouterModule } from '@angular/router';
 import { EmployeeProjectDetailsComponent } from './Components/employee-project-details/employee-project-details.component';
+import { BiModule } from '../bi/bi.module';
 
 
 
@@ -31,6 +32,7 @@ import { EmployeeProjectDetailsComponent } from './Components/employee-project-d
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    BiModule,
     FormsModule
   ],
   exports: [

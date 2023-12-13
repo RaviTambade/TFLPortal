@@ -17,6 +17,7 @@ import { BiModule } from './bi/bi.module';
 import { LeavesModule } from './leaves/leaves.module';
 
 import{TFLPortalModule} from './tflportal/tflportal.module'
+import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 
 
 
@@ -36,7 +37,18 @@ import{TFLPortalModule} from './tflportal/tflportal.module'
     LeavesModule,
     TFLPortalModule  ],
 
-  providers: [],
+  providers: [
+    {
+      provide: JWT_OPTIONS,
+      useValue: {
+        tokenGetter: () => {
+          return;
+        },
+        throwNoTokenError: true,
+      },
+    },
+    JwtHelperService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

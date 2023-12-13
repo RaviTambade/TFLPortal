@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { TflportalService } from '../tflportal.service';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
+import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
+import { JwtService } from 'src/app/shared/services/jwt.service';
+import { TokenClaims } from 'src/app/shared/Enums/tokenclaims';
 
 @Component({
   selector: 'insight-main',
@@ -9,32 +13,45 @@ import { Router } from '@angular/router';
 })
 export class MainComponent implements OnInit {
   isLogInClicked: boolean = false;
+  showsidebar = false;
+  constructor(private tflSvc: TflportalService, private jwtSvc:JwtService, private router: Router) {}
 
-  constructor(private tflSvc: TflportalService,private router:Router) {}
-  userName: string = '';
+  userName: string = 'Akash';
+  isLoggedIn:boolean=false;
+
   ngOnInit(): void {
-    let name = localStorage.getItem('name');
-    if (name != null) {
-      this.userName = name;
+    let jwt = localStorage.getItem(LocalStorageKeys.jwt);
+    if (jwt != null) {
+      this.isLoggedIn = true;
     }
 
+    this.userName=this.jwtSvc.getClaimFromToken(TokenClaims.userName);
+    
+
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event: any) => {
+        if (event.url == '/home' || event.url == '/login') {
+          console.log(event.url);
+          this.showsidebar = false;
+        } else {
+          this.showsidebar = true;
+        }
+      });
+
+
     this.tflSvc.loginSuccess$.subscribe(() => {
-      this.isLogInClicked = false;
-      let name = localStorage.getItem('name');
-      if (name != null) {
-        this.userName = name;
+      let jwt = localStorage.getItem(LocalStorageKeys.jwt);
+      if (jwt != null) {
+        this.isLoggedIn = true;
+        this.userName=this.jwtSvc.getClaimFromToken(TokenClaims.userName);
       }
+
     });
-
-    console.log(this.router.url)
   }
 
-  onLogInClick() {
-    this.isLogInClicked = true;
-  }
   onClickLogOut() {
     localStorage.clear();
-    this.userName=''
-    this.isLogInClicked=true;
+    this.isLoggedIn = false;
   }
 }
