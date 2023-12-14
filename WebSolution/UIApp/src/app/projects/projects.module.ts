@@ -16,12 +16,13 @@ import { BiModule } from '../bi/bi.module';
 import { ActivityModule } from '../activity/activity.module';
 import { ActivityListComponent } from '../activity/Components/activity-list/activity-list.component';
 import { ActivityDetailsComponent } from '../activity/Components/activity-details/activity-details.component';
+import { EmployeeTodaysActivitiesComponent } from '../activity/Components/employee-todays-activities/employee-todays-activities.component';
 
 
 export const projectRoutes: Routes = [
-  { path: '', component: EmployeeProjectListComponent },
-  { path: 'list', component: EmployeeProjectListComponent },
-  { path: 'activityList', component: ActivityDetailsComponent }
+  { path: '', component: EmployeeTodaysActivitiesComponent },
+  { path: 'activities', component: EmployeeTodaysActivitiesComponent }
+  // { path: 'activityList', component: ActivityDetailsComponent }
 ];
 
 

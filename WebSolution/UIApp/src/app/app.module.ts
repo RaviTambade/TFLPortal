@@ -32,7 +32,6 @@ import { LayoutModule } from './layout/layout.module';
     ResourceManagementModule,
     TimeSheetModule,
     ProjectplanningModule,
-    ActivityModule,
     LeavesModule,
     LayoutModule
 

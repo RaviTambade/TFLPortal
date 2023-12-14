@@ -34,6 +34,12 @@ export class WorkmgmtService {
     return this.http.get<Activity[]>(url);
   }
 
+
+  fetchTodaysActivities(projectId: number,date:string): Observable<Activity[]> {
+    let url = this.serviceurl + '/workmgmt/activities/project/' + projectId+'/date/'+date;
+    console.log(url);
+    return this.http.get<Activity[]>(url);
+  }
   fetchAllActivitiesOfEmployee(assignedTo: number): Observable<Activity[]> {
     let url = this.serviceurl + '/workmgmt/activities/employees/' + assignedTo;
     console.log(url);

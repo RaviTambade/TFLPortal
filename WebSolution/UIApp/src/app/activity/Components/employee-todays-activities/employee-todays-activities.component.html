@@ -1,0 +1,64 @@
+
+<h1>MY Projects</h1>
+<div *ngFor="let project of projects"  (click)="onClick(project.id)">
+    <a class="underline" >{{project.title}}</a>
+</div>
+
+
+<!-- <div *ngFor="let activity of activities">
+    <p>{{activity.activityType}}</p>
+    <p>{{activity.title}}</p>
+</div> -->
+
+<div class="container" *ngIf="isClick==true">
+    <h2> My Todays Activities</h2>
+    <div class="card">
+        <table class="table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                   </tr>
+            </thead>
+            <tbody *ngFor="let activity of activities">
+                <tr>
+                    <!-- <td> {{activity.assignDate |date}}</td> -->
+                    <td>{{activity.activityType}}</td>
+                    <td   (click)="getDetails()"><a class="underline">{{activity.title}}</a></td>
+                    <td> {{activity.status}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="container"  *ngIf="activityDetails==true">
+        <h2> My Activity Details</h2>
+        <div class="card">
+            <table class="table-bordered text-center">
+                <thead>
+                    <tr>
+                        
+                        <th>Project Name</th>
+                        <th>ActivityTitle</th>
+                        <th>ActivityType</th>
+                        <th>Description</th>
+                        <th>DueDate:</th>
+                        <th>AssignedBy</th>
+    
+                    </tr>
+                </thead>
+                <tbody *ngFor="let activity of activities">
+                    <tr>
+                
+                        <td><a href="#">{{activity.title}}</a></td>
+                        <td>{{activity.title}}</td>
+                        <td>{{activity.activityType}}</td>
+                        <td>{{activity.description}}</td>
+                        <td>{{activity.dueDate|date}}</td>
+                        <!-- <td><a href="#">{{employee?.firstName}} {{employee?.lastName}}</a></td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>

@@ -1,0 +1,10 @@
+a {
+    text-decoration:underline;
+    cursor: pointer;
+  }
+  
+  a:hover {
+    color: blueviolet;
+    text-decoration:underline;
+    
+  }
