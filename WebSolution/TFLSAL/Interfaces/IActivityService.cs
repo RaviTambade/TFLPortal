@@ -21,4 +21,7 @@ public interface IActivityService
 
      public Task<ActivityCountSp> GetAllActivitiesCount();
 
+      Task<List<TFLOBL.Entities.Activity>> GetAllTodaysActivities(int projectId,DateTime date);
+
+
 }

@@ -1,4 +1,4 @@
--- Active: 1694968636816@@127.0.0.1@3306@tflportal
+-- Active: 1696576841746@@127.0.0.1@3306@tflportal
 
 -- director
 INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (1,'2013-01-01',1,80000);
@@ -66,8 +66,8 @@ INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid
 INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2017-10-10','yes',5,14);
 INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2017-10-10','yes',6,15);
 INSERT INTO projectallocations(membership,assigndate,releasedate,status,projectid,employeeid) VALUES ('Developer','2016-02-02','2017-10-10','no',7,16);
-INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',8,17);
-INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',9,18);
+INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',8,15);
+INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',9,15);
 
 
 -- Inventory Management
@@ -494,7 +494,7 @@ VALUES ("userstory","User Registration","As a new user, I want to be able to reg
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ("userstory","Login Functionality","As a forgetful user, I want to be able to reset my password via email verification.",'2023-10-29','2023-10-30','2023-11-04',9,10,1,"todo",'2023-10-30');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
-VALUES ("userstory","Security Measures","As a user, I want assurance that my personal and payment information is secure on the platform.",'2023-10-29','2023-10-30','2023-11-04',1,10,1,"completed",'2023-10-30');
+VALUES ("userstory","Security Measures","As a user, I want assurance that my personal and payment information is secure on the platform.",'2023-12-14','2023-12-14','2023-12-30',15,10,8,"inprogress",'2023-10-30');
 
 
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)VALUES
@@ -756,31 +756,31 @@ Insert Into salarydisbursement(employeeid,paydate,amount) values(4,'2023-12-04',
 Insert Into salarydisbursement(employeeid,paydate,amount) values(5,'2023-12-03',25000);
 Insert Into salarydisbursement(employeeid,paydate,amount) values(6,'2023-12-02',25000);
 
-Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(1,'2023-04-03','2023-05-05',26000,"notstarted","casual");
-Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(2,'2023-04-03','2023-05-05',26000,"notstarted","casual");
-Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(3,'2023-05-03','2023-05-20',30000,"approved","paternity");
-Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(4,'2023-06-03','2023-05-15',40000,"approved","sick");
-Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(5,'2023-07-03','2023-05-25',50000,"rejected","study");
-Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(6,'2023-08-03','2023-05-15',40000,"approved","comp off");
-Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(7,'2023-06-03','2023-05-13',40000,"rejected","bereavement");
-Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(8,'2023-01-03','2023-05-25',50000,"approved","study");
-Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(9,'2023-08-03','2023-07-15',40000,"rejected","comp off");
-Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(10,'2023-07-03','2023-05-25',50000,"rejected","study");
-Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(11,'2023-08-03','2023-05-15',40000,"approved","comp off");
-Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(12,'2023-06-03','2023-05-13',40000,"rejected","bereavement");
-Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(13,'2023-01-03','2023-05-25',50000,"approved","study");
-Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(14,'2023-08-03','2023-07-15',40000,"rejected","comp off");
+-- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(1,'2023-04-03','2023-05-05',26000,"notstarted","casual");
+-- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(2,'2023-04-03','2023-05-05',26000,"notstarted","casual");
+--  Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(3,'2023-05-03','2023-05-20',30000,"approved","paternity");
+-- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(4,'2023-06-03','2023-05-15',40000,"approved","sick");
+-- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(5,'2023-07-03','2023-05-25',50000,"rejected","study");
+-- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(6,'2023-08-03','2023-05-15',40000,"approved","comp off");
+-- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(7,'2023-06-03','2023-05-13',40000,"rejected","bereavement");
+-- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(8,'2023-01-03','2023-05-25',50000,"approved","study");
+-- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(9,'2023-08-03','2023-07-15',40000,"rejected","comp off");
+-- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(10,'2023-07-03','2023-05-25',50000,"rejected","study");
+-- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(11,'2023-08-03','2023-05-15',40000,"approved","comp off");
+-- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(12,'2023-06-03','2023-05-13',40000,"rejected","bereavement");
+-- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(13,'2023-01-03','2023-05-25',50000,"approved","study");
+-- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(14,'2023-08-03','2023-07-15',40000,"rejected","comp off");
 
 
-Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(10,3,1,2,1);
-Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(11,1,1,2,1);
-Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(12,3,1,5,1);
-Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(13,6,1,2,1);
-Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(14,3,1,7,1);
-Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(15,3,1,2,1);
-Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(16,1,6,2,1);
-Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(17,3,2,5,2);
-Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(18,6,5,2,1);
-Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(19,3,2,1,1);
+-- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(10,3,1,2,1);
+-- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(11,1,1,2,1);
+-- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(12,3,1,5,1);
+-- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(13,6,1,2,1);
+-- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(14,3,1,7,1);
+-- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(15,3,1,2,1);
+-- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(16,1,6,2,1);
+-- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(17,3,2,5,2);
+-- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(18,6,5,2,1);
+-- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(19,3,2,1,1);
 
  

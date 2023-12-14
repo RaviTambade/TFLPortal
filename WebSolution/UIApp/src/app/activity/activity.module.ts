@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateActivityComponent } from './Components/Forms/update-activity/update-activity.component';
 import { ProjectActivitiesComponent } from './Components/project-activities/project-activities.component';
 import { RouterModule } from '@angular/router';
+import { EmployeeTodaysActivitiesComponent } from './Components/employee-todays-activities/employee-todays-activities.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { RouterModule } from '@angular/router';
     ActivityDetailsComponent,
     AddActivityComponent,
     UpdateActivityComponent,
-    ProjectActivitiesComponent
+    ProjectActivitiesComponent,
+    EmployeeTodaysActivitiesComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { RouterModule } from '@angular/router';
     ActivityListComponent,
     AddActivityComponent,
     UpdateActivityComponent,
-    ProjectActivitiesComponent
+    ProjectActivitiesComponent,
+    EmployeeTodaysActivitiesComponent
     
   ]
 })

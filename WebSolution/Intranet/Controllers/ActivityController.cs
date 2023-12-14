@@ -121,4 +121,12 @@ public class ActivityController : ControllerBase
     }
 
 
+     [HttpGet("project/{projectId}/date/{date}")]
+    public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>> GetAllTodaysActivities(int projectId,DateTime date)
+    {
+        List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetAllTodaysActivities(projectId,date);
+        return activities;
+    }
+
+
 }

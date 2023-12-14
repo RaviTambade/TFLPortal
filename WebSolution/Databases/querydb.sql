@@ -1,6 +1,6 @@
 -- Active: 1694968636816@@127.0.0.1@3306@tflportal
 
-SELECT * FROM activities;
+SELECT * FROM activities where assignedto=15 AND assigneddate='2023-12-14';
 
 select * from employees;
 -- activitywise time spent of month 

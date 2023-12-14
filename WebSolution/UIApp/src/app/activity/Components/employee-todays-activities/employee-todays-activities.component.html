@@ -1,0 +1,73 @@
+<div class="row">
+    <!-- First Column -->
+    <div class="col-2">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">MY Projects</h1>
+                <div *ngFor="let project of projects" (click)="onClick(project.id)">
+                    <a class="underline card-link">{{project.title}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Second Column -->
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body" *ngIf="isClick">
+                <h2 class="card-title"> My Today's Activities</h2>
+                <div class="card">
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Title</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let activity of activities">
+                            <tr>
+                                <td>{{activity.activityType}}</td>
+                                <td (click)="getDetails()"><a class="underline card-link">{{activity.title}}</a></td>
+                                <td>{{activity.status}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Third Column -->
+    <div class="col-5">
+        <div class="card" *ngIf="activityDetails">
+            <div class="card-body">
+                <h2 class="card-title"> My Activity Details</h2>
+                <div class="card">
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th>Project Name</th>
+                                <th>Activity Title</th>
+                                <th>Activity Type</th>
+                                <th>Description</th>
+                                <th>Due Date</th>
+                                <th>Assigned By</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let activity of activities">
+                            <tr>
+                                <td><a href="#" class="card-link">{{activity.title}}</a></td>
+                                <td>{{activity.title}}</td>
+                                <td>{{activity.activityType}}</td>
+                                <td>{{activity.description}}</td>
+                                <td>{{activity.dueDate | date}}</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

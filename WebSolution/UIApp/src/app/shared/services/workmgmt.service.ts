@@ -17,7 +17,7 @@ export class WorkmgmtService {
 
   private serviceurl: string = environment.apiUrl;
 
-  private timeSheetUrl: string = 'http://localhost:5263/api/workmgmt/timesheets';
+  // private serviceurl: string = 'http://localhost:5263/api';
 
 
   // http://localhost:5263/api/workmgmt/activities/1
@@ -34,6 +34,12 @@ export class WorkmgmtService {
     return this.http.get<Activity[]>(url);
   }
 
+
+  fetchTodaysActivities(projectId: number,date:string): Observable<Activity[]> {
+    let url = this.serviceurl + '/workmgmt/activities/project/' + projectId+'/date/'+date;
+    console.log(url);
+    return this.http.get<Activity[]>(url);
+  }
   fetchAllActivitiesOfEmployee(assignedTo: number): Observable<Activity[]> {
     let url = this.serviceurl + '/workmgmt/activities/employees/' + assignedTo;
     console.log(url);
@@ -62,57 +68,57 @@ export class WorkmgmtService {
 
 
   getAllTimeSheets(employeeId: number): Observable<TimeSheet[]> {
-    let url = `${this.timeSheetUrl}/employees/${employeeId}`;
+    let url = `${this.serviceurl}/workmgmt/timesheets/employees/${employeeId}`;
     return this.http.get<TimeSheet[]>(url);
   }
   getTimeSheet(employeeId: number, date: string): Observable<TimesheetView> {
-    let url = `${this.timeSheetUrl}/employees/${employeeId}/date/${date}`;
+    let url = `${this.serviceurl}/workmgmt/timesheets/employees/${employeeId}/date/${date}`;
     return this.http.get<TimesheetView>(url);
   }
 
   getTimeSheetDetails(timeSheetId: number): Observable<TimeSheetDetails[]> {
-    let url = `${this.timeSheetUrl}/timesheetentries/${timeSheetId}`;
+    let url = `${this.serviceurl}/workmgmt/timesheets/timesheetentries/${timeSheetId}`;
     return this.http.get<TimeSheetDetails[]>(url);
   }
 
   getWorkDurationOfEmployee(employeeId: number, fromDate: string, toDate: string): Observable<WorkCategory> {
-    let url = `${this.timeSheetUrl}/workduration/employees/${employeeId}/from/${fromDate}/to/${toDate}`;
+    let url = `${this.serviceurl}/workmgmt/timesheets/workduration/employees/${employeeId}/from/${fromDate}/to/${toDate}`;
     return this.http.get<any>(url);
   }
   getActivityWiseHours(intervalType: string): Observable<workCategoryDetails[]> {
-    let url = `${this.timeSheetUrl}/workduration/${intervalType}`;
+    let url = `${this.serviceurl}/workmgmt/timesheets/workduration/${intervalType}`;
     return this.http.get<any>(url);
   }
 
 
 
   addTimeSheet(timeSheet: any): Observable<boolean> {
-    let url = `${this.timeSheetUrl}`;
+    let url = `${this.serviceurl}/workmgmt/timesheets`;
     return this.http.post<boolean>(url, timeSheet);
   }
 
   addTimeSheetDetails(TimeSheetDetails: TimeSheetDetails): Observable<any> {
-    let url = `${this.timeSheetUrl}/timesheetentries`;
+    let url = `${this.serviceurl}/workmgmt/timesheets/timesheetentries`;
     return this.http.post(url, TimeSheetDetails);
   }
 
   changeTimeSheetStatus(timeSheetId: number, timesheet: TimeSheet): Observable<boolean> {
-    let url = `${this.timeSheetUrl}/${timeSheetId}`;
+    let url = `${this.serviceurl}/workmgmt/timesheets/${timeSheetId}`;
     return this.http.put<boolean>(url, timesheet);
   }
 
   updateTimeSheetDetails(TimeSheetDetailsId: number, TimeSheetDetails: TimeSheetDetails): Observable<boolean> {
-    let url = `${this.timeSheetUrl}/timesheetentries/${TimeSheetDetailsId}`;
+    let url = `${this.serviceurl}/workmgmt/timesheets/timesheetentries/${TimeSheetDetailsId}`;
     return this.http.put<boolean>(url, TimeSheetDetails);
   }
 
   removeTimeSheetDetails(TimeSheetDetailsId: number): Observable<boolean> {
-    let url = `${this.timeSheetUrl}/timesheetentries/remove/${TimeSheetDetailsId}`;
+    let url = `${this.serviceurl}/workmgmt/timesheets/timesheetentries/remove/${TimeSheetDetailsId}`;
     return this.http.delete<boolean>(url);
   }
 
   removeAllTimeSheetDetails(timeSheetId: number): Observable<boolean> {
-    let url = `${this.timeSheetUrl}/timesheetentries/removeall/${timeSheetId}`;
+    let url = `${this.serviceurl}/workmgmt/timesheets/timesheetentries/removeall/${timeSheetId}`;
     return this.http.delete<boolean>(url);
   }
 
