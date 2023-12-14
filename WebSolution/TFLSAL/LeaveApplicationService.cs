@@ -86,6 +86,7 @@ public class LeaveApplicationService : ILeaveApplicationService
                     UnpaidLeave = unpaidLeaves
                 };
                 
+                
             }
             await reader.CloseAsync();
         }
@@ -98,5 +99,50 @@ public class LeaveApplicationService : ILeaveApplicationService
             await connection.CloseAsync();
         }
         return pendingLeave;
+    }
+
+    public async Task<List<Leave>> GetEmployeeLeaves(int employeeId)
+    {
+        List<Leave> leaves = new List<Leave>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query =
+                "select * from leaves where employeeid =@employeeId";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@employeeId", employeeId);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {
+                int id = int.Parse(reader["id"].ToString());
+                DateTime fromDate = DateTime.Parse(reader["fromdate"].ToString());
+                DateTime toDate = DateTime.Parse(reader["todate"].ToString());
+                string status = reader["status"].ToString();
+                string leaveType = reader["leavetype"].ToString();
+                
+                Leave leave = new Leave()
+                {
+                    Id = id,
+                    EmployeeId= employeeId,
+                    FromDate = fromDate,
+                    ToDate = toDate,
+                    Status = status,
+                    LeaveType = leaveType
+                };
+                leaves.Add(leave);
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return leaves;
     }
 }

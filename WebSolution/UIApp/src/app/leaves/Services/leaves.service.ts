@@ -20,4 +20,9 @@ export class LeavesService {
     let url="http://localhost:5263/api/leaves/pendingleave/"+employeeId;
     return this.http.get<PendingLeave>(url);
   }
+
+  getEmployeeLeaves(employeeId:number):Observable<Leave[]>{
+    let url="http://localhost:5263/api/leaves/"+employeeId;
+    return this.http.get<Leave[]>(url);
+  }
 }

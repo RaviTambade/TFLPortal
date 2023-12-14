@@ -12,6 +12,7 @@ export class PendingLeaveComponent implements OnInit {
 
   employeeId:any;
   pendingLeave:PendingLeave |undefined;
+  totalLeaves:any;
 
   constructor(private service:LeavesService){
      this.employeeId=localStorage.getItem(LocalStorageKeys.employeeId);
@@ -20,7 +21,7 @@ export class PendingLeaveComponent implements OnInit {
   ngOnInit(): void {
     this.service.getPendingLeaves(this.employeeId).subscribe((res)=>{
       this.pendingLeave=res;
-      console.log(res);
+      this.totalLeaves=res.paidLeave+res.sickLeave+res.casualLeave+res.unpaidLeave;
     }) 
   }
 }

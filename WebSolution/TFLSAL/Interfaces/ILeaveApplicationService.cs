@@ -7,4 +7,6 @@ public interface ILeaveApplicationService{
 
     Task<PendingLeave> GetPendingLeaves(int employeeId);
 
+    Task<List<Leave>> GetEmployeeLeaves(int employeeId);
+
 }

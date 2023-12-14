@@ -30,8 +30,6 @@ export class DetailsComponent {
           this.totalminutes += entry.durationInMinutes;
         });
         this.totalminutes = this.workmgmtSvc.convertMinutesintoHours(this.totalminutes);
-  
-
       });
   }
 }

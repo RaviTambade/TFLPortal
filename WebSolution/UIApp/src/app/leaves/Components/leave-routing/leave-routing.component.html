@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="row">
+        <div class="col-md-6">
+            <app-pending-leave></app-pending-leave>
+        </div>
+        <div class="col-md-6">
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <app-employee-leaves (click)="onClick()"></app-employee-leaves>
+        </div>
+        <div class="col-md-6">
+            <app-add-leave *ngIf="visible"></app-add-leave>
+        </div>
+    </div>
+</div>

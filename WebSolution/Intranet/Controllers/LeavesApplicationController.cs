@@ -31,4 +31,13 @@ public class LeavesApplicationController : ControllerBase
         PendingLeave leave =await _service.GetPendingLeaves(employeeId);
         return leave;
     }
+
+    [HttpGet]
+    [Route ("{employeeId}")]
+    public async Task<List<Leave>> GetEmployeeLeaves(int employeeId)
+    {
+        List<Leave> leaves =await _service.GetEmployeeLeaves(employeeId);
+        Console.WriteLine(leaves);
+        return leaves;
+    }
 }
