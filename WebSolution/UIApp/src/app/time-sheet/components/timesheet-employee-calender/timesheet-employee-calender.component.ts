@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
-import { CalendarDay } from './CalenderDay';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { CalendarDay } from 'src/app/calender/CalenderDay';
 
 @Component({
-  selector: 'app-calender',
-  templateUrl: './calender.component.html',
-  styleUrls: ['./calender.component.css'],
+  selector: 'app-timesheet-employee-calender',
+  templateUrl: './timesheet-employee-calender.component.html',
+  styleUrls: ['./timesheet-employee-calender.component.css']
 })
-export class CalenderComponent {
+export class TimesheetEmployeeCalenderComponent {
   public calendar: CalendarDay[] = [];
   public monthNames = [
     'January',
@@ -25,19 +25,20 @@ export class CalenderComponent {
   public displayMonth!: string;
   private holidayDays: string[] = ['2023-12-02', '2023-12-17', '2023-12-15'];
   private monthIndex: number = 0;
-  clickedDate: any;
+  clickedDate :Date|undefined;
+  @Output() DateClick=new EventEmitter<string>()
 
   projects: any[] = [
-    {
-      projectName: 'Ekrushi',
-      startDate: '2023-12-02',
-      endDate: '2023-12-17',
-    },
-    {
-      projectName: 'TFLPortal',
-      startDate: '2023-12-02',
-      endDate: '2023-12-29',
-    },
+    // {
+    //   projectName: 'Ekrushi',
+    //   startDate: '2023-12-02',
+    //   endDate: '2023-12-17',
+    // },
+    // {
+    //   projectName: 'TFLPortal',
+    //   startDate: '2023-12-02',
+    //   endDate: '2023-12-29',
+    // },
   ];
 
   ngOnInit(): void {
@@ -45,6 +46,7 @@ export class CalenderComponent {
       project.color = this.randomColorPicker();
     });
     this.generateCalendarDays(this.monthIndex);
+    this.clickedDate=this.calendar.find(d=> d.isToday==true)?.date;
   }
 
   private generateCalendarDays(monthIndex: number): void {
@@ -109,9 +111,10 @@ export class CalenderComponent {
     return '#' + result;
   }
 
-  onClick(date: Date) {
+  onClickDate(date: Date) {
     this.clickedDate = date;
-    console.log(this.ConvertDateYYYY_MM_DD(date));
+    let convertedDate=this.ConvertDateYYYY_MM_DD(date);
+    this.DateClick.emit(convertedDate);
   }
 
   isholiday(date: Date): boolean {
@@ -159,3 +162,6 @@ export class CalenderComponent {
     return formattedDate;
   }
 }
+
+
+

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, isDevMode } from '@angular/core';
 import { Project } from './projects/Models/project';
 import { task } from './task/Models/task';
 import { Employee } from './activity/Models/Employee';
@@ -8,7 +8,16 @@ import { Employee } from './activity/Models/Employee';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  ngOnInit(): void {
+  
+      if (isDevMode()) {
+        console.log('Development!');
+      } else {
+        console.log('Production!');
+      }
+    }
+  
   title = 'PMSNGApp';
   project: Project | undefined;
   taskId:number|undefined;
