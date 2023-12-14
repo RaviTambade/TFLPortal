@@ -11,10 +11,14 @@ import { ApproveTimesheetComponent } from './components/forms/approve-timesheet/
 import { TotalWorkDurationOfEmployeeComponent } from './components/total-work-duration-of-employee/total-work-duration-of-employee.component';
 import { WorkDurationComponent } from './components/work-duration/work-duration.component';
 import { RouterModule, Routes } from '@angular/router';
+import { EmployeeTimesheetComponent } from './components/employee-timesheet/employee-timesheet.component';
+import { TimesheetEmployeeCalenderComponent } from './components/timesheet-employee-calender/timesheet-employee-calender.component';
+import { ChunkPipe } from '../shared/pipes/chunk.pipe';
+import { SharedModule } from '../shared/shared.module';
 
 export const timeSheetRoutes: Routes = [
-  { path: '', component: ListComponent },
-  { path: 'view', component: ListComponent  },
+  { path: '', component: EmployeeTimesheetComponent },
+  { path: 'view', component: EmployeeTimesheetComponent  },
   { path: 'analytics', component: WorkDurationComponent },
 ];
 
@@ -29,8 +33,10 @@ export const timeSheetRoutes: Routes = [
     ApproveTimesheetComponent,
     TotalWorkDurationOfEmployeeComponent,
     WorkDurationComponent,
+    EmployeeTimesheetComponent,
+    TimesheetEmployeeCalenderComponent,
   ],
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule,SharedModule],
   exports: [
     ListComponent,
     DetailsComponent,
@@ -40,5 +46,6 @@ export const timeSheetRoutes: Routes = [
     TotalWorkDurationOfEmployeeComponent,
     WorkDurationComponent,
   ],
+  providers:[ChunkPipe]
 })
 export class TimeSheetModule {}

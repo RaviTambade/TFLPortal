@@ -14,7 +14,7 @@ export class HrService {
   constructor(private httpClient: HttpClient) {}
 
   private serviceurl: string = environment.apiUrl;
-  private commonUrl:string ="http://localhost:5142/api";
+  private commonUrl:string =environment.commonUrl;
 
   getEmployeeByUserId(userId:number):Observable<Employee>{
     let url = this.serviceurl + '/hr/employees/users/'+userId;
