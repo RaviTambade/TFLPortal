@@ -20,10 +20,16 @@
         <div class="p-2" *ngFor="let employeelink of EmployeeRoutes" (click)="onClick(employeelink.Url)"> {{employeelink.displayName}}</div>
     </div>
 
+    <div *ngIf="role==Role.HRManager">
+        <div class="p-2" *ngFor="let managerlink of HRManagerRoutes" (click)="onClick(managerlink.Url)"> {{managerlink.displayName}}</div>
+    </div>
+
     <div *ngIf="role==Role.Director">
-        <div class="p-2" *ngFor="let directorlink of DirectorRoutes"  > {{directorlink.displayName}}</div>
-    </div>\</ng-container>
+        <div class="p-2" *ngFor="let directorlink of DirectorRoutes">{{directorlink.displayName}}</div>
+    </div></ng-container>
 </div>
+
+
 
 
     <div class="col-11">

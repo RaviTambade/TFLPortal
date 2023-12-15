@@ -145,4 +145,79 @@ public class LeaveApplicationService : ILeaveApplicationService
         }
         return leaves;
     }
+
+    public async Task<List<Leave>> GetEmployeeAppliedLeaves(int projectId,string status)
+    {
+        List<Leave> leaves = new List<Leave>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query =" select projectallocations.employeeid,leaves.status,leaves.leavetype,leaves.fromdate,leaves.todate from projects inner join projectallocations on projects.id=projectallocations.projectid  inner join leaves on leaves.employeeid=projectallocations.employeeid  where projects.id=@projectId and leaves.status=@status";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@projectId", projectId);
+            command.Parameters.AddWithValue("@status", status);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {
+                int employeeId = int.Parse(reader["employeeid"].ToString());
+                DateTime fromDate = DateTime.Parse(reader["fromdate"].ToString());
+                DateTime toDate = DateTime.Parse(reader["todate"].ToString());
+                string leaveType = reader["leavetype"].ToString();
+                
+                Leave leave = new Leave()
+                {         
+                    EmployeeId= employeeId,
+                    FromDate = fromDate,
+                    ToDate = toDate,
+                    Status = status,
+                    LeaveType = leaveType
+                };
+                leaves.Add(leave);
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return leaves;
+
+    }
+
+    public async Task<bool> UpdateLeaveStatus(Leave leave)
+    {
+        bool status = false;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query = "Update leaves set status=@status where id =@Id";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@Id",leave.Id );
+            cmd.Parameters.AddWithValue("@status",leave.Status );
+            await connection.OpenAsync();
+            int rowsAffected = cmd.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                status = true;
+            }
+            await connection.CloseAsync();
+
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return status;
+    }
 }

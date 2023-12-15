@@ -6,12 +6,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { PendingLeaveComponent } from './Components/pending-leave/pending-leave.component';
 import { EmployeeLeavesComponent } from './Components/employee-leaves/employee-leaves.component';
 import { LeaveRoutingComponent } from './Components/leave-routing/leave-routing.component';
+import { TeamMemberLeaveRequestComponent } from './Components/team-member-leave-request/team-member-leave-request.component';
 
 
 export const leaveRoutes: Routes = [
-  { path: '', component: AddLeaveComponent },
+  // { path: '', component: AddLeaveComponent },
   // { path: 'leaveform', component: AddLeaveComponent  },
   { path: 'pendingleave', component: LeaveRoutingComponent},
+  { path: 'appliedleave', component: TeamMemberLeaveRequestComponent}
 ];
 
 @NgModule({
@@ -19,7 +21,8 @@ export const leaveRoutes: Routes = [
     AddLeaveComponent,
     PendingLeaveComponent,
     EmployeeLeavesComponent,
-    LeaveRoutingComponent
+    LeaveRoutingComponent,
+    TeamMemberLeaveRequestComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +31,8 @@ export const leaveRoutes: Routes = [
     ReactiveFormsModule
   ],
   exports: [
-    AddLeaveComponent
+    AddLeaveComponent,
+    TeamMemberLeaveRequestComponent
   ]
 })
 export class LeavesModule { }

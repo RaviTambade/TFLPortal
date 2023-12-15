@@ -9,4 +9,8 @@ public interface ILeaveApplicationService{
 
     Task<List<Leave>> GetEmployeeLeaves(int employeeId);
 
+    Task<List<Leave>> GetEmployeeAppliedLeaves(int projectId,string status);
+
+    Task<bool> UpdateLeaveStatus(Leave leave);
+
 }

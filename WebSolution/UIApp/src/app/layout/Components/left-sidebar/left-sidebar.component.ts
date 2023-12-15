@@ -38,10 +38,11 @@ export class LeftSidebarComponent implements OnInit {
                             {displayName:"Director Link 4",Url:"Director Link 4"},
                             {displayName:"Director Link 5",Url:"Director Link 5"}];
 
+  HRManagerRoutes:UrlType[]=[{displayName:"AppliedLeaves",Url:"leave"}];
 
 
-onClick(url:string){
+  onClick(url:string){
   console.log(url);
   this.router.navigate([url]);
- }
+  }
 }

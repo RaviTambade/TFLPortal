@@ -12,8 +12,8 @@ import { projectRoutes } from './projects/projects.module';
 const routes:Routes=[
   { path: 'home', component: HomeComponent },
   { path: 'auth', children:authRoutes },
-  {path:'timesheet', component:TimesheetComponent, children:timeSheetRoutes},
-  {path:'leave', component:LeavesComponent, children:leaveRoutes},
+  {path: 'timesheet', component:TimesheetComponent, children:timeSheetRoutes},
+  {path: 'leave', component:LeavesComponent, children:leaveRoutes},
   { path: 'projects', component:ProjectComponent ,children:projectRoutes},
 ]
 @NgModule({

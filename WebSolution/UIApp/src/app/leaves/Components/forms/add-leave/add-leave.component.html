@@ -1,4 +1,3 @@
-
 <h3 class="text-center col-6" >Leave Application Form</h3>
 <form [formGroup]="leaveForm" (ngSubmit)="onSubmit()">
   <div class="form-group col-6">
@@ -16,7 +15,7 @@
         <input type="date" class="form-control" id="toDate" [(ngModel)]="toDate" name="toDate" formControlName="toDate" (change)="calculateDateDifference()">
       </div>
       <div *ngIf="dateDifference !== null">
-        <p>Date Difference: {{ dateDifference }} days</p>
+        <p>Leave: {{ dateDifference }} days</p>
         </div>
       <div>
         <button type="submit">Apply</button>
