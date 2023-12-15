@@ -1,4 +1,4 @@
--- Active: 1696576841746@@127.0.0.1@3306@tflportal
+-- Active: 1694968636816@@127.0.0.1@3306@membershiprolesdb
 
 -- director
 INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (1,'2013-01-01',1,80000);
@@ -69,6 +69,10 @@ INSERT INTO projectallocations(membership,assigndate,releasedate,status,projecti
 INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',8,15);
 INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',9,15);
 
+INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2017-10-10','yes',1,15);
+INSERT INTO projectallocations(membership,assigndate,releasedate,status,projectid,employeeid) VALUES ('Developer','2016-02-02','2017-10-10','no',2,15);
+INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',3,15);
+INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',4,15);
 
 -- Inventory Management
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
@@ -534,6 +538,14 @@ INSERT INTO activities (activitytype,title, description, assigneddate, startdate
 ("userstory","Security Measures","As a user, I want assurance that my personal and payment information is secure on the platform.",'2023-12-04','2023-12-04','2023-12-07',12,3,4,"todo",'2023-12-04'),
 ("userstory","Language Preferences","As a user, I want to choose my preferred language for the platform.",'2023-12-04','2023-12-05','2023-12-06',13,7,7,"todo",'2023-12-04'),
 ("userstory","Accessibility Features","As a user with accessibility needs, I want the platform to be accessible and user-friendly.",'2023-12-04','2023-12-04','2023-12-08',14,6,8,"todo",'2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)VALUES
+("userstory","Automated Testing Framework","As a developer, I want an automated testing framework integrated into the project to ensure the stability of new features.",'2023-12-14','2023-12-05','2023-12-06',15,3,4,"todo",'2023-12-04'),
+("userstory","User Survey Participation","As a user, I want the opportunity to participate in surveys to provide feedback and improve the platform.",'2023-12-14','2023-12-04','2023-12-06',15,7,1,"todo",'2023-12-04'),
+("userstory","Privacy Settings","As a user, I want to control my privacy settings and data sharing preferences.",'2023-12-14','2023-12-07','2023-12-14',15,6,3,"todo",'2023-12-04'),
+("userstory","Security Measures","As a user, I want assurance that my personal and payment information is secure on the platform.",'2023-12-14','2023-12-14','2023-12-07',15,3,2,"todo",'2023-12-04'),
+("userstory","Language Preferences","As a user, I want to choose my preferred language for the platform.",'2023-12-14','2023-12-05','2023-12-14',15,7,7,"todo",'2023-12-04'),
+("userstory","Accessibility Features","As a user with accessibility needs, I want the platform to be accessible and user-friendly.",'2023-12-14','2023-12-04','2023-12-08',15,6,3,"todo",'2023-12-04');
 
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-12-01','Approved',10);
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-12-02','Approved',10);
