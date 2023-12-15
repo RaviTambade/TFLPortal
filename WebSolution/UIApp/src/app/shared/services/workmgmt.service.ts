@@ -75,9 +75,14 @@ export class WorkmgmtService {
     let url = `${this.serviceurl}/workmgmt/timesheets/employees/${employeeId}/date/${date}`;
     return this.http.get<TimesheetView>(url);
   }
+  getTmeSheetEntry(timeSheetentryId:number):Observable<TimeSheetDetails>{
+    let url = `${this.serviceurl}/workmgmt/timesheets/timesheetentries/${timeSheetentryId}`;
+    return this.http.get<TimeSheetDetails>(url);
+    
+  }
 
   getTimeSheetDetails(timeSheetId: number): Observable<TimeSheetDetails[]> {
-    let url = `${this.serviceurl}/workmgmt/timesheets/timesheetentries/${timeSheetId}`;
+    let url = `${this.serviceurl}/workmgmt/timesheets/${timeSheetId}/timesheetentries`;
     return this.http.get<TimeSheetDetails[]>(url);
   }
 
@@ -85,8 +90,8 @@ export class WorkmgmtService {
     let url = `${this.serviceurl}/workmgmt/timesheets/workduration/employees/${employeeId}/from/${fromDate}/to/${toDate}`;
     return this.http.get<any>(url);
   }
-  getActivityWiseHours(intervalType: string): Observable<workCategoryDetails[]> {
-    let url = `${this.serviceurl}/workmgmt/timesheets/workduration/${intervalType}`;
+  getEmployeeActivityWiseHours(employeeId:number,intervalType: string): Observable<workCategoryDetails[]> {
+    let url = `${this.serviceurl}/workmgmt/timesheets/employees/${employeeId}/workduration/${intervalType}`;
     return this.http.get<any>(url);
   }
 

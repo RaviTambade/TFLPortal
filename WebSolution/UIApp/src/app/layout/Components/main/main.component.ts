@@ -12,12 +12,19 @@ import { LayoutService } from '../../Services/layout.service';
   styleUrls: ['./main.component.css'],
 })
 export class MainComponent implements OnInit {
+  
   isLogInClicked: boolean = false;
   showsidebar = false;
-  constructor(private layoutSvc: LayoutService, private jwtSvc:JwtService, private router: Router) {}
-
   userName: string = '';
-  isLoggedIn:boolean=false;
+  isLoggedIn: boolean = false;
+  showUserLinks: boolean = false;
+  isExpanded = false;
+
+  constructor(
+    private layoutSvc: LayoutService,
+    private jwtSvc: JwtService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     let jwt = localStorage.getItem(LocalStorageKeys.jwt);
@@ -25,8 +32,7 @@ export class MainComponent implements OnInit {
       this.isLoggedIn = true;
     }
 
-    this.userName=this.jwtSvc.getClaimFromToken(TokenClaims.userName);
-    
+    this.userName = this.jwtSvc.getClaimFromToken(TokenClaims.userName);
 
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
@@ -39,19 +45,20 @@ export class MainComponent implements OnInit {
         }
       });
 
-
     this.layoutSvc.loginSuccess$.subscribe(() => {
       let jwt = localStorage.getItem(LocalStorageKeys.jwt);
       if (jwt != null) {
         this.isLoggedIn = true;
-        this.userName=this.jwtSvc.getClaimFromToken(TokenClaims.userName);
+        this.userName = this.jwtSvc.getClaimFromToken(TokenClaims.userName);
       }
-
     });
   }
 
   onClickLogOut() {
     localStorage.clear();
     this.isLoggedIn = false;
+  }
+  toggle() {
+    this.isExpanded = !this.isExpanded;
   }
 }

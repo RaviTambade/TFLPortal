@@ -22,8 +22,4 @@ export class EmployeeLeavesComponent implements OnInit{
     this.employees=res;
     })
   }
-
-  // onClick(){
-  //   this.router.navigate(["/leave/pendingleave/loginform"]);
-  // }
 }

@@ -1,35 +1,32 @@
 <div>
-    <h4 class=" container-fluid">
-        {{displayMonth}}
-
-    </h4>
-
+    <h5 class=" container-fluid">
+        <input type="month" class="mx-2" [(ngModel)]="displayMonth"   (change)="goToSpecificDate($event)"  />
+    </h5>
 
     <div>
         <input type="button" class="mx-2" (click)="setCurrentMonth()" value="today" />
         <input type="button" class="mx-2" (click)="decreaseMonth()" value="<" />
         <input type="button" class="mx-2" (click)="increaseMonth()" value=">" />
-        <!-- <input type="month" class="mx-2"  (change)="goToSpecificDate($event)"  /> -->
     </div>
 </div>
 
-<table class="table-bordered w-100" *ngIf="calendar">
+<table class="table-bordered table-responsive w-100" *ngIf="calendar">
     <thead>
         <tr>
-            <th class="col-1">Monday</th>
-            <th class="col-1">Tuesday</th>
-            <th class="col-1">Wednesday</th>
-            <th class="col-1">Thursday</th>
-            <th class="col-1">Friday</th>
-            <th class="col-1">Saturday</th>
-            <th class="col-1">Sunday</th>
+            <th >Monday</th>
+            <th >Tuesday</th>
+            <th >Wednesday</th>
+            <th >Thursday</th>
+            <th >Friday</th>
+            <th >Saturday</th>
+            <th >Sunday</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let row of calendar | chunk: 7; let i = index">
             <ng-container *ngFor="let c of row; let j = index">
                 <td class="calendar-day "
-                    [ngClass]="{ 'border-3 border-primary': isDateClicked(c.date) ,'red-date': isholiday(c.date),'past-date': c.isPastDate}"
+                    [ngClass]="{ 'border-3 border-primary': isDateClicked(c.date) ,  'red-date': isholiday(c.date) ||  isSunday(c.date),'past-date': c.isPastDate}"
                     (click)="onClickDate(c.date)">
                     <div [ngClass]="{'blue-date': c.isToday } ">
                         <strong>{{c.date.getDate()}}</strong> <strong

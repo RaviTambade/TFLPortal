@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 export class LayoutService {
   loginSuccess=new Subject();
   loginSuccess$=this.loginSuccess.asObservable();
-
+  
   constructor() { }
   
   onSucess(){

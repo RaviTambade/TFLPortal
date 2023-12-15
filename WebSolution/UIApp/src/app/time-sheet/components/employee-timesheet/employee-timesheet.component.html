@@ -3,6 +3,7 @@
         <app-timesheet-employee-calender (DateClick)="onDateClick($event)"></app-timesheet-employee-calender>
     </div>
     <div class="col">
-        <app-insert-time-sheet [date]="date"></app-insert-time-sheet>
+        <router-outlet></router-outlet>
+        <!-- <app-insert-time-sheet [date]="date"></app-insert-time-sheet> -->
     </div>
 </div>
