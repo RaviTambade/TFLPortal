@@ -23,7 +23,9 @@ export class TimesheetEmployeeCalenderComponent {
     'December',
   ];
   public displayMonth!: string;
-  private holidayDays: string[] = ['2023-12-02', '2023-12-17', '2023-12-15'];
+  private holidayDays: string[] = [
+    // '2023-12-02', '2023-12-17', '2023-12-15'
+  ];
   private monthIndex: number = 0;
   clickedDate :Date|undefined;
   @Output() DateClick=new EventEmitter<string>()
@@ -120,6 +122,9 @@ export class TimesheetEmployeeCalenderComponent {
   isholiday(date: Date): boolean {
     let formatedDate = this.ConvertDateYYYY_MM_DD(date);
     return this.holidayDays.includes(formatedDate);
+  }
+  isSunday(date: Date){
+    return date.getDay()==0;
   }
 
   isDateClicked(date: Date): boolean {

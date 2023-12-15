@@ -85,8 +85,8 @@ export class WorkmgmtService {
     let url = `${this.serviceurl}/workmgmt/timesheets/workduration/employees/${employeeId}/from/${fromDate}/to/${toDate}`;
     return this.http.get<any>(url);
   }
-  getActivityWiseHours(intervalType: string): Observable<workCategoryDetails[]> {
-    let url = `${this.serviceurl}/workmgmt/timesheets/workduration/${intervalType}`;
+  getEmployeeActivityWiseHours(employeeId:number,intervalType: string): Observable<workCategoryDetails[]> {
+    let url = `${this.serviceurl}/workmgmt/timesheets/employees/${employeeId}/workduration/${intervalType}`;
     return this.http.get<any>(url);
   }
 

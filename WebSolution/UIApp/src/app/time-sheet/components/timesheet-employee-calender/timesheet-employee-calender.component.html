@@ -29,7 +29,7 @@
         <tr *ngFor="let row of calendar | chunk: 7; let i = index">
             <ng-container *ngFor="let c of row; let j = index">
                 <td class="calendar-day "
-                    [ngClass]="{ 'border-3 border-primary': isDateClicked(c.date) ,'red-date': isholiday(c.date),'past-date': c.isPastDate}"
+                    [ngClass]="{ 'border-3 border-primary': isDateClicked(c.date) ,  'red-date': isholiday(c.date) ||  isSunday(c.date),'past-date': c.isPastDate}"
                     (click)="onClickDate(c.date)">
                     <div [ngClass]="{'blue-date': c.isToday } ">
                         <strong>{{c.date.getDate()}}</strong> <strong

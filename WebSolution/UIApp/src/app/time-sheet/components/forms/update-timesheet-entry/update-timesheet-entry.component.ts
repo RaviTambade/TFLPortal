@@ -27,8 +27,9 @@ export class UpdateTimesheetEntryComponent {
 
   ngOnChanges(changes: SimpleChanges) {
     this.timesheetDetails = changes['timesheetDetails'].currentValue;
-    this.timesheetDetails.fromTime = this.timesheetDetails.fromTime.split(':00').at(0)!;
-    this.timesheetDetails.toTime = this.timesheetDetails.toTime.split(':00').at(0)!;
+    console.log("🚀 ~ ngOnChanges ~ timesheetDetails:", this.timesheetDetails);
+    this.timesheetDetails.fromTime = this.timesheetDetails.fromTime.slice(0,5);
+    this.timesheetDetails.toTime = this.timesheetDetails.toTime.slice(0,5);
   }
 
   onClick() {

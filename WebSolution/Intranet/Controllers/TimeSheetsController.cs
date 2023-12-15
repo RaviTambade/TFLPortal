@@ -55,10 +55,10 @@ public class TimeSheetsController : ControllerBase
         return await _service.GetTimeSheetEntries(timeSheetId);
     }
 
-    [HttpGet("workduration/{intervalType}")]
-    public async Task<List<WorkCategoryDetails>> GetActivityWiseHours(string intervalType)
+    [HttpGet("employees/{employeeId}/workduration/{intervalType}")]
+    public async Task<List<WorkCategoryDetails>> GetActivityWiseHours(int employeeId,string intervalType)
     {
-        return await _service.GetActivityWiseHours(intervalType);
+        return await _service.GetActivityWiseHours(employeeId,intervalType);
     }
 
     [HttpGet("workduration/employees/{employeeId}/from/{fromDate}/to/{toDate}")]

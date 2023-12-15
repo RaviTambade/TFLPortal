@@ -446,17 +446,18 @@ public class TimeSheetService : ITimeSheetService
         return workCategory;
     }
 
-    public async Task<List<WorkCategoryDetails>> GetActivityWiseHours(string intervalType)
+    public async Task<List<WorkCategoryDetails>> GetActivityWiseHours(int employeeId,string intervalType)
     {
         List<WorkCategoryDetails> workCategoryDetails = new();
 
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
 
-        string query = "CALL getworkhoursbyactivity(@interval_type)";
+        string query = "CALL getemployeeworkhoursbyactivity(@employee_id,@interval_type)";
         try
         {
             MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@employee_id", employeeId);
             command.Parameters.AddWithValue("@interval_type", intervalType);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
