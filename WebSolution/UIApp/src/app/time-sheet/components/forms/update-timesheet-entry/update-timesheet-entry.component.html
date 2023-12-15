@@ -1,3 +1,4 @@
+<ng-container *ngIf="timesheetDetails">
 <h2> Update TimeSheetEntry</h2>
 <label>Activity:</label>
 <select [(ngModel)]="timesheetDetails.workCategory">
@@ -18,3 +19,5 @@
 <p>duration:{{timesheetDetails.durationInHours}}</p>
 <br>
 <button type="submit" (click)="onClick()">Update</button>
+<button type="submit" class="mx-2" (click)="onCancelClick()">Cancel</button>
+</ng-container>

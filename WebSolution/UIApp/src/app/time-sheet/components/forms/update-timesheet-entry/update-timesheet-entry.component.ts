@@ -1,4 +1,5 @@
-import {Component,EventEmitter,Input,Output, SimpleChanges} from '@angular/core';
+import {Component,EventEmitter,Input,OnInit,Output, SimpleChanges} from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 import { TimeSheetDetails } from 'src/app/time-sheet/models/TimeSheetDetails';
 
@@ -7,7 +8,7 @@ import { TimeSheetDetails } from 'src/app/time-sheet/models/TimeSheetDetails';
   templateUrl: './update-timesheet-entry.component.html',
   styleUrls: ['./update-timesheet-entry.component.css'],
 })
-export class UpdateTimesheetEntryComponent {
+export class UpdateTimesheetEntryComponent implements OnInit {
   activitiyTypes: string[] = [
     'task',
     'userstory',
@@ -23,14 +24,33 @@ export class UpdateTimesheetEntryComponent {
 
   @Input() timesheetDetails!: TimeSheetDetails;
   @Output() stateChangeEvent = new EventEmitter<boolean>();
-  constructor(private workmgmtSvc: WorkmgmtService) {}
 
-  ngOnChanges(changes: SimpleChanges) {
-    this.timesheetDetails = changes['timesheetDetails'].currentValue;
-    console.log("🚀 ~ ngOnChanges ~ timesheetDetails:", this.timesheetDetails);
-    this.timesheetDetails.fromTime = this.timesheetDetails.fromTime.slice(0,5);
-    this.timesheetDetails.toTime = this.timesheetDetails.toTime.slice(0,5);
+  date:string=''
+  constructor(private workmgmtSvc: WorkmgmtService,private route:ActivatedRoute,private router:Router) {
+
   }
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params)=>{
+      let timeSheetEntryId=params.get('id');
+      this.date=params.get('date') || '';
+      this.workmgmtSvc.getTmeSheetEntry(Number(timeSheetEntryId)).subscribe((res)=>{
+        this.timesheetDetails=res;
+        this.timesheetDetails.fromTime = this.timesheetDetails.fromTime.slice(0,5);
+        this.timesheetDetails.toTime = this.timesheetDetails.toTime.slice(0,5);
+        this.getDuration(this.timesheetDetails);
+      })
+    })
+
+ 
+  }
+
+  // ngOnChanges(changes: SimpleChanges) {
+  //   this.timesheetDetails = changes['timesheetDetails'].currentValue;
+  //   console.log("🚀 ~ ngOnChanges ~ timesheetDetails:", this.timesheetDetails);
+  //   this.timesheetDetails.fromTime = this.timesheetDetails.fromTime.slice(0,5);
+  //   this.timesheetDetails.toTime = this.timesheetDetails.toTime.slice(0,5);
+  // }
 
   onClick() {
     let timesheetDetails: TimeSheetDetails = {
@@ -50,9 +70,16 @@ export class UpdateTimesheetEntryComponent {
       .subscribe((res) => {
         if (res) {
           this.stateChangeEvent.emit(true);
+          this.router.navigate(['/timesheet/view/add',this.date]);
         }
       });
   }
+
+  onCancelClick(){
+    this.router.navigate(['/timesheet/view/add',this.date]);
+
+  }
+
   getDuration(timeSheetEnrty: TimeSheetDetails) {
     this.workmgmtSvc.getDurationOfWork(timeSheetEnrty);
   }

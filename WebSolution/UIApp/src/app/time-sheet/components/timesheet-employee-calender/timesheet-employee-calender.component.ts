@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CalendarDay } from 'src/app/calender/CalenderDay';
 
 @Component({
   selector: 'app-timesheet-employee-calender',
   templateUrl: './timesheet-employee-calender.component.html',
-  styleUrls: ['./timesheet-employee-calender.component.css']
+  styleUrls: ['./timesheet-employee-calender.component.css'],
 })
 export class TimesheetEmployeeCalenderComponent {
   public calendar: CalendarDay[] = [];
@@ -22,13 +23,13 @@ export class TimesheetEmployeeCalenderComponent {
     'November',
     'December',
   ];
-  public displayMonth!: string;
+  displayMonth: any;
   private holidayDays: string[] = [
     // '2023-12-02', '2023-12-17', '2023-12-15'
   ];
   private monthIndex: number = 0;
-  clickedDate :Date|undefined;
-  @Output() DateClick=new EventEmitter<string>()
+  clickedDate: Date | undefined;
+  @Output() DateClick = new EventEmitter<string>();
 
   projects: any[] = [
     // {
@@ -43,12 +44,17 @@ export class TimesheetEmployeeCalenderComponent {
     // },
   ];
 
+  constructor(private router: Router, private route: ActivatedRoute) {}
+
   ngOnInit(): void {
     this.projects.forEach((project) => {
       project.color = this.randomColorPicker();
     });
     this.generateCalendarDays(this.monthIndex);
-    this.clickedDate=this.calendar.find(d=> d.isToday==true)?.date;
+    this.clickedDate = this.calendar.find((d) => d.isToday == true)?.date;
+    if (this.clickedDate) {
+      this.onClickDate(this.clickedDate);
+    }
   }
 
   private generateCalendarDays(monthIndex: number): void {
@@ -58,7 +64,11 @@ export class TimesheetEmployeeCalenderComponent {
       new Date().setMonth(new Date().getMonth() + monthIndex)
     );
 
-    this.displayMonth = this.monthNames[day.getMonth()] + day.getFullYear();
+    let month: string = (day.getMonth() + 1).toString();
+    if (month.length == 1) {
+      month = '0' + month;
+    }
+    this.displayMonth = day.getFullYear() + '-' + month;
 
     let startingDateOfCalendar = this.getStartDateForCalendar(day);
 
@@ -100,7 +110,7 @@ export class TimesheetEmployeeCalenderComponent {
   }
 
   public setCurrentMonth() {
-    this.monthIndex = 0;  
+    this.monthIndex = 0;
     this.generateCalendarDays(this.monthIndex);
   }
 
@@ -115,16 +125,17 @@ export class TimesheetEmployeeCalenderComponent {
 
   onClickDate(date: Date) {
     this.clickedDate = date;
-    let convertedDate=this.ConvertDateYYYY_MM_DD(date);
-    this.DateClick.emit(convertedDate);
+    let convertedDate = this.ConvertDateYYYY_MM_DD(date);
+    this.router.navigate(['add', convertedDate], { relativeTo: this.route });
+    // this.DateClick.emit(convertedDate);
   }
 
   isholiday(date: Date): boolean {
     let formatedDate = this.ConvertDateYYYY_MM_DD(date);
     return this.holidayDays.includes(formatedDate);
   }
-  isSunday(date: Date){
-    return date.getDay()==0;
+  isSunday(date: Date) {
+    return date.getDay() == 0;
   }
 
   isDateClicked(date: Date): boolean {
@@ -138,10 +149,8 @@ export class TimesheetEmployeeCalenderComponent {
   }
 
   goToSpecificDate(e: any) {
-    let date:Date = new Date(e.target.value + '-01');
+    let date: Date = new Date(e.target.value + '-01');
     if (date) {
-      this.displayMonth = this.monthNames[date.getMonth()] + date.getFullYear();
-
       let startingDateOfCalendar = this.getStartDateForCalendar(date);
 
       let dateToAdd = startingDateOfCalendar;
@@ -167,6 +176,3 @@ export class TimesheetEmployeeCalenderComponent {
     return formattedDate;
   }
 }
-
-
-

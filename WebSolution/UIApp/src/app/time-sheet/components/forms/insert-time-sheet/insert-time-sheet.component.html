@@ -45,7 +45,8 @@
                     <td>{{timesheetDetails.fromTime}}</td>
                     <td>{{timesheetDetails.toTime}}</td>
                     <td>{{timesheetDetails.durationInHours}}</td>
-                    <td  *ngIf="isTimeSheetEditable()"><button  (click)="onClickUpdateTimeSheetDetails(timesheetDetails)">Edit</button></td>
+                    <td  *ngIf="isTimeSheetEditable()"><button  [routerLink]="['/timesheet/view/update',timesheetDetails.id,'date',timeSheet.timeSheetDate.slice(0,10)]" >Edit</button></td>
+                    <!-- <td  *ngIf="isTimeSheetEditable()"><button  (click)="onClickUpdateTimeSheetDetails(timesheetDetails)">Edit</button></td> -->
                     <td  *ngIf="isTimeSheetEditable()"><button (click)="onRemoveTimeSheetDetails(timesheetDetails.id)">Delete</button></td>
                 </tr>
 

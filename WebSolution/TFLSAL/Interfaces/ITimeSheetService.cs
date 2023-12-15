@@ -10,7 +10,7 @@ public interface ITimeSheetService
     Task<List<WorkCategoryDetails>> GetActivityWiseHours(int employeeId,string intervalType);
     Task<WorkCategory> GetWorkDurationOfEmployee(int employeeId,DateTime fromDate,DateTime toDate);
     
-
+    Task<TimeSheetEntry> GetTimeSheetEntry(int timeSheetEntryId);
     Task<bool> InsertTimeSheet(TimeSheet timeSheet);
     Task<bool> InsertTimeSheetEntry(TimeSheetEntry timeSheetEntry);
     Task<bool> ChangeTimeSheetStatus(int timeSheetId, TimeSheet timeSheet);

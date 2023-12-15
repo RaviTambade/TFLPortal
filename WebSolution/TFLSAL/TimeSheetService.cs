@@ -199,6 +199,49 @@ public class TimeSheetService : ITimeSheetService
         return status;
     }
 
+    public async Task<TimeSheetEntry> GetTimeSheetEntry(int timeSheetEntryId)
+    {
+        TimeSheetEntry timeSheetEntry = null;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query = "SELECT *  from timesheetentries WHERE id=@timeSheetEntryId";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@timeSheetEntryId", timeSheetEntryId);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {
+                TimeOnly fromtime = TimeOnly.Parse(reader["fromtime"].ToString());
+                TimeOnly totime = TimeOnly.Parse(reader["totime"].ToString());
+                string work = reader["work"].ToString();
+                string WorkCategory = reader["workcategory"].ToString();
+                string description = reader["description"].ToString();
+
+                timeSheetEntry = new TimeSheetEntry()
+                {
+                    Id = timeSheetEntryId,
+                    FromTime = fromtime,
+                    ToTime = totime,
+                    Work = work,
+                    WorkCategory = WorkCategory,
+                    Description = description,
+                };
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return timeSheetEntry;
+    }
+
     public async Task<List<TimeSheetEntry>> GetTimeSheetEntries(int timeSheetId)
     {
         List<TimeSheetEntry> timeSheetEntries = new List<TimeSheetEntry>();
@@ -446,7 +489,10 @@ public class TimeSheetService : ITimeSheetService
         return workCategory;
     }
 
-    public async Task<List<WorkCategoryDetails>> GetActivityWiseHours(int employeeId,string intervalType)
+    public async Task<List<WorkCategoryDetails>> GetActivityWiseHours(
+        int employeeId,
+        string intervalType
+    )
     {
         List<WorkCategoryDetails> workCategoryDetails = new();
 
