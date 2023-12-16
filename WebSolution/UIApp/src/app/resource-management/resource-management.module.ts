@@ -28,7 +28,8 @@ import { SalarystructureComponent } from './Components/Employees/salarystructure
     ListComponent,
     DetailsComponent,
     EmployeeDetailsComponent,
-    EmployeeSalaryStructureComponent
+    EmployeeSalaryStructureComponent,
+    SalarystructureComponent
   ]
 })
 export class ResourceManagementModule { }

@@ -141,7 +141,7 @@
             amount double Not null,
             status enum("notstarted","approved","rejected")DEFAULT 'notstarted',
             leavetype enum("casual","sick","paid","unpaid"));
-
+            
         CREATE TABLE leavespending(
                 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                 employeeid INT NOT NULL,
@@ -151,3 +151,4 @@
                 unpaidleaves INT NOT NULL,
                 CONSTRAINT fk_employeess FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
                 );
+

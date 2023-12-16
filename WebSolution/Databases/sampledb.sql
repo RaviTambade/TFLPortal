@@ -759,7 +759,7 @@ Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) va
 Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(7,45000,5000,500,500,350,3300);
 Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(8,20000,6000,600,500,400,4000);
 Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(9,19000,3200,600,600,600,2000);
- 
+Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(10,19000,3200,600,600,600,2000);
 
 Insert Into salarydisbursement(employeeid,paydate,amount) values(1,'2023-12-07',25000);
 Insert Into salarydisbursement(employeeid,paydate,amount) values(2,'2023-12-06',25000);
