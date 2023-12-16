@@ -6,6 +6,7 @@ import { InsertMemberComponent } from './Components/Members/forms/insert-member/
 import { EmployeeDetailsComponent } from './Components/Employees/employee-details/employee-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmployeeSalaryStructureComponent } from './Components/forms/employee-salary-structure/employee-salary-structure.component';
+import { SalarystructureComponent } from './Components/Employees/salarystructure/salarystructure.component';
 
 
 
@@ -15,7 +16,8 @@ import { EmployeeSalaryStructureComponent } from './Components/forms/employee-sa
     DetailsComponent,
     InsertMemberComponent,
     EmployeeDetailsComponent,
-    EmployeeSalaryStructureComponent
+    EmployeeSalaryStructureComponent,
+    SalarystructureComponent
   ],
   imports: [
     CommonModule,

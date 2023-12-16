@@ -69,4 +69,30 @@ public class EmployeesController : ControllerBase
         Employee employee = await _service.GetEmployee(userId);
         return employee;
     }
+
+    [HttpGet("salarystructure/{employeeId}")]
+    public async Task<SalaryStructureResponse> GetSalaryStructure(int employeeId)
+    {
+        SalaryStructure salaryStructure = await _service.GetSalaryStructure(employeeId);
+        Employee employee = await _service.GetEmployeeDetails(salaryStructure.EmployeeId);
+        BankAccountDTO account =await _apiService.GetUserBankAccount(employee.UserId,"I");
+        var user = await _apiService.GetUser(employee.UserId);
+        SalaryStructureResponse details = new SalaryStructureResponse()
+        {
+            EmployeeId=employeeId,
+            FirstName=user.FirstName,
+            LastName=user.LastName,
+            ContactNumber=user.ContactNumber,
+            BirthDate=user.BirthDate,
+            AccountNumber=account.AccountNumber,
+            IFSC=account.IFSCCode,
+            HRA=salaryStructure.HRA,
+            BasicSalary=salaryStructure.BasicSalary,
+            DA=salaryStructure.DA,
+            LTA=salaryStructure.LTA,
+            VariablePay=salaryStructure.VariablePay,
+            Deduction=salaryStructure.Deduction
+        };
+        return details;   
+    }
 }
