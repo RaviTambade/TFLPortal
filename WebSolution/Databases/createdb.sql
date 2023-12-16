@@ -1,4 +1,4 @@
--- Active: 1694968636816@@127.0.0.1@3306@membershiprolesdb
+-- Active: 1696576841746@@127.0.0.1@3306@tflportal
 
     DROP DATABASE IF EXISTS TFLPortal;
     CREATE DATABASE TFLPortal;
@@ -105,6 +105,8 @@
         fromtime TIME,
         totime TIME,
         timesheetid INT NOT NULL,
+        projectid  INT ,
+        CONSTRAINT fk_timesheet_projects FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE  ON DELETE CASCADE,
         CONSTRAINT fk_timesheets_timesheetentries FOREIGN KEY(timesheetid) REFERENCES timesheets(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 

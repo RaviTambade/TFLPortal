@@ -1,4 +1,4 @@
--- Active: 1694968636816@@127.0.0.1@3306@membershiprolesdb
+-- Active: 1696576841746@@127.0.0.1@3306@tflportal
 
 -- director
 INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (1,'2013-01-01',1,80000);
@@ -589,77 +589,77 @@ INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-01-19','Ap
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-01-20','Approved',2);
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-01-21','Approved',3);
 
-INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid)
+INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid,projectid)
 VALUES
-  ("Code Refactoring", "task", "Review and refactor existing code", "09:00:00", "10:30:00", 1),
-  ("Client Meeting", "meeting", "Discuss project updates with the client", "10:30:00", "12:00:00", 1),
-  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 1),
-  ("Feature Implementation", "userstory", "Implement new features in the project", "13:00:00", "14:30:00", 1),
-  ("Client Call", "meeting", "Call with New Client", "14:30:00", "15:15:00", 1),
-  ("Project Wrap-up", "task", "Finalize and document project tasks", "15:15:00", "16:45:00", 1);
-INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid)
+  ("Code Refactoring", "task", "Review and refactor existing code", "09:00:00", "10:30:00", 1,1),
+  ("Client Meeting", "meeting", "Discuss project updates with the client", "10:30:00", "12:00:00", 1,1),
+  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 1,1),
+  ("Feature Implementation", "userstory", "Implement new features in the project", "13:00:00", "14:30:00", 1,1),
+  ("Client Call", "meeting", "Call with New Client", "14:30:00", "15:15:00", 1,1),
+  ("Project Wrap-up", "task", "Finalize and document project tasks", "15:15:00", "16:45:00", 1,1);
+INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid,projectid)
 VALUES
-  ("Bug Fixing", "bug", "Identify and fix bugs in the system", "09:00:00", "10:30:00", 2),
-  ("Team Meeting", "meeting", "Team Collaboration and Project Updates", "10:30:00", "11:30:00", 2),
-  ("Lunch Break", "break", "Lunch Break", "11:30:00", "13:00:00", 2),
-  ("Data Analysis", "task", "Analyze project data and metrics", "13:00:00", "14:30:00", 2),
-  ("Team Discussion", "meeting", "Discuss future project planning", "14:30:00", "15:15:00", 2),
-  ("Coding Tasks", "task", "Code new functionalities", "15:15:00", "16:45:00", 2);
+  ("Bug Fixing", "bug", "Identify and fix bugs in the system", "09:00:00", "10:30:00", 2,1),
+  ("Team Meeting", "meeting", "Team Collaboration and Project Updates", "10:30:00", "11:30:00", 2,1),
+  ("Lunch Break", "break", "Lunch Break", "11:30:00", "13:00:00", 2,1),
+  ("Data Analysis", "task", "Analyze project data and metrics", "13:00:00", "14:30:00", 2,1),
+  ("Team Discussion", "meeting", "Discuss future project planning", "14:30:00", "15:15:00", 2,1),
+  ("Coding Tasks", "task", "Code new functionalities", "15:15:00", "16:45:00", 2,1);
 
-INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid)
+INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid,projectid)
 VALUES
-  ("UI Design", "task", "Designing User Interface for new features", "09:00:00", "10:30:00", 3),
-  ("Stakeholder Meeting", "meeting", "Meeting with Stakeholders for Project A", "10:30:00", "12:00:00", 3),
-  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 3),
-  ("Backend Coding", "task", "Coding Backend functionalities", "13:00:00", "14:30:00", 3),
-  ("Testing Session", "userstory", "Testing New Features and Functionality", "14:30:00", "15:15:00", 3),
-  ("Project Review", "meeting", "Reviewing Project Progress", "15:15:00", "16:45:00", 3);
+  ("UI Design", "task", "Designing User Interface for new features", "09:00:00", "10:30:00", 3,1),
+  ("Stakeholder Meeting", "meeting", "Meeting with Stakeholders for Project A", "10:30:00", "12:00:00", 3,1),
+  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 3,1),
+  ("Backend Coding", "task", "Coding Backend functionalities", "13:00:00", "14:30:00", 3,1),
+  ("Testing Session", "userstory", "Testing New Features and Functionality", "14:30:00", "15:15:00", 3,1),
+  ("Project Review", "meeting", "Reviewing Project Progress", "15:15:00", "16:45:00", 3,1);
 
-INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid)
+INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid,projectid)
 VALUES
-  ("Research and Analysis", "task", "Research and Analyze market trends", "09:00:00", "10:30:00", 4),
-  ("Weekly Team Meeting", "meeting", "Discussing Project Updates", "10:30:00", "12:00:00", 4),
-  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 4),
-  ("Report Writing", "task", "Writing Reports and Documentation", "13:00:00", "14:30:00", 4),
-  ("Client Presentation", "meeting", "Preparing for Client Presentation", "14:30:00", "15:15:00", 4),
-  ("Documentation", "task", "Documenting Project Tasks", "15:15:00", "18:00:00", 4);
+  ("Research and Analysis", "task", "Research and Analyze market trends", "09:00:00", "10:30:00", 4,1),
+  ("Weekly Team Meeting", "meeting", "Discussing Project Updates", "10:30:00", "12:00:00", 4,1),
+  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 4,1),
+  ("Report Writing", "task", "Writing Reports and Documentation", "13:00:00", "14:30:00", 4,1),
+  ("Client Presentation", "meeting", "Preparing for Client Presentation", "14:30:00", "15:15:00", 4,1),
+  ("Documentation", "task", "Documenting Project Tasks", "15:15:00", "18:00:00", 4,1);
 
 
-INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid)
+INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid,projectid)
 VALUES
-  ("Requirements Analysis", "task", "Analyzing client requirements for Project A", "09:00:00", "10:30:00", 5),
-  ("Team Collaboration", "meeting", "Weekly team collaboration meeting", "10:30:00", "12:00:00", 5),
-  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 5),
-  ("Software Development", "task", "Coding and developing new features", "13:00:00", "15:30:00", 5),
-  ("Client Meeting", "meeting", "Meeting with the client for Project A", "15:30:00", "17:15:00", 5),
-  ("Testing and QA", "task", "Quality assurance and testing", "17:15:00", "18:00:00", 5);
+  ("Requirements Analysis", "task", "Analyzing client requirements for Project A", "09:00:00", "10:30:00", 5,1),
+  ("Team Collaboration", "meeting", "Weekly team collaboration meeting", "10:30:00", "12:00:00", 5,1),
+  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 5,1),
+  ("Software Development", "task", "Coding and developing new features", "13:00:00", "15:30:00", 5,1),
+  ("Client Meeting", "meeting", "Meeting with the client for Project A", "15:30:00", "17:15:00", 5,1),
+  ("Testing and QA", "task", "Quality assurance and testing", "17:15:00", "18:00:00", 5,1);
 
-INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid)
+INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid,projectid)
 VALUES
-  ("Market Research", "task", "Conducting market research for Project B", "09:00:00", "10:30:00", 6),
-  ("Team Sync-up", "meeting", "Weekly team synchronization meeting", "10:30:00", "12:00:00", 6),
-  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 6),
-  ("Software Development", "userstory", "Coding and programming tasks", "13:00:00", "14:30:00", 6),
-  ("Client Demo Preparation", "meeting", "Preparing for client demo", "14:30:00", "16:00:00", 6),
-  ("Documentation", "task", "Documenting project tasks and updates", "16:00:00", "18:00:00", 6);
+  ("Market Research", "task", "Conducting market research for Project B", "09:00:00", "10:30:00", 6,1),
+  ("Team Sync-up", "meeting", "Weekly team synchronization meeting", "10:30:00", "12:00:00", 6,1),
+  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 6,1),
+  ("Software Development", "userstory", "Coding and programming tasks", "13:00:00", "14:30:00", 6,1),
+  ("Client Demo Preparation", "meeting", "Preparing for client demo", "14:30:00", "16:00:00", 6,1),
+  ("Documentation", "task", "Documenting project tasks and updates", "16:00:00", "18:00:00", 6,1);
 
-INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid)
+INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid,projectid)
 VALUES
-  ("Project Planning", "meeting", "Planning the next project sprint", "09:00:00", "10:30:00", 7),
-  ("Client Requirements Discussion", "clientcall", "Discussing client requirements", "10:30:00", "11:00:00", 7),
-  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 7),
-  ("Software Development", "userstory", "Coding and development tasks", "13:00:00", "16:30:00", 7),
-  ("Quality Assurance", "task", "Testing and quality assurance", "16:30:00", "17:15:00", 7),
-  ("Project Status Review", "meeting", "Reviewing project status and progress", "17:15:00", "18:00:00", 7);
+  ("Project Planning", "meeting", "Planning the next project sprint", "09:00:00", "10:30:00", 7,1),
+  ("Client Requirements Discussion", "clientcall", "Discussing client requirements", "10:30:00", "11:00:00", 7,1),
+  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 7,1),
+  ("Software Development", "userstory", "Coding and development tasks", "13:00:00", "16:30:00", 7,1),
+  ("Quality Assurance", "task", "Testing and quality assurance", "16:30:00", "17:15:00", 7,1),
+  ("Project Status Review", "meeting", "Reviewing project status and progress", "17:15:00", "18:00:00", 7,1);
 
-INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid)
+INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid,projectid)
 VALUES
-  ("UI Design", "task", "Designing User Interface for new features", "09:00:00", "10:30:00", 8),
-  ("Stakeholder Meeting", "meeting", "Meeting with Stakeholders for Project A", "10:30:00", "12:00:00", 8),
-  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 8),
-  ("Backend Coding", "task", "Coding Backend functionalities", "13:00:00", "14:30:00", 8),
-  ("Testing Session", "task", "Testing New Features and Functionality", "14:30:00", "15:15:00", 8),
-  ("Project Review", "meeting", "Reviewing Project Progress", "15:15:00", "16:45:00", 8);
+  ("UI Design", "task", "Designing User Interface for new features", "09:00:00", "10:30:00", 8,1),
+  ("Stakeholder Meeting", "meeting", "Meeting with Stakeholders for Project A", "10:30:00", "12:00:00", 8,1),
+  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 8,1),
+  ("Backend Coding", "task", "Coding Backend functionalities", "13:00:00", "14:30:00", 8,1),
+  ("Testing Session", "task", "Testing New Features and Functionality", "14:30:00", "15:15:00", 8,1),
+  ("Project Review", "meeting", "Reviewing Project Progress", "15:15:00", "16:45:00", 8,1);
 
 
 
