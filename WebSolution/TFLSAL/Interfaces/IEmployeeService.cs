@@ -8,4 +8,6 @@ public interface IEmployeeService {
     Task<Employee> GetEmployee(int userId); 
 
     Task<bool> InsertSalaryStructure(SalaryStructure salaryStructure); 
+
+    Task<SalaryStructure> GetSalaryStructure(int employeeId);
  }
