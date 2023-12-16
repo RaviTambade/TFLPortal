@@ -17,12 +17,13 @@ import { ActivityModule } from '../activity/activity.module';
 import { ActivityListComponent } from '../activity/Components/activity-list/activity-list.component';
 import { ActivityDetailsComponent } from '../activity/Components/activity-details/activity-details.component';
 import { EmployeeTodaysActivitiesComponent } from '../activity/Components/employee-todays-activities/employee-todays-activities.component';
+import { ProjectActivitiesComponent } from '../activity/Components/project-activities/project-activities.component';
 
 
 export const projectRoutes: Routes = [
   { path: '', component: EmployeeTodaysActivitiesComponent },
-  { path: 'activities', component: EmployeeTodaysActivitiesComponent }
-  // { path: 'activityList', component: ActivityDetailsComponent }
+  { path: 'activities', component: EmployeeTodaysActivitiesComponent },
+  { path: 'allActivities', component: ProjectActivitiesComponent }
 ];
 
 

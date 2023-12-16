@@ -29,7 +29,7 @@ export class WorkmgmtService {
   }
 
   fetchActivitiesByProject(projectId: number): Observable<Activity[]> {
-    let url = this.serviceurl + '/workmgmt/activities/projects/' + projectId;
+    let url = this.serviceurl + '/workmgmt/activities/selectedProject/' + projectId;
     console.log(url);
     return this.http.get<Activity[]>(url);
   }

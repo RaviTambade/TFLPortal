@@ -16,7 +16,7 @@ public class ActivityController : ControllerBase
 
     }
 
-    [HttpGet("projects/{projectId}")]
+    [HttpGet("selectedProject/{projectId}")]
     public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>> GetAllActivitiesByProject(int projectId)
     {
         List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetAllActivitiesByProject(projectId);

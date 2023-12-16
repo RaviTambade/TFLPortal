@@ -33,7 +33,8 @@ import { SharedModule } from './shared/shared.module';
     ProjectplanningModule,
     LeavesModule,
     LayoutModule,
-    SharedModule
+    SharedModule,
+    ActivityModule
 
   ],
 
