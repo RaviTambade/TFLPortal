@@ -1,4 +1,4 @@
--- Active: 1696576841746@@127.0.0.1@3306@tflportal
+-- Active: 1694968636816@@127.0.0.1@3306@tflportal
 
 -- director
 INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (1,'2013-01-01',1,80000);
@@ -768,12 +768,12 @@ Insert Into salarydisbursement(employeeid,paydate,amount) values(4,'2023-12-04',
 Insert Into salarydisbursement(employeeid,paydate,amount) values(5,'2023-12-03',25000);
 Insert Into salarydisbursement(employeeid,paydate,amount) values(6,'2023-12-02',25000);
 
--- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(1,'2023-04-03','2023-05-05',26000,"notstarted","casual");
--- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(2,'2023-04-03','2023-05-05',26000,"notstarted","casual");
---  Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(3,'2023-05-03','2023-05-20',30000,"approved","paternity");
--- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(4,'2023-06-03','2023-05-15',40000,"approved","sick");
--- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(5,'2023-07-03','2023-05-25',50000,"rejected","study");
--- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(6,'2023-08-03','2023-05-15',40000,"approved","comp off");
+Insert Into leaves(employeeid,fromdate,todate,status,leavetype) values(1,'2023-04-03','2023-05-05',"notsanction","casual");
+Insert Into leaves(employeeid,fromdate,todate,status,leavetype) values(2,'2023-04-03','2023-05-05',"sanction","casual");
+ Insert Into leaves(employeeid,fromdate,todate,status,leavetype) values(3,'2023-05-03','2023-05-20',"applied","casual");
+Insert Into leaves(employeeid,fromdate,todate,status,leavetype) values(4,'2023-02-03','2023-02-15',"sanction","casual");
+-- Insert Into leaves(employeeid,fromdate,todate,status,leavetype) values(5,'2023-07-03','2023-05-25',"rejected","study");
+-- Insert Into leaves(employeeid,fromdate,todate,status,leavetype) values(6,'2023-08-03','2023-05-15',40000,"approved","comp off");
 -- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(7,'2023-06-03','2023-05-13',40000,"rejected","bereavement");
 -- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(8,'2023-01-03','2023-05-25',50000,"approved","study");
 -- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(9,'2023-08-03','2023-07-15',40000,"rejected","comp off");

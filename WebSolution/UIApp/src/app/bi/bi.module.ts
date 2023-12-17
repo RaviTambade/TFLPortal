@@ -8,6 +8,7 @@ import { MonthlyprogressreviewComponent } from './monthlyprogressreview/monthlyp
 import { DailyreviewprogressComponent } from './dailyreviewprogress/dailyreviewprogress.component';
 import { ProjectactivitiesPiechartComponent } from './projectactivities-piechart/projectactivities-piechart.component';
 import { VerticalBarchartComponent } from './vertical-barchart/vertical-barchart.component';
+import { MonthlyLeaveChartComponent } from './monthly-leave-chart/monthly-leave-chart.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { VerticalBarchartComponent } from './vertical-barchart/vertical-barchart
     MonthlyprogressreviewComponent,
     DailyreviewprogressComponent,
     ProjectactivitiesPiechartComponent,
-    VerticalBarchartComponent
+    VerticalBarchartComponent,
+    MonthlyLeaveChartComponent
   ],
   imports: [
     CommonModule
@@ -32,7 +34,8 @@ import { VerticalBarchartComponent } from './vertical-barchart/vertical-barchart
     ProjectactivitiesPiechartComponent,
     BarchartComponent,
     VerticalBarchartComponent,
-    PiechartComponent
+    PiechartComponent,
+    MonthlyLeaveChartComponent
 
   ]
 })

@@ -1,4 +1,4 @@
--- Active: 1696576841746@@127.0.0.1@3306@tflportal
+-- Active: 1694968636816@@127.0.0.1@3306@tflportal
 
     DROP DATABASE IF EXISTS TFLPortal;
     CREATE DATABASE TFLPortal;
@@ -135,11 +135,10 @@
         CREATE TABLE leaves(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             employeeid INT NOT NULL,
-            CONSTRAINT fk_employee8_projectmembers1 FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
+            CONSTRAINT fk_projectmembers1 FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
             fromdate DateTime,
             todate DateTime,
-            amount double Not null,
-            status enum("notstarted","approved","rejected")DEFAULT 'notstarted',
+            status enum("notsanction","sanction","applied")DEFAULT 'applied',
             leavetype enum("casual","sick","paid","unpaid"));
             
         CREATE TABLE leavespending(
