@@ -80,4 +80,13 @@ public class LeavesApplicationController : ControllerBase
         Console.WriteLine(status);
         return status;
     }
+
+    [HttpGet]
+    [Route ("leavescount/{employeeId}")]
+    public async Task<List<LeaveCount>> GetLeavesCount(int employeeId)
+    {
+        List<LeaveCount> leaves =await _service.GetLeavesCount(employeeId);
+        Console.WriteLine(leaves);
+        return leaves;
+    }
 }
