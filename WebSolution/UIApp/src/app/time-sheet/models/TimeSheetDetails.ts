@@ -1,4 +1,3 @@
-import { Activity } from "src/app/activity/Models/Activity";
 
 export class TimeSheetDetails{
     constructor(public id:number,
@@ -8,6 +7,8 @@ export class TimeSheetDetails{
                 public fromTime:string,
                 public toTime:string,
                 public timeSheetId:number,
+                public projectId:number,
+                public projectName:string,
                 public durationInMinutes:number,
                 public durationInHours:string){
     }

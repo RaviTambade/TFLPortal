@@ -1,4 +1,4 @@
--- Active: 1694968636816@@127.0.0.1@3306@tflportal
+-- Active: 1696576841746@@127.0.0.1@3306@tflportal
 
 -- director
 INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (1,'2013-01-01',1,80000);
@@ -60,6 +60,7 @@ INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid
 INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Manager','2016-10-10','yes',8,8);
 INSERT INTO projectallocations(membership,assigndate,releasedate,status,projectid,employeeid) VALUES ('Manager','2016-10-10','2017-10-10','no',9,9);
 INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2023-11-02','yes',1,10);
+INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2023-11-02','yes',2,10);
 INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2023-11-03','yes',2,11);
 INSERT INTO projectallocations(membership,assigndate,releasedate,status,projectid,employeeid) VALUES ('Developer','2023-11-13','2017-10-10','no',3,12);
 INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2017-02-02','yes',4,13);

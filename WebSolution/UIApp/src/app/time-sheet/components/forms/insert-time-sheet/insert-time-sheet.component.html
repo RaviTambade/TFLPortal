@@ -27,27 +27,31 @@
     <p> Employee Name:{{timeSheet?.employeeName}}</p>
     <button *ngIf="isTimeSheetEditable()" (click)="onClickAddTimeSheetDetails()"> Add </button>
 
-    <table class="table-bordered" *ngIf="timeSheet">
+    <table class="table-bordered" >
         <thead>
             <tr>
-                <th>Category</th>
-                <th>work</th>
-                <th>StartTime</th>
-                <th>EndTime</th>
+                <th>fromtime</th>
+                <th>toTime</th>
+                <th>ProjectName</th>
+                <th>Category:</th>
+                <th>Work:</th>
+                <th>Description:</th>
                 <th>Duration</th>
             </tr>
         </thead>
         <ng-container *ngIf=" timeSheet && timeSheet.timeSheetDetails.length>0">
-            <tbody *ngFor="let timesheetDetails of timeSheet.timeSheetDetails">
+            <tbody *ngFor="let timeSheetDetail of timeSheet.timeSheetDetails">
                 <tr>
-                    <td>{{timesheetDetails.workCategory }}</td>
-                    <td>{{timesheetDetails.work }}</td>
-                    <td>{{timesheetDetails.fromTime}}</td>
-                    <td>{{timesheetDetails.toTime}}</td>
-                    <td>{{timesheetDetails.durationInHours}}</td>
-                    <td  *ngIf="isTimeSheetEditable()"><button  [routerLink]="['/timesheet/view/update',timesheetDetails.id,'date',timeSheet.timeSheetDate.slice(0,10)]" >Edit</button></td>
+                    <td> {{timeSheetDetail.fromTime }}</td>
+                    <td> {{timeSheetDetail.toTime }}</td>
+                    <td> {{timeSheetDetail.projectName }}</td>
+                    <td>{{timeSheetDetail.workCategory}}</td>
+                    <td> {{timeSheetDetail.work}}</td>
+                    <td> {{timeSheetDetail.description}}</td>
+                    <td> {{timeSheetDetail.durationInHours }}</td>
+                    <td  *ngIf="isTimeSheetEditable()"><button  [routerLink]="['/timesheet/view/update',timeSheetDetail.id,'date',timeSheet.timeSheetDate.slice(0,10)]" >Edit</button></td>
                     <!-- <td  *ngIf="isTimeSheetEditable()"><button  (click)="onClickUpdateTimeSheetDetails(timesheetDetails)">Edit</button></td> -->
-                    <td  *ngIf="isTimeSheetEditable()"><button (click)="onRemoveTimeSheetDetails(timesheetDetails.id)">Delete</button></td>
+                    <td  *ngIf="isTimeSheetEditable()"><button (click)="onRemoveTimeSheetDetails(timeSheetDetail.id)">Delete</button></td>
                 </tr>
 
             </tbody>

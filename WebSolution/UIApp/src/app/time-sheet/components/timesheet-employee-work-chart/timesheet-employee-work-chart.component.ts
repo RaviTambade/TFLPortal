@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Chart } from 'chart.js';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 import { workCategoryDetails } from '../../models/workCategoryDetails';
-import { WorkCategory } from '../../models/workCategory';
 import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
 
 type Week = {
@@ -18,7 +17,7 @@ export class TimesheetEmployeeWorkChartComponent {
   employeeId: number = 0;
   fromDate: string | undefined;
   toDate: string | undefined;
-  workCategory: WorkCategory={
+  workCategory: workCategoryDetails={
     userStory: 0,
     task: 0,
     bug: 0,
@@ -27,7 +26,8 @@ export class TimesheetEmployeeWorkChartComponent {
     learning: 0,
     mentoring: 0,
     clientCall: 0,
-    other: 0
+    other: 0,
+    label: ''
   } ;
   intervals: string[] = ['week', 'month', 'year'];
   selectedInterval: string = this.intervals[0];
@@ -121,7 +121,7 @@ export class TimesheetEmployeeWorkChartComponent {
       .subscribe((res) => {
         this.workCategoryDetails = res;
         this.chart.data.datasets = [];
-        this.workCategory=new WorkCategory(0,0,0,0,0,0,0,0,0);
+        this.workCategory=new workCategoryDetails(0,0,0,0,0,0,0,0,0,'');
         this.workCategoryDetails.forEach((category, index) => {
           let cl = this.randomColorPicker();
           let obj = {
