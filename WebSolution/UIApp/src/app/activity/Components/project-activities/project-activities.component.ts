@@ -4,6 +4,7 @@ import { Project } from 'src/app/projects/Models/project';
 import { Activity } from '../../Models/Activity';
 import { ProjectService } from 'src/app/shared/services/project.service';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
+import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
 
 @Component({
   selector: 'project-activities',
@@ -14,7 +15,6 @@ export class ProjectActivitiesComponent implements OnInit {
   projects: Project[] = [];
   activities: Activity[] = [];
   projectId: number = 0;
-
   visibleActivities: Activity[]=[];
 
   checkStatusTodo: boolean = true;

@@ -64,6 +64,14 @@ END;
 
 CALL getemployeeworkhoursbyactivity(10,'month',0);
 
+CREATE PROCEDURE getActivityCounts(OUT  todo INT,OUT inprogress INT,OUT completed INT)
+BEGIN
+    SELECT COUNT(*) INTO todo FROM activities WHERE status = 'todo';
+    SELECT COUNT(*) INTO inprogress FROM activities WHERE status = 'inprogress';
+    SELECT COUNT(*) INTO completed FROM activities WHERE status = 'completed';
+END;
+
+
 -- DELIMITER //
 -- CREATE PROCEDURE GetEmployeeWorkingHours(
 --     IN projectId INT,
