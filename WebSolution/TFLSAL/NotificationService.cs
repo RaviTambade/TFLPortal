@@ -40,7 +40,7 @@ public class NotificationService : INotificationService
         {
             MimePart attachment = new MimePart("application", "octet-stream")
             {
-                Content = new MimeContent(System.IO.File.OpenRead("wwwroot/"+filepath)),
+                Content = new MimeContent(System.IO.File.OpenRead(filepath)),
                 ContentDisposition = new ContentDisposition(ContentDisposition.Attachment),
                 ContentTransferEncoding = ContentEncoding.Base64,
                 FileName = filepath.Split('/').Last()

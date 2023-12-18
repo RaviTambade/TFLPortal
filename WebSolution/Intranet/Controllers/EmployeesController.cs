@@ -13,12 +13,28 @@ public class EmployeesController : ControllerBase
 {
     private readonly IEmployeeService _service;
     private readonly ExternalApiService _apiService;
+    private readonly IPdfGeneratorService _pdfGenratorService;
+    private readonly INotificationService _notificationService;
 
-    public EmployeesController(IEmployeeService service, ExternalApiService apiService)
+    public EmployeesController(
+        IEmployeeService service,
+        ExternalApiService apiService,
+        IPdfGeneratorService pdfGenratorService,
+        INotificationService notificationService
+    )
     {
         _service = service;
         _apiService = apiService;
+        _pdfGenratorService = pdfGenratorService;
+        _notificationService = notificationService;
     }
+
+    // [HttpGet("genratepdf")]
+    // public void GenerateSalarySlip()
+    // {
+    // _pdfGenratorService.GenerateSalarySlip();
+
+    // }
 
     [HttpGet("employee/{employeeId}")]
     public async Task<EmployeeResponse> GetEmployeeDetails(int employeeId)
@@ -40,8 +56,11 @@ public class EmployeesController : ControllerBase
     [HttpPost("employee/salary/{employeeId}")]
     public async Task<bool> PaySalary(int employeeId)
     {
-        Employee employee = await _service.GetEmployeeDetails( employeeId);
-        var userAccount = await _apiService.GetUserBankAccount(userId: employee.UserId, userType: "I");
+        Employee employee = await _service.GetEmployeeDetails(employeeId);
+        var userAccount = await _apiService.GetUserBankAccount(
+            userId: employee.UserId,
+            userType: "I"
+        );
         FundTransferRequestDTO request = new FundTransferRequestDTO()
         {
             FromAcct = "39025546601",
@@ -51,15 +70,27 @@ public class EmployeesController : ControllerBase
             Amount = employee.Salary,
             TransactionType = "Transfer"
         };
-        var transactionId = await _apiService.FundTransfer(request);
+        int transactionId = await _apiService.FundTransfer(request);
+
         Console.WriteLine(transactionId);
+
+        SalaryStructureDTO? salaryDetails = await GetSalaryStructure(employeeId);
+        string? filepath = _pdfGenratorService.GenerateSalarySlip(salaryDetails);
+        Console.WriteLine(filepath);
+
+        List<string> to = new List<string>() {"sahilmankar311@gmail.com" };
+        string subject = "Your Salry Slip";
+        string body = "Find Your Salaryslip Attached below";
+        List<string> filePaths = new List<string>() { filepath };
+        EmailMessage? email = new EmailMessage(to, subject, body, filePaths);
+        await _notificationService.SendEmail(email);
         return transactionId > 0;
     }
 
     [HttpPost("employee/salary")]
     public async Task<bool> InsertSalaryStructure(SalaryStructure salaryStructure)
     {
-        bool status =await _service.InsertSalaryStructure(salaryStructure);
+        bool status = await _service.InsertSalaryStructure(salaryStructure);
         return status;
     }
 
@@ -71,28 +102,41 @@ public class EmployeesController : ControllerBase
     }
 
     [HttpGet("salarystructure/{employeeId}")]
-    public async Task<SalaryStructureResponse> GetSalaryStructure(int employeeId)
+    public async Task<SalaryStructureDTO> GetSalaryStructure(int employeeId)
     {
         SalaryStructure salaryStructure = await _service.GetSalaryStructure(employeeId);
         Employee employee = await _service.GetEmployeeDetails(salaryStructure.EmployeeId);
-        BankAccountDTO account =await _apiService.GetUserBankAccount(employee.UserId,"I");
+        BankAccountDTO account = await _apiService.GetUserBankAccount(employee.UserId, "I");
         var user = await _apiService.GetUser(employee.UserId);
-        SalaryStructureResponse details = new SalaryStructureResponse()
+        SalaryStructureDTO salaryDetails = new SalaryStructureDTO()
         {
-            EmployeeId=employeeId,
-            FirstName=user.FirstName,
-            LastName=user.LastName,
-            ContactNumber=user.ContactNumber,
-            BirthDate=user.BirthDate,
-            AccountNumber=account.AccountNumber,
-            IFSC=account.IFSCCode,
-            HRA=salaryStructure.HRA,
-            BasicSalary=salaryStructure.BasicSalary,
-            DA=salaryStructure.DA,
-            LTA=salaryStructure.LTA,
-            VariablePay=salaryStructure.VariablePay,
-            Deduction=salaryStructure.Deduction
+            EmployeeId = employeeId,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            ContactNumber = user.ContactNumber,
+            BirthDate = user.BirthDate,
+            AccountNumber = account.AccountNumber,
+            IFSC = account.IFSCCode,
+            HRA = salaryStructure.HRA,
+            BasicSalary = salaryStructure.BasicSalary,
+            DA = salaryStructure.DA,
+            LTA = salaryStructure.LTA,
+            VariablePay = salaryStructure.VariablePay,
+            Deduction = salaryStructure.Deduction
         };
-        return details;   
+
+         var filepath=   _pdfGenratorService.GenerateSalarySlip(salaryDetails);
+         Console.WriteLine(filepath);
+
+        List<string> to= new List<string>(){"sahilmankar311@gmail.com"};
+        string subject= "Your Salry Slip";
+        string body="Find Your Salaryslip Attached below";
+        List<string> filePaths=new List<string>(){filepath};
+
+
+        EmailMessage? email =new EmailMessage(to,subject,body,filePaths);
+        await _notificationService.SendEmail(email);
+
+        return salaryDetails;
     }
 }

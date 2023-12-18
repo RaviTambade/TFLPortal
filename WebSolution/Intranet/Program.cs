@@ -25,6 +25,7 @@ builder.Services.AddScoped<IProjectAllocationService, ProjectAllocationService>(
 builder.Services.AddScoped<ILeaveApplicationService, LeaveApplicationService>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<INotificationService, NotificationService>();
+builder.Services.AddScoped<IPdfGeneratorService, PdfGeneratorService>();
 
 builder.Services.AddHttpClient();
 
