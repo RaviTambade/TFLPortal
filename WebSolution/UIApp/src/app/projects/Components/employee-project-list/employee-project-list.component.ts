@@ -16,7 +16,7 @@ selectedProject:Project|undefined;
   projects: Project[] = [];
   
   ngOnInit(): void {
-    this.service.getProjectOfEmployee(this.employeeId).subscribe((res) => {
+    this.service.getProjectsOfEmployee(this.employeeId).subscribe((res) => {
       this.projects = res;
       this.selectedProject=this.projects[0];
     });

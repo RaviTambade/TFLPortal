@@ -49,7 +49,7 @@ export class InsertTimeSheetEntryComponent implements OnInit {
   ngOnInit(): void {
     let employeeId = localStorage.getItem(LocalStorageKeys.employeeId);
     if (employeeId != null) {
-      this.projectSvc .getProjectOfEmployee(Number(employeeId)) .subscribe((res) => {
+      this.projectSvc .getProjectsOfEmployee(Number(employeeId)) .subscribe((res) => {
           this.projects = res;
           this.timeSheetDetail.projectId=this.projects[0].id;
           this.timeSheetDetail.projectName=this.projects[0].title;

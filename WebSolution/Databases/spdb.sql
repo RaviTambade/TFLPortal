@@ -1,7 +1,9 @@
 -- Active: 1696576841746@@127.0.0.1@3306@tflportal
 DROP PROCEDURE IF EXISTS getemployeeworkhoursbyactivity;
-CREATE PROCEDURE getemployeeworkhoursbyactivity(IN employee_id INT,IN interval_type VARCHAR (20))
+CREATE PROCEDURE getemployeeworkhoursbyactivity(IN employee_id INT,IN interval_type VARCHAR (20),IN project_id INT)
 BEGIN
+  SET project_id = CASE WHEN project_id = 0 THEN NULL ELSE project_id END;
+
     IF interval_type='year' THEN 
     SELECT MONTHNAME(timesheets.timesheetdate) as label,
     CAST(((SUM( CASE WHEN  timesheetentries.workcategory="userstory" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as userstory,
@@ -16,7 +18,7 @@ BEGIN
     CAST(((SUM( CASE WHEN  timesheetentries.workcategory="other" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as other
     FROM timesheetentries
     INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
-    WHERE timesheets.employeeid=employee_id AND YEAR(timesheets.timesheetdate)=YEAR(CURDATE())
+    WHERE timesheets.employeeid=employee_id AND YEAR(timesheets.timesheetdate)=YEAR(CURDATE()) AND timesheetentries.projectid=COALESCE(project_id,timesheetentries.projectid)
     GROUP BY MONTH(timesheets.timesheetdate);
 
  ELSEIF interval_type='month' THEN 
@@ -35,7 +37,7 @@ BEGIN
     CAST(((SUM( CASE WHEN  timesheetentries.workcategory="other" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as other
     FROM timesheetentries   
     INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
-    WHERE  timesheets.employeeid=employee_id AND MONTH(timesheets.timesheetdate)=MONTH(CURDATE()) and YEAR (timesheets.timesheetdate)=YEAR(CURDATE())
+    WHERE  timesheets.employeeid=employee_id AND MONTH(timesheets.timesheetdate)=MONTH(CURDATE()) AND YEAR (timesheets.timesheetdate)=YEAR(CURDATE()) AND timesheetentries.projectid=COALESCE(project_id,timesheetentries.projectid)
     GROUP BY WEEK(timesheets.timesheetdate);
 
  ELSEIF interval_type='week' THEN 
@@ -52,16 +54,15 @@ BEGIN
     CAST(((SUM( CASE WHEN  timesheetentries.workcategory="other" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as other
     FROM timesheetentries
     INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
-    WHERE  timesheets.employeeid=employee_id AND timesheets.timesheetdate >= DATE_ADD(CURDATE(), INTERVAL(1-DAYOFWEEK(CURDATE())) DAY) and 
-    timesheets.timesheetdate<= DATE_ADD(CURDATE(), INTERVAL(7-DAYOFWEEK(CURDATE())) DAY) 
+    WHERE  timesheets.employeeid=employee_id AND timesheets.timesheetdate >= DATE_ADD(CURDATE(), INTERVAL(1-DAYOFWEEK(CURDATE())) DAY) AND 
+    timesheets.timesheetdate<= DATE_ADD(CURDATE(), INTERVAL(7-DAYOFWEEK(CURDATE())) DAY)  AND timesheetentries.projectid=COALESCE(project_id,timesheetentries.projectid)
     GROUP BY timesheets.timesheetdate;
   END IF;
 END;
 
 
 
-CALL getemployeeworkhoursbyactivity(10,'week');
-
+CALL getemployeeworkhoursbyactivity(10,'month',0);
 
 -- DELIMITER //
 -- CREATE PROCEDURE GetEmployeeWorkingHours(

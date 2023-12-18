@@ -441,7 +441,8 @@ public class TimeSheetService : ITimeSheetService
 
     public async Task<List<WorkCategoryDetails>> GetActivityWiseHours(
         int employeeId,
-        string intervalType
+        string intervalType,
+        int projectId
     )
     {
         List<WorkCategoryDetails> workCategoryDetails = new();
@@ -449,12 +450,13 @@ public class TimeSheetService : ITimeSheetService
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
 
-        string query = "CALL getemployeeworkhoursbyactivity(@employee_id,@interval_type)";
+        string query = "CALL getemployeeworkhoursbyactivity(@employee_id,@interval_type,@project_id)";
         try
         {
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@employee_id", employeeId);
             command.Parameters.AddWithValue("@interval_type", intervalType);
+            command.Parameters.AddWithValue("@project_id", projectId);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())

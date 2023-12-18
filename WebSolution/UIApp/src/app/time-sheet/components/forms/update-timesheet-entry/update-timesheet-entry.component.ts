@@ -61,7 +61,7 @@ export class UpdateTimesheetEntryComponent implements OnInit {
 
     let employeeId = localStorage.getItem(LocalStorageKeys.employeeId);
     if (employeeId != null) {
-      this.projectSvc .getProjectOfEmployee(Number(employeeId)) .subscribe((res) => {
+      this.projectSvc .getProjectsOfEmployee(Number(employeeId)) .subscribe((res) => {
           this.projects = res;
         });
     }
