@@ -8,11 +8,11 @@ public class TimeSheet
     public string? Status { get; set; }
     public int EmployeeId { get; set; }
     public DateTime TimeSheetDate { get; set; }
-    public DateTime StatusChangedDate { get; set; }
+    public DateTime? StatusChangedDate { get; set; }
 
     //navigational property
    public Employee? Employee { get; set; }
-   public List<TimeSheetEntry>? TimeSheetEntries { get; set; }
+   public List<TimeSheetEntry>? TimeSheetDetails { get; set; }
 
    
 }

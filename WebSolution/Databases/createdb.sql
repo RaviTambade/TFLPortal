@@ -1,6 +1,6 @@
--- Active: 1694968636816@@127.0.0.1@3306@pms
+-- Active: 1696576841746@@127.0.0.1@3306@tflportal
 
-    DROP DATABASE IF EXISTS PMS;
+    DROP DATABASE IF EXISTS TFLPortal;
     CREATE DATABASE TFLPortal;
     USE TFLPortal;
 
@@ -46,7 +46,7 @@
             projectid INT NOT NULL,
             CONSTRAINT fk_projects_project1 FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
             employeeid INT NOT NULL,
-            CONSTRAINT fk_employee_projectmembers1 FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
+            CONSTRAINT fk_employee_projectmemberss FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
     CREATE TABLE activities(
@@ -105,18 +105,13 @@
         fromtime TIME,
         totime TIME,
         timesheetid INT NOT NULL,
+        projectid  INT ,
+        CONSTRAINT fk_timesheet_projects FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE  ON DELETE CASCADE,
         CONSTRAINT fk_timesheets_timesheetentries FOREIGN KEY(timesheetid) REFERENCES timesheets(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
-    CREATE TABLE (
-            id INT PRIMARY KEY AUTO_INCREMENT,
-            sprintid INT NOT NULL,
-            activityid INT NOT NULL,
-            CONSTRAINT fk_sprints FOREIGN KEY (sprintid) REFERENCES sprints(id) ON UPDATE CASCADE ON DELETE CASCADE,
-            CONSTRAINT fk_activity FOREIGN KEY (activityid) REFERENCES activities(id) ON UPDATE CASCADE ON DELETE CASCADE
-    );
 
-    CREATE TABLE employeesalarystructures(
+    CREATE TABLE salaries(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             employeeid INT NOT NULL,
             CONSTRAINT fk_employee_projectmembers1 FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -129,7 +124,7 @@
             );
 
 
-       CREATE TABLE employeesalaries(
+       CREATE TABLE salarydisbursement(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             employeeid INT NOT NULL,
             CONSTRAINT fk_employee2_projectmembers1 FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -137,11 +132,22 @@
             amount double Not null
             );
 
-             CREATE TABLE employeeleaves(
+        CREATE TABLE leaves(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             employeeid INT NOT NULL,
-            CONSTRAINT fk_employee3_projectmembers1 FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
+            CONSTRAINT fk_projectmembers1 FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
             fromdate DateTime,
             todate DateTime,
-            amount double Not null,
-            leavetype enum("casual","privileged","sick","maternity","marriage","paternity","bereavement","comp off","loss of pay","study","religious festival","sabbatical"));
+            status enum("notsanction","sanction","applied")DEFAULT 'applied',
+            leavetype enum("casual","sick","paid","unpaid"));
+            
+        CREATE TABLE leavespending(
+                id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                employeeid INT NOT NULL,
+                sickleaves INT NOT NULL,
+                casualleaves INT NOT NULL,
+                paidleaves INT NOT NULL ,
+                unpaidleaves INT NOT NULL,
+                CONSTRAINT fk_employeess FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
+                );
+

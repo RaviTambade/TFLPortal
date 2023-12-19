@@ -14,7 +14,7 @@ export class UnassignedEmployeeOfProjectComponent {
   constructor(private service:ProjectsService){}
 
   ngOnInit(): void {
-    this.service.getUnssignedEmployeesOfProject(this.projectId).subscribe((res)=>{
+    this.service.getUnassignedEmployeesOfProject(this.projectId).subscribe((res)=>{
       this.unassignedEmployees=res;
       console.log(res);
     }) 

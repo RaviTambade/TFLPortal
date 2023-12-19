@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-secondary-subtle">
+    <a class="navbar-brand" [routerLink]="['home']">TFLPortal</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+    <div class=" collapse navbar-collapse d-sm-inline-flex justify-content-end" id="navbarToggleExternalContent">
+        <ul class="navbar-nav">
+            <li class="nav-item ">
+                <a class="nav-link" [routerLink]="['home']">Home </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">Notifications</a>
+            </li>
+            <li class="nav-item ">
+                <a *ngIf="isLoggedIn==false" class="nav-link" [routerLink]="['/auth/login']">Login</a>
+                <a *ngIf="isLoggedIn" class="nav-link" (mouseenter)="showUserLinks = true"
+                    (mouseleave)="showUserLinks = false">
+                    welcome {{userName}}
+                    <div *ngIf="showUserLinks" class="card position-absolute text-center ">
+                        <a class="nav-link text-dark">Profile</a>
+                        <a class="nav-link text-dark">Orders</a>
+                        <a class="nav-link text-dark">Payment </a>
+                    </div>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="isLoggedIn" class="nav-link" [routerLink]="['home']" (click)="onClickLogOut()"> LogOut
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<app-left-sidebar *ngIf="showsidebar"></app-left-sidebar>
+
+
+<div *ngIf="!showsidebar">
+    <router-outlet></router-outlet>
+</div>

@@ -13,7 +13,7 @@ import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
   styleUrls: ['./add-activity.component.css']
 })
 export class AddActivityComponent implements OnInit {
-constructor(private projectSvc:ProjectService,private workMgmtSvc:WorkmgmtService,private hrSvc:HrService) {}
+constructor(private projectSvc:ProjectService,private workMgmtSvc:WorkmgmtService) {}
 projectId:any;
 employees:any[]=[];
 projects:Project[]=[];
@@ -84,12 +84,9 @@ onSubmit(){
 onChange(e:any){
  this.projectId= e.target.value;
  console.log(e.target.value);
-  this.hrSvc.getAllEmployees(this.projectId).subscribe((res)=>{
+  this.projectSvc.getAllEmployees(this.projectId).subscribe((res)=>{
     console.log(res);
     this.employees=res;
   })
 }
-
-
-
 }

@@ -4,22 +4,24 @@
         <table class="table-bordered text-center">
             <thead>
                 <tr>
+                    <th>fromtime</th>
+                    <th>toTime</th>
+                    <th>ProjectName</th>
                     <th>Category:</th>
                     <th>Work:</th>
                     <th>Description:</th>
-                    <th>fromtime</th>
-                    <th>toTime</th>
                     <th>Duration</th>
                 </tr>
             </thead>
-            <tbody *ngFor=" let entry of timeSheetEntries">
+            <tbody *ngFor=" let timeSheetDetail of timeSheetDetails">
                 <tr>
-                    <td>{{entry.workCategory}}</td>
-                    <td> {{entry.work}}</td>
-                    <td> {{entry.description}}</td>
-                    <td> {{entry.fromTime }}</td>
-                    <td> {{entry.toTime }}</td>
-                    <td> {{entry.durationInHours }}</td>
+                    <td> {{timeSheetDetail.fromTime }}</td>
+                    <td> {{timeSheetDetail.toTime }}</td>
+                    <td> {{timeSheetDetail.projectName }}</td>
+                    <td>{{timeSheetDetail.workCategory}}</td>
+                    <td> {{timeSheetDetail.work}}</td>
+                    <td> {{timeSheetDetail.description}}</td>
+                    <td> {{timeSheetDetail.durationInHours }}</td>
                 </tr>
             </tbody>
         </table>

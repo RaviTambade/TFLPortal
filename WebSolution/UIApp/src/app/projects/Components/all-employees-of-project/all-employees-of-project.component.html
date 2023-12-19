@@ -3,7 +3,7 @@
     <option *ngFor="let project of projects" [value]="project.id">{{project.title}}</option>
   </select>
 
-  <div *ngIf="selectedProject">
+  <div>
   <div class="container">
   <h4>All AssignedEmployee of project</h4>
     <div class="card">
@@ -12,13 +12,16 @@
         <th>FullName</th>
         <th>Role</th>
         <th>AssignDate</th>
+        <th>Action</th>
     </tr>
     <tr *ngFor="let employee of assignedEmployees">
         <td>{{employee.fullName}}</td>
         <td>{{employee.membership}}</td>
         <td>{{employee.assignDate | date}}</td>
+        <td><button (click)="onSubmit(employee.projectId,employee.employeeId)">Release Employee</button></td>
     </tr>
 </table>
+<div >
 </div>
 </div>
 </div>

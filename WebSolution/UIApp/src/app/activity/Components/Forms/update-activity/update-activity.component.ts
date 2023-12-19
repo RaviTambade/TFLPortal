@@ -63,6 +63,10 @@ export class UpdateActivityComponent implements OnInit{
   
    }
 
+   getEvent(event:any){
+  console.log(event);
+   }
+
 update(){
   this.status=this.activityform.get("status")?.value;
   this.workMgmtSvc.updateActivity(this.status,this.activityId).subscribe((res)=>{

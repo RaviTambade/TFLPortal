@@ -3,52 +3,66 @@
         (stateChangeEvent)="onAddStateChange($event)"></app-insert-time-sheet-entry>
 </ng-template>
 
-<ng-template #updateTimeSheetEntry>
-    <app-update-timesheet-entry *ngIf="selectedTimeSheetEntrytoUpdate" [timeSheetEntry]="selectedTimeSheetEntrytoUpdate"
+<ng-template #updateTimeSheetDetails>
+    <app-update-timesheet-entry *ngIf="selectedTimeSheetDetailstoUpdate"
+        [timesheetDetails]="selectedTimeSheetDetailstoUpdate"
         (stateChangeEvent)="onUpdateStateChange($event)"></app-update-timesheet-entry>
 </ng-template>
 
-<app-popup *ngIf="showaddTimesheetEntry" [templateToRender]="insertTimesheetEnrty"
+<app-popup *ngIf="showaddTimeSheetDetails" [templateToRender]="insertTimesheetEnrty"
     (closePopup)="onCloseAddPopup()"></app-popup>
 
-<app-popup *ngIf="showupdateTimesheetEntry" [templateToRender]="updateTimeSheetEntry"
+<app-popup *ngIf="showupdateTimeSheetDetails" [templateToRender]="updateTimeSheetDetails"
     (closePopup)="onCloseUpdatePopup()"></app-popup>
 
+    <div *ngIf="isTimeSheetCreated==false && date<=toDaysdate ">
+        <p> Date : {{date|date}}</p>
+        <button  (click)="CreateTimesheet()">Create TimeSheet</button>
+    </div>
 
-<p> Date : {{timeSheet?.timeSheetDate |date}}</p>
-<p> Status:{{timeSheet?.status |titlecase}}</p>
-<p> Employee Name:{{timeSheet?.employeeName}}</p>
-<button *ngIf="timeSheet?.status=='inprogress'" (click)="onClickAddTimesheetEntry()"> Add </button>
 
-<table class="table-bordered">
-    <thead>
-        <tr>
-            <th>Category</th>
-            <th>work</th>
-            <th>StartTime</th>
-            <th>EndTime</th>
-            <th>Duration</th>
-        </tr>
-    </thead>
-    <tbody *ngFor="let timeSheetEntry of timeSheet?.timeSheetEntries">
-        <tr>
-            <td>{{timeSheetEntry.workCategory }}</td>
-            <td>{{timeSheetEntry.work }}</td>
-            <td>{{timeSheetEntry.fromTime }}</td>
-            <td>{{timeSheetEntry.toTime}}</td>
-            <td>{{timeSheetEntry.durationInHours}}</td>
-            <td *ngIf="timeSheet?.status=='inprogress'"><button
-                    (click)="onClickUpdateTimesheetEntry(timeSheetEntry)">Edit</button></td>
-            <td *ngIf="timeSheet?.status=='inprogress'"><button
-                    (click)="onRemoveTimeSheetEntry(timeSheetEntry.id)">Delete</button></td>
-        </tr>
+<ng-container *ngIf="isTimeSheetCreated">
+    <p> Date : {{timeSheet?.timeSheetDate |date}}</p>
+    <p> Status:{{timeSheet?.status |titlecase}}</p>
+    <p> Employee Name:{{timeSheet?.employeeName}}</p>
+    <button *ngIf="isTimeSheetEditable()" (click)="onClickAddTimeSheetDetails()"> Add </button>
 
-    </tbody>
+    <table class="table-bordered" >
+        <thead>
+            <tr>
+                <th>fromtime</th>
+                <th>toTime</th>
+                <th>ProjectName</th>
+                <th>Category:</th>
+                <th>Work:</th>
+                <!-- <th>Description:</th> -->
+                <th>Duration</th>
+            </tr>
+        </thead>
+        <ng-container *ngIf=" timeSheet && timeSheet.timeSheetDetails.length>0">
+            <tbody *ngFor="let timeSheetDetail of timeSheet.timeSheetDetails">
+                <tr>
+                    <td> {{timeSheetDetail.fromTime }}</td>
+                    <td> {{timeSheetDetail.toTime }}</td>
+                    <td> {{timeSheetDetail.projectName }}</td>
+                    <td>{{timeSheetDetail.workCategory}}</td>
+                    <td> {{timeSheetDetail.work}}</td>
+                    <!-- <td> {{timeSheetDetail.description}}</td> -->
+                    <td> {{timeSheetDetail.durationInHours }}</td>
+                    <td  *ngIf="isTimeSheetEditable()"><button  [routerLink]="['/timesheet/view/update',timeSheetDetail.id,'date',timeSheet.timeSheetDate.slice(0,10)]" >Edit</button></td>
+                    <!-- <td  *ngIf="isTimeSheetEditable()"><button  (click)="onClickUpdateTimeSheetDetails(timesheetDetails)">Edit</button></td> -->
+                    <td  *ngIf="isTimeSheetEditable()"><button (click)="onRemoveTimeSheetDetails(timeSheetDetail.id)">Delete</button></td>
+                </tr>
 
-</table>
+            </tbody>
+        </ng-container>
 
-<p>Total Hours : {{totalminutes}}</p>
+    </table>
 
-<button type="submit" *ngIf="timeSheet?.status=='inprogress'" (click)="onSubmit()"> submit </button>
-<button class="mx-1" *ngIf="timeSheet?.status=='inprogress ' && timeSheet" (click)="onRemoveAllTimeSheetEntries(timeSheet.id)">
-    ClearAll </button>
+    <p>Total Hours : {{totalminutes}}</p>
+    <ng-container *ngIf=" timeSheet && timeSheet.timeSheetDetails.length>0">
+    <button type="submit"  *ngIf="isTimeSheetEditable()" (click)="onSubmit()"> submit </button>
+    <button class="mx-1" *ngIf="isTimeSheetEditable() && timeSheet" (click)="onRemoveAllTimeSheetDetails(timeSheet.id)">
+        ClearAll </button>
+        </ng-container>
+</ng-container>

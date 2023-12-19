@@ -17,7 +17,7 @@ export class ProjectService {
     return this.httpClient.get<Project>(url);
   }
 
-  getProjectOfEmployee(employeeId: number): Observable<Project[]> {
+  getProjectsOfEmployee(employeeId: number): Observable<Project[]> {
     let url = this.serviceurl+"/projectmgmt/projects/employees/" + employeeId
     return this.httpClient.get<Project[]>(url)
   }
@@ -31,5 +31,10 @@ export class ProjectService {
     let url=this.serviceurl+"/projectmgmt/projects"+"/"+projectId;
     console.log(url);
     return this.httpClient.get<any>(url);
+  }
+
+  getAllEmployees(projectId:number):Observable<any[]>{
+    let url=this.serviceurl+"/projectmgmt/projectallocation/employees/"+projectId;
+    return this.httpClient.get<any[]>(url);
   }
 }

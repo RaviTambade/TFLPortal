@@ -53,8 +53,7 @@ export class CalenderComponent {
     let day: Date = new Date(
       new Date().setMonth(new Date().getMonth() + monthIndex)
     );
-    console.log('🚀 ~ generateCalendarDays ~ day:', day);
-    console.log(new Date().getMonth());
+
     this.displayMonth = this.monthNames[day.getMonth()] + day.getFullYear();
 
     let startingDateOfCalendar = this.getStartDateForCalendar(day);
@@ -97,7 +96,7 @@ export class CalenderComponent {
   }
 
   public setCurrentMonth() {
-    this.monthIndex = 0;
+    this.monthIndex = 0;  
     this.generateCalendarDays(this.monthIndex);
   }
 
@@ -130,8 +129,24 @@ export class CalenderComponent {
     return formatedDate >= project.startDate && formatedDate <= project.endDate;
   }
 
+  goToSpecificDate(e: any) {
+    let date:Date = new Date(e.target.value + '-01');
+    if (date) {
+      this.displayMonth = this.monthNames[date.getMonth()] + date.getFullYear();
+
+      let startingDateOfCalendar = this.getStartDateForCalendar(date);
+
+      let dateToAdd = startingDateOfCalendar;
+      this.calendar = [];
+
+      for (var i = 0; i < 35; i++) {
+        this.calendar.push(new CalendarDay(new Date(dateToAdd)));
+        dateToAdd = new Date(dateToAdd.setDate(dateToAdd.getDate() + 1));
+      }
+    }
+  }
+
   ConvertDateYYYY_MM_DD(date: Date): string {
-    // convert into yyyy-mm-dd
     const formattedDate = date
       .toLocaleDateString(undefined, {
         year: 'numeric',

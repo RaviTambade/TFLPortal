@@ -1,0 +1,42 @@
+<div class="container mt-3">
+
+    <div>
+        <label>Select Interval</label>
+        <select class="mx-2" [(ngModel)]="selectedInterval" (change)="onIntervalChange()">
+            <option *ngFor="let interval of intervals" [value]="interval"> {{interval}}</option>
+        </select>
+        <label>Select Project </label>
+        <select class="mx-2" [(ngModel)]="selectedProjectId" (change)="onIntervalChange()">
+            <option *ngFor="let project of projects" [value]="project.id"> {{project.title|uppercase}}</option>
+        </select>
+        <label class="mx-2"> StatDate :{{fromDate |date}}</label>
+        <label class="mx-2"> EndDate :{{toDate |date}}</label>
+
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col">
+            <canvas id="MyChart">{{ chart }}</canvas>
+        </div>
+        <div class="col">
+            <div class="row d-flex justify-content-center mx-2" *ngIf="workCategory!=undefined">
+              <h3>  Time Utilization (in Hours)</h3> 
+                <div class="col">
+                    <p>UserStory:{{workCategory.userStory}} </p>
+                    <p>Task :{{workCategory.task}} </p>
+                    <p>Bug : {{workCategory.bug}}</p>
+                    <p>Mentoring :{{workCategory.mentoring}} </p>
+                    <p>Learning :{{workCategory.learning}}</p>
+                </div>
+                <div class="col">
+                    <p>Clientcall :{{workCategory.clientCall}} </p>
+                    <p>Issues :{{workCategory.issues}} </p>
+                    <p>Meeting :{{workCategory.meeting}} </p>
+                    <p>Other : {{workCategory.other}} </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

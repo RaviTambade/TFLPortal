@@ -1,0 +1,30 @@
+<div class="row h-100">
+    <div class="col-sm-1  ">
+        <!-- <div class="p-2" *ngIf="role=='Employee'">
+            <label [routerLink]="['timesheet']">Timesheet </label>
+        </div>
+        <div class="p-2" *ngIf="role=='Director'">
+            <label [routerLink]="['projects']">Projects</label>
+        </div>
+        <div class="p-2" *ngIf="role=='HRManager'">
+            <label [routerLink]="['activities']">Activities</label>
+        </div>
+        <div class="p-2">
+            <label [routerLink]="['hr']">Hr</label>
+        </div> -->
+  
+
+    <div *ngIf="role==Role.Employee">
+        <div class="p-2" *ngFor="let employeelink of EmployeeRoutes" (click)="onClick(employeelink.Url)"> {{employeelink.displayName}}</div>
+    </div>
+
+    <div *ngIf="role==Role.Director">
+        <div class="p-2" *ngFor="let directorlink of DirectorRoutes"  > {{directorlink.displayName}}</div>
+    </div>
+</div>
+
+
+    <div class="col-11">
+        <router-outlet></router-outlet>
+    </div>
+</div>

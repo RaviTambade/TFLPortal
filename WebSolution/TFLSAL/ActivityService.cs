@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 using System.Diagnostics;
 using Transflower.TFLPortal.TFLOBL.Entities;
+using System.Data;
 
 namespace Transflower.TFLPortal.TFLSAL.Services;
 public class ActivityService : IActivityService
@@ -694,4 +695,113 @@ public class ActivityService : IActivityService
         }
         return activities;
     }
+
+
+
+    public async Task<ActivityCountSp> GetAllActivitiesCount()
+{
+    ActivityCountSp countSp = null;
+    MySqlConnection con = new MySqlConnection();
+    con.ConnectionString = _connectionString;
+
+    try
+    {
+        await con.OpenAsync();
+
+        MySqlCommand cmd = new MySqlCommand("getActivityCounts", con);
+        cmd.CommandType = CommandType.StoredProcedure;
+
+        cmd.Parameters.AddWithValue("@todo", MySqlDbType.Int32);
+        cmd.Parameters["@todo"].Direction = ParameterDirection.Output;
+
+        cmd.Parameters.AddWithValue("@inprogress", MySqlDbType.Int32);
+        cmd.Parameters["@inprogress"].Direction = ParameterDirection.Output;
+
+        cmd.Parameters.AddWithValue("@completed", MySqlDbType.Int32);
+        cmd.Parameters["@completed"].Direction = ParameterDirection.Output;
+
+        await cmd.ExecuteNonQueryAsync();
+
+        int todo = Convert.ToInt32(cmd.Parameters["@todo"].Value);
+        int inprogress = Convert.ToInt32(cmd.Parameters["@inprogress"].Value);
+        int completed = Convert.ToInt32(cmd.Parameters["@completed"].Value);
+
+        countSp = new ActivityCountSp()
+        {
+            Todo = todo,
+            InProgress = inprogress,
+            Completed = completed
+        };
+    }
+    catch (Exception)
+    {
+        throw;
+    }
+    finally
+    {
+        await con.CloseAsync();
+    }
+
+    return countSp;
+}
+
+
+ public async Task<List<TFLOBL.Entities.Activity>> GetAllTodaysActivities(int projectId,DateTime date)
+    {
+        List<TFLOBL.Entities.Activity> activities = new List<TFLOBL.Entities.Activity>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query = "select * from activities where  projectid =@projectId and assigneddate=@date";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@projectId", projectId);
+            command.Parameters.AddWithValue("@date", date);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {
+                int id = int.Parse(reader["id"].ToString());
+                string title = reader["title"].ToString();
+                string activitytype = reader["activitytype"].ToString();
+                string description = reader["description"].ToString();
+                DateTime createdate = DateTime.Parse(reader["createddate"].ToString());
+                int assignedto = int.Parse(reader["assignedto"].ToString());
+                int assignedby = int.Parse(reader["assignedby"].ToString());
+               // DateTime assigndate = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
+                DateTime duedate = DateTime.Parse(reader["duedate"].ToString());
+                string status = reader["status"].ToString();
+                int managerId = int.Parse(reader["assignedby"].ToString());
+
+                TFLOBL.Entities.Activity act = new TFLOBL.Entities.Activity
+                {
+                    Id = id,
+                    Title = title,
+                    ActivityType = activitytype,
+                    Description = description,
+                    ProjectId = projectId,
+                    //AssignDate = assigndate,
+                    StartDate = startdate,
+                    DueDate = duedate,
+                    AssignedTo = assignedto,
+                    Status = status,
+                    AssignedBy = managerId,
+
+                };
+                activities.Add(act);
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return activities;
+    }
+
 }

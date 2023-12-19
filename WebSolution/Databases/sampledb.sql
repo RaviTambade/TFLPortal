@@ -1,4 +1,4 @@
--- Active: 1694968636816@@127.0.0.1@3306@tflportal
+-- Active: 1696576841746@@127.0.0.1@3306@tflportal
 
 -- director
 INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (1,'2013-01-01',1,80000);
@@ -51,7 +51,7 @@ INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VA
 INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('HMApp','2017-10-10','2025-02-02','Hospital Management App',9,'inprogress');
 INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('TMS','2016-02-02','2023-02-02','Travel Management System',7,'completed');
 INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('HRM','2016-10-10','2023-02-02','Human Resource Management',8,'completed');
-INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('CLMS','2016-10-10','2022-02-02','Contarct Labour Management System',9,'completed');
+INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('Other','2000-12-19 11:23:17','2099-02-02 00:00:00','Other',1,'inprogress');
 
 
 INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Manager','2017-10-10','yes',5,8);
@@ -60,15 +60,20 @@ INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid
 INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Manager','2016-10-10','yes',8,8);
 INSERT INTO projectallocations(membership,assigndate,releasedate,status,projectid,employeeid) VALUES ('Manager','2016-10-10','2017-10-10','no',9,9);
 INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2023-11-02','yes',1,10);
+INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2023-11-02','yes',2,10);
 INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2023-11-03','yes',2,11);
 INSERT INTO projectallocations(membership,assigndate,releasedate,status,projectid,employeeid) VALUES ('Developer','2023-11-13','2017-10-10','no',3,12);
 INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2017-02-02','yes',4,13);
 INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2017-10-10','yes',5,14);
 INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2017-10-10','yes',6,15);
 INSERT INTO projectallocations(membership,assigndate,releasedate,status,projectid,employeeid) VALUES ('Developer','2016-02-02','2017-10-10','no',7,16);
-INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',8,17);
-INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',9,18);
+INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',8,15);
+INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',9,15);
 
+INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2017-10-10','yes',1,15);
+INSERT INTO projectallocations(membership,assigndate,releasedate,status,projectid,employeeid) VALUES ('Developer','2016-02-02','2017-10-10','no',2,15);
+INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',3,15);
+INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',4,15);
 
 -- Inventory Management
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
@@ -494,7 +499,7 @@ VALUES ("userstory","User Registration","As a new user, I want to be able to reg
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
 VALUES ("userstory","Login Functionality","As a forgetful user, I want to be able to reset my password via email verification.",'2023-10-29','2023-10-30','2023-11-04',9,10,1,"todo",'2023-10-30');
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)
-VALUES ("userstory","Security Measures","As a user, I want assurance that my personal and payment information is secure on the platform.",'2023-10-29','2023-10-30','2023-11-04',1,10,1,"completed",'2023-10-30');
+VALUES ("userstory","Security Measures","As a user, I want assurance that my personal and payment information is secure on the platform.",'2023-12-14','2023-12-14','2023-12-30',15,10,8,"inprogress",'2023-10-30');
 
 
 INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)VALUES
@@ -534,6 +539,14 @@ INSERT INTO activities (activitytype,title, description, assigneddate, startdate
 ("userstory","Security Measures","As a user, I want assurance that my personal and payment information is secure on the platform.",'2023-12-04','2023-12-04','2023-12-07',12,3,4,"todo",'2023-12-04'),
 ("userstory","Language Preferences","As a user, I want to choose my preferred language for the platform.",'2023-12-04','2023-12-05','2023-12-06',13,7,7,"todo",'2023-12-04'),
 ("userstory","Accessibility Features","As a user with accessibility needs, I want the platform to be accessible and user-friendly.",'2023-12-04','2023-12-04','2023-12-08',14,6,8,"todo",'2023-12-04');
+
+INSERT INTO activities (activitytype,title, description, assigneddate, startdate, duedate, assignedto, assignedby, projectid, status,createddate)VALUES
+("userstory","Automated Testing Framework","As a developer, I want an automated testing framework integrated into the project to ensure the stability of new features.",'2023-12-14','2023-12-05','2023-12-06',15,3,4,"todo",'2023-12-04'),
+("userstory","User Survey Participation","As a user, I want the opportunity to participate in surveys to provide feedback and improve the platform.",'2023-12-14','2023-12-04','2023-12-06',15,7,1,"todo",'2023-12-04'),
+("userstory","Privacy Settings","As a user, I want to control my privacy settings and data sharing preferences.",'2023-12-14','2023-12-07','2023-12-14',15,6,3,"todo",'2023-12-04'),
+("userstory","Security Measures","As a user, I want assurance that my personal and payment information is secure on the platform.",'2023-12-14','2023-12-14','2023-12-07',15,3,2,"todo",'2023-12-04'),
+("userstory","Language Preferences","As a user, I want to choose my preferred language for the platform.",'2023-12-14','2023-12-05','2023-12-14',15,7,7,"todo",'2023-12-04'),
+("userstory","Accessibility Features","As a user with accessibility needs, I want the platform to be accessible and user-friendly.",'2023-12-14','2023-12-04','2023-12-08',15,6,3,"todo",'2023-12-04');
 
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-12-01','Approved',10);
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-12-02','Approved',10);
@@ -576,80 +589,96 @@ INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-01-13','Ap
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-01-19','Approved',2);
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-01-20','Approved',2);
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-01-21','Approved',3);
-
-INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid)
+INSERT INTO timesheets VALUES
+(47,'2023-12-18 00:00:00','submitted','2023-12-18 00:00:00',10),
+(48,'2023-12-14 00:00:00','submitted','2023-12-14 00:00:00',10),
+(49,'2023-12-13 00:00:00','submitted','2023-12-13 00:00:00',10),
+(50,'2023-12-19 00:00:00','inprogress','2023-12-19 10:29:50',10),
+(51,'2023-12-15 00:00:00','inprogress','2023-12-19 10:33:42',10);
+INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid,projectid)
 VALUES
-  ("Code Refactoring", "task", "Review and refactor existing code", "09:00:00", "10:30:00", 1),
-  ("Client Meeting", "meeting", "Discuss project updates with the client", "10:30:00", "12:00:00", 1),
-  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 1),
-  ("Feature Implementation", "userstory", "Implement new features in the project", "13:00:00", "14:30:00", 1),
-  ("Client Call", "meeting", "Call with New Client", "14:30:00", "15:15:00", 1),
-  ("Project Wrap-up", "task", "Finalize and document project tasks", "15:15:00", "16:45:00", 1);
-INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid)
+  ("Code Refactoring", "task", "Review and refactor existing code", "09:00:00", "10:30:00", 1,1),
+  ("Client Meeting", "meeting", "Discuss project updates with the client", "10:30:00", "12:00:00", 1,1),
+  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 1,1),
+  ("Feature Implementation", "userstory", "Implement new features in the project", "13:00:00", "14:30:00", 1,1),
+  ("Client Call", "meeting", "Call with New Client", "14:30:00", "15:15:00", 1,1),
+  ("Project Wrap-up", "task", "Finalize and document project tasks", "15:15:00", "16:45:00", 1,1);
+INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid,projectid)
 VALUES
-  ("Bug Fixing", "bug", "Identify and fix bugs in the system", "09:00:00", "10:30:00", 2),
-  ("Team Meeting", "meeting", "Team Collaboration and Project Updates", "10:30:00", "11:30:00", 2),
-  ("Lunch Break", "break", "Lunch Break", "11:30:00", "13:00:00", 2),
-  ("Data Analysis", "task", "Analyze project data and metrics", "13:00:00", "14:30:00", 2),
-  ("Team Discussion", "meeting", "Discuss future project planning", "14:30:00", "15:15:00", 2),
-  ("Coding Tasks", "task", "Code new functionalities", "15:15:00", "16:45:00", 2);
+  ("Bug Fixing", "bug", "Identify and fix bugs in the system", "09:00:00", "10:30:00", 2,1),
+  ("Team Meeting", "meeting", "Team Collaboration and Project Updates", "10:30:00", "11:30:00", 2,1),
+  ("Lunch Break", "break", "Lunch Break", "11:30:00", "13:00:00", 2,1),
+  ("Data Analysis", "task", "Analyze project data and metrics", "13:00:00", "14:30:00", 2,1),
+  ("Team Discussion", "meeting", "Discuss future project planning", "14:30:00", "15:15:00", 2,1),
+  ("Coding Tasks", "task", "Code new functionalities", "15:15:00", "16:45:00", 2,1);
 
-INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid)
+INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid,projectid)
 VALUES
-  ("UI Design", "task", "Designing User Interface for new features", "09:00:00", "10:30:00", 3),
-  ("Stakeholder Meeting", "meeting", "Meeting with Stakeholders for Project A", "10:30:00", "12:00:00", 3),
-  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 3),
-  ("Backend Coding", "task", "Coding Backend functionalities", "13:00:00", "14:30:00", 3),
-  ("Testing Session", "userstory", "Testing New Features and Functionality", "14:30:00", "15:15:00", 3),
-  ("Project Review", "meeting", "Reviewing Project Progress", "15:15:00", "16:45:00", 3);
+  ("UI Design", "task", "Designing User Interface for new features", "09:00:00", "10:30:00", 3,1),
+  ("Stakeholder Meeting", "meeting", "Meeting with Stakeholders for Project A", "10:30:00", "12:00:00", 3,1),
+  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 3,1),
+  ("Backend Coding", "task", "Coding Backend functionalities", "13:00:00", "14:30:00", 3,1),
+  ("Testing Session", "userstory", "Testing New Features and Functionality", "14:30:00", "15:15:00", 3,1),
+  ("Project Review", "meeting", "Reviewing Project Progress", "15:15:00", "16:45:00", 3,1);
 
-INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid)
+INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid,projectid)
 VALUES
-  ("Research and Analysis", "task", "Research and Analyze market trends", "09:00:00", "10:30:00", 4),
-  ("Weekly Team Meeting", "meeting", "Discussing Project Updates", "10:30:00", "12:00:00", 4),
-  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 4),
-  ("Report Writing", "task", "Writing Reports and Documentation", "13:00:00", "14:30:00", 4),
-  ("Client Presentation", "meeting", "Preparing for Client Presentation", "14:30:00", "15:15:00", 4),
-  ("Documentation", "task", "Documenting Project Tasks", "15:15:00", "18:00:00", 4);
+  ("Research and Analysis", "task", "Research and Analyze market trends", "09:00:00", "10:30:00", 4,1),
+  ("Weekly Team Meeting", "meeting", "Discussing Project Updates", "10:30:00", "12:00:00", 4,1),
+  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 4,1),
+  ("Report Writing", "task", "Writing Reports and Documentation", "13:00:00", "14:30:00", 4,1),
+  ("Client Presentation", "meeting", "Preparing for Client Presentation", "14:30:00", "15:15:00", 4,1),
+  ("Documentation", "task", "Documenting Project Tasks", "15:15:00", "18:00:00", 4,1);
 
 
-INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid)
+INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid,projectid)
 VALUES
-  ("Requirements Analysis", "task", "Analyzing client requirements for Project A", "09:00:00", "10:30:00", 5),
-  ("Team Collaboration", "meeting", "Weekly team collaboration meeting", "10:30:00", "12:00:00", 5),
-  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 5),
-  ("Software Development", "task", "Coding and developing new features", "13:00:00", "15:30:00", 5),
-  ("Client Meeting", "meeting", "Meeting with the client for Project A", "15:30:00", "17:15:00", 5),
-  ("Testing and QA", "task", "Quality assurance and testing", "17:15:00", "18:00:00", 5);
+  ("Requirements Analysis", "task", "Analyzing client requirements for Project A", "09:00:00", "10:30:00", 5,1),
+  ("Team Collaboration", "meeting", "Weekly team collaboration meeting", "10:30:00", "12:00:00", 5,1),
+  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 5,1),
+  ("Software Development", "task", "Coding and developing new features", "13:00:00", "15:30:00", 5,1),
+  ("Client Meeting", "meeting", "Meeting with the client for Project A", "15:30:00", "17:15:00", 5,1),
+  ("Testing and QA", "task", "Quality assurance and testing", "17:15:00", "18:00:00", 5,1);
 
-INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid)
+INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid,projectid)
 VALUES
-  ("Market Research", "task", "Conducting market research for Project B", "09:00:00", "10:30:00", 6),
-  ("Team Sync-up", "meeting", "Weekly team synchronization meeting", "10:30:00", "12:00:00", 6),
-  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 6),
-  ("Software Development", "userstory", "Coding and programming tasks", "13:00:00", "14:30:00", 6),
-  ("Client Demo Preparation", "meeting", "Preparing for client demo", "14:30:00", "16:00:00", 6),
-  ("Documentation", "task", "Documenting project tasks and updates", "16:00:00", "18:00:00", 6);
+  ("Market Research", "task", "Conducting market research for Project B", "09:00:00", "10:30:00", 6,1),
+  ("Team Sync-up", "meeting", "Weekly team synchronization meeting", "10:30:00", "12:00:00", 6,1),
+  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 6,1),
+  ("Software Development", "userstory", "Coding and programming tasks", "13:00:00", "14:30:00", 6,1),
+  ("Client Demo Preparation", "meeting", "Preparing for client demo", "14:30:00", "16:00:00", 6,1),
+  ("Documentation", "task", "Documenting project tasks and updates", "16:00:00", "18:00:00", 6,1);
 
-INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid)
+INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid,projectid)
 VALUES
-  ("Project Planning", "meeting", "Planning the next project sprint", "09:00:00", "10:30:00", 7),
-  ("Client Requirements Discussion", "clientcall", "Discussing client requirements", "10:30:00", "11:00:00", 7),
-  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 7),
-  ("Software Development", "userstory", "Coding and development tasks", "13:00:00", "16:30:00", 7),
-  ("Quality Assurance", "task", "Testing and quality assurance", "16:30:00", "17:15:00", 7),
-  ("Project Status Review", "meeting", "Reviewing project status and progress", "17:15:00", "18:00:00", 7);
+  ("Project Planning", "meeting", "Planning the next project sprint", "09:00:00", "10:30:00", 7,1),
+  ("Client Requirements Discussion", "clientcall", "Discussing client requirements", "10:30:00", "11:00:00", 7,1),
+  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 7,1),
+  ("Software Development", "userstory", "Coding and development tasks", "13:00:00", "16:30:00", 7,1),
+  ("Quality Assurance", "task", "Testing and quality assurance", "16:30:00", "17:15:00", 7,1),
+  ("Project Status Review", "meeting", "Reviewing project status and progress", "17:15:00", "18:00:00", 7,1);
 
-INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid)
+INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid,projectid)
 VALUES
-  ("UI Design", "task", "Designing User Interface for new features", "09:00:00", "10:30:00", 8),
-  ("Stakeholder Meeting", "meeting", "Meeting with Stakeholders for Project A", "10:30:00", "12:00:00", 8),
-  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 8),
-  ("Backend Coding", "task", "Coding Backend functionalities", "13:00:00", "14:30:00", 8),
-  ("Testing Session", "task", "Testing New Features and Functionality", "14:30:00", "15:15:00", 8),
-  ("Project Review", "meeting", "Reviewing Project Progress", "15:15:00", "16:45:00", 8);
-
-
+  ("UI Design", "task", "Designing User Interface for new features", "09:00:00", "10:30:00", 8,1),
+  ("Stakeholder Meeting", "meeting", "Meeting with Stakeholders for Project A", "10:30:00", "12:00:00", 8,1),
+  ("Lunch Break", "break", "Lunch Break", "12:00:00", "13:00:00", 8,1),
+  ("Backend Coding", "task", "Coding Backend functionalities", "13:00:00", "14:30:00", 8,1),
+  ("Testing Session", "task", "Testing New Features and Functionality", "14:30:00", "15:15:00", 8,1),
+  ("Project Review", "meeting", "Reviewing Project Progress", "15:15:00", "16:45:00", 8,1);
+INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid,projectid)
+VALUES
+('UserStory defining','userstory','Login','17:57:00','18:58:00',47,9),
+('code','bug','','15:21:00','17:24:00',47,2),
+('bug','bug','','15:21:00','16:20:00',47,2),
+('task','task','','16:19:00','18:21:00',47,2),
+('documentation','task','','16:23:00','19:26:00',48,1),
+('fixing pipeline error','issues','','12:24:00','14:24:00',48,1),
+('Client Call about feature','clientcall','','16:27:00','17:29:00',49,2),
+('User database sync','task','','10:30:00','14:30:00',50,1),
+('code refactoring','task','','15:00:00','17:00:00',50,1),
+('Login functionality','userstory','','10:34:00','12:30:00',51,2),
+('Task Defining','task','','10:34:00','12:30:00',50,9);
 
 
 INSERT INTO sprints(title,startdate,enddate,goal) VALUES ('sprint 1',"2023-10-30","2023-11-04","Resolve critical and high-priority bugs");
@@ -738,29 +767,49 @@ INSERT INTO sprintactivities(sprintid,activityid) VALUES (6,36);
 -- INSERT INTO sprintactivities(sprintid,activityid) VALUES (5,29);
 -- INSERT INTO sprintactivities(sprintid,activityid) VALUES (5,30);
 
-Insert Into employeesalarystructures(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(1,30000,3000,200,300,200,2000);
-Insert Into employeesalarystructures(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(1,40000,2200,300,200,250,4000);
-Insert Into employeesalarystructures(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(1,30000,1000,400,400,330,3000);
-Insert Into employeesalarystructures(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(1,45000,5000,500,500,350,3300);
-Insert Into employeesalarystructures(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(1,20000,6000,600,500,400,4000);
-Insert Into employeesalarystructures(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(1,19000,3200,600,600,600,2000);
+Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(1,30000,3000,200,300,200,2000);
+Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(2,40000,2200,300,200,250,4000);
+Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(3,30000,1000,400,400,330,3000);
+Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(4,45000,5000,500,500,350,3300);
+Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(5,20000,6000,600,500,400,4000);
+Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(6,19000,3200,600,600,600,2000);
+Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(7,45000,5000,500,500,350,3300);
+Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(8,20000,6000,600,500,400,4000);
+Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(9,19000,3200,600,600,600,2000);
+Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(10,19000,3200,600,600,600,2000);
+
+Insert Into salarydisbursement(employeeid,paydate,amount) values(1,'2023-12-07',25000);
+Insert Into salarydisbursement(employeeid,paydate,amount) values(2,'2023-12-06',25000);
+Insert Into salarydisbursement(employeeid,paydate,amount) values(3,'2023-12-05',25000);
+Insert Into salarydisbursement(employeeid,paydate,amount) values(4,'2023-12-04',25000);
+Insert Into salarydisbursement(employeeid,paydate,amount) values(5,'2023-12-03',25000);
+Insert Into salarydisbursement(employeeid,paydate,amount) values(6,'2023-12-02',25000);
+
+Insert Into leaves(employeeid,fromdate,todate,status,leavetype) values(1,'2023-04-03','2023-05-05',"notsanction","casual");
+Insert Into leaves(employeeid,fromdate,todate,status,leavetype) values(2,'2023-04-03','2023-05-05',"sanction","casual");
+ Insert Into leaves(employeeid,fromdate,todate,status,leavetype) values(3,'2023-05-03','2023-05-20',"applied","casual");
+Insert Into leaves(employeeid,fromdate,todate,status,leavetype) values(4,'2023-02-03','2023-02-15',"sanction","casual");
+-- Insert Into leaves(employeeid,fromdate,todate,status,leavetype) values(5,'2023-07-03','2023-05-25',"rejected","study");
+-- Insert Into leaves(employeeid,fromdate,todate,status,leavetype) values(6,'2023-08-03','2023-05-15',40000,"approved","comp off");
+-- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(7,'2023-06-03','2023-05-13',40000,"rejected","bereavement");
+-- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(8,'2023-01-03','2023-05-25',50000,"approved","study");
+-- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(9,'2023-08-03','2023-07-15',40000,"rejected","comp off");
+-- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(10,'2023-07-03','2023-05-25',50000,"rejected","study");
+-- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(11,'2023-08-03','2023-05-15',40000,"approved","comp off");
+-- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(12,'2023-06-03','2023-05-13',40000,"rejected","bereavement");
+-- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(13,'2023-01-03','2023-05-25',50000,"approved","study");
+-- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(14,'2023-08-03','2023-07-15',40000,"rejected","comp off");
+
+
+-- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(10,3,1,2,1);
+-- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(11,1,1,2,1);
+-- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(12,3,1,5,1);
+-- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(13,6,1,2,1);
+-- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(14,3,1,7,1);
+-- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(15,3,1,2,1);
+-- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(16,1,6,2,1);
+-- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(17,3,2,5,2);
+-- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(18,6,5,2,1);
+-- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(19,3,2,1,1);
+
  
-
-
-Insert Into employeesalaries(employeeid,paydate,amount) values(1,'2023-12-07',25000);
-Insert Into employeesalaries(employeeid,paydate,amount) values(1,'2023-12-06',25000);
-Insert Into employeesalaries(employeeid,paydate,amount) values(1,'2023-12-05',25000);
-Insert Into employeesalaries(employeeid,paydate,amount) values(1,'2023-12-04',25000);
-Insert Into employeesalaries(employeeid,paydate,amount) values(1,'2023-12-03',25000);
-Insert Into employeesalaries(employeeid,paydate,amount) values(1,'2023-12-02',25000);
-
-
-Insert Into employeeleaves(employeeid,fromdate,todate,amount,leavetype) values(2,'2023-04-03','2023-05-05',26000,"casual");
-Insert Into employeeleaves(employeeid,fromdate,todate,amount,leavetype) values(3,'2023-05-03','2023-05-20',30000,"paternity");
-Insert Into employeeleaves(employeeid,fromdate,todate,amount,leavetype) values(4,'2023-06-03','2023-05-15',40000,"sick");
-Insert Into employeeleaves(employeeid,fromdate,todate,amount,leavetype) values(5,'2023-07-03','2023-05-25',50000,"study");
-Insert Into employeeleaves(employeeid,fromdate,todate,amount,leavetype) values(6,'2023-08-03','2023-05-15',40000,"comp off");
-Insert Into employeeleaves(employeeid,fromdate,todate,amount,leavetype) values(4,'2023-06-03','2023-05-13',40000,"bereavement");
-Insert Into employeeleaves(employeeid,fromdate,todate,amount,leavetype) values(5,'2023-01-03','2023-05-25',50000,"study");
-Insert Into employeeleaves(employeeid,fromdate,todate,amount,leavetype) values(6,'2023-08-03','2023-07-15',40000,"comp off");
-    

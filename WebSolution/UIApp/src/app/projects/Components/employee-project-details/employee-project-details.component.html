@@ -1,0 +1,9 @@
+
+<div class="card-body" *ngIf="project">
+    <p class="card-text"><strong>Title:</strong> {{ project.title }}</p>
+    <p class="card-text"><strong>Description:</strong> {{ project.description }} </p>
+    <p class="card-text"><strong>status:</strong> {{ project.status}}</p>
+    <p class="card-text"><strong>startDate:</strong> {{ project.startDate | date }}</p>
+    <p class="card-text"><strong>endDate:</strong> {{ project.endDate | date }}</p>
+    <p class="card-text"><strong>teamManagerId:</strong> {{ project.teamManagerId }}</p>
+</div>
