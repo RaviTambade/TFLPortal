@@ -5,6 +5,10 @@
         <select class="mx-2" [(ngModel)]="selectedInterval" (change)="onIntervalChange()">
             <option *ngFor="let interval of intervals" [value]="interval"> {{interval}}</option>
         </select>
+        <label>Select Project </label>
+        <select class="mx-2" [(ngModel)]="selectedProjectId" (change)="onIntervalChange()">
+            <option *ngFor="let project of projects" [value]="project.id"> {{project.title|uppercase}}</option>
+        </select>
         <label class="mx-2"> StatDate :{{fromDate |date}}</label>
         <label class="mx-2"> EndDate :{{toDate |date}}</label>
 
@@ -30,7 +34,7 @@
                     <p>Clientcall :{{workCategory.clientCall}} </p>
                     <p>Issues :{{workCategory.issues}} </p>
                     <p>Meeting :{{workCategory.meeting}} </p>
-                    <p>Other{{workCategory.other}} </p>
+                    <p>Other : {{workCategory.other}} </p>
                 </div>
             </div>
         </div>

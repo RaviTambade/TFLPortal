@@ -2,9 +2,6 @@ using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Configuration;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 using Transflower.TFLPortal.TFLOBL.Entities;
-using System.Text;
-using System.Data;
-using System.Reflection.Emit;
 
 namespace Transflower.TFLPortal.TFLSAL.Services;
 
@@ -72,10 +69,11 @@ public class TimeSheetService : ITimeSheetService
         {
             string query =
                 @"SELECT timesheets.id as timesheetid,timesheets.status,timesheets.statuschangeddate,timesheetentries.id as timesheetentryid,
-                timesheetentries.work,timesheetentries.workcategory,timesheetentries.description,timesheetentries.fromtime,timesheetentries.totime,
-                employees.userid
+                timesheetentries.work, timesheetentries.projectid,timesheetentries.workcategory,timesheetentries.description,timesheetentries.fromtime,timesheetentries.totime,
+                projects.title as projectName,employees.userid
                 FROM timesheets  
                 LEFT JOIN  timesheetentries ON  timesheets.id= timesheetentries.timesheetid
+                LEFT JOIN projects ON timesheetentries.projectid =projects.id
                 INNER JOIN employees ON timesheets.employeeid =employees.id
                 WHERE timesheets.timesheetdate = @timeSheetDate AND timesheets.employeeId = @employeeId";
             MySqlCommand command = new MySqlCommand(query, connection);
@@ -105,11 +103,13 @@ public class TimeSheetService : ITimeSheetService
                     if (reader["timesheetentryid"] != DBNull.Value)
                     {
                         int timeSheetEntryId = int.Parse(reader["timesheetentryid"].ToString());
+                        int projectId = int.Parse(reader["projectid"].ToString());
                         TimeOnly fromtime = TimeOnly.Parse(reader["fromtime"].ToString());
                         TimeOnly totime = TimeOnly.Parse(reader["totime"].ToString());
                         string work = reader["work"].ToString();
                         string WorkCategory = reader["workcategory"].ToString();
                         string description = reader["description"].ToString();
+                        string projectName = reader["projectName"].ToString();
 
                         TimeSheetEntry timeSheetEntry = new TimeSheetEntry()
                         {
@@ -118,7 +118,9 @@ public class TimeSheetService : ITimeSheetService
                             ToTime = totime,
                             Work = work,
                             WorkCategory = WorkCategory,
-                            Description = description
+                            Description = description,
+                            ProjectId = projectId,
+                            ProjectName = projectName
                         };
                         timeSheet.TimeSheetDetails.Add(timeSheetEntry);
                     }
@@ -206,7 +208,10 @@ public class TimeSheetService : ITimeSheetService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "SELECT *  from timesheetentries WHERE id=@timeSheetEntryId";
+            string query =
+                @"SELECT timesheetentries.*,projects.title as projectName  from timesheetentries 
+            INNER JOIN projects ON timesheetentries.projectid =projects.id
+            WHERE timesheetentries.id=@timeSheetEntryId";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@timeSheetEntryId", timeSheetEntryId);
             await connection.OpenAsync();
@@ -216,8 +221,10 @@ public class TimeSheetService : ITimeSheetService
                 TimeOnly fromtime = TimeOnly.Parse(reader["fromtime"].ToString());
                 TimeOnly totime = TimeOnly.Parse(reader["totime"].ToString());
                 string work = reader["work"].ToString();
+                int projectId = int.Parse(reader["projectid"].ToString());
                 string WorkCategory = reader["workcategory"].ToString();
                 string description = reader["description"].ToString();
+                string projectName = reader["projectName"].ToString();
 
                 timeSheetEntry = new TimeSheetEntry()
                 {
@@ -227,6 +234,8 @@ public class TimeSheetService : ITimeSheetService
                     Work = work,
                     WorkCategory = WorkCategory,
                     Description = description,
+                    ProjectId = projectId,
+                    ProjectName = projectName,
                 };
             }
             await reader.CloseAsync();
@@ -249,7 +258,8 @@ public class TimeSheetService : ITimeSheetService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "SELECT *  from timesheetentries WHERE timesheetid=@timeSheetId";
+            string query =
+                "SELECT timesheetentries.*,projects.title as projectName  from timesheetentries  INNER JOIN projects ON timesheetentries.projectid =projects.id WHERE timesheetid=@timeSheetId";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@timeSheetId", timeSheetId);
             await connection.OpenAsync();
@@ -259,6 +269,9 @@ public class TimeSheetService : ITimeSheetService
                 int timeSheetEntryId = int.Parse(reader["id"].ToString());
                 TimeOnly fromtime = TimeOnly.Parse(reader["fromtime"].ToString());
                 TimeOnly totime = TimeOnly.Parse(reader["totime"].ToString());
+                int projectId = int.Parse(reader["projectid"].ToString());
+                string projectName = reader["projectName"].ToString();
+
                 string work = reader["work"].ToString();
                 string WorkCategory = reader["workcategory"].ToString();
                 string description = reader["description"].ToString();
@@ -271,7 +284,9 @@ public class TimeSheetService : ITimeSheetService
                     Work = work,
                     WorkCategory = WorkCategory,
                     Description = description,
-                    TimeSheetId = timeSheetId
+                    TimeSheetId = timeSheetId,
+                    ProjectId = projectId,
+                    ProjectName = projectName
                 };
 
                 timeSheetEntries.Add(timesheet);
@@ -296,7 +311,7 @@ public class TimeSheetService : ITimeSheetService
         connection.ConnectionString = _connectionString;
 
         string query =
-            "INSERT INTO timesheetentries(work,workcategory,description,fromtime, totime, timesheetid) VALUES (@work,@workCategory,@Description , @FromTime, @ToTime, @TimeSheetId)";
+            "INSERT INTO timesheetentries(work,workcategory,description,fromtime, totime, timesheetid,projectid) VALUES (@work,@workCategory,@Description , @FromTime, @ToTime, @TimeSheetId,@projectid)";
         try
         {
             MySqlCommand command = new MySqlCommand(query, connection);
@@ -306,6 +321,7 @@ public class TimeSheetService : ITimeSheetService
             command.Parameters.AddWithValue("@FromTime", timeSheetEntry.FromTime);
             command.Parameters.AddWithValue("@ToTime", timeSheetEntry.ToTime);
             command.Parameters.AddWithValue("@TimeSheetId", timeSheetEntry.TimeSheetId);
+            command.Parameters.AddWithValue("@projectid", timeSheetEntry.ProjectId);
             await connection.OpenAsync();
             int rowsAffected = await command.ExecuteNonQueryAsync();
             if (rowsAffected > 0)
@@ -334,7 +350,7 @@ public class TimeSheetService : ITimeSheetService
         connection.ConnectionString = _connectionString;
 
         string query =
-            "UPDATE  timesheetentries SET work=@work,workcategory=@workCategory,description=@Description,fromtime=@FromTime,totime=@ToTime WHERE id=@TimeSheetEntryId";
+            "UPDATE  timesheetentries SET work=@work,workcategory=@workCategory,description=@Description,fromtime=@FromTime,totime=@ToTime ,projectid=@projectid WHERE id=@TimeSheetEntryId";
         try
         {
             MySqlCommand command = new MySqlCommand(query, connection);
@@ -343,6 +359,7 @@ public class TimeSheetService : ITimeSheetService
             command.Parameters.AddWithValue("@Description", timeSheetEntry.Description);
             command.Parameters.AddWithValue("@FromTime", timeSheetEntry.FromTime);
             command.Parameters.AddWithValue("@ToTime", timeSheetEntry.ToTime);
+            command.Parameters.AddWithValue("@projectid", timeSheetEntry.ProjectId);
             command.Parameters.AddWithValue("@TimeSheetEntryId", timeSheetEntryId);
             await connection.OpenAsync();
             int rowsAffected = await command.ExecuteNonQueryAsync();
@@ -420,78 +437,12 @@ public class TimeSheetService : ITimeSheetService
         return status;
     }
 
-    public async Task<WorkCategory> GetWorkDurationOfEmployee(
-        int employeeId,
-        DateTime fromDate,
-        DateTime toDate
-    )
-    {
-        WorkCategory workCategory = null;
-        MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _connectionString;
-        try
-        {
-            string query =
-                @"SELECT
-             CAST(((SUM( CASE WHEN  timesheetentries.workcategory='userstory' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as userstory,
-             CAST(((SUM( CASE WHEN  timesheetentries.workcategory='task' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as task,
-             CAST(((SUM( CASE WHEN  timesheetentries.workcategory='bug' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as bug,CAST(((SUM( CASE WHEN  timesheetentries.workcategory='issues' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as issues, 
-             CAST(((SUM( CASE WHEN  timesheetentries.workcategory='meeting' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as meeting, 
-             CAST(((SUM( CASE WHEN  timesheetentries.workcategory='learning' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as learning,
-             CAST(((SUM( CASE WHEN  timesheetentries.workcategory='mentoring' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as mentoring ,
-             CAST(((SUM( CASE WHEN  timesheetentries.workcategory='break' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as break, 
-             CAST(((SUM( CASE WHEN  timesheetentries.workcategory='clientcall' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as clientcall,
-             CAST(((SUM( CASE WHEN  timesheetentries.workcategory='other' THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as other
-             from timesheetentries INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
-             WHERE timesheets.employeeid=@employeeId AND timesheets.timesheetdate>=@fromDate and  timesheets.timesheetdate<=@toDate";
-
-            MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@employeeId", employeeId);
-            command.Parameters.AddWithValue("@fromDate", fromDate);
-            command.Parameters.AddWithValue("@toDate", toDate);
-            await connection.OpenAsync();
-            MySqlDataReader reader = command.ExecuteReader();
-            while (await reader.ReadAsync())
-            {
-                string userstory = reader["userstory"].ToString();
-                string task = reader["task"].ToString();
-                string bug = reader["bug"].ToString();
-                string issues = reader["issues"].ToString();
-                string meeting = reader["meeting"].ToString();
-                string learning = reader["learning"].ToString();
-                string mentoring = reader["mentoring"].ToString();
-                string clientcall = reader["clientcall"].ToString();
-                string other = reader["other"].ToString();
-
-                workCategory = new WorkCategory()
-                {
-                    UserStory = userstory,
-                    Task = task,
-                    Bug = bug,
-                    Issues = issues,
-                    Meeting = meeting,
-                    Learning = learning,
-                    Mentoring = mentoring,
-                    ClientCall = clientcall,
-                    Other = other
-                };
-            }
-            await reader.CloseAsync();
-        }
-        catch (Exception)
-        {
-            throw;
-        }
-        finally
-        {
-            await connection.CloseAsync();
-        }
-        return workCategory;
-    }
+   
 
     public async Task<List<WorkCategoryDetails>> GetActivityWiseHours(
         int employeeId,
-        string intervalType
+        string intervalType,
+        int projectId
     )
     {
         List<WorkCategoryDetails> workCategoryDetails = new();
@@ -499,12 +450,13 @@ public class TimeSheetService : ITimeSheetService
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
 
-        string query = "CALL getemployeeworkhoursbyactivity(@employee_id,@interval_type)";
+        string query = "CALL getemployeeworkhoursbyactivity(@employee_id,@interval_type,@project_id)";
         try
         {
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@employee_id", employeeId);
             command.Parameters.AddWithValue("@interval_type", intervalType);
+            command.Parameters.AddWithValue("@project_id", projectId);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())

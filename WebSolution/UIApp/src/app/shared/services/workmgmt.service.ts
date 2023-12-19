@@ -6,7 +6,6 @@ import { Activity } from 'src/app/activity/Models/Activity';
 import { TimeSheetDetails } from 'src/app/time-sheet/models/TimeSheetDetails';
 import { TimesheetView } from 'src/app/time-sheet/models/TimesheetView';
 import { TimeSheet } from 'src/app/time-sheet/models/timesheet';
-import { WorkCategory } from 'src/app/time-sheet/models/workCategory';
 import { workCategoryDetails } from 'src/app/time-sheet/models/workCategoryDetails';
 
 @Injectable({
@@ -86,15 +85,17 @@ export class WorkmgmtService {
     return this.http.get<TimeSheetDetails[]>(url);
   }
 
-  getWorkDurationOfEmployee(employeeId: number, fromDate: string, toDate: string): Observable<WorkCategory> {
-    let url = `${this.serviceurl}/workmgmt/timesheets/workduration/employees/${employeeId}/from/${fromDate}/to/${toDate}`;
-    return this.http.get<any>(url);
-  }
-  getEmployeeActivityWiseHours(employeeId:number,intervalType: string): Observable<workCategoryDetails[]> {
-    let url = `${this.serviceurl}/workmgmt/timesheets/employees/${employeeId}/workduration/${intervalType}`;
-    return this.http.get<any>(url);
-  }
 
+  getEmployeeActivityWiseHours(employeeId:number,intervalType: string,projectId:number): Observable<workCategoryDetails[]> {
+    let url = `${this.serviceurl}/workmgmt/timesheets/employees/${employeeId}/workduration/${intervalType}/${projectId}`;
+    return this.http.get<any>(url);
+  }
+   
+
+  getAllActivitiesOfEmployee(projectId:number,employeeId:number){
+  let url =this.serviceurl +'/workmgmt/activities/projects/'+projectId+'/employees/'+employeeId;
+    return this.http.get<any>(url);
+  }
 
 
   addTimeSheet(timeSheet: any): Observable<boolean> {
@@ -155,5 +156,19 @@ export class WorkmgmtService {
   }
 
 
+  downLoadFile(data: any, type: string) {
+    let blob = new Blob([data], { type: type});
+    let url = window.URL.createObjectURL(blob);
+    let pwa = window.open(url);
+    if (!pwa || pwa.closed || typeof pwa.closed == 'undefined') {
+        alert( 'Please disable your Pop-up blocker and try again.');
+    }
+}
 
+  fileDownload(){
+    let url =this.serviceurl +'/workmgmt/activities/download';
+    // return this.http.get<any>(url);
+     this.http.get(`${url}`).subscribe(response => this.downLoadFile(response, "application/pdf"));
+    
+  }
 }

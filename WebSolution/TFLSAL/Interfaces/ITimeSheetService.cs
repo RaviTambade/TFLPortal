@@ -7,9 +7,7 @@ public interface ITimeSheetService
     Task<List<TimeSheet>> GetTimeSheetsOfEmployee(int employeeId);
     Task<TimeSheet> GetTimeSheetOfEmployee(int employeeId, string date);
     Task<List<TimeSheetEntry>> GetTimeSheetEntries(int timeSheetId);
-    Task<List<WorkCategoryDetails>> GetActivityWiseHours(int employeeId,string intervalType);
-    Task<WorkCategory> GetWorkDurationOfEmployee(int employeeId,DateTime fromDate,DateTime toDate);
-    
+    Task<List<WorkCategoryDetails>> GetActivityWiseHours(int employeeId,string intervalType,int projectId);
     Task<TimeSheetEntry> GetTimeSheetEntry(int timeSheetEntryId);
     Task<bool> InsertTimeSheet(TimeSheet timeSheet);
     Task<bool> InsertTimeSheetEntry(TimeSheetEntry timeSheetEntry);

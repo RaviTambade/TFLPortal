@@ -1,4 +1,4 @@
--- Active: 1694968636816@@127.0.0.1@3306@tflportal
+-- Active: 1696576841746@@127.0.0.1@3306@tflportal
 
 SELECT * FROM activities where assignedto=15 AND assigneddate='2023-12-14';
 
@@ -207,12 +207,6 @@ select * from projectallocations where employeeid=1 and assigndate BETWEEN "2023
 
 DROP Procedure getActivityCounts;
 
-CREATE PROCEDURE getActivityCounts(OUT  todo INT,OUT inprogress INT,OUT completed INT)
-BEGIN
-    SELECT COUNT(*) INTO todo FROM activities WHERE status = 'todo';
-    SELECT COUNT(*) INTO inprogress FROM activities WHERE status = 'inprogress';
-    SELECT COUNT(*) INTO completed FROM activities WHERE status = 'completed';
-END;
 
 call getActivityCounts(@todo,@inprogress,@completed);
 SELECT @todo,@inprogress,@completed;
@@ -253,3 +247,7 @@ GROUP BY
     m.month_start
 ORDER BY 
     m.month_start;
+
+
+
+

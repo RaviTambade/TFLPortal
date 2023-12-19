@@ -83,6 +83,7 @@ export class InsertTimeSheetComponent implements OnInit {
         .changeTimeSheetStatus(this.timeSheet.id, timesheet)
         .subscribe((res) => {
           alert('timesheet added');
+          this.timeSheet!.status=timesheet.status;
         });
     }
   }
@@ -131,8 +132,10 @@ export class InsertTimeSheetComponent implements OnInit {
       timeSheetDate: this.date,
       employeeId: this.employeeId,
     };
+    console.log("🚀 ~ CreateTimesheet ~ timesheetInsertModel:", timesheetInsertModel);
     this.workmgmtSvc.addTimeSheet(timesheetInsertModel).subscribe((res) => {
       if (res) {
+        console.log("🚀 ~ this.workmgmtSvc.addTimeSheet ~ res:", res);
         this.fetchTimeSheet(
           timesheetInsertModel.employeeId,
           timesheetInsertModel.timeSheetDate

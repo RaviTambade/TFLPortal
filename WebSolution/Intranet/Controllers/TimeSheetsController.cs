@@ -60,25 +60,15 @@ public class TimeSheetsController : ControllerBase
         return await _service.GetTimeSheetEntries(timeSheetId);
     }
 
-    [HttpGet("employees/{employeeId}/workduration/{intervalType}")]
+    [HttpGet("employees/{employeeId}/workduration/{intervalType}/{projectId}")]
     public async Task<List<WorkCategoryDetails>> GetActivityWiseHours(
         int employeeId,
-        string intervalType
+        string intervalType,
+        int projectId
     )
     {
-        return await _service.GetActivityWiseHours(employeeId, intervalType);
+        return await _service.GetActivityWiseHours(employeeId, intervalType,projectId);
     }
-
-    [HttpGet("workduration/employees/{employeeId}/from/{fromDate}/to/{toDate}")]
-    public async Task<WorkCategory> GetWorkDurationOfEmployee(
-        int employeeId,
-        DateTime fromDate,
-        DateTime toDate
-    )
-    {
-        return await _service.GetWorkDurationOfEmployee(employeeId, fromDate, toDate);
-    }
-
    
 
     [HttpPost]

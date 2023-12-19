@@ -7,7 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InsertTimeSheetComponent } from './components/forms/insert-time-sheet/insert-time-sheet.component';
 import { PopupComponent } from './components/popup/popup.component';
 import { UpdateTimesheetEntryComponent } from './components/forms/update-timesheet-entry/update-timesheet-entry.component';
-import { TotalWorkDurationOfEmployeeComponent } from './components/total-work-duration-of-employee/total-work-duration-of-employee.component';
 import { RouterModule, Routes } from '@angular/router';
 import { EmployeeTimesheetComponent } from './components/employee-timesheet/employee-timesheet.component';
 import { TimesheetEmployeeCalenderComponent } from './components/timesheet-employee-calender/timesheet-employee-calender.component';
@@ -42,7 +41,6 @@ export const timeSheetRoutes: Routes = [
     InsertTimeSheetComponent,
     PopupComponent,
     UpdateTimesheetEntryComponent,
-    TotalWorkDurationOfEmployeeComponent,
     EmployeeTimesheetComponent,
     TimesheetEmployeeCalenderComponent,
     TimesheetEmployeeWorkChartComponent,
@@ -50,16 +48,20 @@ export const timeSheetRoutes: Routes = [
   imports: [
     CommonModule,
     ReactiveFormsModule,
+<<<<<<< HEAD
+
+    FormsModule
+=======
     FormsModule,
     SharedModule,
     RouterModule,
+>>>>>>> b0fd515f12b52c439ca2b0878c3a5d7865731b89
   ],
   exports: [
     ListComponent,
     DetailsComponent,
     InsertTimeSheetEntryComponent,
     InsertTimeSheetComponent,
-    TotalWorkDurationOfEmployeeComponent,
   ],
   providers: [ChunkPipe],
 })

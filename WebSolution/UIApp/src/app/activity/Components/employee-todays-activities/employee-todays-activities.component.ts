@@ -26,7 +26,7 @@ export class EmployeeTodaysActivitiesComponent implements OnInit{
  projectName:string="";
   @Output() activityupdate=new EventEmitter<Activity>();
   ngOnInit(): void {
-   this.projectSvc.getProjectOfEmployee(this.employeeId).subscribe((res)=>{
+   this.projectSvc.getProjectsOfEmployee(this.employeeId).subscribe((res)=>{
    this.projects=res;
    this.update();
    })

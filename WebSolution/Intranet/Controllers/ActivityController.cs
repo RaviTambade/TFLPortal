@@ -120,13 +120,18 @@ public class ActivityController : ControllerBase
         return activities;
     }
 
-
-     [HttpGet("project/{projectId}/date/{date}")]
+    [HttpGet("project/{projectId}/date/{date}")]
     public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>> GetAllTodaysActivities(int projectId,DateTime date)
     {
         List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetAllTodaysActivities(projectId,date);
         return activities;
     }
 
-
+    [HttpGet("download")]
+    public ActionResult DownloadDocument(){
+    string filePath = "wwwroot/Documents/DadabhauNavle18122023130430.pdf";
+    string fileName = "Salary.pdf";
+    byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
+    return File(fileBytes, "application/force-download", fileName); 
+    }
 }

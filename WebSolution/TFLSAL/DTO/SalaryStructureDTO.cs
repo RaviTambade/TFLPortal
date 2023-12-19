@@ -1,7 +1,7 @@
-using Transflower.TFLPortal.TFLSAL.DTO;
-namespace Transflower.TFLPortal.Intranet.Responses;
 
-public class SalaryStructureResponse
+namespace Transflower.TFLPortal.TFLSAL.DTO;
+
+public class SalaryStructureDTO
 {
     public int EmployeeId { get; set; }
     public double BasicSalary { get; set; }

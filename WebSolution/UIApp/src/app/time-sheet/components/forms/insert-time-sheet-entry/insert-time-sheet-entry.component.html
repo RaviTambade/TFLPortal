@@ -1,4 +1,8 @@
 <h2> Add TimeSheetEntry</h2>
+<label>Project:</label>
+<select [(ngModel)]="timeSheetDetail.projectId">
+    <option *ngFor="let project of projects;" [value]="project.id">{{project.title|titlecase}}</option>
+</select><br>
 <label>Activity:</label>
 <select [(ngModel)]="timeSheetDetail.workCategory">
     <option *ngFor="let activity of activitiyTypes;let i=index" [value]="activity">{{activity |titlecase}}</option>
