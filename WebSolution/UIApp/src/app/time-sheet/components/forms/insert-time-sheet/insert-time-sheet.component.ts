@@ -83,6 +83,7 @@ export class InsertTimeSheetComponent implements OnInit {
         .changeTimeSheetStatus(this.timeSheet.id, timesheet)
         .subscribe((res) => {
           alert('timesheet added');
+          this.timeSheet!.status=timesheet.status;
         });
     }
   }

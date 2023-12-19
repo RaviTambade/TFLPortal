@@ -9,8 +9,8 @@
 # Node
 /node_modules
 npm-debug.log
-yarn-error.log
 *.bat
+yarn-error.log
 # IDEs and editors
 .idea/
 .project

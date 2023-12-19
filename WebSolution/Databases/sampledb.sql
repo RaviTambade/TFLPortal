@@ -51,7 +51,7 @@ INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VA
 INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('HMApp','2017-10-10','2025-02-02','Hospital Management App',9,'inprogress');
 INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('TMS','2016-02-02','2023-02-02','Travel Management System',7,'completed');
 INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('HRM','2016-10-10','2023-02-02','Human Resource Management',8,'completed');
-INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('CLMS','2016-10-10','2022-02-02','Contarct Labour Management System',9,'completed');
+INSERT INTO projects(title,startdate,enddate,description,teammanagerid,status)VALUES('Other','2000-12-19 11:23:17','2099-02-02 00:00:00','Other',1,'inprogress');
 
 
 INSERT INTO projectallocations(membership,assigndate,status,projectid,employeeid) VALUES ('Manager','2017-10-10','yes',5,8);
@@ -589,7 +589,12 @@ INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-01-13','Ap
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-01-19','Approved',2);
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-01-20','Approved',2);
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2023-01-21','Approved',3);
-
+INSERT INTO timesheets VALUES
+(47,'2023-12-18 00:00:00','submitted','2023-12-18 00:00:00',10),
+(48,'2023-12-14 00:00:00','submitted','2023-12-14 00:00:00',10),
+(49,'2023-12-13 00:00:00','submitted','2023-12-13 00:00:00',10),
+(50,'2023-12-19 00:00:00','inprogress','2023-12-19 10:29:50',10),
+(51,'2023-12-15 00:00:00','inprogress','2023-12-19 10:33:42',10);
 INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid,projectid)
 VALUES
   ("Code Refactoring", "task", "Review and refactor existing code", "09:00:00", "10:30:00", 1,1),
@@ -661,8 +666,19 @@ VALUES
   ("Backend Coding", "task", "Coding Backend functionalities", "13:00:00", "14:30:00", 8,1),
   ("Testing Session", "task", "Testing New Features and Functionality", "14:30:00", "15:15:00", 8,1),
   ("Project Review", "meeting", "Reviewing Project Progress", "15:15:00", "16:45:00", 8,1);
-
-
+INSERT INTO timesheetentries(work, workcategory, description, fromtime, totime, timesheetid,projectid)
+VALUES
+('UserStory defining','userstory','Login','17:57:00','18:58:00',47,9),
+('code','bug','','15:21:00','17:24:00',47,2),
+('bug','bug','','15:21:00','16:20:00',47,2),
+('task','task','','16:19:00','18:21:00',47,2),
+('documentation','task','','16:23:00','19:26:00',48,1),
+('fixing pipeline error','issues','','12:24:00','14:24:00',48,1),
+('Client Call about feature','clientcall','','16:27:00','17:29:00',49,2),
+('User database sync','task','','10:30:00','14:30:00',50,1),
+('code refactoring','task','','15:00:00','17:00:00',50,1),
+('Login functionality','userstory','','10:34:00','12:30:00',51,2),
+('Task Defining','task','','10:34:00','12:30:00',50,9);
 
 
 INSERT INTO sprints(title,startdate,enddate,goal) VALUES ('sprint 1',"2023-10-30","2023-11-04","Resolve critical and high-priority bugs");

@@ -71,6 +71,17 @@ BEGIN
     SELECT COUNT(*) INTO completed FROM activities WHERE status = 'completed';
 END;
 
+-- SELECT TIMEDIFF('10:12:22','10:22:22');
+ --projectwise time allocation
+  SELECT projects.title as projectName,
+    CAST(((SUM( TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ))/3600)AS DECIMAL(10,2)) 
+    FROM timesheetentries
+    INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
+    INNER JOIN projects on timesheetentries.projectid=projects.id
+    WHERE  timesheets.employeeid=10 
+    GROUP BY timesheetentries.projectid;
+
+
 
 -- DELIMITER //
 -- CREATE PROCEDURE GetEmployeeWorkingHours(
