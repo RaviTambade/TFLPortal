@@ -129,4 +129,16 @@ public class ActivityController : ControllerBase
     }
 
 
+[HttpGet("download")]
+public ActionResult DownloadDocument(){
+string filePath = "C:/Transflower/Pdf generation/Salary.pdf";
+string fileName = "AkashSalary.pdf";
+    
+byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
+    
+return File(fileBytes, "application/force-download", fileName);
+    
+}
+
+
 }

@@ -8,6 +8,7 @@ import { UpdateActivityComponent } from './Components/Forms/update-activity/upda
 import { ProjectActivitiesComponent } from './Components/project-activities/project-activities.component';
 import { RouterModule } from '@angular/router';
 import { EmployeeTodaysActivitiesComponent } from './Components/employee-todays-activities/employee-todays-activities.component';
+import { FileDownLoadComponent } from './Components/file-down-load/file-down-load.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { EmployeeTodaysActivitiesComponent } from './Components/employee-todays-
     AddActivityComponent,
     UpdateActivityComponent,
     ProjectActivitiesComponent,
-    EmployeeTodaysActivitiesComponent
+    EmployeeTodaysActivitiesComponent,
+    FileDownLoadComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { EmployeeTodaysActivitiesComponent } from './Components/employee-todays-
     AddActivityComponent,
     UpdateActivityComponent,
     ProjectActivitiesComponent,
-    EmployeeTodaysActivitiesComponent
+    EmployeeTodaysActivitiesComponent,
+    FileDownLoadComponent
     
   ]
 })

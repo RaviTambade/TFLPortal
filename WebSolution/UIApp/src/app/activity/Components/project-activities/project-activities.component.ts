@@ -5,6 +5,8 @@ import { Activity } from '../../Models/Activity';
 import { ProjectService } from 'src/app/shared/services/project.service';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
+import { JwtService } from 'src/app/shared/services/jwt.service';
+import { TokenClaims } from 'src/app/shared/Enums/tokenclaims';
 
 @Component({
   selector: 'project-activities',
@@ -15,20 +17,37 @@ export class ProjectActivitiesComponent implements OnInit {
   projects: Project[] = [];
   activities: Activity[] = [];
   projectId: number = 0;
+  employeeId:number|any;
   visibleActivities: Activity[]=[];
-
+role:string|undefined=undefined;
   checkStatusTodo: boolean = true;
   checkStatusInProgress: boolean = true;
   checkStatusCompleted: boolean = true;
   
-  constructor(private projectSvc: ProjectService,private workMgmtSvc:WorkmgmtService) {}
-
+  constructor(private projectSvc: ProjectService,private workMgmtSvc:WorkmgmtService,private jwtSvc:JwtService) {
+    this.employeeId=localStorage.getItem(LocalStorageKeys.employeeId);
+  }
+  
   ngOnInit(): void {
     this.projectSvc.fetchAllProject().subscribe((res) => {
       this.projects = res;
       this.projectId = this.projects[0].id;
 
-      this.populateActivities(this.projectId);
+      
+      this.role = this.jwtSvc.getClaimFromToken(TokenClaims.role);
+      console.log(this.role);
+      if(this.role=='Director'){
+        this.populateActivities(this.projectId);
+      }
+      else if(this.role=='Employee'){
+        
+        this.workMgmtSvc.getAllActivitiesOfEmployee(this.projectId,this.employeeId).subscribe((res)=>{
+          console.log(this.employeeId);
+          console.log(this.projectId);
+          this.activities=res;
+          this.filterActivities();
+        })
+      }
     });
   }
 
