@@ -36,7 +36,6 @@ import { MonthlyLeaveChartComponent } from './monthly-leave-chart/monthly-leave-
     VerticalBarchartComponent,
     PiechartComponent,
     MonthlyLeaveChartComponent
-
   ]
 })
 export class BiModule { }

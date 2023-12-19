@@ -7,6 +7,7 @@ import { PendingLeaveComponent } from './Components/pending-leave/pending-leave.
 import { EmployeeLeavesComponent } from './Components/employee-leaves/employee-leaves.component';
 import { LeaveRoutingComponent } from './Components/leave-routing/leave-routing.component';
 import { TeamMemberLeaveRequestComponent } from './Components/team-member-leave-request/team-member-leave-request.component';
+import { BiModule } from '../bi/bi.module';
 
 
 export const leaveRoutes: Routes = [
@@ -28,7 +29,8 @@ export const leaveRoutes: Routes = [
     CommonModule,
     FormsModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BiModule
   ],
   exports: [
     AddLeaveComponent,

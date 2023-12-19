@@ -76,6 +76,4 @@ export class ProjectActivitiesComponent implements OnInit {
       this.visibleActivities=[];
     }
   }
-
-  
 }
