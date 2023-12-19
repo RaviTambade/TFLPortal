@@ -1,4 +1,5 @@
 using Transflower.TFLPortal.TFLOBL.Entities;
+using Transflower.TFLPortal.TFLSAL.DTO;
 
 namespace Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 
@@ -9,6 +10,7 @@ public interface ITimeSheetService
     Task<List<TimeSheetEntry>> GetTimeSheetEntries(int timeSheetId);
     Task<List<WorkCategoryDetails>> GetActivityWiseHours(int employeeId,string intervalType,int projectId);
     Task<TimeSheetEntry> GetTimeSheetEntry(int timeSheetEntryId);
+    Task<List<ProjectHours>> GetProjectWiseTimeSpentByEmployee(int employeeId);
     Task<bool> InsertTimeSheet(TimeSheet timeSheet);
     Task<bool> InsertTimeSheetEntry(TimeSheetEntry timeSheetEntry);
     Task<bool> ChangeTimeSheetStatus(int timeSheetId, TimeSheet timeSheet);

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Transflower.TFLPortal.Intranet.Responses;
 using Transflower.TFLPortal.TFLOBL.Entities;
+using Transflower.TFLPortal.TFLSAL.DTO;
 using Transflower.TFLPortal.TFLSAL.Services;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 
@@ -69,7 +70,10 @@ public class TimeSheetsController : ControllerBase
     {
         return await _service.GetActivityWiseHours(employeeId, intervalType,projectId);
     }
-   
+   [HttpGet("projects/employees/{employeeId}")]
+     public async Task<List<ProjectHours>> GetProjectWiseTimeSpentByEmployee(int employeeId){
+        return await _service.GetProjectWiseTimeSpentByEmployee(employeeId);
+     }
 
     [HttpPost]
     public async Task<bool> InsertTimeSheet(TimeSheet timeSheet)

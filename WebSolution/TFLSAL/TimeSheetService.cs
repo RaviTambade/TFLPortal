@@ -2,6 +2,7 @@ using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Configuration;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 using Transflower.TFLPortal.TFLOBL.Entities;
+using Transflower.TFLPortal.TFLSAL.DTO;
 
 namespace Transflower.TFLPortal.TFLSAL.Services;
 
@@ -498,4 +499,51 @@ public class TimeSheetService : ITimeSheetService
         }
         return workCategoryDetails;
     }
+
+    public async Task<List<ProjectHours>> GetProjectWiseTimeSpentByEmployee(int employeeId)
+    {
+        
+    {
+        List<ProjectHours> projectsHoursList= new();
+
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+
+        string query =   @"SELECT projects.title AS projectname,
+    CAST(((SUM( TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ))/3600)AS DECIMAL(10,2)) AS hours 
+    FROM timesheetentries
+    INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
+    INNER JOIN projects on timesheetentries.projectid=projects.id
+    WHERE  timesheets.employeeid=@employee_id 
+    GROUP BY timesheetentries.projectid;";
+        try
+        {
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@employee_id", employeeId);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {
+                string projectName = reader["projectname"].ToString();
+                double hours = double.Parse(reader["hours"].ToString());
+               
+
+            ProjectHours projectHours=new ProjectHours(){
+                ProjectName=projectName,
+                Hours=hours
+            };
+            projectsHoursList.Add(projectHours);
+            }
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return projectsHoursList;
+    }
+}
 }
