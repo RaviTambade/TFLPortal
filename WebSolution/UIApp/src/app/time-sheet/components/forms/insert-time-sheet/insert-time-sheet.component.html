@@ -35,7 +35,7 @@
                 <th>ProjectName</th>
                 <th>Category:</th>
                 <th>Work:</th>
-                <th>Description:</th>
+                <!-- <th>Description:</th> -->
                 <th>Duration</th>
             </tr>
         </thead>
@@ -47,7 +47,7 @@
                     <td> {{timeSheetDetail.projectName }}</td>
                     <td>{{timeSheetDetail.workCategory}}</td>
                     <td> {{timeSheetDetail.work}}</td>
-                    <td> {{timeSheetDetail.description}}</td>
+                    <!-- <td> {{timeSheetDetail.description}}</td> -->
                     <td> {{timeSheetDetail.durationInHours }}</td>
                     <td  *ngIf="isTimeSheetEditable()"><button  [routerLink]="['/timesheet/view/update',timeSheetDetail.id,'date',timeSheet.timeSheetDate.slice(0,10)]" >Edit</button></td>
                     <!-- <td  *ngIf="isTimeSheetEditable()"><button  (click)="onClickUpdateTimeSheetDetails(timesheetDetails)">Edit</button></td> -->
@@ -60,8 +60,9 @@
     </table>
 
     <p>Total Hours : {{totalminutes}}</p>
-
+    <ng-container *ngIf=" timeSheet && timeSheet.timeSheetDetails.length>0">
     <button type="submit"  *ngIf="isTimeSheetEditable()" (click)="onSubmit()"> submit </button>
     <button class="mx-1" *ngIf="isTimeSheetEditable() && timeSheet" (click)="onRemoveAllTimeSheetDetails(timeSheet.id)">
         ClearAll </button>
+        </ng-container>
 </ng-container>
