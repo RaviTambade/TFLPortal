@@ -62,7 +62,7 @@ public class LeaveApplicationService : ILeaveApplicationService
         try
         {
             string query =
-                "select * from leavespending where id =@employeeId";
+                "select * from leaveallocations where id =@employeeId";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@employeeId", employeeId);
             await connection.OpenAsync();
@@ -70,7 +70,6 @@ public class LeaveApplicationService : ILeaveApplicationService
             if (await reader.ReadAsync())
             {
                 int id = int.Parse(reader["id"].ToString());
-
                 int sickLeaves = int.Parse(reader["sickleaves"].ToString());
                 int casualLeaves = int.Parse(reader["casualleaves"].ToString());
                 int paidLeaves = int.Parse(reader["paidleaves"].ToString());
@@ -84,9 +83,7 @@ public class LeaveApplicationService : ILeaveApplicationService
                     CasualLeave = casualLeaves,
                     PaidLeave = paidLeaves,
                     UnpaidLeave = unpaidLeaves
-                };
-                
-                
+                };    
             }
             await reader.CloseAsync();
         }

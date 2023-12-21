@@ -149,6 +149,6 @@ table th{background-color:#fbc403; color:black; border:1px solid black';}
 
         PdfGenerator.AddPdfPages(document, htmlContent, PageSize.A4);
         document.PageLayout = PdfPageLayout.SinglePage;
-        document.Save($"{fileName}");
+        document.Save($"{fileName}.pdf");
     }
 }

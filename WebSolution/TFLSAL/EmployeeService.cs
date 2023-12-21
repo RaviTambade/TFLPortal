@@ -18,7 +18,7 @@ public class EmployeeService : IEmployeeService
             ?? throw new ArgumentNullException("connectionString");
     }
 
-    public async Task<Employee> GetEmployeeDetails( int employeeId)
+    public async Task<Employee> GetEmployeeDetails(int employeeId)
         {
             Employee employee = null;
             MySqlConnection connection = new MySqlConnection();
@@ -93,7 +93,7 @@ public class EmployeeService : IEmployeeService
         return status;
     }
 
-    public async Task<Employee> GetEmployee( int userId)
+    public async Task<Employee> GetEmployee(int userId)
         {
             Employee employee = null;
             MySqlConnection connection = new MySqlConnection();
@@ -101,7 +101,7 @@ public class EmployeeService : IEmployeeService
             try
             {
                 string query =
-                    "select * from employees where id=@userId";
+                    "select * from employees where userid=@userId";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@userId", userId);
                 await connection.OpenAsync();
@@ -131,7 +131,7 @@ public class EmployeeService : IEmployeeService
         }
 
         
-    public async Task<SalaryStructure> GetSalaryStructure( int employeeId)
+    public async Task<SalaryStructure> GetSalaryStructure(int employeeId)
         {
             SalaryStructure salaryStructure = null;
             MySqlConnection connection = new MySqlConnection();

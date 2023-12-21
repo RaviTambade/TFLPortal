@@ -81,16 +81,16 @@ public class ActivityController : ControllerBase
     [HttpGet("fromassigneddate/{fromAssignedDate}/toassigneddate/{toAssignedDate}")]
     public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>> GetActivitiesBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate)
     {
-        List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetAllActivitiesBetweenDates(fromAssignedDate,toAssignedDate);
+        List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetActivitiesBetweenDates(fromAssignedDate,toAssignedDate);
         return activities;
     }
 
     
 
-     [HttpGet("employees/{employeeId}/fromassigneddate/{fromAssignedDate}/toassigneddate/{toAssignedDate}")]
+    [HttpGet("employees/{employeeId}/fromassigneddate/{fromAssignedDate}/toassigneddate/{toAssignedDate}")]
     public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>> GetActivitiesOfEmployeeBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
     {
-        List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetAllActivitiesBetweenDates(employeeId,fromAssignedDate,toAssignedDate);
+        List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetActivitiesOfEmployeeBetweenDates(employeeId,fromAssignedDate,toAssignedDate);
         return activities;
     }
  

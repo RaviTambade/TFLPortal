@@ -18,7 +18,7 @@ public class ProjectAllocationService : IProjectAllocationService
             ?? throw new ArgumentNullException("connectionString");
     }
 
-    public async Task<bool> AssignMemberToProject(int projectId,int employeeId,ProjectAllocation project){
+    public async Task<bool> AssignEmployeeToProject(int projectId,int employeeId,ProjectAllocation project){
     {
         bool status=false;
         MySqlConnection connection = new MySqlConnection();
@@ -55,7 +55,7 @@ public class ProjectAllocationService : IProjectAllocationService
     }
     }
 
-    public async Task<bool> ReleaseMemberFromProject(int projectId ,int employeeId,ReleaseEmployee project)
+    public async Task<bool> ReleaseEmployeeFromProject(int projectId ,int employeeId,ReleaseEmployee project)
     {
         bool status=false;
         Console.WriteLine("projectId"+projectId);
@@ -93,7 +93,7 @@ public class ProjectAllocationService : IProjectAllocationService
         return status;
     }
 
-    public async Task<List<Employee>> GetAllUnassignedEmployees()
+    public async Task<List<Employee>> GetUnassignedEmployees()
     {
         List<Employee> employees= new List<Employee>();
         MySqlConnection connection = new MySqlConnection();
@@ -129,7 +129,7 @@ public class ProjectAllocationService : IProjectAllocationService
         return employees;
     }
 
-    public async Task<List<ProjectAllocationDetails>> GetAllAssignedEmployees(string status)
+    public async Task<List<ProjectAllocationDetails>> GetAssignedEmployees(string status)
     {
         List<ProjectAllocationDetails> employees= new List<ProjectAllocationDetails>();
         MySqlConnection connection = new MySqlConnection();
@@ -255,7 +255,7 @@ public class ProjectAllocationService : IProjectAllocationService
         return employees;
     }
 
-    public async Task<List<ProjectAllocationDetails>> GetUnassignedEmployeesOfProject(int projectId)
+    public async Task<List<ProjectAllocationDetails>> GetRecentEmployeesOfProject(int projectId)
     {
         List<ProjectAllocationDetails> employees= new List<ProjectAllocationDetails>();
         MySqlConnection connection = new MySqlConnection();
@@ -298,7 +298,7 @@ public class ProjectAllocationService : IProjectAllocationService
         return employees;
     }
 
-    public async Task<List<ProjectAllocation>> GetAllProjectsOfEmployeeBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
+    public async Task<List<ProjectAllocation>> GetProjectsOfEmployeeBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
     {
         List<ProjectAllocation> projects = new List<ProjectAllocation>();
         MySqlConnection connection = new MySqlConnection();
