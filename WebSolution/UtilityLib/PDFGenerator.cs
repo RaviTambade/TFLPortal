@@ -1,12 +1,12 @@
 using PdfSharpCore;
 using PdfSharpCore.Pdf;
 using TheArtOfDev.HtmlRenderer.PdfSharp;
-namespace UtilityLib;
 
+namespace Transflower.Generators;
 
-public static class PDFGenerator
+public class PDFGenerator:IGenerator
 {
-    public static void Generate()
+    public void Generate()
     {
         var document = new PdfDocument();
 
@@ -143,11 +143,10 @@ table th{background-color:#fbc403; color:black; border:1px solid black';}
         document.Save("sahil.pdf");
     }
 
-    public static void GeneratePdfFile(string htmlContent, string fileName)
+    public void Generate(string content, string fileName)
     {
         var document = new PdfDocument();
-
-        PdfGenerator.AddPdfPages(document, htmlContent, PageSize.A4);
+        PdfGenerator.AddPdfPages(document, content, PageSize.A4);
         document.PageLayout = PdfPageLayout.SinglePage;
         document.Save($"{fileName}.pdf");
     }

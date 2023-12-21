@@ -1,10 +1,10 @@
 using System.Reflection;
 using System.Text;
 
-namespace UtilityLib;
-public static class CSVGenerator
+namespace Transflower.Generators;
+public class CSVGenerator
 {
-    public static void GenerateCSVFile<T>(IEnumerable<T> list, string fileName)
+    public void GenerateCSVFile<T>(IEnumerable<T> list, string fileName)
     {
         StringBuilder sb = new StringBuilder();
 

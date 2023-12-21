@@ -132,22 +132,22 @@
             amount double Not null
             );
 
-        CREATE TABLE leaves(
+        CREATE TABLE leaveapplications(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             employeeid INT NOT NULL,
             CONSTRAINT fk_projectmembers1 FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
+            applicationdate DateTime,
             fromdate DateTime,
             todate DateTime,
-            status enum("notsanction","sanction","applied")DEFAULT 'applied',
+            status enum("notsanctioned","sanctioned","applied")DEFAULT 'applied',
+            year int default (Year(curdate())),
             leavetype enum("casual","sick","paid","unpaid"));
-            
-        CREATE TABLE leavespending(
+
+        CREATE TABLE sanctionleaves(
                 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                employeeid INT NOT NULL,
-                sickleaves INT NOT NULL,
-                casualleaves INT NOT NULL,
-                paidleaves INT NOT NULL ,
-                unpaidleaves INT NOT NULL,
-                CONSTRAINT fk_employeess FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
-                );
+                roleid INT NOT NULL unique,
+                sick INT NOT NULL,
+                casual INT NOT NULL,
+                paid INT NOT NULL,
+                unpaid INT NOT NULL);
 

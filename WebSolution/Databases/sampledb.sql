@@ -785,31 +785,24 @@ Insert Into salarydisbursement(employeeid,paydate,amount) values(4,'2023-12-04',
 Insert Into salarydisbursement(employeeid,paydate,amount) values(5,'2023-12-03',25000);
 Insert Into salarydisbursement(employeeid,paydate,amount) values(6,'2023-12-02',25000);
 
-Insert Into leaves(employeeid,fromdate,todate,status,leavetype) values(1,'2023-04-03','2023-05-05',"notsanction","casual");
-Insert Into leaves(employeeid,fromdate,todate,status,leavetype) values(2,'2023-04-03','2023-05-05',"sanction","casual");
- Insert Into leaves(employeeid,fromdate,todate,status,leavetype) values(3,'2023-05-03','2023-05-20',"applied","casual");
-Insert Into leaves(employeeid,fromdate,todate,status,leavetype) values(4,'2023-02-03','2023-02-15',"sanction","casual");
--- Insert Into leaves(employeeid,fromdate,todate,status,leavetype) values(5,'2023-07-03','2023-05-25',"rejected","study");
--- Insert Into leaves(employeeid,fromdate,todate,status,leavetype) values(6,'2023-08-03','2023-05-15',40000,"approved","comp off");
--- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(7,'2023-06-03','2023-05-13',40000,"rejected","bereavement");
--- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(8,'2023-01-03','2023-05-25',50000,"approved","study");
--- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(9,'2023-08-03','2023-07-15',40000,"rejected","comp off");
--- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(10,'2023-07-03','2023-05-25',50000,"rejected","study");
--- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(11,'2023-08-03','2023-05-15',40000,"approved","comp off");
--- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(12,'2023-06-03','2023-05-13',40000,"rejected","bereavement");
--- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(13,'2023-01-03','2023-05-25',50000,"approved","study");
--- Insert Into leaves(employeeid,fromdate,todate,amount,status,leavetype) values(14,'2023-08-03','2023-07-15',40000,"rejected","comp off");
+Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(11,'2023-04-01','2023-04-03','2023-04-05',"notsanctioned",2023,"casual");
+Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-04-01','2023-04-03','2023-04-05',"sanctioned",2023,"casual");
+Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(13,'2023-03-01','2023-03-03','2023-03-20',"applied",2023,"casual");
+Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(14,'2023-04-01','2023-04-10','2023-04-15',"sanctioned",2023,"casual");
+
+Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(11,'2023-04-30','2023-04-03','2023-05-05',"notsanctioned",2023,"sick");
+Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-04-01','2023-04-15','2023-05-05',"sanctioned",2023,"paid");
+Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(13,'2023-02-01','2023-03-03','2023-05-20',"applied",2023,"unpaid");
+Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(14,'2023-04-01','2023-04-10','2023-02-15',"sanctioned",2023,"casual");
+
+Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(1,10,5,12,15);
+Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(1,9,5,12,10);
+Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(1,8,10,10,15);
+Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(1,7,5,11,10);
+Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(1,6,10,12,10);
 
 
--- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(10,3,1,2,1);
--- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(11,1,1,2,1);
--- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(12,3,1,5,1);
--- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(13,6,1,2,1);
--- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(14,3,1,7,1);
--- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(15,3,1,2,1);
--- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(16,1,6,2,1);
--- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(17,3,2,5,2);
--- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(18,6,5,2,1);
--- Insert Into leavespending(employeeid,sickleaves,casualleaves,paidleaves,unpaidleaves) values(19,3,2,1,1);
-
- 
+Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(1,10,5,12,15);
+Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(2,9,5,12,10);
+Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(3,8,10,10,15);
+Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(4,7,5,11,10);

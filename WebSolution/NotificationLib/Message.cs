@@ -1,6 +1,6 @@
-namespace NotificationLib;
+namespace Transflower.Notifications.Mail;
 
-public class EmailMessage
+public class Message
 {
     public required List<string> To { get; set; }
     public required string Subject { get; set; }

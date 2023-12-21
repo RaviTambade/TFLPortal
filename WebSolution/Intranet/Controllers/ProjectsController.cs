@@ -16,9 +16,9 @@ public class ProjectsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<List<Project>> GetAllProject()
+    public async Task<List<Project>> GetAllProjects()
     {
-        List<Project> projects = await _service.GetAllProject();
+        List<Project> projects = await _service.GetAllProjects();
         return projects;
     }
     [HttpGet("{projectId}")]

@@ -3,26 +3,26 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using MimeKit;
 
-namespace NotificationLib;
+namespace Transflower.Notifications.Mail;
 
-public  class EmailSender
+public  class EmailService
 {
     private readonly EmailConfiguration _emailConfig;
 
 
-    public EmailSender(IOptions<EmailConfiguration> emailConfig)
+    public EmailService(IOptions<EmailConfiguration> emailConfig)
     {
         _emailConfig = emailConfig.Value;
     }
 
-    public async Task SendEmail(EmailMessage message)
+    public async Task SendEmail(Message message)
     {
         var emailMessage = await CreateEmailMessage(message);
 
         await Send(emailMessage);
     }
 
-    private async Task<MimeMessage> CreateEmailMessage(EmailMessage message)
+    private async Task<MimeMessage> CreateEmailMessage(Message message)
     {
         var emailMessage = new MimeMessage();
         emailMessage.From.Add(new MailboxAddress("TFLPORTAL", _emailConfig.From));
@@ -46,11 +46,8 @@ public  class EmailSender
             };
             multipart.Add(attachment);
         }
-
         multipart.Add(body);
-
         emailMessage.Body = multipart;
-
         return emailMessage;
     }
 

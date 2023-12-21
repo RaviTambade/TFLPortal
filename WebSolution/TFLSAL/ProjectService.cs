@@ -19,7 +19,7 @@ public class ProjectService : IProjectService
     }
 
     // string connectionString="server=localhost;port=3306;user=root;password=password;database=pms";
-    public async Task<List<Project>> GetAllProject()
+    public async Task<List<Project>> GetAllProjects()
     {
         List<Project> projects = new List<Project>();
         MySqlConnection connection = new MySqlConnection();

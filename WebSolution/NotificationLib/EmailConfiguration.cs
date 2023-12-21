@@ -1,5 +1,5 @@
 
-namespace NotificationLib;
+namespace Transflower.Notifications.Mail;
 
 public class EmailConfiguration
 {
