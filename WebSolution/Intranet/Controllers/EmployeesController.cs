@@ -4,6 +4,7 @@ using Transflower.TFLPortal.TFLOBL.Entities;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 using Transflower.TFLPortal.TFLSAL.Services;
 using Transflower.TFLPortal.TFLSAL.DTO;
+using NotificationLib;
 
 namespace Transflower.TFLPortal.Intranet.Controllers;
 
@@ -14,19 +15,19 @@ public class EmployeesController : ControllerBase
     private readonly IEmployeeService _service;
     private readonly ExternalApiService _apiService;
     private readonly IPdfGeneratorService _pdfGenratorService;
-    private readonly INotificationService _notificationService;
+    private readonly EmailSender _emailSender;
 
     public EmployeesController(
         IEmployeeService service,
         ExternalApiService apiService,
         IPdfGeneratorService pdfGenratorService,
-        INotificationService notificationService
+        EmailSender emailSender
     )
     {
         _service = service;
         _apiService = apiService;
         _pdfGenratorService = pdfGenratorService;
-        _notificationService = notificationService;
+        _emailSender = emailSender;
     }
 
     // [HttpGet("genratepdf")]
@@ -78,12 +79,14 @@ public class EmployeesController : ControllerBase
         string? filepath = _pdfGenratorService.GenerateSalarySlip(salaryDetails);
         Console.WriteLine(filepath);
 
-        List<string> to = new List<string>() {"sahilmankar311@gmail.com" };
-        string subject = "Your Salry Slip";
-        string body = "Find Your Salaryslip Attached below";
-        List<string> filePaths = new List<string>() { filepath };
-        EmailMessage? email = new EmailMessage(to, subject, body, filePaths);
-        await _notificationService.SendEmail(email);
+        EmailMessage? email = new EmailMessage()
+        {
+            To = new List<string>() { "sahilmankar311@gmail.com" },
+            Subject = "Your Salry Slip",
+            Body = "Find Your Salaryslip Attached below",
+            Filepaths = new List<string>() { filepath }
+        };
+        await _emailSender.SendEmail(email);
         return transactionId > 0;
     }
 
@@ -125,17 +128,17 @@ public class EmployeesController : ControllerBase
             Deduction = salaryStructure.Deduction
         };
 
-         var filepath=   _pdfGenratorService.GenerateSalarySlip(salaryDetails);
-         Console.WriteLine(filepath);
+        var filepath = _pdfGenratorService.GenerateSalarySlip(salaryDetails);
+        Console.WriteLine(filepath);
 
-        List<string> to= new List<string>(){"sahilmankar311@gmail.com"};
-        string subject= "Your Salry Slip";
-        string body="Find Your Salaryslip Attached below";
-        List<string> filePaths=new List<string>(){filepath};
-
-
-        EmailMessage? email =new EmailMessage(to,subject,body,filePaths);
-        await _notificationService.SendEmail(email);
+      EmailMessage? email = new EmailMessage()
+        {
+            To = new List<string>() { "sahilmankar311@gmail.com" },
+            Subject = "Your Salry Slip",
+            Body = "Find Your Salaryslip Attached below",
+            Filepaths = new List<string>() { filepath }
+        };
+        await _emailSender.SendEmail(email);
 
         return salaryDetails;
     }

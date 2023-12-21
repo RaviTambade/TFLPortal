@@ -1,17 +1,16 @@
-using System.Net.Http.Json;
 using MailKit.Net.Smtp;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using MimeKit;
-using Transflower.TFLPortal.TFLOBL.Entities;
-using Transflower.TFLPortal.TFLSAL.Helper;
-using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 
-public class NotificationService : INotificationService
+namespace NotificationLib;
+
+public  class EmailSender
 {
     private readonly EmailConfiguration _emailConfig;
 
 
-    public NotificationService(IOptions<EmailConfiguration> emailConfig)
+    public EmailSender(IOptions<EmailConfiguration> emailConfig)
     {
         _emailConfig = emailConfig.Value;
     }

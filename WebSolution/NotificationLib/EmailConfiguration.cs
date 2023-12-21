@@ -1,4 +1,5 @@
-namespace Transflower.TFLPortal.TFLSAL.Helper;
+
+namespace NotificationLib;
 
 public class EmailConfiguration
 {

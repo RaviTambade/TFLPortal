@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using Transflower.TFLPortal.TFLSAL.Helper;
+using NotificationLib;
 using Transflower.TFLPortal.TFLSAL.Services;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 
@@ -14,9 +14,8 @@ builder.Services
         options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
     });
 
-builder.Services
-    .AddOptions<EmailConfiguration>()
-    .Bind(builder.Configuration.GetSection("EmailConfiguration"));
+builder.Services.AddOptions<EmailConfiguration>().Bind(builder.Configuration.GetSection("EmailConfiguration"));
+builder.Services.AddScoped<EmailSender>();
 builder.Services.AddScoped<ExternalApiService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<IActivityService, ActivityService>();
@@ -24,10 +23,9 @@ builder.Services.AddScoped<ITimeSheetService, TimeSheetService>();
 builder.Services.AddScoped<IProjectAllocationService, ProjectAllocationService>();
 builder.Services.AddScoped<ILeaveApplicationService, LeaveApplicationService>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
-builder.Services.AddScoped<INotificationService, NotificationService>();
 builder.Services.AddScoped<IPdfGeneratorService, PdfGeneratorService>();
-
 builder.Services.AddHttpClient();
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -48,5 +46,6 @@ app.UseStaticFiles();
 app.UseAuthorization();
 
 app.MapControllers();
+
 
 app.Run();
