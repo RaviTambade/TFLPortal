@@ -17,9 +17,9 @@ public class ActivityController : ControllerBase
     }
 
     [HttpGet("selectedProject/{projectId}")]
-    public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>> GetAllActivitiesByProject(int projectId)
+    public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>> GetActivitiesByProject(int projectId)
     {
-        List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetAllActivitiesByProject(projectId);
+        List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetActivitiesByProject(projectId);
         return activities;
     }
 
@@ -42,24 +42,24 @@ public class ActivityController : ControllerBase
     }
    
     [HttpGet("projects/{projectId}/type/{activityType}")]
-    public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>>GetAllActivitiesByProject(int projectId, string activityType)
+    public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>>GetProjectActivitiesByType(int projectId, string activityType)
     {
-        List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetAllActivitiesByProject(projectId,activityType);
+        List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetProjectActivitiesByType(projectId,activityType);
         return activities;
     }
 
      [HttpGet("projects/{projectId}/employees/{assignedTo}")]
-    public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>> GetActivitiesByProject(int projectId,int assignedTo)
+    public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>> GetProjectActivitiesByEmployee(int projectId,int employeeId)
     {
-        List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetActivitiesByProject(projectId,assignedTo);
+        List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetProjectActivitiesByEmployee(projectId,employeeId);
         return activities;
     }
 
      
      [HttpGet("projects/{projectId}/employees/{assignedTo}/type/{activityType}")]
-    public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>> GetAllActivitiesByProject(int projectId, int assignedTo,string activityType)
+    public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>> GetProjectActivitiesOfEmployee(int projectId, int employeeId,string activityType)
     {
-        List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetActivitiesByProject(projectId,assignedTo,activityType);
+        List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetProjectActivitiesOfEmployee(projectId,employeeId,activityType);
         return activities;
     }
 
@@ -71,15 +71,15 @@ public class ActivityController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<bool> Insert(Transflower.TFLPortal.TFLOBL.Entities.Activity activity)
+    public async Task<bool> AddActivity(Transflower.TFLPortal.TFLOBL.Entities.Activity activity)
     {
-        bool status = await _service.Insert(activity);
+        bool status = await _service.AddActivity(activity);
         return status;
 
     }
 
     [HttpGet("fromassigneddate/{fromAssignedDate}/toassigneddate/{toAssignedDate}")]
-    public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>> GetAllActivitiesBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate)
+    public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>> GetActivitiesBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate)
     {
         List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetAllActivitiesBetweenDates(fromAssignedDate,toAssignedDate);
         return activities;
@@ -88,7 +88,7 @@ public class ActivityController : ControllerBase
     
 
      [HttpGet("employees/{employeeId}/fromassigneddate/{fromAssignedDate}/toassigneddate/{toAssignedDate}")]
-    public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>> GetAllActivitiesBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
+    public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>> GetActivitiesOfEmployeeBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
     {
         List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetAllActivitiesBetweenDates(employeeId,fromAssignedDate,toAssignedDate);
         return activities;
@@ -114,16 +114,16 @@ public class ActivityController : ControllerBase
 
 
  [HttpGet("ActivitySp")]
-    public async Task<ActivityCountSp> GetAllActivitiesCount()
+    public async Task<ActivityCountSp> GetActivitiesCount()
     {
-        ActivityCountSp activities = await _service.GetAllActivitiesCount();
+        ActivityCountSp activities = await _service.GetActivitiesCount();
         return activities;
     }
 
     [HttpGet("project/{projectId}/date/{date}")]
-    public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>> GetAllTodaysActivities(int projectId,DateTime date)
+    public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>> GetTodayActivities(int projectId,DateTime date)
     {
-        List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetAllTodaysActivities(projectId,date);
+        List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetTodayActivities(projectId,date);
         return activities;
     }
 

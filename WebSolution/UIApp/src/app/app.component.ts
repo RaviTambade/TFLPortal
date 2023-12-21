@@ -1,7 +1,5 @@
 import { Component, OnInit, isDevMode } from '@angular/core';
 import { Project } from './projects/Models/project';
-import { task } from './task/Models/task';
-import { Employee } from './activity/Models/Employee';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -12,12 +10,10 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent implements OnInit {
 
   constructor(private http:HttpClient){}
-
   getFile(){
-    let url='http://localhost:5263/Documents/SahilMankar19122023143721.pdf'
+    let url='http://localhost:5263/Documents/DadabhauNavle18122023130430.pdf'
     this.downloadFile(url);
   }
-
 
 downloadFile(url:string){
   this.http.get(url,  {responseType: 'blob'}).subscribe((response: any) => {
@@ -30,16 +26,13 @@ downloadFile(url:string){
   window.open(pdfUrl, '_blank');
   
   let filename=url.split('/').pop() || "slip.pdf";
+  console.log(filename);
     PDF_link.download = filename;
     PDF_link.click();
-
 });
 }
 
- 
-  
-  ngOnInit(): void {
-  
+  ngOnInit(): void { 
       if (isDevMode()) {
         console.log('Development!');
       } else {
@@ -71,8 +64,4 @@ downloadFile(url:string){
     this.employeeId = employeeId;
     console.log(this.employeeId);
   }
-
-
-
-
 }

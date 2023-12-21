@@ -33,15 +33,15 @@ public class ActivityService : IActivityService
             {
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
-                string activitytype = reader["activitytype"].ToString();
+                string activityType = reader["activitytype"].ToString();
                 string description = reader["description"].ToString();
                 int projectId = int.Parse(reader["projectid"].ToString());
-                DateTime createdate = DateTime.Parse(reader["createddate"].ToString());
-                int assignedto = int.Parse(reader["assignedto"].ToString());
-                int assignedby = int.Parse(reader["assignedby"].ToString());
-                DateTime assigndate = DateTime.Parse(reader["assigneddate"].ToString());
-                DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
-                DateTime duedate = DateTime.Parse(reader["duedate"].ToString());
+                DateTime createDate = DateTime.Parse(reader["createddate"].ToString());
+                int assignedTo = int.Parse(reader["assignedto"].ToString());
+                int assignedBy = int.Parse(reader["assignedby"].ToString());
+                DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
+                DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
@@ -49,13 +49,13 @@ public class ActivityService : IActivityService
                 {
                     Id = id,
                     Title = title,
-                    ActivityType = activitytype,
+                    ActivityType = activityType,
                     Description = description,
                     ProjectId = projectId,
-                    AssignDate = assigndate,
-                    StartDate = startdate,
-                    DueDate = duedate,
-                    AssignedTo = assignedto,
+                    AssignDate = assignDate,
+                    StartDate = startDate,
+                    DueDate = dueDate,
+                    AssignedTo = assignedTo,
                     Status = status,
                     AssignedBy = managerId,
 
@@ -74,7 +74,7 @@ public class ActivityService : IActivityService
         }
         return activities;
     }
-    public async Task<List<TFLOBL.Entities.Activity>> GetAllActivitiesByProject(int projectId)
+    public async Task<List<TFLOBL.Entities.Activity>> GetActivitiesByProject(int projectId)
     {
         List<TFLOBL.Entities.Activity> activities = new List<TFLOBL.Entities.Activity>();
         MySqlConnection connection = new MySqlConnection();
@@ -90,14 +90,14 @@ public class ActivityService : IActivityService
             {
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
-                string activitytype = reader["activitytype"].ToString();
+                string activityType = reader["activitytype"].ToString();
                 string description = reader["description"].ToString();
-                DateTime createdate = DateTime.Parse(reader["createddate"].ToString());
-                int assignedto = int.Parse(reader["assignedto"].ToString());
-                int assignedby = int.Parse(reader["assignedby"].ToString());
-                DateTime assigndate = DateTime.Parse(reader["assigneddate"].ToString());
-                DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
-                DateTime duedate = DateTime.Parse(reader["duedate"].ToString());
+                DateTime createDate = DateTime.Parse(reader["createddate"].ToString());
+                int assignedTo = int.Parse(reader["assignedto"].ToString());
+                int assignedBy = int.Parse(reader["assignedby"].ToString());
+                DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
+                DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
@@ -105,13 +105,13 @@ public class ActivityService : IActivityService
                 {
                     Id = id,
                     Title = title,
-                    ActivityType = activitytype,
+                    ActivityType = activityType,
                     Description = description,
                     ProjectId = projectId,
-                    AssignDate = assigndate,
-                    StartDate = startdate,
-                    DueDate = duedate,
-                    AssignedTo = assignedto,
+                    AssignDate = assignDate,
+                    StartDate = startDate,
+                    DueDate = dueDate,
+                    AssignedTo = assignedTo,
                     Status = status,
                     AssignedBy = managerId,
 
@@ -131,7 +131,7 @@ public class ActivityService : IActivityService
         return activities;
     }
 
-    public async Task<List<TFLOBL.Entities.Activity>> GetAllActivitiesByProject(int projectId, string activityType)
+    public async Task<List<TFLOBL.Entities.Activity>> GetProjectActivitiesByType(int projectId, string activityType)
     {
 
         List<TFLOBL.Entities.Activity> activities = new List<TFLOBL.Entities.Activity>();
@@ -151,12 +151,12 @@ public class ActivityService : IActivityService
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
                 string description = reader["description"].ToString();
-                DateTime createdate = DateTime.Parse(reader["createddate"].ToString());
-                int assignedto = int.Parse(reader["assignedto"].ToString());
-                int assignedby = int.Parse(reader["assignedby"].ToString());
-                DateTime assigndate = DateTime.Parse(reader["assigneddate"].ToString());
-                DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
-                DateTime duedate = DateTime.Parse(reader["duedate"].ToString());
+                DateTime createDate = DateTime.Parse(reader["createddate"].ToString());
+                int assignedTo = int.Parse(reader["assignedto"].ToString());
+                int assignedBy = int.Parse(reader["assignedby"].ToString());
+                DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
+                DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
@@ -167,10 +167,10 @@ public class ActivityService : IActivityService
                     ActivityType = activityType,
                     Description = description,
                     ProjectId = projectId,
-                    AssignDate = assigndate,
-                    StartDate = startdate,
-                    DueDate = duedate,
-                    AssignedTo = assignedto,
+                    AssignDate = assignDate,
+                    StartDate = startDate,
+                    DueDate = dueDate,
+                    AssignedTo = assignedTo,
                     Status = status,
                     AssignedBy = managerId,
 
@@ -191,7 +191,7 @@ public class ActivityService : IActivityService
         return activities;
     }
 
-    public async Task<List<TFLOBL.Entities.Activity>> GetActivitiesByProject(int projectId, int assignedTo)
+    public async Task<List<TFLOBL.Entities.Activity>> GetProjectActivitiesByEmployee(int projectId, int employeeId)
     {
 
         List<TFLOBL.Entities.Activity> activities = new List<TFLOBL.Entities.Activity>();
@@ -203,7 +203,7 @@ public class ActivityService : IActivityService
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);
 
-            command.Parameters.AddWithValue("@assignedto", assignedTo);
+            command.Parameters.AddWithValue("@assignedto", employeeId);
 
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
@@ -213,11 +213,11 @@ public class ActivityService : IActivityService
                 string title = reader["title"].ToString();
                 string activityType = reader["activitytype"].ToString();
                 string description = reader["description"].ToString();
-                DateTime createdate = DateTime.Parse(reader["createddate"].ToString());
-                int assignedby = int.Parse(reader["assignedby"].ToString());
-                DateTime assigndate = DateTime.Parse(reader["assigneddate"].ToString());
-                DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
-                DateTime duedate = DateTime.Parse(reader["duedate"].ToString());
+                DateTime createDate = DateTime.Parse(reader["createddate"].ToString());
+                int assignedBy = int.Parse(reader["assignedby"].ToString());
+                DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
+                DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
@@ -228,10 +228,10 @@ public class ActivityService : IActivityService
                     ActivityType = activityType,
                     Description = description,
                     ProjectId = projectId,
-                    AssignDate = assigndate,
-                    StartDate = startdate,
-                    DueDate = duedate,
-                    AssignedTo = assignedTo,
+                    AssignDate = assignDate,
+                    StartDate = startDate,
+                    DueDate = dueDate,
+                    AssignedTo = employeeId,
                     Status = status,
                     AssignedBy = managerId,
 
@@ -250,7 +250,7 @@ public class ActivityService : IActivityService
         }
         return activities;
     }
-    public async Task<List<TFLOBL.Entities.Activity>> GetActivitiesByProject(int projectId, int assignedTo, string activityType)
+    public async Task<List<TFLOBL.Entities.Activity>> GetProjectActivitiesOfEmployee(int projectId, int employeeId, string activityType)
     {
 
         List<TFLOBL.Entities.Activity> activities = new List<TFLOBL.Entities.Activity>();
@@ -262,7 +262,7 @@ public class ActivityService : IActivityService
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);
             command.Parameters.AddWithValue("@activityType", activityType);
-            command.Parameters.AddWithValue("@assignedto", assignedTo);
+            command.Parameters.AddWithValue("@assignedto", employeeId);
 
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
@@ -271,11 +271,11 @@ public class ActivityService : IActivityService
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
                 string description = reader["description"].ToString();
-                DateTime createdate = DateTime.Parse(reader["createddate"].ToString());
-                int assignedby = int.Parse(reader["assignedby"].ToString());
-                DateTime assigndate = DateTime.Parse(reader["assigneddate"].ToString());
-                DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
-                DateTime duedate = DateTime.Parse(reader["duedate"].ToString());
+                DateTime createDate = DateTime.Parse(reader["createddate"].ToString());
+                int assignedBy = int.Parse(reader["assignedby"].ToString());
+                DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
+                DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
@@ -286,10 +286,10 @@ public class ActivityService : IActivityService
                     ActivityType = activityType,
                     Description = description,
                     ProjectId = projectId,
-                    AssignDate = assigndate,
-                    StartDate = startdate,
-                    DueDate = duedate,
-                    AssignedTo = assignedTo,
+                    AssignDate = assignDate,
+                    StartDate = startDate,
+                    DueDate = dueDate,
+                    AssignedTo = employeeId,
                     Status = status,
                     AssignedBy = managerId,
 
@@ -326,11 +326,11 @@ public class ActivityService : IActivityService
             {
                 string title = reader["title"].ToString();
                 string description = reader["description"].ToString();
-                string activitytype = reader["activitytype"].ToString();
-                DateTime createdate = DateTime.Parse(reader["createddate"].ToString());
-                DateTime assigndate = DateTime.Parse(reader["assigneddate"].ToString());
-                DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
-                DateTime duedate = DateTime.Parse(reader["duedate"].ToString());
+                string activityType = reader["activitytype"].ToString();
+                DateTime createDate = DateTime.Parse(reader["createddate"].ToString());
+                DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
+                DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
                 int projectId = int.Parse(reader["projectid"].ToString());
                 int memberId = int.Parse(reader["assignedto"].ToString());
@@ -341,16 +341,16 @@ public class ActivityService : IActivityService
                 activity = new ActivityDetails()
                 {
                     Id = activityId,
-                    ActivityType = activitytype,
+                    ActivityType = activityType,
                     Title = title,
-                    CreatedDate = createdate,
+                    CreatedDate = createDate,
                     Description = description,
                     ProjectId = projectId,
-                    AssignDate = assigndate,
-                    StartDate = startdate,
+                    AssignDate = assignDate,
+                    StartDate = startDate,
                     AssignedTo = memberId,
                     AssignedBy = managerId,
-                    DueDate = duedate,
+                    DueDate = dueDate,
                     Status = status,
                     AssignByEmployee = new Employee
                     {
@@ -381,17 +381,17 @@ public class ActivityService : IActivityService
         return activity;
     }
 
-    public async Task<bool> Insert(TFLOBL.Entities.Activity activity)
+    public async Task<bool> AddActivity(TFLOBL.Entities.Activity activity)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "INSERT INTO activities(title,activitytype,description,createddate,assigneddate,startdate,duedate,assignedto,projectid,status,assignedby)    VALUES(@title,@activitytype,@description,@createdDate,@assignDate,@startDate,@dueDate,@assignedTo,@projectId,@status,@assignedBy)";
+            string query = "INSERT INTO activities(title,activitytype,description,createddate,assigneddate,startdate,duedate,assignedto,projectid,status,assignedby) VALUES(@title,@activityType,@description,@createdDate,@assignDate,@startDate,@dueDate,@assignedTo,@projectId,@status,@assignedBy)";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@title", activity.Title);
-            cmd.Parameters.AddWithValue("@activitytype", activity.ActivityType);
+            cmd.Parameters.AddWithValue("@activityType", activity.ActivityType);
             cmd.Parameters.AddWithValue("@description", activity.Description);
             cmd.Parameters.AddWithValue("@createddate", activity.CreatedDate);
             cmd.Parameters.AddWithValue("@assigndate", activity.AssignDate);
@@ -419,10 +419,7 @@ public class ActivityService : IActivityService
             await connection.CloseAsync();
         }
         return status;
-
     }
-
-
 
      public async Task<List<TFLOBL.Entities.Activity>> GetAllActivitiesOfEmployee(int employeeId){
       List<TFLOBL.Entities.Activity> activities = new List<TFLOBL.Entities.Activity>();
@@ -439,14 +436,14 @@ public class ActivityService : IActivityService
             {
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
-                string activitytype = reader["activitytype"].ToString();
+                string activityType = reader["activitytype"].ToString();
                 string description = reader["description"].ToString();
                 int projectId = int.Parse(reader["projectid"].ToString());
-                DateTime createdate = DateTime.Parse(reader["createddate"].ToString());
-                int assignedby = int.Parse(reader["assignedby"].ToString());
-                DateTime assigndate = DateTime.Parse(reader["assigneddate"].ToString());
-                DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
-                DateTime duedate = DateTime.Parse(reader["duedate"].ToString());
+                DateTime createDate = DateTime.Parse(reader["createddate"].ToString());
+                int assignedBy = int.Parse(reader["assignedby"].ToString());
+                DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
+                DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
@@ -454,12 +451,12 @@ public class ActivityService : IActivityService
                 {
                     Id = id,
                     Title = title,
-                    ActivityType = activitytype,
+                    ActivityType = activityType,
                     Description = description,
                     ProjectId = projectId,
-                    AssignDate = assigndate,
-                    StartDate = startdate,
-                    DueDate = duedate,
+                    AssignDate = assignDate,
+                    StartDate = startDate,
+                    DueDate = dueDate,
                     AssignedTo = employeeId,
                     Status = status,
                     AssignedBy = managerId,
@@ -480,7 +477,7 @@ public class ActivityService : IActivityService
         return activities;
     }
 
-    public async Task<List<TFLOBL.Entities.Activity>> GetAllActivitiesBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate)
+    public async Task<List<TFLOBL.Entities.Activity>> GetActivitiesBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate)
     {
         List<TFLOBL.Entities.Activity> activities = new List<TFLOBL.Entities.Activity>();
         MySqlConnection connection = new MySqlConnection();
@@ -497,14 +494,14 @@ public class ActivityService : IActivityService
             {
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
-                string activitytype = reader["activitytype"].ToString();
+                string activityType = reader["activitytype"].ToString();
                 string description = reader["description"].ToString();
                 int projectId = int.Parse(reader["projectid"].ToString());
-                DateTime createdate = DateTime.Parse(reader["createddate"].ToString());
-                int assignedby = int.Parse(reader["assignedby"].ToString());
-                DateTime assigndate = DateTime.Parse(reader["assigneddate"].ToString());
-                DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
-                DateTime duedate = DateTime.Parse(reader["duedate"].ToString());
+                DateTime createDate = DateTime.Parse(reader["createddate"].ToString());
+                int assignedBy = int.Parse(reader["assignedby"].ToString());
+                DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
+                DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
                 int employeeId = int.Parse(reader["assignedto"].ToString());
@@ -514,12 +511,12 @@ public class ActivityService : IActivityService
                 {
                     Id = id,
                     Title = title,
-                    ActivityType = activitytype,
+                    ActivityType = activityType,
                     Description = description,
                     ProjectId = projectId,
-                    AssignDate = assigndate,
-                    StartDate = startdate,
-                    DueDate = duedate,
+                    AssignDate = assignDate,
+                    StartDate = startDate,
+                    DueDate = dueDate,
                     AssignedTo = employeeId,
                     Status = status,
                     AssignedBy = managerId,
@@ -541,7 +538,7 @@ public class ActivityService : IActivityService
     } 
 
 
-    public async Task<List<TFLOBL.Entities.Activity>> GetAllActivitiesBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
+    public async Task<List<TFLOBL.Entities.Activity>> GetActivitiesOfEmployeeBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
     {
         List<TFLOBL.Entities.Activity> activities = new List<TFLOBL.Entities.Activity>();
         MySqlConnection connection = new MySqlConnection();
@@ -559,14 +556,14 @@ public class ActivityService : IActivityService
             {
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
-                string activitytype = reader["activitytype"].ToString();
+                string activityType = reader["activitytype"].ToString();
                 string description = reader["description"].ToString();
                 int projectId = int.Parse(reader["projectid"].ToString());
-                DateTime createdate = DateTime.Parse(reader["createddate"].ToString());
-                int assignedby = int.Parse(reader["assignedby"].ToString());
-                DateTime assigndate = DateTime.Parse(reader["assigneddate"].ToString());
-                DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
-                DateTime duedate = DateTime.Parse(reader["duedate"].ToString());
+                DateTime createDate = DateTime.Parse(reader["createddate"].ToString());
+                int assignedBy = int.Parse(reader["assignedby"].ToString());
+                DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
+                DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
             
@@ -574,12 +571,12 @@ public class ActivityService : IActivityService
                 {
                     Id = id,
                     Title = title,
-                    ActivityType = activitytype,
+                    ActivityType = activityType,
                     Description = description,
                     ProjectId = projectId,
-                    AssignDate = assigndate,
-                    StartDate = startdate,
-                    DueDate = duedate,
+                    AssignDate = assignDate,
+                    StartDate = startDate,
+                    DueDate = dueDate,
                     AssignedTo = employeeId,
                     Status = status,
                     AssignedBy = managerId,
@@ -647,20 +644,20 @@ public class ActivityService : IActivityService
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);
             command.Parameters.AddWithValue("@employeeId", employeeId);
-              command.Parameters.AddWithValue("@status","todo");
+            command.Parameters.AddWithValue("@status","todo");
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
-                string activitytype = reader["activitytype"].ToString();
+                string activityType = reader["activitytype"].ToString();
                 string description = reader["description"].ToString();
-                DateTime createdate = DateTime.Parse(reader["createddate"].ToString());
-                int assignedby = int.Parse(reader["assignedby"].ToString());
-                DateTime assigndate = DateTime.Parse(reader["assigneddate"].ToString());
-                DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
-                DateTime duedate = DateTime.Parse(reader["duedate"].ToString());
+                DateTime createDate = DateTime.Parse(reader["createddate"].ToString());
+                int assignedBy = int.Parse(reader["assignedby"].ToString());
+                DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
+                DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
                 string projectName = reader["projectname"].ToString();
@@ -669,17 +666,16 @@ public class ActivityService : IActivityService
                 {
                     Id = id,
                     Title = title,
-                    ActivityType = activitytype,
+                    ActivityType = activityType,
                     Description = description,
                     ProjectId = projectId,
-                    AssignDate = assigndate,
-                    StartDate = startdate,
-                    DueDate = duedate,
+                    AssignDate = assignDate,
+                    StartDate = startDate,
+                    DueDate = dueDate,
                     AssignedTo = employeeId,
                     Status = status,
                     AssignedBy = managerId,
                     ProjectName=projectName,
-
                 };
                 activities.Add(act);
             }
@@ -696,14 +692,11 @@ public class ActivityService : IActivityService
         return activities;
     }
 
-
-
-    public async Task<ActivityCountSp> GetAllActivitiesCount()
-{
+    public async Task<ActivityCountSp> GetActivitiesCount()
+    {
     ActivityCountSp countSp = null;
     MySqlConnection con = new MySqlConnection();
     con.ConnectionString = _connectionString;
-
     try
     {
         await con.OpenAsync();
@@ -746,7 +739,7 @@ public class ActivityService : IActivityService
 }
 
 
- public async Task<List<TFLOBL.Entities.Activity>> GetAllTodaysActivities(int projectId,DateTime date)
+public async Task<List<TFLOBL.Entities.Activity>> GetTodayActivities(int projectId,DateTime date)
     {
         List<TFLOBL.Entities.Activity> activities = new List<TFLOBL.Entities.Activity>();
         MySqlConnection connection = new MySqlConnection();
