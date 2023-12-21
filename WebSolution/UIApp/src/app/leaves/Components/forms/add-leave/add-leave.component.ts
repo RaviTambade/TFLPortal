@@ -18,12 +18,12 @@ export class AddLeaveComponent implements OnInit {
   fromDate: Date|any; 
   toDate: Date |any;  
   dateDifference: number|any; 
-   
+  dateInMilliseconds: number|any; 
   constructor(private service:LeavesService){
     this.employeeId=localStorage.getItem(LocalStorageKeys.employeeId)
   }
   ngOnInit(): void {
-    this.calculateDateDifference();
+    // this.calculateDays();
   }
   selectedLeaveType:string='';
 
@@ -45,45 +45,21 @@ export class AddLeaveComponent implements OnInit {
       leaveType: this.leaveForm.get("leaveType")?.value
     }
     console.log(leaves);
-    // this.fromDate=leaves.fromDate;
-    // this.toDate=leaves.toDate;
-    // console.log(this.fromDate);
-    // console.log(this.toDate);
-    // const firtDateMs = (new Date(this.fromDate)).getTime();
-    // console.log(firtDateMs);
-    // const secondDateMs = (new Date(this.toDate)).getTime();
-    // console.log(secondDateMs);
-    // this.DifferenceInDays = Math.ceil(Math.abs(firtDateMs - secondDateMs) / (1000 * 60 * 60 * 24));
-    // console.log("Difference_In_Days: ", this.DifferenceInDays);
     this.service.addLeave(leaves).subscribe((res)=>{
     console.log(res);    
   });
  console.log(this.leaveForm.value)
  }
 
-
-  
-  calculateDateDifference() {     
-    // const firtDateMs = (new Date(this.fromDate)).getTime();
-    // console.log(firtDateMs);
-    // const secondDateMs = (new Date(this.toDate)).getTime();
-    // console.log(secondDateMs);
-    // this.dateDifference = Math.ceil(Math.abs(firtDateMs - secondDateMs) / (1000 * 60 * 60 * 24));
-    // console.log("Difference_In_Days: ", this.dateDifference);
+  calculateDays() {     
     if (this.fromDate && this.toDate) {     
-        const diffInMilliseconds = (new Date(this.fromDate)).getTime() - (new Date(this.toDate)).getTime(); 
+        const diffInMilliseconds = (new Date(this.toDate)).getTime() - (new Date(this.fromDate)).getTime(); 
         console.log(diffInMilliseconds);  
-            this.dateDifference = diffInMilliseconds / (1000 * 60 * 60 * 24); 
+        this.dateInMilliseconds=diffInMilliseconds+86400000;
+            this.dateDifference = this.dateInMilliseconds / (1000 * 60 * 60 * 24); 
           } 
           else {       
           this.dateDifference = null; 
     }
   }
 }
-
-
-// calculateDateDifference() {     
-//   if (this.startDate && this.endDate) {  
-//          const diffInMilliseconds = this.endDate.getTime() - this.startDate.getTime(); 
-//                this.dateDifference = diffInMilliseconds / (1000 * 60 * 60 * 24); // Convert milliseconds to days   
-//                } else {       this.dateDifference = null;     }   }

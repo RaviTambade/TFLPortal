@@ -95,6 +95,4 @@ role:string|undefined=undefined;
       this.visibleActivities=[];
     }
   }
-
-  
 }

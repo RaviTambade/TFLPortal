@@ -11,18 +11,27 @@ import { LeaveDetails } from '../../Models/LeaveDetails';
 })
 export class TeamMemberLeaveRequestComponent implements OnInit{
 
-  // employeeId:any;
   projectId:number=1;
-  status:string="notstarted";
+  status:string="applied";
   appliedLeaves:LeaveDetails[]=[];
+  leaveTypes:any[]=[];
+  leaves:any[]=[];
   constructor(private leaveService:LeavesService){
   }
 
   ngOnInit(): void {
     this.leaveService.getEmployeeAppliedLeaves(this.projectId,this.status).subscribe((res)=>{
     this.appliedLeaves=res;
-    console.log(res);
+    console.log(this.appliedLeaves);
+    this.leaveTypes=this.appliedLeaves.map(item => item.leaveType).filter((value, index, self) => self.indexOf(value) === index);
+    console.log(this.leaveTypes);  
+    this.onChange(this.leaveTypes);
     })
-    
+  }
+
+  onChange(e:any){
+    console.log(e.target.value);
+    this.leaves =this.appliedLeaves.filter(u=>u.leaveType==e.target.value);
+    console.log(this.appliedLeaves);
   }
 }
