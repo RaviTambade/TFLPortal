@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFLSAL", "TFLSAL\TFLSAL.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intranet", "Intranet\Intranet.csproj", "{A46B0CAC-E164-4C74-907B-CFEFAF98DC8E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationLib", "NotificationLib\NotificationLib.csproj", "{2A77D5E3-DACE-4A97-9FCA-A6AF77BDE375}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilityLib", "UtilityLib\UtilityLib.csproj", "{44529013-B6C5-421C-89F9-4A6C4D280E21}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,5 +38,13 @@ Global
 		{A46B0CAC-E164-4C74-907B-CFEFAF98DC8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A46B0CAC-E164-4C74-907B-CFEFAF98DC8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A46B0CAC-E164-4C74-907B-CFEFAF98DC8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A77D5E3-DACE-4A97-9FCA-A6AF77BDE375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A77D5E3-DACE-4A97-9FCA-A6AF77BDE375}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A77D5E3-DACE-4A97-9FCA-A6AF77BDE375}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A77D5E3-DACE-4A97-9FCA-A6AF77BDE375}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44529013-B6C5-421C-89F9-4A6C4D280E21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44529013-B6C5-421C-89F9-4A6C4D280E21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44529013-B6C5-421C-89F9-4A6C4D280E21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44529013-B6C5-421C-89F9-4A6C4D280E21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

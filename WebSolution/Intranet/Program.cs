@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using NotificationLib;
+using Transflower.Notifications.Mail;
 using Transflower.TFLPortal.TFLSAL.Services;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 
@@ -15,7 +15,7 @@ builder.Services
     });
 
 builder.Services.AddOptions<EmailConfiguration>().Bind(builder.Configuration.GetSection("EmailConfiguration"));
-builder.Services.AddScoped<EmailSender>();
+builder.Services.AddScoped<EmailService>();
 builder.Services.AddScoped<ExternalApiService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<IActivityService, ActivityService>();

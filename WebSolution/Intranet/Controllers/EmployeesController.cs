@@ -4,7 +4,7 @@ using Transflower.TFLPortal.TFLOBL.Entities;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 using Transflower.TFLPortal.TFLSAL.Services;
 using Transflower.TFLPortal.TFLSAL.DTO;
-using NotificationLib;
+using Transflower.Notifications.Mail;
 
 namespace Transflower.TFLPortal.Intranet.Controllers;
 
@@ -15,19 +15,19 @@ public class EmployeesController : ControllerBase
     private readonly IEmployeeService _service;
     private readonly ExternalApiService _apiService;
     private readonly IPdfGeneratorService _pdfGenratorService;
-    private readonly EmailSender _emailSender;
+    private readonly EmailService _emailService;
 
     public EmployeesController(
         IEmployeeService service,
         ExternalApiService apiService,
         IPdfGeneratorService pdfGenratorService,
-        EmailSender emailSender
+        EmailService emailService
     )
     {
         _service = service;
         _apiService = apiService;
         _pdfGenratorService = pdfGenratorService;
-        _emailSender = emailSender;
+        _emailService = emailService;
     }
 
     // [HttpGet("genratepdf")]
@@ -79,14 +79,14 @@ public class EmployeesController : ControllerBase
         string? filepath = _pdfGenratorService.GenerateSalarySlip(salaryDetails);
         Console.WriteLine(filepath);
 
-        EmailMessage? email = new EmailMessage()
+        Message email = new Message()
         {
             To = new List<string>() { "sahilmankar311@gmail.com" },
             Subject = "Your Salry Slip",
             Body = "Find Your Salaryslip Attached below",
             Filepaths = new List<string>() { filepath }
         };
-        await _emailSender.SendEmail(email);
+        await _emailService.SendEmail(email);
         return transactionId > 0;
     }
 
@@ -131,14 +131,14 @@ public class EmployeesController : ControllerBase
         var filepath = _pdfGenratorService.GenerateSalarySlip(salaryDetails);
         Console.WriteLine(filepath);
 
-      EmailMessage? email = new EmailMessage()
+      Message email = new Message()
         {
             To = new List<string>() { "sahilmankar311@gmail.com" },
             Subject = "Your Salry Slip",
             Body = "Find Your Salaryslip Attached below",
             Filepaths = new List<string>() { filepath }
         };
-        await _emailSender.SendEmail(email);
+        await _emailService.SendEmail(email);
 
         return salaryDetails;
     }

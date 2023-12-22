@@ -17,12 +17,12 @@ public  class EmailService
 
     public async Task SendEmail(Message message)
     {
-        var emailMessage = await CreateEmailMessage(message);
+        var emailMessage =  CreateEmailMessage(message);
 
         await Send(emailMessage);
     }
 
-    private async Task<MimeMessage> CreateEmailMessage(Message message)
+    private  MimeMessage CreateEmailMessage(Message message)
     {
         var emailMessage = new MimeMessage();
         emailMessage.From.Add(new MailboxAddress("TFLPORTAL", _emailConfig.From));
@@ -39,7 +39,7 @@ public  class EmailService
         {
             MimePart attachment = new MimePart("application", "octet-stream")
             {
-                Content = new MimeContent(System.IO.File.OpenRead(filepath)),
+                Content = new MimeContent(  System.IO.File.OpenRead(filepath)),
                 ContentDisposition = new ContentDisposition(ContentDisposition.Attachment),
                 ContentTransferEncoding = ContentEncoding.Base64,
                 FileName = filepath.Split('/').Last()
