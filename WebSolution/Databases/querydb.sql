@@ -248,6 +248,10 @@ GROUP BY
 ORDER BY 
     m.month_start;
 
+-- call procedure getAvailableLeavesOfEmployee
 
+call getAvailableLeavesOfEmployee(12,4,2023,@remainingSickLeaves,@remainingCasualLeaves,@remainingPaidLeaves,@remainingUnpaidLeaves);
+
+select @remainingSickLeaves,@remainingCasualLeaves,@remainingPaidLeaves,@remainingUnpaidLeaves;
 
 
