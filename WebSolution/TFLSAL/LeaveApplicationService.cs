@@ -2,6 +2,7 @@ using MySql.Data.MySqlClient;
 using Transflower.TFLPortal.TFLOBL.Entities;
 using Microsoft.Extensions.Configuration;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
+using System.Data;
 
 namespace Transflower.TFLPortal.TFLSAL.Services;
 
@@ -279,5 +280,59 @@ GROUP BY m.month_start ORDER BY m.month_start";
             await connection.CloseAsync();
         }
         return leaves;
+    }
+
+
+    public async Task<RemainingLeaveDetails> GetPendingLeaves(int employeeId,int roleId,int year){
+        RemainingLeaveDetails leaves = null;
+        MySqlConnection con = new MySqlConnection();
+        con.ConnectionString = _connectionString;
+    try
+      {
+        await con.OpenAsync();
+
+        MySqlCommand cmd = new MySqlCommand("getAvailableLeavesOfEmployee", con);
+        cmd.CommandType = CommandType.StoredProcedure;
+         cmd.Parameters.AddWithValue("@employee_Id", employeeId);
+         cmd.Parameters.AddWithValue("@role_id", roleId);
+        cmd.Parameters.AddWithValue("@year", year);
+        cmd.Parameters.AddWithValue("@remainingSickLeaves", MySqlDbType.Int32);
+        cmd.Parameters["@remainingSickLeaves"].Direction = ParameterDirection.Output;
+
+        cmd.Parameters.AddWithValue("@remainingCasualLeaves", MySqlDbType.Int32);
+        cmd.Parameters["@remainingCasualleaves"].Direction = ParameterDirection.Output;
+
+        cmd.Parameters.AddWithValue("@remainingPaidLeaves", MySqlDbType.Int32);
+        cmd.Parameters["@remainingPaidLeaves"].Direction = ParameterDirection.Output;
+
+
+        cmd.Parameters.AddWithValue("@remainingUnpaidLeaves", MySqlDbType.Int32);
+        cmd.Parameters["@remainingUnpaidLeaves"].Direction = ParameterDirection.Output;
+
+        await cmd.ExecuteNonQueryAsync();
+
+        int seekLeaves = Convert.ToInt32(cmd.Parameters["@remainingSickLeaves"].Value);
+        int casualLeaves = Convert.ToInt32(cmd.Parameters["@remainingCasualLeaves"].Value);
+        int paidLeaves = Convert.ToInt32(cmd.Parameters["@remainingPaidLeaves"].Value);
+        int unPaidLeaves = Convert.ToInt32(cmd.Parameters["@remainingUnpaidLeaves"].Value);
+
+        leaves = new RemainingLeaveDetails()
+        {
+            SeekLeaves = seekLeaves,
+            CasualLeaves = casualLeaves,
+            PaidLeaves = paidLeaves,
+            UnpaidLeaves=unPaidLeaves
+        };
+    }
+    catch (Exception)
+    {
+        throw;
+    }
+    finally
+    {
+        await con.CloseAsync();
+    }
+
+    return leaves; 
     }
 }

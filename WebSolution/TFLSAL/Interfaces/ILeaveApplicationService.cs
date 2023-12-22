@@ -15,4 +15,7 @@ public interface ILeaveApplicationService{
 
     Task<List<LeaveCount>> GetLeavesCount(int employeeId);
 
+     public Task<RemainingLeaveDetails> GetPendingLeaves(int employeeId,int roleId,int year);
+
+
 }
