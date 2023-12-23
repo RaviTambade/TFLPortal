@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Transflower.MembershipRolesMgmt.Models.Entities;
 using Transflower.TFLPortal.Intranet.Responses;
 using Transflower.TFLPortal.TFLOBL.Entities;
 using Transflower.TFLPortal.TFLSAL.Services;
@@ -11,12 +12,13 @@ namespace Intranet.Controllers;
 public class LeavesApplicationController : ControllerBase
 {
     private readonly ILeaveApplicationService _service;
-
+    private readonly IEmployeeService _employeeService;
     private readonly ExternalApiService _apiService;
-    public LeavesApplicationController(ILeaveApplicationService service,ExternalApiService apiService)
+    public LeavesApplicationController(ILeaveApplicationService service,ExternalApiService apiService,IEmployeeService employeeService)
     {
         _service = service;
         _apiService=apiService;
+        _employeeService=employeeService;
     }
 
     [HttpPost]
@@ -28,13 +30,7 @@ public class LeavesApplicationController : ControllerBase
     }
 
 
-    [HttpGet]
-    [Route ("pendingleave/{employeeId}")]
-    public async Task<PendingLeave> GetPendingLeaves(int employeeId)
-    {
-        PendingLeave leave =await _service.GetPendingLeaves(employeeId);
-        return leave;
-    }
+
 
     [HttpGet]
     [Route ("{employeeId}")]
@@ -49,7 +45,7 @@ public class LeavesApplicationController : ControllerBase
     [Route ("project/{projectId}/status/{status}")]
     public async Task<List<LeaveResponse>> GetEmployeeLeaves(int projectId,string status)
     {
-        List<Leave> leaves =await _service.GetEmployeeAppliedLeaves(projectId,status);
+        List<Leave> leaves =await _service.GetProjectEmployeesLeavesByStatus(projectId,status);
         string userIds = string.Join(',', leaves.Select(m => m.EmployeeId).ToList());
         var users = await _apiService.GetUserDetails(userIds);
         List<LeaveResponse> leaveResponses = new();
@@ -83,18 +79,21 @@ public class LeavesApplicationController : ControllerBase
 
     [HttpGet]
     [Route ("leavescount/{employeeId}")]
-    public async Task<List<LeaveCount>> GetLeavesCount(int employeeId)
+    public async Task<List<LeaveCount>> GetMonthLeavesCount(int employeeId)
     {
-        List<LeaveCount> leaves =await _service.GetLeavesCount(employeeId);
+        List<LeaveCount> leaves =await _service.GetMonthLeavesCount(employeeId);
         Console.WriteLine(leaves);
         return leaves;
     }
 
 
-    [HttpGet("PendingLeaves/employee/{employeeId}/role/{roleId}/year/{year}")]
-    public async Task<RemainingLeaveDetails> GetPendingLeaves(int employeeId,int roleId,int year)
+    [HttpGet("pendingleaves/employees/{employeeId}/year/{year}")]
+    public async Task<RemainingLeaveDetails> GetPendingLeaves(int employeeId,int year)
     {
-        RemainingLeaveDetails leaves = await _service.GetPendingLeaves(employeeId,roleId,year);
-        return leaves;
+        Employee employee= await _employeeService.GetEmployeeDetails(employeeId);
+        List<RoleDTO> roles= await _apiService.GetRoleOfUser(employee.UserId);
+        int roleId=roles.FirstOrDefault().Id;
+       return await _service.GetPendingLeaves(employeeId,roleId,year);
+     
     }
 }

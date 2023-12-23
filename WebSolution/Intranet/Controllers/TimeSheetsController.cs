@@ -11,30 +11,30 @@ namespace Transflower.TFLPortal.Intranet.Controllers;
 [Route("/api/workmgmt/timesheets")]
 public class TimeSheetsController : ControllerBase
 {
-    private readonly ExternalApiService _apiservice;
-    private readonly ITimesheetService _service;
+    private readonly ExternalApiService _apiService;
+    private readonly ITimesheetService _timesheetService;
 
     public TimeSheetsController(ExternalApiService apiService, ITimesheetService service)
     {
-        _apiservice = apiService;
-        _service = service;
+        _apiService = apiService;
+        _timesheetService = service;
     }
 
     [HttpGet("employees/{employeeId}")]
-    public async Task<List<Timesheet>> GetAllTimeSheets(int employeeId)
+    public async Task<List<Timesheet>> GetTimesheetsOfEmployee(int employeeId)
     {
-        List<Timesheet> timesheets = await _service.GetTimeSheetsOfEmployee(employeeId);
+        List<Timesheet> timesheets = await _timesheetService.GetTimesheetsOfEmployee(employeeId);
         return timesheets;
     }
 
     [HttpGet("employees/{employeeId}/date/{date}")]
-    public async Task<TimeSheetResponse> GetTimeSheetOfEmployee(int employeeId, string date)
+    public async Task<TimeSheetResponse> GetTimesheetOfEmployee(int employeeId, string date)
     {
-        Timesheet timesheet = await _service.GetTimeSheetOfEmployee(employeeId, date);
+        Timesheet timesheet = await _timesheetService.GetTimesheetOfEmployee(employeeId, date);
 
         if (timesheet.Employee != null)
         {
-            var user = await _apiservice.GetUserDetails(timesheet.Employee.UserId.ToString());
+            var user = await _apiService.GetUserDetails(timesheet.Employee.UserId.ToString());
             TimeSheetResponse timeSheetResponse = new TimeSheetResponse
             {
                 Id = timesheet.Id,
@@ -51,15 +51,15 @@ public class TimeSheetsController : ControllerBase
     }
 
     [HttpGet("timesheetentries/{timesheetEntryId}")]
-    public async Task<TimesheetEntry> GetTimeSheetEntry(int timesheetEntryId)
+    public async Task<TimesheetEntry> GetTimesheetEntry(int timesheetEntryId)
     {
-        return await _service.GetTimeSheetEntry(timesheetEntryId);
+        return await _timesheetService.GetTimesheetEntry(timesheetEntryId);
     }
 
     [HttpGet("{timesheetId}/timesheetentries")]
-    public async Task<List<TimesheetEntry>> GetTimeSheetEntries(int timesheetId)
+    public async Task<List<TimesheetEntry>> GetTimesheetEntries(int timesheetId)
     {
-        return await _service.GetTimeSheetEntries(timesheetId);
+        return await _timesheetService.GetTimesheetEntries(timesheetId);
     }
 
     [HttpGet("employees/{employeeId}/workduration/{intervalType}/{projectId}")]
@@ -69,57 +69,57 @@ public class TimeSheetsController : ControllerBase
         int projectId
     )
     {
-        return await _service.GetActivityWiseHours(employeeId, intervalType, projectId);
+        return await _timesheetService.GetActivityWiseHours(employeeId, intervalType, projectId);
     }
 
     [HttpGet("projects/employees/{employeeId}")]
     public async Task<List<ProjectHours>> GetProjectWiseTimeSpentByEmployee(int employeeId)
     {
-        return await _service.GetProjectWiseTimeSpentByEmployee(employeeId);
+        return await _timesheetService.GetProjectWiseTimeSpentByEmployee(employeeId);
     }
 
     [HttpGet("workingdays/employees/{employeeId}/years/{year}/months/{month}")]
     public async Task<int> GetEmployeeWorkingDaysInMonth(int employeeId, int year, int month)
     {
-        return await _service.GetEmployeeWorkingDaysInMonth(employeeId, year, month);
+        return await _timesheetService.GetEmployeeWorkingDaysInMonth(employeeId, year, month);
     }
 
     [HttpPost]
-    public async Task<bool> InsertTimeSheet(Timesheet timesheet)
+    public async Task<bool> AddTimesheet(Timesheet timesheet)
     {
-        return await _service.InsertTimeSheet(timesheet);
+        return await _timesheetService.AddTimesheet(timesheet);
     }
 
     [HttpPost("timesheetentries")]
-    public async Task<bool> InsertTimeSheetEntry([FromBody] TimesheetEntry timesheetEntry)
+    public async Task<bool> AddTimesheetEntry([FromBody] TimesheetEntry timesheetEntry)
     {
-        return await _service.InsertTimeSheetEntry(timesheetEntry);
+        return await _timesheetService.AddTimesheetEntry(timesheetEntry);
     }
 
     [HttpPut("{timesheetId}")]
-    public async Task<bool> ChangeTimeSheetStatus(int timesheetId, Timesheet timesheet)
+    public async Task<bool> ChangeTimesheetStatus(int timesheetId, Timesheet timesheet)
     {
-        return await _service.ChangeTimeSheetStatus(timesheetId, timesheet);
+        return await _timesheetService.ChangeTimesheetStatus(timesheetId, timesheet);
     }
 
     [HttpPut("timesheetentries/{timesheetEntryId}")]
-    public async Task<bool> UpdateTimeSheetEntry(
+    public async Task<bool> UpdateTimesheetEntry(
         int timesheetEntryId,
         TimesheetEntry timesheetEntry
     )
     {
-        return await _service.UpdateTimeSheetEntry(timesheetEntryId, timesheetEntry);
+        return await _timesheetService.UpdateTimesheetEntry(timesheetEntryId, timesheetEntry);
     }
 
     [HttpDelete("timesheetentries/remove/{timesheetEntryId}")]
-    public async Task<bool> RemoveTimeSheetEntry(int timesheetEntryId)
+    public async Task<bool> RemoveTimesheetEntry(int timesheetEntryId)
     {
-        return await _service.RemoveTimeSheetEntry(timesheetEntryId);
+        return await _timesheetService.RemoveTimesheetEntry(timesheetEntryId);
     }
 
     [HttpDelete("timesheetentries/removeall/{timesheetId}")]
-    public async Task<bool> RemoveAllTimeSheetEntries(int timesheetId)
+    public async Task<bool> RemoveAllTimesheetEntries(int timesheetId)
     {
-        return await _service.RemoveAllTimeSheetEntries(timesheetId);
+        return await _timesheetService.RemoveAllTimesheetEntries(timesheetId);
     }
 }

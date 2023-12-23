@@ -55,50 +55,6 @@ public class LeaveApplicationService : ILeaveApplicationService
 
     
 
-    public async Task<PendingLeave> GetPendingLeaves(int employeeId)
-    {
-        PendingLeave pendingLeave = null;
-        MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _connectionString;
-        try
-        {
-            string query =
-                "select * from leaveallocations where id =@employeeId";
-            MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@employeeId", employeeId);
-            await connection.OpenAsync();
-            MySqlDataReader reader = command.ExecuteReader();
-            if (await reader.ReadAsync())
-            {
-                int id = int.Parse(reader["id"].ToString());
-                int sickLeaves = int.Parse(reader["sickleaves"].ToString());
-                int casualLeaves = int.Parse(reader["casualleaves"].ToString());
-                int paidLeaves = int.Parse(reader["paidleaves"].ToString());
-                int unpaidLeaves = int.Parse(reader["unpaidleaves"].ToString());
-                
-                pendingLeave = new PendingLeave()
-                {
-                    Id = id,
-                    EmployeeId= employeeId,
-                    SickLeave = sickLeaves,
-                    CasualLeave = casualLeaves,
-                    PaidLeave = paidLeaves,
-                    UnpaidLeave = unpaidLeaves
-                };    
-            }
-            await reader.CloseAsync();
-        }
-        catch (Exception)
-        {
-            throw;
-        }
-        finally
-        {
-            await connection.CloseAsync();
-        }
-        return pendingLeave;
-    }
-
     public async Task<List<Leave>> GetEmployeeLeaves(int employeeId)
     {
         List<Leave> leaves = new List<Leave>();
@@ -144,7 +100,7 @@ public class LeaveApplicationService : ILeaveApplicationService
         return leaves;
     }
 
-    public async Task<List<Leave>> GetEmployeeAppliedLeaves(int projectId,string status)
+    public async Task<List<Leave>> GetProjectEmployeesLeavesByStatus(int projectId,string status)
     {
         List<Leave> leaves = new List<Leave>();
         MySqlConnection connection = new MySqlConnection();
@@ -154,8 +110,7 @@ public class LeaveApplicationService : ILeaveApplicationService
             string query =" select projectallocations.employeeid,leaves.status,leaves.leavetype,leaves.fromdate,leaves.todate from projects inner join projectallocations on projects.id=projectallocations.projectid  inner join leaves on leaves.employeeid=projectallocations.employeeid  where projects.id=@projectId and leaves.status=@status";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);
-            command.Parameters.AddWithValue("@status", "applied");
-            await connection.OpenAsync();
+            command.Parameters.AddWithValue("@status",status );
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
@@ -219,7 +174,7 @@ public class LeaveApplicationService : ILeaveApplicationService
         return status;
     }
 
-    public async Task<List<LeaveCount>> GetLeavesCount(int employeeId)
+    public async Task<List<LeaveCount>> GetMonthLeavesCount(int employeeId)
     {
         List<LeaveCount> leaves = new List<LeaveCount>();
         MySqlConnection connection = new MySqlConnection();

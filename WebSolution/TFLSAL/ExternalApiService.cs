@@ -1,6 +1,7 @@
 using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
+using Transflower.MembershipRolesMgmt.Models.Entities;
 using Transflower.TFLPortal.TFLSAL.DTO;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -12,7 +13,7 @@ public class ExternalApiService
 
     public ExternalApiService(IHttpClientFactory factory)
     {
-        this.httpClient = factory.CreateClient();
+        httpClient = factory.CreateClient();
     }
 
 
@@ -56,5 +57,14 @@ public class ExternalApiService
             $"http://localhost:5142/api/users/name/{userIds}"
         );
         return response;
+    }
+
+     public async Task<List<RoleDTO>> GetRoleOfUser(int userId)
+    {
+        string lob="PMS";
+        var response = await httpClient.GetFromJsonAsync<List<RoleDTO>>(
+            $"http://localhost:5142/api/roles/{userId}/{lob}"
+        );
+        return response ?? new List<RoleDTO>();
     }
 }

@@ -19,7 +19,7 @@ public class TimesheetService : ITimesheetService
             ?? throw new ArgumentNullException("connectionString");
     }
 
-    public async Task<List<Timesheet>> GetTimeSheetsOfEmployee(int employeeId)
+    public async Task<List<Timesheet>> GetTimesheetsOfEmployee(int employeeId)
     {
         List<Timesheet> timesheets = new List<Timesheet>();
         MySqlConnection connection = new MySqlConnection();
@@ -61,7 +61,7 @@ public class TimesheetService : ITimesheetService
         return timesheets;
     }
 
-    public async Task<Timesheet> GetTimeSheetOfEmployee(int employeeId, string date)
+    public async Task<Timesheet> GetTimesheetOfEmployee(int employeeId, string date)
     {
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
@@ -140,69 +140,7 @@ public class TimesheetService : ITimesheetService
         return timesheet;
     }
 
-    public async Task<bool> InsertTimeSheet(Timesheet timesheet)
-    {
-        bool status = false;
-        MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _connectionString;
-        try
-        {
-            string query =
-                "INSERT INTO timesheets(timesheetdate,employeeid) VALUES (@timesheetdate,@empid)";
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@timesheetdate", timesheet.TimesheetDate);
-            cmd.Parameters.AddWithValue("@empid", timesheet.EmployeeId);
-            await connection.OpenAsync();
-            int rowsAffected = await cmd.ExecuteNonQueryAsync();
-            if (rowsAffected > 0)
-            {
-                status = true;
-            }
-        }
-        catch (Exception)
-        {
-            throw;
-        }
-        finally
-        {
-            connection.Close();
-        }
-        return status;
-    }
-
-    public async Task<bool> ChangeTimeSheetStatus(int timesheetId, Timesheet timesheet)
-    {
-        bool status = false;
-        MySqlConnection connection = new MySqlConnection(_connectionString);
-        try
-        {
-            MySqlCommand command = new MySqlCommand();
-            command.CommandText =
-                "UPDATE timesheets SET status=@Status, StatusChangedDate=@StatusChangedDate WHERE id=@timesheetid ";
-            command.Connection = connection;
-            command.Parameters.AddWithValue("@StatusChangedDate", timesheet.StatusChangedDate);
-            command.Parameters.AddWithValue("@Status", timesheet.Status);
-            command.Parameters.AddWithValue("@timesheetid", timesheetId);
-
-            await connection.OpenAsync();
-            int rowsAffected = await command.ExecuteNonQueryAsync();
-            if (rowsAffected > 0)
-            {
-                status = true;
-            }
-        }
-        catch (Exception)
-        {
-            throw;
-        }
-        finally
-        {
-            connection.Close();
-        }
-        return status;
-    }
-
-    public async Task<TimesheetEntry> GetTimeSheetEntry(int timesheetEntryId)
+    public async Task<TimesheetEntry> GetTimesheetEntry(int timesheetEntryId)
     {
         TimesheetEntry timesheetEntry = null;
         MySqlConnection connection = new MySqlConnection();
@@ -252,7 +190,7 @@ public class TimesheetService : ITimesheetService
         return timesheetEntry;
     }
 
-    public async Task<List<TimesheetEntry>> GetTimeSheetEntries(int timesheetId)
+    public async Task<List<TimesheetEntry>> GetTimesheetEntries(int timesheetId)
     {
         List<TimesheetEntry> timeSheetEntries = new List<TimesheetEntry>();
         MySqlConnection connection = new MySqlConnection();
@@ -303,139 +241,6 @@ public class TimesheetService : ITimesheetService
             await connection.CloseAsync();
         }
         return timeSheetEntries;
-    }
-
-    public async Task<bool> InsertTimeSheetEntry(TimesheetEntry timesheetEntry)
-    {
-        bool status = false;
-        MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _connectionString;
-
-        string query =
-            "INSERT INTO timesheetentries(work,workcategory,description,fromtime, totime, timesheetid,projectid) VALUES (@work,@workCategory,@Description , @FromTime, @ToTime, @TimeSheetId,@projectid)";
-        try
-        {
-            MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@work", timesheetEntry.Work);
-            command.Parameters.AddWithValue("@workCategory", timesheetEntry.WorkCategory);
-            command.Parameters.AddWithValue("@Description", timesheetEntry.Description);
-            command.Parameters.AddWithValue("@FromTime", timesheetEntry.FromTime);
-            command.Parameters.AddWithValue("@ToTime", timesheetEntry.ToTime);
-            command.Parameters.AddWithValue("@TimeSheetId", timesheetEntry.TimeSheetId);
-            command.Parameters.AddWithValue("@projectid", timesheetEntry.ProjectId);
-            await connection.OpenAsync();
-            int rowsAffected = await command.ExecuteNonQueryAsync();
-            if (rowsAffected > 0)
-            {
-                status = true;
-            }
-        }
-        catch (Exception)
-        {
-            throw;
-        }
-        finally
-        {
-            await connection.CloseAsync();
-        }
-        return status;
-    }
-
-    public async Task<bool> UpdateTimeSheetEntry(
-        int timesheetEntryId,
-        TimesheetEntry timesheetEntry
-    )
-    {
-        bool status = false;
-        MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _connectionString;
-
-        string query =
-            "UPDATE  timesheetentries SET work=@work,workcategory=@workCategory,description=@Description,fromtime=@FromTime,totime=@ToTime ,projectid=@projectid WHERE id=@TimeSheetEntryId";
-        try
-        {
-            MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@work", timesheetEntry.Work);
-            command.Parameters.AddWithValue("@workCategory", timesheetEntry.WorkCategory);
-            command.Parameters.AddWithValue("@Description", timesheetEntry.Description);
-            command.Parameters.AddWithValue("@FromTime", timesheetEntry.FromTime);
-            command.Parameters.AddWithValue("@ToTime", timesheetEntry.ToTime);
-            command.Parameters.AddWithValue("@projectid", timesheetEntry.ProjectId);
-            command.Parameters.AddWithValue("@TimeSheetEntryId", timesheetEntryId);
-            await connection.OpenAsync();
-            int rowsAffected = await command.ExecuteNonQueryAsync();
-            if (rowsAffected > 0)
-            {
-                status = true;
-            }
-        }
-        catch (Exception)
-        {
-            throw;
-        }
-        finally
-        {
-            await connection.CloseAsync();
-        }
-        return status;
-    }
-
-    public async Task<bool> RemoveTimeSheetEntry(int timesheetEntryId)
-    {
-        bool status = false;
-        MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _connectionString;
-
-        string query = "DELETE FROM timesheetentries WHERE id=@TimeSheetEntryId";
-        try
-        {
-            MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@TimeSheetEntryId", timesheetEntryId);
-            await connection.OpenAsync();
-            int rowsAffected = await command.ExecuteNonQueryAsync();
-            if (rowsAffected > 0)
-            {
-                status = true;
-            }
-        }
-        catch (Exception)
-        {
-            throw;
-        }
-        finally
-        {
-            await connection.CloseAsync();
-        }
-        return status;
-    }
-
-    public async Task<bool> RemoveAllTimeSheetEntries(int timesheetId)
-    {
-        bool status = false;
-        MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _connectionString;
-
-        string query = "DELETE FROM timesheetentries WHERE timesheetId=@TimeSheetId";
-        try
-        {
-            MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@TimeSheetId", timesheetId);
-            await connection.OpenAsync();
-            int rowsAffected = await command.ExecuteNonQueryAsync();
-            if (rowsAffected > 0)
-            {
-                status = true;
-            }
-        }
-        catch (Exception)
-        {
-            throw;
-        }
-        finally
-        {
-            await connection.CloseAsync();
-        }
-        return status;
     }
 
     public async Task<List<WorkCategoryDetails>> GetActivityWiseHours(
@@ -550,7 +355,8 @@ public class TimesheetService : ITimesheetService
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
 
-        string query =@"SELECT COUNT(*) AS WorkingDays FROM timesheets WHERE employeeid=@employee_id
+        string query =
+            @"SELECT COUNT(*) AS WorkingDays FROM timesheets WHERE employeeid=@employee_id
                        AND status='approved' AND MONTH(timesheetdate)=@month AND YEAR(timesheetdate)=@year";
         try
         {
@@ -574,5 +380,200 @@ public class TimesheetService : ITimesheetService
             await connection.CloseAsync();
         }
         return workingDays;
+    }
+
+    public async Task<bool> AddTimesheet(Timesheet timesheet)
+    {
+        bool status = false;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query =
+                "INSERT INTO timesheets(timesheetdate,employeeid) VALUES (@timesheetdate,@empid)";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@timesheetdate", timesheet.TimesheetDate);
+            cmd.Parameters.AddWithValue("@empid", timesheet.EmployeeId);
+            await connection.OpenAsync();
+            int rowsAffected = await cmd.ExecuteNonQueryAsync();
+            if (rowsAffected > 0)
+            {
+                status = true;
+            }
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            connection.Close();
+        }
+        return status;
+    }
+
+    public async Task<bool> AddTimesheetEntry(TimesheetEntry timesheetEntry)
+    {
+        bool status = false;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+
+        string query =
+            "INSERT INTO timesheetentries(work,workcategory,description,fromtime, totime, timesheetid,projectid) VALUES (@work,@workCategory,@Description , @FromTime, @ToTime, @TimeSheetId,@projectid)";
+        try
+        {
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@work", timesheetEntry.Work);
+            command.Parameters.AddWithValue("@workCategory", timesheetEntry.WorkCategory);
+            command.Parameters.AddWithValue("@Description", timesheetEntry.Description);
+            command.Parameters.AddWithValue("@FromTime", timesheetEntry.FromTime);
+            command.Parameters.AddWithValue("@ToTime", timesheetEntry.ToTime);
+            command.Parameters.AddWithValue("@TimeSheetId", timesheetEntry.TimeSheetId);
+            command.Parameters.AddWithValue("@projectid", timesheetEntry.ProjectId);
+            await connection.OpenAsync();
+            int rowsAffected = await command.ExecuteNonQueryAsync();
+            if (rowsAffected > 0)
+            {
+                status = true;
+            }
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return status;
+    }
+
+    public async Task<bool> ChangeTimesheetStatus(int timesheetId, Timesheet timesheet)
+    {
+        bool status = false;
+        MySqlConnection connection = new MySqlConnection(_connectionString);
+        try
+        {
+            MySqlCommand command = new MySqlCommand();
+            command.CommandText =
+                "UPDATE timesheets SET status=@Status, StatusChangedDate=@StatusChangedDate WHERE id=@timesheetid ";
+            command.Connection = connection;
+            command.Parameters.AddWithValue("@StatusChangedDate", timesheet.StatusChangedDate);
+            command.Parameters.AddWithValue("@Status", timesheet.Status);
+            command.Parameters.AddWithValue("@timesheetid", timesheetId);
+
+            await connection.OpenAsync();
+            int rowsAffected = await command.ExecuteNonQueryAsync();
+            if (rowsAffected > 0)
+            {
+                status = true;
+            }
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            connection.Close();
+        }
+        return status;
+    }
+
+    public async Task<bool> UpdateTimesheetEntry(
+        int timesheetEntryId,
+        TimesheetEntry timesheetEntry
+    )
+    {
+        bool status = false;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+
+        string query =
+            "UPDATE  timesheetentries SET work=@work,workcategory=@workCategory,description=@Description,fromtime=@FromTime,totime=@ToTime ,projectid=@projectid WHERE id=@TimeSheetEntryId";
+        try
+        {
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@work", timesheetEntry.Work);
+            command.Parameters.AddWithValue("@workCategory", timesheetEntry.WorkCategory);
+            command.Parameters.AddWithValue("@Description", timesheetEntry.Description);
+            command.Parameters.AddWithValue("@FromTime", timesheetEntry.FromTime);
+            command.Parameters.AddWithValue("@ToTime", timesheetEntry.ToTime);
+            command.Parameters.AddWithValue("@projectid", timesheetEntry.ProjectId);
+            command.Parameters.AddWithValue("@TimeSheetEntryId", timesheetEntryId);
+            await connection.OpenAsync();
+            int rowsAffected = await command.ExecuteNonQueryAsync();
+            if (rowsAffected > 0)
+            {
+                status = true;
+            }
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return status;
+    }
+
+    public async Task<bool> RemoveTimesheetEntry(int timesheetEntryId)
+    {
+        bool status = false;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+
+        string query = "DELETE FROM timesheetentries WHERE id=@TimeSheetEntryId";
+        try
+        {
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@TimeSheetEntryId", timesheetEntryId);
+            await connection.OpenAsync();
+            int rowsAffected = await command.ExecuteNonQueryAsync();
+            if (rowsAffected > 0)
+            {
+                status = true;
+            }
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return status;
+    }
+
+    public async Task<bool> RemoveAllTimesheetEntries(int timesheetId)
+    {
+        bool status = false;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+
+        string query = "DELETE FROM timesheetentries WHERE timesheetId=@TimeSheetId";
+        try
+        {
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@TimeSheetId", timesheetId);
+            await connection.OpenAsync();
+            int rowsAffected = await command.ExecuteNonQueryAsync();
+            if (rowsAffected > 0)
+            {
+                status = true;
+            }
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return status;
     }
 }

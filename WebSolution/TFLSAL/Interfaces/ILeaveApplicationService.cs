@@ -5,15 +5,13 @@ public interface ILeaveApplicationService{
 
     Task<bool> AddLeave(Leave leave);
 
-    Task<PendingLeave> GetPendingLeaves(int employeeId);
-
     Task<List<Leave>> GetEmployeeLeaves(int employeeId);
 
-    Task<List<Leave>> GetEmployeeAppliedLeaves(int projectId,string status);
+    Task<List<Leave>> GetProjectEmployeesLeavesByStatus(int projectId,string status);
     
     Task<bool> UpdateLeaveStatus(Leave leave);
 
-    Task<List<LeaveCount>> GetLeavesCount(int employeeId);
+    Task<List<LeaveCount>> GetMonthLeavesCount(int employeeId);
 
      public Task<RemainingLeaveDetails> GetPendingLeaves(int employeeId,int roleId,int year);
 
