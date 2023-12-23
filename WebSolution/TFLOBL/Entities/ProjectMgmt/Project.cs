@@ -15,5 +15,4 @@ public class Project
     public int TeamManagerId { get; set; }
 
     public string? Status { get; set; }
-
 }

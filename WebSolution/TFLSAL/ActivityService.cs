@@ -692,9 +692,9 @@ public class ActivityService : IActivityService
         return activities;
     }
 
-    public async Task<ActivityCountSp> GetActivitiesCount()
+    public async Task<ActivityStatusCount> GetActivitiesCount()
     {
-    ActivityCountSp countSp = null;
+    ActivityStatusCount countSp = null;
     MySqlConnection con = new MySqlConnection();
     con.ConnectionString = _connectionString;
     try
@@ -719,7 +719,7 @@ public class ActivityService : IActivityService
         int inprogress = Convert.ToInt32(cmd.Parameters["@inprogress"].Value);
         int completed = Convert.ToInt32(cmd.Parameters["@completed"].Value);
 
-        countSp = new ActivityCountSp()
+        countSp = new ActivityStatusCount()
         {
             Todo = todo,
             InProgress = inprogress,

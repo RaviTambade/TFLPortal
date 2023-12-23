@@ -21,9 +21,9 @@ builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<IActivityService, ActivityService>();
 builder.Services.AddScoped<ITimesheetService, TimesheetService>();
 builder.Services.AddScoped<IProjectAllocationService, ProjectAllocationService>();
-builder.Services.AddScoped<ILeaveApplicationService, LeaveApplicationService>();
-builder.Services.AddScoped<IEmployeeService, EmployeeService>();
-builder.Services.AddScoped<IPdfGeneratorService, PdfGeneratorService>();
+builder.Services.AddScoped<ILeaveManagementService, LeaveManagementService>();
+builder.Services.AddScoped<IHRService, HRService>();
+// builder.Services.AddScoped<IPdfGeneratorService, PdfGeneratorService>();
 builder.Services.AddHttpClient();
 
 

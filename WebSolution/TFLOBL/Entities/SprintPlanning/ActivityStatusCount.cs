@@ -1,5 +1,5 @@
 namespace Transflower.TFLPortal.TFLOBL.Entities;
-public class ActivityCountSp
+public class ActivityStatusCount
 {
    
    public  int Todo{get;set;}

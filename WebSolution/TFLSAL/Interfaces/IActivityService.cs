@@ -19,7 +19,7 @@ public interface IActivityService
 
       Task<List<ActivityDetails>> GetAllActivities(int projectId,int employeeId);
 
-     public Task<ActivityCountSp> GetActivitiesCount();
+      Task<ActivityStatusCount> GetActivitiesCount();
 
      Task<List<TFLOBL.Entities.Activity>> GetTodayActivities(int projectId,DateTime date);
 

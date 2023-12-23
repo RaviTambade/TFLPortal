@@ -1,7 +1,6 @@
+namespace Transflower.UtilityLib.DTO;
 
-namespace Transflower.TFLPortal.TFLSAL.DTO;
-
-public class SalaryStructureDTO
+public class SalaryDTO
 {
     public int EmployeeId { get; set; }
     public double BasicSalary { get; set; }
@@ -17,5 +16,5 @@ public class SalaryStructureDTO
     public string? AccountNumber { get; set; }
     public string? IFSC { get; set; }
 
-    
+ 
 }

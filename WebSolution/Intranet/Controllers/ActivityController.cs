@@ -114,9 +114,9 @@ public class ActivityController : ControllerBase
 
 
  [HttpGet("ActivitySp")]
-    public async Task<ActivityCountSp> GetActivitiesCount()
+    public async Task<ActivityStatusCount> GetActivitiesCount()
     {
-        ActivityCountSp activities = await _service.GetActivitiesCount();
+        ActivityStatusCount activities = await _service.GetActivitiesCount();
         return activities;
     }
 

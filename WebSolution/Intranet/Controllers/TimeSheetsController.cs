@@ -73,7 +73,7 @@ public class TimeSheetsController : ControllerBase
     }
 
     [HttpGet("projects/employees/{employeeId}")]
-    public async Task<List<ProjectHours>> GetProjectWiseTimeSpentByEmployee(int employeeId)
+    public async Task<List<TimesheetHours>> GetProjectWiseTimeSpentByEmployee(int employeeId)
     {
         return await _timesheetService.GetProjectWiseTimeSpentByEmployee(employeeId);
     }

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Transflower.MembershipRolesMgmt.Models.Entities;
 using Transflower.TFLPortal.Intranet.Responses;
 using Transflower.TFLPortal.TFLOBL.Entities;
+using Transflower.TFLPortal.TFLOBL.Entities.LeaveMgmt;
 using Transflower.TFLPortal.TFLSAL.Services;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 
@@ -9,43 +10,31 @@ namespace Intranet.Controllers;
 
 [ApiController]
 [Route("/api/leaves")]
-public class LeavesApplicationController : ControllerBase
+public class LeavesManagementController : ControllerBase
 {
-    private readonly ILeaveApplicationService _service;
-    private readonly IEmployeeService _employeeService;
+    private readonly ILeaveManagementService _service;
+    private readonly IHRService  _hrService;
     private readonly ExternalApiService _apiService;
-    public LeavesApplicationController(ILeaveApplicationService service,ExternalApiService apiService,IEmployeeService employeeService)
+    public LeavesManagementController(ILeaveManagementService service,ExternalApiService apiService,IHRService hrService)
     {
         _service = service;
         _apiService=apiService;
-        _employeeService=employeeService;
+        _hrService=hrService;
     }
-
-    [HttpPost]
-    [Route ("addleave")]
-    public async Task<bool> AddLeave(Leave leave)
-    {
-        bool status =await _service.AddLeave(leave);
-        return status;
-    }
-
-
 
 
     [HttpGet]
     [Route ("{employeeId}")]
-    public async Task<List<Leave>> GetEmployeeLeaves(int employeeId)
+    public async Task<List<LeaveApplication>> GetLeaveDetails(int employeeId)
     {
-        List<Leave> leaves =await _service.GetEmployeeLeaves(employeeId);
-        Console.WriteLine(leaves);
-        return leaves;
+        return await _service.GetLeaveDetails(employeeId);
     }
 
     [HttpGet]
-    [Route ("project/{projectId}/status/{status}")]
-    public async Task<List<LeaveResponse>> GetEmployeeLeaves(int projectId,string status)
+    [Route ("projects/{projectId}/status/{status}")]
+    public async Task<List<LeaveResponse>> GetTeamLeaveDetails(int projectId,string status)
     {
-        List<Leave> leaves =await _service.GetProjectEmployeesLeavesByStatus(projectId,status);
+        List<LeaveApplication> leaves =await _service.GetTeamLeaveDetails(projectId,status);
         string userIds = string.Join(',', leaves.Select(m => m.EmployeeId).ToList());
         var users = await _apiService.GetUserDetails(userIds);
         List<LeaveResponse> leaveResponses = new();
@@ -69,31 +58,37 @@ public class LeavesApplicationController : ControllerBase
         return leaveResponses;
     }
 
-    [HttpPut]
-    public async Task<bool> UpdateLeaveStatus(Leave leave)
-    {
-        bool status= await _service.UpdateLeaveStatus(leave);
-        Console.WriteLine(status);
-        return status;
-    }
 
     [HttpGet]
-    [Route ("leavescount/{employeeId}")]
-    public async Task<List<LeaveCount>> GetMonthLeavesCount(int employeeId)
+    [Route ("leavescount/{employeeId}/year/{year}")]
+    public async Task<List<LeaveDetails>> GetAnnualLeavesCountByMonth(int employeeId,int year)
     {
-        List<LeaveCount> leaves =await _service.GetMonthLeavesCount(employeeId);
-        Console.WriteLine(leaves);
-        return leaves;
+      return await _service.GetAnnualLeavesCountByMonth(employeeId,year);
     }
 
 
     [HttpGet("pendingleaves/employees/{employeeId}/year/{year}")]
-    public async Task<RemainingLeaveDetails> GetPendingLeaves(int employeeId,int year)
+    public async Task<PendingLeaveDetails> GetPendingLeaves(int employeeId,int year)
     {
-        Employee employee= await _employeeService.GetEmployeeDetails(employeeId);
+        Employee employee= await _hrService.GetEmployeeById(employeeId);
         List<RoleDTO> roles= await _apiService.GetRoleOfUser(employee.UserId);
         int roleId=roles.FirstOrDefault().Id;
        return await _service.GetPendingLeaves(employeeId,roleId,year);
      
+    }
+
+    [HttpPost]
+    public async Task<bool> AddLeave(LeaveApplication leaveApplication)
+    {
+        return await _service.AddNewLeaveApplication(leaveApplication);
+       
+    }
+
+    
+    [HttpPut]
+    public async Task<bool> UpdateLeaveApplication(LeaveApplication leave)
+    {
+        bool status= await _service.UpdateLeaveApplication(leave);
+        return status;
     }
 }

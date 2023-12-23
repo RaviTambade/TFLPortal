@@ -1,7 +1,7 @@
 
-namespace Transflower.TFLPortal.TFLSAL.DTO;
+namespace Transflower.TFLPortal.TFLOBL.Entities;
 
-public class ProjectHours{
+public class TimesheetHours{
     public required string ProjectName {get;set;}
     public required double Hours {get;set;}
 }

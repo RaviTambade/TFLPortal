@@ -146,7 +146,7 @@
             year int default (Year(curdate())),
             leavetype enum("casual","sick","paid","unpaid"));
 
-        CREATE TABLE sanctionleaves(
+        CREATE TABLE leaveallocations(
                 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                 roleid INT NOT NULL UNIQUE,
                 sick INT NOT NULL,

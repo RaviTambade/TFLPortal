@@ -1,14 +1,14 @@
 using PdfSharpCore;
 using PdfSharpCore.Pdf;
 using TheArtOfDev.HtmlRenderer.PdfSharp;
-using Transflower.TFLPortal.TFLSAL.DTO;
-using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
+using Transflower.UtilityLib.DTO;
+using Transflower.UtilityLib.Interfaces;
 
 namespace Transflower.TFLPortal.TFLSAL.Services;
 
-public class PdfGeneratorService:IPdfGeneratorService
+public class DocumentGeneratorService:IDocumentGenerator
 {
-    public string GenerateSalarySlip(SalaryStructureDTO salaryStructure)
+    public string Generate(SalaryDTO salaryStructure)
     {
         var document = new PdfDocument();
     

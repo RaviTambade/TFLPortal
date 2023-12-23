@@ -22,7 +22,7 @@ export class PendingLeaveComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.service.getPendingLeaves(this.employeeId,this.roleId,this.year).subscribe((res)=>{
+    this.service.getPendingLeaves(this.employeeId,this.year).subscribe((res)=>{
       this.pendingLeave=res;
       console.log(res);
       this.totalLeaves=res.paidLeaves+res.sickLeaves+res.casualLeaves+res.unpaidLeaves;

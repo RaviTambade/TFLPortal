@@ -2,7 +2,6 @@ using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Configuration;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 using Transflower.TFLPortal.TFLOBL.Entities;
-using Transflower.TFLPortal.TFLSAL.DTO;
 
 namespace Transflower.TFLPortal.TFLSAL.Services;
 
@@ -304,9 +303,9 @@ public class TimesheetService : ITimesheetService
         return workCategoryDetails;
     }
 
-    public async Task<List<ProjectHours>> GetProjectWiseTimeSpentByEmployee(int employeeId)
+    public async Task<List<TimesheetHours>> GetProjectWiseTimeSpentByEmployee(int employeeId)
     {
-        List<ProjectHours> projectsHoursList = new();
+        List<TimesheetHours> projectsHoursList = new();
 
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
@@ -330,7 +329,7 @@ public class TimesheetService : ITimesheetService
                 string projectName = reader["projectname"].ToString();
                 double hours = double.Parse(reader["hours"].ToString());
 
-                ProjectHours projectHours = new ProjectHours()
+                TimesheetHours projectHours = new TimesheetHours()
                 {
                     ProjectName = projectName,
                     Hours = hours
