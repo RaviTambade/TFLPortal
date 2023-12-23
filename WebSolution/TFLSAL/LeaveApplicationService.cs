@@ -311,14 +311,14 @@ GROUP BY m.month_start ORDER BY m.month_start";
 
         await cmd.ExecuteNonQueryAsync();
 
-        int seekLeaves = Convert.ToInt32(cmd.Parameters["@remainingSickLeaves"].Value);
+        int sickLeaves = Convert.ToInt32(cmd.Parameters["@remainingSickLeaves"].Value);
         int casualLeaves = Convert.ToInt32(cmd.Parameters["@remainingCasualLeaves"].Value);
         int paidLeaves = Convert.ToInt32(cmd.Parameters["@remainingPaidLeaves"].Value);
         int unPaidLeaves = Convert.ToInt32(cmd.Parameters["@remainingUnpaidLeaves"].Value);
 
         leaves = new RemainingLeaveDetails()
         {
-            SeekLeaves = seekLeaves,
+            SickLeaves = sickLeaves,
             CasualLeaves = casualLeaves,
             PaidLeaves = paidLeaves,
             UnpaidLeaves=unPaidLeaves

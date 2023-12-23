@@ -17,8 +17,8 @@ export class LeavesService {
     return this.http.post<boolean>(url,leave);
   }
 
-  getPendingLeaves(employeeId:number):Observable<PendingLeave>{
-    let url="http://localhost:5263/api/leaves/pendingleave/"+employeeId;
+  getPendingLeaves(employeeId:number,roleId:number,year:number):Observable<PendingLeave>{
+    let url="http://localhost:5263/api/leaves/PendingLeaves/employee/"+employeeId+"/role/"+roleId+"/year/"+year;
     return this.http.get<PendingLeave>(url);
   }
 

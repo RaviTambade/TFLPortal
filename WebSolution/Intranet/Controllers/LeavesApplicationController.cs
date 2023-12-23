@@ -91,7 +91,7 @@ public class LeavesApplicationController : ControllerBase
     }
 
 
-    [HttpGet("PeandingLeaves/employee/{employeeId}/role/{roleId}/year/{year}")]
+    [HttpGet("PendingLeaves/employee/{employeeId}/role/{roleId}/year/{year}")]
     public async Task<RemainingLeaveDetails> GetPendingLeaves(int employeeId,int roleId,int year)
     {
         RemainingLeaveDetails leaves = await _service.GetPendingLeaves(employeeId,roleId,year);
