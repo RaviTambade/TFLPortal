@@ -62,7 +62,7 @@ END;
 
 
 
-CALL getemployeeworkhoursbyactivity(10,'month',0);
+-- CALL getemployeeworkhoursbyactivity(10,'month',0);
 
 CREATE PROCEDURE getActivityCounts(OUT  todo INT,OUT inprogress INT,OUT completed INT)
 BEGIN
@@ -72,14 +72,14 @@ BEGIN
 END;
 
 -- SELECT TIMEDIFF('10:12:22','10:22:22');
- --projectwise time allocation
-  SELECT projects.title as projectName,
-    CAST(((SUM( TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ))/3600)AS DECIMAL(10,2)) 
-    FROM timesheetentries
-    INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
-    INNER JOIN projects on timesheetentries.projectid=projects.id
-    WHERE  timesheets.employeeid=10 
-    GROUP BY timesheetentries.projectid;
+ -- projectwise time allocation
+  -- SELECT projects.title as projectName,
+  --   CAST(((SUM( TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ))/3600)AS DECIMAL(10,2)) 
+  --   FROM timesheetentries
+  --   INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
+  --   INNER JOIN projects on timesheetentries.projectid=projects.id
+  --   WHERE  timesheets.employeeid=10 
+  --   GROUP BY timesheetentries.projectid;
 
 
 

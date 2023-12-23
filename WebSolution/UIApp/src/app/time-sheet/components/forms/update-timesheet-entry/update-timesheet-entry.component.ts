@@ -47,10 +47,10 @@ export class UpdateTimesheetEntryComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      let timeSheetEntryId = params.get('id');
+      let timesheetEntryId = params.get('id');
       this.date = params.get('date') || '';
       this.workmgmtSvc
-        .getTmeSheetEntry(Number(timeSheetEntryId))
+        .getTmeSheetEntry(Number(timesheetEntryId))
         .subscribe((res) => {
           this.timesheetDetails = res;
           this.timesheetDetails.fromTime = this.timesheetDetails.fromTime.slice(0,5);
@@ -81,7 +81,7 @@ export class UpdateTimesheetEntryComponent implements OnInit {
       toTime: this.timesheetDetails.toTime + ':00',
       durationInMinutes: this.timesheetDetails.durationInMinutes,
       durationInHours: this.timesheetDetails.durationInHours,
-      timeSheetId: this.timesheetDetails.timeSheetId,
+      timesheetId: this.timesheetDetails.timesheetId,
       work: this.timesheetDetails.work,
       workCategory: this.timesheetDetails.workCategory,
       description: this.timesheetDetails.description,

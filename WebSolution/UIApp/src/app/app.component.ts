@@ -43,7 +43,7 @@ downloadFile(url:string){
   title = 'PMSNGApp';
   project: Project | undefined;
   taskId:number|undefined;
-  timeSheetId:number|undefined;
+  timesheetId:number|undefined;
   employeeId:number=0;
   visibleSalaryStructure:boolean=false;
 
@@ -56,7 +56,7 @@ downloadFile(url:string){
   }
   
   onReceiveTimeSheetId(timesheetId:number){
-    this.timeSheetId=timesheetId;
+    this.timesheetId=timesheetId;
   }
 
   onReceiveEmployee(employeeId: number) {

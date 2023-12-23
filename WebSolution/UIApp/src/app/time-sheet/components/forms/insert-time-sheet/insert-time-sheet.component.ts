@@ -5,7 +5,7 @@ import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 import { TimeSheetDetails } from 'src/app/time-sheet/models/TimeSheetDetails';
 import { TimeSheetStatus } from 'src/app/time-sheet/models/TimeSheetStatus';
 import { TimesheetView } from 'src/app/time-sheet/models/TimesheetView';
-import { TimeSheet } from 'src/app/time-sheet/models/timesheet';
+import { Timesheet } from 'src/app/time-sheet/models/timesheet';
 
 @Component({
   selector: 'app-insert-time-sheet',
@@ -19,7 +19,7 @@ export class InsertTimeSheetComponent implements OnInit {
   @Input() date: string = new Date().toISOString().slice(0, 10);
   toDaysdate: string = new Date().toISOString().slice(0, 10);
   employeeId: number = 0;
-  timeSheet: TimesheetView | undefined;
+  timesheet: TimesheetView | undefined;
   selectedTimeSheetDetailstoUpdate: TimeSheetDetails | undefined;
   isTimeSheetCreated = false;
   timeSheetStauts = TimeSheetStatus;
@@ -57,11 +57,11 @@ export class InsertTimeSheetComponent implements OnInit {
       });
   }
 
-  onRemoveAllTimeSheetDetails(timeSheetId: number) {
-    this.workmgmtSvc.removeAllTimeSheetDetails(timeSheetId).subscribe((res) => {
+  onRemoveAllTimeSheetDetails(timesheetId: number) {
+    this.workmgmtSvc.removeAllTimeSheetDetails(timesheetId).subscribe((res) => {
       if (res) {
-        if (this.timeSheet) {
-          this.timeSheet.timeSheetDetails = [];
+        if (this.timesheet) {
+          this.timesheet.timeSheetDetails = [];
           this.totalminutes = 0;
         }
       }
@@ -69,21 +69,21 @@ export class InsertTimeSheetComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.timeSheet) {
-      let timesheet: TimeSheet = {
-        id: this.timeSheet?.id,
-        timeSheetDate: this.timeSheet.timeSheetDate,
+    if (this.timesheet) {
+      let timesheet: Timesheet = {
+        id: this.timesheet?.id,
+        timesheetDate: this.timesheet.timesheetDate,
         status: 'Submitted',
-        employeeId: this.timeSheet.employeeId,
-        timeSheetDetails: this.timeSheet.timeSheetDetails,
+        employeeId: this.timesheet.employeeId,
+        timeSheetDetails: this.timesheet.timeSheetDetails,
         statusChangedDate: this.date,
       };
 
       this.workmgmtSvc
-        .changeTimeSheetStatus(this.timeSheet.id, timesheet)
+        .changeTimeSheetStatus(this.timesheet.id, timesheet)
         .subscribe((res) => {
           alert('timesheet added');
-          this.timeSheet!.status=timesheet.status;
+          this.timesheet!.status=timesheet.status;
         });
     }
   }
@@ -113,10 +113,10 @@ export class InsertTimeSheetComponent implements OnInit {
       } else {
         this.isTimeSheetCreated = true;
         this.totalminutes = 0;
-        this.timeSheet = res;
+        this.timesheet = res;
         console.log('🚀 ~ this.workmgmtSvc.getTimeSheet ~ res:', res);
 
-        this.timeSheet.timeSheetDetails.forEach((timeSheetDetail) => {
+        this.timesheet.timeSheetDetails.forEach((timeSheetDetail) => {
           timeSheetDetail = this.workmgmtSvc.getDurationOfWork(timeSheetDetail);
           this.totalminutes += timeSheetDetail.durationInMinutes;
         });
@@ -129,7 +129,7 @@ export class InsertTimeSheetComponent implements OnInit {
 
   CreateTimesheet() {
     const timesheetInsertModel = {
-      timeSheetDate: this.date,
+      timesheetDate: this.date,
       employeeId: this.employeeId,
     };
     console.log("🚀 ~ CreateTimesheet ~ timesheetInsertModel:", timesheetInsertModel);
@@ -138,7 +138,7 @@ export class InsertTimeSheetComponent implements OnInit {
         console.log("🚀 ~ this.workmgmtSvc.addTimeSheet ~ res:", res);
         this.fetchTimeSheet(
           timesheetInsertModel.employeeId,
-          timesheetInsertModel.timeSheetDate
+          timesheetInsertModel.timesheetDate
         );
       }
     });
@@ -162,8 +162,8 @@ export class InsertTimeSheetComponent implements OnInit {
 
   isTimeSheetEditable() {
     return (
-      this.timeSheet?.status == this.timeSheetStauts.inprogress ||
-      this.timeSheet?.status == this.timeSheetStauts.rejected
+      this.timesheet?.status == this.timeSheetStauts.inprogress ||
+      this.timesheet?.status == this.timeSheetStauts.rejected
     );
   }
 

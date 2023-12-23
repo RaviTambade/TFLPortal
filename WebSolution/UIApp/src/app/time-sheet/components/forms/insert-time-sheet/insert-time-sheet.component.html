@@ -1,5 +1,5 @@
 <ng-template #insertTimesheetEnrty>
-    <app-insert-time-sheet-entry *ngIf="timeSheet" [timeSheetId]="timeSheet.id"
+    <app-insert-time-sheet-entry *ngIf="timesheet" [timesheetId]="timesheet.id"
         (stateChangeEvent)="onAddStateChange($event)"></app-insert-time-sheet-entry>
 </ng-template>
 
@@ -17,14 +17,14 @@
 
     <div *ngIf="isTimeSheetCreated==false && date<=toDaysdate ">
         <p> Date : {{date|date}}</p>
-        <button  (click)="CreateTimesheet()">Create TimeSheet</button>
+        <button  (click)="CreateTimesheet()">Create Timesheet</button>
     </div>
 
 
 <ng-container *ngIf="isTimeSheetCreated">
-    <p> Date : {{timeSheet?.timeSheetDate |date}}</p>
-    <p> Status:{{timeSheet?.status |titlecase}}</p>
-    <p> Employee Name:{{timeSheet?.employeeName}}</p>
+    <p> Date : {{timesheet?.timesheetDate |date}}</p>
+    <p> Status:{{timesheet?.status |titlecase}}</p>
+    <p> Employee Name:{{timesheet?.employeeName}}</p>
     <button *ngIf="isTimeSheetEditable()" (click)="onClickAddTimeSheetDetails()"> Add </button>
 
     <table class="table-bordered" >
@@ -39,8 +39,8 @@
                 <th>Duration</th>
             </tr>
         </thead>
-        <ng-container *ngIf=" timeSheet && timeSheet.timeSheetDetails.length>0">
-            <tbody *ngFor="let timeSheetDetail of timeSheet.timeSheetDetails">
+        <ng-container *ngIf=" timesheet && timesheet.timeSheetDetails.length>0">
+            <tbody *ngFor="let timeSheetDetail of timesheet.timeSheetDetails">
                 <tr>
                     <td> {{timeSheetDetail.fromTime }}</td>
                     <td> {{timeSheetDetail.toTime }}</td>
@@ -49,7 +49,7 @@
                     <td> {{timeSheetDetail.work}}</td>
                     <!-- <td> {{timeSheetDetail.description}}</td> -->
                     <td> {{timeSheetDetail.durationInHours }}</td>
-                    <td  *ngIf="isTimeSheetEditable()"><button  [routerLink]="['/timesheet/view/update',timeSheetDetail.id,'date',timeSheet.timeSheetDate.slice(0,10)]" >Edit</button></td>
+                    <td  *ngIf="isTimeSheetEditable()"><button  [routerLink]="['/timesheet/view/update',timeSheetDetail.id,'date',timesheet.timesheetDate.slice(0,10)]" >Edit</button></td>
                     <!-- <td  *ngIf="isTimeSheetEditable()"><button  (click)="onClickUpdateTimeSheetDetails(timesheetDetails)">Edit</button></td> -->
                     <td  *ngIf="isTimeSheetEditable()"><button (click)="onRemoveTimeSheetDetails(timeSheetDetail.id)">Delete</button></td>
                 </tr>
@@ -60,9 +60,9 @@
     </table>
 
     <p>Total Hours : {{totalminutes}}</p>
-    <ng-container *ngIf=" timeSheet && timeSheet.timeSheetDetails.length>0">
+    <ng-container *ngIf=" timesheet && timesheet.timeSheetDetails.length>0">
     <button type="submit"  *ngIf="isTimeSheetEditable()" (click)="onSubmit()"> submit </button>
-    <button class="mx-1" *ngIf="isTimeSheetEditable() && timeSheet" (click)="onRemoveAllTimeSheetDetails(timeSheet.id)">
+    <button class="mx-1" *ngIf="isTimeSheetEditable() && timesheet" (click)="onRemoveAllTimeSheetDetails(timesheet.id)">
         ClearAll </button>
         </ng-container>
 </ng-container>

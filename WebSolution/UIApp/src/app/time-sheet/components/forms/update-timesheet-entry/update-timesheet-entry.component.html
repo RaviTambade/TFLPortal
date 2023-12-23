@@ -1,5 +1,5 @@
 <ng-container *ngIf="timesheetDetails">
-<h2> Update TimeSheetEntry</h2>
+<h2> Update TimesheetEntry</h2>
 <label>Project:</label>
 <select [(ngModel)]="timesheetDetails.projectId">
     <option *ngFor="let project of projects;" [value]="project.id">{{project.title|titlecase}}</option>

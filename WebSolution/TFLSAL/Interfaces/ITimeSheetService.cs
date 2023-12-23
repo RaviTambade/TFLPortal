@@ -3,20 +3,22 @@ using Transflower.TFLPortal.TFLSAL.DTO;
 
 namespace Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 
-public interface ITimeSheetService
+public interface ITimesheetService
 {
-    Task<List<TimeSheet>> GetTimeSheetsOfEmployee(int employeeId);
-    Task<TimeSheet> GetTimeSheetOfEmployee(int employeeId, string date);
-    Task<List<TimeSheetEntry>> GetTimeSheetEntries(int timeSheetId);
+    
+    Task<List<Timesheet>> GetTimeSheetsOfEmployee(int employeeId);
+    Task<Timesheet> GetTimeSheetOfEmployee(int employeeId, string date);
+    Task<List<TimesheetEntry>> GetTimeSheetEntries(int timesheetId);
     Task<List<WorkCategoryDetails>> GetActivityWiseHours(int employeeId,string intervalType,int projectId);
-    Task<TimeSheetEntry> GetTimeSheetEntry(int timeSheetEntryId);
+    Task<TimesheetEntry> GetTimeSheetEntry(int timesheetEntryId);
     Task<List<ProjectHours>> GetProjectWiseTimeSpentByEmployee(int employeeId);
-    Task<bool> InsertTimeSheet(TimeSheet timeSheet);
-    Task<bool> InsertTimeSheetEntry(TimeSheetEntry timeSheetEntry);
-    Task<bool> ChangeTimeSheetStatus(int timeSheetId, TimeSheet timeSheet);
-    Task<bool> UpdateTimeSheetEntry(int timeSheetEntryId,TimeSheetEntry timeSheetEntry);
-    Task<bool> RemoveTimeSheetEntry(int timeSheetEntryId);
-    Task<bool> RemoveAllTimeSheetEntry(int timeSheetId);
+    Task<int> GetEmployeeWorkingDaysInMonth(int employeeId,int year,int month);
+    Task<bool> InsertTimeSheet(Timesheet timesheet);
+    Task<bool> InsertTimeSheetEntry(TimesheetEntry timesheetEntry);
+    Task<bool> ChangeTimeSheetStatus(int timesheetId, Timesheet timesheet);
+    Task<bool> UpdateTimeSheetEntry(int timesheetEntryId,TimesheetEntry timesheetEntry);
+    Task<bool> RemoveTimeSheetEntry(int timesheetEntryId);
+    Task<bool> RemoveAllTimeSheetEntries(int timesheetId);
 
 
 }

@@ -14,7 +14,7 @@ import { WorkmgmtService } from '../workmgmt.service';
   styleUrls: ['./details.component.css'],
 })
 export class DetailsComponent {
-  @Input() timeSheetId!: number;
+  @Input() timesheetId!: number;
   timeSheetDetails: TimeSheetDetails[] = [];
   totalminutes: any = 0;
 
@@ -22,7 +22,7 @@ export class DetailsComponent {
   constructor(private workmgmtSvc: WorkmgmtService) {}
   ngOnChanges(changes: SimpleChanges): void {
     this.workmgmtSvc
-      .getTimeSheetDetails(changes['timeSheetId'].currentValue)
+      .getTimeSheetDetails(changes['timesheetId'].currentValue)
       .subscribe((res) => {
         this.totalminutes = 0;
         this.timeSheetDetails = res;

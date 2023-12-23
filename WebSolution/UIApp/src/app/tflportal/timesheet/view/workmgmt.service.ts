@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { TimeSheet } from './models/TimeSheet';
+import { Timesheet } from './models/Timesheet';
 import { TimeSheetDetails } from './models/TimeSheetDetails';
 import { TimesheetView } from './models/TimesheetView';
 import { WorkCategory } from './models/workCategory';
@@ -60,17 +60,17 @@ export class WorkmgmtService {
 
 
 
-  getAllTimeSheets(employeeId: number): Observable<TimeSheet[]> {
+  getAllTimeSheets(employeeId: number): Observable<Timesheet[]> {
     let url = `${this.timeSheetUrl}/employees/${employeeId}`;
-    return this.http.get<TimeSheet[]>(url);
+    return this.http.get<Timesheet[]>(url);
   }
   getTimeSheet(employeeId: number, date: string): Observable<TimesheetView> {
     let url = `${this.timeSheetUrl}/employees/${employeeId}/date/${date}`;
     return this.http.get<TimesheetView>(url);
   }
 
-  getTimeSheetDetails(timeSheetId: number): Observable<TimeSheetDetails[]> {
-    let url = `${this.timeSheetUrl}/timesheetentries/${timeSheetId}`;
+  getTimeSheetDetails(timesheetId: number): Observable<TimeSheetDetails[]> {
+    let url = `${this.timeSheetUrl}/timesheetentries/${timesheetId}`;
     return this.http.get<TimeSheetDetails[]>(url);
   }
 
@@ -85,9 +85,9 @@ export class WorkmgmtService {
 
 
 
-  addTimeSheet(timeSheet: any): Observable<boolean> {
+  addTimeSheet(timesheet: any): Observable<boolean> {
     let url = `${this.timeSheetUrl}`;
-    return this.http.post<boolean>(url, timeSheet);
+    return this.http.post<boolean>(url, timesheet);
   }
 
   addTimeSheetDetails(TimeSheetDetails: TimeSheetDetails): Observable<any> {
@@ -95,8 +95,8 @@ export class WorkmgmtService {
     return this.http.post(url, TimeSheetDetails);
   }
 
-  changeTimeSheetStatus(timeSheetId: number, timesheet: TimeSheet): Observable<boolean> {
-    let url = `${this.timeSheetUrl}/${timeSheetId}`;
+  changeTimeSheetStatus(timesheetId: number, timesheet: Timesheet): Observable<boolean> {
+    let url = `${this.timeSheetUrl}/${timesheetId}`;
     return this.http.put<boolean>(url, timesheet);
   }
 
@@ -110,8 +110,8 @@ export class WorkmgmtService {
     return this.http.delete<boolean>(url);
   }
 
-  removeAllTimeSheetDetails(timeSheetId: number): Observable<boolean> {
-    let url = `${this.timeSheetUrl}/timesheetentries/removeall/${timeSheetId}`;
+  removeAllTimeSheetDetails(timesheetId: number): Observable<boolean> {
+    let url = `${this.timeSheetUrl}/timesheetentries/removeall/${timesheetId}`;
     return this.http.delete<boolean>(url);
   }
 

@@ -22,6 +22,9 @@ INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
 WHERE timesheets.employeeid=10  AND YEAR(timesheets.timesheetdate)='2023'
 GROUP BY timesheetentries.workcategory ;
 
+-- employee woeking days in month 
+
+SELECT COUNT(*) AS WorkingDays FROM timesheets WHERE employeeid=10 AND status='approved' AND MONTH(timesheetdate)=12;
 
 -- Get overall time spent between dates by specific employee
 SELECT
@@ -56,8 +59,11 @@ INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
 WHERE  timesheets.timesheetdate>='2023-12-04' and  timesheets.timesheetdate<='2023-12-04';
 
 
+SELECT datediff(
 
+)
 
+COALESCE
 -- get months data of year by acticitytype
 SELECT MONTHNAME(timesheets.timesheetdate),
 CAST(((SUM( CASE WHEN  timesheetentries.workcategory="userstory" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as userstory,
@@ -127,10 +133,10 @@ employees.userid
 FROM timesheets  
 LEFT JOIN  timesheetentries ON  timesheets.id= timesheetentries.timesheetid
 INNER JOIN employees ON timesheets.employeeid =employees.id
-WHERE timesheets.timesheetdate = @timeSheetDate AND timesheets.employeeId = @employeeId
+WHERE timesheets.timesheetdate = @timesheetDate AND timesheets.employeeId = @employeeId
 
 -- show timesheetdtials of  a timesheet.
-SELECT *  from timesheetentries WHERE timesheetid=@timeSheetId
+SELECT *  from timesheetentries WHERE timesheetid=@timesheetId
 
 -- show me the list of employees who are in the bench.
 select * from projectallocations where status="no";

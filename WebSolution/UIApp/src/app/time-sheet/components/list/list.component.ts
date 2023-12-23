@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { TimeSheet } from '../../models/timesheet';
+import { Timesheet } from '../../models/timesheet';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 export class ListComponent implements OnInit{
   
   employeeId:number=10;
-  timeSheets:TimeSheet[]=[];
+  timeSheets:Timesheet[]=[];
 
   @Output() selectedTimeSheetId= new EventEmitter<number>();
 
@@ -24,8 +24,8 @@ export class ListComponent implements OnInit{
     })   
   }
 
-  onSelectedTimeSheetId(timeSheetId:number){
-    this.selectedTimeSheetId.emit(timeSheetId);
+  onSelectedTimeSheetId(timesheetId:number){
+    this.selectedTimeSheetId.emit(timesheetId);
   }
 }
 

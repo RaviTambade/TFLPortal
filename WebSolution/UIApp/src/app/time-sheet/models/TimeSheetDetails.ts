@@ -6,7 +6,7 @@ export class TimeSheetDetails{
                 public description:string,
                 public fromTime:string,
                 public toTime:string,
-                public timeSheetId:number,
+                public timesheetId:number,
                 public projectId:number,
                 public projectName:string,
                 public durationInMinutes:number,

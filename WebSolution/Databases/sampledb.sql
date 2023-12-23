@@ -795,11 +795,11 @@ Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,
 Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(13,'2023-02-01','2023-03-03','2023-05-20',"applied",2023,"unpaid");
 Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(14,'2023-04-01','2023-04-10','2023-02-15',"sanctioned",2023,"casual");
 
-Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(1,10,5,12,15);
-Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(1,9,5,12,10);
-Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(1,8,10,10,15);
-Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(1,7,5,11,10);
-Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(1,6,10,12,10);
+-- Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(1,10,5,12,15);
+-- Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(1,9,5,12,10);
+-- Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(1,8,10,10,15);
+-- Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(1,7,5,11,10);
+-- Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(1,6,10,12,10);
 
 
 Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(1,10,5,12,15);

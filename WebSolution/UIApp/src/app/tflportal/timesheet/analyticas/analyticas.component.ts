@@ -6,9 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./analyticas.component.css']
 })
 export class AnalyticasComponent {
-  timeSheetId:number|undefined;
+  timesheetId:number|undefined;
 
   onReceiveTimeSheetId(timesheetId:number){
-    this.timeSheetId=timesheetId;
+    this.timesheetId=timesheetId;
   }
 }

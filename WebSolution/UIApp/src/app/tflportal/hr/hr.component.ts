@@ -6,9 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./hr.component.css']
 })
 export class HrComponent {
-  timeSheetId:number|undefined;
+  timesheetId:number|undefined;
 
   onReceiveTimeSheetId(timesheetId:number){
-    this.timeSheetId=timesheetId;
+    this.timesheetId=timesheetId;
   }
 }

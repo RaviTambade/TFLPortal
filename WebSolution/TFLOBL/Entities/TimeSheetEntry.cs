@@ -1,6 +1,6 @@
 namespace Transflower.TFLPortal.TFLOBL.Entities;
 
-public class TimeSheetEntry
+public class TimesheetEntry
 {
    public int Id { get; set; }
    public required string Work{get;set;}

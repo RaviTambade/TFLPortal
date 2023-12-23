@@ -94,8 +94,11 @@
                 ) DEFAULT 'inprogress', 
             statuschangeddate DATETIME DEFAULT  CURRENT_TIMESTAMP,
             employeeid INT NOT NULL,
+            CONSTRAINT unique_emp_timesheet UNIQUE KEY(timesheetdate,employeeid ) ,
             CONSTRAINT fk_timesheets_taskallocations FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
+
+
 
     CREATE TABLE timesheetentries(
         id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -145,7 +148,7 @@
 
         CREATE TABLE sanctionleaves(
                 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                roleid INT NOT NULL unique,
+                roleid INT NOT NULL UNIQUE,
                 sick INT NOT NULL,
                 casual INT NOT NULL,
                 paid INT NOT NULL,

@@ -6,9 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./activities.component.css']
 })
 export class ActivitiesComponent {
-  timeSheetId:number|undefined;
+  timesheetId:number|undefined;
 
   onReceiveTimeSheetId(timesheetId:number){
-    this.timeSheetId=timesheetId;
+    this.timesheetId=timesheetId;
   }
 }

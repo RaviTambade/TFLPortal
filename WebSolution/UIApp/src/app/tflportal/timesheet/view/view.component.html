@@ -13,8 +13,8 @@
             <div class="col-md-6">
                 <timesheet-list (selectedTimeSheetId)="onReceiveTimeSheetId($event)"></timesheet-list>
             </div>
-            <div class="col-md-6" *ngIf="timeSheetId">
-                <timesheet-details [timeSheetId]="timeSheetId"></timesheet-details>
+            <div class="col-md-6" *ngIf="timesheetId">
+                <timesheet-details [timesheetId]="timesheetId"></timesheet-details>
             </div>
         </div>
     </div>

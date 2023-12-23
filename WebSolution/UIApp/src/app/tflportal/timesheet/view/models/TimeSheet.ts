@@ -1,9 +1,9 @@
 import { TimeSheetDetails } from "./TimeSheetDetails";
 
-export class TimeSheet{
+export class Timesheet{
     constructor(public id:number,
                 public status:string,
-                public timeSheetDate:string,
+                public timesheetDate:string,
                 public statusChangedDate:string,
                 public employeeId:number){}
                 

@@ -1,6 +1,6 @@
-import { TimeSheet } from "./TimeSheet";
+import { Timesheet } from "./Timesheet";
 
 
-export class TimesheetView extends TimeSheet{
+export class TimesheetView extends Timesheet{
     public employeeName:string=''
 }

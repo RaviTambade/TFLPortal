@@ -30,7 +30,7 @@ export class InsertTimeSheetEntryComponent implements OnInit {
     toTime: '',
     durationInMinutes: 0,
     durationInHours: '',
-    timeSheetId: 0,
+    timesheetId: 0,
     work: '',
     workCategory: '',
     description: '',
@@ -39,7 +39,7 @@ export class InsertTimeSheetEntryComponent implements OnInit {
   };
 
   projects: Project[] = [];
-  @Input() timeSheetId!: number;
+  @Input() timesheetId!: number;
   @Output() stateChangeEvent = new EventEmitter<boolean>();
   constructor(
     private workmgmtSvc: WorkmgmtService,
@@ -65,7 +65,7 @@ export class InsertTimeSheetEntryComponent implements OnInit {
       toTime: this.timeSheetDetail.toTime + ':00',
       durationInMinutes: this.timeSheetDetail.durationInMinutes,
       durationInHours: this.timeSheetDetail.durationInHours,
-      timeSheetId: this.timeSheetId,
+      timesheetId: this.timesheetId,
       work: this.timeSheetDetail.work,
       workCategory: this.timeSheetDetail.workCategory,
       description: this.timeSheetDetail.description,

@@ -1,7 +1,7 @@
 
 
 <div class="container">
-    <h2> TimeSheet List</h2>
+    <h2> Timesheet List</h2>
     <div class="card">
         <table class="table-bordered text-center">
             <thead>
@@ -13,7 +13,7 @@
             </thead>
             <tbody *ngFor="let timesheet of timeSheets">
                 <tr>
-                    <td  style="cursor: pointer; text-decoration: underline ; color:  #0000EE;" (click)="onSelectedTimeSheetId(timesheet.id)"> {{timesheet.timeSheetDate | date}}</td>
+                    <td  style="cursor: pointer; text-decoration: underline ; color:  #0000EE;" (click)="onSelectedTimeSheetId(timesheet.id)"> {{timesheet.timesheetDate | date}}</td>
                     <td> {{timesheet.status}}</td>
                     <td>{{timesheet.statusChangedDate |date}}</td>
                 </tr>
