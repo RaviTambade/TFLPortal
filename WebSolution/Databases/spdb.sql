@@ -1,4 +1,4 @@
--- Active: 1696576841746@@127.0.0.1@3306@tflportal
+-- Active: 1694968636816@@127.0.0.1@3306@tflportal
 DROP PROCEDURE IF EXISTS getemployeeworkhoursbyactivity;
 CREATE PROCEDURE getemployeeworkhoursbyactivity(IN employee_id INT,IN interval_type VARCHAR (20),IN project_id INT)
 BEGIN
@@ -80,6 +80,45 @@ END;
   --   INNER JOIN projects on timesheetentries.projectid=projects.id
   --   WHERE  timesheets.employeeid=10 
   --   GROUP BY timesheetentries.projectid;
+
+
+
+-- get available leaves of employee
+DELIMITER $$
+CREATE PROCEDURE getAvailableLeavesOfEmployee(In employee_Id int,In role_id int,In year int,out remainingSickLeaves int,out remainingCasualleaves int, out remainingPaidLeaves int,out remainingUnpaidLeaves int)
+BEGIN
+Declare consumedSickLeaves int default 0;
+Declare consumedCasualLeaves int default 0;
+Declare consumedPaidLeaves int default 0;
+Declare consumedUnpaidLeaves int default 0;
+Declare sanctionedSickLeaves int;
+Declare sanctionedCasualLeaves int;
+Declare sanctionedPaidLeaves int;
+Declare sanctionedUnpaidLeaves int ;
+
+select coalesce(sum(datediff(todate,fromdate)+1),0) Into consumedCasualLeaves  from leaveapplications where employeeId=employee_Id and leavetype="casual" and status="sanctioned" and year(fromdate)=year;
+select coalesce(sum(datediff(todate,fromdate)+1),0) Into consumedSickLeaves  from leaveapplications where employeeId=employee_Id and leavetype="sick" and status="sanctioned" and year(fromdate)=year;
+select coalesce(sum(datediff(todate,fromdate)+1),0) Into consumedPaidLeaves  from leaveapplications where employeeId=employee_Id and leavetype="paid" and status="sanctioned" and year(fromdate)=year;
+select coalesce(sum(datediff(todate,fromdate)+1),0) Into consumedUnpaidLeaves  from leaveapplications where employeeId=employee_Id and leavetype="unpaid" and status="sanctioned" and year(fromdate)=year;
+
+select sick,casual,paid,unpaid Into sanctionedSickLeaves,sanctionedCasualLeaves,sanctionedPaidLeaves,sanctionedUnpaidLeaves from sanctionleaves where roleid=role_id ;
+set remainingSickLeaves=sanctionedSickLeaves-consumedSickLeaves;
+set remainingcasualLeaves=sanctionedCasualLeaves-consumedCasualLeaves;
+set remainingPaidLeaves=sanctionedPaidLeaves-consumedPaidLeaves;
+set remainingUnpaidLeaves=sanctionedUnpaidLeaves-consumedUnpaidLeaves;
+
+END $$
+DELIMITER ;
+
+
+
+
+
+
+
+
+
+
 
 
 
