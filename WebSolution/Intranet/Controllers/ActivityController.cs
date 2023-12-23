@@ -127,11 +127,5 @@ public class ActivityController : ControllerBase
         return activities;
     }
 
-    [HttpGet("download")]
-    public ActionResult DownloadDocument(){
-    string filePath = "wwwroot/Documents/DadabhauNavle18122023130430.pdf";
-    string fileName = "Salary.pdf";
-    byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
-    return File(fileBytes, "application/force-download", fileName); 
-    }
+   
 }
