@@ -23,7 +23,7 @@ builder.Services.AddScoped<ITimesheetService, TimesheetService>();
 builder.Services.AddScoped<IProjectAllocationService, ProjectAllocationService>();
 builder.Services.AddScoped<ILeaveManagementService, LeaveManagementService>();
 builder.Services.AddScoped<IHRService, HRService>();
-// builder.Services.AddScoped<IPdfGeneratorService, PdfGeneratorService>();
+builder.Services.AddScoped<IPayrollService, PayrollService>();
 builder.Services.AddHttpClient();
 
 

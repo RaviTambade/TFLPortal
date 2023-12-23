@@ -15,6 +15,7 @@
     <ProjectReference Include="..\TFLOBL\TFLOBL.csproj" />
     <ProjectReference Include="..\TFLSAL\TFLSAL.csproj" />
     <ProjectReference Include="..\NotificationLib\NotificationLib.csproj" />
+    <ProjectReference Include="..\UtilityLib\UtilityLib.csproj" />
 
   </ItemGroup>
 
