@@ -89,4 +89,12 @@ public class LeavesApplicationController : ControllerBase
         Console.WriteLine(leaves);
         return leaves;
     }
+
+
+    [HttpGet("PeandingLeaves/employee/{employeeId}/role/{roleId}/year/{year}")]
+    public async Task<RemainingLeaveDetails> GetPendingLeaves(int employeeId,int roleId,int year)
+    {
+        RemainingLeaveDetails leaves = await _service.GetPendingLeaves(employeeId,roleId,year);
+        return leaves;
+    }
 }
