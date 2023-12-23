@@ -10,18 +10,22 @@ import { PendingLeave } from '../../Models/PendingLeave';
 })
 export class PendingLeaveComponent implements OnInit {
 
-  employeeId:any;
+  employeeId:number=12;
   pendingLeave:PendingLeave |undefined;
   totalLeaves:any;
+  roleId:number=4;
+  year:number=2023;
+
 
   constructor(private service:LeavesService){
-     this.employeeId=localStorage.getItem(LocalStorageKeys.employeeId);
+    //  this.employeeId=localStorage.getItem(LocalStorageKeys.employeeId);
   }
 
   ngOnInit(): void {
-    this.service.getPendingLeaves(this.employeeId).subscribe((res)=>{
+    this.service.getPendingLeaves(this.employeeId,this.roleId,this.year).subscribe((res)=>{
       this.pendingLeave=res;
-      this.totalLeaves=res.paidLeave+res.sickLeave+res.casualLeave+res.unpaidLeave;
+      console.log(res);
+      this.totalLeaves=res.paidLeaves+res.sickLeaves+res.casualLeaves+res.unpaidLeaves;
     }) 
   }
 }

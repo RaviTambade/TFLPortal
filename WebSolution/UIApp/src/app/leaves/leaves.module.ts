@@ -34,7 +34,8 @@ export const leaveRoutes: Routes = [
   ],
   exports: [
     AddLeaveComponent,
-    TeamMemberLeaveRequestComponent
+    TeamMemberLeaveRequestComponent,
+    PendingLeaveComponent
   ]
 })
 export class LeavesModule { }
