@@ -14,18 +14,22 @@
             <thead>
                 <tr>
                     <th>Employee Name</th>
+                    <th>Apply Date</th>
                     <th>From Date</th>
                     <th>To Date</th>
                     <th>Status</th>
+                    <th>Year</th>
                     <th>LeaveType </th>
                    </tr>
             </thead>
             <tbody *ngFor="let leave of leaves">
                 <tr>
                     <td>{{leave.fullName}}</td>
+                    <td>{{leave.applicationDate |date}}</td>
                     <td>{{leave.fromDate |date}}</td>
                     <td>{{leave.toDate |date}}</td>
                     <td>{{leave.status}}</td>
+                    <td>{{leave.year}}</td>
                     <td>{{leave.leaveType}}</td>
                 </tr>
             </tbody>

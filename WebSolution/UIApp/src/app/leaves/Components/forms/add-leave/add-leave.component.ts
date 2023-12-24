@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Leave } from 'src/app/leaves/Models/Leave';
+import { LeaveApplication } from 'src/app/leaves/Models/LeaveApplication';
+
 import { LeavesService } from 'src/app/leaves/Services/leaves.service';
 import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
 
@@ -36,12 +37,14 @@ export class AddLeaveComponent implements OnInit {
   });
 
   onSubmit(){
-    let leaves:Leave={
+    let leaves:LeaveApplication={
       id: 0,
-      employeeId: this.employeeId,
+      employeeId: 14,
+      applicationDate:new Date().toISOString(),
       fromDate: this.leaveForm.get("fromDate")?.value,
       toDate: this.leaveForm.get("toDate")?.value,
-      status: "notstarted",
+      status: "applied",
+      year:new Date().getFullYear(),
       leaveType: this.leaveForm.get("leaveType")?.value
     }
     console.log(leaves);

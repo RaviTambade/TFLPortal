@@ -1,5 +1,5 @@
-import { Leave } from "./Leave";
+import { LeaveApplication } from "./LeaveApplication";
 
-export class LeaveDetails extends Leave{
+export class LeaveDetails extends LeaveApplication{
     public fullName:string=''
 }

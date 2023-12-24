@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LeavesService } from '../../Services/leaves.service';
 import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
-import { Leave } from '../../Models/Leave';
+import { LeaveApplication } from '../../Models/LeaveApplication';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,11 +11,12 @@ import { Router } from '@angular/router';
 })
 export class EmployeeLeavesComponent implements OnInit{
 
-  employeeId:any;
-  employees:Leave[]=[];
+  // employeeId:any;
+  employees:LeaveApplication[]=[];
+  employeeId:number=12;
 
   constructor(private service:LeavesService,private router:Router){
-    this.employeeId=localStorage.getItem(LocalStorageKeys.employeeId);
+    // this.employeeId=localStorage.getItem(LocalStorageKeys.employeeId);
   }
   ngOnInit(): void {
     this.service.getEmployeeLeaves(this.employeeId).subscribe((res)=>{

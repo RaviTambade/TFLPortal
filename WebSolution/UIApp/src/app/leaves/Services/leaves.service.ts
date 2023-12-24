@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Leave } from '../Models/Leave';
+
 import { PendingLeave } from '../Models/PendingLeave';
 import { LeaveDetails } from '../Models/LeaveDetails';
+import { LeaveApplication } from '../Models/LeaveApplication';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ export class LeavesService {
 
   constructor(private http :HttpClient) { }
 
-  addLeave(leave:Leave):Observable<boolean>{
-    let url="http://localhost:5263/api/leaves/addleave";
+  addLeave(leave:LeaveApplication):Observable<boolean>{
+    let url="http://localhost:5263/api/leaves";
     return this.http.post<boolean>(url,leave);
   }
 
@@ -22,13 +23,13 @@ export class LeavesService {
     return this.http.get<PendingLeave>(url);
   }
 
-  getEmployeeLeaves(employeeId:number):Observable<Leave[]>{
+  getEmployeeLeaves(employeeId:number):Observable<LeaveApplication[]>{
     let url="http://localhost:5263/api/leaves/"+employeeId;
-    return this.http.get<Leave[]>(url);
+    return this.http.get<LeaveApplication[]>(url);
   }
 
   getEmployeeAppliedLeaves(projectId:number,status:string):Observable<LeaveDetails[]>{
-    let url="http://localhost:5263/api/leaves/project/"+projectId+"/status/"+status;
+    let url="http://localhost:5263/api/leaves/projects/"+projectId+"/status/"+status;
     return this.http.get<LeaveDetails[]>(url);
   }
 }

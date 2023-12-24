@@ -51,6 +51,8 @@ public class LeavesManagementController : ControllerBase
                     Status = employee.Status,
                     LeaveType = employee.LeaveType,
                     EmployeeId = employee.EmployeeId,
+                    ApplicationDate=employee.ApplicationDate,
+                    Year=employee.Year
                 };
                 leaveResponses.Add(leaveResponse);
             }
