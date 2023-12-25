@@ -1,45 +1,77 @@
--- Active: 1696576841746@@127.0.0.1@3306@tflportal
+-- Active: 1694968636816@@127.0.0.1@3306@tflportal
 
 -- director
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (1,'2013-01-01',1,80000);
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (2,'2013-11-03',1,80000);
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (3,'2013-08-11',1,80000);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (1,'2013-01-01',1);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (2,'2013-11-03',1);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (3,'2013-08-11',1);
 -- HR Manager
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (4,'2013-10-06',1,70000);
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (5,'2014-09-07',2,70000);
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (6,'2014-11-01',3,70000);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (4,'2013-10-06',1);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (5,'2014-09-07',2);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (6,'2014-11-01',3);
 
 -- Team Manager
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (7,'2013-11-01',4,60000);
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (8,'2013-04-14',5,60000);
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (9,'2015-12-01',6,60000);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (7,'2013-11-01',4);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (8,'2013-04-14',5);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (9,'2015-12-01',6);
 
 -- Team MEMBER 
 
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (10,'2013-03-17',7,40000);
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (11,'2014-02-12',7,40000);
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (12,'2014-05-21',7,40000);
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (13,'2014-05-21',8,40000);
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (14,'2015-11-11',8,40000);
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (15,'2015-09-15',8,40000);
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (16,'2015-07-16',9,40000);
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (17,'2015-04-23',9,40000);
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (18,'2015-05-13',9,40000);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (10,'2013-03-17',7);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (11,'2014-02-12',7);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (12,'2014-05-21',7);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (13,'2014-05-21',8);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (14,'2015-11-11',8);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (15,'2015-09-15',8);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (16,'2015-07-16',9);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (17,'2015-04-23',9);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (18,'2015-05-13',9);
 
 
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (19,'2014-05-21',8,40000);
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (20,'2015-11-11',8,40000);
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (21,'2015-09-15',8,40000);
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (22,'2015-07-16',9,40000);
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (23,'2015-04-23',9,40000);
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (24,'2015-05-13',9,40000);
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (25,'2014-05-21',8,40000);
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (26,'2015-11-11',8,40000);
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (27,'2015-09-15',8,40000);
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (28,'2015-07-16',9,40000);
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (29,'2015-04-23',9,40000);
-INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (30,'2015-05-13',9,40000);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (19,'2014-05-21',8);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (20,'2015-11-11',8);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (21,'2015-09-15',8);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (22,'2015-07-16',9);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (23,'2015-04-23',9);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (24,'2015-05-13',9);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (25,'2014-05-21',8);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (26,'2015-11-11',8);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (27,'2015-09-15',8);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (28,'2015-07-16',9);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (29,'2015-04-23',9);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (30,'2015-05-13',9);
 
+
+Insert Into rolebasedleaves(roleid,sick,casual,paid,unpaid,financialyear) values(1,10,5,12,15,2023);
+Insert Into rolebasedleaves(roleid,sick,casual,paid,unpaid,financialyear) values(2,9,5,12,10,2023);
+Insert Into rolebasedleaves(roleid,sick,casual,paid,unpaid,financialyear) values(3,8,10,10,15,2023);
+Insert Into rolebasedleaves(roleid,sick,casual,paid,unpaid,financialyear) values(4,7,5,11,10,2023);
+
+
+
+
+Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(11,'2023-04-01','2023-04-03','2023-04-05',"notsanctioned",2023,"casual");
+Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-04-01','2023-04-03','2023-04-05',"sanctioned",2023,"casual");
+Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(13,'2023-03-01','2023-03-03','2023-03-20',"applied",2023,"casual");
+Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(14,'2023-04-01','2023-04-10','2023-04-15',"sanctioned",2023,"casual");
+
+Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(11,'2023-04-30','2023-04-03','2023-05-05',"notsanctioned",2023,"sick");
+Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-04-01','2023-04-15','2023-05-05',"sanctioned",2023,"paid");
+Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(13,'2023-02-01','2023-03-03','2023-05-20',"applied",2023,"unpaid");
+Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(14,'2023-04-01','2023-04-10','2023-02-15',"sanctioned",2023,"casual");
+
+
+
+
+Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(1,30000,3000,200,300,200);
+Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(2,40000,2200,300,200,250);
+Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(3,30000,1000,400,400,330);
+Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(4,45000,5000,500,500,350);
+Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(5,20000,6000,600,500,400);
+Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(6,19000,3200,600,600,600);
+Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(7,45000,5000,500,500,350);
+Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(8,20000,6000,600,500,400);
+Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(9,19000,3200,600,600,600);
+Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(10,19000,3200,600,600,600);
 
 
 
@@ -767,16 +799,6 @@ INSERT INTO sprintactivities(sprintid,activityid) VALUES (6,36);
 -- INSERT INTO sprintactivities(sprintid,activityid) VALUES (5,29);
 -- INSERT INTO sprintactivities(sprintid,activityid) VALUES (5,30);
 
-Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(1,30000,3000,200,300,200,2000);
-Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(2,40000,2200,300,200,250,4000);
-Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(3,30000,1000,400,400,330,3000);
-Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(4,45000,5000,500,500,350,3300);
-Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(5,20000,6000,600,500,400,4000);
-Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(6,19000,3200,600,600,600,2000);
-Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(7,45000,5000,500,500,350,3300);
-Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(8,20000,6000,600,500,400,4000);
-Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(9,19000,3200,600,600,600,2000);
-Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(10,19000,3200,600,600,600,2000);
 
 Insert Into salarydisbursement(employeeid,paydate,amount) values(1,'2023-12-07',25000);
 Insert Into salarydisbursement(employeeid,paydate,amount) values(2,'2023-12-06',25000);
@@ -785,15 +807,6 @@ Insert Into salarydisbursement(employeeid,paydate,amount) values(4,'2023-12-04',
 Insert Into salarydisbursement(employeeid,paydate,amount) values(5,'2023-12-03',25000);
 Insert Into salarydisbursement(employeeid,paydate,amount) values(6,'2023-12-02',25000);
 
-Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(11,'2023-04-01','2023-04-03','2023-04-05',"notsanctioned",2023,"casual");
-Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-04-01','2023-04-03','2023-04-05',"sanctioned",2023,"casual");
-Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(13,'2023-03-01','2023-03-03','2023-03-20',"applied",2023,"casual");
-Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(14,'2023-04-01','2023-04-10','2023-04-15',"sanctioned",2023,"casual");
-
-Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(11,'2023-04-30','2023-04-03','2023-05-05',"notsanctioned",2023,"sick");
-Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-04-01','2023-04-15','2023-05-05',"sanctioned",2023,"paid");
-Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(13,'2023-02-01','2023-03-03','2023-05-20',"applied",2023,"unpaid");
-Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(14,'2023-04-01','2023-04-10','2023-02-15',"sanctioned",2023,"casual");
 
 -- Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(1,10,5,12,15);
 -- Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(1,9,5,12,10);
@@ -802,7 +815,3 @@ Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,
 -- Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(1,6,10,12,10);
 
 
-Insert Into leaveallocations(roleid,sick,casual,paid,unpaid) values(1,10,5,12,15);
-Insert Into leaveallocations(roleid,sick,casual,paid,unpaid) values(2,9,5,12,10);
-Insert Into leaveallocations(roleid,sick,casual,paid,unpaid) values(3,8,10,10,15);
-Insert Into leaveallocatins(roleid,sick,casual,paid,unpaid) values(4,7,5,11,10);

@@ -1,5 +1,5 @@
 import { WorkCategory } from "./workCategory";
 
-export class workCategoryDetails extends WorkCategory {
+export class WorkCategoryDetails extends WorkCategory {
     public label: string = '';
 }

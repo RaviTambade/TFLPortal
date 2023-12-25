@@ -3,6 +3,7 @@ import { Project } from '../../Models/project';
 import { ProjectsService } from '../../Services/projects.service';
 import { ProjectService } from 'src/app/shared/services/project.service';
 import { ReleaseEmployee } from '../../Models/ReleaseEmployee';
+import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
 
 @Component({
   selector: 'app-all-employees-of-project',
@@ -24,10 +25,13 @@ export class AllEmployeesOfProjectComponent implements OnInit{
     status: 'no'
   };
 
-  constructor(private service:ProjectService,private svc:ProjectsService){}
+  employeeId:number|any;
+  constructor(private service:ProjectService,private svc:ProjectsService){
+    this.employeeId=localStorage.getItem(LocalStorageKeys.employeeId)
+  }
 
     ngOnInit(): void {
-      this.service.fetchAllProject().subscribe((res)=>{
+      this.service.getProjectsOfEmployee(this.employeeId).subscribe((res)=>{
       this.projects=res;
       console.log(res);
       })

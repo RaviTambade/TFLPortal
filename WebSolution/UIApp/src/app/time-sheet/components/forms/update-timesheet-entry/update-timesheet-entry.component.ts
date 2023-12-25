@@ -11,7 +11,7 @@ import { Project } from 'src/app/projects/Models/project';
 import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
 import { ProjectService } from 'src/app/shared/services/project.service';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
-import { TimeSheetDetails } from 'src/app/time-sheet/models/TimeSheetDetails';
+import { TimeSheetDetails } from 'src/app/time-sheet/models/timesheetdetails';
 
 @Component({
   selector: 'app-update-timesheet-entry',

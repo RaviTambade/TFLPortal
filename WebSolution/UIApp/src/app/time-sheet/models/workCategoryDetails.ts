@@ -1,5 +1,5 @@
 
-export class workCategoryDetails {
+export class WorkCategoryDetails {
   constructor(
     public userStory: number,
     public task: number,

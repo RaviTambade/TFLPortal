@@ -1,10 +1,10 @@
-using Transflower.TFLPortal.TFLOBL.Entities;
+namespace Transflower.TFLPortal.TFLOBL.Entities.TimesheetMgmt;
 
 public class WorkCategoryDetails
 {
     public string? UserStory { get; set; }
 
-    public string? Task { get; set; }
+    public string? Task { get; set; }   
 
     public string? Bug { get; set; }
 

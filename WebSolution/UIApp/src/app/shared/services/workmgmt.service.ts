@@ -3,10 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Activity } from 'src/app/activity/Models/Activity';
-import { TimeSheetDetails } from 'src/app/time-sheet/models/TimeSheetDetails';
-import { TimesheetView } from 'src/app/time-sheet/models/TimesheetView';
+import { TimeSheetDetails } from 'src/app/time-sheet/models/timesheetdetails';
 import { Timesheet } from 'src/app/time-sheet/models/timesheet';
-import { workCategoryDetails } from 'src/app/time-sheet/models/workCategoryDetails';
+import { WorkCategoryDetails } from 'src/app/time-sheet/models/workcategorydetails';
+import { TimesheetView } from 'src/app/time-sheet/models/timesheetview';
+import { ProjectWorkHour } from 'src/app/time-sheet/models/projectworkhour';
+
 
 @Injectable({
   providedIn: 'root',
@@ -86,12 +88,16 @@ export class WorkmgmtService {
   }
 
 
-  getEmployeeActivityWiseHours(employeeId:number,intervalType: string,projectId:number): Observable<workCategoryDetails[]> {
+  getActivityWiseHours(employeeId:number,intervalType: string,projectId:number): Observable<WorkCategoryDetails[]> {
     let url = `${this.serviceurl}/workmgmt/timesheets/employees/${employeeId}/workduration/${intervalType}/${projectId}`;
     return this.http.get<any>(url);
   }
    
 
+  getProjectwiseTimeSpent(employeeId:number):Observable<ProjectWorkHour[]>{
+    let url = `${this.serviceurl}/workmgmt/timesheets/projects/workinghours/employees/${employeeId}`;
+    return this.http.get<ProjectWorkHour[]>(url);
+  }
   getAllActivitiesOfEmployee(projectId:number,employeeId:number){
   let url =this.serviceurl +'/workmgmt/activities/projects/'+projectId+'/employees/'+employeeId;
     return this.http.get<any>(url);
@@ -148,6 +154,15 @@ export class WorkmgmtService {
     let str = `${Math.floor(minutes / 60)}h: ${minutes % 60}m`;
     return str;
   }
+  
+  randomColorPicker(): string {
+    let result = '';
+    for (let i = 0; i < 6; ++i) {
+      const value = Math.floor(16 * Math.random());
+      result += value.toString(16);
+    }
+    return '#' + result;
+  }
 
 
   getAllActivitiesCount(): Observable<any> {
@@ -156,19 +171,4 @@ export class WorkmgmtService {
   }
 
 
-  downLoadFile(data: any, type: string) {
-    let blob = new Blob([data], { type: type});
-    let url = window.URL.createObjectURL(blob);
-    let pwa = window.open(url);
-    if (!pwa || pwa.closed || typeof pwa.closed == 'undefined') {
-        alert( 'Please disable your Pop-up blocker and try again.');
-    }
-}
-
-  fileDownload(){
-    let url =this.serviceurl +'/workmgmt/activities/download';
-    // return this.http.get<any>(url);
-     this.http.get(`${url}`).subscribe(response => this.downLoadFile(response, "application/pdf"));
-    
-  }
 }

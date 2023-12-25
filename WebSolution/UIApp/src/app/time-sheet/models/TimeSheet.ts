@@ -1,4 +1,5 @@
-import { TimeSheetDetails } from "./TimeSheetDetails";
+import { TimeSheetDetails } from "./timesheetdetails";
+
 
 export class Timesheet{
     constructor(public id:number,

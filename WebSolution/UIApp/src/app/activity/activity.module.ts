@@ -8,7 +8,11 @@ import { UpdateActivityComponent } from './Components/Forms/update-activity/upda
 import { ProjectActivitiesComponent } from './Components/project-activities/project-activities.component';
 import { RouterModule } from '@angular/router';
 import { EmployeeTodaysActivitiesComponent } from './Components/employee-todays-activities/employee-todays-activities.component';
+<<<<<<< HEAD
+=======
 import { FileDownLoadComponent } from './Components/file-down-load/file-down-load.component';
+import { EmployeeAllActivitiesComponent } from './Components/employee-all-activities/employee-all-activities.component';
+>>>>>>> 422cdb541d61fe9df047f50d15cfe6008fee583a
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import { FileDownLoadComponent } from './Components/file-down-load/file-down-loa
     UpdateActivityComponent,
     ProjectActivitiesComponent,
     EmployeeTodaysActivitiesComponent,
-    FileDownLoadComponent
+<<<<<<< HEAD
+=======
+    FileDownLoadComponent,
+    EmployeeAllActivitiesComponent
+>>>>>>> 422cdb541d61fe9df047f50d15cfe6008fee583a
   ],
   imports: [
     CommonModule,
@@ -33,7 +41,11 @@ import { FileDownLoadComponent } from './Components/file-down-load/file-down-loa
     UpdateActivityComponent,
     ProjectActivitiesComponent,
     EmployeeTodaysActivitiesComponent,
-    FileDownLoadComponent
+<<<<<<< HEAD
+=======
+    FileDownLoadComponent,
+    EmployeeAllActivitiesComponent
+>>>>>>> 422cdb541d61fe9df047f50d15cfe6008fee583a
     
   ]
 })

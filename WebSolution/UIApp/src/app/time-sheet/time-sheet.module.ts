@@ -13,6 +13,8 @@ import { TimesheetEmployeeCalenderComponent } from './components/timesheet-emplo
 import { ChunkPipe } from '../shared/pipes/chunk.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { TimesheetEmployeeWorkChartComponent } from './components/timesheet-employee-work-chart/timesheet-employee-work-chart.component';
+import { TimesheetEmployeeProjectHoursComponent } from './components/timesheet-employee-project-hours/timesheet-employee-project-hours.component';
+import { TimesheetEmployeeAnalyticsComponent } from './components/timesheet-employee-analytics/timesheet-employee-analytics.component';
 
 export const timeSheetRoutes: Routes = [
   { path: '', redirectTo:'view',pathMatch:'full' },
@@ -30,7 +32,7 @@ export const timeSheetRoutes: Routes = [
       },
     ],
   },
-  { path: 'analytics', component: TimesheetEmployeeWorkChartComponent },
+  { path: 'analytics', component: TimesheetEmployeeAnalyticsComponent },
 ];
 
 @NgModule({
@@ -44,6 +46,8 @@ export const timeSheetRoutes: Routes = [
     EmployeeTimesheetComponent,
     TimesheetEmployeeCalenderComponent,
     TimesheetEmployeeWorkChartComponent,
+    TimesheetEmployeeProjectHoursComponent,
+    TimesheetEmployeeAnalyticsComponent,
   ],
   imports: [
     CommonModule,

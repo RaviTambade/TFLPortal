@@ -1,4 +1,4 @@
--- Active: 1696576841746@@127.0.0.1@3306@tflportal
+-- Active: 1694968636816@@127.0.0.1@3306@tflportal
 
 SELECT * FROM activities where assignedto=15 AND assigneddate='2023-12-14';
 
@@ -261,3 +261,4 @@ call getAvailableLeavesOfEmployee(12,4,2023,@remainingSickLeaves,@remainingCasua
 select @remainingSickLeaves,@remainingCasualLeaves,@remainingPaidLeaves,@remainingUnpaidLeaves;
 
 
+select * from projects;

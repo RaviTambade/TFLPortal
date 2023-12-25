@@ -5,7 +5,7 @@ import {
   SimpleChange,
   SimpleChanges,
 } from '@angular/core';
-import { TimeSheetDetails } from '../../models/TimeSheetDetails';
+import { TimeSheetDetails } from '../../models/timesheetdetails';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 @Component({
   selector: 'timesheet-details',
