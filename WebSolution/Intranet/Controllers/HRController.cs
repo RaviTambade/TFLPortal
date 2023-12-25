@@ -42,28 +42,28 @@ public class HRController : ControllerBase
         return emp;
     }
 
-    [HttpPost("employee/salary/{employeeId}")]
-    public async Task<bool> PaySalary(int employeeId)
-    {
-        Employee employee = await _service.GetEmployeeById(employeeId);
-        var userAccount = await _apiService.GetUserBankAccount(
-            userId: employee.UserId,
-            userType: "I"
-        );
-        FundTransferRequestDTO request = new FundTransferRequestDTO()
-        {
-            FromAcct = "39025546601",
-            FromIfsc = "MAHB0000286",
-            ToAcct = userAccount.AccountNumber,
-            ToIfsc = userAccount.IFSCCode,
-            Amount = employee.Salary,
-            TransactionType = "Transfer"
-        };
-        int transactionId = await _apiService.FundTransfer(request);
+    // [HttpPost("employee/salary/{employeeId}")]
+    // public async Task<bool> PaySalary(int employeeId)
+    // {
+    //     Employee employee = await _service.GetEmployeeById(employeeId);
+    //     var userAccount = await _apiService.GetUserBankAccount(
+    //         userId: employee.UserId,
+    //         userType: "I"
+    //     );
+    //     FundTransferRequestDTO request = new FundTransferRequestDTO()
+    //     {
+    //         FromAcct = "39025546601",
+    //         FromIfsc = "MAHB0000286",
+    //         ToAcct = userAccount.AccountNumber,
+    //         ToIfsc = userAccount.IFSCCode,
+    //         Amount = employee.Salary,
+    //         TransactionType = "Transfer"
+    //     };
+    //     int transactionId = await _apiService.FundTransfer(request);
 
     
-        return transactionId > 0;
-    }
+    //     return transactionId > 0;
+    // }
 
 
 

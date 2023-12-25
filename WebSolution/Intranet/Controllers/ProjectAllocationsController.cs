@@ -55,8 +55,7 @@ public class ProjectAllocationController : ControllerBase
                     LastName = userDetail.LastName,
                     Email = userDetail.Email,
                     EmployeeId = employee.Id,
-                    ContactNumber = userDetail.ContactNumber,
-                    Salary = employee.Salary,
+                    ContactNumber = userDetail.ContactNumber
                 };
                 employeeResponses.Add(employeeResponse);
             }
