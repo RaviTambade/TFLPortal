@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Transflower.TFLPortal.Intranet.Responses;
-using Transflower.TFLPortal.TFLOBL.Entities;
-using Transflower.TFLPortal.TFLSAL.DTO;
+using Transflower.TFLPortal.TFLOBL.Entities.TimesheetMgmt;
 using Transflower.TFLPortal.TFLSAL.Services;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 
@@ -21,16 +20,16 @@ public class TimeSheetsController : ControllerBase
     }
 
     [HttpGet("employees/{employeeId}")]
-    public async Task<List<Timesheet>> GetTimesheetsOfEmployee(int employeeId)
+    public async Task<List<Timesheet>> GetTimesheets(int employeeId)
     {
-        List<Timesheet> timesheets = await _timesheetService.GetTimesheetsOfEmployee(employeeId);
+        List<Timesheet> timesheets = await _timesheetService.GetTimesheets(employeeId);
         return timesheets;
     }
 
     [HttpGet("employees/{employeeId}/date/{date}")]
-    public async Task<TimeSheetResponse> GetTimesheetOfEmployee(int employeeId, string date)
+    public async Task<TimeSheetResponse> GetTimesheet(int employeeId, string date)
     {
-        Timesheet timesheet = await _timesheetService.GetTimesheetOfEmployee(employeeId, date);
+        Timesheet timesheet = await _timesheetService.GetTimesheet(employeeId, date);
 
         if (timesheet.Employee != null)
         {
@@ -72,8 +71,8 @@ public class TimeSheetsController : ControllerBase
         return await _timesheetService.GetActivityWiseHours(employeeId, intervalType, projectId);
     }
 
-    [HttpGet("projects/employees/{employeeId}")]
-    public async Task<List<TimesheetHours>> GetProjectWiseTimeSpentByEmployee(int employeeId)
+    [HttpGet("projects/workinghours/employees/{employeeId}")]
+    public async Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(int employeeId)
     {
         return await _timesheetService.GetProjectWiseTimeSpentByEmployee(employeeId);
     }

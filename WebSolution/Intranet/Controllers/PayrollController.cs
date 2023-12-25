@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Transflower.Notifications.Mail;
 using Transflower.TFLPortal.TFLOBL.Entities;
 using Transflower.TFLPortal.TFLSAL.DTO;
 using Transflower.TFLPortal.TFLSAL.Services;
@@ -8,31 +7,25 @@ using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 namespace Intranet.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("/api/payroll")]
 public class PayrollController : ControllerBase
 {
     private readonly IPayrollService _payrollService;
     private readonly IHRService _hrService;
     private readonly ExternalApiService _apiService;
-    // private readonly IPdfGeneratorService _pdfGenratorService;
-    private readonly EmailService _emailService;
 
     public PayrollController(
         IPayrollService payrollService,
         IHRService hrService,
-        ExternalApiService apiService,
-        // IPdfGeneratorService pdfGenratorService,
-        EmailService emailService
+        ExternalApiService apiService
     )
     {
         _payrollService = payrollService;
         _hrService = hrService;
         _apiService = apiService;
-        // _pdfGenratorService = pdfGenratorService;
-        _emailService = emailService;
     }
 
-    [HttpGet("salary/{employeeId}")]
+    [HttpGet("salaries/employees/{employeeId}")]
     public async Task<SalaryResponse> GetSalaryStructure(int employeeId)
     {
         Salary salaryStructure = await _payrollService.GetSalary(employeeId);
@@ -56,26 +49,12 @@ public class PayrollController : ControllerBase
             Deduction = salaryStructure.Deduction
         };
 
-        
-        // var filepath = _pdfGenratorService.GenerateSalarySlip(salaryDetails);
-        // Console.WriteLine(filepath);
-
-        // Message email = new Message()
-        // {
-        //     To = new List<string>() { "sahilmankar311@gmail.com" },
-        //     Subject = "Your Salry Slip",
-        //     Body = "Find Your Salaryslip Attached below",
-        //     Filepaths = new List<string>() { filepath }
-        // };
-        // await _emailService.SendEmail(email);
-
         return salaryDetails;
     }
 
-    [HttpPost("employee/salary")]
+    [HttpPost("employees/salary")]
     public async Task<bool> InsertSalaryStructure(Salary salary)
     {
-        bool status = await _payrollService.AddSalary(salary);
-        return status;
+        return await _payrollService.AddSalary(salary);
     }
 }

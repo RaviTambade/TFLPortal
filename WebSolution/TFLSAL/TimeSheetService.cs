@@ -2,6 +2,8 @@ using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Configuration;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 using Transflower.TFLPortal.TFLOBL.Entities;
+using Transflower.TFLPortal.TFLOBL.Entities.TimesheetMgmt;
+
 
 namespace Transflower.TFLPortal.TFLSAL.Services;
 
@@ -18,7 +20,7 @@ public class TimesheetService : ITimesheetService
             ?? throw new ArgumentNullException("connectionString");
     }
 
-    public async Task<List<Timesheet>> GetTimesheetsOfEmployee(int employeeId)
+    public async Task<List<Timesheet>> GetTimesheets(int employeeId)
     {
         List<Timesheet> timesheets = new List<Timesheet>();
         MySqlConnection connection = new MySqlConnection();
@@ -60,7 +62,7 @@ public class TimesheetService : ITimesheetService
         return timesheets;
     }
 
-    public async Task<Timesheet> GetTimesheetOfEmployee(int employeeId, string date)
+    public async Task<Timesheet> GetTimesheet(int employeeId, string date)
     {
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
@@ -303,9 +305,9 @@ public class TimesheetService : ITimesheetService
         return workCategoryDetails;
     }
 
-    public async Task<List<TimesheetHours>> GetProjectWiseTimeSpentByEmployee(int employeeId)
+    public async Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(int employeeId)
     {
-        List<TimesheetHours> projectsHoursList = new();
+        List<ProjectWorkHours> projectsHoursList = new();
 
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
@@ -329,7 +331,7 @@ public class TimesheetService : ITimesheetService
                 string projectName = reader["projectname"].ToString();
                 double hours = double.Parse(reader["hours"].ToString());
 
-                TimesheetHours projectHours = new TimesheetHours()
+                ProjectWorkHours projectHours = new ProjectWorkHours()
                 {
                     ProjectName = projectName,
                     Hours = hours
