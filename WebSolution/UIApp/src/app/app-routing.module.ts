@@ -10,6 +10,7 @@ import { ProjectComponent } from './layout/Components/project/project.component'
 import { projectRoutes } from './projects/projects.module';
 
 const routes:Routes=[
+  {path:"" ,redirectTo:'home',pathMatch:'full'},
   { path: 'home', component: HomeComponent },
   { path: 'auth', children:authRoutes },
   {path: 'timesheet', component:TimesheetComponent, children:timeSheetRoutes},

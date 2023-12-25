@@ -5,7 +5,7 @@ import { Timesheet } from './models/Timesheet';
 import { TimeSheetDetails } from './models/TimeSheetDetails';
 import { TimesheetView } from './models/TimesheetView';
 import { WorkCategory } from './models/workCategory';
-import { workCategoryDetails } from './models/workCategoryDetails';
+import { WorkCategoryDetails } from './models/WorkCategoryDetails';
 
 
 @Injectable({
@@ -78,7 +78,7 @@ export class WorkmgmtService {
     let url = `${this.timeSheetUrl}/workduration/employees/${employeeId}/from/${fromDate}/to/${toDate}`;
     return this.http.get<any>(url);
   }
-  getActivityWiseHours(intervalType: string): Observable<workCategoryDetails[]> {
+  getActivityWiseHours(intervalType: string): Observable<WorkCategoryDetails[]> {
     let url = `${this.timeSheetUrl}/workduration/${intervalType}`;
     return this.http.get<any>(url);
   }

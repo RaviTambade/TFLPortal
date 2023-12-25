@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Chart } from 'chart.js';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
-import { workCategoryDetails } from '../../models/workCategoryDetails';
+import { WorkCategoryDetails } from '../../models/workcategorydetails';
 import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
 import { Project } from 'src/app/projects/Models/project';
 import { ProjectService } from 'src/app/shared/services/project.service';
@@ -11,7 +11,7 @@ type Week = {
   endDate: string;
 };
 @Component({
-  selector: 'app-timesheet-employee-work-chart',
+  selector: 'timesheet-employee-work-chart',
   templateUrl: './timesheet-employee-work-chart.component.html',
   styleUrls: ['./timesheet-employee-work-chart.component.css'],
 })
@@ -19,7 +19,7 @@ export class TimesheetEmployeeWorkChartComponent {
   employeeId: number = 0;
   fromDate: string | undefined;
   toDate: string | undefined;
-  workCategory: workCategoryDetails = {
+  workCategory: WorkCategoryDetails = {
     userStory: 0,
     task: 0,
     bug: 0,
@@ -47,7 +47,7 @@ export class TimesheetEmployeeWorkChartComponent {
   ];
   selectedProjectId = this.projects[0].id;
 
-  workCategoryDetails: workCategoryDetails[] = [];
+  WorkCategoryDetails: WorkCategoryDetails[] = [];
 
   chart: any;
 
@@ -132,12 +132,12 @@ export class TimesheetEmployeeWorkChartComponent {
 
   getChartData() {
     this.workmgmtSvc
-      .getEmployeeActivityWiseHours(this.employeeId, this.selectedInterval,this.selectedProjectId)
+      .getActivityWiseHours(this.employeeId, this.selectedInterval,this.selectedProjectId)
       .subscribe((res) => {
-        this.workCategoryDetails = res;
+        this.WorkCategoryDetails = res;
         this.chart.data.datasets = [];
-        this.workCategory = new workCategoryDetails(0,0,0,0,0,0,0,0,0,'');
-        this.workCategoryDetails.forEach((category, index) => {
+        this.workCategory = new WorkCategoryDetails(0,0,0,0,0,0,0,0,0,'');
+        this.WorkCategoryDetails.forEach((category, index) => {
           let cl = this.randomColorPicker();
           let obj = {
             label: this.getLabelName(

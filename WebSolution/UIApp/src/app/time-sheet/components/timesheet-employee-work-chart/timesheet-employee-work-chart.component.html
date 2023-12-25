@@ -1,4 +1,4 @@
-<div class="container mt-3">
+
 
     <div>
         <label>Select Interval</label>
@@ -10,8 +10,7 @@
             <option *ngFor="let project of projects" [value]="project.id"> {{project.title|uppercase}}</option>
         </select>
         <label class="mx-2"> StatDate :{{fromDate |date}}</label>
-        <label class="mx-2"> EndDate :{{toDate |date}}</label>
-
+        <label class="mx-2"> EndDate :{{toDate |date}}</label>  
     </div>
 
     <br>
@@ -24,19 +23,18 @@
             <div class="row d-flex justify-content-center mx-2" *ngIf="workCategory!=undefined">
               <h3>  Time Utilization (in Hours)</h3> 
                 <div class="col">
-                    <p>UserStory:{{workCategory.userStory}} </p>
-                    <p>Task :{{workCategory.task}} </p>
-                    <p>Bug : {{workCategory.bug}}</p>
-                    <p>Mentoring :{{workCategory.mentoring}} </p>
-                    <p>Learning :{{workCategory.learning}}</p>
+                    <p>UserStory:{{workCategory.userStory.toFixed(2)}} </p>
+                    <p>Task :{{workCategory.task.toFixed(2)}} </p>
+                    <p>Bug : {{workCategory.bug.toFixed(2)}}</p>
+                    <p>Mentoring :{{workCategory.mentoring.toFixed(2)}} </p>
+                    <p>Learning :{{workCategory.learning.toFixed(2)}}</p>
                 </div>
                 <div class="col">
-                    <p>Clientcall :{{workCategory.clientCall}} </p>
-                    <p>Issues :{{workCategory.issues}} </p>
-                    <p>Meeting :{{workCategory.meeting}} </p>
-                    <p>Other : {{workCategory.other}} </p>
+                    <p>Clientcall :{{workCategory.clientCall.toFixed(2)}} </p>
+                    <p>Issues :{{workCategory.issues.toFixed(2)}} </p>
+                    <p>Meeting :{{workCategory.meeting.toFixed(2)}} </p>
+                    <p>Other : {{workCategory.other.toFixed(2)}} </p>
                 </div>
             </div>
         </div>
     </div>
-</div>

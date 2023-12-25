@@ -8,12 +8,12 @@ namespace Transflower.TFLPortal.Intranet.Controllers;
 
 [ApiController]
 [Route("/api/workmgmt/timesheets")]
-public class TimeSheetsController : ControllerBase
+public class TimesheetsController : ControllerBase
 {
     private readonly ExternalApiService _apiService;
     private readonly ITimesheetService _timesheetService;
 
-    public TimeSheetsController(ExternalApiService apiService, ITimesheetService service)
+    public TimesheetsController(ExternalApiService apiService, ITimesheetService service)
     {
         _apiService = apiService;
         _timesheetService = service;
@@ -27,14 +27,14 @@ public class TimeSheetsController : ControllerBase
     }
 
     [HttpGet("employees/{employeeId}/date/{date}")]
-    public async Task<TimeSheetResponse> GetTimesheet(int employeeId, string date)
+    public async Task<TimesheetResponse> GetTimesheet(int employeeId, string date)
     {
         Timesheet timesheet = await _timesheetService.GetTimesheet(employeeId, date);
 
         if (timesheet.Employee != null)
         {
             var user = await _apiService.GetUserDetails(timesheet.Employee.UserId.ToString());
-            TimeSheetResponse timeSheetResponse = new TimeSheetResponse
+            TimesheetResponse timeSheetResponse = new TimesheetResponse
             {
                 Id = timesheet.Id,
                 TimesheetDate = timesheet.TimesheetDate,
@@ -46,7 +46,7 @@ public class TimeSheetsController : ControllerBase
             };
             return timeSheetResponse;
         }
-        return new TimeSheetResponse() { };
+        return new TimesheetResponse() { };
     }
 
     [HttpGet("timesheetentries/{timesheetEntryId}")]

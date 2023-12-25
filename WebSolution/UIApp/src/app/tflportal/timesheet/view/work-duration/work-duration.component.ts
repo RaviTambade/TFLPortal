@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import Chart from 'chart.js/auto';
-import { workCategoryDetails } from '../models/workCategoryDetails';
+import { WorkCategoryDetails } from '../models/WorkCategoryDetails';
 import { WorkmgmtService } from '../workmgmt.service';
 
 
@@ -26,7 +26,7 @@ export class WorkDurationComponent {
   shwst: boolean = false;
 
 
-  workCategoryDetails: workCategoryDetails[] = [];
+  WorkCategoryDetails: WorkCategoryDetails[] = [];
 
   chart: any;
 
@@ -107,9 +107,9 @@ export class WorkDurationComponent {
   getChartData() {
 
     this.workmgmtSvc.getActivityWiseHours(this.selectedInterval).subscribe((res) => {
-      this.workCategoryDetails = res;
+      this.WorkCategoryDetails = res;
       this.chart.data.datasets = []
-      this.workCategoryDetails.forEach((category) => {
+      this.WorkCategoryDetails.forEach((category) => {
         let cl=this.randomColorPicker();
         let obj = {
           label: category.label.slice(0,10),
