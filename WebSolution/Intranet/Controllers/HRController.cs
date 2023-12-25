@@ -34,7 +34,6 @@ public class HRController : ControllerBase
         EmployeeResponse emp = new EmployeeResponse()
         {
             HireDate = employee.HireDate,
-            Salary = employee.Salary,
             FirstName = user.FirstName,
             LastName = user.LastName,
             Email = user.Email,

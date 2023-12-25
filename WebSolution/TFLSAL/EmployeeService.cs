@@ -39,7 +39,6 @@ public class HRService : IHRService
                         UserId = reader.GetInt32("userid"),
                         HireDate = reader.GetDateTime("hiredate"),
                         ReportingId = reader.GetInt32("reportingid"),
-                        Salary = reader.GetInt32("salary"),
                     };
                 }
                 await reader.CloseAsync();
@@ -75,7 +74,6 @@ public class HRService : IHRService
                         UserId = reader.GetInt32("userid"),
                         HireDate = reader.GetDateTime("hiredate"),
                         ReportingId = reader.GetInt32("reportingid"),
-                        Salary = reader.GetInt32("salary"),
                     };
                 }
                 await reader.CloseAsync();

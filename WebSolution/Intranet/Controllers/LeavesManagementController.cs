@@ -25,7 +25,7 @@ public class LeavesManagementController : ControllerBase
 
     [HttpGet]
     [Route ("{employeeId}")]
-    public async Task<List<LeaveApplication>> GetLeaveDetails(int employeeId)
+    public async Task<List<EmployeeLeave>> GetLeaveDetails(int employeeId)
     {
         return await _service.GetLeaveDetails(employeeId);
     }
@@ -34,7 +34,7 @@ public class LeavesManagementController : ControllerBase
     [Route ("projects/{projectId}/status/{status}")]
     public async Task<List<LeaveResponse>> GetTeamLeaveDetails(int projectId,string status)
     {
-        List<LeaveApplication> leaves =await _service.GetTeamLeaveDetails(projectId,status);
+        List<EmployeeLeave> leaves =await _service.GetTeamLeaveDetails(projectId,status);
         string userIds = string.Join(',', leaves.Select(m => m.EmployeeId).ToList());
         var users = await _apiService.GetUserDetails(userIds);
         List<LeaveResponse> leaveResponses = new();
@@ -80,17 +80,17 @@ public class LeavesManagementController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<bool> AddLeave(LeaveApplication leaveApplication)
+    public async Task<bool> AddLeave(EmployeeLeave employeeLeave)
     {
-        return await _service.AddNewLeaveApplication(leaveApplication);
+        return await _service.AddNewLeaveApplication(employeeLeave);
        
     }
 
     
     [HttpPut]
-    public async Task<bool> UpdateLeaveApplication(LeaveApplication leave)
+    public async Task<bool> UpdateLeaveApplication(EmployeeLeave employeeLeave)
     {
-        bool status= await _service.UpdateLeaveApplication(leave);
+        bool status= await _service.UpdateLeaveApplication(employeeLeave);
         return status;
     }
 }

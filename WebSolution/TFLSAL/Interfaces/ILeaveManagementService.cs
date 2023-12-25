@@ -4,17 +4,17 @@ namespace Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 
 public interface ILeaveManagementService
 {
-    Task<List<LeaveApplication>> GetLeaveDetails(int employeeId);
+    Task<List<EmployeeLeave>> GetLeaveDetails(int employeeId);
 
-    Task<List<LeaveApplication>> GetTeamLeaveDetails(int projectId, string status);
+    Task<List<EmployeeLeave>> GetTeamLeaveDetails(int projectId, string status);
 
     Task<List<LeaveDetails>> GetAnnualLeavesCountByMonth(int employeeId,int year);
 
     Task<PendingLeaveDetails> GetPendingLeaves(int employeeId, int roleId, int year);
 
-    Task<bool> AddNewLeaveApplication(LeaveApplication leaveApplication);
+    Task<bool> AddNewLeaveApplication(EmployeeLeave employeeLeave);
 
-    Task<bool> UpdateLeaveApplication(LeaveApplication leaveApplication);
+    Task<bool> UpdateLeaveApplication(EmployeeLeave employeeLeave);
 
 
     
