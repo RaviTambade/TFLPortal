@@ -1,7 +1,7 @@
 using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Configuration;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
-using System.Diagnostics;
+// using System.Diagnostics;
 using Transflower.TFLPortal.TFLOBL.Entities;
 using System.Data;
 
@@ -19,8 +19,8 @@ public class ActivityService : IActivityService
             ?? throw new ArgumentNullException("connectionString");
     }
 
-    public async Task<List<TFLOBL.Entities.Activity>> GetAllActivities(){
-        List<TFLOBL.Entities.Activity> activities = new List<TFLOBL.Entities.Activity>();
+    public async Task<List<Activity>> GetAllActivities(){
+        List<Activity> activities = new List<Activity>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -45,7 +45,7 @@ public class ActivityService : IActivityService
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
-                TFLOBL.Entities.Activity act = new TFLOBL.Entities.Activity
+                Activity act = new Activity
                 {
                     Id = id,
                     Title = title,
@@ -74,9 +74,9 @@ public class ActivityService : IActivityService
         }
         return activities;
     }
-    public async Task<List<TFLOBL.Entities.Activity>> GetActivitiesByProject(int projectId)
+    public async Task<List<Activity>> GetActivitiesByProject(int projectId)
     {
-        List<TFLOBL.Entities.Activity> activities = new List<TFLOBL.Entities.Activity>();
+        List<Activity> activities = new List<Activity>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -101,7 +101,7 @@ public class ActivityService : IActivityService
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
-                TFLOBL.Entities.Activity act = new TFLOBL.Entities.Activity
+                Activity act = new Activity
                 {
                     Id = id,
                     Title = title,
@@ -131,10 +131,10 @@ public class ActivityService : IActivityService
         return activities;
     }
 
-    public async Task<List<TFLOBL.Entities.Activity>> GetProjectActivitiesByType(int projectId, string activityType)
+    public async Task<List<Activity>> GetProjectActivitiesByType(int projectId, string activityType)
     {
 
-        List<TFLOBL.Entities.Activity> activities = new List<TFLOBL.Entities.Activity>();
+        List<Activity> activities = new List<Activity>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -160,7 +160,7 @@ public class ActivityService : IActivityService
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
-                TFLOBL.Entities.Activity act = new TFLOBL.Entities.Activity
+                Activity act = new Activity
                 {
                     Id = id,
                     Title = title,
@@ -191,10 +191,10 @@ public class ActivityService : IActivityService
         return activities;
     }
 
-    public async Task<List<TFLOBL.Entities.Activity>> GetProjectActivitiesByEmployee(int projectId, int employeeId)
+    public async Task<List<Activity>> GetProjectActivitiesByEmployee(int projectId, int employeeId)
     {
 
-        List<TFLOBL.Entities.Activity> activities = new List<TFLOBL.Entities.Activity>();
+        List<Activity> activities = new List<Activity>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -221,7 +221,7 @@ public class ActivityService : IActivityService
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
-                TFLOBL.Entities.Activity act = new TFLOBL.Entities.Activity
+                Activity act = new Activity
                 {
                     Id = id,
                     Title = title,
@@ -250,10 +250,10 @@ public class ActivityService : IActivityService
         }
         return activities;
     }
-    public async Task<List<TFLOBL.Entities.Activity>> GetProjectActivitiesOfEmployee(int projectId, int employeeId, string activityType)
+    public async Task<List<Activity>> GetProjectActivitiesOfEmployee(int projectId, int employeeId, string activityType)
     {
 
-        List<TFLOBL.Entities.Activity> activities = new List<TFLOBL.Entities.Activity>();
+        List<Activity> activities = new List<Activity>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -279,7 +279,7 @@ public class ActivityService : IActivityService
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
-                TFLOBL.Entities.Activity act = new TFLOBL.Entities.Activity
+                Activity act = new Activity
                 {
                     Id = id,
                     Title = title,
@@ -381,7 +381,7 @@ public class ActivityService : IActivityService
         return activity;
     }
 
-    public async Task<bool> AddActivity(TFLOBL.Entities.Activity activity)
+    public async Task<bool> AddActivity(Activity activity)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
@@ -421,8 +421,8 @@ public class ActivityService : IActivityService
         return status;
     }
 
-     public async Task<List<TFLOBL.Entities.Activity>> GetAllActivitiesOfEmployee(int employeeId){
-      List<TFLOBL.Entities.Activity> activities = new List<TFLOBL.Entities.Activity>();
+     public async Task<List<Activity>> GetAllActivitiesOfEmployee(int employeeId){
+      List<Activity> activities = new List<Activity>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -447,7 +447,7 @@ public class ActivityService : IActivityService
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
-                TFLOBL.Entities.Activity act = new TFLOBL.Entities.Activity
+                Activity act = new Activity
                 {
                     Id = id,
                     Title = title,
@@ -477,9 +477,9 @@ public class ActivityService : IActivityService
         return activities;
     }
 
-    public async Task<List<TFLOBL.Entities.Activity>> GetActivitiesBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate)
+    public async Task<List<Activity>> GetActivitiesBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate)
     {
-        List<TFLOBL.Entities.Activity> activities = new List<TFLOBL.Entities.Activity>();
+        List<Activity> activities = new List<Activity>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -507,7 +507,7 @@ public class ActivityService : IActivityService
                 int employeeId = int.Parse(reader["assignedto"].ToString());
 
 
-                TFLOBL.Entities.Activity activity = new TFLOBL.Entities.Activity
+                Activity activity = new Activity
                 {
                     Id = id,
                     Title = title,
@@ -538,9 +538,9 @@ public class ActivityService : IActivityService
     } 
 
 
-    public async Task<List<TFLOBL.Entities.Activity>> GetActivitiesOfEmployeeBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
+    public async Task<List<Activity>> GetActivitiesOfEmployeeBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
     {
-        List<TFLOBL.Entities.Activity> activities = new List<TFLOBL.Entities.Activity>();
+        List<Activity> activities = new List<Activity>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -567,7 +567,7 @@ public class ActivityService : IActivityService
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
             
-                TFLOBL.Entities.Activity activity = new TFLOBL.Entities.Activity
+                Activity activity = new Activity
                 {
                     Id = id,
                     Title = title,
@@ -739,9 +739,9 @@ public class ActivityService : IActivityService
 }
 
 
-public async Task<List<TFLOBL.Entities.Activity>> GetTodayActivities(int projectId,DateTime date)
+public async Task<List<Activity>> GetTodayActivities(int projectId,DateTime date)
     {
-        List<TFLOBL.Entities.Activity> activities = new List<TFLOBL.Entities.Activity>();
+        List<Activity> activities = new List<Activity>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -767,7 +767,7 @@ public async Task<List<TFLOBL.Entities.Activity>> GetTodayActivities(int project
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
-                TFLOBL.Entities.Activity act = new TFLOBL.Entities.Activity
+                Activity act = new Activity
                 {
                     Id = id,
                     Title = title,
