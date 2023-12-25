@@ -15,4 +15,7 @@ public interface ILeaveManagementService
     Task<bool> AddNewLeaveApplication(LeaveApplication leaveApplication);
 
     Task<bool> UpdateLeaveApplication(LeaveApplication leaveApplication);
+
+
+    
 }
