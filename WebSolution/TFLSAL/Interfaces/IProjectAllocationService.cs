@@ -5,17 +5,15 @@ public interface IProjectAllocationService {
 
     Task<bool> AssignEmployeeToProject(int employeeId,int projectId,ProjectAllocation project);
 
-    Task<bool> ReleaseEmployeeFromProject(int projectId,int employeeId,ReleaseEmployee project);
+    Task<bool> ReleaseEmployeeFromProject(int projectId,int employeeId,ProjectAllocation project);
 
     Task<List<Employee>> GetUnassignedEmployees();
 
-    Task<List<ProjectAllocationDetails>> GetAssignedEmployees(string status);
+    Task<List<ProjectAllocationDetails>> GetAllocatedEmployees(string status);
 
     Task<List<ProjectAllocation>> GetAllProjectsBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate);
 
-    Task<List<ProjectAllocationDetails>> GetAssignedEmployeesOfProject(int projectId);
-
-    Task<List<ProjectAllocationDetails>> GetRecentEmployeesOfProject(int projectId);
+    Task<List<ProjectAllocationDetails>> GetEmployeesOfProject(int projectId,string status);
 
     Task<List<ProjectAllocation>> GetProjectsOfEmployeeBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate);
 

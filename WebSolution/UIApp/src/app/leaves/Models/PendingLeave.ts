@@ -1,10 +1,8 @@
 export class PendingLeave{
     constructor(
-        public id:number,
-        public roleId:number,
-        public sickLeaves:number,
-        public casualLeaves:number,
-        public paidLeaves:number,
-        public unpaidLeaves:number
+        public sick:number,
+        public casual:number,
+        public paid:number,
+        public unpaid:number
         ){}
 }

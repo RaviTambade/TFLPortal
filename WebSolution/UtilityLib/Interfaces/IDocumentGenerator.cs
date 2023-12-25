@@ -1,8 +1,8 @@
 
-using Transflower.UtilityLib.DTO;
+using Transflower.UtilityLib.Content;
 
 namespace  Transflower.UtilityLib.Interfaces;
 public interface IDocumentGenerator{
 
-    string Generate(SalaryDTO salaryStructure);
+    string GenerateSalarySlip(SalarySlipDocumentContent salaryStructure);
 }

@@ -1,33 +1,10 @@
 <h2> Pending Leave</h2>
-<div *ngIf="pendingLeave" >
-   <p>Casual Leave:{{pendingLeave.casualLeaves}}</p>
-   <p>Sick Leave:{{pendingLeave.sickLeaves}}</p>
-   <p>Paid Leave:{{pendingLeave.paidLeaves}}</p>
-   <p>Unpaid Leave:{{pendingLeave.unpaidLeaves}}</p>
-   <p>Total pendingLeave:{{totalLeaves}}</p>
+<div *ngIf="pendingLeave" class="d-flex justify-content-start gap-3">
+   <button>Casual :{{pendingLeave.casual}}</button>   
+   <button>Sick :{{pendingLeave.sick}}</button>
+   <button>Paid :{{pendingLeave.paid}}</button>
+   <button>Unpaid :{{pendingLeave.unpaid}}</button>
 </div>
 
 
-<!--<div class="container">
-     <h2> Pending Leave</h2>
-    <div class="card col-6">
-        <table class="table-bordered text-center">
-            <thead>
-                <tr>
-                    <th>Casual Leave:</th>
-                    <th>Sick Leave</th>
-                    <th>Paid Leave</th>
-                    <th>Unpaid Leave</th>
-                   </tr>
-            </thead>
-            <tbody *ngIf="pendingLeave">
-                <tr>
-                    <td> {{pendingLeave.casualLeave}}</td>
-                    <td>{{pendingLeave.sickLeave}}</td>
-                    <td>{{pendingLeave.paidLeave}}</td>
-                    <td>{{pendingLeave.unpaidLeave}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div> -->
 

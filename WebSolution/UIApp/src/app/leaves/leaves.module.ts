@@ -23,7 +23,7 @@ export const leaveRoutes: Routes = [
     PendingLeaveComponent,
     EmployeeLeavesComponent,
     LeaveRoutingComponent,
-    TeamMemberLeaveRequestComponent
+    TeamMemberLeaveRequestComponent,
   ],
   imports: [
     CommonModule,

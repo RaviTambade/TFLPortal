@@ -4,8 +4,7 @@ using Transflower.TFLPortal.TFLOBL.Entities;
 using Transflower.TFLPortal.TFLSAL.DTO;
 using Transflower.TFLPortal.TFLSAL.Services;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
-using Transflower.UtilityLib.Interfaces;
-
+using Transflower.UtilityLib.Content;
 namespace Intranet.Controllers;
 
 [ApiController]
@@ -37,7 +36,7 @@ public class DocumentController : ControllerBase
         Employee employee = await _hrService.GetEmployeeById(salaryStructure.EmployeeId);
         BankAccountDTO account = await _apiService.GetUserBankAccount(employee.UserId, "I");
         var user = await _apiService.GetUser(employee.UserId);
-        SalaryResponse salaryDetails = new SalaryResponse()
+        SalarySlipDocumentContent salaryDetails = new SalarySlipDocumentContent()
         {
             EmployeeId = employeeId,
             FirstName = user.FirstName,
@@ -53,7 +52,6 @@ public class DocumentController : ControllerBase
             VariablePay = salaryStructure.VariablePay,
             Deduction = salaryStructure.Deduction
         };
-
         DocumentGenerator generator = new DocumentGenerator();
         generator.GenerateSalarySlip(salaryDetails);
         return Ok("Document Genrated Suceessfully");

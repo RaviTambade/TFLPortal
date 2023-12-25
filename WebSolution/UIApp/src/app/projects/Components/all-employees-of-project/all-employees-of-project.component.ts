@@ -16,6 +16,7 @@ export class AllEmployeesOfProjectComponent implements OnInit{
   EmployeeId:number |undefined;
   ProjectId:number |undefined;
   selectedProject:boolean=false;
+  status:string="yes";
   updateProject:ReleaseEmployee={
     employeeId: 0,
     projectId: 0,
@@ -35,7 +36,7 @@ export class AllEmployeesOfProjectComponent implements OnInit{
     onChange(event:any){
       console.log(event.target.value);
       const projectId=event.target.value;
-      this.svc.getAssignedEmployeesOfProject(projectId).subscribe((res)=>{
+      this.svc.getEmployeesOfProject(projectId,this.status).subscribe((res)=>{
       this.assignedEmployees=res;
       console.log(res);      
     })

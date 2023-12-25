@@ -12,8 +12,6 @@ export class PendingLeaveComponent implements OnInit {
 
   employeeId:number=12;
   pendingLeave:PendingLeave |undefined;
-  totalLeaves:any;
-  roleId:number=4;
   year:number=2023;
 
 
@@ -25,7 +23,6 @@ export class PendingLeaveComponent implements OnInit {
     this.service.getPendingLeaves(this.employeeId,this.year).subscribe((res)=>{
       this.pendingLeave=res;
       console.log(res);
-      this.totalLeaves=res.paidLeaves+res.sickLeaves+res.casualLeaves+res.unpaidLeaves;
     }) 
   }
 }
