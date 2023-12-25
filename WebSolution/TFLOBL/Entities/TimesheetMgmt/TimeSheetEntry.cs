@@ -1,4 +1,5 @@
-namespace Transflower.TFLPortal.TFLOBL.Entities;
+namespace Transflower.TFLPortal.TFLOBL.Entities.TimesheetMgmt;
+
 
 public class TimesheetEntry
 {
@@ -12,7 +13,7 @@ public class TimesheetEntry
    public int ProjectId { get; set; }
 
 
-   public string ProjectName{get;set;}
+   public string? ProjectName{get;set;}
 
    
 }

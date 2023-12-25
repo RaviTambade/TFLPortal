@@ -1,6 +1,5 @@
-using System.ComponentModel.DataAnnotations;
+namespace Transflower.TFLPortal.TFLOBL.Entities.TimesheetMgmt;
 
-namespace Transflower.TFLPortal.TFLOBL.Entities;
 
 public class Timesheet
 {
