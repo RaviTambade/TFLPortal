@@ -1,6 +1,6 @@
-namespace Transflower.UtilityLib.DTO;
+namespace Transflower.UtilityLib.Content;
 
-public class SalaryDTO
+public class SalarySlipDocumentContent
 {
     public int EmployeeId { get; set; }
     public double BasicSalary { get; set; }

@@ -1,16 +1,18 @@
 using PdfSharpCore;
+using PdfSharpCore.Drawing;
 using PdfSharpCore.Pdf;
 using TheArtOfDev.HtmlRenderer.PdfSharp;
-using Transflower.UtilityLib.DTO;
+using Transflower.UtilityLib.Content;
 using Transflower.UtilityLib.Interfaces;
 
 namespace Transflower.TFLPortal.TFLSAL.Services;
 
-public class DocumentGeneratorService:IDocumentGenerator
+public class DocumentGenerator:IDocumentGenerator
 {
-    public string Generate(SalaryDTO salaryStructure)
+    public string GenerateSalarySlip(SalarySlipDocumentContent salaryContent)
     {
         var document = new PdfDocument();
+
     
         string htmlContent =
             @"
@@ -49,19 +51,19 @@ htmlContent+=$@"
         <table>
             <tr>
                 <th>Contact NO:</th>
-                <td>{salaryStructure.ContactNumber}</td>
+                <td>{salaryContent.ContactNumber}</td>
                 <th>Name</th>
-                <td>{salaryStructure.FirstName} {salaryStructure.LastName}</td>
+                <td>{salaryContent.FirstName} {salaryContent.LastName}</td>
             </tr>
             <tr>
                 <th>Bank A/c No.</th>
-                <td>{salaryStructure.AccountNumber}</td>
+                <td>{salaryContent.AccountNumber}</td>
                 <th>IFSC</th>
-                <td>{salaryStructure.IFSC}</td>
+                <td>{salaryContent.IFSC}</td>
             </tr>
             <tr>
                 <th>DOB</th>
-                <td>{salaryStructure.BirthDate}</td>
+                <td>{salaryContent.BirthDate}</td>
                 <th></th>
                 <td></td>
             </tr>
@@ -76,25 +78,25 @@ htmlContent+=$@"
             </tr>
             <tr>
                 <td>Basic salary</td>
-                <td>{salaryStructure.BasicSalary}</td>
+                <td>{salaryContent.BasicSalary}</td>
                 <td>provident fund</td>
                 <td>1900</td>
             </tr>
             <tr>
                 <td>House Rent Allowance</td>
-                <td>{salaryStructure.HRA}</td>
+                <td>{salaryContent.HRA}</td>
                 <td>Daily Allowance</td>
-                <td>{salaryStructure.DA}</td>
+                <td>{salaryContent.DA}</td>
             </tr>
             <tr>
                 <td>Leave Travel Allowance</td>
-                <td>{salaryStructure.LTA}</td>
+                <td>{salaryContent.LTA}</td>
                 <td>Variable Pay</td>
-                <td>{salaryStructure.VariablePay}</td>
+                <td>{salaryContent.VariablePay}</td>
             </tr>
             <tr>
                 <td>Deduction</td>
-                <td>{salaryStructure.Deduction}</td>
+                <td>{salaryContent.Deduction}</td>
             </tr>
             <tr>
                 <td><strong>NET PAY</strong></td>
@@ -104,17 +106,12 @@ htmlContent+=$@"
     </div>";
 
 
-string? currentDate=DateTime.Now.ToString().Replace(" ","").Replace("-","").Replace(":","");
-string filepath="wwwroot/Documents/"+ salaryStructure.FirstName+""+salaryStructure.LastName+""+currentDate+".pdf";
-Console.WriteLine("==>"+filepath);
-        PdfGenerator.AddPdfPages(document, htmlContent, PageSize.A4);
-    
-        document.PageLayout = PdfPageLayout.SinglePage;
-        document.Save(filepath);
+string currentDate=DateOnly.FromDateTime(DateTime.Now).ToString().Replace("-","_");
 
+string filepath="wwwroot/SalarySlips/"+ salaryContent.EmployeeId+"_"+currentDate+".pdf";
+
+        PdfGenerator.AddPdfPages(document, htmlContent, PageSize.A4);    
+        document.Save(filepath);
         return filepath;
     }
-
-   
-
 }
