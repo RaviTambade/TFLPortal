@@ -48,7 +48,7 @@ public class ActivityController : ControllerBase
         return activities;
     }
 
-     [HttpGet("projects/{projectId}/employees/{assignedTo}")]
+     [HttpGet("projects/{projectId}/employees/{employeeId}")]
     public async Task<List<Transflower.TFLPortal.TFLOBL.Entities.Activity>> GetProjectActivitiesByEmployee(int projectId,int employeeId)
     {
         List<Transflower.TFLPortal.TFLOBL.Entities.Activity> activities = await _service.GetProjectActivitiesByEmployee(projectId,employeeId);

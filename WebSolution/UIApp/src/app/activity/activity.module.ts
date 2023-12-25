@@ -9,6 +9,7 @@ import { ProjectActivitiesComponent } from './Components/project-activities/proj
 import { RouterModule } from '@angular/router';
 import { EmployeeTodaysActivitiesComponent } from './Components/employee-todays-activities/employee-todays-activities.component';
 import { FileDownLoadComponent } from './Components/file-down-load/file-down-load.component';
+import { EmployeeAllActivitiesComponent } from './Components/employee-all-activities/employee-all-activities.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FileDownLoadComponent } from './Components/file-down-load/file-down-loa
     UpdateActivityComponent,
     ProjectActivitiesComponent,
     EmployeeTodaysActivitiesComponent,
-    FileDownLoadComponent
+    FileDownLoadComponent,
+    EmployeeAllActivitiesComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +35,8 @@ import { FileDownLoadComponent } from './Components/file-down-load/file-down-loa
     UpdateActivityComponent,
     ProjectActivitiesComponent,
     EmployeeTodaysActivitiesComponent,
-    FileDownLoadComponent
+    FileDownLoadComponent,
+    EmployeeAllActivitiesComponent
     
   ]
 })

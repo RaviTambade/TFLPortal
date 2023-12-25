@@ -1,4 +1,4 @@
--- Active: 1696576841746@@127.0.0.1@3306@tflportal
+-- Active: 1694968636816@@127.0.0.1@3306@tflportal
 
 -- director
 INSERT INTO employees(userid,hiredate,reportingid,salary) VALUES (1,'2013-01-01',1,80000);
@@ -802,7 +802,7 @@ Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,
 -- Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(1,6,10,12,10);
 
 
-Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(1,10,5,12,15);
-Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(2,9,5,12,10);
-Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(3,8,10,10,15);
-Insert Into sanctionleaves(roleid,sick,casual,paid,unpaid) values(4,7,5,11,10);
+Insert Into leaveallocations(roleid,sick,casual,paid,unpaid) values(1,10,5,12,15);
+Insert Into leaveallocations(roleid,sick,casual,paid,unpaid) values(2,9,5,12,10);
+Insert Into leaveallocations(roleid,sick,casual,paid,unpaid) values(3,8,10,10,15);
+Insert Into leaveallocations(roleid,sick,casual,paid,unpaid) values(4,7,5,11,10);

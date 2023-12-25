@@ -18,12 +18,13 @@ import { ActivityListComponent } from '../activity/Components/activity-list/acti
 import { ActivityDetailsComponent } from '../activity/Components/activity-details/activity-details.component';
 import { EmployeeTodaysActivitiesComponent } from '../activity/Components/employee-todays-activities/employee-todays-activities.component';
 import { ProjectActivitiesComponent } from '../activity/Components/project-activities/project-activities.component';
+import { EmployeeAllActivitiesComponent } from '../activity/Components/employee-all-activities/employee-all-activities.component';
 
 
 export const projectRoutes: Routes = [
   { path: '', component: EmployeeTodaysActivitiesComponent },
   { path: 'activities', component: EmployeeTodaysActivitiesComponent },
-  { path: 'allActivities', component: ProjectActivitiesComponent }
+  { path: 'allActivities', component: EmployeeAllActivitiesComponent }
 ];
 
 
