@@ -1,5 +1,5 @@
 namespace Transflower.TFLPortal.TFLOBL.Entities;
-public class ActivityDetails:Activity
+public class EmployeeWorkDetails:EmployeeWork
 {
    
    public  Employee AssigntoEmployee{get;set;}

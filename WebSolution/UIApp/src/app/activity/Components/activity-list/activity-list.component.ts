@@ -10,7 +10,7 @@ import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
   styleUrls: ['./activity-list.component.css']
 })
 export class ActivityListComponent implements OnInit{
-  @Output() selectedActivities=new EventEmitter<Activity>()
+  @Output() selectedActivities=new EventEmitter<EmployeeWork>()
   assignedto:number|any;
   constructor(private workMgmtSvc :WorkmgmtService){this.assignedto=localStorage.getItem(LocalStorageKeys.employeeId);}
   activities:Activity[]=[];
