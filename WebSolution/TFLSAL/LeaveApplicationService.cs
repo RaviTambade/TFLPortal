@@ -74,7 +74,7 @@ public class LeaveManagementService : ILeaveManagementService
         try
         {
             string query =
-                "select projectmembership.employeeid,employeeleaves.status,employeeleaves.leavetype,employeeleaves.applicationdate,employeeleaves.year,employeeleaves.fromdate,employeeleaves.todate from projects inner join projectallocations on projects.id=projectallocations.projectid  inner join employeeleaves on employeeleaves.employeeid=projectallocations.employeeid  where projects.id=@projectId and employeeleaves.status=@status";
+                "select projectmembership.employeeid,employeeleaves.status,employeeleaves.leavetype,employeeleaves.applicationdate,employeeleaves.year,employeeleaves.fromdate,employeeleaves.todate from projects inner join projectmembership on projects.id=projectmembership.projectid  inner join employeeleaves on employeeleaves.employeeid=projectmembership.employeeid  where projects.id=@projectId and employeeleaves.status=@status";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);
             command.Parameters.AddWithValue("@status", status);

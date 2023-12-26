@@ -75,8 +75,7 @@ public class LeavesManagementController : ControllerBase
         Employee employee= await _hrService.GetEmployeeById(employeeId);
         List<RoleDTO> roles= await _apiService.GetRoleOfUser(employee.UserId);
         int roleId=roles.FirstOrDefault().Id;
-       return await _service.GetPendingLeaves(employeeId,roleId,year);
-     
+       return await _service.GetPendingLeaves(employeeId,roleId,year);   
     }
 
     [HttpPost]
