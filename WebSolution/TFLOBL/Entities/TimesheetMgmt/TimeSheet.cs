@@ -7,11 +7,5 @@ public class Timesheet
     public string? Status { get; set; }
     public int EmployeeId { get; set; }
     public DateTime TimesheetDate { get; set; }
-    public DateTime? StatusChangedDate { get; set; }
-
-    //navigational property
-   public Employee? Employee { get; set; }
-   public List<TimesheetDetail>? TimeSheetDetails { get; set; }
-
-   
+    public DateTime? StatusChangedDate { get; set; }   
 }
