@@ -323,13 +323,14 @@ public class TimesheetService : ITimesheetService
         connection.ConnectionString = _connectionString;
 
         string query =
-            @"SELECT projects.title AS projectname,
+            @" SELECT projects.title AS projectname,
     CAST(((SUM( TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ))/3600)AS DECIMAL(10,2)) AS hours 
     FROM timesheetdetails
     INNER JOIN timesheets on timesheetdetails.timesheetid=timesheets.id
-    INNER JOIN projects on timesheetdetails.projectid=projects.id
-    WHERE  timesheets.employeeid=@employee_id 
-    GROUP BY timesheetdetails.projectid";
+    INNER JOIN employeework on timesheetdetails.employeeworkid=employeework.id
+    INNER JOIN projects on employeework.projectid=projects.id
+    WHERE  timesheets.employeeid=@employee_id
+    GROUP BY projects.id";
         try
         {
             MySqlCommand command = new MySqlCommand(query, connection);
