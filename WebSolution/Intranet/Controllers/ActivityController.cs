@@ -5,7 +5,7 @@ using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 namespace Intranet.Controllers;
 
 [ApiController]
-[Route("/api/workmgmt/activities")]
+[Route("/api/workmgmt/employeework")]
 public class ActivityController : ControllerBase
 {
     private readonly IActivityService _service;
@@ -17,17 +17,17 @@ public class ActivityController : ControllerBase
     }
 
     [HttpGet("selectedProject/{projectId}")]
-    public async Task<List<Activity>> GetActivitiesByProject(int projectId)
+    public async Task<List<EmployeeWork>> GetActivitiesByProject(int projectId)
     {
-        List<Activity> activities = await _service.GetActivitiesByProject(projectId);
+        List<EmployeeWork> activities = await _service.GetActivitiesByProject(projectId);
         return activities;
     }
 
 
      [HttpGet]
-    public async Task<List<Activity>> GetAllActivities()
+    public async Task<List<EmployeeWork>> GetAllActivities()
     {
-        List<Activity> activities = await _service.GetAllActivities();
+        List<EmployeeWork> activities = await _service.GetAllActivities();
         return activities;
     }
 
@@ -35,43 +35,43 @@ public class ActivityController : ControllerBase
 //this method gives all activities of employee.
    
     [HttpGet("employees/{employeeId}")]
-    public async Task<List<Activity>> GetAllActivitiesOfEmployee(int employeeId)
+    public async Task<List<EmployeeWork>> GetAllActivitiesOfEmployee(int employeeId)
     {
-        List<Activity> activities = await _service.GetAllActivitiesOfEmployee(employeeId);
+        List<EmployeeWork> activities = await _service.GetAllActivitiesOfEmployee(employeeId);
         return activities;
     }
    
-    [HttpGet("projects/{projectId}/type/{activityType}")]
-    public async Task<List<Activity>>GetProjectActivitiesByType(int projectId, string activityType)
+    [HttpGet("projects/{projectId}/type/{projectWorkType}")]
+    public async Task<List<EmployeeWork>>GetProjectActivitiesByType(int projectId, string projectWorkType)
     {
-        List<Activity> activities = await _service.GetProjectActivitiesByType(projectId,activityType);
+        List<EmployeeWork> activities = await _service.GetProjectActivitiesByType(projectId,projectWorkType);
         return activities;
     }
 
      [HttpGet("projects/{projectId}/employees/{employeeId}")]
-    public async Task<List<Activity>> GetProjectActivitiesByEmployee(int projectId,int employeeId)
+    public async Task<List<EmployeeWork>> GetProjectActivitiesByEmployee(int projectId,int employeeId)
     {
-        List<Activity> activities = await _service.GetProjectActivitiesByEmployee(projectId,employeeId);
+        List<EmployeeWork> activities = await _service.GetProjectActivitiesByEmployee(projectId,employeeId);
         return activities;
     }
 
      
-     [HttpGet("projects/{projectId}/employees/{assignedTo}/type/{activityType}")]
-    public async Task<List<Activity>> GetProjectActivitiesOfEmployee(int projectId, int employeeId,string activityType)
+     [HttpGet("projects/{projectId}/employees/{assignedTo}/type/{projectWorkType}")]
+    public async Task<List<EmployeeWork>> GetProjectActivitiesOfEmployee(int projectId, int employeeId,string projectWorkType)
     {
-        List<Activity> activities = await _service.GetProjectActivitiesOfEmployee(projectId,employeeId,activityType);
+        List<EmployeeWork> activities = await _service.GetProjectActivitiesOfEmployee(projectId,employeeId,projectWorkType);
         return activities;
     }
 
     [HttpGet("projects/{activityId}")]
-    public async Task<ActivityDetails> GetActivityDetails(int activityId)
+    public async Task<EmployeeWorkDetails> GetActivityDetails(int employeeWorkId)
     {
-        ActivityDetails activity = await _service.GetActivityDetails(activityId);
+        EmployeeWorkDetails activity = await _service.GetActivityDetails(employeeWorkId);
         return activity;
     }
 
     [HttpPost]
-    public async Task<bool> AddActivity(Activity activity)
+    public async Task<bool> AddActivity(EmployeeWork activity)
     {
         bool status = await _service.AddActivity(activity);
         return status;
@@ -79,36 +79,36 @@ public class ActivityController : ControllerBase
     }
 
     [HttpGet("fromassigneddate/{fromAssignedDate}/toassigneddate/{toAssignedDate}")]
-    public async Task<List<Activity>> GetActivitiesBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate)
+    public async Task<List<EmployeeWork>> GetActivitiesBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate)
     {
-        List<Activity> activities = await _service.GetActivitiesBetweenDates(fromAssignedDate,toAssignedDate);
+        List<EmployeeWork> activities = await _service.GetActivitiesBetweenDates(fromAssignedDate,toAssignedDate);
         return activities;
     }
 
     
 
     [HttpGet("employees/{employeeId}/fromassigneddate/{fromAssignedDate}/toassigneddate/{toAssignedDate}")]
-    public async Task<List<Activity>> GetActivitiesOfEmployeeBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
+    public async Task<List<EmployeeWork>> GetActivitiesOfEmployeeBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
     {
-        List<Activity> activities = await _service.GetActivitiesOfEmployeeBetweenDates(employeeId,fromAssignedDate,toAssignedDate);
+        List<EmployeeWork> activities = await _service.GetActivitiesOfEmployeeBetweenDates(employeeId,fromAssignedDate,toAssignedDate);
         return activities;
     }
  
 
 
-   [HttpPut("project/{activityId}/status/{Status}")]
-    public async Task<bool> UpdateActivity(string Status,int activityId)
+   [HttpPut("project/{employeeWorkId}/status/{Status}")]
+    public async Task<bool> UpdateActivity(string Status,int employeeWorkId)
     {
-        bool status = await _service.UpdateActivity(Status, activityId);
+        bool status = await _service.UpdateActivity(Status, employeeWorkId);
         return status;
 
     }
 
 
-  [HttpGet("activity/todo/{projectId}/{assignedTo}")]
-    public async Task<List<ActivityDetails>> GetAllActivities(int projectId,int assignedTo)
+  [HttpGet("employeework/todo/{projectId}/{assignedTo}")]
+    public async Task<List<EmployeeWorkDetails>> GetAllActivities(int projectId,int assignedTo)
     {
-        List<ActivityDetails> activities = await _service.GetAllActivities(projectId,assignedTo);
+        List<EmployeeWorkDetails> activities = await _service.GetAllActivities(projectId,assignedTo);
         return activities;
     }
 
@@ -121,9 +121,9 @@ public class ActivityController : ControllerBase
     }
 
     [HttpGet("project/{projectId}/date/{date}")]
-    public async Task<List<Activity>> GetTodayActivities(int projectId,DateTime date)
+    public async Task<List<EmployeeWork>> GetTodayActivities(int projectId,DateTime date)
     {
-        List<Activity> activities = await _service.GetTodayActivities(projectId,date);
+        List<EmployeeWork> activities = await _service.GetTodayActivities(projectId,date);
         return activities;
     }
 

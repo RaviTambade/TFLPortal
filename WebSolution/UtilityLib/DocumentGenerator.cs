@@ -9,7 +9,7 @@ namespace Transflower.TFLPortal.TFLSAL.Services;
 
 public class DocumentGenerator:IDocumentGenerator
 {
-    public string GenerateSalarySlip(SalarySlipDocumentContent salaryContent)
+    public async Task<string> GenerateSalarySlip(SalarySlipDocumentContent salaryContent)
     {
         var document = new PdfDocument();
 
@@ -112,6 +112,6 @@ string filepath="wwwroot/SalarySlips/"+ salaryContent.EmployeeId+"_"+currentDate
 
         PdfGenerator.AddPdfPages(document, htmlContent, PageSize.A4);    
         document.Save(filepath);
-        return filepath;
+        return await Task.FromResult(filepath);
     }
 }

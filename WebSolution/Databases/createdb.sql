@@ -3,12 +3,11 @@
     DROP DATABASE IF EXISTS TFLPortal;
     CREATE DATABASE TFLPortal;
     USE TFLPortal;
-
     CREATE TABLE employees(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             userid INT NOT NULL UNIQUE,
             hiredate DATETIME,
-            reportingid INT,
+            reportingid INT,    
             CONSTRAINT fk_employees FOREIGN KEY(reportingid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
           
     );
@@ -25,7 +24,7 @@
 
 
       CREATE TABLE employeeleaves(
-            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
             employeeid INT NOT NULL,
             CONSTRAINT fk_projectmembers1 FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
             applicationdate DateTime,
@@ -142,11 +141,9 @@
         fromtime TIME,
         totime TIME,
         timesheetid INT NOT NULL,
-        projectworkid  INT ,
-        CONSTRAINT fk_timesheet_projects FOREIGN KEY (projectworkid) REFERENCES employeework(id) ON UPDATE CASCADE  ON DELETE CASCADE,
+        employeeworkid  INT ,
+        CONSTRAINT fk_timesheet_projects FOREIGN KEY (employeeworkid) REFERENCES employeework(id) ON UPDATE CASCADE  ON DELETE CASCADE,
         CONSTRAINT fk_timesheets_timesheetentries FOREIGN KEY(timesheetid) REFERENCES timesheets(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
-
-   
 

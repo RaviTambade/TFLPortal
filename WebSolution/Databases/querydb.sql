@@ -1,8 +1,16 @@
--- Active: 1694968636816@@127.0.0.1@3306@tflportal
+-- Active: 1696576841746@@127.0.0.1@3306@tflportal
 
 SELECT * FROM activities where assignedto=15 AND assigneddate='2023-12-14';
+SELECT timesheets.id as timesheetid,timesheets.status,timesheets.statuschangeddate,timesheetdetails.id as timesheetdetailid,
+timesheetdetails.employeeworkid,timesheetdetails.fromtime,timesheetdetails.totime,employeework.projectid,projects.title,employeework.projectworktype,employeework.title,
+employees.userid
+FROM timesheets  
+LEFT JOIN  timesheetdetails ON  timesheets.id= timesheetdetails.timesheetid
+INNER JOIN employees ON timesheets.employeeid =employees.id
+INNER JOIN employeework ON timesheetdetails.employeeworkid=employeework.id
+INNER JOIN projects ON employeework.projectid=projects.id
+WHERE timesheets.timesheetdate = '2023-12-04' AND timesheets.employeeId = 10;
 
-select * from employees;
 -- activitywise time spent of month 
 SELECT  COUNT(*), MONTHNAME(timesheets.timesheetdate), CAST(((SUM(TIME_TO_SEC(TIMEDIFF(totime,fromtime))))/3600)AS DECIMAL(10,2)) as time_in_hour,workcategory  from timesheetentries   
 INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id

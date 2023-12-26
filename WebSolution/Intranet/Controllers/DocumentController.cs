@@ -53,7 +53,24 @@ public class DocumentController : ControllerBase
             Deduction = salaryStructure.Deduction
         };
         DocumentGenerator generator = new DocumentGenerator();
+        // fire and forgot thats why not awaited
         generator.GenerateSalarySlip(salaryDetails);
+
+        // chaining of fire and forgot calls  first method output needed for second method
+    //    generator.GenerateSalarySlip(salaryDetails).ContinueWith(previousTask =>
+    //     {
+    //         string generatedFilePath = previousTask.Result;
+    //         Console.WriteLine("file gen complete");
+    //        _emailService.SendEmail(new Message{
+    //         To=new List<string>(){"sahilmankar311@gmail.com"},
+    //         Body="as",
+    //         Subject="async",
+    //         Filepaths=new List<string>(){generatedFilePath}
+    //        });
+    //        Console.WriteLine("Mail sent");
+    //     });
+
+
         return Ok("Document Genrated Suceessfully");
     }
 
