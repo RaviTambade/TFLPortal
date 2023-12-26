@@ -52,7 +52,6 @@ public class DocumentController : ControllerBase
             VariablePay = salaryStructure.VariablePay,
             Deduction = salaryStructure.Deduction
         };
-
         DocumentGenerator generator = new DocumentGenerator();
         // fire and forgot thats why not awaited
         generator.GenerateSalarySlip(salaryDetails);

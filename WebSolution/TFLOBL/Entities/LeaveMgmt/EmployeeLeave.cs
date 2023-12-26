@@ -1,6 +1,6 @@
 namespace Transflower.TFLPortal.TFLOBL.Entities.LeaveMgmt;
 
-public class LeaveApplication
+public class EmployeeLeave
 {
     public int Id { get; set; }
     public int EmployeeId { get; set; }

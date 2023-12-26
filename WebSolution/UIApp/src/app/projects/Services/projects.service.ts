@@ -45,13 +45,18 @@ export class ProjectsService {
     return this.httpClient.get<ProjectAllocation[]>(url);
   }
 
-  getAssignedEmployeesOfProject(projectId:number):Observable<any>{
-    let url=this.serviceurl+"/projectmgmt/projectallocation/projects/" +projectId +"/allocatedemployees";  
+  getEmployeesOfProject(projectId:number,status:string):Observable<any>{
+    let url=this.serviceurl+"/projectmgmt/projectallocation/projects/" +projectId +"/status/"+status+"/employees";  
     return this.httpClient.get<any>(url);
   }
 
-  getUnassignedEmployeesOfProject(projectId:number){
-    let url=this.serviceurl+"/projectmgmt/projectallocation/projects/" +projectId +"/releaseemployees";  
-    return this.httpClient.get<any>(url);
-  }
+  // getAssignedEmployeesOfProject(projectId:number):Observable<any>{
+  //   let url=this.serviceurl+"/projectmgmt/projectallocation/projects/" +projectId +"/allocatedemployees";  
+  //   return this.httpClient.get<any>(url);
+  // }
+
+  // getUnassignedEmployeesOfProject(projectId:number){
+  //   let url=this.serviceurl+"/projectmgmt/projectallocation/projects/" +projectId +"/releaseemployees";  
+  //   return this.httpClient.get<any>(url);
+  // }
 }

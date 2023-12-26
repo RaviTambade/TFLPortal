@@ -10,11 +10,11 @@ export class UnassignedEmployeeOfProjectComponent {
 
   projectId:number=3;
   unassignedEmployees:any[]=[];
-
+  status:string="no";
   constructor(private service:ProjectsService){}
 
   ngOnInit(): void {
-    this.service.getUnassignedEmployeesOfProject(this.projectId).subscribe((res)=>{
+    this.service.getEmployeesOfProject(this.projectId,this.status).subscribe((res)=>{
       this.unassignedEmployees=res;
       console.log(res);
     }) 

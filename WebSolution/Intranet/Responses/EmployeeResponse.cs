@@ -7,7 +7,6 @@ public class EmployeeResponse
 {
     public int EmployeeId { get; set; }
     public DateTime HireDate { get; set; }
-    public double Salary { get; set; }
     public string? FirstName { get; set; }
 
     public string? LastName { get; set; }

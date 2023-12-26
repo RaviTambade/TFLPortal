@@ -35,9 +35,6 @@
             year int default (Year(curdate())),
             leavetype enum("casual","sick","paid","unpaid"));
 
-       
-
-
      CREATE TABLE salarystructures(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             employeeid INT NOT NULL,
