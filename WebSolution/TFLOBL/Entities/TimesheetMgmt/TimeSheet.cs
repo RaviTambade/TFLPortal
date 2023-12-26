@@ -11,7 +11,7 @@ public class Timesheet
 
     //navigational property
    public Employee? Employee { get; set; }
-   public List<TimesheetEntry>? TimeSheetDetails { get; set; }
+   public List<TimesheetDetail>? TimeSheetDetails { get; set; }
 
    
 }

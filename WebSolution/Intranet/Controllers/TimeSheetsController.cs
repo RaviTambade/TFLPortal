@@ -50,13 +50,13 @@ public class TimesheetsController : ControllerBase
     }
 
     [HttpGet("timesheetentries/{timesheetEntryId}")]
-    public async Task<TimesheetEntry> GetTimesheetEntry(int timesheetEntryId)
+    public async Task<TimesheetDetail> GetTimesheetEntry(int timesheetEntryId)
     {
         return await _timesheetService.GetTimesheetEntry(timesheetEntryId);
     }
 
     [HttpGet("{timesheetId}/timesheetentries")]
-    public async Task<List<TimesheetEntry>> GetTimesheetEntries(int timesheetId)
+    public async Task<List<TimesheetDetail>> GetTimesheetEntries(int timesheetId)
     {
         return await _timesheetService.GetTimesheetEntries(timesheetId);
     }
@@ -90,7 +90,7 @@ public class TimesheetsController : ControllerBase
     }
 
     [HttpPost("timesheetentries")]
-    public async Task<bool> AddTimesheetEntry([FromBody] TimesheetEntry timesheetEntry)
+    public async Task<bool> AddTimesheetEntry([FromBody] TimesheetDetail timesheetEntry)
     {
         return await _timesheetService.AddTimesheetEntry(timesheetEntry);
     }
@@ -104,7 +104,7 @@ public class TimesheetsController : ControllerBase
     [HttpPut("timesheetentries/{timesheetEntryId}")]
     public async Task<bool> UpdateTimesheetEntry(
         int timesheetEntryId,
-        TimesheetEntry timesheetEntry
+        TimesheetDetail timesheetEntry
     )
     {
         return await _timesheetService.UpdateTimesheetEntry(timesheetEntryId, timesheetEntry);
