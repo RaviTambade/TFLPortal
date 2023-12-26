@@ -6,11 +6,11 @@ namespace Intranet.Controllers;
 
 [ApiController]
 [Route("/api/workmgmt/employeework")]
-public class ActivityController : ControllerBase
+public class EmployeeWorkController : ControllerBase
 {
-    private readonly IActivityService _service;
+    private readonly IEmployeeWorkService _service;
    
-    public ActivityController(IActivityService service)
+    public EmployeeWorkController(IEmployeeWorkService service)
     {
         _service = service;
 

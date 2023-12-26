@@ -18,7 +18,7 @@ builder.Services.AddOptions<EmailConfiguration>().Bind(builder.Configuration.Get
 builder.Services.AddScoped<EmailService>();
 builder.Services.AddScoped<ExternalApiService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
-builder.Services.AddScoped<IActivityService, ActivityService>();
+builder.Services.AddScoped<IEmployeeWorkService, EmployeeWorkService>();
 builder.Services.AddScoped<ITimesheetService, TimesheetService>();
 builder.Services.AddScoped<IProjectAllocationService, ProjectAllocationService>();
 builder.Services.AddScoped<ILeaveManagementService, LeaveManagementService>();

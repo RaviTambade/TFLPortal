@@ -6,12 +6,12 @@ using Transflower.TFLPortal.TFLOBL.Entities;
 using System.Data;
 
 namespace Transflower.TFLPortal.TFLSAL.Services;
-public class ActivityService : IActivityService
+public class EmployeeWorkService : IEmployeeWorkService
 {
     private readonly IConfiguration _configuration;
     private readonly string _connectionString;
 
-    public ActivityService(IConfiguration configuration)
+    public EmployeeWorkService(IConfiguration configuration)
     {
         _configuration = configuration;
         _connectionString =

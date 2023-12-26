@@ -50,7 +50,7 @@ public class HRController : ControllerBase
     //         userId: employee.UserId,
     //         userType: "I"
     //     );
-    //     FundTransferRequestDTO request = new FundTransferRequestDTO()
+    //     FundTransferRequest request = new FundTransferRequest()
     //     {
     //         FromAcct = "39025546601",
     //         FromIfsc = "MAHB0000286",

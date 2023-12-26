@@ -14,7 +14,7 @@ export class BarchartComponent implements OnInit {
   constructor(private workmgmtSvc: WorkmgmtService) { }
 
   ngOnInit() {
-    this.workmgmtSvc.getAllActivitiesCount().subscribe((res) => {
+    this.workmgmtSvc.getAllEmployeeWorkCount().subscribe((res) => {
       let keys = Object.keys(res);
       this.values = Object.values(res);
       this.createChart(keys, this.values); // Pass keys and values to createChart

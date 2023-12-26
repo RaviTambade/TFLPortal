@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Transflower.TFLPortal.TFLOBL.DTO;
 using Transflower.TFLPortal.TFLOBL.Entities;
 using Transflower.TFLPortal.TFLSAL.DTO;
 using Transflower.TFLPortal.TFLSAL.Services;
@@ -30,7 +31,7 @@ public class PayrollController : ControllerBase
     {
         Salary salaryStructure = await _payrollService.GetSalary(employeeId);
         Employee employee = await _hrService.GetEmployeeById(salaryStructure.EmployeeId);
-        BankAccountDTO account = await _apiService.GetUserBankAccount(employee.UserId, "I");
+        BankAccount account = await _apiService.GetUserBankAccount(employee.UserId, "I");
         var user = await _apiService.GetUser(employee.UserId);
         SalaryResponse salaryDetails = new SalaryResponse()
         {

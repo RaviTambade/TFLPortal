@@ -5,7 +5,7 @@ import { TokenClaims } from 'src/app/shared/Enums/tokenclaims';
 import { JwtService } from 'src/app/shared/services/jwt.service';
 import { ProjectService } from 'src/app/shared/services/project.service';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
-import { Activity } from '../../Models/Activity';
+import { EmployeeWork } from '../../Models/EmployeeWork';
 
 @Component({
   selector: 'app-employee-all-activities',
@@ -15,10 +15,10 @@ import { Activity } from '../../Models/Activity';
 export class EmployeeAllActivitiesComponent {
 
   projects: Project[] = [];
-  activities: Activity[] = [];
+  activities: EmployeeWork[] = [];
   projectId: number = 0;
   employeeId:number|any;
-  visibleActivities: Activity[]=[];
+  visibleActivities: EmployeeWork[]=[];
 role:string|undefined=undefined;
   checkStatusTodo: boolean = true;
   checkStatusInProgress: boolean = true;
@@ -39,7 +39,7 @@ role:string|undefined=undefined;
   }
 
   onChangeProject() {
-    this.workMgmtSvc.getAllActivitiesOfEmployee(this.projectId,this.employeeId).subscribe((res)=>{
+    this.workMgmtSvc.getAllEmployeeWorkOfEmployee(this.projectId,this.employeeId).subscribe((res)=>{
       console.log(this.employeeId);
       console.log(this.projectId);
       this.activities=res;
