@@ -12,7 +12,7 @@ public class Project
 
     public DateTime EndDate { get; set; }
 
-    public int TeamManagerId { get; set; }
+    public int ManagerId { get; set; }
 
     public string? Status { get; set; }
 }

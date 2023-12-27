@@ -1,6 +1,6 @@
 namespace Transflower.TFLPortal.TFLOBL.Entities;
 
-public class ProjectAllocationDetails : ProjectAllocation
+public class ProjectMembershipDetails : ProjectMembership
 {
     public int UserId { get; set; }
     public DateTime HireDate { get; set; }

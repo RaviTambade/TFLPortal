@@ -5,12 +5,11 @@ using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 
 namespace Transflower.TFLPortal.TFLSAL.Services;
 
-public class ProjectAllocationService : IProjectAllocationService
+public class ProjectMembershipService : IProjectMembershipService
 {
     private readonly IConfiguration _configuration;
     private readonly string _connectionString;
-
-    public ProjectAllocationService(IConfiguration configuration)
+    public ProjectMembershipService(IConfiguration configuration)
     {
         _configuration = configuration;
         _connectionString =
@@ -18,21 +17,20 @@ public class ProjectAllocationService : IProjectAllocationService
             ?? throw new ArgumentNullException("connectionString");
     }
 
-    public async Task<bool> AssignEmployeeToProject(int projectId,int employeeId,ProjectAllocation project){
+    public async Task<bool> AssignEmployeeToProject(int projectId,int employeeId,ProjectMembership projectMembership){
     {
         bool status=false;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
-
         try
         {
-            string query = "INSERT INTO projectallocations(projectid,employeeid,membership,assigndate,status) VALUES(@projectId,@employeeId,@membership,@assigndate,@status)";
+            string query = "INSERT INTO projectmembership(projectid,employeeid,projectrole,projectassigndate,currentprojectworkingstatus) VALUES(@projectId,@employeeId,@projectRole,@projectAssignDate,@currentProjectWorkingStatus)";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@projectId", projectId);
             cmd.Parameters.AddWithValue("@employeeId", employeeId);
-            cmd.Parameters.AddWithValue("@membership", project.Membership);
-            cmd.Parameters.AddWithValue("@assigndate",project.AssignDate);
-            cmd.Parameters.AddWithValue("@status", project.Status);
+            cmd.Parameters.AddWithValue("@projectRole", projectMembership.ProjectRole);
+            cmd.Parameters.AddWithValue("@projectAssignDate",projectMembership.ProjectAssignDate);
+            cmd.Parameters.AddWithValue("@currentProjectWorkingStatus", projectMembership.CurrentProjectWorkingStatus);
             await connection.OpenAsync();
             int rowsAffected = cmd.ExecuteNonQuery();
             if (rowsAffected > 0)
@@ -54,17 +52,17 @@ public class ProjectAllocationService : IProjectAllocationService
     }
     }
 
-    public async Task<bool> ReleaseEmployeeFromProject(int projectId ,int employeeId,ProjectAllocation project)
+    public async Task<bool> ReleaseEmployeeFromProject(int projectId ,int employeeId,ProjectMembership projectMembership)
     {
         bool status=false;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "Update projectallocations set releasedate=@releasedate,status=@status where projectid=@projectId and employeeId=@employeeId";
+            string query = "Update projectmembership set projectreleasedate=@projectReleasedate,currentprojectworkingstatus=@currentprojectworkingstatus where projectid=@projectId and employeeId=@employeeId";
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@releasedate", project.ReleaseDate);
-            cmd.Parameters.AddWithValue("@status", project.Status);
+            cmd.Parameters.AddWithValue("@projectReleasedate", projectMembership.ProjectReleaseDate);
+            cmd.Parameters.AddWithValue("@currentprojectworkingstatus", projectMembership.CurrentProjectWorkingStatus);
             cmd.Parameters.AddWithValue("@projectId", projectId);
             cmd.Parameters.AddWithValue("@employeeId", employeeId);
             await connection.OpenAsync();
@@ -95,7 +93,7 @@ public class ProjectAllocationService : IProjectAllocationService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query ="SELECT * FROM employees WHERE id not in (SELECT employeeid FROM projectallocations GROUP BY employeeid HAVING COUNT(CASE WHEN status = 'yes' THEN 1 END) > 0)";       
+            string query ="SELECT * FROM employees WHERE id not in (SELECT employeeid FROM projectmembership GROUP BY employeeid HAVING COUNT(CASE WHEN currentprojectworkingstatus = 'yes' THEN 1 END) > 0)";       
             MySqlCommand command = new MySqlCommand(query, connection);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
@@ -123,14 +121,14 @@ public class ProjectAllocationService : IProjectAllocationService
         return employees;
     }
 
-    public async Task<List<ProjectAllocationDetails>> GetAllocatedEmployees(string status)
+    public async Task<List<ProjectMembershipDetails>> GetAllocatedEmployees(string status)
     {
-        List<ProjectAllocationDetails> employees= new List<ProjectAllocationDetails>();
+        List<ProjectMembershipDetails> employees= new List<ProjectMembershipDetails>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query ="Select * from projectallocations inner join employees where projectallocations.status=@status";
+            string query ="Select * from projectmembership inner join employees on projectmembership.employeeid=employees.id  where projectmembership.currentprojectworkingstatus=@status";
                 
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@status", status);
@@ -138,18 +136,16 @@ public class ProjectAllocationService : IProjectAllocationService
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
-                ProjectAllocationDetails employee = new ProjectAllocationDetails
+                ProjectMembershipDetails employee = new ProjectMembershipDetails
                 {
                     Id = reader.GetInt32("id"),
                     ProjectId = reader.GetInt32("projectid"),
                     EmployeeId = reader.GetInt32("employeeid"),
-                    Membership = reader.GetString("membership"),
-                    AssignDate = reader.GetDateTime("assigndate"),
+                    ProjectRole = reader.GetString("projectrole"),
+                    ProjectAssignDate = reader.GetDateTime("projectassigndate"),
                     UserId = reader.GetInt32("userid"),
                     HireDate = reader.GetDateTime("hiredate"),
-                    ReportingId = reader.GetInt32("reportingid"),
-                    Salary = reader.GetInt32("salary"),
-
+                    ReportingId = reader.GetInt32("reportingid")
                 };
                 employees.Add(employee);
             }
@@ -166,14 +162,14 @@ public class ProjectAllocationService : IProjectAllocationService
         return employees;
     }
 
-    public async Task<List<ProjectAllocation>> GetAllProjectsBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate)
+    public async Task<List<ProjectMembership>> GetAllProjectsBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate)
     {
-        List<ProjectAllocation> projects = new List<ProjectAllocation>();
+        List<ProjectMembership> projects = new List<ProjectMembership>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select * from projectallocations where assigndate BETWEEN @fromAssignedDate AND @toAssignedDate";
+            string query = "select * from projectmembership where projectassigndate BETWEEN @fromAssignedDate AND @toAssignedDate";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@fromAssignedDate", fromAssignedDate);
             command.Parameters.AddWithValue("@toAssignedDate", toAssignedDate);
@@ -181,14 +177,14 @@ public class ProjectAllocationService : IProjectAllocationService
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
-                ProjectAllocation project = new ProjectAllocation
+                ProjectMembership project = new ProjectMembership
                 {
                     Id = reader.GetInt32("id"),
                     ProjectId = reader.GetInt32("projectid"),
                     EmployeeId = reader.GetInt32("employeeid"),
-                    Membership = reader.GetString("membership"),
-                    AssignDate = reader.GetDateTime("assigndate"),
-                    Status=reader.GetString("status")
+                    ProjectRole = reader.GetString("projectrole"),
+                    ProjectAssignDate = reader.GetDateTime("projectassigndate"),
+                    CurrentProjectWorkingStatus=reader.GetString("currentprojectworkingstatus")
 
                 };
                 projects.Add(project);
@@ -206,14 +202,14 @@ public class ProjectAllocationService : IProjectAllocationService
         return projects;
     }
     
-    public async Task<List<ProjectAllocationDetails>> GetEmployeesOfProject(int projectId,string status)
+    public async Task<List<ProjectMembershipDetails>> GetEmployeesOfProject(int projectId,string status)
     {
-        List<ProjectAllocationDetails> employees= new List<ProjectAllocationDetails>();
+        List<ProjectMembershipDetails> employees= new List<ProjectMembershipDetails>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query ="select * from employees inner join projectallocations on projectallocations.employeeid=employees.id where projectallocations.status=@status and projectallocations.projectid=@projectId" ;
+            string query ="select * from employees inner join projectmembership on projectmembership.employeeid=employees.id where projectmembership.currentprojectworkingstatus=@status and projectmembership.projectid=@projectId" ;
                 
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);
@@ -222,17 +218,16 @@ public class ProjectAllocationService : IProjectAllocationService
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
-                ProjectAllocationDetails employee = new ProjectAllocationDetails
+                ProjectMembershipDetails employee = new ProjectMembershipDetails
                 {
                     Id = reader.GetInt32("id"),
                     UserId = reader.GetInt32("userid"),
                     HireDate = reader.GetDateTime("hiredate"),
                     ReportingId = reader.GetInt32("reportingid"),
-                    Salary = reader.GetInt32("salary"),
                     ProjectId = reader.GetInt32("projectid"),
                     EmployeeId = reader.GetInt32("employeeid"),
-                    Membership = reader.GetString("membership"),
-                    AssignDate = reader.GetDateTime("assigndate")
+                    ProjectRole = reader.GetString("projectrole"),
+                    ProjectAssignDate = reader.GetDateTime("projectassigndate")
                 };
                 employees.Add(employee);
             }
@@ -249,15 +244,14 @@ public class ProjectAllocationService : IProjectAllocationService
         return employees;
     }
 
-    public async Task<List<ProjectAllocation>> GetProjectsOfEmployeeBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
+    public async Task<List<ProjectMembership>> GetProjectsOfEmployeeBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
     {
-        List<ProjectAllocation> projects = new List<ProjectAllocation>();
+        List<ProjectMembership> projects = new List<ProjectMembership>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {                  
-
-            string query = "select * from projectallocations where employeeid=@employeeId and assigndate BETWEEN @fromAssignedDate AND @toAssignedDate";
+            string query = "select * from projectmembership where employeeid=@employeeId and projectassigndate BETWEEN @fromAssignedDate AND @toAssignedDate";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@fromAssignedDate", fromAssignedDate);
             command.Parameters.AddWithValue("@toAssignedDate", toAssignedDate);
@@ -266,15 +260,14 @@ public class ProjectAllocationService : IProjectAllocationService
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
-                ProjectAllocation project = new ProjectAllocation
+                ProjectMembership project = new ProjectMembership
                 {
                     Id = reader.GetInt32("id"),
                     ProjectId = reader.GetInt32("projectid"),
                     EmployeeId =employeeId,
-                    Membership = reader.GetString("membership"),
-                    AssignDate = reader.GetDateTime("assigndate"),
-                    Status=reader.GetString("status")
-
+                    ProjectRole = reader.GetString("projectrole"),
+                    ProjectAssignDate = reader.GetDateTime("projectassigndate"),
+                    CurrentProjectWorkingStatus=reader.GetString("currentprojectworkingstatus")
                 };
                 projects.Add(project);
             }

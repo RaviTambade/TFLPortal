@@ -20,7 +20,7 @@ builder.Services.AddScoped<ExternalApiService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<IActivityService, ActivityService>();
 builder.Services.AddScoped<ITimesheetService, TimesheetService>();
-builder.Services.AddScoped<IProjectAllocationService, ProjectAllocationService>();
+builder.Services.AddScoped<IProjectMembershipService, ProjectMembershipService>();
 builder.Services.AddScoped<ILeaveManagementService, LeaveManagementService>();
 builder.Services.AddScoped<IHRService, HRService>();
 builder.Services.AddScoped<IPayrollService, PayrollService>();

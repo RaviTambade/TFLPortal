@@ -35,7 +35,7 @@ public class ProjectService : IProjectService
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
                 string description = reader["description"].ToString();
-                int teamManagerId = int.Parse(reader["teammanagerid"].ToString());
+                int managerId = int.Parse(reader["managerid"].ToString());
                 string status = reader["status"].ToString();
                 DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime enddate = DateTime.Parse(reader["enddate"].ToString());
@@ -48,7 +48,7 @@ public class ProjectService : IProjectService
                     Status = status,
                     StartDate = startdate,
                     EndDate = enddate,
-                    TeamManagerId = teamManagerId
+                    ManagerId = managerId
                 };
                 projects.Add(project);
             }
@@ -75,7 +75,7 @@ public class ProjectService : IProjectService
             // ptojects.id =9 because 10 number is other 
             string query =
                 @"SELECT * FROM projects WHERE projects.id=9 OR
-                id IN( SELECT DISTINCT projectid FROM projectallocations WHERE projectallocations.employeeid=@employeeid )"; 
+                id IN( SELECT DISTINCT projectid FROM projectmembership WHERE projectmembership.employeeid=@employeeid )"; 
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@employeeid", employeeid);
             await connection.OpenAsync();
@@ -85,7 +85,7 @@ public class ProjectService : IProjectService
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
                 string description = reader["description"].ToString();
-                int teamManagerId = int.Parse(reader["teammanagerid"].ToString());
+                int managerId = int.Parse(reader["managerid"].ToString());
                 string status = reader["status"].ToString();
                 DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime enddate = DateTime.Parse(reader["enddate"].ToString());
@@ -98,7 +98,7 @@ public class ProjectService : IProjectService
                     Status = status,
                     StartDate = startdate,
                     EndDate = enddate,
-                    TeamManagerId = teamManagerId
+                    ManagerId = managerId
                 };
                 projects.Add(project);
             }
@@ -124,14 +124,14 @@ public class ProjectService : IProjectService
         try{
             
             MySqlCommand command= new MySqlCommand();
-            command.CommandText="Insert into projects (title,startdate,enddate,description,teammanagerid,status) values(@title,@startdate,@enddate,@description,@teammanagerid,@status)";
+            command.CommandText="Insert into projects (title,startdate,enddate,description,managerid,status) values(@title,@startdate,@enddate,@description,@managerid,@status)";
             command.Connection=connection; 
             await connection.OpenAsync();
             command.Parameters.AddWithValue("@title",project.Title);
             command.Parameters.AddWithValue("@startdate",project.StartDate);
             command.Parameters.AddWithValue("@enddate",project.EndDate);
             command.Parameters.AddWithValue("@description",project.Description);
-            command.Parameters.AddWithValue("@teammanagerid",project.TeamManagerId);
+            command.Parameters.AddWithValue("@managerid",project.ManagerId);
             command.Parameters.AddWithValue("@status",project.Status);
           
           int rowsAffected = await command.ExecuteNonQueryAsync(); // Execute the query asynchronously
@@ -171,7 +171,7 @@ public class ProjectService : IProjectService
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
                 string description = reader["description"].ToString();
-                int teamManagerId = int.Parse(reader["teammanagerid"].ToString());
+                int managerId = int.Parse(reader["managerid"].ToString());
                 string status = reader["status"].ToString();
                 DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime enddate = DateTime.Parse(reader["enddate"].ToString());
@@ -184,7 +184,7 @@ public class ProjectService : IProjectService
                     Status = status,
                     StartDate = startdate,
                     EndDate = enddate,
-                    TeamManagerId = teamManagerId
+                    ManagerId = managerId
                 };
                 
             }
@@ -200,5 +200,4 @@ public class ProjectService : IProjectService
         }
         return project;
     }
-
 }
