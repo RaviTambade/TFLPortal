@@ -19,7 +19,7 @@ public class EmployeeWorkService : IEmployeeWorkService
             ?? throw new ArgumentNullException("connectionString");
     }
 
-    public async Task<List<EmployeeWork>> GetAllActivities(){
+    public async Task<List<EmployeeWork>> GetAllEmployeeWork(){
         List<EmployeeWork> activities = new List<EmployeeWork>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
@@ -76,7 +76,7 @@ public class EmployeeWorkService : IEmployeeWorkService
         }
         return activities;
     }
-    public async Task<List<EmployeeWork>> GetActivitiesByProject(int projectId)
+    public async Task<List<EmployeeWork>> GetEmployeeWorkByProject(int projectId)
     {
         List<EmployeeWork> activities = new List<EmployeeWork>();
         MySqlConnection connection = new MySqlConnection();
@@ -135,7 +135,7 @@ public class EmployeeWorkService : IEmployeeWorkService
         return activities;
     }
 
-    public async Task<List<EmployeeWork>> GetProjectActivitiesByType(int projectId, string activityType)
+    public async Task<List<EmployeeWork>> GetProjectEmployeeWorkByWorkType(int projectId, string projectworktype)
     {
 
         List<EmployeeWork> activities = new List<EmployeeWork>();
@@ -143,10 +143,10 @@ public class EmployeeWorkService : IEmployeeWorkService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select * from employeework where  projectid =@projectId and projectworktype=@activitytype";
+            string query = "select * from employeework where  projectid =@projectId and projectworktype=@projectworktype";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);
-            command.Parameters.AddWithValue("@activitytype", activityType);
+            command.Parameters.AddWithValue("@projectworktype", projectworktype);
 
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
@@ -169,7 +169,7 @@ public class EmployeeWorkService : IEmployeeWorkService
                 {
                     Id = id,
                     Title = title,
-                    ProjectWorkType = activityType,
+                    ProjectWorkType = projectworktype,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
@@ -197,7 +197,7 @@ public class EmployeeWorkService : IEmployeeWorkService
         return activities;
     }
 
-    public async Task<List<EmployeeWork>> GetProjectActivitiesByEmployee(int projectId, int employeeId)
+    public async Task<List<EmployeeWork>> GetProjectEmployeeWorks(int projectId, int employeeId)
     {
 
         List<EmployeeWork> activities = new List<EmployeeWork>();
@@ -258,7 +258,7 @@ public class EmployeeWorkService : IEmployeeWorkService
         }
         return activities;
     }
-    public async Task<List<EmployeeWork>> GetProjectActivitiesOfEmployee(int projectId, int employeeId, string ProjectWorkType)
+    public async Task<List<EmployeeWork>> GetProjectEmployeeWorks(int projectId, int employeeId, string ProjectWorkType)
     {
 
         List<EmployeeWork> activities = new List<EmployeeWork>();
@@ -319,16 +319,16 @@ public class EmployeeWorkService : IEmployeeWorkService
         return activities;
     }
 
-    public async Task<EmployeeWorkDetails> GetActivityDetails(int activityId)
+    public async Task<EmployeeWorkDetails> GetEmployeeWorkDetails(int employeeWorkId)
     {
        EmployeeWorkDetails activity = null;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select employeework.* ,e1.userid as assignbyuserid,e2.userid as assigntouserid,projects.title as projectname from activities INNER JOIN employees e1  on activities.assignedto =e1.id INNER JOIN employees e2   on  activities.assignedby=e2.id INNER JOIN projects ON activities.projectid =projects.id WHERE activities.id=@activityId";
+            string query = "select employeework.* ,e1.userid as assignbyuserid,e2.userid as assigntouserid,projects.title as projectname from employeework INNER JOIN employees e1  on activiemployeeworkties.assignedto =e1.id INNER JOIN employees e2   on  activities.assignedby=e2.id INNER JOIN projects ON activities.projectid =projects.id WHERE activities.id=@employeeWorkId";
             MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@activityId", activityId);
+            command.Parameters.AddWithValue("@employeeWorkId", employeeWorkId);
 
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
@@ -351,7 +351,7 @@ public class EmployeeWorkService : IEmployeeWorkService
                 string projectName = reader["projectname"].ToString();
                 activity = new EmployeeWorkDetails()
                 {
-                    Id = activityId,
+                    Id = employeeWorkId,
                     ProjectWorkType = activityType,
                     Title = title,
                     CreatedDate = createDate,
@@ -393,26 +393,27 @@ public class EmployeeWorkService : IEmployeeWorkService
         return activity;
     }
 
-    public async Task<bool> AddActivity(EmployeeWork activity)
+    public async Task<bool> AddEmployeeWork(EmployeeWork employeeWork)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "INSERT INTO employeework(title,activitytype,description,createddate,assigneddate,startdate,duedate,assignedto,projectid,status,assignedby) VALUES(@title,@activityType,@description,@createdDate,@assignDate,@startDate,@dueDate,@assignedTo,@projectId,@status,@assignedBy)";
+            string query = "INSERT INTO employeework(title,projectworktype,description,createddate,assigneddate,startdate,duedate,assignedto,projectid,sprintid,status,assignedby) VALUES(@title,@projectworktype,@description,@sprintId,@createdDate,@assignDate,@startDate,@dueDate,@assignedTo,@projectId,@status,@assignedBy)";
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@title", activity.Title);
-            cmd.Parameters.AddWithValue("@activityType", activity.ProjectWorkType);
-            cmd.Parameters.AddWithValue("@description", activity.Description);
-            cmd.Parameters.AddWithValue("@createddate", activity.CreatedDate);
-            cmd.Parameters.AddWithValue("@assigndate", activity.AssignDate);
-            cmd.Parameters.AddWithValue("@startDate", activity.StartDate);
-            cmd.Parameters.AddWithValue("@dueDate", activity.DueDate);
-            cmd.Parameters.AddWithValue("@assignedTo", activity.AssignedTo);
-            cmd.Parameters.AddWithValue("@projectId", activity.ProjectId);
-            cmd.Parameters.AddWithValue("@status", activity.Status);
-            cmd.Parameters.AddWithValue("@assignedBy", activity.AssignedBy);
+            cmd.Parameters.AddWithValue("@title", employeeWork.Title);
+            cmd.Parameters.AddWithValue("@projectworktype", employeeWork.ProjectWorkType);
+            cmd.Parameters.AddWithValue("@description", employeeWork.Description);
+            cmd.Parameters.AddWithValue("@createddate", employeeWork.CreatedDate);
+            cmd.Parameters.AddWithValue("@assigndate", employeeWork.AssignDate);
+            cmd.Parameters.AddWithValue("@startDate", employeeWork.StartDate);
+            cmd.Parameters.AddWithValue("@dueDate", employeeWork.DueDate);
+            cmd.Parameters.AddWithValue("@assignedTo", employeeWork.AssignedTo);
+            cmd.Parameters.AddWithValue("@projectId", employeeWork.ProjectId);
+            cmd.Parameters.AddWithValue("@sprintId", employeeWork.SprintId);
+            cmd.Parameters.AddWithValue("@status", employeeWork.Status);
+            cmd.Parameters.AddWithValue("@assignedBy", employeeWork.AssignedBy);
             await connection.OpenAsync();
             int rowsAffected = cmd.ExecuteNonQuery();
             if (rowsAffected > 0)
@@ -433,7 +434,7 @@ public class EmployeeWorkService : IEmployeeWorkService
         return status;
     }
 
-     public async Task<List<EmployeeWork>> GetAllActivitiesOfEmployee(int employeeId){
+     public async Task<List<EmployeeWork>> GetAllEmployeeWorks(int employeeId){
       List<EmployeeWork> activities = new List<EmployeeWork>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
@@ -491,7 +492,7 @@ public class EmployeeWorkService : IEmployeeWorkService
         return activities;
     }
 
-    public async Task<List<EmployeeWork>> GetActivitiesBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate)
+    public async Task<List<EmployeeWork>> GetAllEmployeesWorksBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate)
     {
         List<EmployeeWork> activities = new List<EmployeeWork>();
         MySqlConnection connection = new MySqlConnection();
@@ -508,7 +509,7 @@ public class EmployeeWorkService : IEmployeeWorkService
             {
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
-                string activityType = reader["projectworktype"].ToString();
+                string projectWorkType = reader["projectworktype"].ToString();
                 string description = reader["description"].ToString();
                  int sprintId = int.Parse(reader["sprintid"].ToString());
                 int projectId = int.Parse(reader["projectid"].ToString());
@@ -526,7 +527,7 @@ public class EmployeeWorkService : IEmployeeWorkService
                 {
                     Id = id,
                     Title = title,
-                    ProjectWorkType = activityType,
+                    ProjectWorkType = projectWorkType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
@@ -554,7 +555,7 @@ public class EmployeeWorkService : IEmployeeWorkService
     } 
 
 
-    public async Task<List<EmployeeWork>> GetActivitiesOfEmployeeBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
+    public async Task<List<EmployeeWork>> GetEmployeeWorksBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
     {
         List<EmployeeWork> activities = new List<EmployeeWork>();
         MySqlConnection connection = new MySqlConnection();
@@ -572,7 +573,7 @@ public class EmployeeWorkService : IEmployeeWorkService
             {
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
-                string activityType = reader["projectworktype"].ToString();
+                string projectWorkType = reader["projectworktype"].ToString();
                  int sprintId = int.Parse(reader["sprintid"].ToString());
                 string description = reader["description"].ToString();
                 int projectId = int.Parse(reader["projectid"].ToString());
@@ -588,7 +589,7 @@ public class EmployeeWorkService : IEmployeeWorkService
                 {
                     Id = id,
                     Title = title,
-                    ProjectWorkType = activityType,
+                    ProjectWorkType = projectWorkType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
@@ -616,18 +617,18 @@ public class EmployeeWorkService : IEmployeeWorkService
     } 
 
 
-    public async Task<bool> UpdateActivity(string Status,int activityId)
+    public async Task<bool> UpdateEmployeeWork(string Status,int employeeWorkId)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "Update  employeework set startdate=@startdate,status=@status where id =@activityId";
+            string query = "Update  employeework set startdate=@startdate,status=@status where id =@employeeWorkId";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@startDate", DateTime.Now);
             cmd.Parameters.AddWithValue("@status", Status);
-            cmd.Parameters.AddWithValue("@activityId",activityId );
+            cmd.Parameters.AddWithValue("@employeeWorkId",employeeWorkId );
     
             await connection.OpenAsync();
             int rowsAffected = cmd.ExecuteNonQuery();
@@ -652,7 +653,7 @@ public class EmployeeWorkService : IEmployeeWorkService
 
 
 
-     public async Task<List<EmployeeWorkDetails>> GetAllActivities(int projectId,int employeeId){
+     public async Task<List<EmployeeWorkDetails>> GetAllEmployeeWorks(int projectId,int employeeId){
       List<EmployeeWorkDetails> activities = new List<EmployeeWorkDetails>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
@@ -712,9 +713,9 @@ public class EmployeeWorkService : IEmployeeWorkService
         return activities;
     }
 
-    public async Task<ActivityStatusCount> GetActivitiesCount()
+    public async Task<EmployeeWorkStatusCount> GetEmployeesWorkCount()
     {
-    ActivityStatusCount countSp = null;
+    EmployeeWorkStatusCount countSp = null;
     MySqlConnection con = new MySqlConnection();
     con.ConnectionString = _connectionString;
     try
@@ -739,7 +740,7 @@ public class EmployeeWorkService : IEmployeeWorkService
         int inprogress = Convert.ToInt32(cmd.Parameters["@inprogress"].Value);
         int completed = Convert.ToInt32(cmd.Parameters["@completed"].Value);
 
-        countSp = new ActivityStatusCount()
+        countSp = new EmployeeWorkStatusCount()
         {
             Todo = todo,
             InProgress = inprogress,
@@ -759,7 +760,7 @@ public class EmployeeWorkService : IEmployeeWorkService
 }
 
 
-public async Task<List<EmployeeWork>> GetTodayActivities(int projectId,DateTime date)
+public async Task<List<EmployeeWork>> GetTodayEmployeesWork(int projectId,DateTime date)
     {
         List<EmployeeWork> activities = new List<EmployeeWork>();
         MySqlConnection connection = new MySqlConnection();
@@ -776,7 +777,7 @@ public async Task<List<EmployeeWork>> GetTodayActivities(int projectId,DateTime 
             {
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
-                string activitytype = reader["projectworktype"].ToString();
+                string projectWorkType = reader["projectworktype"].ToString();
                  int sprintId = int.Parse(reader["sprintid"].ToString());
                 string description = reader["description"].ToString();
                 DateTime createdate = DateTime.Parse(reader["createddate"].ToString());
@@ -792,7 +793,7 @@ public async Task<List<EmployeeWork>> GetTodayActivities(int projectId,DateTime 
                 {
                     Id = id,
                     Title = title,
-                    ProjectWorkType = activitytype,
+                    ProjectWorkType = projectWorkType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,

@@ -2,26 +2,26 @@ using Transflower.TFLPortal.TFLOBL.Entities;
 namespace Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 public interface IEmployeeWorkService
 {
-     public Task<List<EmployeeWork>> GetAllActivities();
-     public Task<List<EmployeeWork>> GetActivitiesByProject(int projectId);
-     public Task<List<EmployeeWork>> GetProjectActivitiesByType(int projectId, string activityType);
-     public Task<List<EmployeeWork>> GetProjectActivitiesByEmployee(int projectId, int employeeId);
-     public Task<List<EmployeeWork>> GetProjectActivitiesOfEmployee(int projectId, int employeeId, string activityType);
-     public Task<EmployeeWorkDetails> GetActivityDetails(int activityId);
-     public Task<bool> AddActivity(EmployeeWork activity);
-     public Task<bool> UpdateActivity(string Status,int activityId);
+     public Task<List<EmployeeWork>> GetAllEmployeeWork();
+     public Task<List<EmployeeWork>> GetEmployeeWorkByProject(int projectId);
+     public Task<List<EmployeeWork>> GetProjectEmployeeWorkByWorkType(int projectId, string ProjectWorkType);
+     public Task<List<EmployeeWork>> GetProjectEmployeeWorks(int projectId, int employeeId);
+     public Task<List<EmployeeWork>> GetProjectEmployeeWorks(int projectId, int employeeId, string ProjectWorkType);
+     public Task<EmployeeWorkDetails> GetEmployeeWorkDetails(int employeeWorkId);
+     public Task<bool> AddEmployeeWork(EmployeeWork employeeWork);
+     public Task<bool> UpdateEmployeeWork(string status,int employeeWorkId);
 
-     Task<List<EmployeeWork>> GetAllActivitiesOfEmployee(int employeeId);
+     Task<List<EmployeeWork>> GetAllEmployeeWorks(int employeeId);
 
-     Task<List<EmployeeWork>> GetActivitiesBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate);
+     Task<List<EmployeeWork>> GetAllEmployeesWorksBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate);
      
-     Task<List<EmployeeWork>> GetActivitiesOfEmployeeBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate);
+     Task<List<EmployeeWork>> GetEmployeeWorksBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate);
 
-      Task<List<EmployeeWorkDetails>> GetAllActivities(int projectId,int employeeId);
+      Task<List<EmployeeWorkDetails>> GetAllEmployeeWorks(int projectId,int employeeId);
 
-      Task<ActivityStatusCount> GetActivitiesCount();
+      Task<EmployeeWorkStatusCount> GetEmployeesWorkCount();
 
-     Task<List<EmployeeWork>> GetTodayActivities(int projectId,DateTime date);
+     Task<List<EmployeeWork>> GetTodayEmployeesWork(int projectId,DateTime date);
 
 
 }
