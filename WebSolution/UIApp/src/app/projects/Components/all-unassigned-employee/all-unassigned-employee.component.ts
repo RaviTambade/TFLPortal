@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectsModule } from '../../projects.module';
 import { ProjectsService } from '../../Services/projects.service';
-import { ProjectAllocation } from '../../Models/projectallocation';
+import { ProjectMembership } from '../../Models/projectmembership';
 import { MembersService } from 'src/app/resource-management/Services/members.service';
 import { Router } from '@angular/router';
-import { ProjectAllocationDetails } from '../../Models/projectallocationdetails';
+import { ProjectMembershipDetails } from '../../Models/projectmembershipdetails';
 
 @Component({
   selector: 'app-all-unassigned-employee',
@@ -12,7 +12,7 @@ import { ProjectAllocationDetails } from '../../Models/projectallocationdetails'
   styleUrls: ['./all-unassigned-employee.component.css']
 })
 export class AllUnassignedEmployeeComponent implements OnInit{
-  employees:ProjectAllocationDetails[]=[];
+  employees:ProjectMembershipDetails[]=[];
   allEmployees:any[]=[];
   visibleForm:boolean=false;
   selectedEmployeeId:number |undefined;

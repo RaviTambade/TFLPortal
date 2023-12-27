@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectAllocation } from '../../Models/projectallocation';
+import { ProjectMembership } from '../../Models/projectmembership';
 import { ProjectsService } from '../../Services/projects.service';
 
 @Component({
@@ -11,14 +11,14 @@ export class InsertProjectAllocationComponent implements OnInit{
 
   constructor(private service:ProjectsService){}
 
-  projectAllocation:ProjectAllocation={
+  projectAllocation:ProjectMembership={
     Id: 0,
     employeeId: 0,
     projectId: 0,
-    membership: '',
-    assignDate: '',
+    projectRole: '',
+    projectAssignDate: '',
     // releaseDate: '',
-    status: ''
+    currentProjectWorkingStatus: ''
   };
 
   ngOnInit(): void {

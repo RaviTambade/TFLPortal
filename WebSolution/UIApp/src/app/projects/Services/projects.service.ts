@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Project } from '../Models/project';
 import { environment } from 'src/environments/environment';
-import { ProjectAllocation } from '../Models/projectallocation';
+import { ProjectMembership } from '../Models/projectmembership';
 import { ReleaseEmployee } from '../Models/ReleaseEmployee';
 
 @Injectable({
@@ -14,9 +14,9 @@ export class ProjectsService {
   private serviceurl :string=environment.apiUrl;
   constructor(private httpClient: HttpClient) { }
 
-  assignedEmployeeToProject(projectId:number,employeeId:number,project:ProjectAllocation):Observable<ProjectAllocation>{
+  assignedEmployeeToProject(projectId:number,employeeId:number,project:ProjectMembership):Observable<ProjectMembership>{
     let url=this.serviceurl+"/projectmgmt/projectallocation/projects/"+ projectId +"/allocate/employee/"+employeeId;
-    return this.httpClient.post<ProjectAllocation>(url,project);
+    return this.httpClient.post<ProjectMembership>(url,project);
   }
 
   releaseEmployeeFromProject(projectId:number,employeeId:number,project:ReleaseEmployee):Observable<boolean>{
@@ -35,14 +35,14 @@ export class ProjectsService {
     return this.httpClient.get<any>(url);
   }
 
-  getAllProjectsBetweenDates(fromAssignedDate:string,toAssignedDate:string):Observable<ProjectAllocation[]>{
+  getAllProjectsBetweenDates(fromAssignedDate:string,toAssignedDate:string):Observable<ProjectMembership[]>{
     let url=this.serviceurl+"/projectmgmt/projectallocation/projects/fromassigneddate/"+ fromAssignedDate+"/toassigneddate"+toAssignedDate ;
-    return this.httpClient.get<ProjectAllocation[]>(url);
+    return this.httpClient.get<ProjectMembership[]>(url);
   }
 
-  getAllProjectsOfEmployeeBetweenDates(fromAssignedDate:string,toAssignedDate:string,employeeId:number):Observable<ProjectAllocation[]>{
+  getAllProjectsOfEmployeeBetweenDates(fromAssignedDate:string,toAssignedDate:string,employeeId:number):Observable<ProjectMembership[]>{
     let url=this.serviceurl+"/projectmgmt/projectallocation/projects/employees/"+employeeId+"/fromassigneddate/"+ fromAssignedDate+"/toassigneddate"+toAssignedDate ;
-    return this.httpClient.get<ProjectAllocation[]>(url);
+    return this.httpClient.get<ProjectMembership[]>(url);
   }
 
   getEmployeesOfProject(projectId:number,status:string):Observable<any>{

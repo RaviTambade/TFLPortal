@@ -39,7 +39,7 @@ export class TimesheetEmployeeWorkChartComponent {
       id: 0,
       title: 'All',
       startDate: '',
-      teamManagerId: 0,
+      managerId: 0,
       status: '',
       endDate: '',
       description: '',

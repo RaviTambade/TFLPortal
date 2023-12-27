@@ -10,8 +10,8 @@ import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
   templateUrl: './all-employees-of-project.component.html',
   styleUrls: ['./all-employees-of-project.component.css']
 })
+
 export class AllEmployeesOfProjectComponent implements OnInit{
-  
   assignedEmployees:any[]=[];
   projects:Project[]=[];
   EmployeeId:number |undefined;
@@ -45,7 +45,6 @@ export class AllEmployeesOfProjectComponent implements OnInit{
       console.log(res);      
     })
   }
-
 
   onSubmit(projectId:number,employeeId:number){
     this.updateProject.employeeId= employeeId;
