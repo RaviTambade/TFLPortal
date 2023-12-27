@@ -113,7 +113,7 @@
             CONSTRAINT fk_projectwork_members2 FOREIGN KEY (assignedto) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
             CONSTRAINT fk_projectwork_projects FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
             CONSTRAINT fk_projectwork_projects3 FOREIGN KEY (sprintid) REFERENCES sprintmaster(id) ON UPDATE CASCADE ON DELETE CASCADE
-    );
+        );
 
   
 

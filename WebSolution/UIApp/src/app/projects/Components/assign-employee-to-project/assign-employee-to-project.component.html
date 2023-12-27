@@ -1,8 +1,7 @@
 <form [formGroup]="assignemployeeform" (ngSubmit)="onSubmit()">
-
     <div>
-        <label for="membership">Membership</label>
-        <input type="text" id="membership" name="membership" formControlName="membership">
+        <label for="projectRole">Role</label>
+        <input type="text" id="projectRole" name="projectRole" formControlName="projectRole">
       </div>
       <select name="projectId" id="projectId" (change)="onChange($event)" formControlName="projectId" >
         <option *ngFor="let project of projects" [value]="project.id">{{project.title}}</option>
@@ -11,4 +10,4 @@
       <div>
         <button type="submit">Submit</button>
       </div>
-  </form>
+</form>

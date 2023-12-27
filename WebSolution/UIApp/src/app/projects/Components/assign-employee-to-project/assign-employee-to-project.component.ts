@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ProjectsService } from '../../Services/projects.service';
-import { ProjectAllocation } from '../../Models/projectallocation';
+import { ProjectMembership } from '../../Models/projectmembership';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Project } from '../../Models/project';
 import { ProjectService } from 'src/app/shared/services/project.service';
@@ -29,21 +29,22 @@ export class AssignEmployeeToProjectComponent implements OnInit{
  
  assignemployeeform=new FormGroup({
   projectId:new FormControl(),
-  membership :new FormControl()
+  projectRole :new FormControl()
 });
 
-onSubmit(){
-  let projectAllocations:ProjectAllocation={
-    Id: 0,
-    employeeId: this.employeeId,
-    projectId: this.assignemployeeform.get("projectId")?.value,
-    membership: this.assignemployeeform.get("membership")?.value,
-    assignDate: new Date().toISOString().slice(0,10),
-    status: "yes"
-  }
 
-  console.log(projectAllocations);
-  this.service.assignedEmployeeToProject(projectAllocations.projectId,projectAllocations.employeeId,projectAllocations).subscribe((res)=>{
+
+onSubmit(){
+    let projectMembership:ProjectMembership={
+      Id: 0,
+      employeeId :this.employeeId,
+      projectId :this.assignemployeeform.get("projectId")?.value,
+      projectRole :this.assignemployeeform.get("projectRole")?.value || " ",
+      projectAssignDate: new Date().toISOString().slice(0,10),
+      currentProjectWorkingStatus:"yes"
+  }
+  console.log(projectMembership);
+  this.service.assignedEmployeeToProject(projectMembership.projectId,projectMembership.employeeId,projectMembership).subscribe((res)=>{
   console.log(res);
  });
  console.log(this.assignemployeeform.value)

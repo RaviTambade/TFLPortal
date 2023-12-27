@@ -225,48 +225,12 @@ DROP Procedure getActivityCounts;
 call getActivityCounts(@todo,@inprogress,@completed);
 SELECT @todo,@inprogress,@completed;
 
+-- get monthly leave count of employee by leavetype
+SELECT leavetype,COALESCE(SUM(DATEDIFF(todate, fromdate) + 1), 0) AS consumedleaves,MONTH(fromdate) AS month FROM employeeleaves 
+WHERE employeeId = 12 AND status = "sanctioned" AND YEAR(fromdate) = 2023 GROUP BY leavetype,MONTH(fromdate);
+    
 
--- count of leaves 
-WITH Months AS (
-    SELECT '2023-01-01' AS month_start
-    UNION SELECT '2023-02-01'
-    UNION SELECT '2023-03-01'
-    UNION SELECT '2023-04-01'
-    UNION SELECT '2023-05-01'
-    UNION SELECT '2023-06-01'
-    UNION SELECT '2023-07-01'
-    UNION SELECT '2023-08-01'
-    UNION SELECT '2023-09-01'
-    UNION SELECT '2023-10-01'
-    UNION SELECT '2023-11-01'
-    UNION SELECT '2023-12-01'
-)
 
--- Count leaves for each month
-SELECT 
-    MONTHNAME(m.month_start) AS month_name,
-    COALESCE(COUNT(l.employeeid), 0) AS leave_count
-FROM 
-    Months m
-LEFT JOIN 
-    leaves l ON l.employeeid = 10
-            AND (
-                (l.fromdate BETWEEN m.month_start AND LAST_DAY(m.month_start))
-                OR 
-                (l.todate BETWEEN m.month_start AND LAST_DAY(m.month_start))
-                OR 
-                (LAST_DAY(m.month_start) BETWEEN l.fromdate AND l.todate)
-            )
-GROUP BY 
-    m.month_start
-ORDER BY 
-    m.month_start;
-
--- call procedure getAvailableLeavesOfEmployee
-
-call getAvailableLeavesOfEmployee(12,4,2023,@remainingSickLeaves,@remainingCasualLeaves,@remainingPaidLeaves,@remainingUnpaidLeaves);
-
-select @remainingSickLeaves,@remainingCasualLeaves,@remainingPaidLeaves,@remainingUnpaidLeaves;
 
 
 select * from projects;

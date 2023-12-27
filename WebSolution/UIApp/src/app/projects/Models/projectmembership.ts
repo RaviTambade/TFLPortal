@@ -1,11 +1,11 @@
-export class ProjectAllocation{
+export class ProjectMembership{
     constructor(
       public Id: number,  
       public employeeId: number,
       public projectId: number,
-      public membership: string,
-      public assignDate: string,
+      public projectRole: string,
+      public projectAssignDate: string,
       // public releaseDate: string,
-      public status:string
+      public currentProjectWorkingStatus:string
     ){}
   }
