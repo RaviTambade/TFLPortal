@@ -1,4 +1,3 @@
-using Transflower.TFLPortal.TFLSAL.DTO;
 
 public class ProjectMembershipResponse
 {

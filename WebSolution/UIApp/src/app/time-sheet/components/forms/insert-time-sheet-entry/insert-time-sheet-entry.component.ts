@@ -3,6 +3,7 @@ import { Project } from 'src/app/projects/Models/project';
 import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
 import { ProjectService } from 'src/app/shared/services/project.service';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
+import { TimeSheetDetailView } from 'src/app/time-sheet/models/timesheet-detail-view';
 import { TimeSheetDetails } from 'src/app/time-sheet/models/timesheetdetails';
 
 @Component({
@@ -28,17 +29,13 @@ export class InsertTimeSheetEntryComponent implements OnInit {
     id: 0,
     fromTime: '',
     toTime: '',
-    durationInMinutes: 0,
-    durationInHours: '',
     timesheetId: 0,
-    work: '',
-    workCategory: '',
-    description: '',
-    projectId: 0,
-    projectName: '',
+    employeeWorkId: 0
   };
 
   projects: Project[] = [];
+  selectedProjectId:number=0;
+
   @Input() timesheetId!: number;
   @Output() stateChangeEvent = new EventEmitter<boolean>();
   constructor(
@@ -51,9 +48,6 @@ export class InsertTimeSheetEntryComponent implements OnInit {
     if (employeeId != null) {
       this.projectSvc .getProjectsOfEmployee(Number(employeeId)) .subscribe((res) => {
           this.projects = res;
-          this.timeSheetDetail.projectId=this.projects[0].id;
-          this.timeSheetDetail.projectName=this.projects[0].title;
-          this.timeSheetDetail.workCategory=this.activitiyTypes[0];
         });
     }
   }
@@ -63,14 +57,8 @@ export class InsertTimeSheetEntryComponent implements OnInit {
       id: 0,
       fromTime: this.timeSheetDetail.fromTime + ':00',
       toTime: this.timeSheetDetail.toTime + ':00',
-      durationInMinutes: this.timeSheetDetail.durationInMinutes,
-      durationInHours: this.timeSheetDetail.durationInHours,
       timesheetId: this.timesheetId,
-      work: this.timeSheetDetail.work,
-      workCategory: this.timeSheetDetail.workCategory,
-      description: this.timeSheetDetail.description,
-      projectId: this.timeSheetDetail.projectId,
-      projectName: this.timeSheetDetail.projectName,
+      employeeWorkId:0
     };
 
     this.workmgmtSvc.addTimeSheetDetails(timeSheetDetail).subscribe((res) => {
@@ -80,7 +68,7 @@ export class InsertTimeSheetEntryComponent implements OnInit {
     });
   }
 
-  getDuration(timeSheetDetail: TimeSheetDetails) {
+  getDuration(timeSheetDetail: TimeSheetDetailView) {
     this.timeSheetDetail = this.workmgmtSvc.getDurationOfWork(timeSheetDetail);
   }
 }

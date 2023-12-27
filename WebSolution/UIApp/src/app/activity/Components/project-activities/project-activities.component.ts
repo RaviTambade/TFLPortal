@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivityService } from '../../Services/activity.service';
 import { Project } from 'src/app/projects/Models/project';
-import { Activity } from '../../Models/Activity';
 import { ProjectService } from 'src/app/shared/services/project.service';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
 import { JwtService } from 'src/app/shared/services/jwt.service';
 import { TokenClaims } from 'src/app/shared/Enums/tokenclaims';
+import { EmployeeWork } from '../../Models/EmployeeWork';
 
 @Component({
   selector: 'project-activities',
@@ -15,10 +15,10 @@ import { TokenClaims } from 'src/app/shared/Enums/tokenclaims';
 })
 export class ProjectActivitiesComponent implements OnInit {
   projects: Project[] = [];
-  activities: Activity[] = [];
+  activities: EmployeeWork[] = [];
   projectId: number = 0;
   employeeId:number|any;
-  visibleActivities: Activity[]=[];
+  visibleActivities: EmployeeWork[]=[];
 role:string|undefined=undefined;
   checkStatusTodo: boolean = true;
   checkStatusInProgress: boolean = true;
@@ -41,7 +41,7 @@ role:string|undefined=undefined;
       }
       else if(this.role=='Employee'){
         
-        this.workMgmtSvc.getAllActivitiesOfEmployee(this.projectId,this.employeeId).subscribe((res)=>{
+        this.workMgmtSvc.getAllEmployeeWorkOfEmployee(this.projectId,this.employeeId).subscribe((res)=>{
           console.log(this.employeeId);
           console.log(this.projectId);
           this.activities=res;
@@ -57,7 +57,7 @@ role:string|undefined=undefined;
   }
 
   populateActivities(projectId: number) {
-    this.workMgmtSvc.fetchActivitiesByProject(projectId).subscribe((res) => {
+    this.workMgmtSvc.fetchEmployeeWorkByProject(projectId).subscribe((res) => {
       this.activities = res;
       this.filterActivities();
     });

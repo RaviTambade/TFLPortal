@@ -1,8 +1,7 @@
 using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
-using Transflower.MembershipRolesMgmt.Models.Entities;
-using Transflower.TFLPortal.TFLSAL.DTO;
+using Transflower.TFLPortal.TFLOBL.External;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace Transflower.TFLPortal.TFLSAL.Services;
@@ -17,23 +16,23 @@ public class ExternalApiService
     }
 
 
-    public async Task<UserDTO?> GetUser(int userId)
+    public async Task<User?> GetUser(int userId)
     {
-        var response = await httpClient.GetFromJsonAsync<UserDTO>(
+        var response = await httpClient.GetFromJsonAsync<User>(
             $"http://localhost:5142/api/users/{userId}"
         );
         return response;
     }
 
-    public async Task<BankAccountDTO?> GetUserBankAccount(int userId, string userType)
+    public async Task<BankAccount?> GetUserBankAccount(int userId, string userType)
     {
-        var response = await httpClient.GetFromJsonAsync<BankAccountDTO>(
+        var response = await httpClient.GetFromJsonAsync<BankAccount>(
             $"http://localhost:5053/api/accounts/details/{userId}/{userType}"
         );
         return response;
     }
 
-    public async Task<int> FundTransfer(FundTransferRequestDTO request)
+    public async Task<int> FundTransfer(FundTransferRequest request)
     {
         var requestJson = new StringContent(
             JsonSerializer.Serialize(request),
@@ -51,20 +50,20 @@ public class ExternalApiService
         return transactionId;
     }
 
-    public async Task<List<UserDTO>> GetUserDetails(string userIds)
+    public async Task<List<User>> GetUserDetails(string userIds)
     {
-        var response = await httpClient.GetFromJsonAsync<List<UserDTO>>(
+        var response = await httpClient.GetFromJsonAsync<List<User>>(
             $"http://localhost:5142/api/users/name/{userIds}"
         );
         return response;
     }
 
-     public async Task<List<RoleDTO>> GetRoleOfUser(int userId)
+     public async Task<List<Role>> GetRoleOfUser(int userId)
     {
         string lob="PMS";
-        var response = await httpClient.GetFromJsonAsync<List<RoleDTO>>(
+        var response = await httpClient.GetFromJsonAsync<List<Role>>(
             $"http://localhost:5142/api/roles/{userId}/{lob}"
         );
-        return response ?? new List<RoleDTO>();
+        return response ?? new List<Role>();
     }
 }

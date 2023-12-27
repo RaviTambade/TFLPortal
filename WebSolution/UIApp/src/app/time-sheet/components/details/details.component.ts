@@ -1,12 +1,10 @@
 import {
   Component,
   Input,
-  OnInit,
-  SimpleChange,
   SimpleChanges,
 } from '@angular/core';
-import { TimeSheetDetails } from '../../models/timesheetdetails';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
+import { TimeSheetDetailView } from '../../models/timesheet-detail-view';
 @Component({
   selector: 'timesheet-details',
   templateUrl: './details.component.html',
@@ -14,7 +12,7 @@ import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 })
 export class DetailsComponent {
   @Input() timesheetId!: number;
-  timeSheetDetails: TimeSheetDetails[] = [];
+  timeSheetDetails: TimeSheetDetailView[] = [];
   totalminutes: any = 0;
 
 

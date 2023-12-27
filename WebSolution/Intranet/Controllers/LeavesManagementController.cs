@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using Transflower.MembershipRolesMgmt.Models.Entities;
 using Transflower.TFLPortal.Intranet.Responses;
 using Transflower.TFLPortal.TFLOBL.Entities;
 using Transflower.TFLPortal.TFLOBL.Entities.LeaveMgmt;
+using Transflower.TFLPortal.TFLOBL.External;
 using Transflower.TFLPortal.TFLSAL.Services;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 
@@ -73,7 +73,7 @@ public class LeavesManagementController : ControllerBase
     public async Task<PendingLeaveDetails> GetPendingLeaves(int employeeId,int year)
     {
         Employee employee= await _hrService.GetEmployeeById(employeeId);
-        List<RoleDTO> roles= await _apiService.GetRoleOfUser(employee.UserId);
+        List<Role> roles= await _apiService.GetRoleOfUser(employee.UserId);
         int roleId=roles.FirstOrDefault().Id;
        return await _service.GetPendingLeaves(employeeId,roleId,year);   
     }

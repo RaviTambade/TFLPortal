@@ -1,6 +1,5 @@
-namespace Transflower.TFLPortal.TFLSAL.DTO;
-
-public class FundTransferRequestDTO
+namespace Transflower.TFLPortal.TFLOBL.External;
+public class FundTransferRequest
 {
     public string? FromAcct{get;set;}
     public string? ToAcct{get;set;}

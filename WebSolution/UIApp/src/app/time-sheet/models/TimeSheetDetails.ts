@@ -1,15 +1,10 @@
 
 export class TimeSheetDetails{
     constructor(public id:number,
-                public work:string,
-                public workCategory:string,
-                public description:string,
+                public employeeWorkId:number,
                 public fromTime:string,
                 public toTime:string,
                 public timesheetId:number,
-                public projectId:number,
-                public projectName:string,
-                public durationInMinutes:number,
-                public durationInHours:string){
+        ){
     }
 }

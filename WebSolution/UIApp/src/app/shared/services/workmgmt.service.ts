@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Activity } from 'src/app/activity/Models/Activity';
+
 import { TimeSheetDetails } from 'src/app/time-sheet/models/timesheetdetails';
 import { Timesheet } from 'src/app/time-sheet/models/timesheet';
-import { WorkCategoryDetails } from 'src/app/time-sheet/models/workcategorydetails';
-import { TimesheetView } from 'src/app/time-sheet/models/timesheetview';
 import { ProjectWorkHour } from 'src/app/time-sheet/models/projectworkhour';
+import { TimeSheetDetailView } from 'src/app/time-sheet/models/timesheet-detail-view';
+import { TimesheetView } from 'src/app/time-sheet/models/timesheetview';
+import { WorkCategoryDetails } from 'src/app/time-sheet/models/workcategorydetails';
+import { EmployeeWork } from 'src/app/activity/Models/EmployeeWork';
 
 
 @Injectable({
@@ -23,42 +25,42 @@ export class WorkmgmtService {
 
   // http://localhost:5263/api/workmgmt/activities/1
 
-  addActivity(addactivity: Activity): Observable<boolean> {
-    let url = this.serviceurl + '/workmgmt/activities';
+  addActivity(addactivity: EmployeeWork): Observable<boolean> {
+    let url = this.serviceurl + '/workmgmt/employeeWork';
     console.log('service called');
     return this.http.post<boolean>(url, addactivity);
   }
 
-  fetchActivitiesByProject(projectId: number): Observable<Activity[]> {
-    let url = this.serviceurl + '/workmgmt/activities/selectedProject/' + projectId;
+  fetchEmployeeWorkByProject(projectId: number): Observable<EmployeeWork[]> {
+    let url = this.serviceurl + '/workmgmt/employeeWork/selectedProject/' + projectId;
     console.log(url);
-    return this.http.get<Activity[]>(url);
+    return this.http.get<EmployeeWork[]>(url);
   }
 
 
-  fetchTodaysActivities(projectId: number,date:string): Observable<Activity[]> {
-    let url = this.serviceurl + '/workmgmt/activities/project/' + projectId+'/date/'+date;
+  fetchTodaysEmployeeWork(projectId: number,date:string): Observable<EmployeeWork[]> {
+    let url = this.serviceurl + '/workmgmt/employeeWork/project/' + projectId+'/date/'+date;
     console.log(url);
-    return this.http.get<Activity[]>(url);
+    return this.http.get<EmployeeWork[]>(url);
   }
-  fetchAllActivitiesOfEmployee(assignedTo: number): Observable<Activity[]> {
-    let url = this.serviceurl + '/workmgmt/activities/employees/' + assignedTo;
+  fetchAllEmployeeWorkOfEmployee(assignedTo: number): Observable<EmployeeWork[]> {
+    let url = this.serviceurl + '/workmgmt/employeeWork/employees/' + assignedTo;
     console.log(url);
-    return this.http.get<Activity[]>(url);
+    return this.http.get<EmployeeWork[]>(url);
   }
 
 
   // http://localhost:5263/api/workmgmt/activities/activity/todo/4/15
 
-  getAllNotStartedActivities(projectId: number, employeeId: number): Observable<Activity[]> {
-    let url = this.serviceurl + '/workmgmt/activities/activity/todo/' + projectId + '/' + employeeId;
-    return this.http.get<Activity[]>(url);
+  getAllNotStartedEmployeeWork(projectId: number, employeeId: number): Observable<EmployeeWork[]> {
+    let url = this.serviceurl + '/workmgmt/employeeWork/activity/todo/' + projectId + '/' + employeeId;
+    return this.http.get<EmployeeWork[]>(url);
   }
 
   // http://localhost:5263/api/workmgmt/activities/Update/1/4/15
 
-  updateActivity(status: string, activityId: number): Observable<boolean> {
-    let url = this.serviceurl +'/workmgmt/activities/project/'+ activityId+'/status/'+status ;
+  updateEmployeeWork(status: string, activityId: number): Observable<boolean> {
+    let url = this.serviceurl +'/workmgmt/employeeWork/project/'+ activityId+'/status/'+status ;
     return this.http.put<boolean>(url, status);
 
     // let url = this.serviceurl +'/workmgmt/activities/Update/' +status +'/' + activityId;
@@ -76,15 +78,15 @@ export class WorkmgmtService {
     let url = `${this.serviceurl}/workmgmt/timesheets/employees/${employeeId}/date/${date}`;
     return this.http.get<TimesheetView>(url);
   }
-  getTmeSheetEntry(timeSheetentryId:number):Observable<TimeSheetDetails>{
-    let url = `${this.serviceurl}/workmgmt/timesheets/timesheetentries/${timeSheetentryId}`;
-    return this.http.get<TimeSheetDetails>(url);
+  getTimesheetDetail(timeSheetDetailId:number):Observable<TimeSheetDetailView>{
+    let url = `${this.serviceurl}/workmgmt/timesheets/timesheetdetails/${timeSheetDetailId}`;
+    return this.http.get<TimeSheetDetailView>(url);
     
   }
 
-  getTimeSheetDetails(timesheetId: number): Observable<TimeSheetDetails[]> {
-    let url = `${this.serviceurl}/workmgmt/timesheets/${timesheetId}/timesheetentries`;
-    return this.http.get<TimeSheetDetails[]>(url);
+  getTimeSheetDetails(timesheetId: number): Observable<TimeSheetDetailView[]> {
+    let url = `${this.serviceurl}/workmgmt/timesheets/${timesheetId}/timesheetdetails`;
+    return this.http.get<TimeSheetDetailView[]>(url);
   }
 
 
@@ -98,8 +100,8 @@ export class WorkmgmtService {
     let url = `${this.serviceurl}/workmgmt/timesheets/projects/workinghours/employees/${employeeId}`;
     return this.http.get<ProjectWorkHour[]>(url);
   }
-  getAllActivitiesOfEmployee(projectId:number,employeeId:number){
-  let url =this.serviceurl +'/workmgmt/activities/projects/'+projectId+'/employees/'+employeeId;
+  getAllEmployeeWorkOfEmployee(projectId:number,employeeId:number){
+  let url =this.serviceurl +'/workmgmt/employeeWork/projects/'+projectId+'/employees/'+employeeId;
     return this.http.get<any>(url);
   }
 
@@ -110,7 +112,7 @@ export class WorkmgmtService {
   }
 
   addTimeSheetDetails(TimeSheetDetails: TimeSheetDetails): Observable<any> {
-    let url = `${this.serviceurl}/workmgmt/timesheets/timesheetentries`;
+    let url = `${this.serviceurl}/workmgmt/timesheets/timesheetdetails`;
     return this.http.post(url, TimeSheetDetails);
   }
 
@@ -120,23 +122,23 @@ export class WorkmgmtService {
   }
 
   updateTimeSheetDetails(TimeSheetDetailsId: number, TimeSheetDetails: TimeSheetDetails): Observable<boolean> {
-    let url = `${this.serviceurl}/workmgmt/timesheets/timesheetentries/${TimeSheetDetailsId}`;
+    let url = `${this.serviceurl}/workmgmt/timesheets/timesheetdetails/${TimeSheetDetailsId}`;
     return this.http.put<boolean>(url, TimeSheetDetails);
   }
 
   removeTimeSheetDetails(TimeSheetDetailsId: number): Observable<boolean> {
-    let url = `${this.serviceurl}/workmgmt/timesheets/timesheetentries/remove/${TimeSheetDetailsId}`;
+    let url = `${this.serviceurl}/workmgmt/timesheets/timesheetdetails/remove/${TimeSheetDetailsId}`;
     return this.http.delete<boolean>(url);
   }
 
   removeAllTimeSheetDetails(timesheetId: number): Observable<boolean> {
-    let url = `${this.serviceurl}/workmgmt/timesheets/timesheetentries/removeall/${timesheetId}`;
+    let url = `${this.serviceurl}/workmgmt/timesheets/timesheetdetails/removeall/${timesheetId}`;
     return this.http.delete<boolean>(url);
   }
 
   //helper functions
 
-  getDurationOfWork(TimeSheetDetails: TimeSheetDetails): TimeSheetDetails {
+  getDurationOfWork(TimeSheetDetails: TimeSheetDetailView): TimeSheetDetailView {
     let startTime = TimeSheetDetails.fromTime;
     let endTime = TimeSheetDetails.toTime;
 
@@ -165,8 +167,8 @@ export class WorkmgmtService {
   }
 
 
-  getAllActivitiesCount(): Observable<any> {
-    let url =this.serviceurl +'/workmgmt/activities/ActivitySp';
+  getAllEmployeeWorkCount(): Observable<any> {
+    let url =this.serviceurl +'/workmgmt/employeeWork/ActivitySp';
     return this.http.get<any>(url);
   }
 

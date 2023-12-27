@@ -8,5 +8,4 @@ export class Timesheet{
                 public statusChangedDate:string,
                 public employeeId:number){}
                 
-    public timeSheetDetails:TimeSheetDetails[]=[]
 }

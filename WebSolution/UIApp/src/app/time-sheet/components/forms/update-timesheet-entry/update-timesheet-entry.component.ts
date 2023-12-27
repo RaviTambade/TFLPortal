@@ -11,6 +11,7 @@ import { Project } from 'src/app/projects/Models/project';
 import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
 import { ProjectService } from 'src/app/shared/services/project.service';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
+import { TimeSheetDetailView } from 'src/app/time-sheet/models/timesheet-detail-view';
 import { TimeSheetDetails } from 'src/app/time-sheet/models/timesheetdetails';
 
 @Component({
@@ -32,7 +33,7 @@ export class UpdateTimesheetEntryComponent implements OnInit {
     'other',
   ];
 
-  @Input() timesheetDetails!: TimeSheetDetails;
+  @Input() timesheetDetails!: TimeSheetDetailView;
   @Output() stateChangeEvent = new EventEmitter<boolean>();
 
   date: string = '';
@@ -47,10 +48,10 @@ export class UpdateTimesheetEntryComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      let timesheetEntryId = params.get('id');
+      let timesheetDetailId = params.get('id');
       this.date = params.get('date') || '';
       this.workmgmtSvc
-        .getTmeSheetEntry(Number(timesheetEntryId))
+        .getTimesheetDetail(Number(timesheetDetailId))
         .subscribe((res) => {
           this.timesheetDetails = res;
           this.timesheetDetails.fromTime = this.timesheetDetails.fromTime.slice(0,5);
@@ -67,26 +68,15 @@ export class UpdateTimesheetEntryComponent implements OnInit {
     }
   }
 
-  // ngOnChanges(changes: SimpleChanges) {
-  //   this.timesheetDetails = changes['timesheetDetails'].currentValue;
-  //   console.log("🚀 ~ ngOnChanges ~ timesheetDetails:", this.timesheetDetails);
-  //   this.timesheetDetails.fromTime = this.timesheetDetails.fromTime.slice(0,5);
-  //   this.timesheetDetails.toTime = this.timesheetDetails.toTime.slice(0,5);
-  // }
+
 
   onClick() {
     let timesheetDetails: TimeSheetDetails = {
       id: this.timesheetDetails.id,
       fromTime: this.timesheetDetails.fromTime + ':00',
       toTime: this.timesheetDetails.toTime + ':00',
-      durationInMinutes: this.timesheetDetails.durationInMinutes,
-      durationInHours: this.timesheetDetails.durationInHours,
       timesheetId: this.timesheetDetails.timesheetId,
-      work: this.timesheetDetails.work,
-      workCategory: this.timesheetDetails.workCategory,
-      description: this.timesheetDetails.description,
-      projectId: this.timesheetDetails.projectId,
-      projectName: this.timesheetDetails.projectName,
+      employeeWorkId: this.timesheetDetails.employeeWorkId
     };
 
     this.workmgmtSvc
@@ -103,7 +93,7 @@ export class UpdateTimesheetEntryComponent implements OnInit {
     this.router.navigate(['/timesheet/view/add', this.date]);
   }
 
-  getDuration(timeSheetEnrty: TimeSheetDetails) {
+  getDuration(timeSheetEnrty: TimeSheetDetailView) {
     this.workmgmtSvc.getDurationOfWork(timeSheetEnrty);
   }
 }

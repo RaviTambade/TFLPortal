@@ -1,6 +1,6 @@
 using Transflower.TFLPortal.TFLOBL.Entities;
 namespace Transflower.TFLPortal.TFLSAL.Services.Interfaces;
-public interface IActivityService
+public interface IEmployeeWorkService
 {
      public Task<List<EmployeeWork>> GetAllActivities();
      public Task<List<EmployeeWork>> GetActivitiesByProject(int projectId);

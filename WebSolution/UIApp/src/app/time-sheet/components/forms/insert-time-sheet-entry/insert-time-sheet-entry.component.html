@@ -1,23 +1,18 @@
 <h2> Add TimesheetEntry</h2>
 <label>Project:</label>
-<select [(ngModel)]="timeSheetDetail.projectId">
+<select [(ngModel)]="selectedProjectId">
     <option *ngFor="let project of projects;" [value]="project.id">{{project.title|titlecase}}</option>
 </select><br>
 <label>Activity:</label>
-<select [(ngModel)]="timeSheetDetail.workCategory">
+<select [(ngModel)]="timeSheetDetail.employeeWorkId">
     <option *ngFor="let activity of activitiyTypes;let i=index" [value]="activity">{{activity |titlecase}}</option>
 </select><br>
-<label>Title:</label>
-<input type="text" [(ngModel)]="timeSheetDetail.work"> <br /><br>
-
-<label>Description:</label>
-<textarea name="" id="" cols="30" rows="1" [(ngModel)]="timeSheetDetail.description"></textarea><br>
 <label>From :</label>
-<input type="time" name="fromTime" [(ngModel)]="timeSheetDetail.fromTime" (change)="getDuration(timeSheetDetail)">
+<!-- <input type="time" name="fromTime" [(ngModel)]="timeSheetDetail.fromTime" (change)="getDuration(timeSheetDetail)">
 <label>TO:</label>
 <input type="time" name="toTime" [(ngModel)]="timeSheetDetail.toTime" (change)="getDuration(timeSheetDetail)"> <br /> <br />
 
 
-<p>duration:{{timeSheetDetail.durationInHours}}</p>
+<!-- <p>duration:{{timeSheetDetail.durationInHours}}</p> -->
 <br>
-<button type="submit" (click)="onClick()">Add</button>
+<button type="submit" (click)="onClick()">Add</button> -->
