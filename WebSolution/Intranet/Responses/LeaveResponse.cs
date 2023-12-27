@@ -1,6 +1,4 @@
 
-using Transflower.TFLPortal.TFLSAL.DTO;
-
 namespace Transflower.TFLPortal.Intranet.Responses;
 
 public class LeaveResponse

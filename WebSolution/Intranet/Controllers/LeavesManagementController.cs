@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using Transflower.MembershipRolesMgmt.Models.Entities;
 using Transflower.TFLPortal.Intranet.Responses;
 using Transflower.TFLPortal.TFLOBL.Entities;
 using Transflower.TFLPortal.TFLOBL.Entities.LeaveMgmt;
+using Transflower.TFLPortal.TFLOBL.External;
 using Transflower.TFLPortal.TFLSAL.Services;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 

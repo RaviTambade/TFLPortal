@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using Transflower.TFLPortal.TFLOBL.DTO;
+using Transflower.TFLPortal.Intranet.Responses;
 using Transflower.TFLPortal.TFLOBL.Entities;
-using Transflower.TFLPortal.TFLSAL.DTO;
+using Transflower.TFLPortal.TFLOBL.External;
 using Transflower.TFLPortal.TFLSAL.Services;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 

@@ -3,8 +3,7 @@ using Transflower.TFLPortal.Intranet.Responses;
 using Transflower.TFLPortal.TFLOBL.Entities;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 using Transflower.TFLPortal.TFLSAL.Services;
-using Transflower.TFLPortal.TFLSAL.DTO;
-using Transflower.Notifications.Mail;
+
 
 namespace Transflower.TFLPortal.Intranet.Controllers;
 

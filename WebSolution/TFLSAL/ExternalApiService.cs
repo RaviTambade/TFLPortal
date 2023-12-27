@@ -1,9 +1,7 @@
 using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
-using Transflower.MembershipRolesMgmt.Models.Entities;
-using Transflower.TFLPortal.TFLOBL.DTO;
-using Transflower.TFLPortal.TFLSAL.DTO;
+using Transflower.TFLPortal.TFLOBL.External;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace Transflower.TFLPortal.TFLSAL.Services;

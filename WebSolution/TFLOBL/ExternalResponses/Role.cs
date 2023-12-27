@@ -1,4 +1,4 @@
-namespace Transflower.MembershipRolesMgmt.Models.Entities;
+namespace Transflower.TFLPortal.TFLOBL.External;
 public class Role
 {
     public int Id { get; set; }

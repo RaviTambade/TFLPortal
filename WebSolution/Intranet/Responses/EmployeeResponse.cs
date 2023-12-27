@@ -1,5 +1,4 @@
 
-using Transflower.TFLPortal.TFLSAL.DTO;
 
 namespace Transflower.TFLPortal.Intranet.Responses;
 
@@ -11,7 +10,6 @@ public class EmployeeResponse
 
     public string? LastName { get; set; }
     public string? Email { get; set; }
-
     public string? ContactNumber { get; set; }
 
 }

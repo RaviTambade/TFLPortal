@@ -1,4 +1,4 @@
-namespace Transflower.TFLPortal.TFLOBL.DTO;
+namespace Transflower.TFLPortal.TFLOBL.External;
 public class BankAccount
 {
     public string? AccountNumber { get; set; }
