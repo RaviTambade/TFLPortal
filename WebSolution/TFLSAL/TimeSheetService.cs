@@ -74,9 +74,9 @@ public class TimesheetService : ITimesheetService
                 employeework.projectworktype as worktype,employeework.title as worktitle,employees.userid
                 FROM timesheets  
                 LEFT JOIN  timesheetdetails ON  timesheets.id= timesheetdetails.timesheetid
-                INNER JOIN employees ON timesheets.employeeid =employees.id
-                INNER JOIN employeework ON timesheetdetails.employeeworkid=employeework.id
-                INNER JOIN projects ON employeework.projectid=projects.id
+                LEFT JOIN employees ON timesheets.employeeid =employees.id
+                LEFT JOIN employeework ON timesheetdetails.employeeworkid=employeework.id
+                LEFT JOIN projects ON employeework.projectid=projects.id
                 WHERE timesheets.timesheetdate = @timesheetDate AND timesheets.employeeId = @employeeId";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@timesheetDate", date);

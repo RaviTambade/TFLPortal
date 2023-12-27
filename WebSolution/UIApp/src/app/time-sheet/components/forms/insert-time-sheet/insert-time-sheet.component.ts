@@ -6,6 +6,7 @@ import { TimeSheetDetails } from 'src/app/time-sheet/models/timesheetdetails';
 import { TimeSheetStatus } from 'src/app/time-sheet/models/timesheetstatus';
 import { TimesheetView } from 'src/app/time-sheet/models/timesheetview';
 import { Timesheet } from 'src/app/time-sheet/models/timesheet';
+import { TimeSheetDetailView } from 'src/app/time-sheet/models/timesheet-detail-view';
 
 @Component({
   selector: 'app-insert-time-sheet',
@@ -20,7 +21,7 @@ export class InsertTimeSheetComponent implements OnInit {
   toDaysdate: string = new Date().toISOString().slice(0, 10);
   employeeId: number = 0;
   timesheet: TimesheetView | undefined;
-  selectedTimeSheetDetailstoUpdate: TimeSheetDetails | undefined;
+  selectedTimeSheetDetailstoUpdate: TimeSheetDetailView | undefined;
   isTimeSheetCreated = false;
   timeSheetStauts = TimeSheetStatus;
 
@@ -75,7 +76,6 @@ export class InsertTimeSheetComponent implements OnInit {
         timesheetDate: this.timesheet.timesheetDate,
         status: 'Submitted',
         employeeId: this.timesheet.employeeId,
-        timeSheetDetails: this.timesheet.timeSheetDetails,
         statusChangedDate: this.date,
       };
 
@@ -95,7 +95,7 @@ export class InsertTimeSheetComponent implements OnInit {
     this.showaddTimeSheetDetails = false;
   }
 
-  onClickUpdateTimeSheetDetails(timesheetDetails: TimeSheetDetails) {
+  onClickUpdateTimeSheetDetails(timesheetDetails: TimeSheetDetailView) {
     let newtimeSheetDetail = { ...timesheetDetails };
     this.selectedTimeSheetDetailstoUpdate = newtimeSheetDetail;
     this.showupdateTimeSheetDetails = true;
