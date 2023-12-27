@@ -400,12 +400,12 @@ public class EmployeeWorkService : IEmployeeWorkService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "INSERT INTO employeework(title,projectworktype,description,createddate,assigneddate,startdate,duedate,assignedto,projectid,sprintid,status,assignedby) VALUES(@title,@projectworktype,@description,@sprintId,@createdDate,@assignDate,@startDate,@dueDate,@assignedTo,@projectId,@status,@assignedBy)";
+            string query = "INSERT INTO employeework(title,projectworktype,description,createddate,assigneddate,startdate,duedate,assignedto,projectid,sprintid,status,assignedby) VALUES(@title,@projectworktype,@description,@createdDate,@assignDate,@startDate,@dueDate,@assignedTo,@projectId,@sprintId,@status,@assignedBy)";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@title", employeeWork.Title);
             cmd.Parameters.AddWithValue("@projectworktype", employeeWork.ProjectWorkType);
             cmd.Parameters.AddWithValue("@description", employeeWork.Description);
-            cmd.Parameters.AddWithValue("@createddate", employeeWork.CreatedDate);
+            cmd.Parameters.AddWithValue("@createdDate", employeeWork.CreatedDate);
             cmd.Parameters.AddWithValue("@assigndate", employeeWork.AssignDate);
             cmd.Parameters.AddWithValue("@startDate", employeeWork.StartDate);
             cmd.Parameters.AddWithValue("@dueDate", employeeWork.DueDate);

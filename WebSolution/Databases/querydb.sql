@@ -1,4 +1,4 @@
--- Active: 1696576841746@@127.0.0.1@3306@tflportal
+-- Active: 1694968636816@@127.0.0.1@3306@tflportal
 
 SELECT * FROM activities where assignedto=15 AND assigneddate='2023-12-14';
 SELECT timesheets.id as timesheetid,timesheets.status,timesheets.statuschangeddate,timesheetdetails.id as timesheetdetailid,
@@ -229,7 +229,6 @@ SELECT @todo,@inprogress,@completed;
 SELECT leavetype,COALESCE(SUM(DATEDIFF(todate, fromdate) + 1), 0) AS consumedleaves,MONTH(fromdate) AS month FROM employeeleaves 
 WHERE employeeId = 12 AND status = "sanctioned" AND YEAR(fromdate) = 2023 GROUP BY leavetype,MONTH(fromdate);
     
-
 
 
 
