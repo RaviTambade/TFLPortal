@@ -121,45 +121,25 @@ public class LeaveManagementService : ILeaveManagementService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query =
-                @"WITH Months AS (
-    SELECT '2023-01-01' AS month_start
-    UNION SELECT '2023-02-01'
-    UNION SELECT '2023-03-01'
-    UNION SELECT '2023-04-01'
-    UNION SELECT '2023-05-01'
-    UNION SELECT '2023-06-01'
-    UNION SELECT '2023-07-01'
-    UNION SELECT '2023-08-01'
-    UNION SELECT '2023-09-01'
-    UNION SELECT '2023-10-01'
-    UNION SELECT '2023-11-01'
-    UNION SELECT '2023-12-01'
-)
-SELECT 
-    MONTHNAME(m.month_start) AS monthname,
-    COALESCE(COUNT(l.employeeid), 0) AS leavecount
-    FROM Months m LEFT JOIN 
-    leaves l ON l.employeeid = @employeeId AND (
-                (l.fromdate BETWEEN m.month_start AND LAST_DAY(m.month_start))
-                OR 
-                (l.todate BETWEEN m.month_start AND LAST_DAY(m.month_start))
-                OR 
-                (LAST_DAY(m.month_start) BETWEEN l.fromdate AND l.todate))
-                GROUP BY m.month_start ORDER BY m.month_start";
+            string query ="SELECT leavetype,COALESCE(SUM(DATEDIFF(todate, fromdate) + 1), 0) AS consumedleaves,MONTH(fromdate) AS month FROM employeeleaves WHERE employeeId = @employeeId AND status = @status AND YEAR(fromdate) = @year GROUP BY leavetype,MONTH(fromdate)";
+    
 
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@employeeId", employeeId);
+            command.Parameters.AddWithValue("@status", "sanctioned");
+            command.Parameters.AddWithValue("@year", year);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
-                int leaveCount = int.Parse(reader["leavecount"].ToString());
-                int month = int.Parse(reader["monthname"].ToString());
+                string leaveType = reader["leavetype"].ToString();
+                int consumedLeaves = int.Parse(reader["consumedleaves"].ToString());
+                int month = int.Parse(reader["month"].ToString());
 
                 LeaveDetails leave = new LeaveDetails()
                 {
-                    ConsumedLeaves = leaveCount,
+                    LeaveType=leaveType,
+                    ConsumedLeaves = consumedLeaves,
                     Month = month
                 };
                 leaves.Add(leave);
