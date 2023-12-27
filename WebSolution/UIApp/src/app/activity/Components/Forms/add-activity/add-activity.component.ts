@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Activity } from 'src/app/activity/Models/Activity';
+import { EmployeeWork } from 'src/app/activity/Models/EmployeeWork';
 import { ActivityService } from 'src/app/activity/Services/activity.service';
 import { Project } from 'src/app/projects/Models/project';
 import { HrService } from 'src/app/shared/services/hr.service';
@@ -24,7 +24,7 @@ projects:Project[]=[];
     })
   }
 
-activity:Activity={
+activity:EmployeeWork={
   id: 0,
   title: '',
   description: '',

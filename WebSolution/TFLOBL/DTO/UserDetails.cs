@@ -1,6 +1,6 @@
 namespace Transflower.TFLPortal.TFLSAL.DTO;
 
-public class UserDetailsDTO
+public class RoleUserDetails
 {
     public int UserId { get; set; }
     public string? FullName { get; set; }

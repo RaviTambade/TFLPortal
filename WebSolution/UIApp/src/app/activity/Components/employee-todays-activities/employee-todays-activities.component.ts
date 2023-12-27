@@ -3,7 +3,7 @@ import { Project } from 'src/app/projects/Models/project';
 import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
 import { ProjectService } from 'src/app/shared/services/project.service';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
-import { Activity } from '../../Models/Activity';
+import { EmployeeWork } from '../../Models/EmployeeWork';
 
 @Component({
   selector: 'app-employee-todays-activities',
@@ -20,7 +20,7 @@ export class EmployeeTodaysActivitiesComponent implements OnInit{
   projects:Project[]=[];
   projectId:number|undefined;
   date:string='2023-12-14'
-  activities:Activity[]=[];
+  activities:EmployeeWork[]=[];
   activityId:number=0;
   status:string='';
  projectName:string="";
@@ -39,7 +39,7 @@ export class EmployeeTodaysActivitiesComponent implements OnInit{
     this.projectId=e.id;
     this.projectName=e.title;
 
-     this.workMgmt.fetchTodaysActivities(this.projectId,this.date).subscribe((res)=>{
+     this.workMgmt.fetchTodaysEmployeeWork(this.projectId,this.date).subscribe((res)=>{
        this.activities=res;
        console.log(this.activities)
       })
@@ -59,7 +59,7 @@ onRecive(activityId:number){
     
     console.log("status"+this.status);
     console.log(this.activityId);
-    this.workMgmt.updateActivity(this.status,this.activityId).subscribe((res)=>{
+    this.workMgmt.updateEmployeeWork(this.status,this.activityId).subscribe((res)=>{
      if(res){
      this.activities= this.activities.filter((activity)=>activity.id!=this.activityId)
      }

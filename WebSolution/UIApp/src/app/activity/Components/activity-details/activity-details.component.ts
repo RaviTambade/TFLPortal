@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Activity } from '../../Models/Activity';
+import { EmployeeWork } from '../../Models/EmployeeWork';
 import { ActivityService } from '../../Services/activity.service';
 import { Employee } from '../../Models/Employee';
 import { ProjectsService } from 'src/app/projects/Services/projects.service';
@@ -17,9 +17,9 @@ export class ActivityDetailsComponent{
   constructor(private workMgmtSvc : WorkmgmtService,private projectSvc:ProjectService,private hrSvc:HrService){}
 
 project:any|undefined;
-activity:Activity|undefined;
+activity:EmployeeWork|undefined;
 employee:Employee|undefined;
- getEvent(event:Activity){
+ getEvent(event:EmployeeWork){
   this.activity=event;
   console.log(event);
   this.hrSvc.getEmployeeDetails(event.assignedBy).subscribe((res)=>{
