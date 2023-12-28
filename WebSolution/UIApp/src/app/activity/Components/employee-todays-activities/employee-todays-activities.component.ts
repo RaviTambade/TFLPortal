@@ -19,16 +19,17 @@ export class EmployeeTodaysActivitiesComponent implements OnInit{
   }
   projects:Project[]=[];
   projectId:number|undefined;
-  date:string='2023-12-14'
+  date= new Date().toISOString().slice(0,10);
   employeeWorks:EmployeeWork[]=[];
   activityId:number=0;
   status:string='';
- projectName:string="";
+  projectName:string="";
   @Output() activityupdate=new EventEmitter<EmployeeWork>();
   ngOnInit(): void {
    this.projectSvc.getProjectsOfEmployee(this.employeeId).subscribe((res)=>{
    this.projects=res;
-   this.update();
+   //this.update();
+   console.log(this.date);
    console.log(this.employeeId);
    })
   
