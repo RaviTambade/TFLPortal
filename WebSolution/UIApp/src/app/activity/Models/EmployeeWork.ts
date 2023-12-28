@@ -2,7 +2,7 @@ export class EmployeeWork{
      constructor(public id:number,
         public  title:string,
         public  description:string,
-        public  activityType:string,
+        public  projectWorkType:string,
         public  projectId:number,
         public  projectName:number,
         public  assignedBy:number,

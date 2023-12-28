@@ -2,7 +2,7 @@
 
 
 <div class="container">
-    <button class="m-2" [routerLink]="['/timesheet/timesheet/create']"> Create New Timesheet</button>
+    <button class="m-2" [routerLink]="['/timesheet/create']"> Create New Timesheet</button>
     <h2> Timesheet List</h2>
     <div class="card">
         <table class="table-bordered text-center">
@@ -15,7 +15,7 @@
             </thead>
             <tbody *ngFor="let timesheet of timeSheets">
                 <tr>
-                    <td  style="cursor: pointer; text-decoration: underline ; color:  #0000EE;" [routerLink]="['../details',timesheet.timesheetDate.slice(0,10)]"> {{timesheet.timesheetDate | date}}</td>
+                    <td  style="cursor: pointer; text-decoration: underline ; color:  #0000EE;" [routerLink]="['../details',timesheet.id]"> {{timesheet.timesheetDate | date}}</td>
                     <td> {{timesheet.status}}</td>
                     <td>{{timesheet.statusChangedDate |date}}</td>
                 </tr>

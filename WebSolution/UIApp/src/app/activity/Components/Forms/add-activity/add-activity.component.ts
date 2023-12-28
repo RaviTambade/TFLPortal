@@ -28,7 +28,7 @@ activity:EmployeeWork={
   id: 0,
   title: '',
   description: '',
-  activityType: '',
+  projectWorkType: '',
   projectId: 0,
   assignedBy: 0,
   assignedTo: 0,
@@ -59,7 +59,7 @@ activityform=new FormGroup({
 
 onSubmit(){
 
-  this.activity.activityType=this.activityform.get("activitytype")?.value;
+  this.activity.projectWorkType=this.activityform.get("activitytype")?.value;
   this.activity.assignDate=this.activityform.get("assigndate")?.value;
   this.activity.assignedBy=this.activityform.get("assignedby")?.value;
   this.activity.assignedTo=this.activityform.get("assignedto")?.value;

@@ -48,7 +48,28 @@ public class TimesheetsController : ControllerBase
         }
         return new TimesheetResponse() { };
     }
+    [HttpGet("{timesheetId}")]
+    public async Task<TimesheetResponse> GetTimesheet(int timesheetId)
+    {
+        TimesheetViewModel timesheet = await _timesheetService.GetTimesheet(timesheetId);
 
+        if (timesheet.Employee != null)
+        {
+            var user = await _apiService.GetUserDetails(timesheet.Employee.UserId.ToString());
+            TimesheetResponse timeSheetResponse = new TimesheetResponse
+            {
+                Id = timesheet.Id,
+                TimesheetDate = timesheet.TimesheetDate,
+                StatusChangedDate = timesheet.StatusChangedDate,
+                Status = timesheet.Status,
+                TimeSheetDetails = timesheet.TimeSheetDetails,
+                EmployeeId = timesheet.EmployeeId,
+                EmployeeName = user[0].FirstName + " " + user[0].LastName,
+            };
+            return timeSheetResponse;
+        }
+        return new TimesheetResponse() { };
+    }
     [HttpGet("timesheetdetails/{timesheetDetailId}")]
     public async Task<TimesheetDetailViewModel> GetTimesheetDetail(int timesheetDetailId)
     {

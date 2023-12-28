@@ -59,7 +59,7 @@ export class WorkmgmtService {
 
   // http://localhost:5263/api/workmgmt/activities/Update/1/4/15
 
-  updateEmployeeWork(status: string, activityId: number): Observable<boolean> {
+  updateEmployeeWork(activityId: number,status: string): Observable<boolean> {
     let url = this.serviceurl +'/workmgmt/employeeWork/project/'+ activityId+'/status/'+status ;
     return this.http.put<boolean>(url, status);
 
@@ -82,6 +82,11 @@ export class WorkmgmtService {
   }
   getTimeSheet(employeeId: number, date: string): Observable<TimesheetView> {
     let url = `${this.serviceurl}/workmgmt/timesheets/employees/${employeeId}/date/${date}`;
+    return this.http.get<TimesheetView>(url);
+  }
+
+  getTimeSheetById(timesheetId: number): Observable<TimesheetView> {
+    let url = `${this.serviceurl}/workmgmt/timesheets/${timesheetId}`;
     return this.http.get<TimesheetView>(url);
   }
   getTimesheetDetail(timeSheetDetailId:number):Observable<TimeSheetDetailView>{

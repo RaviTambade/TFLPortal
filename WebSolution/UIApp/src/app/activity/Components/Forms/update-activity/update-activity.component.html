@@ -13,7 +13,7 @@
                     <!-- <th>AssignedBy</th> -->
                    </tr>
             </thead>
-            <tbody *ngFor="let activity of activities">
+            <tbody *ngFor="let activity of employeeWorks">
                 <tr>
                     <td> {{activity.assignDate |date}}</td>
                     <td>{{activity.title}}</td>
@@ -21,7 +21,7 @@
                     <td (click)="onChange(activity.id)"><a>{{activity.status}}</a></td>
                     
                     <td>{{activity.projectName}}</td>
-                    <td>{{activity.activityType}}</td>
+                    <td>{{activity.projectWorkType}}</td>
                     <td>{{activity.dueDate|date}}</td>
                     <!-- <td><a href="#">{{employee?.firstName}} {{employee?.lastName}}</a></td> -->
                 </tr>

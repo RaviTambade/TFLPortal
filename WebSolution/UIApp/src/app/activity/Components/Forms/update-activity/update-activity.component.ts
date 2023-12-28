@@ -20,7 +20,7 @@ export class UpdateActivityComponent implements OnInit{
     id: 0,
     title: '',
     description: '',
-    activityType: '',
+    projectWorkType: '',
     projectId: 0,
     projectName: 0,
     assignedBy: 0,
@@ -48,10 +48,10 @@ export class UpdateActivityComponent implements OnInit{
   
 
  status:string="" ;
- activities:EmployeeWork[]=[];
+ employeeWorks:EmployeeWork[]=[];
   ngOnInit(): void {
    this.workMgmtSvc.getAllNotStartedEmployeeWork(this.projectId,this.employeeId).subscribe((res)=>{
-    this.activities=res;
+    this.employeeWorks=res;
     console.log(res);
    })
   }
@@ -70,9 +70,9 @@ export class UpdateActivityComponent implements OnInit{
 
 update(){
   this.status=this.activityform.get("status")?.value;
-  this.workMgmtSvc.updateEmployeeWork(this.status,this.activityId).subscribe((res)=>{
+  this.workMgmtSvc.updateEmployeeWork(this.activityId,this.status,).subscribe((res)=>{
    if(res){
-   this.activities= this.activities.filter((activity)=>activity.id!=this.activityId)
+   this.employeeWorks= this.employeeWorks.filter((activity)=>activity.id!=this.activityId)
    }
    })
 }

@@ -92,6 +92,8 @@ export class UpdateTimesheetEntryComponent implements OnInit {
   }
 
   onCancelClick() {
+    console.log(this.timesheetDetails)
+
     this.navigateToUrl();
 
   }
@@ -101,11 +103,13 @@ export class UpdateTimesheetEntryComponent implements OnInit {
   }
 
   navigateToUrl(){
-    if(this.currentUrl.startsWith('/timesheet/timesheet')){
-      this.router.navigate(['/timesheet/timesheet/details', this.date]);
+     if(this.currentUrl.startsWith('/timesheet/view')){
+      this.router.navigate(['/timesheet/view/add', this.date]);
     }
-  else if(this.currentUrl.startsWith('/timesheet/view')){
-    this.router.navigate(['/timesheet/view/add', this.date]);
-  }
+    else if(this.currentUrl.startsWith('/timesheet')){
+
+      this.router.navigate(['/timesheet/details', this.timesheetDetails.timesheetId]);
+    }
+ 
   }
 }
