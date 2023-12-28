@@ -59,7 +59,7 @@ export class WorkmgmtService {
 
   // http://localhost:5263/api/workmgmt/activities/Update/1/4/15
 
-  updateEmployeeWork(status: string, activityId: number): Observable<boolean> {
+  updateEmployeeWork(activityId: number,status: string): Observable<boolean> {
     let url = this.serviceurl +'/workmgmt/employeeWork/project/'+ activityId+'/status/'+status ;
     return this.http.put<boolean>(url, status);
 

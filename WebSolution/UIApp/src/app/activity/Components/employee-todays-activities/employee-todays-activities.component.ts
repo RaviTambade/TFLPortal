@@ -20,7 +20,7 @@ export class EmployeeTodaysActivitiesComponent implements OnInit{
   projects:Project[]=[];
   projectId:number|undefined;
   date:string='2023-12-14'
-  activities:EmployeeWork[]=[];
+  employeeWorks:EmployeeWork[]=[];
   activityId:number=0;
   status:string='';
  projectName:string="";
@@ -29,6 +29,7 @@ export class EmployeeTodaysActivitiesComponent implements OnInit{
    this.projectSvc.getProjectsOfEmployee(this.employeeId).subscribe((res)=>{
    this.projects=res;
    this.update();
+   console.log(this.employeeId);
    })
   
   }
@@ -40,8 +41,8 @@ export class EmployeeTodaysActivitiesComponent implements OnInit{
     this.projectName=e.title;
 
      this.workMgmt.fetchTodaysEmployeeWork(this.projectId,this.date).subscribe((res)=>{
-       this.activities=res;
-       console.log(this.activities)
+       this.employeeWorks=res;
+       console.log(this.employeeWorks)
       })
   }
 
@@ -59,9 +60,9 @@ onRecive(activityId:number){
     
     console.log("status"+this.status);
     console.log(this.activityId);
-    this.workMgmt.updateEmployeeWork(this.status,this.activityId).subscribe((res)=>{
+    this.workMgmt.updateEmployeeWork(this.activityId,this.status).subscribe((res)=>{
      if(res){
-     this.activities= this.activities.filter((activity)=>activity.id!=this.activityId)
+     this.employeeWorks= this.employeeWorks.filter((activity)=>activity.id!=this.activityId)
      }
      })
   }
