@@ -93,26 +93,12 @@ export class DetailsComponent implements OnInit {
     this.showaddTimeSheetDetails = false;
   }
 
-  onClickUpdateTimeSheetDetails(timesheetDetails: TimeSheetDetailView) {
-    let newtimeSheetDetail = { ...timesheetDetails };
-    this.selectedTimeSheetDetailstoUpdate = newtimeSheetDetail;
-    this.showupdateTimeSheetDetails = true;
-  }
 
-  onCloseUpdatePopup() {
-    this.showupdateTimeSheetDetails = false;
-    this.selectedTimeSheetDetailstoUpdate = undefined;
-  }
 
   fetchTimeSheet(employeeId: number, date: string) {
-    this.workmgmtSvc.getTimeSheet(employeeId, date).subscribe((res) => {
-      if (res.id == 0) {
-        this.isTimeSheetCreated = false;
-      } else {
-        this.isTimeSheetCreated = true;
-        this.totalminutes = 0;
+    this.workmgmtSvc.getTimeSheet(employeeId, date).subscribe((res) => {  
+      this.totalminutes = 0;
         this.timesheet = res;
-        console.log('🚀 ~ this.workmgmtSvc.getTimeSheet ~ res:', res);
 
         this.timesheet.timeSheetDetails.forEach((timeSheetDetail) => {
           timeSheetDetail = this.workmgmtSvc.getDurationOfWork(timeSheetDetail);
@@ -121,7 +107,6 @@ export class DetailsComponent implements OnInit {
         this.totalminutes = this.workmgmtSvc.convertMinutesintoHours(
           this.totalminutes
         );
-      }
     });
   }
 
@@ -130,10 +115,8 @@ export class DetailsComponent implements OnInit {
       timesheetDate: this.date,
       employeeId: this.employeeId,
     };
-    console.log("🚀 ~ CreateTimesheet ~ timesheetInsertModel:", timesheetInsertModel);
     this.workmgmtSvc.addTimeSheet(timesheetInsertModel).subscribe((res) => {
       if (res) {
-        console.log("🚀 ~ this.workmgmtSvc.addTimeSheet ~ res:", res);
         this.fetchTimeSheet(
           timesheetInsertModel.employeeId,
           timesheetInsertModel.timesheetDate
@@ -150,13 +133,6 @@ export class DetailsComponent implements OnInit {
     this.showaddTimeSheetDetails = false;
   }
 
-  onUpdateStateChange(isupdated: boolean) {
-    if (isupdated) {
-      this.fetchTimeSheet(this.employeeId, this.date);
-    }
-    this.showupdateTimeSheetDetails = false;
-    this.selectedTimeSheetDetailstoUpdate = undefined;
-  }
 
   isTimeSheetEditable() {
     return (

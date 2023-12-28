@@ -18,11 +18,9 @@ export class LeftSidebarComponent implements OnInit {
   constructor( private jwtSvc:JwtService,private router:Router ){}
   ngOnInit(): void {
     let role = this.jwtSvc.getClaimFromToken(TokenClaims.role);
-    console.log("🚀 ~ ngOnInit ~ role:", role);
    
     if (role != null) {
       this.role = role;
-      console.log("🚀 ~ ngOnInit ~ role:", role);
     }
   }
 
@@ -42,7 +40,7 @@ export class LeftSidebarComponent implements OnInit {
 
 
   onClick(url:string){
-  console.log(url);
+
   this.router.navigate([url]);
   }
 }

@@ -16,6 +16,7 @@ import { TimesheetEmployeeWorkChartComponent } from './components/timesheet-empl
 import { TimesheetEmployeeProjectHoursComponent } from './components/timesheet-employee-project-hours/timesheet-employee-project-hours.component';
 import { TimesheetEmployeeAnalyticsComponent } from './components/timesheet-employee-analytics/timesheet-employee-analytics.component';
 import { TimesheetroutercontainerComponent } from './components/timesheetroutercontainer/timesheetroutercontainer.component';
+import { CreateTimesheetComponent } from './components/forms/create-timesheet/create-timesheet.component';
 
 export const timeSheetRoutes: Routes = [
   { path: '', redirectTo: 'timesheet/list', pathMatch: 'full' },
@@ -37,13 +38,15 @@ export const timeSheetRoutes: Routes = [
   {
     path: 'timesheet',
     component: TimesheetroutercontainerComponent,
-    children: [{ path: 'list', component: ListComponent },
-    { path: 'details/:date', component: DetailsComponent },
-    {
-      path: 'update/:id',
-      component: UpdateTimesheetEntryComponent,
-    },
-  ],
+    children: [
+      { path: 'list', component: ListComponent },
+      { path: 'create', component: CreateTimesheetComponent },
+      { path: 'details/:date', component: DetailsComponent },
+      {
+        path: 'update/:id/date/:date',
+        component: UpdateTimesheetEntryComponent,
+      },
+    ],
   },
 ];
 
@@ -61,6 +64,7 @@ export const timeSheetRoutes: Routes = [
     TimesheetEmployeeProjectHoursComponent,
     TimesheetEmployeeAnalyticsComponent,
     TimesheetroutercontainerComponent,
+    CreateTimesheetComponent,
   ],
   imports: [
     CommonModule,

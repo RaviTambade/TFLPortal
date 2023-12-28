@@ -114,7 +114,6 @@ export class InsertTimeSheetComponent implements OnInit {
         this.isTimeSheetCreated = true;
         this.totalminutes = 0;
         this.timesheet = res;
-        console.log('🚀 ~ this.workmgmtSvc.getTimeSheet ~ res:', res);
 
         this.timesheet.timeSheetDetails.forEach((timeSheetDetail) => {
           timeSheetDetail = this.workmgmtSvc.getDurationOfWork(timeSheetDetail);
@@ -132,10 +131,8 @@ export class InsertTimeSheetComponent implements OnInit {
       timesheetDate: this.date,
       employeeId: this.employeeId,
     };
-    console.log("🚀 ~ CreateTimesheet ~ timesheetInsertModel:", timesheetInsertModel);
     this.workmgmtSvc.addTimeSheet(timesheetInsertModel).subscribe((res) => {
       if (res) {
-        console.log("🚀 ~ this.workmgmtSvc.addTimeSheet ~ res:", res);
         this.fetchTimeSheet(
           timesheetInsertModel.employeeId,
           timesheetInsertModel.timesheetDate

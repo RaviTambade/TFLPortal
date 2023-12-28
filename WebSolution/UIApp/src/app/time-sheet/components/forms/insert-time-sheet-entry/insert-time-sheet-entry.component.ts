@@ -70,7 +70,7 @@ export class InsertTimeSheetEntryComponent implements OnInit {
       .getEmployeeWorkByProjectAndStatus(
         this.employeeId,
         this.selectedProjectId,
-        'todo'
+        'inprogress'
       )
       .subscribe((res) => {
         this.employeeWorks = res;

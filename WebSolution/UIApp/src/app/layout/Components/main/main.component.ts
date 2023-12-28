@@ -38,7 +38,6 @@ export class MainComponent implements OnInit {
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: any) => {
         if (event.url == '/home' || event.url == '/auth/login') {
-          console.log(event.url);
           this.showsidebar = false;
         } else {
           this.showsidebar = true;

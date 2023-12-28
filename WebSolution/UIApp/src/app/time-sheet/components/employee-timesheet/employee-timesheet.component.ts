@@ -9,6 +9,5 @@ export class EmployeeTimesheetComponent {
 date= new Date().toISOString().slice(0, 10);
   onDateClick(date:string){
     this.date=date  
-    console.log(date)
   }
 }

@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeWork } from 'src/app/activity/Models/EmployeeWork';
 import { Project } from 'src/app/projects/Models/project';
@@ -21,8 +14,6 @@ import { TimeSheetDetails } from 'src/app/time-sheet/models/timesheetdetails';
   styleUrls: ['./update-timesheet-entry.component.css'],
 })
 export class UpdateTimesheetEntryComponent implements OnInit {
- 
-
   projects: Project[] = [];
   selectedProjectId: number = 0;
   employeeId: number = 0;
@@ -32,12 +23,13 @@ export class UpdateTimesheetEntryComponent implements OnInit {
   @Output() stateChangeEvent = new EventEmitter<boolean>();
 
   date: string = '';
+  currentUrl:string=''
 
   constructor(
     private workmgmtSvc: WorkmgmtService,
     private route: ActivatedRoute,
     private router: Router,
-    private projectSvc:ProjectService
+    private projectSvc: ProjectService
   ) {}
 
   ngOnInit(): void {
@@ -48,8 +40,8 @@ export class UpdateTimesheetEntryComponent implements OnInit {
         .getTimesheetDetail(Number(timesheetDetailId))
         .subscribe((res) => {
           this.timesheetDetails = res;
-          this.timesheetDetails.fromTime = this.timesheetDetails.fromTime.slice(0,5);
-          this.timesheetDetails.toTime = this.timesheetDetails.toTime.slice(0,5);
+          this.timesheetDetails.fromTime = this.timesheetDetails.fromTime.slice(0, 5);
+          this.timesheetDetails.toTime = this.timesheetDetails.toTime.slice(0,5 );
           this.getDuration(this.timesheetDetails);
         });
     });
@@ -62,6 +54,8 @@ export class UpdateTimesheetEntryComponent implements OnInit {
         this.getWorks();
       }
     });
+    console.log(this.router.url)
+    this.currentUrl=this.router.url;
   }
 
   getWorks() {
@@ -69,16 +63,12 @@ export class UpdateTimesheetEntryComponent implements OnInit {
       .getEmployeeWorkByProjectAndStatus(
         this.employeeId,
         this.selectedProjectId,
-        'todo'
+        'inprogress'
       )
       .subscribe((res) => {
         this.employeeWorks = res;
-        if (this.employeeWorks.length > 0)
-          this.timesheetDetails.employeeWorkId = this.employeeWorks[0].id;
       });
   }
-
-
 
   onClick() {
     let timesheetDetails: TimeSheetDetails = {
@@ -86,26 +76,36 @@ export class UpdateTimesheetEntryComponent implements OnInit {
       fromTime: this.timesheetDetails.fromTime + ':00',
       toTime: this.timesheetDetails.toTime + ':00',
       timesheetId: this.timesheetDetails.timesheetId,
-      employeeWorkId: this.timesheetDetails.employeeWorkId
+      employeeWorkId: this.timesheetDetails.employeeWorkId,
     };
-    console.log("🚀 ~ onClick ~ timesheetDetails:", timesheetDetails);
-    
+
     this.workmgmtSvc
       .updateTimeSheetDetails(timesheetDetails.id, timesheetDetails)
       .subscribe((res) => {
         if (res) {
           this.stateChangeEvent.emit(true);
-          this.router.navigate(['/timesheet/view/add', this.date]);
+
+        this.navigateToUrl();
+
         }
       });
   }
 
   onCancelClick() {
-    this.router.navigate(['/timesheet/view/add', this.date]);
-    console.log("🚀 ~ onCancelClick ~ date:", this.date);
+    this.navigateToUrl();
+
   }
 
   getDuration(timeSheetEnrty: TimeSheetDetailView) {
     this.workmgmtSvc.getDurationOfWork(timeSheetEnrty);
+  }
+
+  navigateToUrl(){
+    if(this.currentUrl.startsWith('/timesheet/timesheet')){
+      this.router.navigate(['/timesheet/timesheet/details', this.date]);
+    }
+  else if(this.currentUrl.startsWith('/timesheet/view')){
+    this.router.navigate(['/timesheet/view/add', this.date]);
+  }
   }
 }
