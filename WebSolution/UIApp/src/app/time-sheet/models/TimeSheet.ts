@@ -1,4 +1,3 @@
-import { TimeSheetDetails } from "./timesheetdetails";
 
 
 export class Timesheet{

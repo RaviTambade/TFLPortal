@@ -15,9 +15,10 @@ import { SharedModule } from '../shared/shared.module';
 import { TimesheetEmployeeWorkChartComponent } from './components/timesheet-employee-work-chart/timesheet-employee-work-chart.component';
 import { TimesheetEmployeeProjectHoursComponent } from './components/timesheet-employee-project-hours/timesheet-employee-project-hours.component';
 import { TimesheetEmployeeAnalyticsComponent } from './components/timesheet-employee-analytics/timesheet-employee-analytics.component';
+import { TimesheetroutercontainerComponent } from './components/timesheetroutercontainer/timesheetroutercontainer.component';
 
 export const timeSheetRoutes: Routes = [
-  { path: '', redirectTo:'view',pathMatch:'full' },
+  { path: '', redirectTo: 'timesheet/list', pathMatch: 'full' },
   {
     path: 'view',
     component: EmployeeTimesheetComponent,
@@ -33,6 +34,17 @@ export const timeSheetRoutes: Routes = [
     ],
   },
   { path: 'analytics', component: TimesheetEmployeeAnalyticsComponent },
+  {
+    path: 'timesheet',
+    component: TimesheetroutercontainerComponent,
+    children: [{ path: 'list', component: ListComponent },
+    { path: 'details/:date', component: DetailsComponent },
+    {
+      path: 'update/:id',
+      component: UpdateTimesheetEntryComponent,
+    },
+  ],
+  },
 ];
 
 @NgModule({
@@ -48,6 +60,7 @@ export const timeSheetRoutes: Routes = [
     TimesheetEmployeeWorkChartComponent,
     TimesheetEmployeeProjectHoursComponent,
     TimesheetEmployeeAnalyticsComponent,
+    TimesheetroutercontainerComponent,
   ],
   imports: [
     CommonModule,

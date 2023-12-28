@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { EmployeeWork } from 'src/app/activity/Models/EmployeeWork';
 import { Project } from 'src/app/projects/Models/project';
 import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
 import { ProjectService } from 'src/app/shared/services/project.service';
@@ -12,30 +13,24 @@ import { TimeSheetDetails } from 'src/app/time-sheet/models/timesheetdetails';
   styleUrls: ['./insert-time-sheet-entry.component.css'],
 })
 export class InsertTimeSheetEntryComponent implements OnInit {
-  activitiyTypes: string[] = [
-    'task',
-    'userstory',
-    'bug',
-    'issues',
-    'meeting',
-    'learning',
-    'mentoring',
-    'break',
-    'clientcall',
-    'other',
-  ];
-
-  timeSheetDetail: TimeSheetDetails = {
+  timesheetDetail: TimeSheetDetailView = {
     id: 0,
     fromTime: '',
     toTime: '',
     timesheetId: 0,
-    employeeWorkId: 0
+    employeeWorkId: 0,
+    workTitle: '',
+    workType: '',
+    projectId: 0,
+    projectName: '',
+    durationInMinutes: 0,
+    durationInHours: ''
   };
 
   projects: Project[] = [];
-  selectedProjectId:number=0;
-
+  selectedProjectId: number = 0;
+  employeeId: number = 0;
+  employeeWorks: EmployeeWork[] = [];
   @Input() timesheetId!: number;
   @Output() stateChangeEvent = new EventEmitter<boolean>();
   constructor(
@@ -44,21 +39,23 @@ export class InsertTimeSheetEntryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    let employeeId = localStorage.getItem(LocalStorageKeys.employeeId);
-    if (employeeId != null) {
-      this.projectSvc .getProjectsOfEmployee(Number(employeeId)) .subscribe((res) => {
-          this.projects = res;
-        });
-    }
+    this.employeeId = Number(localStorage.getItem(LocalStorageKeys.employeeId));
+    this.projectSvc.getProjectsOfEmployee(this.employeeId).subscribe((res) => {
+      this.projects = res;
+      if (this.projects.length > 0) {
+        this.selectedProjectId = this.projects[0].id;
+        this.getWorks();
+      }
+    });
   }
 
   onClick() {
     let timeSheetDetail: TimeSheetDetails = {
       id: 0,
-      fromTime: this.timeSheetDetail.fromTime + ':00',
-      toTime: this.timeSheetDetail.toTime + ':00',
+      fromTime: this.timesheetDetail.fromTime + ':00',
+      toTime: this.timesheetDetail.toTime + ':00',
       timesheetId: this.timesheetId,
-      employeeWorkId:0
+      employeeWorkId: this.timesheetDetail.employeeWorkId,
     };
 
     this.workmgmtSvc.addTimeSheetDetails(timeSheetDetail).subscribe((res) => {
@@ -68,7 +65,20 @@ export class InsertTimeSheetEntryComponent implements OnInit {
     });
   }
 
+  getWorks() {
+    this.workmgmtSvc
+      .getEmployeeWorkByProjectAndStatus(
+        this.employeeId,
+        this.selectedProjectId,
+        'todo'
+      )
+      .subscribe((res) => {
+        this.employeeWorks = res;
+        if (this.employeeWorks.length > 0)
+          this.timesheetDetail.employeeWorkId = this.employeeWorks[0].id;
+      });
+  }
   getDuration(timeSheetDetail: TimeSheetDetailView) {
-    this.timeSheetDetail = this.workmgmtSvc.getDurationOfWork(timeSheetDetail);
+    this.timesheetDetail = this.workmgmtSvc.getDurationOfWork(timeSheetDetail);
   }
 }

@@ -7,6 +7,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EmployeeWork } from 'src/app/activity/Models/EmployeeWork';
 import { Project } from 'src/app/projects/Models/project';
 import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
 import { ProjectService } from 'src/app/shared/services/project.service';
@@ -20,24 +21,17 @@ import { TimeSheetDetails } from 'src/app/time-sheet/models/timesheetdetails';
   styleUrls: ['./update-timesheet-entry.component.css'],
 })
 export class UpdateTimesheetEntryComponent implements OnInit {
-  activitiyTypes: string[] = [
-    'task',
-    'userstory',
-    'bug',
-    'issues',
-    'meeting',
-    'learning',
-    'mentoring',
-    'break',
-    'clientcall',
-    'other',
-  ];
+ 
+
+  projects: Project[] = [];
+  selectedProjectId: number = 0;
+  employeeId: number = 0;
+  employeeWorks: EmployeeWork[] = [];
 
   @Input() timesheetDetails!: TimeSheetDetailView;
   @Output() stateChangeEvent = new EventEmitter<boolean>();
 
   date: string = '';
-  projects: Project[] = [];
 
   constructor(
     private workmgmtSvc: WorkmgmtService,
@@ -60,12 +54,28 @@ export class UpdateTimesheetEntryComponent implements OnInit {
         });
     });
 
-    let employeeId = localStorage.getItem(LocalStorageKeys.employeeId);
-    if (employeeId != null) {
-      this.projectSvc .getProjectsOfEmployee(Number(employeeId)) .subscribe((res) => {
-          this.projects = res;
-        });
-    }
+    this.employeeId = Number(localStorage.getItem(LocalStorageKeys.employeeId));
+    this.projectSvc.getProjectsOfEmployee(this.employeeId).subscribe((res) => {
+      this.projects = res;
+      if (this.projects.length > 0) {
+        this.selectedProjectId = this.projects[0].id;
+        this.getWorks();
+      }
+    });
+  }
+
+  getWorks() {
+    this.workmgmtSvc
+      .getEmployeeWorkByProjectAndStatus(
+        this.employeeId,
+        this.selectedProjectId,
+        'todo'
+      )
+      .subscribe((res) => {
+        this.employeeWorks = res;
+        if (this.employeeWorks.length > 0)
+          this.timesheetDetails.employeeWorkId = this.employeeWorks[0].id;
+      });
   }
 
 
@@ -78,7 +88,8 @@ export class UpdateTimesheetEntryComponent implements OnInit {
       timesheetId: this.timesheetDetails.timesheetId,
       employeeWorkId: this.timesheetDetails.employeeWorkId
     };
-
+    console.log("🚀 ~ onClick ~ timesheetDetails:", timesheetDetails);
+    
     this.workmgmtSvc
       .updateTimeSheetDetails(timesheetDetails.id, timesheetDetails)
       .subscribe((res) => {
@@ -91,6 +102,7 @@ export class UpdateTimesheetEntryComponent implements OnInit {
 
   onCancelClick() {
     this.router.navigate(['/timesheet/view/add', this.date]);
+    console.log("🚀 ~ onCancelClick ~ date:", this.date);
   }
 
   getDuration(timeSheetEnrty: TimeSheetDetailView) {

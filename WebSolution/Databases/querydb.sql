@@ -30,7 +30,22 @@ INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
 WHERE timesheets.employeeid=10  AND YEAR(timesheets.timesheetdate)='2023'
 GROUP BY timesheetentries.workcategory ;
 
+
+SELECT timesheetdate,status,
+ CAST(((SUM(TIME_TO_SEC(TIMEDIFF(totime,fromtime))))/3600)AS DECIMAL(10,2)) as time_in_hour
+ FROM timesheets INNER JOIN timesheetdetails on timesheets.id=timesheetdetails.timesheetid
+ GROUP BY timesheetdate;
+
 -- employee woeking days in month 
+                SELECT timesheets.id as timesheetid,timesheets.status,timesheets.statuschangeddate,timesheetdetails.id as timesheetdetailid,
+                timesheetdetails.employeeworkid,timesheetdetails.fromtime,timesheetdetails.totime,employeework.projectid,projects.title as projectname,
+                employeework.projectworktype as worktype,employeework.title as worktitle,employees.userid
+                FROM timesheets  
+                LEFT JOIN  timesheetdetails ON  timesheets.id= timesheetdetails.timesheetid
+                LEFT JOIN employees ON timesheets.employeeid =employees.id
+                LEFT JOIN employeework ON timesheetdetails.employeeworkid=employeework.id
+                LEFT JOIN projects ON employeework.projectid=projects.id
+                WHERE timesheets.timesheetdate = '2023-12-19' AND timesheets.employeeId = 10;
 
 SELECT COUNT(*) AS WorkingDays FROM timesheets WHERE employeeid=10 AND status='approved' AND MONTH(timesheetdate)=12;
 

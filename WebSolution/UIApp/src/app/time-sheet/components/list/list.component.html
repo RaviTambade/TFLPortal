@@ -13,7 +13,7 @@
             </thead>
             <tbody *ngFor="let timesheet of timeSheets">
                 <tr>
-                    <td  style="cursor: pointer; text-decoration: underline ; color:  #0000EE;" (click)="onSelectedTimeSheetId(timesheet.id)"> {{timesheet.timesheetDate | date}}</td>
+                    <td  style="cursor: pointer; text-decoration: underline ; color:  #0000EE;" [routerLink]="['../details',timesheet.timesheetDate.slice(0,10)]"> {{timesheet.timesheetDate | date}}</td>
                     <td> {{timesheet.status}}</td>
                     <td>{{timesheet.statusChangedDate |date}}</td>
                 </tr>

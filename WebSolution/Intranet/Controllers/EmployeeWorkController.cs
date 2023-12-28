@@ -56,10 +56,10 @@ public class EmployeeWorkController : ControllerBase
     }
 
      
-     [HttpGet("projects/{projectId}/employees/{assignedTo}/type/{projectWorkType}")]
-    public async Task<List<EmployeeWork>> GetProjectActivitiesOfEmployee(int projectId, int employeeId,string projectWorkType)
+     [HttpGet("projects/{projectId}/employees/{employeeId}/status/{status}")]
+    public async Task<List<EmployeeWork>> GetProjectActivitiesOfEmployee(int projectId, int employeeId,string status)
     {
-        List<EmployeeWork> activities = await _service.GetProjectActivitiesOfEmployee(projectId,employeeId,projectWorkType);
+        List<EmployeeWork> activities = await _service.GetProjectActivitiesOfEmployee(projectId,employeeId,status);
         return activities;
     }
 

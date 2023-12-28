@@ -24,9 +24,9 @@ export class ListComponent implements OnInit{
     })   
   }
 
-  onSelectedTimeSheetId(timesheetId:number){
-    this.selectedTimeSheetId.emit(timesheetId);
-  }
+// onSelectedTimeSheetId(timesheetId:number){
+//     this.selectedTimeSheetId.emit(timesheetId);
+//   }
 }
 
 

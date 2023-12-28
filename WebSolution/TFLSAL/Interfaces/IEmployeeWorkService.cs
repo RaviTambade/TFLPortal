@@ -6,7 +6,7 @@ public interface IEmployeeWorkService
      public Task<List<EmployeeWork>> GetActivitiesByProject(int projectId);
      public Task<List<EmployeeWork>> GetProjectActivitiesByType(int projectId, string activityType);
      public Task<List<EmployeeWork>> GetProjectActivitiesByEmployee(int projectId, int employeeId);
-     public Task<List<EmployeeWork>> GetProjectActivitiesOfEmployee(int projectId, int employeeId, string activityType);
+     public Task<List<EmployeeWork>> GetProjectActivitiesOfEmployee(int projectId, int employeeId, string status);
      public Task<EmployeeWorkDetails> GetActivityDetails(int activityId);
      public Task<bool> AddActivity(EmployeeWork activity);
      public Task<bool> UpdateActivity(string Status,int activityId);

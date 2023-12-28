@@ -1,28 +1,59 @@
-<div class="container">
-    <h2> Timesheet Entries</h2>
-    <div class="card">
-        <table class="table-bordered text-center">
-            <thead>
-                <tr>
-                    <th>fromtime</th>
-                    <th>toTime</th>
-                    <th>ProjectName</th>
-                    <th>Category:</th>
-                    <th>Work:</th>
-                    <th>Duration</th>
-                </tr>
-            </thead>
-            <tbody *ngFor=" let timeSheetDetail of timeSheetDetails">
+
+<ng-template #insertTimesheetEnrty>
+    <app-insert-time-sheet-entry *ngIf="timesheet" [timesheetId]="timesheet.id"
+        (stateChangeEvent)="onAddStateChange($event)"></app-insert-time-sheet-entry>
+</ng-template>
+
+
+<app-popup *ngIf="showaddTimeSheetDetails" [templateToRender]="insertTimesheetEnrty"
+    (closePopup)="onCloseAddPopup()"></app-popup>
+
+
+
+
+<ng-container *ngIf="isTimeSheetCreated">
+    <p> Date : {{timesheet?.timesheetDate |date}}</p>
+    <p> Status:{{timesheet?.status |titlecase}}</p>
+    <p> Employee Name:{{timesheet?.employeeName}}</p>
+    <button *ngIf="isTimeSheetEditable()" (click)="onClickAddTimeSheetDetails()"> Add </button>
+
+    <table class="table-bordered" >
+        <thead>
+            <tr>
+                <th>fromtime</th>
+                <th>toTime</th>
+                <th>ProjectName</th>
+                <th>Category:</th>
+                <th>Work:</th>
+                <!-- <th>Description:</th> -->
+                <th>Duration</th>
+            </tr>
+        </thead>
+        <ng-container *ngIf=" timesheet && timesheet.timeSheetDetails.length>0">
+            <tbody *ngFor="let timeSheetDetail of timesheet.timeSheetDetails">
                 <tr>
                     <td> {{timeSheetDetail.fromTime }}</td>
                     <td> {{timeSheetDetail.toTime }}</td>
                     <td> {{timeSheetDetail.projectName }}</td>
                     <td>{{timeSheetDetail.workType}}</td>
                     <td> {{timeSheetDetail.workTitle}}</td>
+                    <!-- <td> {{timeSheetDetail.description}}</td> -->
                     <td> {{timeSheetDetail.durationInHours }}</td>
+                    <td  *ngIf="isTimeSheetEditable()"><button  [routerLink]="['../../update',timeSheetDetail.id]" >Edit</button></td>
+                    <!-- <td  *ngIf="isTimeSheetEditable()"><button  (click)="onClickUpdateTimeSheetDetails(timesheetDetails)">Edit</button></td> -->
+                    <td  *ngIf="isTimeSheetEditable()"><button (click)="onRemoveTimeSheetDetails(timeSheetDetail.id)">Delete</button></td>
                 </tr>
-            </tbody>
-        </table>
-    </div>
 
-<p>Total Hours : {{totalminutes}}</p>
+            </tbody>
+        </ng-container>
+
+    </table>
+
+    <p>Total Hours : {{totalminutes}}</p>
+    <ng-container *ngIf=" timesheet && timesheet.timeSheetDetails.length>0">
+    <button type="submit"  *ngIf="isTimeSheetEditable()" (click)="onSubmit()"> submit </button>
+    <button class="mx-1" *ngIf="isTimeSheetEditable() && timesheet" (click)="onRemoveAllTimeSheetDetails(timesheet.id)">
+        ClearAll </button>
+        </ng-container>
+</ng-container>
+

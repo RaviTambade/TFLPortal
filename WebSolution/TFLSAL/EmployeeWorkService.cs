@@ -258,7 +258,7 @@ public class EmployeeWorkService : IEmployeeWorkService
         }
         return activities;
     }
-    public async Task<List<EmployeeWork>> GetProjectActivitiesOfEmployee(int projectId, int employeeId, string ProjectWorkType)
+    public async Task<List<EmployeeWork>> GetProjectActivitiesOfEmployee(int projectId, int employeeId, string status)
     {
 
         List<EmployeeWork> activities = new List<EmployeeWork>();
@@ -266,10 +266,10 @@ public class EmployeeWorkService : IEmployeeWorkService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select * from employeework where  projectid =@projectId and projectworktype=@activityType and assignedto=@assignedto";
+            string query = "select * from employeework where  projectid =@projectId and status=@status and assignedto=@assignedto";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);
-            command.Parameters.AddWithValue("@activityType", ProjectWorkType);
+            command.Parameters.AddWithValue("@status", status);
             command.Parameters.AddWithValue("@assignedto", employeeId);
 
             await connection.OpenAsync();
@@ -285,14 +285,14 @@ public class EmployeeWorkService : IEmployeeWorkService
                 DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
-                string status = reader["status"].ToString();
+                string projectWorkType = reader["projectworktype"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
                 EmployeeWork act = new EmployeeWork
                 {
                     Id = id,
                     Title = title,
-                    ProjectWorkType = ProjectWorkType,
+                    ProjectWorkType = projectWorkType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,

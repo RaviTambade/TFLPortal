@@ -68,6 +68,12 @@ export class WorkmgmtService {
 
   }
 
+  getEmployeeWorkByProjectAndStatus(employeeId:number,projectId:number,status:string):Observable<EmployeeWork[]>{
+    let url=`${this.serviceurl}/workmgmt/employeeWork/projects/${projectId}/employees/${employeeId}/status/${status}`;
+    return this.http.get<EmployeeWork[]>(url);
+  }
+
+
 
 
   getAllTimeSheets(employeeId: number): Observable<Timesheet[]> {

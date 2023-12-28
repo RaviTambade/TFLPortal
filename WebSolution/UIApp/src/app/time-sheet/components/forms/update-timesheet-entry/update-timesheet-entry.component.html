@@ -1,13 +1,12 @@
 <ng-container *ngIf="timesheetDetails">
 <h2> Update TimesheetEntry</h2>
-<label>Project:</label>
-<select [(ngModel)]="timesheetDetails.projectId">
+<select [(ngModel)]="selectedProjectId" (change)="getWorks()">
     <option *ngFor="let project of projects;" [value]="project.id">{{project.title|titlecase}}</option>
 </select><br>
-<label>Activity:</label>
-<!-- <select [(ngModel)]="timesheetDetails.workCategory">
-    <option *ngFor="let activity of activitiyTypes;let i=index" [value]="activity">{{activity |titlecase}}</option>
-</select><br> -->
+<label>Work:</label>
+<select style="width: 200px;"  [(ngModel)]="timesheetDetails.employeeWorkId" >
+    <option  *ngFor="let work of employeeWorks;let i=index" [value]="work.id">{{work.title.slice(0,50)|titlecase}}</option>
+</select><br>
 
 <label>From :</label>
 <input type="time" name="fromTime" [(ngModel)]="timesheetDetails.fromTime" (change)="getDuration(timesheetDetails)">
