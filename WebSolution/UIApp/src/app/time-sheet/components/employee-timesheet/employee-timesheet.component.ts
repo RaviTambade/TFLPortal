@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./employee-timesheet.component.css']
 })
 export class EmployeeTimesheetComponent {
-date= new Date().toISOString().slice(0, 10);
-  onDateClick(date:string){
-    this.date=date  
-  }
+// date= new Date().toISOString().slice(0, 10);
+//   onDateClick(date:string){
+//     this.date=date  
+//   }
 }

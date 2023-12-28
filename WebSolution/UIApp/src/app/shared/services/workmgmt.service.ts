@@ -84,6 +84,11 @@ export class WorkmgmtService {
     let url = `${this.serviceurl}/workmgmt/timesheets/employees/${employeeId}/date/${date}`;
     return this.http.get<TimesheetView>(url);
   }
+
+  getTimeSheetById(timesheetId: number): Observable<TimesheetView> {
+    let url = `${this.serviceurl}/workmgmt/timesheets/${timesheetId}`;
+    return this.http.get<TimesheetView>(url);
+  }
   getTimesheetDetail(timeSheetDetailId:number):Observable<TimeSheetDetailView>{
     let url = `${this.serviceurl}/workmgmt/timesheets/timesheetdetails/${timeSheetDetailId}`;
     return this.http.get<TimeSheetDetailView>(url);

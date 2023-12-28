@@ -13,15 +13,10 @@ import { TimesheetView } from '../../models/timesheetview';
 })
 export class DetailsComponent implements OnInit {
   totalminutes: any = 0;
-  showaddTimeSheetDetails: boolean = false;
-  showupdateTimeSheetDetails: boolean = false;
-  @Input() date: string = new Date().toISOString().slice(0, 10);
-  toDaysdate: string = new Date().toISOString().slice(0, 10);
-  employeeId: number = 0;
+  // employeeId: number = 0;
   timesheet: TimesheetView | undefined;
-  selectedTimeSheetDetailstoUpdate: TimeSheetDetailView | undefined;
-  isTimeSheetCreated = false;
   timeSheetStauts = TimeSheetStatus;
+  timesheetId:number=0;
 
   constructor(
     private workmgmtSvc: WorkmgmtService,
@@ -31,27 +26,18 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      let dateparam = params.get('date');
-      if (dateparam != null) {
-        this.date = dateparam;
-        this.employeeId = Number(
-          localStorage.getItem(LocalStorageKeys.employeeId)
-        );
-        this.fetchTimeSheet(this.employeeId, this.date);
+      this.timesheetId=Number(params.get('id'));
+        this.fetchTimeSheet(this.timesheetId);
       }
-    });
+    );
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    this.date = changes['date'].currentValue;
-    this.fetchTimeSheet(this.employeeId, changes['date'].currentValue);
-  }
   onRemoveTimeSheetDetails(timesheetDetailsId: number) {
     this.workmgmtSvc
       .removeTimeSheetDetails(timesheetDetailsId)
       .subscribe((res) => {
         if (res) {
-          this.fetchTimeSheet(this.employeeId, this.date);
+          this.fetchTimeSheet(this.timesheetId);
         }
       });
   }
@@ -74,7 +60,7 @@ export class DetailsComponent implements OnInit {
         timesheetDate: this.timesheet.timesheetDate,
         status: 'Submitted',
         employeeId: this.timesheet.employeeId,
-        statusChangedDate: this.date,
+        statusChangedDate: new Date().toISOString().slice(0,10),
       };
 
       this.workmgmtSvc
@@ -87,18 +73,16 @@ export class DetailsComponent implements OnInit {
   }
 
   onClickAddTimeSheetDetails() {
-    this.showaddTimeSheetDetails = true;
-  }
-  onCloseAddPopup() {
-    this.showaddTimeSheetDetails = false;
+    this.router.navigate(['timesheet/addentry',this.timesheetId])
   }
 
 
 
-  fetchTimeSheet(employeeId: number, date: string) {
-    this.workmgmtSvc.getTimeSheet(employeeId, date).subscribe((res) => {  
+
+  fetchTimeSheet(timesheetId: number) {
+    this.workmgmtSvc.getTimeSheetById(timesheetId).subscribe((res) => {  
       this.totalminutes = 0;
-        this.timesheet = res;
+        this.timesheet = res; 
 
         this.timesheet.timeSheetDetails.forEach((timeSheetDetail) => {
           timeSheetDetail = this.workmgmtSvc.getDurationOfWork(timeSheetDetail);
@@ -108,29 +92,6 @@ export class DetailsComponent implements OnInit {
           this.totalminutes
         );
     });
-  }
-
-  CreateTimesheet() {
-    const timesheetInsertModel = {
-      timesheetDate: this.date,
-      employeeId: this.employeeId,
-    };
-    this.workmgmtSvc.addTimeSheet(timesheetInsertModel).subscribe((res) => {
-      if (res) {
-        this.fetchTimeSheet(
-          timesheetInsertModel.employeeId,
-          timesheetInsertModel.timesheetDate
-        );
-      }
-    });
-    return;
-  }
-
-  onAddStateChange(isupdated: boolean) {
-    if (isupdated) {
-      this.fetchTimeSheet(this.employeeId, this.date);
-    }
-    this.showaddTimeSheetDetails = false;
   }
 
 
