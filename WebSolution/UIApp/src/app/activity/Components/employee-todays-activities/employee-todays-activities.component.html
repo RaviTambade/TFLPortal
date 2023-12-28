@@ -25,9 +25,9 @@
                                 <th>Status</th>
                             </tr>
                         </thead>
-                        <tbody *ngFor="let activity of activities">
+                        <tbody *ngFor="let activity of employeeWorks">
                             <tr>
-                                <td>{{activity.activityType}}</td>
+                                <td>{{activity.projectWorkType}}</td>
                                 <td (click)="getDetails()"><a class="underline card-link">{{activity.title}}</a></td>
                                 <td>{{activity.status}}</td>
                             </tr>
@@ -56,11 +56,11 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody *ngFor="let activity of activities">
+                        <tbody *ngFor="let activity of employeeWorks">
                             <tr>
                                 <td><a href="#" class="card-link">{{projectName}}</a></td>
                                 <td>{{activity.title}}</td>
-                                <td>{{activity.activityType}}</td>
+                                <td>{{activity.projectWorkType}}</td>
                                 <td>{{activity.description}}</td>
                                 <td>{{activity.dueDate | date}}</td>
                                 <td></td>
