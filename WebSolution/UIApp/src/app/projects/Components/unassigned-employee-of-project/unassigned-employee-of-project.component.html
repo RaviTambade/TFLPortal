@@ -13,13 +13,13 @@
     <tr>
         <th>FullName</th>
         <th>Employee</th>
-        <th>membership</th>
+        <th>Role</th>
         <th>AssignDate</th>
     </tr>
     <tr *ngFor="let employee of unassignedEmployees">
         <td>{{employee.fullName}}</td>
         <td>{{employee.employeeId}}</td>
-        <td>{{employee.membership}}</td>
-        <td>{{employee.assignDate}}</td>
+        <td>{{employee.projectRole}}</td>
+        <td>{{employee.projectAssignDate |date}}</td>
     </tr>
 </table>

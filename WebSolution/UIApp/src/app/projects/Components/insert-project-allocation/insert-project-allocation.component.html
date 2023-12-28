@@ -9,12 +9,12 @@
            <td><input type="number" name="employeeId" [(ngModel)]="projectAllocation.employeeId" type="hidden"></td>
          </tr>        
          <tr>
-            <td><label>Membership:</label></td>
-           <td><input type="text" name="membership" [(ngModel)]="projectAllocation.membership"></td>
+            <td><label>Role:</label></td>
+           <td><input type="text" name="projectRole" [(ngModel)]="projectAllocation.projectRole"></td>
          </tr>
          <tr>
             <td><label>Assign Date:</label></td>
-            <td><input type="text" name="assignDate" [(ngModel)]="projectAllocation.assignDate"></td>
+            <td><input type="text" name="projectAssignDate" [(ngModel)]="projectAllocation.projectAssignDate"></td>
           </tr>
           <!-- <tr>
             <td> <label>Release Date:</label></td>
@@ -22,7 +22,7 @@
           </tr>         -->
           <tr>
              <td><label>Status</label></td>
-            <td><input type="text" name="status" [(ngModel)]="projectAllocation.status"></td>
+            <td><input type="text" name="currentProjectWorkingStatus" [(ngModel)]="projectAllocation.currentProjectWorkingStatus"></td>
           </tr>
           <tr>
             <td><button type="submit" >Submit</button></td>

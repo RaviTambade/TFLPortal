@@ -1,5 +1,5 @@
 namespace Transflower.TFLPortal.TFLOBL.Entities;
-public class ActivityStatusCount
+public class EmployeeWorkStatusCount
 {
    
    public  int Todo{get;set;}
