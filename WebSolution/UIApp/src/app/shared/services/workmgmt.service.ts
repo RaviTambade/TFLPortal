@@ -177,6 +177,11 @@ export class WorkmgmtService {
     let url =this.serviceurl +'/workmgmt/employeeWork/ActivitySp';
     return this.http.get<any>(url);
   }
+  
 
+  fetchEmployeeDetailsById(employeeWorkId:number){
+    let url=this.serviceurl+'/workmgmt/employeework/projects/'+employeeWorkId;
+    return this.http.get<any>(url);
+  }
 
 }
