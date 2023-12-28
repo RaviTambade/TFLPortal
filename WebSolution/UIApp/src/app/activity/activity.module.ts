@@ -9,6 +9,9 @@ import { ProjectActivitiesComponent } from './Components/project-activities/proj
 import { RouterModule } from '@angular/router';
 import { EmployeeTodaysActivitiesComponent } from './Components/employee-todays-activities/employee-todays-activities.component';
 import { EmployeeAllActivitiesComponent } from './Components/employee-all-activities/employee-all-activities.component';
+import { EmployeeworksComponent } from './Components/employeeworks/employeeworks.component';
+import { EmployeeworksdetailsComponent } from './Components/employeeworksdetails/employeeworksdetails.component';
+import { EmployeeworkrouteroutletComponent } from './Components/employeeworkrouteroutlet/employeeworkrouteroutlet.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { EmployeeAllActivitiesComponent } from './Components/employee-all-activi
     UpdateActivityComponent,
     ProjectActivitiesComponent,
     EmployeeTodaysActivitiesComponent,
-    EmployeeAllActivitiesComponent
+    EmployeeAllActivitiesComponent,
+    EmployeeworksComponent,
+    EmployeeworksdetailsComponent,
+    EmployeeworkrouteroutletComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +39,10 @@ import { EmployeeAllActivitiesComponent } from './Components/employee-all-activi
     UpdateActivityComponent,
     ProjectActivitiesComponent,
     EmployeeTodaysActivitiesComponent,
-    EmployeeAllActivitiesComponent
+    EmployeeAllActivitiesComponent,
+    EmployeeworksComponent,
+    EmployeeworksdetailsComponent,
+    EmployeeworksdetailsComponent
     
   ]
 })

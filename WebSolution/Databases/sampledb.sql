@@ -182,7 +182,7 @@ INSERT INTO employeework (projectworktype,title, description, projectid,sprintid
 VALUES ('userstory','As a Store Worker, I want to access order details including the order-id, and pickup/delivery locations so that i can prepare for the tasks.','',4,1,  '2023-12-05', '2023-12-06', '2023-12-10', 15, 7,'inprogress','2023-12-04');
 
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
-VALUES ('userstory','As a Store Worker, I want to mark orders as picked up when I collect the materials from the inventory so that i can change status of order.','',4,1,'2023-12-05', '2023-12-06', '2023-12-10',  15, 7,'inprogress','2023-12-04');
+VALUES ('userstory','As a Store Worker, I want to mark orders as picked up when I collect the materials from the inventory so that i can change status of order.','',4,1,'2023-12-28', '2023-12-28', '2023-12-28',  15, 7,'inprogress','2023-12-28');
 
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
 VALUES ('userstory','As a Supervisor Incharge, I want to view an overview of employee information and departments so that I can efficiently manage teams and make informed decisions regarding staffing and resource allocation.','',4,1,  '2023-12-10','2023-12-06', '2023-12-10',  10, 7,'inprogress','2023-12-04');

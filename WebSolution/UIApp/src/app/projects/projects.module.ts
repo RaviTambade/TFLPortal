@@ -19,12 +19,18 @@ import { ActivityDetailsComponent } from '../activity/Components/activity-detail
 import { EmployeeTodaysActivitiesComponent } from '../activity/Components/employee-todays-activities/employee-todays-activities.component';
 import { ProjectActivitiesComponent } from '../activity/Components/project-activities/project-activities.component';
 import { EmployeeAllActivitiesComponent } from '../activity/Components/employee-all-activities/employee-all-activities.component';
+import { EmployeeworksdetailsComponent } from '../activity/Components/employeeworksdetails/employeeworksdetails.component';
+import { EmployeeworksComponent } from '../activity/Components/employeeworks/employeeworks.component';
+import { EmployeeworkrouteroutletComponent } from '../activity/Components/employeeworkrouteroutlet/employeeworkrouteroutlet.component';
 
 
 export const projectRoutes: Routes = [
-  { path: '', component: EmployeeTodaysActivitiesComponent },
+  { path: '', component: EmployeeworkrouteroutletComponent },
   { path: 'activities', component: EmployeeTodaysActivitiesComponent },
-  { path: 'allActivities', component: EmployeeAllActivitiesComponent }
+  { path: 'allActivities', component: EmployeeAllActivitiesComponent },
+  { path: 'employeework', component: EmployeeworksComponent },
+  { path: 'employeeworkdetails/:id', component: EmployeeworksdetailsComponent },
+
 ];
 
 

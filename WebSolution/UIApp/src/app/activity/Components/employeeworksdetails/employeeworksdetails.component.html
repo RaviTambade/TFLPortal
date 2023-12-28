@@ -1,0 +1,36 @@
+<div class="container">
+    <h2> My works List</h2>
+    <div class="card">
+        <table class="table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>AssignedDate</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>description</th>
+                    <th>projectWorkType</th>
+                    <th>projectName</th>
+                    <th>assignedBy</th>
+                    <th>assignedTo</th>
+                    <th>assignDate</th>
+                    <th>dueDate</th>
+                   </tr>
+            </thead>
+            <tbody *ngIf="employeeworks">
+                <tr>
+                    <td> {{employeeworks.assignDate |date}}</td>
+                    <td>>{{employeeworks.title}}</td>
+                    <td> {{employeeworks.status}}</td>
+                    <td> {{employeeworks.description}}</td>
+                    <td> {{employeeworks.projectWorkType}}</td>
+                    <td> {{employeeworks.projectName}}</td>
+                    <td> {{employeeworks.assignedBy}}</td>
+                    <td> {{employeeworks.assignedTo}}</td>
+                    <td> {{employeeworks.assignDate}}</td>
+                    <td> {{employeeworks.dueDate}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
