@@ -78,6 +78,7 @@ export const timeSheetRoutes: Routes = [
     DetailsComponent,
     InsertTimeSheetEntryComponent,
     InsertTimeSheetComponent,
+    TimesheetEmployeeWorkChartComponent
   ],
   providers: [ChunkPipe],
 })

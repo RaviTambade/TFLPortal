@@ -28,7 +28,7 @@ export class LeavesService {
     return this.http.get<LeaveApplication[]>(url);
   }
 
-  getEmployeeAppliedLeaves(projectId:number,status:string):Observable<LeaveDetails[]>{
+  getTeamLeaveDetails(projectId:number,status:string):Observable<LeaveDetails[]>{
     let url="http://localhost:5263/api/leaves/projects/"+projectId+"/status/"+status;
     return this.http.get<LeaveDetails[]>(url);
   }
