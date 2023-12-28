@@ -17,9 +17,24 @@ import { TimesheetEmployeeProjectHoursComponent } from './components/timesheet-e
 import { TimesheetEmployeeAnalyticsComponent } from './components/timesheet-employee-analytics/timesheet-employee-analytics.component';
 import { TimesheetroutercontainerComponent } from './components/timesheetroutercontainer/timesheetroutercontainer.component';
 import { CreateTimesheetComponent } from './components/forms/create-timesheet/create-timesheet.component';
+import { AddTimesheetEntryComponent } from './components/forms/add-timesheet-entry/add-timesheet-entry.component';
 
 export const timeSheetRoutes: Routes = [
-  { path: '', redirectTo: 'timesheet/list', pathMatch: 'full' },
+  {
+    path: '',
+    component: TimesheetroutercontainerComponent,
+    children: [
+      {path:'', redirectTo: 'list', pathMatch: 'full' },
+      { path: 'list', component: ListComponent },
+      { path: 'create', component: CreateTimesheetComponent },
+      { path: 'addentry/:id', component: AddTimesheetEntryComponent },
+      { path: 'details/:id', component: DetailsComponent },
+      {
+        path: 'update/:id',
+        component: UpdateTimesheetEntryComponent,
+      },
+    ],
+  },
   {
     path: 'view',
     component: EmployeeTimesheetComponent,
@@ -35,19 +50,7 @@ export const timeSheetRoutes: Routes = [
     ],
   },
   { path: 'analytics', component: TimesheetEmployeeAnalyticsComponent },
-  {
-    path: 'timesheet',
-    component: TimesheetroutercontainerComponent,
-    children: [
-      { path: 'list', component: ListComponent },
-      { path: 'create', component: CreateTimesheetComponent },
-      { path: 'details/:date', component: DetailsComponent },
-      {
-        path: 'update/:id/date/:date',
-        component: UpdateTimesheetEntryComponent,
-      },
-    ],
-  },
+ 
 ];
 
 @NgModule({
@@ -65,6 +68,7 @@ export const timeSheetRoutes: Routes = [
     TimesheetEmployeeAnalyticsComponent,
     TimesheetroutercontainerComponent,
     CreateTimesheetComponent,
+    AddTimesheetEntryComponent,
   ],
   imports: [
     CommonModule,

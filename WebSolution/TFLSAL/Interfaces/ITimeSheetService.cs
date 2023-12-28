@@ -7,6 +7,7 @@ public interface ITimesheetService
     
     Task<List<Timesheet>> GetTimesheets(int employeeId);
     Task<TimesheetViewModel> GetTimesheet(int employeeId, string date);
+    Task<TimesheetViewModel> GetTimesheet(int timesheetId);
     Task<List<TimesheetDetailViewModel>> GetTimesheetDetails(int timesheetId);
     Task<List<WorkCategoryDetails>> GetActivityWiseHours(int employeeId,string intervalType,int projectId);
     Task<TimesheetDetailViewModel> GetTimesheetDetail(int timesheetDetailId);

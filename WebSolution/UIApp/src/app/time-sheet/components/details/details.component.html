@@ -1,4 +1,4 @@
-
+<!-- 
 <ng-template #insertTimesheetEnrty>
     <app-insert-time-sheet-entry *ngIf="timesheet" [timesheetId]="timesheet.id"
         (stateChangeEvent)="onAddStateChange($event)"></app-insert-time-sheet-entry>
@@ -6,7 +6,7 @@
 
 
 <app-popup *ngIf="showaddTimeSheetDetails" [templateToRender]="insertTimesheetEnrty"
-    (closePopup)="onCloseAddPopup()"></app-popup>
+    (closePopup)="onCloseAddPopup()"></app-popup> -->
 
 
 
@@ -34,8 +34,8 @@
                     <td> {{timeSheetDetail.projectName }}</td>
                     <td>{{timeSheetDetail.workType}}</td>
                     <td> {{timeSheetDetail.workTitle}}</td>
-                    <!-- <td> {{timeSheetDetail.description}}</td> -->
-                    <td  *ngIf="isTimeSheetEditable()"><button  [routerLink]="['../../update',timeSheetDetail.id,'date',timesheet.timesheetDate.slice(0,10)]" >Edit</button></td>
+                    <td> {{timeSheetDetail.durationInHours}}</td>
+                    <td  *ngIf="isTimeSheetEditable()"><button  [routerLink]="['/timesheet/update',timeSheetDetail.id]" >Edit</button></td>
                     <td  *ngIf="isTimeSheetEditable()"><button (click)="onRemoveTimeSheetDetails(timeSheetDetail.id)">Delete</button></td>
                 </tr>
 
