@@ -18,7 +18,57 @@ public class LeaveManagementService : ILeaveManagementService
         _connectionString = _configuration.GetConnectionString("DefaultConnection")  ?? throw new ArgumentNullException("connectionString");
     }
 
-    public async Task<List<EmployeeLeave>> GetLeaveDetails(int employeeId)
+
+
+    public async Task<List<EmployeeLeave>> GetAllEmployeeLeaves()
+    {
+        List<EmployeeLeave> leaveApplications = new List<EmployeeLeave>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query = "select * from employeeleaves";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {
+                int id = int.Parse(reader["id"].ToString());
+                int employeeId = int.Parse(reader["employeeid"].ToString());
+                DateTime applicationDate = DateTime.Parse(reader["applicationdate"].ToString());
+                DateTime fromDate = DateTime.Parse(reader["fromdate"].ToString());       
+                DateTime toDate = DateTime.Parse(reader["todate"].ToString());
+                string status = reader["status"].ToString();
+                int year = int.Parse(reader["year"].ToString());
+                string leaveType = reader["leavetype"].ToString();
+
+                EmployeeLeave leave = new EmployeeLeave()
+                {
+                    Id = id,
+                    EmployeeId = employeeId,
+                    ApplicationDate=applicationDate,
+                    FromDate = fromDate,
+                    ToDate = toDate,
+                    Status = status,
+                    Year=year,
+                    LeaveType = leaveType
+                };
+                leaveApplications.Add(leave);
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return leaveApplications;
+    }
+
+    public async Task<List<EmployeeLeave>> GetLeaveDetailsOfEmployee(int employeeId)
     {
         List<EmployeeLeave> leaveApplications = new List<EmployeeLeave>();
         MySqlConnection connection = new MySqlConnection();
@@ -64,6 +114,53 @@ public class LeaveManagementService : ILeaveManagementService
             await connection.CloseAsync();
         }
         return leaveApplications;
+    }
+
+    public async Task<EmployeeLeave> GetLeaveDetails(int leaveId)
+    {
+        EmployeeLeave employeeLeave = null;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query = "select * from employeeleaves where id =@leaveId";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@leaveId", leaveId);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {
+                int employeeId = int.Parse(reader["employeeid"].ToString());
+                DateTime applicationDate = DateTime.Parse(reader["applicationdate"].ToString());
+                DateTime fromDate = DateTime.Parse(reader["fromdate"].ToString());       
+                DateTime toDate = DateTime.Parse(reader["todate"].ToString());
+                string status = reader["status"].ToString();
+                int year = int.Parse(reader["year"].ToString());
+                string leaveType = reader["leavetype"].ToString();
+
+                employeeLeave = new EmployeeLeave()
+                {
+                    Id = leaveId,
+                    EmployeeId = employeeId,
+                    ApplicationDate=applicationDate,
+                    FromDate = fromDate,
+                    ToDate = toDate,
+                    Status = status,
+                    Year=year,
+                    LeaveType = leaveType
+                };
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return employeeLeave;
     }
 
     public async Task<List<EmployeeLeave>> GetTeamLeaveDetails(int projectId, string status)
@@ -278,4 +375,6 @@ public class LeaveManagementService : ILeaveManagementService
         }
         return status;
     }
+
+    
 }

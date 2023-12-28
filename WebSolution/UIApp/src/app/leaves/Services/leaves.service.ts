@@ -32,4 +32,9 @@ export class LeavesService {
     let url="http://localhost:5263/api/leaves/projects/"+projectId+"/status/"+status;
     return this.http.get<LeaveDetails[]>(url);
   }
+
+  getEmployeeLeavesDetails(leaveId:number):Observable<LeaveApplication>{
+    let url="http://localhost:5263/api/leaves/details/"+leaveId;
+    return this.http.get<LeaveApplication>(url);
+  }
 }
