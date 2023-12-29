@@ -191,7 +191,7 @@ INSERT INTO employeework (projectworktype,title, description, projectid,sprintid
 VALUES ('userstory','As a Supervisors Incharge, I want to view request reports graphs so that i can make data-driven decisions and analyze trends.','',4,1,  '2023-12-05', '2023-12-06', '2023-12-10',  10, 7, 'inprogress','2023-12-04');
 
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
-VALUES ('userstory','As a Supervisors Incharge, I want to add new supervior to the system so that i can seamlessly expand our team, assign roles and responsibilities.', '',4,1,  '2023-12-05', '2023-12-06', '2023-12-10',  10, 7, 'inprogress','2023-12-04');
+VALUES ('userstory','As a Supervisors Incharge, I want to add new supervior to the system so that i can seamlessly expand our team, assign roles and responsibilities.', '',4,1,  '2023-12-29', '2023-12-29', '2023-12-29',  15, 7, 'inprogress','2023-12-29');
 
 
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)

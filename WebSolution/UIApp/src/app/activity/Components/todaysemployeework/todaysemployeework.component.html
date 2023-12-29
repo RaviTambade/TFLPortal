@@ -1,0 +1,31 @@
+<p>todaysemployeework works!</p>
+
+
+<div class="col-4">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title"> My Today's Activities</h2>
+            <div class="card">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Title</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let activity of employeeWorks">
+                        <tr>
+                            <td>{{activity.projectWorkType}}</td>
+                            <td><a class="underline card-link">{{activity.title}}</a></td>
+                            <td>{{activity.status}}</td>
+                            <td><button  (click)="onClick()">Edit</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
