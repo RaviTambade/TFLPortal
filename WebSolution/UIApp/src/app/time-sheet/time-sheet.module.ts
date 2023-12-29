@@ -18,6 +18,7 @@ import { TimesheetEmployeeAnalyticsComponent } from './components/timesheet-empl
 import { TimesheetroutercontainerComponent } from './components/timesheetroutercontainer/timesheetroutercontainer.component';
 import { CreateTimesheetComponent } from './components/forms/create-timesheet/create-timesheet.component';
 import { AddTimesheetEntryComponent } from './components/forms/add-timesheet-entry/add-timesheet-entry.component';
+import { HourConvertorPipe } from '../shared/pipes/hour-convertor.pipe';
 
 export const timeSheetRoutes: Routes = [
   {
@@ -27,12 +28,9 @@ export const timeSheetRoutes: Routes = [
       {path:'', redirectTo: 'list', pathMatch: 'full' },
       { path: 'list', component: ListComponent },
       { path: 'create', component: CreateTimesheetComponent },
-      { path: 'addentry/:id', component: AddTimesheetEntryComponent },
       { path: 'details/:id', component: DetailsComponent },
-      {
-        path: 'update/:id',
-        component: UpdateTimesheetEntryComponent,
-      },
+      { path: 'addentry/:id', component: AddTimesheetEntryComponent },
+      { path: 'update/:id', component: UpdateTimesheetEntryComponent},
     ],
   },
   {
@@ -83,6 +81,6 @@ export const timeSheetRoutes: Routes = [
     InsertTimeSheetEntryComponent,
     InsertTimeSheetComponent,
   ],
-  providers: [ChunkPipe],
+  providers: [],
 })
 export class TimeSheetModule {}

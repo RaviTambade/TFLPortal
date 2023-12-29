@@ -10,6 +10,8 @@ import { TimeSheetDetailView } from 'src/app/time-sheet/models/timesheet-detail-
 import { TimesheetView } from 'src/app/time-sheet/models/timesheetview';
 import { WorkCategoryDetails } from 'src/app/time-sheet/models/workcategorydetails';
 import { EmployeeWork } from 'src/app/activity/Models/EmployeeWork';
+import { TimesheetDuration } from 'src/app/time-sheet/models/timesheetduratiom';
+import { Week } from 'src/app/time-sheet/models/Week';
 
 
 @Injectable({
@@ -76,9 +78,9 @@ export class WorkmgmtService {
 
 
 
-  getAllTimeSheets(employeeId: number): Observable<Timesheet[]> {
-    let url = `${this.serviceurl}/workmgmt/timesheets/employees/${employeeId}`;
-    return this.http.get<Timesheet[]>(url);
+  getAllTimeSheets(employeeId: number,fromDate:string,toDate:string): Observable<TimesheetDuration[]> {
+    let url = `${this.serviceurl}/workmgmt/timesheets/employees/${employeeId}/from/${fromDate}/to/${toDate}`;
+    return this.http.get<TimesheetDuration[]>(url);
   }
   getTimeSheet(employeeId: number, date: string): Observable<TimesheetView> {
     let url = `${this.serviceurl}/workmgmt/timesheets/employees/${employeeId}/date/${date}`;
@@ -147,6 +149,11 @@ export class WorkmgmtService {
     return this.http.delete<boolean>(url);
   }
 
+  getAllEmployeeWorkCount(): Observable<any> {
+    let url =this.serviceurl +'/workmgmt/employeeWork/ActivitySp';
+    return this.http.get<any>(url);
+  }
+
   //helper functions
 
   getDurationOfWork(TimeSheetDetails: TimeSheetDetailView): TimeSheetDetailView {
@@ -177,11 +184,44 @@ export class WorkmgmtService {
     return '#' + result;
   }
 
-
-  getAllEmployeeWorkCount(): Observable<any> {
-    let url =this.serviceurl +'/workmgmt/employeeWork/ActivitySp';
-    return this.http.get<any>(url);
+  firstDayOfMonth(month: number): string {
+    const currentYear = new Date().getFullYear();
+    const date = new Date(currentYear, month, 1);
+    return this.ConvertDateYYYY_MM_DD(date);
   }
+
+  lastDayofMonth(month: number) {
+    const currentYear = new Date().getFullYear();
+    const nextmonth: number = ++month;
+    const date = new Date(currentYear, nextmonth, 0);
+    return this.ConvertDateYYYY_MM_DD(date);
+  }
+
+  getWeekInfo(date: Date): Week {
+    const dayOfWeek = date.getUTCDay();
+    const startOfWeek = new Date(date);
+    startOfWeek.setUTCDate(date.getUTCDate() - dayOfWeek);
+    const endOfWeek = new Date(startOfWeek);
+    endOfWeek.setUTCDate(startOfWeek.getUTCDate() + 6);
+    return {
+      startDate: this.ConvertDateYYYY_MM_DD(startOfWeek),
+      endDate: this.ConvertDateYYYY_MM_DD(endOfWeek),
+    };
+  }
+
+  ConvertDateYYYY_MM_DD(date: Date): string {
+    const formattedDate = date
+      .toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      })
+      .split('/').reverse().join('-');
+    return formattedDate;
+  }
+
+
+
 
 
 }

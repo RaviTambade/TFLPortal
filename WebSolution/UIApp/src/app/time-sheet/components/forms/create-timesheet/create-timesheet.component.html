@@ -1,10 +1,7 @@
+<div> <label class="mb-2">Date:</label>
+    <input type="date" class="form-control mb-2  d-flex flex-row-reverse gap-4 justify-content-start"
+        [(ngModel)]="date">
 
-<div class="container">
-    <label>Date : </label>
-    <input type="date" [(ngModel)]="date" > 
-    <br>
-    <br>
-    <button class="mx-2" (click)="CreateTimesheet()">Create</button>
-    <button (click)="onCancelClick()">Cancel</button>
+    <button class="btn btn-success mx-2" (click)="CreateTimesheet()">Create</button>
+    <button class="btn btn-danger" (click)="onCancelClick()">Cancel</button>
 </div>
-<br />      

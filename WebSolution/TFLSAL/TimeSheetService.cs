@@ -19,32 +19,41 @@ public class TimesheetService : ITimesheetService
             ?? throw new ArgumentNullException("connectionString");
     }
 
-    public async Task<List<Timesheet>> GetTimesheets(int employeeId)
+    public async Task<List<TimesheetDuration>> GetTimesheets(int employeeId, string fromDate,string toDate )
     {
-        List<Timesheet> timesheets = new List<Timesheet>();
+        List<TimesheetDuration> timesheets = new List<TimesheetDuration>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select * from timesheets where  employeeid =@employeeId";
+            string query = @"select timesheets.* , 
+                    CAST(((SUM(TIME_TO_SEC(TIMEDIFF(totime,fromtime))))/3600)AS DECIMAL(10,2)) as time_in_hour
+                    from timesheets
+                    INNER JOIN timesheetdetails on timesheetdetails.timesheetid=timesheets.id
+                    where  employeeid =@employeeId AND timesheetdate>=@fromdate AND timesheetdate<=@todate
+                    GROUP BY timesheetdate";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@employeeId", employeeId);
+            command.Parameters.AddWithValue("@fromdate", fromDate);
+            command.Parameters.AddWithValue("@todate", toDate);
             await connection.OpenAsync();
             MySqlDataReader reader = (MySqlDataReader)await command.ExecuteReaderAsync();
             while (await reader.ReadAsync())
             {
                 int id = int.Parse(reader["id"].ToString());
                 string status = reader["status"].ToString();
+                double hours=double.Parse(reader["time_in_hour"].ToString());
                 DateTime timesheetDate = DateTime.Parse(reader["timesheetdate"].ToString());
                 DateTime statusChangedDate = DateTime.Parse(reader["statuschangeddate"].ToString());
 
-                Timesheet timesheet = new Timesheet()
+                TimesheetDuration timesheet = new TimesheetDuration()
                 {
                     Id = id,
                     TimesheetDate = timesheetDate,
                     Status = status,
                     EmployeeId = employeeId,
                     StatusChangedDate = statusChangedDate,
+                    Hours=hours
                 };
                 timesheets.Add(timesheet);
             }

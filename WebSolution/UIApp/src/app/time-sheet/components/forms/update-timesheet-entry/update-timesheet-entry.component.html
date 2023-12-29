@@ -1,24 +1,26 @@
 <ng-container *ngIf="timesheetDetails">
-    <h2> Update TimesheetEntry</h2>
-    <select [(ngModel)]="selectedProjectId" (change)="getWorks()">
-        <option *ngFor="let project of projects;" [value]="project.id">{{project.title|titlecase}}</option>
-    </select><br>
-    <label>Work:</label>
-    <select style="width: 200px;" [(ngModel)]="timesheetDetails.employeeWorkId">
-        <option *ngFor="let work of employeeWorks;let i=index" [value]="work.id">{{work.title.slice(0,50)|titlecase}}
-        </option>
-    </select><br>
+    <h2>Update Timesheet Entry</h2>
 
-    <label>From :</label>
-    <input type="time" name="fromTime" [(ngModel)]="timesheetDetails.fromTime" (change)="getDuration(timesheetDetails)">
-    <label>TO:</label>
-    <input type="time" name="toTime" [(ngModel)]="timesheetDetails.toTime" (change)="getDuration(timesheetDetails)">
-    <br />
-    <br />
+        <label>Project:</label>
+        <select class="form-control" [(ngModel)]="selectedProjectId" (change)="getWorks()">
+            <option *ngFor="let project of projects;" [value]="project.id">{{project.title | titlecase}}</option>
+        </select>
 
+        <label>Work:</label>
+        <select class="form-control" [(ngModel)]="timesheetDetails.employeeWorkId">
+            <option *ngFor="let work of employeeWorks; let i = index" [value]="work.id">
+                {{work.title| titlecase}}
+            </option>
+        </select>
 
-    <p>duration:{{timesheetDetails.durationInHours}}</p>
-    <br>
-    <button type="submit" (click)="onClick()">Update</button>
-    <button type="submit" class="mx-2" (click)="onCancelClick()">Cancel</button>
+        <label>From:</label>
+        <input type="time" class="form-control  d-flex flex-row-reverse gap-4 justify-content-start" name="fromTime" [(ngModel)]="timesheetDetails.fromTime" (change)="getDuration(timesheetDetails)">
+
+        <label>To:</label>
+        <input type="time" class="form-control  d-flex flex-row-reverse gap-4 justify-content-start" name="toTime" [(ngModel)]="timesheetDetails.toTime" (change)="getDuration(timesheetDetails)">
+
+    <p>Duration: {{timesheetDetails.durationInHours}}</p>
+
+        <button class="btn btn-success" type="submit" (click)="onClick()">Update</button>
+        <button class="btn btn-danger mx-2" type="submit" (click)="onCancelClick()">Cancel</button>
 </ng-container>

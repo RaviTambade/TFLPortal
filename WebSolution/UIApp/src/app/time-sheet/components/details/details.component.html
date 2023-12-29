@@ -1,53 +1,44 @@
-<!-- 
-<ng-template #insertTimesheetEnrty>
-    <app-insert-time-sheet-entry *ngIf="timesheet" [timesheetId]="timesheet.id"
-        (stateChangeEvent)="onAddStateChange($event)"></app-insert-time-sheet-entry>
-</ng-template>
+<!-- <div class="container"> -->
+    <label class="d-block mb-2">Date: {{timesheet?.timesheetDate | date}}</label>
+    <label class="d-block mb-2">Status: {{timesheet?.status | titlecase}}</label>
+    <label class="d-block mb-2">Employee Name: {{timesheet?.employeeName}}</label>
 
+    <button *ngIf="isTimeSheetEditable()" class="btn btn-primary mb-2" (click)="onClickAddTimeSheetDetails()">Add Entry</button>
 
-<app-popup *ngIf="showaddTimeSheetDetails" [templateToRender]="insertTimesheetEnrty"
-    (closePopup)="onCloseAddPopup()"></app-popup> -->
-
-
-
-    <p> Date : {{timesheet?.timesheetDate |date}}</p>
-    <p> Status:{{timesheet?.status |titlecase}}</p>
-    <p> Employee Name:{{timesheet?.employeeName}}</p>
-    <button *ngIf="isTimeSheetEditable()" (click)="onClickAddTimeSheetDetails()"> Add </button>
-
-    <table class="table-bordered" >
+    <table class="table table-bordered">
         <thead>
             <tr>
-                <th>fromtime</th>
-                <th>toTime</th>
-                <th>ProjectName</th>
-                <th>Category:</th>
-                <th>Work:</th>
+                <th>From Time</th>
+                <th>To Time</th>
+                <th>Project Name</th>
+                <th>Category</th>
+                <th>Work</th>
                 <th>Duration</th>
+                <th *ngIf="isTimeSheetEditable()">Actions</th>
             </tr>
         </thead>
-        <ng-container *ngIf=" timesheet && timesheet.timeSheetDetails.length>0">
+        <ng-container *ngIf="timesheet && timesheet.timeSheetDetails.length > 0">
             <tbody *ngFor="let timeSheetDetail of timesheet.timeSheetDetails">
                 <tr>
-                    <td> {{timeSheetDetail.fromTime }}</td>
-                    <td> {{timeSheetDetail.toTime }}</td>
-                    <td> {{timeSheetDetail.projectName }}</td>
+                    <td>{{timeSheetDetail.fromTime}}</td>
+                    <td>{{timeSheetDetail.toTime}}</td>
+                    <td>{{timeSheetDetail.projectName}}</td>
                     <td>{{timeSheetDetail.workType}}</td>
-                    <td> {{timeSheetDetail.workTitle}}</td>
-                    <td> {{timeSheetDetail.durationInHours}}</td>
-                    <td  *ngIf="isTimeSheetEditable()"><button  [routerLink]="['/timesheet/update',timeSheetDetail.id]" >Edit</button></td>
-                    <td  *ngIf="isTimeSheetEditable()"><button (click)="onRemoveTimeSheetDetails(timeSheetDetail.id)">Delete</button></td>
+                    <td>{{timeSheetDetail.workTitle}}</td>
+                    <td>{{timeSheetDetail.durationInHours}}</td>
+                    <td *ngIf="isTimeSheetEditable()">
+                        <button class="btn btn-warning mx-2 my-2 " [routerLink]="['/timesheet/update', timeSheetDetail.id]">Edit</button>
+                        <button class="btn btn-danger" (click)="onRemoveTimeSheetDetails(timeSheetDetail.id)">Delete</button>
+                    </td>
                 </tr>
-
             </tbody>
         </ng-container>
-
     </table>
 
-    <p>Total Hours : {{totalminutes}}</p>
-    <ng-container *ngIf=" timesheet && timesheet.timeSheetDetails.length>0">
-    <button type="submit"  *ngIf="isTimeSheetEditable()" (click)="onSubmit()"> submit </button>
-    <button class="mx-1" *ngIf="isTimeSheetEditable() && timesheet" (click)="onRemoveAllTimeSheetDetails(timesheet.id)">
-        ClearAll </button>
-        </ng-container>
+    <p class="mb-2">Total Hours: {{totalminutes}}</p>
 
+    <ng-container *ngIf="timesheet && timesheet.timeSheetDetails.length > 0 && isTimeSheetEditable()">
+        <button class="btn btn-success" type="submit" (click)="onSubmit()">Submit</button>
+        <button class="btn btn-danger mx-1" (click)="onRemoveAllTimeSheetDetails(timesheet.id)">Clear All</button>
+    </ng-container>
+<!-- </div> -->
