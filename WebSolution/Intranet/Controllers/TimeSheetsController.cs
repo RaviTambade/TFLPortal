@@ -19,11 +19,10 @@ public class TimesheetsController : ControllerBase
         _timesheetService = service;
     }
 
-    [HttpGet("employees/{employeeId}")]
-    public async Task<List<Timesheet>> GetTimesheets(int employeeId)
+    [HttpGet("employees/{employeeId}/from/{fromDate}/to/{toDate}")]
+    public async Task<List<TimesheetDuration>> GetTimesheets(int employeeId,string fromDate,string toDate)
     {
-        List<Timesheet> timesheets = await _timesheetService.GetTimesheets(employeeId);
-        return timesheets;
+      return  await _timesheetService.GetTimesheets(employeeId,fromDate,toDate);
     }
 
     [HttpGet("employees/{employeeId}/date/{date}")]

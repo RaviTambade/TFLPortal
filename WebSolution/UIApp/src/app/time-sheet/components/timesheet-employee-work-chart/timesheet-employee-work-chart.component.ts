@@ -6,10 +6,7 @@ import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
 import { Project } from 'src/app/projects/Models/project';
 import { ProjectService } from 'src/app/shared/services/project.service';
 
-type Week = {
-  startDate: string;
-  endDate: string;
-};
+
 @Component({
   selector: 'timesheet-employee-work-chart',
   templateUrl: './timesheet-employee-work-chart.component.html',
@@ -103,15 +100,15 @@ export class TimesheetEmployeeWorkChartComponent {
   onIntervalChange() {
     switch (this.selectedInterval) {
       case 'week':
-        const week = this.getWeekInfo(new Date());
+        const week = this.workmgmtSvc.getWeekInfo(new Date());
         this.fromDate = week.startDate;
         this.toDate = week.endDate;
         break;
 
       case 'month':
         const currentmonth = new Date().getMonth();
-        this.fromDate = this.firstDayOfMonth(currentmonth);
-        this.toDate = this.lastDayofMonth(currentmonth);
+        this.fromDate = this.workmgmtSvc.firstDayOfMonth(currentmonth);
+        this.toDate = this.workmgmtSvc.lastDayofMonth(currentmonth);
         break;
 
       case 'year':
@@ -138,7 +135,7 @@ export class TimesheetEmployeeWorkChartComponent {
         this.chart.data.datasets = [];
         this.workCategory = new WorkCategoryDetails(0,0,0,0,0,0,0,0,0,'');
         this.WorkCategoryDetails.forEach((category, index) => {
-          let cl = this.randomColorPicker();
+          let cl = this.workmgmtSvc.randomColorPicker();
           let obj = {
             label: this.getLabelName(
               category.label,
@@ -171,53 +168,6 @@ export class TimesheetEmployeeWorkChartComponent {
         });
         this.chart.update();
       });
-  }
-
-  firstDayOfMonth(month: number): string {
-    const currentYear = new Date().getFullYear();
-    const date = new Date(currentYear, month, 1);
-    return this.ConvertDateYYYY_MM_DD(date);
-  }
-
-  lastDayofMonth(month: number) {
-    const currentYear = new Date().getFullYear();
-    const nextmonth: number = ++month;
-    const date = new Date(currentYear, nextmonth, 0);
-    return this.ConvertDateYYYY_MM_DD(date);
-  }
-
-  getWeekInfo(date: Date): Week {
-    const dayOfWeek = date.getUTCDay();
-    const startOfWeek = new Date(date);
-    startOfWeek.setUTCDate(date.getUTCDate() - dayOfWeek);
-    const endOfWeek = new Date(startOfWeek);
-    endOfWeek.setUTCDate(startOfWeek.getUTCDate() + 6);
-    return {
-      startDate: this.ConvertDateYYYY_MM_DD(startOfWeek),
-      endDate: this.ConvertDateYYYY_MM_DD(endOfWeek),
-    };
-  }
-
-  ConvertDateYYYY_MM_DD(date: Date): string {
-    const formattedDate = date
-      .toLocaleDateString(undefined, {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-      })
-      .split('/')
-      .reverse()
-      .join('-');
-    return formattedDate;
-  }
-
-  randomColorPicker(): string {
-    let result = '';
-    for (let i = 0; i < 6; ++i) {
-      const value = Math.floor(16 * Math.random());
-      result += value.toString(16);
-    }
-    return '#' + result;
   }
 
   getLabelName(orignalLabel: string, index: number) {
