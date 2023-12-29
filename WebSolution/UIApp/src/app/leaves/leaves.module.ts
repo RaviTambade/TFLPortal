@@ -11,6 +11,8 @@ import { BiModule } from '../bi/bi.module';
 import { EmployeeLeaveListComponent } from './Components/employee-leave-list/employee-leave-list.component';
 import { EmployeeLeaveDetailsComponent } from './Components/employee-leave-details/employee-leave-details.component';
 import { LeaveRouterContainerComponent } from './Components/leave-router-container/leave-router-container.component';
+import { AllEmployeeLeavesComponent } from './Components/all-employee-leaves/all-employee-leaves.component';
+import { UpdateEmployeeLeaveComponent } from './Components/forms/update-employee-leave/update-employee-leave.component';
 
 
 export const leaveRoutes: Routes = [
@@ -29,8 +31,8 @@ export const leaveRoutes: Routes = [
     {path:'', redirectTo: 'list', pathMatch: 'full' },
     { path: 'list', component: EmployeeLeaveListComponent },
     { path: 'details/:id', component: EmployeeLeaveDetailsComponent },
-    // { path: 'addentry/:id', component: AddTimesheetEntryComponent },
-    // { path: 'details/:id', component: DetailsComponent },
+    { path: 'add', component: AddLeaveComponent },
+    { path: 'update/:id', component: UpdateEmployeeLeaveComponent }
   ],
 },
 ]
@@ -45,6 +47,8 @@ export const leaveRoutes: Routes = [
     EmployeeLeaveListComponent,
     EmployeeLeaveDetailsComponent,
     LeaveRouterContainerComponent,
+    AllEmployeeLeavesComponent,
+    UpdateEmployeeLeaveComponent,
   ],
   imports: [
     CommonModule,
@@ -60,6 +64,8 @@ export const leaveRoutes: Routes = [
     EmployeeLeavesComponent,
     EmployeeLeaveListComponent,
     EmployeeLeaveDetailsComponent,
+    AllEmployeeLeavesComponent,
+    UpdateEmployeeLeaveComponent
   ]
 })
 export class LeavesModule { }

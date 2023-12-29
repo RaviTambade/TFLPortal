@@ -30,4 +30,11 @@ export class EmployeeLeaveDetailsComponent implements OnInit{
       }
     );
   }
+
+  onDeleteEmployeeLeave(LeaveId:number){
+    this.leaveService.deleteEmployeeLeave(this.LeaveId).subscribe((res)=>{
+      console.log(res);
+    })
+  }
+
 }
