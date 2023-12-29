@@ -1,19 +1,17 @@
-<h2> Add TimesheetEntry</h2>
-<label>Project:</label>
-<select [(ngModel)]="selectedProjectId" (change)="getWorks()">
-    <option *ngFor="let project of projects;" [value]="project.id">{{project.title|titlecase}}</option>
-</select><br>
-<label>Work:</label>
-<select  style="width: 100px;  " [(ngModel)]="timesheetDetail.employeeWorkId" >
-    <option *ngFor="let work of employeeWorks;let i=index" [value]="work.id">{{work.title|titlecase}}</option>
-</select><br>
-<label>From :</label>
-<input type="time" name="fromTime" [(ngModel)]="timesheetDetail.fromTime" (change)="getDuration(timesheetDetail)">
-<label>TO:</label>
-<input type="time" name="toTime" [(ngModel)]="timesheetDetail.toTime" (change)="getDuration(timesheetDetail)"> <br />
-<br />  
-
+<h2>Add Timesheet Entry</h2>
+  <label>Project:</label>
+  <select class="form-control" [(ngModel)]="selectedProjectId" (change)="getWorks()">
+    <option *ngFor="let project of projects;" [value]="project.id">{{project.title | titlecase}}</option>
+  </select>
+  <label>Work:</label>
+  <select class="form-control"  [(ngModel)]="timesheetDetail.employeeWorkId">
+    <option *ngFor="let work of employeeWorks; let i = index" [value]="work.id">{{work.title | titlecase}}</option>
+  </select>
+  <label>From :</label>
+  <input type="time" class="form-control d-flex flex-row-reverse gap-4 justify-content-start" name="fromTime" [(ngModel)]="timesheetDetail.fromTime" (change)="getDuration(timesheetDetail)">
+  <label>TO:</label>
+  <input type="time" class="form-control d-flex flex-row-reverse gap-4 justify-content-start" name="toTime" [(ngModel)]="timesheetDetail.toTime" (change)="getDuration(timesheetDetail)">
 <br>
-<p>duration:{{timesheetDetail.durationInHours}}</p>
-<button class="mx-2" type="submit" (click)="onClickAdd()">Add</button> 
-<button  (click)="onClickCancel()">Cancel</button> 
+<p>Duration: {{timesheetDetail.durationInHours}}</p>
+<button class="btn btn-success mx-2" type="submit" (click)="onClickAdd()">Add</button>
+<button class="btn btn-danger" (click)="onClickCancel()">Cancel</button>

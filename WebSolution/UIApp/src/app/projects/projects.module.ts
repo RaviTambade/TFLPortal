@@ -22,6 +22,10 @@ import { EmployeeAllActivitiesComponent } from '../activity/Components/employee-
 import { EmployeeworksdetailsComponent } from '../activity/Components/employeeworksdetails/employeeworksdetails.component';
 import { EmployeeworksComponent } from '../activity/Components/employeeworks/employeeworks.component';
 import { EmployeeworkrouteroutletComponent } from '../activity/Components/employeeworkrouteroutlet/employeeworkrouteroutlet.component';
+import { TodaysemployeeworkComponent } from '../activity/Components/todaysemployeework/todaysemployeework.component';
+import { MyworkingprojectsComponent } from '../activity/Components/myworkingprojects/myworkingprojects.component';
+import { UpdateActivityComponent } from '../activity/Components/Forms/update-activity/update-activity.component';
+import { UpdateemployeeworkComponent } from '../activity/Components/updateemployeework/updateemployeework.component';
 
 
 export const projectRoutes: Routes = [
@@ -30,8 +34,12 @@ export const projectRoutes: Routes = [
   { path: 'allActivities', component: EmployeeAllActivitiesComponent },
   { path: 'employeework', component: EmployeeworksComponent },
   { path: 'employeeworkdetails/:id', component: EmployeeworksdetailsComponent },
+  {path:'myprojects',component:MyworkingprojectsComponent},
+  {path:'todaysemployeework/:id',component:TodaysemployeeworkComponent},
+  {  path:'update/:id',component:UpdateemployeeworkComponent}
 
 ];
+
 
 
 

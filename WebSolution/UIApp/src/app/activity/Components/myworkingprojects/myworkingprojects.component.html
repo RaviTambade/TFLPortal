@@ -1,0 +1,15 @@
+<p>myworkingprojects works!</p>
+
+
+<div class="row">
+    <!-- First Column -->
+    <div class="col-2">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">MY Projects</h1>
+                <div *ngFor="let project of projects">
+                    <a class="underline card-link" [routerLink]="['/projects/todaysemployeework',project.id]">{{project.title}}</a>
+                </div>
+            </div>
+        </div>
+    </div>

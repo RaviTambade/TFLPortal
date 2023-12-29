@@ -1,24 +1,30 @@
+<div>
 
-
-
-<div class="container">
-    <button class="m-2" [routerLink]="['/timesheet/create']"> Create New Timesheet</button>
-    <h2> Timesheet List</h2>
-    <div class="card">
-        <table class="table-bordered text-center">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Status</th>
-                    <th>Status Change Date</th>
-                </tr>
-            </thead>
-            <tbody *ngFor="let timesheet of timeSheets">
-                <tr>
-                    <td  style="cursor: pointer; text-decoration: underline ; color:  #0000EE;" [routerLink]="['../details',timesheet.id]"> {{timesheet.timesheetDate | date}}</td>
-                    <td> {{timesheet.status}}</td>
-                    <td>{{timesheet.statusChangedDate |date}}</td>
-                </tr>
-            </tbody>
-        </table>
+    <h2> My Timesheets </h2>
+    <div class="mb-2">
+        <label>Interval</label>
+        <select class="mx-2 form-control-sm" [(ngModel)]="selectedInterval" (change)="onIntervalChange()">
+            <option *ngFor="let interval of intervals" [value]="interval"> {{interval}}</option>
+        </select>
+        <a class="mx-2 float-end" [routerLink]="['/timesheet/create']"> Create New Timesheet</a>
     </div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Status</th>
+                <th>hours</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let timesheet of timeSheets">
+            <tr>
+                <td> {{timesheet.timesheetDate | date:'dd-MM-yyy'}}</td>
+                <td> {{timesheet.status}}</td>
+                <td> {{timesheet.hours |hourConvertor}}</td>
+                <td><a [routerLink]="['/timesheet/details',timesheet.id]"> Details</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

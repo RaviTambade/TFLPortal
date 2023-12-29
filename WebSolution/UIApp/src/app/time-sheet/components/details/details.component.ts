@@ -74,6 +74,7 @@ export class DetailsComponent implements OnInit {
 
   onClickAddTimeSheetDetails() {
     this.router.navigate(['timesheet/addentry',this.timesheetId])
+ 
   }
 
 

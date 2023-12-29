@@ -7,6 +7,7 @@ import { HomeComponent } from './Components/home/home.component';
 import { TimesheetComponent } from './Components/timesheet/timesheet.component';
 import { LeavesComponent } from './Components/leaves/leaves.component';
 import { ProjectComponent } from './Components/project/project.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -22,7 +23,8 @@ import { ProjectComponent } from './Components/project/project.component';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    SharedModule
   ],
   exports:[MainComponent,
   ProjectComponent]
