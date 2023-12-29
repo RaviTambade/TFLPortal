@@ -37,8 +37,9 @@ export class TodaysemployeeworkComponent {
   
   }
 
-  onClick(){
-    this.router.navigate(['/projects/update',this.projectId]);
+  onClick(id:number){
+    console.log(id);
+    this.router.navigate(['/projects/update',id]);
   }
 
 }
