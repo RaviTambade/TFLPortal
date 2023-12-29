@@ -22,12 +22,24 @@ public class LeavesManagementController : ControllerBase
         _hrService=hrService;
     }
 
+    [HttpGet]
+    public async Task<List<EmployeeLeave>> GetAllEmployeeLeaves()
+    {
+        return await _service.GetAllEmployeeLeaves();
+    }
 
     [HttpGet]
     [Route ("{employeeId}")]
-    public async Task<List<EmployeeLeave>> GetLeaveDetails(int employeeId)
+    public async Task<List<EmployeeLeave>> GetLeaveDetailsOfEmployee(int employeeId)
     {
-        return await _service.GetLeaveDetails(employeeId);
+        return await _service.GetLeaveDetailsOfEmployee(employeeId);
+    }
+
+    [HttpGet]
+    [Route ("details/{leaveId}")]
+    public async Task<EmployeeLeave> GetLeaveDetails(int leaveId)
+    {
+        return await _service.GetLeaveDetails(leaveId);
     }
 
     [HttpGet]
@@ -85,7 +97,6 @@ public class LeavesManagementController : ControllerBase
        
     }
 
-    
     [HttpPut]
     public async Task<bool> UpdateLeaveApplication(EmployeeLeave employeeLeave)
     {

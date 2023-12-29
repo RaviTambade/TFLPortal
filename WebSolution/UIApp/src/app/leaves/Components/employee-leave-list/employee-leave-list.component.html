@@ -1,0 +1,26 @@
+<h3>Employee Leaves List</h3>
+<div class="container">
+    <div class="card col-6">
+    <table class="table-bordered text-center">
+            <thead>
+                <tr>
+                    <!-- <th>From Date</th>-->
+                    <!-- <th>To Date</th> -->
+                    <th>Application Date</th>
+                    <th>Status</th>
+                    <!-- <th>LeaveType </th> -->
+                   </tr>
+            </thead>
+            <tbody *ngFor="let employee of employees">
+                <tr>
+                    <td  style="cursor: pointer; text-decoration: underline ; color:  #0000EE;" [routerLink]="['../details',employee.id]">{{employee.applicationDate |date}}</td>
+                    <!-- <td>{{employee.fromDate |date}}</td>
+                    <td>{{employee.toDate |date}}</td> -->
+                    <td>{{employee.status}}</td>
+                    <!-- <td>{{employee.leaveType}}</td> -->
+                </tr>
+            </tbody>
+    </table>
+</div>
+
+

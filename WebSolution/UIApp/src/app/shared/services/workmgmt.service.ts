@@ -219,7 +219,12 @@ export class WorkmgmtService {
       .split('/').reverse().join('-');
     return formattedDate;
   }
+  
 
+  fetchEmployeeDetailsById(employeeWorkId:number){
+    let url=this.serviceurl+'/workmgmt/employeework/projects/'+employeeWorkId;
+    return this.http.get<any>(url);
+  }
 
 
 

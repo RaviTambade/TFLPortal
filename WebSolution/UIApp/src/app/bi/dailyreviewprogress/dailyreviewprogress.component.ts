@@ -8,10 +8,7 @@ import { Chart } from 'chart.js';
 })
 export class DailyreviewprogressComponent implements OnInit{
   title = 'ChartApp';
-
   chart: any = [];
- 
-  
 
   createChart(){
   

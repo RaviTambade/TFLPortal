@@ -8,11 +8,8 @@ import { Chart } from 'chart.js';
 })
 export class WeeklyprogreessreviewComponent implements OnInit{
   title = 'ChartApp';
-
   chart: any = [];
  
-  
-
   createChart(){
   
     this.chart = new Chart("MyChart", {

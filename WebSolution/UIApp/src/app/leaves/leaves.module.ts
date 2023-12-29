@@ -8,14 +8,32 @@ import { EmployeeLeavesComponent } from './Components/employee-leaves/employee-l
 import { LeaveRoutingComponent } from './Components/leave-routing/leave-routing.component';
 import { TeamMemberLeaveRequestComponent } from './Components/team-member-leave-request/team-member-leave-request.component';
 import { BiModule } from '../bi/bi.module';
+import { EmployeeLeaveListComponent } from './Components/employee-leave-list/employee-leave-list.component';
+import { EmployeeLeaveDetailsComponent } from './Components/employee-leave-details/employee-leave-details.component';
+import { LeaveRouterContainerComponent } from './Components/leave-router-container/leave-router-container.component';
 
 
 export const leaveRoutes: Routes = [
   // { path: '', component: AddLeaveComponent },
   // { path: 'leaveform', component: AddLeaveComponent  },
-  { path: 'pendingleave', component: LeaveRoutingComponent},
-  { path: 'appliedleave', component: TeamMemberLeaveRequestComponent}
-];
+//   { path: 'pendingleave', component: LeaveRoutingComponent},
+//   { path: 'appliedleave', component: TeamMemberLeaveRequestComponent}
+// ];
+
+
+
+{
+  path: '',
+  component: LeaveRouterContainerComponent,
+  children: [
+    {path:'', redirectTo: 'list', pathMatch: 'full' },
+    { path: 'list', component: EmployeeLeaveListComponent },
+    { path: 'details/:id', component: EmployeeLeaveDetailsComponent },
+    // { path: 'addentry/:id', component: AddTimesheetEntryComponent },
+    // { path: 'details/:id', component: DetailsComponent },
+  ],
+},
+]
 
 @NgModule({
   declarations: [
@@ -24,6 +42,9 @@ export const leaveRoutes: Routes = [
     EmployeeLeavesComponent,
     LeaveRoutingComponent,
     TeamMemberLeaveRequestComponent,
+    EmployeeLeaveListComponent,
+    EmployeeLeaveDetailsComponent,
+    LeaveRouterContainerComponent,
   ],
   imports: [
     CommonModule,
@@ -36,7 +57,9 @@ export const leaveRoutes: Routes = [
     AddLeaveComponent,
     TeamMemberLeaveRequestComponent,
     PendingLeaveComponent,
-    EmployeeLeavesComponent
+    EmployeeLeavesComponent,
+    EmployeeLeaveListComponent,
+    EmployeeLeaveDetailsComponent,
   ]
 })
 export class LeavesModule { }

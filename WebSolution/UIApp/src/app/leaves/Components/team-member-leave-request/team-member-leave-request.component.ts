@@ -19,7 +19,7 @@ export class TeamMemberLeaveRequestComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.leaveService.getEmployeeAppliedLeaves(this.projectId,this.status).subscribe((res)=>{
+    this.leaveService.getTeamLeaveDetails(this.projectId,this.status).subscribe((res)=>{
     this.appliedLeaves=res;
     console.log(this.appliedLeaves);
     this.leaveTypes=this.appliedLeaves.map(item => item.leaveType).filter((value, index, self) => self.indexOf(value) === index);

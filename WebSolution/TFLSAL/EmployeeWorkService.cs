@@ -326,7 +326,7 @@ public class EmployeeWorkService : IEmployeeWorkService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select employeework.* ,e1.userid as assignbyuserid,e2.userid as assigntouserid,projects.title as projectname from employeework INNER JOIN employees e1  on activiemployeeworkties.assignedto =e1.id INNER JOIN employees e2   on  activities.assignedby=e2.id INNER JOIN projects ON activities.projectid =projects.id WHERE activities.id=@employeeWorkId";
+            string query = "select employeework.* ,e1.userid as assignbyuserid,e2.userid as assigntouserid,projects.title as projectname from employeework INNER JOIN employees e1  on employeework.assignedto =e1.id INNER JOIN employees e2   on  employeework.assignedby=e2.id INNER JOIN projects ON employeework.projectid =projects.id WHERE employeework.id=@employeeWorkId";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@employeeWorkId", employeeWorkId);
 

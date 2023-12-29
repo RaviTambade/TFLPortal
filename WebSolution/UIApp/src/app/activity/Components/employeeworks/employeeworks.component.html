@@ -1,0 +1,22 @@
+<div class="container">
+    <h2> My works List</h2>
+    <div class="card">
+        <table class="table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>AssignedDate</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                   </tr>
+            </thead>
+            <tbody *ngFor="let work of employeeworks">
+                <tr>
+                    <td> {{work.assignDate |date}}</td>
+                    <td><a [routerLink]="['/projects/employeeworkdetails', work.id]">{{work.title}}</a></td>
+                    <td> {{work.status}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
