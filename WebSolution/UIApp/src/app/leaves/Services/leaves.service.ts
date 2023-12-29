@@ -37,4 +37,19 @@ export class LeavesService {
     let url="http://localhost:5263/api/leaves/details/"+leaveId;
     return this.http.get<LeaveApplication>(url);
   }
+
+  getAllEmployeeLeaves():Observable<LeaveApplication[]>{
+    let url="http://localhost:5263/api/leaves";
+    return this.http.get<LeaveApplication[]>(url);
+  }
+
+  updateEmployeeLeave(leaveApplication:LeaveApplication):Observable<LeaveApplication>{
+    let url="http://localhost:5263/api/leaves";
+    return this.http.put<LeaveApplication>(url,leaveApplication);
+  }
+
+  deleteEmployeeLeave(LeaveId:number):Observable<LeaveApplication>{
+    let url="http://localhost:5263/api/leaves/"+LeaveId;
+    return this.http.delete<LeaveApplication>(url);
+  }
 }
