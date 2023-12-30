@@ -26,6 +26,7 @@ import { TodaysemployeeworkComponent } from '../activity/Components/todaysemploy
 import { MyworkingprojectsComponent } from '../activity/Components/myworkingprojects/myworkingprojects.component';
 import { UpdateActivityComponent } from '../activity/Components/Forms/update-activity/update-activity.component';
 import { UpdateemployeeworkComponent } from '../activity/Components/updateemployeework/updateemployeework.component';
+import { AddActivityComponent } from '../activity/Components/Forms/add-activity/add-activity.component';
 
 
 export const projectRoutes: Routes = [
@@ -36,7 +37,9 @@ export const projectRoutes: Routes = [
   { path: 'employeeworkdetails/:id', component: EmployeeworksdetailsComponent },
   {path:'myprojects',component:MyworkingprojectsComponent},
   {path:'todaysemployeework/:id',component:TodaysemployeeworkComponent},
-  {  path:'update/:id',component:UpdateemployeeworkComponent}
+  {  path:'update/:id',component:UpdateemployeeworkComponent},
+  {  path:'allProjectList',component:AllProjectsListComponent},
+  {  path:'addWork',component:AddActivityComponent}
 
 ];
 

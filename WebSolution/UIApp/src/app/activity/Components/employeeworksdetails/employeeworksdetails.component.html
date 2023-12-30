@@ -11,23 +11,19 @@
                     <th>projectWorkType</th>
                     <th>projectName</th>
                     <th>assignedBy</th>
-                    <th>assignedTo</th>
-                    <th>assignDate</th>
                     <th>dueDate</th>
                    </tr>
             </thead>
             <tbody *ngIf="employeeworks">
                 <tr>
                     <td> {{employeeworks.assignDate |date}}</td>
-                    <td>>{{employeeworks.title}}</td>
+                    <td>{{employeeworks.title}}</td>
                     <td> {{employeeworks.status}}</td>
                     <td> {{employeeworks.description}}</td>
                     <td> {{employeeworks.projectWorkType}}</td>
-                    <td> {{employeeworks.projectName}}</td>
+                    <td> {{employeeworks.projectId}}</td>
                     <td> {{employeeworks.assignedBy}}</td>
-                    <td> {{employeeworks.assignedTo}}</td>
-                    <td> {{employeeworks.assignDate}}</td>
-                    <td> {{employeeworks.dueDate}}</td>
+                    <td> {{employeeworks.dueDate |date}}</td>
                 </tr>
             </tbody>
         </table>

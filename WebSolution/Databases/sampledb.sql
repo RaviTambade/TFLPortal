@@ -185,7 +185,7 @@ INSERT INTO employeework (projectworktype,title, description, projectid,sprintid
 VALUES ('userstory','As a Store Worker, I want to mark orders as picked up when I collect the materials from the inventory so that i can change status of order.','',4,1,'2023-12-28', '2023-12-28', '2023-12-28',  15, 7,'inprogress','2023-12-28');
 
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
-VALUES ('userstory','As a Supervisor Incharge, I want to view an overview of employee information and departments so that I can efficiently manage teams and make informed decisions regarding staffing and resource allocation.','',4,1,  '2023-12-10','2023-12-06', '2023-12-10',  10, 7,'inprogress','2023-12-04');
+VALUES ('userstory','As a Supervisor Incharge, I want to view an overview of employee information and departments so that I can efficiently manage teams and make informed decisions regarding staffing and resource allocation.','',4,1,  '2023-12-10','2023-12-06', '2023-12-10',  1, 7,'inprogress','2023-12-04');
 
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
 VALUES ('userstory','As a Supervisors Incharge, I want to view request reports graphs so that i can make data-driven decisions and analyze trends.','',4,1,  '2023-12-05', '2023-12-06', '2023-12-10',  10, 7, 'inprogress','2023-12-04');
@@ -204,7 +204,7 @@ INSERT INTO employeework (projectworktype,title, description, projectid,sprintid
 VALUES ('userstory','As a Supervisors Incharge, I want request reports of each supervisor,  so that I can assess individual and team performance, track trends in order management.','',4,1,   '2023-12-05', '2023-12-06', '2023-12-10',  10, 7,'inprogress','2023-12-04');
 
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
-VALUES ('userstory','As a Supervisors Incharge, I want to view a graph showing the total number of requests placed by each supervisor so that I can assess their productivity levels.','',4,1,  '2023-12-10','2023-12-05', '2023-12-06',  10, 7, 'inprogress','2023-12-04');
+VALUES ('userstory','As a Supervisors Incharge, I want to view a graph showing the total number of requests placed by each supervisor so that I can assess their productivity levels.','',4,1,  '2023-12-30','2023-12-30', '2023-12-30',  15, 7, 'inprogress','2023-12-04');
 
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
 VALUES ('userstory','As a Supervisors Incharge, I want to view graphical representations of weekly, monthly, and yearly so that i can analise request trends.','',4,1,  '2023-12-05', '2023-12-06', '2023-12-10',  10, 7,'inprogress','2023-12-04');
