@@ -103,4 +103,18 @@ public class LeavesManagementController : ControllerBase
         bool status= await _service.UpdateLeaveApplication(employeeLeave);
         return status;
     }
+
+    [HttpPut("updateleaves")]
+    public async Task<bool> UpdateEmployeeLeave(EmployeeLeave employeeLeave)
+    {
+       bool status= await _service.UpdateEmployeeLeave(employeeLeave);
+        return status; 
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<bool> DeleteEmployeeLeave(int id)
+    {
+       bool status= await _service.DeleteEmployeeLeave(id);
+        return status; 
+    }
 }

@@ -376,5 +376,74 @@ public class LeaveManagementService : ILeaveManagementService
         return status;
     }
 
+    public async Task<bool> UpdateEmployeeLeave(EmployeeLeave employeeLeave)
+    {
+        bool status = false;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            
+            string query = "Update employeeleaves set employeeid=@employeeId,applicationdate=@applicationDate,fromdate=@fromDate,todate=@toDate,year=@year,leavetype=@leaveType where id =@Id";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@Id", employeeLeave.Id);
+            cmd.Parameters.AddWithValue("@employeeId", employeeLeave.EmployeeId);
+            cmd.Parameters.AddWithValue("@applicationDate", employeeLeave.ApplicationDate);
+            cmd.Parameters.AddWithValue("@fromDate", employeeLeave.FromDate);
+            cmd.Parameters.AddWithValue("@toDate", employeeLeave.ToDate);
+            cmd.Parameters.AddWithValue("@year", employeeLeave.Year);
+            cmd.Parameters.AddWithValue("@leaveType", employeeLeave.LeaveType);
+            await connection.OpenAsync();
+            int rowsAffected = cmd.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                status = true;
+            }
+            await connection.CloseAsync();
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return status;
+    }
+
     
+
+    public async Task<bool> DeleteEmployeeLeave(int id)
+    {
+        bool status = false;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            MySqlCommand command = new MySqlCommand();
+            command.CommandText =
+                "Delete from employeeleaves where id=@id";
+            command.Connection = connection;
+            await connection.OpenAsync();
+            command.Parameters.AddWithValue("@id",id);
+
+            int rowsAffected = await command.ExecuteNonQueryAsync(); // Execute the query asynchronously
+
+            if (rowsAffected > 0)
+            {
+                status = true;
+            }
+        }
+        catch (Exception ee)
+        {
+            throw ee;
+        }
+        finally
+        {
+            connection.Close();
+        }
+
+        return status;
+    }
 }

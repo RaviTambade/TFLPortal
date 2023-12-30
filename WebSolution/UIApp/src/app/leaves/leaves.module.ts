@@ -21,8 +21,8 @@ export const leaveRoutes: Routes = [
   component: LeaveRouterContainerComponent,
   children: [
     // { path: 'leaveform', component: AddLeaveComponent  },
-    // { path: 'pendingleave', component: LeaveRoutingComponent},
-    // { path: 'appliedleave', component: TeamMemberLeaveRequestComponent},
+    { path: 'pendingleave', component: LeaveRoutingComponent},
+    { path: 'appliedleave', component: TeamMemberLeaveRequestComponent},
     { path: 'applied', component: AllEmployeeLeavesComponent},
     { path:'', redirectTo: 'list', pathMatch: 'full' },
     { path: 'list', component: EmployeeLeaveListComponent },
@@ -49,7 +49,7 @@ export const leaveRoutes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule,
+    RouterModule.forRoot(leaveRoutes),
     ReactiveFormsModule,
     BiModule
   ],

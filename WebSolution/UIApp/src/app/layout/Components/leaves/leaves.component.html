@@ -1,10 +1,13 @@
 
 <div *ngIf="role==Role.Employee" class="d-flex justify-content-lg-start bg-secondary mt-2">
     <div class="p-2" [routerLink]="['pendingleave']">pendingleave</div>
+    <div class="p-2" [routerLink]="['add']">Add leave</div>
+    <div class="p-2" [routerLink]="['list']">leave list</div>
 </div>
 
 <div *ngIf="role==Role.HRManager"class="d-flex justify-content-lg-start bg-secondary mt-2">
     <div class="p-2"  [routerLink]="['appliedleave']">Leaves</div>
+    <div class="p-2"  [routerLink]="['applied']">Applied Leaves</div>
 </div>
 <div>
     <router-outlet></router-outlet>

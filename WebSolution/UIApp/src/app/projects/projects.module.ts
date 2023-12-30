@@ -35,8 +35,8 @@ export const projectRoutes: Routes = [
   { path: 'allActivities', component: EmployeeAllActivitiesComponent },
   { path: 'employeework', component: EmployeeworksComponent },
   { path: 'employeeworkdetails/:id', component: EmployeeworksdetailsComponent },
-  {path:'myprojects',component:MyworkingprojectsComponent},
-  {path:'todaysemployeework/:id',component:TodaysemployeeworkComponent},
+  {  path:'myprojects',component:MyworkingprojectsComponent},
+  {  path:'todaysemployeework/:id',component:TodaysemployeeworkComponent},
   {  path:'update/:id',component:UpdateemployeeworkComponent},
   {  path:'allProjectList',component:AllProjectsListComponent},
   {  path:'addWork',component:AddActivityComponent}
