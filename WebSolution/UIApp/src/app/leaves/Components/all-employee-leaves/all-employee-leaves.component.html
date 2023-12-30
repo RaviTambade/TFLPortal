@@ -11,9 +11,9 @@
                     <th>LeaveType</th>
                    </tr>
             </thead>
-            <tbody *ngFor="let leave of leaves">
+            <tbody *ngFor="let leave of employeeLeaves">
                 <tr>
-                    <td>{{leave.applicationDate |date}}</td>
+                    <td style="cursor: pointer; text-decoration: underline ; color:  #0000EE;" [routerLink]="['../details',leave.id]">{{leave.applicationDate |date}}</td>
                     <td>{{leave.fromDate |date}}</td>
                     <td>{{leave.toDate |date}}</td>
                     <td>{{leave.status}}</td>

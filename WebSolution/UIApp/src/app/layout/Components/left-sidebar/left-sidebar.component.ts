@@ -36,7 +36,9 @@ export class LeftSidebarComponent implements OnInit {
                             {displayName:"Director Link 4",Url:"Director Link 4"},
                             {displayName:"Director Link 5",Url:"Director Link 5"}];
 
-  HRManagerRoutes:UrlType[]=[{displayName:"AppliedLeaves",Url:"leave"}];
+  HRManagerRoutes:UrlType[]=[{displayName:"AppliedLeaves",Url:"leave"},
+                            // {displayName:"Appliedlist",Url:"leave"}
+                          ];
 
 
   onClick(url:string){

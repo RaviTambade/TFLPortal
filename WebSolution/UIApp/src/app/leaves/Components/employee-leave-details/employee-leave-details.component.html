@@ -21,7 +21,7 @@
                     <td>{{leaveDetails.status}}</td>
                     <td>{{leaveDetails.leaveType}}</td>
                     <td><button [disabled]="leaveDetails.status=='sanctioned'" [routerLink]="['/leave/update',leaveDetails.id]" >Edit</button></td>
-                    <td><button (click)="onDeleteEmployeeLeave(leaveDetails.id)">Delete</button></td>
+                    <td><button [disabled]="leaveDetails.status=='sanctioned'" (click)="onDeleteEmployeeLeave(leaveDetails.id)">Delete</button></td>
                 </tr>
             </tbody>
     </table>

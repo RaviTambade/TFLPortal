@@ -16,19 +16,15 @@ import { UpdateEmployeeLeaveComponent } from './Components/forms/update-employee
 
 
 export const leaveRoutes: Routes = [
-  // { path: '', component: AddLeaveComponent },
-  // { path: 'leaveform', component: AddLeaveComponent  },
-//   { path: 'pendingleave', component: LeaveRoutingComponent},
-//   { path: 'appliedleave', component: TeamMemberLeaveRequestComponent}
-// ];
-
-
-
 {
   path: '',
   component: LeaveRouterContainerComponent,
   children: [
-    {path:'', redirectTo: 'list', pathMatch: 'full' },
+    // { path: 'leaveform', component: AddLeaveComponent  },
+    // { path: 'pendingleave', component: LeaveRoutingComponent},
+    // { path: 'appliedleave', component: TeamMemberLeaveRequestComponent},
+    { path: 'applied', component: AllEmployeeLeavesComponent},
+    { path:'', redirectTo: 'list', pathMatch: 'full' },
     { path: 'list', component: EmployeeLeaveListComponent },
     { path: 'details/:id', component: EmployeeLeaveDetailsComponent },
     { path: 'add', component: AddLeaveComponent },

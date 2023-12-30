@@ -36,12 +36,7 @@ export class HrService {
 
   getEmployeeSalaryStructure(salaryStructure:SalaryStructure):Observable<SalaryStructure>{
     let url=this.serviceurl+"/hr/employees/employee/salary";
-    return this.httpClient.post<SalaryStructure>(url,salaryStructure);
- 
-  
-
-    // http://localhost:5263/api/hr/employees/salarystructure/1
- 
+    return this.httpClient.post<SalaryStructure>(url,salaryStructure); 
   }
   
   getSalaryStructure(employeeId:number):Observable<any>{
