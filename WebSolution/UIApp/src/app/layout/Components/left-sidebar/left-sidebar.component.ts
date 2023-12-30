@@ -30,7 +30,7 @@ export class LeftSidebarComponent implements OnInit {
                             {displayName:"Leaves",Url:"leave"},
                             {displayName:"Payroll",Url:"Payroll"}];
 
-  DirectorRoutes:UrlType[]=[{displayName:"Director Link 1",Url:"Director Link 1"},
+  DirectorRoutes:UrlType[]=[{displayName:"Projects",Url:"projects"},
                             {displayName:"Director Link 2",Url:"Director Link 2"},
                             {displayName:"Director Link 3",Url:"Director Link 3"},
                             {displayName:"Director Link 4",Url:"Director Link 4"},
@@ -45,4 +45,10 @@ export class LeftSidebarComponent implements OnInit {
 
   this.router.navigate([url]);
   }
+
+
+  onDirectorClick(url:string){
+
+    this.router.navigate([url]);
+    }
 }

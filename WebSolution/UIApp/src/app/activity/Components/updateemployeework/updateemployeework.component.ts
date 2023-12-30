@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 import { EmployeeWork } from '../../Models/EmployeeWork';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-updateemployeework',
@@ -9,7 +10,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./updateemployeework.component.css']
 })
 export class UpdateemployeeworkComponent {
-  constructor(private workMgmtSvc:WorkmgmtService){}
+  constructor(private workMgmtSvc:WorkmgmtService,private route :ActivatedRoute){}
   activity:EmployeeWork={
     id: 0,
     title: '',
@@ -45,10 +46,14 @@ export class UpdateemployeeworkComponent {
   
   update(){
     this.status=this.activityform.get("status")?.value;
-    this.workMgmtSvc.updateEmployeeWork(this.empworkId,this.status,).subscribe((res)=>{
+    this.route.paramMap.subscribe((param)=>{
+      this.empworkId=param.get("id");
+      console.log(this.empworkId);
+      this.workMgmtSvc.updateEmployeeWork(this.empworkId,this.status,).subscribe((res)=>{
      if(res){
-     //this.employeeworks= this.employeeworks.filter((activity)=>activity.id!=this.activity)
+    // this.employeeworks= this.employeeworks.filter((activity)=>activity.id!=this.activity)
      }
      })
+    })
   }
 }

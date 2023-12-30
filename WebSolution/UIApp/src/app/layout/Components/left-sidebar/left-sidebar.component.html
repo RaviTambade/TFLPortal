@@ -11,7 +11,7 @@
 
     <div *ngIf="role==Role.Director">
 
-        <div class="p-2" *ngFor="let directorlink of DirectorRoutes">{{directorlink.displayName}}</div>
+        <div class="p-2" *ngFor="let directorlink of DirectorRoutes"  (click)="onDirectorClick(directorlink.Url)">{{directorlink.displayName}}</div>
 
     </div></ng-container>
 </div>
