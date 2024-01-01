@@ -68,6 +68,53 @@ public class LeaveManagementService : ILeaveManagementService
         return leaveApplications;
     }
 
+     public async Task<List<RoleBasedLeave>> GetAllRoleBasedLeaves()
+    {
+        List<RoleBasedLeave> leaves = new List<RoleBasedLeave>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query = "select * from rolebasedleaves";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {
+                int id = int.Parse(reader["id"].ToString());
+                int roleId = int.Parse(reader["roleid"].ToString());
+                int sick = int.Parse(reader["sick"].ToString());
+                int casual = int.Parse(reader["casual"].ToString());
+                int paid = int.Parse(reader["paid"].ToString());
+                int unpaid = int.Parse(reader["unpaid"].ToString()); 
+                int year = int.Parse(reader["financialyear"].ToString());
+                
+
+                RoleBasedLeave leave = new RoleBasedLeave()
+                {
+                    Id = id,
+                    RoleId = roleId,
+                    Sick=sick,
+                    Casual = casual,
+                    Paid = paid,
+                    Unpaid = unpaid,
+                    FinancialYear=year,
+                };
+                leaves.Add(leave);
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return leaves;
+    }
+
     public async Task<List<EmployeeLeave>> GetLeaveDetailsOfEmployee(int employeeId)
     {
         List<EmployeeLeave> leaveApplications = new List<EmployeeLeave>();
