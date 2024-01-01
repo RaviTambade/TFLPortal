@@ -1,0 +1,11 @@
+<div class="row h-100">
+    <div class="col-sm-1  ">
+
+        <div class="p-2" *ngFor="let hrlink of HRManagerRoutes" (click)="onClick(hrlink.Url)">
+            {{hrlink.displayName}}</div>
+    </div>
+
+    <div class="col-11">
+        <router-outlet></router-outlet>
+    </div>
+</div>

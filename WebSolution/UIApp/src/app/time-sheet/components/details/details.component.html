@@ -27,7 +27,7 @@
                     <td>{{timeSheetDetail.workTitle}}</td>
                     <td>{{timeSheetDetail.durationInHours}}</td>
                     <td *ngIf="isTimeSheetEditable()">
-                        <button class="btn btn-warning mx-2 my-2 " [routerLink]="['/timesheet/update', timeSheetDetail.id]">Edit</button>
+                        <button class="btn btn-warning mx-2 my-2 " [routerLink]="['../../update', timeSheetDetail.id]">Edit</button>
                         <button class="btn btn-danger" (click)="onRemoveTimeSheetDetails(timeSheetDetail.id)">Delete</button>
                     </td>
                 </tr>

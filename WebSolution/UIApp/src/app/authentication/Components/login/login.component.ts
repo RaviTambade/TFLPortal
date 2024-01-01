@@ -8,6 +8,7 @@ import { JwtService } from 'src/app/shared/services/jwt.service';
 import { LocalStorageKeys } from '../../../shared/Enums/local-storage-keys';
 import { HrService } from 'src/app/shared/services/hr.service';
 import { LayoutService } from 'src/app/layout/Services/layout.service';
+import { Role } from 'src/app/shared/Enums/role';
 
 @Component({
   selector: 'app-login',
@@ -77,7 +78,8 @@ export class LoginComponent {
         }
         if (response.token != '') {
           localStorage.setItem(LocalStorageKeys.jwt, response.token);
-            this.navigate();
+          let role = this.jwtSvc.getClaimFromToken(TokenClaims.role);
+          this.navigateByRole(role);
         }
       },
       error: (error) => {
@@ -87,11 +89,18 @@ export class LoginComponent {
     });
   }
 
-  navigate() {
+  navigateByRole(role: string) {
     let userId = Number(this.jwtSvc.getClaimFromToken(TokenClaims.userId));
     this.hrSvc.getEmployeeByUserId(userId).subscribe((res) => {
       localStorage.setItem(LocalStorageKeys.employeeId, res.id.toString());
-      this.router.navigate(['/']);
+      switch (role) {
+        case Role.Employee:
+          this.router.navigate(['/employee']);
+          break;
+        case Role.HRManager:
+          this.router.navigate(['/hrmanager']);
+          break;
+      }
       this.layoutSvc.onSucess();
     });
   }

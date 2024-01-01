@@ -23,11 +23,11 @@ export class CreateTimesheetComponent {
     };
     this.workmgmtSvc.addTimeSheet(timesheetInsertModel).subscribe((res) => {
       if (res) {
-        this.router.navigate(['/timesheet/list']);
+        this.router.navigate(['../list'] ,{relativeTo:this.route});
       }
     });
   }
   onCancelClick() {
-    this.router.navigate(['/timesheet/list']);
+    this.router.navigate(['../list'] ,{relativeTo:this.route});
   }
 }
