@@ -28,6 +28,14 @@ public class LeavesManagementController : ControllerBase
         return await _service.GetAllEmployeeLeaves();
     }
 
+    [HttpGet("rolebasedleaves")]
+    public async Task<List<RoleBasedLeave>> GetAllRoleBasedLeaves()
+    {
+        return await _service.GetAllRoleBasedLeaves();
+    }
+
+    
+
     [HttpGet]
     [Route ("{employeeId}")]
     public async Task<List<EmployeeLeave>> GetLeaveDetailsOfEmployee(int employeeId)
