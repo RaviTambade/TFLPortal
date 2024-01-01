@@ -11,10 +11,9 @@ import { TimeSheetDetails } from 'src/app/time-sheet/models/timesheetdetails';
 @Component({
   selector: 'app-add-timesheet-entry',
   templateUrl: './add-timesheet-entry.component.html',
-  styleUrls: ['./add-timesheet-entry.component.css']
+  styleUrls: ['./add-timesheet-entry.component.css'],
 })
 export class AddTimesheetEntryComponent {
-
   timesheetDetail: TimeSheetDetailView = {
     id: 0,
     fromTime: '',
@@ -26,24 +25,24 @@ export class AddTimesheetEntryComponent {
     projectId: 0,
     projectName: '',
     durationInMinutes: 0,
-    durationInHours: ''
+    durationInHours: '',
   };
 
   projects: Project[] = [];
   selectedProjectId: number = 0;
   employeeId: number = 0;
   employeeWorks: EmployeeWork[] = [];
-  timesheetId: number|undefined;
+  timesheetId: number | undefined;
   constructor(
     private workmgmtSvc: WorkmgmtService,
     private projectSvc: ProjectService,
-    private router:Router,
-    private route:ActivatedRoute
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params)=>{
-      this.timesheetId=Number(params.get('id'))
+    this.route.paramMap.subscribe((params) => {
+      this.timesheetId = Number(params.get('id'));
     });
     this.employeeId = Number(localStorage.getItem(LocalStorageKeys.employeeId));
     this.projectSvc.getProjectsOfEmployee(this.employeeId).subscribe((res) => {
@@ -56,7 +55,7 @@ export class AddTimesheetEntryComponent {
   }
 
   onClickAdd() {
-    if(this.timesheetId==undefined){
+    if (this.timesheetId == undefined) {
       return;
     }
     let timeSheetDetail: TimeSheetDetails = {
@@ -69,19 +68,26 @@ export class AddTimesheetEntryComponent {
 
     this.workmgmtSvc.addTimeSheetDetails(timeSheetDetail).subscribe((res) => {
       if (res) {
-        this.router.navigate(['/timesheet/details',this.timesheetId])
+        this.router.navigate(['../../details', this.timesheetId], {
+          relativeTo: this.route,
+        });
       }
     });
-}
+  }
 
-onClickCancel(){
-  this.router.navigate(['/timesheet/details',this.timesheetId])
-
-}
+  onClickCancel() {
+    this.router.navigate(['../../details', this.timesheetId], {
+      relativeTo: this.route,
+    });
+  }
 
   getWorks() {
     this.workmgmtSvc
-      .getEmployeeWorkByProjectAndStatus(  this.employeeId,  this.selectedProjectId,  'inprogress' )
+      .getEmployeeWorkByProjectAndStatus(
+        this.employeeId,
+        this.selectedProjectId,
+        'inprogress'
+      )
       .subscribe((res) => {
         this.employeeWorks = res;
         if (this.employeeWorks.length > 0)

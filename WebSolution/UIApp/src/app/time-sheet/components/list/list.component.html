@@ -6,7 +6,7 @@
         <select class="mx-2 form-control-sm" [(ngModel)]="selectedInterval" (change)="onIntervalChange()">
             <option *ngFor="let interval of intervals" [value]="interval"> {{interval}}</option>
         </select>
-        <a class="mx-2 float-end" [routerLink]="['/timesheet/create']"> Create New Timesheet</a>
+        <a class="mx-2 float-end" [routerLink]="['../create']"> Create New Timesheet</a>
     </div>
 
     <table class="table table-bordered">
@@ -23,7 +23,7 @@
                 <td> {{timesheet.timesheetDate | date:'dd-MM-yyy'}}</td>
                 <td> {{timesheet.status}}</td>
                 <td> {{timesheet.hours |hourConvertor}}</td>
-                <td><a [routerLink]="['/timesheet/details',timesheet.id]"> Details</a></td>
+                <td><a [routerLink]="['../details',timesheet.id]"> Details</a></td>
             </tr>
         </tbody>
     </table>

@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 import { Role } from 'src/app/shared/Enums/role';
 import { TokenClaims } from 'src/app/shared/Enums/tokenclaims';
 import { JwtService } from 'src/app/shared/services/jwt.service';
-type UrlType={displayName:string,Url:string}
-
+import { UrlType } from '../../Services/UrlType';
 @Component({
   selector: 'app-left-sidebar',
   templateUrl: './left-sidebar.component.html',

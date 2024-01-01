@@ -19,18 +19,19 @@ import { TimesheetroutercontainerComponent } from './components/timesheetrouterc
 import { CreateTimesheetComponent } from './components/forms/create-timesheet/create-timesheet.component';
 import { AddTimesheetEntryComponent } from './components/forms/add-timesheet-entry/add-timesheet-entry.component';
 import { HourConvertorPipe } from '../shared/pipes/hour-convertor.pipe';
+import { EmployeeGuard } from './Gaurds/employee.guard';
 
 export const timeSheetRoutes: Routes = [
   {
-    path: '',
+    path: '', 
     component: TimesheetroutercontainerComponent,
     children: [
       {path:'', redirectTo: 'list', pathMatch: 'full' },
-      { path: 'list', component: ListComponent },
-      { path: 'create', component: CreateTimesheetComponent },
-      { path: 'details/:id', component: DetailsComponent },
-      { path: 'addentry/:id', component: AddTimesheetEntryComponent },
-      { path: 'update/:id', component: UpdateTimesheetEntryComponent},
+      { path: 'list', component: ListComponent ,canActivate:[EmployeeGuard]},
+      { path: 'create', component: CreateTimesheetComponent ,canActivate:[EmployeeGuard] },
+      { path: 'details/:id', component: DetailsComponent, canActivate:[EmployeeGuard] },
+      { path: 'addentry/:id', component: AddTimesheetEntryComponent,canActivate:[EmployeeGuard] },
+      { path: 'update/:id', component: UpdateTimesheetEntryComponent,canActivate:[EmployeeGuard]},
     ],
   },
   {

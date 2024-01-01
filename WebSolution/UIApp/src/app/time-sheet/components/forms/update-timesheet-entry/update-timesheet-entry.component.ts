@@ -103,12 +103,12 @@ export class UpdateTimesheetEntryComponent implements OnInit {
   }
 
   navigateToUrl(){
-     if(this.currentUrl.startsWith('/timesheet/view')){
-      this.router.navigate(['/timesheet/view/add', this.date]);
+     if(this.currentUrl.includes('/timesheet/view')){
+      this.router.navigate(['../../view/add', this.date],{relativeTo:this.route});
     }
-    else if(this.currentUrl.startsWith('/timesheet')){
+    else if(this.currentUrl.includes('/timesheet')){
 
-      this.router.navigate(['/timesheet/details', this.timesheetDetails.timesheetId]);
+      this.router.navigate(['../../details', this.timesheetDetails.timesheetId] ,{relativeTo:this.route});
     }
  
   }
