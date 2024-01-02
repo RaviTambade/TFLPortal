@@ -3,7 +3,10 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 /* @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css"; */
 
-
 .highlighted {
-    color: red; 
-  }
+  color: red;
+}
+
+a {
+  text-decoration: none;
+}

@@ -1,8 +1,8 @@
 
 <div class="d-flex  justify-content-start  bg-secondary-subtle mt-2">
 
-    <div class="p-2" *ngFor="let timesheetlink of timesheetMenuRoutes" [routerLink]="[timesheetlink.Url]" routerLinkActive="highlighted">
-        {{timesheetlink.displayName}}</div>
+    <a class="p-2" *ngFor="let timesheetlink of timesheetMenuRoutes" [routerLink]="[timesheetlink.Url]" routerLinkActive="highlighted">
+        {{timesheetlink.displayName}}</a>
 </div>
 
 <div>

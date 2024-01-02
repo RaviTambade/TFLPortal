@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Transflower.TFLPortal.Intranet.Responses;
 using Transflower.TFLPortal.TFLOBL.Entities.TimesheetMgmt;
+using Transflower.TFLPortal.TFLOBL.External;
 using Transflower.TFLPortal.TFLSAL.Services;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 
@@ -20,9 +21,13 @@ public class TimesheetsController : ControllerBase
     }
 
     [HttpGet("employees/{employeeId}/from/{fromDate}/to/{toDate}")]
-    public async Task<List<TimesheetDuration>> GetTimesheets(int employeeId,string fromDate,string toDate)
+    public async Task<List<TimesheetDuration>> GetTimesheets(
+        int employeeId,
+        string fromDate,
+        string toDate
+    )
     {
-      return  await _timesheetService.GetTimesheets(employeeId,fromDate,toDate);
+        return await _timesheetService.GetTimesheets(employeeId, fromDate, toDate);
     }
 
     [HttpGet("employees/{employeeId}/date/{date}")]
@@ -47,6 +52,42 @@ public class TimesheetsController : ControllerBase
         }
         return new TimesheetResponse() { };
     }
+
+    [HttpGet("status/{status}/from/{fromDate}/to/{toDate}")]
+    public async Task<List<TimesheetResponse>> GetTimesheets(string status,string fromDate,string toDate)
+    {
+        List<TimesheetViewModel> timesheets = await _timesheetService.GetTimesheets(status,fromDate,toDate );
+        string userIds = string.Join(',', timesheets.Select(t => t.Employee.UserId).ToList());
+
+        List<TimesheetResponse> timesheetResponses = new List<TimesheetResponse>();
+        if (!string.IsNullOrEmpty(userIds))
+        {
+            List<User> users = await _apiService.GetUserDetails(userIds);
+
+            foreach (var timesheet in timesheets)
+            {
+                User user = users
+                    .Where(user => user.Id == timesheet.Employee.UserId)
+                    .FirstOrDefault();
+
+                TimesheetResponse timeSheetResponse = new TimesheetResponse
+                {
+                    Id = timesheet.Id,
+                    TimesheetDate = timesheet.TimesheetDate,
+                    StatusChangedDate = timesheet.StatusChangedDate,
+                    Status = timesheet.Status,
+                    TimeSheetDetails = timesheet.TimeSheetDetails,
+                    Hours=timesheet.Hours,
+                    EmployeeId = timesheet.EmployeeId,
+                    EmployeeName = user.FirstName + " " + user.LastName,
+                };
+                timesheetResponses.Add(timeSheetResponse);
+            }
+
+        }
+            return timesheetResponses;
+    }
+
     [HttpGet("{timesheetId}")]
     public async Task<TimesheetResponse> GetTimesheet(int timesheetId)
     {
@@ -69,6 +110,7 @@ public class TimesheetsController : ControllerBase
         }
         return new TimesheetResponse() { };
     }
+
     [HttpGet("timesheetdetails/{timesheetDetailId}")]
     public async Task<TimesheetDetailViewModel> GetTimesheetDetail(int timesheetDetailId)
     {

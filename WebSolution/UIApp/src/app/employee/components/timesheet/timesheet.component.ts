@@ -13,6 +13,7 @@ export class TimesheetComponent {
     { displayName: 'Timesheet', Url: 'list' },
     { displayName: 'View', Url: 'view' },
     { displayName: 'Analytics', Url: 'analytics' },
+    { displayName: 'Approval', Url: 'approval' },
   ];
 
   constructor(private router: Router, private route: ActivatedRoute) {}

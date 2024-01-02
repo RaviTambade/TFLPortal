@@ -1,8 +1,10 @@
 <div class="row h-100">
-    <div class="col-sm-1  ">
-
-        <div  class="p-2" *ngFor="let employeelink of employeeRoutes" [routerLink]="[employeelink.Url]" routerLinkActive="highlighted">
-            {{employeelink.displayName}}</div>
+    <div class="col-1">
+        <ng-container *ngFor="let employeelink of employeeRoutes">
+            <a class="p-2"  [routerLink]="[employeelink.Url]" routerLinkActive="highlighted">
+                {{employeelink.displayName}}</a> 
+                <br>
+        </ng-container>
     </div>
 
     <div class="col-11">
