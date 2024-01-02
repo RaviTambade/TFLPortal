@@ -12,12 +12,14 @@ import { timeSheetRoutes } from '../time-sheet/time-sheet.module';
 import { leaveRoutes } from '../leaves/leaves.module';
 import { projectRoutes } from '../projects/projects.module';
 import { SharedModule } from '../shared/shared.module';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 export const employeeRoutes: Routes = [
   {
     path: '',
     component: EmployeeLeftSidebarComponent,
     children: [
+      {path:'dashboard', component:DashboardComponent},
       {
         path: 'timesheet',
         component: TimesheetComponent,
@@ -37,6 +39,7 @@ export const employeeRoutes: Routes = [
 ];
 @NgModule({
   declarations: [
+    DashboardComponent,
     TimesheetComponent,
     LeavesComponent,
     ProjectComponent,

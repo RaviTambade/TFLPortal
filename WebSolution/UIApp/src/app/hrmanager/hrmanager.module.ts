@@ -8,11 +8,13 @@ import { PayrollComponent } from './components/payroll/payroll.component';
 import { PerformenceApprisalComponent } from './components/performence-apprisal/performence-apprisal.component';
 import { ProjectComponent } from './components/project/project.component';
 import { TimesheetComponent } from './components/timesheet/timesheet.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 export const hrRoutes: Routes = [
   {
     path: '',
     component: HrmanagerLeftSidebarComponent,
     children: [
+      {path:'dashboard', component:DashboardComponent},
       {
         path: 'timesheet',
         component: TimesheetComponent,
@@ -32,6 +34,7 @@ export const hrRoutes: Routes = [
 @NgModule({
   declarations: [
     HrmanagerLeftSidebarComponent,
+    DashboardComponent,
     LeavesComponent,
     ProjectComponent,
     PayrollComponent,

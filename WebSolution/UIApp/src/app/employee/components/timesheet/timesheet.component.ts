@@ -17,10 +17,10 @@ export class TimesheetComponent {
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.onClick(this.timesheetMenuRoutes[0].Url);
+    this.navigateUrl(this.timesheetMenuRoutes[0].Url);
   }
 
-  onClick(url: string) {
+  navigateUrl(url: string) {
     this.router.navigate([url], { relativeTo: this.route });
   }
 }

@@ -9,8 +9,9 @@ import { UrlType } from 'src/app/shared/models/UrlType';
 })
 export class DirectorLeftSidebarComponent implements OnInit {
   directorRoutes: UrlType[] = [
-    { displayName: 'timesheet', Url: 'timesheet' },
-    { displayName: 'projects', Url: 'projects' },
+    { displayName: 'Dashboard', Url: 'dashboard' },
+    { displayName: 'Timesheet', Url: 'timesheet' },
+    { displayName: 'Projects', Url: 'projects' },
     { displayName: 'Events', Url: 'events' },
     { displayName: 'Leaves', Url: 'leave' },
     { displayName: 'Payroll', Url: 'payroll' },

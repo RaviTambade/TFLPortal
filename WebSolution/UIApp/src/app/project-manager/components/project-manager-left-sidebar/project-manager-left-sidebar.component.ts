@@ -11,6 +11,7 @@ export class ProjectManagerLeftSidebarComponent {
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   projectManagerRoutes: UrlType[] = [
+    { displayName: 'Dashboard', Url: 'dashboard' },
     { displayName: 'timesheet', Url: 'timesheet' },
     { displayName: 'projects', Url: 'projects' },
     { displayName: 'Events', Url: 'events' },

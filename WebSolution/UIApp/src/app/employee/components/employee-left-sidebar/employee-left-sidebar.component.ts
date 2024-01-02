@@ -10,6 +10,7 @@ import { UrlType } from 'src/app/shared/models/UrlType';
 export class EmployeeLeftSidebarComponent implements OnInit {
   employeeRoutes: UrlType[] = [
     { displayName: 'timesheet', Url: 'timesheet' },
+    { displayName: 'Dashboard', Url: 'dashboard' },
     { displayName: 'projects', Url: 'projects' },
     { displayName: 'Events', Url: 'events' },
     { displayName: 'Leaves', Url: 'leave' },

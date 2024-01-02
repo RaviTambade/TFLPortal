@@ -8,12 +8,14 @@ import { PerformenceApprisalComponent } from './components/performence-apprisal/
 import { ProjectComponent } from './components/project/project.component';
 import { TimesheetComponent } from './components/timesheet/timesheet.component';
 import { RouterModule, Routes } from '@angular/router';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 export const directorRoutes: Routes = [
   {
     path: '',
     component: DirectorLeftSidebarComponent,
     children: [
+      {path:'dashboard', component:DashboardComponent},
       {
         path: 'timesheet',
         component: TimesheetComponent,
@@ -39,6 +41,7 @@ export const directorRoutes: Routes = [
     EventsComponent,
     PerformenceApprisalComponent,
     TimesheetComponent,
+    DashboardComponent,
   ],
   imports: [
     CommonModule,RouterModule
