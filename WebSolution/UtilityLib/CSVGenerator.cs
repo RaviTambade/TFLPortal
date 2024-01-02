@@ -8,6 +8,7 @@ public class CSVGenerator
     {
         StringBuilder sb = new StringBuilder();
 
+
         PropertyInfo[]? properties = typeof(T).GetProperties();
         IEnumerable<string> columnNames = properties.Select(p => p.Name).ToList();
 

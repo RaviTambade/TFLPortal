@@ -70,6 +70,61 @@ public class TimesheetService : ITimesheetService
         return timesheets;
     }
 
+      public async Task<List<TimesheetViewModel>> GetTimesheets(string status, string fromDate,string toDate )
+    {
+        List<TimesheetViewModel> timesheets = new List<TimesheetViewModel>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query = @"select timesheets.* , employees.userid,
+                    CAST(((SUM(TIME_TO_SEC(TIMEDIFF(totime,fromtime))))/3600)AS DECIMAL(10,2)) as time_in_hour
+                    from timesheets
+                    INNER JOIN timesheetdetails on timesheetdetails.timesheetid=timesheets.id
+                    INNER JOIN employees ON timesheets.employeeid =employees.id
+                    where  status =@status AND timesheetdate>=@fromdate AND timesheetdate<=@todate
+                    GROUP BY timesheetdate";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@status", status);
+            command.Parameters.AddWithValue("@fromdate", fromDate);
+            command.Parameters.AddWithValue("@todate", toDate);
+            await connection.OpenAsync();
+            MySqlDataReader reader = (MySqlDataReader)await command.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
+            {
+                int id = int.Parse(reader["id"].ToString());
+                int userId  =  int.Parse(reader["userid"].ToString());
+                int employeeId  =  int.Parse(reader["employeeid"].ToString());
+                double hours=double.Parse(reader["time_in_hour"].ToString());
+                DateTime timesheetDate = DateTime.Parse(reader["timesheetdate"].ToString());
+                DateTime statusChangedDate = DateTime.Parse(reader["statuschangeddate"].ToString());
+
+                TimesheetViewModel timesheet = new TimesheetViewModel()
+                {
+                    Id = id,
+                    TimesheetDate = timesheetDate,
+                    Status = status,
+                    EmployeeId = employeeId,
+                    StatusChangedDate = statusChangedDate,
+                    Hours=hours,
+                    Employee=new Employee {UserId=userId}
+                    
+                };
+                timesheets.Add(timesheet);
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return timesheets;
+    }
+
     public async Task<TimesheetViewModel> GetTimesheet(int employeeId, string date)
     {
         MySqlConnection connection = new MySqlConnection();
