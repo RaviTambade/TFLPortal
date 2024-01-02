@@ -10,30 +10,38 @@ import { UpdateTimesheetEntryComponent } from './components/forms/update-timeshe
 import { RouterModule, Routes } from '@angular/router';
 import { EmployeeTimesheetComponent } from './components/employee-timesheet/employee-timesheet.component';
 import { TimesheetEmployeeCalenderComponent } from './components/timesheet-employee-calender/timesheet-employee-calender.component';
-import { ChunkPipe } from '../shared/pipes/chunk.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { TimesheetEmployeeWorkChartComponent } from './components/timesheet-employee-work-chart/timesheet-employee-work-chart.component';
 import { TimesheetEmployeeProjectHoursComponent } from './components/timesheet-employee-project-hours/timesheet-employee-project-hours.component';
 import { TimesheetEmployeeAnalyticsComponent } from './components/timesheet-employee-analytics/timesheet-employee-analytics.component';
-import { TimesheetroutercontainerComponent } from './components/timesheetroutercontainer/timesheetroutercontainer.component';
 import { CreateTimesheetComponent } from './components/forms/create-timesheet/create-timesheet.component';
 import { AddTimesheetEntryComponent } from './components/forms/add-timesheet-entry/add-timesheet-entry.component';
-import { HourConvertorPipe } from '../shared/pipes/hour-convertor.pipe';
 import { EmployeeGuard } from './Gaurds/employee.guard';
 
 export const timeSheetRoutes: Routes = [
+  { path: '', redirectTo: 'list', pathMatch: 'full' },
+  { path: 'list', component: ListComponent, canActivate: [EmployeeGuard] },
   {
-    path: '', 
-    component: TimesheetroutercontainerComponent,
-    children: [
-      {path:'', redirectTo: 'list', pathMatch: 'full' },
-      { path: 'list', component: ListComponent ,canActivate:[EmployeeGuard]},
-      { path: 'create', component: CreateTimesheetComponent ,canActivate:[EmployeeGuard] },
-      { path: 'details/:id', component: DetailsComponent, canActivate:[EmployeeGuard] },
-      { path: 'addentry/:id', component: AddTimesheetEntryComponent,canActivate:[EmployeeGuard] },
-      { path: 'update/:id', component: UpdateTimesheetEntryComponent,canActivate:[EmployeeGuard]},
-    ],
+    path: 'create',
+    component: CreateTimesheetComponent,
+    canActivate: [EmployeeGuard],
   },
+  {
+    path: 'details/:id',
+    component: DetailsComponent,
+    canActivate: [EmployeeGuard],
+  },
+  {
+    path: 'addentry/:id',
+    component: AddTimesheetEntryComponent,
+    canActivate: [EmployeeGuard],
+  },
+  {
+    path: 'update/:id',
+    component: UpdateTimesheetEntryComponent,
+    canActivate: [EmployeeGuard],
+  },
+
   {
     path: 'view',
     component: EmployeeTimesheetComponent,
@@ -49,7 +57,6 @@ export const timeSheetRoutes: Routes = [
     ],
   },
   { path: 'analytics', component: TimesheetEmployeeAnalyticsComponent },
- 
 ];
 
 @NgModule({
@@ -65,7 +72,6 @@ export const timeSheetRoutes: Routes = [
     TimesheetEmployeeWorkChartComponent,
     TimesheetEmployeeProjectHoursComponent,
     TimesheetEmployeeAnalyticsComponent,
-    TimesheetroutercontainerComponent,
     CreateTimesheetComponent,
     AddTimesheetEntryComponent,
   ],
@@ -81,7 +87,7 @@ export const timeSheetRoutes: Routes = [
     DetailsComponent,
     InsertTimeSheetEntryComponent,
     InsertTimeSheetComponent,
-    TimesheetEmployeeWorkChartComponent
+    TimesheetEmployeeWorkChartComponent,
   ],
   providers: [],
 })

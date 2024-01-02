@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/projects/Models/project';
-import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
+import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { ProjectService } from 'src/app/shared/services/project.service';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Project } from 'src/app/projects/Models/project';
-import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
-import { TokenClaims } from 'src/app/shared/Enums/tokenclaims';
+import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
+import { TokenClaims } from 'src/app/shared/enums/tokenclaims';
 import { JwtService } from 'src/app/shared/services/jwt.service';
 import { ProjectService } from 'src/app/shared/services/project.service';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';

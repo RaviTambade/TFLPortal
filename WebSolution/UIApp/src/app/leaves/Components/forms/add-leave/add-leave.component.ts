@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { LeaveApplication } from 'src/app/leaves/Models/LeaveApplication';
 
 import { LeavesService } from 'src/app/leaves/Services/leaves.service';
-import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
+import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 
 @Component({
   selector: 'app-add-leave',

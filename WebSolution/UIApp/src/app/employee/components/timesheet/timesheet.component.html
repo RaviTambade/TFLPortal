@@ -1,0 +1,16 @@
+<!-- 
+<div class="d-flex  justify-content-lg-start  bg-secondary-subtle mt-2">
+    <div class="p-2" [routerLink]="['list']">timesheet </div>
+    <div class="p-2" [routerLink]="['view']">view </div>
+    <div class="p-2" [routerLink]="['analytics']">Analytics</div>
+</div> -->
+
+<div class="d-flex  justify-content-lg-start  bg-secondary-subtle mt-2">
+
+    <div highlight class="p-2" *ngFor="let employeelink of timesheetMenuRoutes" (click)="onClick(employeelink.Url)">
+        {{employeelink.displayName}}</div>
+</div>
+
+<div>
+    <router-outlet></router-outlet>
+</div>

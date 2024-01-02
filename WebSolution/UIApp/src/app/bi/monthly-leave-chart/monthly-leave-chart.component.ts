@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Chart } from 'chart.js';
-import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
+import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { BiService } from 'src/app/shared/services/bi.service';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 import { EmployeeWork } from '../../Models/EmployeeWork';
-import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
+import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivityService } from '../../Services/activity.service';
 import { EmployeeWork } from '../../Models/EmployeeWork';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
-import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
+import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 
 @Component({
   selector: 'app-activity-list',

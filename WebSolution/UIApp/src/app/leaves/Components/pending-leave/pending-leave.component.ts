@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LeavesService } from '../../Services/leaves.service';
-import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
+import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { PendingLeave } from '../../Models/PendingLeave';
 
 @Component({

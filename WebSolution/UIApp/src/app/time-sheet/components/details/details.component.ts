@@ -2,7 +2,7 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 import { TimeSheetDetailView } from '../../models/timesheet-detail-view';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
+import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { Timesheet } from '../../models/timesheet';
 import { TimeSheetStatus } from '../../models/timesheetstatus';
 import { TimesheetView } from '../../models/timesheetview';

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Project } from '../../Models/project';
 import { ProjectService } from 'src/app/shared/services/project.service';
-import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
+import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 
 @Component({
   selector: 'app-employee-project-list',

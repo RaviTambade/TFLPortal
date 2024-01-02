@@ -3,7 +3,7 @@ import { Project } from '../../Models/project';
 import { ProjectsService } from '../../Services/projects.service';
 import { ProjectService } from 'src/app/shared/services/project.service';
 import { ReleaseEmployee } from '../../Models/ReleaseEmployee';
-import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
+import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 
 @Component({
   selector: 'app-all-employees-of-project',

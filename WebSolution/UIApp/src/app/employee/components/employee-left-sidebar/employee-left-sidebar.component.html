@@ -1,0 +1,11 @@
+<div class="row h-100">
+    <div class="col-sm-1  ">
+
+        <div  class="p-2" *ngFor="let employeelink of employeeRoutes" (click)="onClick(employeelink.Url)">
+            {{employeelink.displayName}}</div>
+    </div>
+
+    <div class="col-11">
+        <router-outlet></router-outlet>
+    </div>
+</div>

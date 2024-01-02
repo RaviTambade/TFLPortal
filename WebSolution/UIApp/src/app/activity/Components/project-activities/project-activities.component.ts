@@ -3,9 +3,9 @@ import { ActivityService } from '../../Services/activity.service';
 import { Project } from 'src/app/projects/Models/project';
 import { ProjectService } from 'src/app/shared/services/project.service';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
-import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
+import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { JwtService } from 'src/app/shared/services/jwt.service';
-import { TokenClaims } from 'src/app/shared/Enums/tokenclaims';
+import { TokenClaims } from 'src/app/shared/enums/tokenclaims';
 import { EmployeeWork } from '../../Models/EmployeeWork';
 
 @Component({

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Chart } from 'chart.js';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 import { WorkCategoryDetails } from '../../models/workcategorydetails';
-import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
+import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { Project } from 'src/app/projects/Models/project';
 import { ProjectService } from 'src/app/shared/services/project.service';
 
