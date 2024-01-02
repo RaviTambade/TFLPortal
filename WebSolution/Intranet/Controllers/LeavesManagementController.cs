@@ -29,9 +29,32 @@ public class LeavesManagementController : ControllerBase
     }
 
     [HttpGet("rolebasedleaves")]
-    public async Task<List<RoleBasedLeave>> GetAllRoleBasedLeaves()
+    public async Task<List<RoleResponse>> GetAllRoleBasedLeaves()
     {
-        return await _service.GetAllRoleBasedLeaves();
+        List<RoleBasedLeave> leaves=await _service.GetAllRoleBasedLeaves();
+        var roleIds = string.Join(',', leaves.Select(m => m.RoleId).ToList());
+        var roles = await _apiService.GetRoleDetails(roleIds);
+        List<RoleResponse> roleResponses = new();
+        foreach (var role in leaves)
+        {
+            var roleDetail = roles.FirstOrDefault(u => u.Id == role.RoleId);
+            if (roleDetail != null)
+            {
+                var roleResponse = new RoleResponse
+                {
+                    Id = role.Id,
+                    RoleId = role.RoleId,
+                    Sick = role.Sick,
+                    Casual = role.Casual,
+                    Paid = role.Paid,
+                    Unpaid = role.Unpaid,
+                    FinancialYear=role.FinancialYear,
+                    Role=roleDetail.Name
+                };
+                roleResponses.Add(roleResponse);
+            }
+        }
+        return roleResponses;
     }
 
     

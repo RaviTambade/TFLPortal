@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Role } from 'src/app/shared/Enums/role';
-import { TokenClaims } from 'src/app/shared/Enums/tokenclaims';
+import { Role } from 'src/app/shared/enums/role';
+import { TokenClaims } from 'src/app/shared/enums/tokenclaims';
 import { JwtService } from 'src/app/shared/services/jwt.service';
-import { UrlType } from '../../Services/UrlType';
+import { UrlType } from '../../../shared/models/UrlType';
 @Component({
   selector: 'app-left-sidebar',
   templateUrl: './left-sidebar.component.html',

@@ -13,6 +13,7 @@ import { EmployeeLeaveDetailsComponent } from './Components/employee-leave-detai
 import { LeaveRouterContainerComponent } from './Components/leave-router-container/leave-router-container.component';
 import { AllEmployeeLeavesComponent } from './Components/all-employee-leaves/all-employee-leaves.component';
 import { UpdateEmployeeLeaveComponent } from './Components/forms/update-employee-leave/update-employee-leave.component';
+import { AllRoleBasedLeavesComponent } from './Components/all-role-based-leaves/all-role-based-leaves.component';
 
 
 export const leaveRoutes: Routes = [
@@ -45,6 +46,7 @@ export const leaveRoutes: Routes = [
     LeaveRouterContainerComponent,
     AllEmployeeLeavesComponent,
     UpdateEmployeeLeaveComponent,
+    AllRoleBasedLeavesComponent,
   ],
   imports: [
     CommonModule,
@@ -61,7 +63,8 @@ export const leaveRoutes: Routes = [
     EmployeeLeaveListComponent,
     EmployeeLeaveDetailsComponent,
     AllEmployeeLeavesComponent,
-    UpdateEmployeeLeaveComponent
+    UpdateEmployeeLeaveComponent,
+    AllRoleBasedLeavesComponent
   ]
 })
 export class LeavesModule { }

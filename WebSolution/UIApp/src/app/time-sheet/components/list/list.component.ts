@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Timesheet } from '../../models/timesheet';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 import { TimesheetDuration } from '../../models/timesheetduratiom';
-import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
+import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 
 @Component({
   selector: 'timesheet-list',

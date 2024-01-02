@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { LocalStorageKeys } from 'src/app/shared/Enums/local-storage-keys';
-import { TokenClaims } from 'src/app/shared/Enums/tokenclaims';
+import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
+import { TokenClaims } from 'src/app/shared/enums/tokenclaims';
 
 @Injectable({
   providedIn: 'root'

@@ -3,12 +3,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ICredential } from '../../Models/icredential';
 import { AuthService } from '../../Services/auth.service';
-import { TokenClaims } from '../../../shared/Enums/tokenclaims';
+import { TokenClaims } from '../../../shared/enums/tokenclaims';
 import { JwtService } from 'src/app/shared/services/jwt.service';
-import { LocalStorageKeys } from '../../../shared/Enums/local-storage-keys';
+import { LocalStorageKeys } from '../../../shared/enums/local-storage-keys';
 import { HrService } from 'src/app/shared/services/hr.service';
 import { LayoutService } from 'src/app/layout/Services/layout.service';
-import { Role } from 'src/app/shared/Enums/role';
+import { Role } from 'src/app/shared/enums/role';
 
 @Component({
   selector: 'app-login',
@@ -99,6 +99,12 @@ export class LoginComponent {
           break;
         case Role.HRManager:
           this.router.navigate(['/hrmanager']);
+          break;
+        case Role.Director:
+          this.router.navigate(['/director']);
+          break;
+        case Role.ProjectManager:
+          this.router.navigate(['/projectmanager']);
           break;
       }
       this.layoutSvc.onSucess();

@@ -246,7 +246,12 @@ WHERE employeeId = 12 AND status = "sanctioned" AND YEAR(fromdate) = 2023 GROUP 
     
 
 
-
+select * from employees;
 select * from projects;
 
 SELECT * from employeework;
+
+-- this query gives us employees of project
+select employees.userid from employees INNER JOIN employeework ON employees.id=employeework.assignedto
+ INNER JOIN projects ON employeework.projectid=projects.id WHERE projects.id =4;
+
