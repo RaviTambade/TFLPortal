@@ -26,8 +26,6 @@ const employeeRoutes: Routes = [
   { path: 'projects', component: ProjectComponent, children: projectRoutes },
   { path: 'events', component: EventsComponent,  },
   { path: 'payroll', component: PayrollComponent, },
-
-
 ];
 
 const routes: Routes = [
