@@ -462,7 +462,7 @@ public async Task<TimesheetViewModel> GetTimesheet(int timesheetId)
         return workCategoryDetails;
     }
 
-    public async Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(int employeeId)
+    public async Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(int employeeId,string intervalType)
     {
         List<ProjectWorkHours> projectsHoursList = new();
 
@@ -470,18 +470,13 @@ public async Task<TimesheetViewModel> GetTimesheet(int timesheetId)
         connection.ConnectionString = _connectionString;
 
         string query =
-            @" SELECT projects.title AS projectname,
-    CAST(((SUM( TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ))/3600)AS DECIMAL(10,2)) AS hours 
-    FROM timesheetdetails
-    INNER JOIN timesheets on timesheetdetails.timesheetid=timesheets.id
-    INNER JOIN employeework on timesheetdetails.employeeworkid=employeework.id
-    INNER JOIN projects on employeework.projectid=projects.id
-    WHERE  timesheets.employeeid=@employee_id
-    GROUP BY projects.id";
+            @"CALL getprojectwiseemployeeworkhours(@employee_id,@interval_type)";
         try
         {
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@employee_id", employeeId);
+            command.Parameters.AddWithValue("@interval_type", intervalType);
+
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())

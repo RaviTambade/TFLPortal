@@ -49,7 +49,7 @@ public class DocumentController : ControllerBase
             BasicSalary = salaryStructure.BasicSalary,
             DA = salaryStructure.DA,
             LTA = salaryStructure.LTA,
-            VariablePay = salaryStructure.VariablePay,
+            VariablePay = salaryStructure.VariablePay,     
             Deduction = salaryStructure.Deduction
         };
         DocumentGenerator generator = new DocumentGenerator();

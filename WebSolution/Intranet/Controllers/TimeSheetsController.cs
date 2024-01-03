@@ -133,10 +133,10 @@ public class TimesheetsController : ControllerBase
         return await _timesheetService.GetActivityWiseHours(employeeId, intervalType, projectId);
     }
 
-    [HttpGet("projects/workinghours/employees/{employeeId}")]
-    public async Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(int employeeId)
+    [HttpGet("projects/workinghours/employees/{employeeId}/{intervalType}")]
+    public async Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(int employeeId,string intervalType)
     {
-        return await _timesheetService.GetProjectWiseTimeSpentByEmployee(employeeId);
+        return await _timesheetService.GetProjectWiseTimeSpentByEmployee(employeeId,intervalType);
     }
 
     [HttpGet("workingdays/employees/{employeeId}/years/{year}/months/{month}")]

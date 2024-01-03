@@ -68,6 +68,48 @@ END;
 
 CALL getemployeeworkhoursbyactivity(10,'year',0);
 
+DROP PROCEDURE IF EXISTS getprojectwiseemployeeworkhours;
+
+CREATE procedure getprojectwiseemployeeworkhours(IN employee_id INT,IN interval_type VARCHAR (20))
+ BEGIN
+    IF interval_type='year' THEN 
+    SELECT projects.title AS projectname,
+    CAST(((SUM( TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ))/3600)AS DECIMAL(10,2)) AS hours 
+    FROM timesheetdetails
+    INNER JOIN timesheets on timesheetdetails.timesheetid=timesheets.id
+    INNER JOIN employeework on timesheetdetails.employeeworkid=employeework.id
+    INNER JOIN projects on employeework.projectid=projects.id
+    WHERE  timesheets.employeeid=employee_id AND  YEAR(timesheets.timesheetdate)=YEAR(CURDATE())
+    GROUP BY projects.id,MONTH(timesheets.timesheetdate);
+
+    ELSEIF interval_type='month' THEN 
+    SELECT projects.title AS projectname,
+    CAST(((SUM( TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ))/3600)AS DECIMAL(10,2)) AS hours 
+    FROM timesheetdetails
+    INNER JOIN timesheets on timesheetdetails.timesheetid=timesheets.id
+    INNER JOIN employeework on timesheetdetails.employeeworkid=employeework.id
+    INNER JOIN projects on employeework.projectid=projects.id
+    WHERE  timesheets.employeeid=employee_id  AND MONTH(timesheets.timesheetdate)=MONTH(CURDATE()) AND YEAR (timesheets.timesheetdate)=YEAR(CURDATE()) 
+    GROUP BY projects.id;
+
+    ELSEIF interval_type='week' THEN 
+    SELECT projects.title AS projectname,
+    CAST(((SUM( TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ))/3600)AS DECIMAL(10,2)) AS hours 
+    FROM timesheetdetails
+    INNER JOIN timesheets on timesheetdetails.timesheetid=timesheets.id
+    INNER JOIN employeework on timesheetdetails.employeeworkid=employeework.id
+    INNER JOIN projects on employeework.projectid=projects.id
+    WHERE  timesheets.employeeid=employee_id AND timesheets.timesheetdate >= DATE_ADD(CURDATE(), INTERVAL(1-DAYOFWEEK(CURDATE())) DAY) AND 
+    timesheets.timesheetdate<= DATE_ADD(CURDATE(), INTERVAL(7-DAYOFWEEK(CURDATE())) DAY)
+    GROUP BY projects.id;
+    END IF;
+END;
+
+CALL getprojectwiseemployeeworkhours(10,'month');
+
+
+ 
+
 CREATE PROCEDURE getActivityCounts(OUT  todo INT,OUT inprogress INT,OUT completed INT)
 BEGIN
     SELECT COUNT(*) INTO todo FROM activities WHERE status = 'todo';

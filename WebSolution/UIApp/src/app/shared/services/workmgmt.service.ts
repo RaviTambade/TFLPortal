@@ -113,8 +113,8 @@ export class WorkmgmtService {
   }
    
 
-  getProjectwiseTimeSpent(employeeId:number):Observable<ProjectWorkHour[]>{
-    let url = `${this.serviceurl}/workmgmt/timesheets/projects/workinghours/employees/${employeeId}`;
+  getProjectwiseTimeSpent(employeeId:number,intervalType:string):Observable<ProjectWorkHour[]>{
+    let url = `${this.serviceurl}/workmgmt/timesheets/projects/workinghours/employees/${employeeId}/${intervalType}`;
     return this.http.get<ProjectWorkHour[]>(url);
   }
   getAllEmployeeWorkOfEmployee(projectId:number,employeeId:number){
