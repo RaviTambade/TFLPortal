@@ -1,4 +1,4 @@
--- Active: 1696576841746@@127.0.0.1@3306@tflportal
+-- Active: 1694968636816@@127.0.0.1@3306@tflportal
 
 -- director
 INSERT INTO employees(userid,hiredate,reportingid) VALUES (1,'2013-01-01',1);
@@ -272,7 +272,7 @@ INSERT INTO employeework (projectworktype,title, description, projectid,sprintid
 VALUES ('userstory','As a store manager, I want to choose a specific time frame (monthly, yearly, weekly) for the graph, so that I can focus on the relevant data.','',4,1, '2023-12-05', '2023-12-06', '2023-12-10',  10, 7, 'inprogress','2023-12-04');
 
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
-VALUES ('userstory','As a store manager, I want to be able to reset my password in case I forget it.','',4,1,  '2023-12-05', '2023-12-06', '2023-12-10', 10, 7,'inprogress','2023-12-04');
+VALUES ('userstory','As a store manager, I want to be able to reset my password in case I forget it.','',4,1,  '2024-01-03', '2024-01-03', '2024-01-03', 3, 7,'inprogress','2024-01-03');
 
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
 VALUES ('userstory','As a supervisor, I want to search specific materials from the inventory so that I can request quickly.','',4,1, '2023-12-10','2023-12-05', '2023-12-06',  10, 7,'inprogress','2023-12-04');
@@ -426,7 +426,7 @@ VALUES ('userstory','As a new user, I want to be able to create an account by pr
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
 VALUES ('userstory','As a  user ,I want to add new account of the application by multiple roles like transporter,farmer,collection so that multiple corporates can easily add in the application.','',3,2, '2023-11-23', '2023-11-24', '2023-12-01', 10, 9,'inprogress','2023-11-23');
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
-VALUES ('userstory','As a new user, I want to receive a verification email with a link to confirm my email address, ensuring the security of my account.','',3,2, '2023-11-23', '2023-11-24', '2023-12-01', 10, 9,'inprogress','2023-11-23');
+VALUES ('userstory','As a new user, I want to receive a verification email with a link to confirm my email address, ensuring the security of my account.','',1,2, '2024-01-03', '2024-01-03', '2024-01-03', 3, 9,'inprogress','2024-01-03');
 
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
 VALUES ('userstory','As a new user, I want to receive clear error messages if I enter invalid information during the registration process, so that I can correct my mistakes','',3,2, '2023-11-23', '2023-11-24', '2023-12-01', 10, 9,'inprogress','2023-11-23');
@@ -468,7 +468,7 @@ VALUES ('userstory','As a collection manager, I want to access a history of all 
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
 VALUES ('userstory','As a collection manager, I want to generate charts and reports based on specific time frames (yearly, quarterly, monthly, weekly) so that I can visualize collection patterns and trends during different periods, facilitating data-driven decisions.','',3,2, '2023-11-23', '2023-11-24', '2023-12-01', 10, 9,'inprogress','2023-11-23');
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
-VALUES ('userstory','As a merchant, I want to be able to view a list of shipments sent from various collection centers so that I can track the movement of goods efficiently and ensure timely deliveries.','',3,2, '2023-11-23', '2023-11-24', '2023-12-01', 10, 9,'inprogress','2023-11-23');
+VALUES ('userstory','As a merchant, I want to be able to view a list of shipments sent from various collection centers so that I can track the movement of goods efficiently and ensure timely deliveries.','',3,2, '2023-11-23', '2023-11-24', '2023-12-01', 10, 4,'inprogress','2023-11-23');
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
 VALUES ('userstory','As a merchant, I want to have the ability to remove a collection from a shipment if its unacceptable or contains incorrect information. So that it will help me maintain the accuracy and quality of the shipments I manage.','',3,2, '2023-11-23', '2023-11-24', '2023-12-01', 10, 9,'inprogress','2023-11-23');
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)

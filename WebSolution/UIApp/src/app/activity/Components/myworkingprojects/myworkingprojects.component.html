@@ -1,4 +1,4 @@
-<p>myworkingprojects works!</p>
+
 
 
 <div class="row">
@@ -8,7 +8,7 @@
             <div class="card-body">
                 <h1 class="card-title">MY Projects</h1>
                 <div *ngFor="let project of projects">
-                    <a class="underline card-link" [routerLink]="['/projects/todaysemployeework',project.id]">{{project.title}}</a>
+                    <a class="underline card-link" [routerLink]="['/employee/projects/todaysemployeework',project.id]">{{project.title}}</a>
                 </div>
             </div>
         </div>
