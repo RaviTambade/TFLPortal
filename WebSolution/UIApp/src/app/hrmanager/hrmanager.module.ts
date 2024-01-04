@@ -9,6 +9,9 @@ import { PerformenceApprisalComponent } from './components/performence-apprisal/
 import { ProjectComponent } from './components/project/project.component';
 import { TimesheetComponent } from './components/timesheet/timesheet.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { timeSheetRoutes } from '../time-sheet/time-sheet.module';
+import { HRRouteGaurd } from './Gaurds/gaurd';
+
 export const hrRoutes: Routes = [
   {
     path: '',
@@ -17,7 +20,7 @@ export const hrRoutes: Routes = [
       {path:'dashboard', component:DashboardComponent},
       {
         path: 'timesheet',
-        component: TimesheetComponent,
+        component: TimesheetComponent, children:timeSheetRoutes
       },
       { path: 'leave', component: LeavesComponent },
       {

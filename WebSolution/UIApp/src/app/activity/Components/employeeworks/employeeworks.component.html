@@ -12,7 +12,7 @@
             <tbody *ngFor="let work of employeeworks">
                 <tr>
                     <td> {{work.assignDate |date}}</td>
-                    <td><a [routerLink]="['/projects/employeeworkdetails', work.id]">{{work.title}}</a></td>
+                    <td><a [routerLink]="['/employee/projects/employeeworkdetails', work.id]">{{work.title}}</a></td>
                     <td> {{work.status}}</td>
                 </tr>
             </tbody>

@@ -1,8 +1,10 @@
 <div class="row h-100">
     <div class="col-sm-1  ">
-
-        <div class="p-2" *ngFor="let hrlink of hrManagerRoutes" (click)="onClick(hrlink.Url)">
-            {{hrlink.displayName}}</div>
+        <ng-container *ngFor="let hrlink of hrManagerRoutes">
+            <a class="p-2"  [routerLink]="[hrlink.Url]" routerLinkActive="highlighted">
+                {{hrlink.displayName}}</a> 
+                <br>
+        </ng-container>
     </div>
 
     <div class="col-11">

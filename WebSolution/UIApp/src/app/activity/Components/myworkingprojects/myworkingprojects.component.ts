@@ -18,6 +18,7 @@ export class MyworkingprojectsComponent implements OnInit{
   ngOnInit(): void {
     this.projectSvc.getProjectsOfEmployee(this.employeeId).subscribe((res)=>{
     this.projects=res;
+    console.log(this.projects);
     console.log(this.employeeId);
     })
    

@@ -14,8 +14,8 @@ export class HrmanagerLeftSidebarComponent implements OnInit {
 
 
   hrManagerRoutes: UrlType[] = [
-    { displayName: 'Dashboard', Url: 'dashboard' },
     { displayName: 'timesheet', Url: 'timesheet' },
+    { displayName: 'Dashboard', Url: 'dashboard' },
     { displayName: 'projects', Url: 'projects' },
     { displayName: 'Events', Url: 'events' },
     { displayName: 'Leaves', Url: 'leave' },

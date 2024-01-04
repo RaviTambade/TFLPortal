@@ -53,10 +53,13 @@ public class TimesheetsController : ControllerBase
         return new TimesheetResponse() { };
     }
 
-    [HttpGet("status/{status}/from/{fromDate}/to/{toDate}")]
-    public async Task<List<TimesheetResponse>> GetTimesheets(string status,string fromDate,string toDate)
+    [HttpGet("hrmanager/{hrmanagerId}/status/{status}/from/{fromDate}/to/{toDate}")]
+    public async Task<List<TimesheetResponse>> GetTimesheets( int hrmanagerId, string status,DateTime fromDate,DateTime toDate)
     {
-        List<TimesheetViewModel> timesheets = await _timesheetService.GetTimesheets(status,fromDate,toDate );
+        string fromdate=fromDate.ToString("yyyy-MM-dd");
+        string todate=toDate.ToString("yyyy-MM-dd");
+
+        List<TimesheetViewModel> timesheets = await _timesheetService.GetTimesheets(hrmanagerId,status,fromdate,todate );
         string userIds = string.Join(',', timesheets.Select(t => t.Employee.UserId).ToList());
 
         List<TimesheetResponse> timesheetResponses = new List<TimesheetResponse>();
@@ -133,10 +136,12 @@ public class TimesheetsController : ControllerBase
         return await _timesheetService.GetActivityWiseHours(employeeId, intervalType, projectId);
     }
 
-    [HttpGet("projects/workinghours/employees/{employeeId}")]
-    public async Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(int employeeId)
+    [HttpGet("projects/workinghours/employees/{employeeId}/from/{fromDate}/to/{toDate}")]
+    public async Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(int employeeId,DateTime fromDate,DateTime toDate)
     {
-        return await _timesheetService.GetProjectWiseTimeSpentByEmployee(employeeId);
+        string fromdate=fromDate.ToString("yyyy-MM-dd");
+        string todate=toDate.ToString("yyyy-MM-dd");
+        return await _timesheetService.GetProjectWiseTimeSpentByEmployee(employeeId,fromdate,todate);
     }
 
     [HttpGet("workingdays/employees/{employeeId}/years/{year}/months/{month}")]

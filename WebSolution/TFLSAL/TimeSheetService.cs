@@ -27,9 +27,9 @@ public class TimesheetService : ITimesheetService
         try
         {
             string query = @"select timesheets.* , 
-                    CAST(((SUM(TIME_TO_SEC(TIMEDIFF(totime,fromtime))))/3600)AS DECIMAL(10,2)) as time_in_hour
+                    COALESCE(CAST(((SUM(TIME_TO_SEC(TIMEDIFF(totime,fromtime))))/3600)AS DECIMAL(10,2)),0) as time_in_hour
                     from timesheets
-                    INNER JOIN timesheetdetails on timesheetdetails.timesheetid=timesheets.id
+                    LEFT JOIN timesheetdetails on timesheetdetails.timesheetid=timesheets.id
                     where  employeeid =@employeeId AND timesheetdate>=@fromdate AND timesheetdate<=@todate
                     GROUP BY timesheetdate";
             MySqlCommand command = new MySqlCommand(query, connection);
@@ -70,7 +70,7 @@ public class TimesheetService : ITimesheetService
         return timesheets;
     }
 
-      public async Task<List<TimesheetViewModel>> GetTimesheets(string status, string fromDate,string toDate )
+      public async Task<List<TimesheetViewModel>> GetTimesheets( int hrmanagerId ,string status, string fromDate,string toDate )
     {
         List<TimesheetViewModel> timesheets = new List<TimesheetViewModel>();
         MySqlConnection connection = new MySqlConnection();
@@ -82,9 +82,10 @@ public class TimesheetService : ITimesheetService
                     from timesheets
                     INNER JOIN timesheetdetails on timesheetdetails.timesheetid=timesheets.id
                     INNER JOIN employees ON timesheets.employeeid =employees.id
-                    where  status =@status AND timesheetdate>=@fromdate AND timesheetdate<=@todate
+                    where  status =@status AND timesheetdate>=@fromdate AND timesheetdate<=@todate AND employees.reportingid=@hrmanagerid
                     GROUP BY timesheetdate";
             MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@hrmanagerid", hrmanagerId);
             command.Parameters.AddWithValue("@status", status);
             command.Parameters.AddWithValue("@fromdate", fromDate);
             command.Parameters.AddWithValue("@todate", toDate);
@@ -462,7 +463,7 @@ public async Task<TimesheetViewModel> GetTimesheet(int timesheetId)
         return workCategoryDetails;
     }
 
-    public async Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(int employeeId)
+    public async Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(int employeeId,string fromDate,string toDate)
     {
         List<ProjectWorkHours> projectsHoursList = new();
 
@@ -470,18 +471,14 @@ public async Task<TimesheetViewModel> GetTimesheet(int timesheetId)
         connection.ConnectionString = _connectionString;
 
         string query =
-            @" SELECT projects.title AS projectname,
-    CAST(((SUM( TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ))/3600)AS DECIMAL(10,2)) AS hours 
-    FROM timesheetdetails
-    INNER JOIN timesheets on timesheetdetails.timesheetid=timesheets.id
-    INNER JOIN employeework on timesheetdetails.employeeworkid=employeework.id
-    INNER JOIN projects on employeework.projectid=projects.id
-    WHERE  timesheets.employeeid=@employee_id
-    GROUP BY projects.id";
+            @"CALL getprojectwiseemployeeworkhours(@employee_id,@fromdate,@todate)";
         try
         {
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@employee_id", employeeId);
+            command.Parameters.AddWithValue("@fromdate", fromDate);
+            command.Parameters.AddWithValue("@todate", toDate);
+
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())

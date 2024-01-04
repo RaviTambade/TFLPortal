@@ -68,6 +68,25 @@ END;
 
 CALL getemployeeworkhoursbyactivity(10,'year',0);
 
+DROP PROCEDURE IF EXISTS getprojectwiseemployeeworkhours;
+
+CREATE procedure getprojectwiseemployeeworkhours(IN employee_id INT,IN from_date VARCHAR (20),IN to_date VARCHAR (20))
+ BEGIN
+    SELECT projects.title AS projectname,
+    CAST(((SUM( TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ))/3600)AS DECIMAL(10,2)) AS hours 
+    FROM timesheetdetails
+    INNER JOIN timesheets on timesheetdetails.timesheetid=timesheets.id
+    INNER JOIN employeework on timesheetdetails.employeeworkid=employeework.id
+    INNER JOIN projects on employeework.projectid=projects.id
+    WHERE  timesheets.employeeid=employee_id  AND timesheets.timesheetdate>= from_date AND timesheets.timesheetdate<= to_date
+    GROUP BY projects.id;
+END;
+
+CALL getprojectwiseemployeeworkhours(10,'2024-01-01','2024-01-01');
+
+
+ 
+
 CREATE PROCEDURE getActivityCounts(OUT  todo INT,OUT inprogress INT,OUT completed INT)
 BEGIN
     SELECT COUNT(*) INTO todo FROM activities WHERE status = 'todo';
