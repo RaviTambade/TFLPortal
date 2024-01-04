@@ -29,7 +29,7 @@ role:string|undefined=undefined;
   }
   
   ngOnInit(): void {
-    this.projectSvc.fetchAllProject().subscribe((res) => {
+    this.projectSvc.getProjectsOfEmployee(this.employeeId).subscribe((res) => {
       this.projects = res;
       this.projectId = this.projects[0].id;
 

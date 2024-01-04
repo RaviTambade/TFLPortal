@@ -1,15 +1,24 @@
 
 
 
-<div class="row">
-    <!-- First Column -->
-    <div class="col-2">
-        <div class="card">
-            <div class="card-body">
+
                 <h1 class="card-title">MY Projects</h1>
-                <div *ngFor="let project of projects">
-                    <a class="underline card-link" [routerLink]="['/employee/projects/todaysemployeework',project.id]">{{project.title}}</a>
+                <div>
+                    
+                    <table>
+                        <tr>
+                          <th>Project Name</th>
+                          <th>Start Date</th>
+                          <th>End Date</th>
+                          <th>Status</th>
+                        </tr>
+                        <tr *ngFor="let project of projects">
+                          <td><a [routerLink]="['/employee/projects/todaysemployeework',project.id]">{{project.title}}</a></td>
+                          <td>{{project.startDate|date}}</td>
+                          <td>{{project.endDate|date}}</td>
+                          <td>{{project.status}}</td>
+                        </tr>
+                      </table>
                 </div>
-            </div>
-        </div>
-    </div>
+    
+                <button [routerLink]="['/employee/projects/projectActivities']">All Activities</button>
