@@ -164,7 +164,7 @@ INSERT INTO sprintmaster(title,startdate,enddate,goal) VALUES ('sprint 6',"2023-
 
 -- Inventory Management
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
-VALUES ('userstory','As a  Store Worker, I want to be able to reset my password in case I forget it.','',4,1, '2023-12-05', '2023-12-06', '2023-12-10', 10, 7, 'inprogress','2023-12-04');
+VALUES ('userstory','As a  Store Worker, I want to be able to reset my password in case I forget it.','',4,1, '2024-01-04', '2024-01-04', '2024-01-04', 10, 7, 'inprogress','2024-01-04');
 
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
 VALUES ('userstory','As a Store Worker, I want to view a graph that shows my daily, weekly, and monthly delivered orders, so that i can monitor my performance','',4,1,  '2023-12-05', '2023-12-06', '2023-12-10',  10, 7,  'inprogress','2023-12-04');
@@ -176,7 +176,7 @@ INSERT INTO employeework (projectworktype,title, description, projectid,sprintid
 VALUES ('userstory', 'As a Store Worker, I want to access information about the supervisors who will receive the deliveries, including their contact details so that I can efficiently communicate regarding the delivery process and resolve any potential issues.','',4,1,  '2023-12-05', '2023-12-06', '2023-12-10', 10, 7,'inprogress','2023-12-04');
 
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
-VALUES ('userstory','As a Store Worker, I want to receive notifications for new task that require pickup and delivery, so that i can stay updated on my tasks.','', 4,1,  '2023-12-05', '2023-12-06', '2023-12-10', 10, 7, 'inprogress','2023-12-04');
+VALUES ('userstory','As a Store Worker, I want to receive notifications for new task that require pickup and delivery, so that i can stay updated on my tasks.','', 4,1,  '2024-01-04', '2024-01-04', '2024-01-04', 3, 7, 'inprogress','2024-01-04');
 
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
 VALUES ('userstory','As a Store Worker, I want to access order details including the order-id, and pickup/delivery locations so that i can prepare for the tasks.','',4,1,  '2023-12-05', '2023-12-06', '2023-12-10', 15, 7,'inprogress','2023-12-04');
