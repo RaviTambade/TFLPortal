@@ -3,6 +3,7 @@ import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 import { TimesheetView } from '../../models/timesheetview';
 import { TimeSheetStatus } from '../../models/timesheetstatus';
 import { Timesheet } from '../../models/timesheet';
+import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 
 @Component({
   selector: 'app-timesheet-approval',
@@ -11,7 +12,7 @@ import { Timesheet } from '../../models/timesheet';
 })
 export class TimesheetApprovalComponent {
   timeSheets: TimesheetView[] = [];
-
+  reportingToId:number=0;
   fromDate: string | undefined;
   toDate: string | undefined;
   intervals: string[] = ['week', 'month'];
@@ -24,6 +25,7 @@ export class TimesheetApprovalComponent {
   constructor(private workmgmtSvc: WorkmgmtService) {}
 
   ngOnInit(): void {
+    this.reportingToId=Number(localStorage.getItem(LocalStorageKeys.employeeId));
     this.onIntervalChange();
   }
 
@@ -43,7 +45,7 @@ export class TimesheetApprovalComponent {
     }
     if (this.fromDate && this.toDate) {
       this.workmgmtSvc
-        .getTimesheetsByStatus(this.selectedStatus, this.fromDate, this.toDate)
+        .getTimesheetsByStatus(this.reportingToId,this.selectedStatus, this.fromDate, this.toDate)
         .subscribe((res) => {
           this.timeSheets = res;
         });

@@ -1,4 +1,4 @@
--- Active: 1694968636816@@127.0.0.1@3306@tflportal
+-- Active: 1696576841746@@127.0.0.1@3306@tflportal
 DROP PROCEDURE IF EXISTS getemployeeworkhoursbyactivity;
 CREATE PROCEDURE getemployeeworkhoursbyactivity(IN employee_id INT,IN interval_type VARCHAR (20),IN project_id INT)
 BEGIN
@@ -70,42 +70,19 @@ CALL getemployeeworkhoursbyactivity(10,'year',0);
 
 DROP PROCEDURE IF EXISTS getprojectwiseemployeeworkhours;
 
-CREATE procedure getprojectwiseemployeeworkhours(IN employee_id INT,IN interval_type VARCHAR (20))
+CREATE procedure getprojectwiseemployeeworkhours(IN employee_id INT,IN from_date VARCHAR (20),IN to_date VARCHAR (20))
  BEGIN
-    IF interval_type='year' THEN 
     SELECT projects.title AS projectname,
     CAST(((SUM( TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ))/3600)AS DECIMAL(10,2)) AS hours 
     FROM timesheetdetails
     INNER JOIN timesheets on timesheetdetails.timesheetid=timesheets.id
     INNER JOIN employeework on timesheetdetails.employeeworkid=employeework.id
     INNER JOIN projects on employeework.projectid=projects.id
-    WHERE  timesheets.employeeid=employee_id AND  YEAR(timesheets.timesheetdate)=YEAR(CURDATE())
-    GROUP BY projects.id,MONTH(timesheets.timesheetdate);
-
-    ELSEIF interval_type='month' THEN 
-    SELECT projects.title AS projectname,
-    CAST(((SUM( TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ))/3600)AS DECIMAL(10,2)) AS hours 
-    FROM timesheetdetails
-    INNER JOIN timesheets on timesheetdetails.timesheetid=timesheets.id
-    INNER JOIN employeework on timesheetdetails.employeeworkid=employeework.id
-    INNER JOIN projects on employeework.projectid=projects.id
-    WHERE  timesheets.employeeid=employee_id  AND MONTH(timesheets.timesheetdate)=MONTH(CURDATE()) AND YEAR (timesheets.timesheetdate)=YEAR(CURDATE()) 
+    WHERE  timesheets.employeeid=employee_id  AND timesheets.timesheetdate>= from_date AND timesheets.timesheetdate<= to_date
     GROUP BY projects.id;
-
-    ELSEIF interval_type='week' THEN 
-    SELECT projects.title AS projectname,
-    CAST(((SUM( TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ))/3600)AS DECIMAL(10,2)) AS hours 
-    FROM timesheetdetails
-    INNER JOIN timesheets on timesheetdetails.timesheetid=timesheets.id
-    INNER JOIN employeework on timesheetdetails.employeeworkid=employeework.id
-    INNER JOIN projects on employeework.projectid=projects.id
-    WHERE  timesheets.employeeid=employee_id AND timesheets.timesheetdate >= DATE_ADD(CURDATE(), INTERVAL(1-DAYOFWEEK(CURDATE())) DAY) AND 
-    timesheets.timesheetdate<= DATE_ADD(CURDATE(), INTERVAL(7-DAYOFWEEK(CURDATE())) DAY)
-    GROUP BY projects.id;
-    END IF;
 END;
 
-CALL getprojectwiseemployeeworkhours(10,'month');
+CALL getprojectwiseemployeeworkhours(10,'2024-01-01','2024-01-01');
 
 
  

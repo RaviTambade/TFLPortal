@@ -16,7 +16,7 @@ INSERT INTO employees(userid,hiredate,reportingid) VALUES (9,'2015-12-01',6);
 
 -- Team MEMBER 
 
-INSERT INTO employees(userid,hiredate,reportingid) VALUES (10,'2013-03-17',7);
+INSERT INTO employees(userid,hiredate,reportingid) VALUES (10,'2013-03-17',6);
 INSERT INTO employees(userid,hiredate,reportingid) VALUES (11,'2014-02-12',7);
 INSERT INTO employees(userid,hiredate,reportingid) VALUES (12,'2014-05-21',7);
 INSERT INTO employees(userid,hiredate,reportingid) VALUES (13,'2014-05-21',8);
