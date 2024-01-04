@@ -25,7 +25,9 @@ export const employeeRoutes: Routes = [
         component: TimesheetComponent,
         children: timeSheetRoutes,
       },
-      { path: 'leave', component: LeavesComponent, children: leaveRoutes },
+      { path: 'leave', 
+      component: LeavesComponent, 
+      children: leaveRoutes },
       {
         path: 'projects',
         component: ProjectComponent,

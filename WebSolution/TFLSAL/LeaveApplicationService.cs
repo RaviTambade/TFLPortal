@@ -163,6 +163,99 @@ public class LeaveManagementService : ILeaveManagementService
         return leaveApplications;
     }
 
+    public async Task<List<EmployeeLeave>> GetLeaveDetailsOfEmployee(int employeeId,string status)
+    {
+        List<EmployeeLeave> leaveApplications = new List<EmployeeLeave>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query = "select * from employeeleaves where employeeid =@employeeId and status=@status";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@employeeId", employeeId);
+            command.Parameters.AddWithValue("@status", status);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {
+                int id = int.Parse(reader["id"].ToString());
+                DateTime applicationDate = DateTime.Parse(reader["applicationdate"].ToString());
+                DateTime fromDate = DateTime.Parse(reader["fromdate"].ToString());       
+                DateTime toDate = DateTime.Parse(reader["todate"].ToString());
+                int year = int.Parse(reader["year"].ToString());
+                string leaveType = reader["leavetype"].ToString();
+
+                EmployeeLeave leave = new EmployeeLeave()
+                {
+                    Id = id,
+                    EmployeeId = employeeId,
+                    ApplicationDate=applicationDate,
+                    FromDate = fromDate,
+                    ToDate = toDate,
+                    Status = status,
+                    Year=year,
+                    LeaveType = leaveType
+                };
+                leaveApplications.Add(leave);
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return leaveApplications;
+    }
+    public async Task<RoleBasedLeave> GetRoleBasedLeaveDetails(int Id)
+    {
+        RoleBasedLeave roleBasedLeave = null;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query = "select * from rolebasedleaves where id =@Id";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@Id", Id);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            if(await reader.ReadAsync())
+            {
+                int id = int.Parse(reader["id"].ToString());
+                int roleId = int.Parse(reader["roleid"].ToString());
+                int sick = int.Parse(reader["sick"].ToString());
+                int casual = int.Parse(reader["casual"].ToString());
+                int paid = int.Parse(reader["paid"].ToString());
+                int unpaid = int.Parse(reader["unpaid"].ToString()); 
+                int year = int.Parse(reader["financialyear"].ToString());
+                
+                roleBasedLeave = new RoleBasedLeave()
+                {
+                    Id = id,
+                    RoleId = roleId,
+                    Sick=sick,
+                    Casual = casual,
+                    Paid = paid,
+                    Unpaid = unpaid,
+                    FinancialYear=year,
+                };
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return roleBasedLeave;
+    }
+
     public async Task<EmployeeLeave> GetLeaveDetails(int leaveId)
     {
         EmployeeLeave employeeLeave = null;
@@ -354,6 +447,100 @@ public class LeaveManagementService : ILeaveManagementService
         return leaves;
     }
 
+    public async Task<PendingLeaveDetails> GetConsumedLeaves(int employeeId, int roleId, int year)
+    {
+        PendingLeaveDetails leaves = null;
+        MySqlConnection con = new MySqlConnection();
+        con.ConnectionString = _connectionString;
+        try
+        {
+            await con.OpenAsync();
+            MySqlCommand cmd = new MySqlCommand("getConsumedLeavesOfEmployee", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@employee_Id", employeeId);
+            cmd.Parameters.AddWithValue("@role_id", roleId);
+            cmd.Parameters.AddWithValue("@year", year);
+            cmd.Parameters.AddWithValue("@sickLeaves", MySqlDbType.Int32);
+            cmd.Parameters["@sickLeaves"].Direction = ParameterDirection.Output;
+
+            cmd.Parameters.AddWithValue("@casualLeaves", MySqlDbType.Int32);
+            cmd.Parameters["@casualLeaves"].Direction = ParameterDirection.Output;
+
+            cmd.Parameters.AddWithValue("@paidLeaves", MySqlDbType.Int32);
+            cmd.Parameters["@paidLeaves"].Direction = ParameterDirection.Output;
+
+            cmd.Parameters.AddWithValue("@unpaidLeaves", MySqlDbType.Int32);
+            cmd.Parameters["@unpaidLeaves"].Direction = ParameterDirection.Output;
+
+            await cmd.ExecuteNonQueryAsync();
+
+            int sickLeaves = Convert.ToInt32(cmd.Parameters["@sickLeaves"].Value);
+            int casualLeaves = Convert.ToInt32(cmd.Parameters["@casualLeaves"].Value);
+            int paidLeaves = Convert.ToInt32(cmd.Parameters["@paidLeaves"].Value);
+            int unPaidLeaves = Convert.ToInt32(cmd.Parameters["@unpaidLeaves"].Value);
+
+            leaves = new PendingLeaveDetails()
+            {
+                Sick = sickLeaves,
+                Casual = casualLeaves,
+                Paid = paidLeaves,
+                Unpaid = unPaidLeaves
+            };
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await con.CloseAsync();
+        }
+
+        return leaves;
+    }
+
+    public async Task<PendingLeaveDetails> GetTotalLeaves(int roleId, int year)
+    {
+        PendingLeaveDetails leave = null;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query ="select sick,casual,paid,unpaid from rolebasedleaves where rolebasedleaves.roleid=@roleId and rolebasedleaves.financialyear=@financialYear";
+    
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@roleId", roleId);
+            command.Parameters.AddWithValue("@financialYear", year);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            if (await reader.ReadAsync())
+            {
+                int sick = int.Parse(reader["sick"].ToString());
+                int casual = int.Parse(reader["casual"].ToString());
+                int paid = int.Parse(reader["paid"].ToString());
+                int unpaid = int.Parse(reader["unpaid"].ToString());
+
+                leave = new PendingLeaveDetails()
+                {
+                    Sick = sick,
+                    Casual = casual,
+                    Paid = paid,
+                    Unpaid = unpaid
+                };
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return leave;
+    }
+
     public async Task<bool> AddNewLeaveApplication(EmployeeLeave employeeLeave)
     {
         bool status = false;
@@ -393,6 +580,79 @@ public class LeaveManagementService : ILeaveManagementService
         return status;
     }
 
+
+    public async Task<bool> AddNewRoleBasedLeave(RoleBasedLeave roleBasedLeave)
+    {
+        bool status = false;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            MySqlCommand command = new MySqlCommand();
+            command.CommandText =
+                "Insert into rolebasedleaves(roleid,sick,casual,paid,unpaid,financialyear) values(@roleId,@sick,@casual,@paid,@unpaid,@financialyear)";
+            command.Connection = connection;
+            await connection.OpenAsync();
+            command.Parameters.AddWithValue("@roleId", roleBasedLeave.RoleId);
+            command.Parameters.AddWithValue("@sick", roleBasedLeave.Sick);
+            command.Parameters.AddWithValue("@casual", roleBasedLeave.Casual);
+            command.Parameters.AddWithValue("@paid", roleBasedLeave.Paid);
+            command.Parameters.AddWithValue("@unpaid", roleBasedLeave.Unpaid);
+            command.Parameters.AddWithValue("@financialyear", roleBasedLeave.FinancialYear);
+
+            int rowsAffected = await command.ExecuteNonQueryAsync(); // Execute the query asynchronously
+
+            if (rowsAffected > 0)
+            {
+                status = true;
+            }
+        }
+        catch (Exception ee)
+        {
+            throw ee;
+        }
+        finally
+        {
+            connection.Close();
+        }
+
+        return status;
+    }
+
+    public async Task<bool> UpdateRoleBasedLeave(RoleBasedLeave roleBasedLeave)
+    {
+        bool status = false;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query = "Update rolebasedleaves set roleid=@roleId,sick=@sick,casual=@casual,paid=@paid,unpaid=@unpaid,financialyear=@financialYear where id =@Id";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@Id", roleBasedLeave.Id);
+            command.Parameters.AddWithValue("@roleId", roleBasedLeave.RoleId);
+            command.Parameters.AddWithValue("@sick", roleBasedLeave.Sick);
+            command.Parameters.AddWithValue("@casual", roleBasedLeave.Casual);
+            command.Parameters.AddWithValue("@paid", roleBasedLeave.Paid);
+            command.Parameters.AddWithValue("@unpaid", roleBasedLeave.Unpaid);
+            command.Parameters.AddWithValue("@financialyear", roleBasedLeave.FinancialYear);
+            await connection.OpenAsync();
+            int rowsAffected = command.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                status = true;
+            }
+            await connection.CloseAsync();
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return status;
+    }
     public async Task<bool> UpdateLeaveApplication(EmployeeLeave employeeLeave)
     {
         bool status = false;
@@ -456,6 +716,39 @@ public class LeaveManagementService : ILeaveManagementService
         {
             await connection.CloseAsync();
         }
+        return status;
+    }
+
+    public async Task<bool> DeleteRoleBasedLeave(int id)
+    {
+        bool status = false;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            MySqlCommand command = new MySqlCommand();
+            command.CommandText =
+                "Delete from rolebasedleaves where id=@id";
+            command.Connection = connection;
+            await connection.OpenAsync();
+            command.Parameters.AddWithValue("@id",id);
+
+            int rowsAffected = await command.ExecuteNonQueryAsync(); // Execute the query asynchronously
+
+            if (rowsAffected > 0)
+            {
+                status = true;
+            }
+        }
+        catch (Exception ee)
+        {
+            throw ee;
+        }
+        finally
+        {
+            connection.Close();
+        }
+
         return status;
     }
 

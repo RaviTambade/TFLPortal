@@ -27,8 +27,6 @@ export class HrService {
     return this.httpClient.get<Employee>(url);
   }
 
- 
-
   getEmployee(contactNumber:string):Observable<User>{
     let url=this.commonUrl+"/users/contact/"+contactNumber;
     return this.httpClient.get<User>(url);

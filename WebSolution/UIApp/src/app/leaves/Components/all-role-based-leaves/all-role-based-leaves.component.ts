@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LeavesService } from '../../Services/leaves.service';
-import { RoleBasedLeave } from '../../Models/RoleBasedLeave';
+import { RoleBasedLeaveDetails } from '../../Models/RoleBasedLeaveDetails';
 
 @Component({
   selector: 'app-all-role-based-leaves',
@@ -9,7 +9,7 @@ import { RoleBasedLeave } from '../../Models/RoleBasedLeave';
 })
 export class AllRoleBasedLeavesComponent implements OnInit{
 
-  roleBasedLeaves:RoleBasedLeave[]=[];
+  roleBasedLeaves:RoleBasedLeaveDetails[]=[];
 
   constructor(private service:LeavesService){}
 
