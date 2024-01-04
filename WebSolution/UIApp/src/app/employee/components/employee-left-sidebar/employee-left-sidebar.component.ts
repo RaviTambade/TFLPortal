@@ -7,6 +7,7 @@ import { UrlType } from 'src/app/shared/models/UrlType';
   templateUrl: './employee-left-sidebar.component.html',
   styleUrls: ['./employee-left-sidebar.component.css'],
 })
+
 export class EmployeeLeftSidebarComponent implements OnInit {
   employeeRoutes: UrlType[] = [
     { displayName: 'Timesheet', Url: 'timesheet' },

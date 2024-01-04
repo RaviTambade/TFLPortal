@@ -12,7 +12,7 @@ public interface ITimesheetService
     Task<List<TimesheetDetailViewModel>> GetTimesheetDetails(int timesheetId);
     Task<List<WorkCategoryDetails>> GetActivityWiseHours(int employeeId,string intervalType,int projectId);
     Task<TimesheetDetailViewModel> GetTimesheetDetail(int timesheetDetailId);
-    Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(int employeeId);
+    Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(int employeeId,string intervalType);
     Task<int> GetEmployeeWorkingDaysInMonth(int employeeId,int year,int month);
     Task<bool> AddTimesheet(Timesheet timesheet);
     Task<bool> AddTimesheetDetail(TimesheetDetail timesheetEntry);

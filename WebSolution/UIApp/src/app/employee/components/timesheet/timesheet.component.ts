@@ -8,10 +8,12 @@ import { UrlType } from 'src/app/shared/models/UrlType';
   styleUrls: ['./timesheet.component.css'],
 })
 export class TimesheetComponent {
+  
   timesheetMenuRoutes: UrlType[] = [
     { displayName: 'Timesheet', Url: 'list' },
     { displayName: 'View', Url: 'view' },
     { displayName: 'Analytics', Url: 'analytics' },
+    { displayName: 'Approval', Url: 'approval' },
   ];
 
   constructor(private router: Router, private route: ActivatedRoute) {}

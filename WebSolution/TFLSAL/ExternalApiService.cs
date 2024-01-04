@@ -66,4 +66,20 @@ public class ExternalApiService
         );
         return response ?? new List<Role>();
     }
+
+    public async Task<List<Role>> GetRoleDetails(string roleIds)
+    {
+        var response = await httpClient.GetFromJsonAsync<List<Role>>(
+            $"http://localhost:5142/api/roles/{roleIds}"
+        );
+        return response;
+    }
+
+    // public async Task<List<Role>> GetAllRole()
+    // {
+    //     var response = await httpClient.GetFromJsonAsync<Role>(
+    //         $"http://localhost:5142/api/roles/{roleId}"
+    //     );
+    //     return response;
+    // }
 }

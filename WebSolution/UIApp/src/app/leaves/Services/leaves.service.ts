@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { PendingLeave } from '../Models/PendingLeave';
 import { LeaveDetails } from '../Models/LeaveDetails';
 import { LeaveApplication } from '../Models/LeaveApplication';
+import { RoleBasedLeave } from '../Models/RoleBasedLeave';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,11 @@ export class LeavesService {
   getAllEmployeeLeaves():Observable<LeaveApplication[]>{
     let url="http://localhost:5263/api/leaves";
     return this.http.get<LeaveApplication[]>(url);
+  }
+
+  getAllRoleBasedLeaves():Observable<RoleBasedLeave[]>{
+    let url="http://localhost:5263/api/leaves/rolebasedleaves";
+    return this.http.get<RoleBasedLeave[]>(url);
   }
 
   updateEmployeeLeave(leaveApplication:LeaveApplication):Observable<LeaveApplication>{

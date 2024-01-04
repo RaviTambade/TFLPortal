@@ -17,6 +17,7 @@ import { TimesheetEmployeeAnalyticsComponent } from './components/timesheet-empl
 import { CreateTimesheetComponent } from './components/forms/create-timesheet/create-timesheet.component';
 import { AddTimesheetEntryComponent } from './components/forms/add-timesheet-entry/add-timesheet-entry.component';
 import { EmployeeGuard } from './Gaurds/employee.guard';
+import { TimesheetApprovalComponent } from './components/timesheet-approval/timesheet-approval.component';
 
 export const timeSheetRoutes: Routes = [
   { path: '', redirectTo: 'list', pathMatch: 'full' },
@@ -57,6 +58,8 @@ export const timeSheetRoutes: Routes = [
     ],
   },
   { path: 'analytics', component: TimesheetEmployeeAnalyticsComponent },
+  { path: 'approval', component: TimesheetApprovalComponent },
+
 ];
 
 @NgModule({
@@ -74,6 +77,7 @@ export const timeSheetRoutes: Routes = [
     TimesheetEmployeeAnalyticsComponent,
     CreateTimesheetComponent,
     AddTimesheetEntryComponent,
+    TimesheetApprovalComponent
   ],
   imports: [
     CommonModule,
