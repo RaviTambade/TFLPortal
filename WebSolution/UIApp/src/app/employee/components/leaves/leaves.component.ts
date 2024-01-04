@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Role } from 'src/app/shared/enums/role';
 import { TokenClaims } from 'src/app/shared/enums/tokenclaims';
+import { UrlType } from 'src/app/shared/models/UrlType';
 import { JwtService } from 'src/app/shared/services/jwt.service';
 
 @Component({
@@ -10,14 +12,20 @@ import { JwtService } from 'src/app/shared/services/jwt.service';
 })
 export class LeavesComponent implements OnInit{
  
-  Role=Role ;
-  role:string |undefined;
-  constructor(private jwtService:JwtService){}
+  leaveMenuRoutes: UrlType[] = [
+    { displayName: 'pendingleave', Url: 'pendingleave' },
+    { displayName: 'add leave', Url: 'add' },
+    { displayName: 'leave list', Url: 'list' },
+    { displayName: 'leave', Url: 'leavecount' },
+  ];
+
+  constructor(private router: Router, private route: ActivatedRoute) {}
+
   ngOnInit(): void {
-    let role = this.jwtService.getClaimFromToken(TokenClaims.role);
-    console.log(role);
-    if(role!=null){
-      this.role=role;
-    }
+    this.navigateUrl(this.leaveMenuRoutes[3].Url);
+  }
+
+  navigateUrl(url: string) {
+    this.router.navigate([url], { relativeTo: this.route });
   }
 }

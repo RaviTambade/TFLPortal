@@ -39,7 +39,7 @@ export class AddLeaveComponent implements OnInit {
   onSubmit(){
     let leaves:LeaveApplication={
       id: 0,
-      employeeId: 14,
+      employeeId: this.employeeId,
       applicationDate:new Date().toISOString(),
       fromDate: this.leaveForm.get("fromDate")?.value,
       toDate: this.leaveForm.get("toDate")?.value,

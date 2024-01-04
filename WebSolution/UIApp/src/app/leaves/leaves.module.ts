@@ -14,6 +14,11 @@ import { LeaveRouterContainerComponent } from './Components/leave-router-contain
 import { AllEmployeeLeavesComponent } from './Components/all-employee-leaves/all-employee-leaves.component';
 import { UpdateEmployeeLeaveComponent } from './Components/forms/update-employee-leave/update-employee-leave.component';
 import { AllRoleBasedLeavesComponent } from './Components/all-role-based-leaves/all-role-based-leaves.component';
+import { AddRoleBasedLeaveComponent } from './Components/forms/add-role-based-leave/add-role-based-leave.component';
+import { UpdateRoleBasedLeaveComponent } from './Components/forms/update-role-based-leave/update-role-based-leave.component';
+import { ConsumedLeaveComponent } from './Components/consumed-leave/consumed-leave.component';
+import { TotalLeaveComponent } from './Components/total-leave/total-leave.component';
+import { AllLeaveCountComponent } from './Components/all-leave-count/all-leave-count.component';
 
 
 export const leaveRoutes: Routes = [
@@ -25,8 +30,9 @@ export const leaveRoutes: Routes = [
     { path: 'pendingleave', component: LeaveRoutingComponent},
     { path: 'appliedleave', component: TeamMemberLeaveRequestComponent},
     { path: 'applied', component: AllEmployeeLeavesComponent},
-    { path:'', redirectTo: 'list', pathMatch: 'full' },
+    { path: '', redirectTo: 'list', pathMatch: 'full' },
     { path: 'list', component: EmployeeLeaveListComponent },
+    { path: 'leavecount', component: AllLeaveCountComponent },
     { path: 'details/:id', component: EmployeeLeaveDetailsComponent },
     { path: 'add', component: AddLeaveComponent },
     { path: 'update/:id', component: UpdateEmployeeLeaveComponent }
@@ -47,6 +53,11 @@ export const leaveRoutes: Routes = [
     AllEmployeeLeavesComponent,
     UpdateEmployeeLeaveComponent,
     AllRoleBasedLeavesComponent,
+    AddRoleBasedLeaveComponent,
+    UpdateRoleBasedLeaveComponent,
+    ConsumedLeaveComponent,
+    TotalLeaveComponent,
+    AllLeaveCountComponent,
   ],
   imports: [
     CommonModule,
@@ -64,7 +75,8 @@ export const leaveRoutes: Routes = [
     EmployeeLeaveDetailsComponent,
     AllEmployeeLeavesComponent,
     UpdateEmployeeLeaveComponent,
-    AllRoleBasedLeavesComponent
+    AllRoleBasedLeavesComponent,
+    UpdateRoleBasedLeaveComponent
   ]
 })
 export class LeavesModule { }

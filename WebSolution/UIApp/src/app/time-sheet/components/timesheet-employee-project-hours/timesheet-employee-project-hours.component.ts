@@ -77,13 +77,12 @@ export class TimesheetEmployeeProjectHoursComponent implements OnInit {
         this.toDate = `${currentYear}-12-31`;
         break;
     }
-    if (this.fromDate && this.toDate) {
       this.getChartData();
-    }
   }
 
   getChartData(){
-    this.workmgmtSvc.getProjectwiseTimeSpent(this.employeeId,this.selectedInterval).subscribe((res) => {
+    if (this.fromDate && this.toDate) 
+    this.workmgmtSvc.getProjectwiseTimeSpent(this.employeeId,this.fromDate,this.toDate).subscribe((res) => {
       this.projectHours = res;
       this.chart.data.labels=[];
       this.chart.data.datasets[0].data=[]

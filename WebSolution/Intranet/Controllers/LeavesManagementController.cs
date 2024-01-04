@@ -67,6 +67,20 @@ public class LeavesManagementController : ControllerBase
     }
 
     [HttpGet]
+    [Route ("employee/{employeeId}/status/{status}")]
+    public async Task<List<EmployeeLeave>> GetLeaveDetailsOfEmployee(int employeeId,string status)
+    {
+        return await _service.GetLeaveDetailsOfEmployee(employeeId,status);
+    }
+
+    [HttpGet]
+    [Route ("getrolebasedleavedetails/{id}")]
+    public async Task<RoleBasedLeave> GetRoleBasedLeaveDetails(int id)
+    {
+        return await _service.GetRoleBasedLeaveDetails(id);
+    }
+
+    [HttpGet]
     [Route ("details/{leaveId}")]
     public async Task<EmployeeLeave> GetLeaveDetails(int leaveId)
     {
@@ -121,11 +135,42 @@ public class LeavesManagementController : ControllerBase
        return await _service.GetPendingLeaves(employeeId,roleId,year);   
     }
 
+    [HttpGet("consumedleaves/employees/{employeeId}/year/{year}")]
+    public async Task<PendingLeaveDetails> GetConsumedLeaves(int employeeId,int year)
+    {
+        Employee employee= await _hrService.GetEmployeeById(employeeId);
+        List<Role> roles= await _apiService.GetRoleOfUser(employee.UserId);
+        int roleId=roles.FirstOrDefault().Id;
+       return await _service.GetConsumedLeaves(employeeId,roleId,year);   
+    }
+
+    [HttpGet("totalleaves/employees/{employeeId}/year/{year}")]
+    public async Task<PendingLeaveDetails> GetTotalLeaves(int employeeId,int year)
+    {
+        Employee employee= await _hrService.GetEmployeeById(employeeId);
+        List<Role> roles= await _apiService.GetRoleOfUser(employee.UserId);
+        int roleId=roles.FirstOrDefault().Id;
+       return await _service.GetTotalLeaves(roleId,year);   
+    }
+
     [HttpPost]
     public async Task<bool> AddLeave(EmployeeLeave employeeLeave)
     {
         return await _service.AddNewLeaveApplication(employeeLeave);
        
+    }
+
+    [HttpPost("addnewrolebasedleave")]
+    public async Task<bool> AddNewRoleBasedLeave(RoleBasedLeave roleBasedLeave)
+    {
+        return await _service.AddNewRoleBasedLeave(roleBasedLeave);
+    }
+
+    [HttpPut("updaterolebasedleave")]
+    public async Task<bool> UpdateRoleBasedLeave(RoleBasedLeave roleBasedLeave)
+    {
+       bool status= await _service.UpdateRoleBasedLeave(roleBasedLeave);
+        return status; 
     }
 
     [HttpPut]
@@ -139,6 +184,13 @@ public class LeavesManagementController : ControllerBase
     public async Task<bool> UpdateEmployeeLeave(EmployeeLeave employeeLeave)
     {
        bool status= await _service.UpdateEmployeeLeave(employeeLeave);
+        return status; 
+    }
+
+    [HttpDelete("deleterolebasedleave/{id}")]
+    public async Task<bool> DeleteRoleBasedLeave(int id)
+    {
+       bool status= await _service.DeleteRoleBasedLeave(id);
         return status; 
     }
 

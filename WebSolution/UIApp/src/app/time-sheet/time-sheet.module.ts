@@ -18,29 +18,30 @@ import { CreateTimesheetComponent } from './components/forms/create-timesheet/cr
 import { AddTimesheetEntryComponent } from './components/forms/add-timesheet-entry/add-timesheet-entry.component';
 import { EmployeeGuard } from './Gaurds/employee.guard';
 import { TimesheetApprovalComponent } from './components/timesheet-approval/timesheet-approval.component';
+import { HRRouteGaurd } from '../hrmanager/Gaurds/gaurd';
 
 export const timeSheetRoutes: Routes = [
   { path: '', redirectTo: 'list', pathMatch: 'full' },
-  { path: 'list', component: ListComponent, canActivate: [EmployeeGuard] },
+  { path: 'list', component: ListComponent },
   {
     path: 'create',
     component: CreateTimesheetComponent,
-    canActivate: [EmployeeGuard],
+    // canActivate: [EmployeeGuard],
   },
   {
     path: 'details/:id',
     component: DetailsComponent,
-    canActivate: [EmployeeGuard],
+    // canActivate: [EmployeeGuard],
   },
   {
     path: 'addentry/:id',
     component: AddTimesheetEntryComponent,
-    canActivate: [EmployeeGuard],
+    // canActivate: [EmployeeGuard],
   },
   {
     path: 'update/:id',
     component: UpdateTimesheetEntryComponent,
-    canActivate: [EmployeeGuard],
+    // canActivate: [EmployeeGuard],
   },
 
   {
@@ -58,7 +59,7 @@ export const timeSheetRoutes: Routes = [
     ],
   },
   { path: 'analytics', component: TimesheetEmployeeAnalyticsComponent },
-  { path: 'approval', component: TimesheetApprovalComponent },
+  { path: 'approval', component: TimesheetApprovalComponent, canActivate:[HRRouteGaurd()] },
 
 ];
 

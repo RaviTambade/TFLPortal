@@ -7,7 +7,6 @@ export class RoleBasedLeave{
         public casual:number,
         public paid:number,
         public unpaid:number,
-        public role:string,
         public financialYear:number
         ){}
 }
