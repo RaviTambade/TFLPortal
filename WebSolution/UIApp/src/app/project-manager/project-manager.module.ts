@@ -9,6 +9,8 @@ import { PerformenceApprisalComponent } from './components/performence-apprisal/
 import { ProjectComponent } from './components/project/project.component';
 import { TimesheetComponent } from './components/timesheet/timesheet.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { projectRoutes } from '../projects/projects.module';
+import { AddActivityComponent } from '../activity/Components/Forms/add-activity/add-activity.component';
 
 export const projectManagerRoutes: Routes = [
   {
@@ -24,7 +26,7 @@ export const projectManagerRoutes: Routes = [
       { path: 'leave', component: LeavesComponent },
       {
         path: 'projects',
-        component: ProjectComponent,
+        component: ProjectComponent,children:[{path:'addWork',component:AddActivityComponent}],
       },
       { path: 'events', component: EventsComponent },
       { path: 'payroll', component: PayrollComponent },

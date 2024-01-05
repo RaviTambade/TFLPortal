@@ -20,18 +20,19 @@ public class TimesheetsController : ControllerBase
         _timesheetService = service;
     }
 
-    [HttpGet("employees/{employeeId}/from/{fromDate}/to/{toDate}")]
+    [HttpGet("employees/{employeeId}/status/{status}/from/{fromDate}/to/{toDate}")]
     public async Task<List<TimesheetDuration>> GetTimesheets(
         int employeeId,
-        string fromDate,
-        string toDate
+        string status,
+        DateOnly fromDate,
+        DateOnly toDate
     )
     {
-        return await _timesheetService.GetTimesheets(employeeId, fromDate, toDate);
+        return await _timesheetService.GetTimesheets(employeeId, status,fromDate, toDate);
     }
 
     [HttpGet("employees/{employeeId}/date/{date}")]
-    public async Task<TimesheetResponse> GetTimesheet(int employeeId, string date)
+    public async Task<TimesheetResponse> GetTimesheet(int employeeId, DateOnly date)
     {
         TimesheetViewModel timesheet = await _timesheetService.GetTimesheet(employeeId, date);
 
@@ -53,13 +54,36 @@ public class TimesheetsController : ControllerBase
         return new TimesheetResponse() { };
     }
 
-    [HttpGet("hrmanager/{hrmanagerId}/status/{status}/from/{fromDate}/to/{toDate}")]
-    public async Task<List<TimesheetResponse>> GetTimesheets( int hrmanagerId, string status,DateTime fromDate,DateTime toDate)
+  
+    [HttpGet("{timesheetId}")]
+    public async Task<TimesheetResponse> GetTimesheet(int timesheetId)
     {
-        string fromdate=fromDate.ToString("yyyy-MM-dd");
-        string todate=toDate.ToString("yyyy-MM-dd");
+        TimesheetViewModel timesheet = await _timesheetService.GetTimesheet(timesheetId);
 
-        List<TimesheetViewModel> timesheets = await _timesheetService.GetTimesheets(hrmanagerId,status,fromdate,todate );
+        if (timesheet.Employee != null)
+        {
+            var user = await _apiService.GetUserDetails(timesheet.Employee.UserId.ToString());
+            TimesheetResponse timeSheetResponse = new TimesheetResponse
+            {
+                Id = timesheet.Id,
+                TimesheetDate = timesheet.TimesheetDate,
+                StatusChangedDate = timesheet.StatusChangedDate,
+                Status = timesheet.Status,
+                TimeSheetDetails = timesheet.TimeSheetDetails,
+                EmployeeId = timesheet.EmployeeId,
+                EmployeeName = user[0].FirstName + " " + user[0].LastName,
+            };
+            return timeSheetResponse;
+        }
+        return new TimesheetResponse() { };
+    }
+
+      [HttpGet("hrmanager/{hrmanagerId}/status/{status}/from/{fromDate}/to/{toDate}")]
+    public async Task<List<TimesheetResponse>> GetEmployeeTimesheetsForHRManager(int hrmanagerId, string status,DateOnly fromDate,DateOnly toDate)
+    {
+   
+
+        List<TimesheetViewModel> timesheets = await _timesheetService.GetEmployeeTimesheetsForHRManager(hrmanagerId,status,fromDate,toDate );
         string userIds = string.Join(',', timesheets.Select(t => t.Employee.UserId).ToList());
 
         List<TimesheetResponse> timesheetResponses = new List<TimesheetResponse>();
@@ -91,28 +115,6 @@ public class TimesheetsController : ControllerBase
             return timesheetResponses;
     }
 
-    [HttpGet("{timesheetId}")]
-    public async Task<TimesheetResponse> GetTimesheet(int timesheetId)
-    {
-        TimesheetViewModel timesheet = await _timesheetService.GetTimesheet(timesheetId);
-
-        if (timesheet.Employee != null)
-        {
-            var user = await _apiService.GetUserDetails(timesheet.Employee.UserId.ToString());
-            TimesheetResponse timeSheetResponse = new TimesheetResponse
-            {
-                Id = timesheet.Id,
-                TimesheetDate = timesheet.TimesheetDate,
-                StatusChangedDate = timesheet.StatusChangedDate,
-                Status = timesheet.Status,
-                TimeSheetDetails = timesheet.TimeSheetDetails,
-                EmployeeId = timesheet.EmployeeId,
-                EmployeeName = user[0].FirstName + " " + user[0].LastName,
-            };
-            return timeSheetResponse;
-        }
-        return new TimesheetResponse() { };
-    }
 
     [HttpGet("timesheetdetails/{timesheetDetailId}")]
     public async Task<TimesheetDetailViewModel> GetTimesheetDetail(int timesheetDetailId)
@@ -137,11 +139,9 @@ public class TimesheetsController : ControllerBase
     }
 
     [HttpGet("projects/workinghours/employees/{employeeId}/from/{fromDate}/to/{toDate}")]
-    public async Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(int employeeId,DateTime fromDate,DateTime toDate)
+    public async Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(int employeeId,DateOnly fromDate,DateOnly toDate)
     {
-        string fromdate=fromDate.ToString("yyyy-MM-dd");
-        string todate=toDate.ToString("yyyy-MM-dd");
-        return await _timesheetService.GetProjectWiseTimeSpentByEmployee(employeeId,fromdate,todate);
+        return await _timesheetService.GetProjectWiseTimeSpentByEmployee(employeeId,fromDate,toDate);
     }
 
     [HttpGet("workingdays/employees/{employeeId}/years/{year}/months/{month}")]

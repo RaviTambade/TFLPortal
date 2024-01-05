@@ -2,6 +2,7 @@ import { Component,  OnInit } from '@angular/core';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 import { TimesheetDuration } from '../../models/timesheetduratiom';
 import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
+import { TimeSheetStatus } from '../../models/timesheetstatus';
 
 @Component({
   selector: 'timesheet-list',
@@ -16,6 +17,8 @@ export class ListComponent implements OnInit {
   toDate: string | undefined;
   intervals: string[] = ['week', 'month'];
   selectedInterval: string = this.intervals[0];
+  timesheetStatus: string[] = [TimeSheetStatus.inprogress,TimeSheetStatus.submitted,TimeSheetStatus.rejected ,TimeSheetStatus.approved];
+  selectedStatus: string = this.timesheetStatus[0];
 
   constructor(private workmgmtSvc: WorkmgmtService) {}
 
@@ -41,7 +44,7 @@ export class ListComponent implements OnInit {
     }
     if (this.fromDate && this.toDate) {
       this.workmgmtSvc
-        .getAllTimeSheets(this.employeeId, this.fromDate, this.toDate)
+        .getAllTimeSheets(this.employeeId, this.selectedStatus, this.fromDate, this.toDate)
         .subscribe((res) => {
           this.timeSheets = res;
         });

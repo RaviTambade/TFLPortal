@@ -30,6 +30,7 @@ role:string|undefined=undefined;
   ngOnInit(): void {
     this.projectSvc.getProjectsOfEmployee(this.employeeId).subscribe((res) => {
       this.projects = res;
+      console.log("hello"+res);
       this.projectId = this.projects[0].id;
       this.onChangeProject();
        this.role = this.jwtSvc.getClaimFromToken(TokenClaims.role);

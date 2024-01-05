@@ -1,40 +1,52 @@
+<div class=" mt-4">
+    <div class="d-flex align-items-center">
+        <div class="mx-3 d-flex align-items-center">
+            <label >Project</label>
+            <select id="projectSelect" class="form-control  mx-2" [(ngModel)]="selectedProjectId" (change)="onIntervalChange()">
+                <option *ngFor="let project of projects" [value]="project.id">{{project.title | uppercase}}</option>
+            </select>
+        </div>
 
-
-    <div>
-        <label>Select Interval</label>
-        <select class="mx-2" [(ngModel)]="selectedInterval" (change)="onIntervalChange()">
-            <option *ngFor="let interval of intervals" [value]="interval"> {{interval}}</option>
-        </select>
-        <label>Select Project </label>
-        <select class="mx-2" [(ngModel)]="selectedProjectId" (change)="onIntervalChange()">
-            <option *ngFor="let project of projects" [value]="project.id"> {{project.title|uppercase}}</option>
-        </select>
-        <label class="mx-2"> StatDate :{{fromDate |date}}</label>
-        <label class="mx-2"> EndDate :{{toDate |date}}</label>  
+        <div class="d-flex align-items-center mx-3">
+            <label for="intervalSelect" >Interval</label>
+            <select id="intervalSelect" class="form-control mx-2" [(ngModel)]="selectedInterval" (change)="onIntervalChange()">
+                <option *ngFor="let interval of intervals" [value]="interval">{{interval}}</option>
+            </select>
+        </div>
+ 
+    
+        <div>
+            <span class="mx-2">StartDate: {{fromDate | date}}</span>
+            <span class="mx-2">EndDate: {{toDate | date}}</span>
+        </div>
     </div>
+    
+
 
     <br>
 
     <div class="row">
         <div class="col">
-            <canvas id="MyChart">{{ chart }}</canvas>
+            <canvas id="MyChart"></canvas>
         </div>
         <div class="col">
-            <div class="row d-flex justify-content-center mx-2" *ngIf="workCategory!=undefined">
-              <h3>  Time Utilization (in Hours)</h3> 
+            <div class="row justify-content-center mx-2" *ngIf="workCategory != undefined">
+                <h3>Time Utilization (in Hours)</h3>
                 <div class="col">
-                    <p>UserStory:{{workCategory.userStory.toFixed(2)}} </p>
-                    <p>Task :{{workCategory.task.toFixed(2)}} </p>
-                    <p>Bug : {{workCategory.bug.toFixed(2)}}</p>
-                    <p>Mentoring :{{workCategory.mentoring.toFixed(2)}} </p>
-                    <p>Learning :{{workCategory.learning.toFixed(2)}}</p>
+                    <p>UserStory: {{workCategory.userStory.toFixed(2)}}</p>
+                    <p>Task: {{workCategory.task.toFixed(2)}}</p>
+                    <p>Bug: {{workCategory.bug.toFixed(2)}}</p>
+                    <p>Mentoring: {{workCategory.mentoring.toFixed(2)}}</p>
+                    <p>Learning: {{workCategory.learning.toFixed(2)}}</p>
                 </div>
                 <div class="col">
-                    <p>Clientcall :{{workCategory.clientCall.toFixed(2)}} </p>
-                    <p>Issues :{{workCategory.issues.toFixed(2)}} </p>
-                    <p>Meeting :{{workCategory.meeting.toFixed(2)}} </p>
-                    <p>Other : {{workCategory.other.toFixed(2)}} </p>
+                    <p>Clientcall: {{workCategory.clientCall.toFixed(2)}}</p>
+                    <p>Issues: {{workCategory.issues.toFixed(2)}}</p>
+                    <p>Meeting: {{workCategory.meeting.toFixed(2)}}</p>
+                    <p>Other: {{workCategory.other.toFixed(2)}}</p>
+                    <p><b>Total:</b> {{totalHours.toFixed(2)}}</p>
                 </div>
             </div>
         </div>
     </div>
+</div>

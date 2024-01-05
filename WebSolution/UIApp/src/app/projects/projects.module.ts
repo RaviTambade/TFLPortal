@@ -30,7 +30,7 @@ import { AddActivityComponent } from '../activity/Components/Forms/add-activity/
 
 
 export const projectRoutes: Routes = [
-  { path: '', component: EmployeeworkrouteroutletComponent },
+  { path: '',pathMatch:'full', redirectTo:'myprojects'},
   { path: 'activities', component: EmployeeTodaysActivitiesComponent },
   { path: 'allActivities', component: EmployeeAllActivitiesComponent },
   { path: 'employeework', component: EmployeeworksComponent },
@@ -39,7 +39,7 @@ export const projectRoutes: Routes = [
   {  path:'todaysemployeework/:id',component:TodaysemployeeworkComponent},
   {  path:'update/:id',component:UpdateemployeeworkComponent},
   {  path:'allProjectList',component:AllProjectsListComponent},
-  {  path:'addWork',component:AddActivityComponent}
+  {  path:'projectActivities',component:ProjectActivitiesComponent}
 
 ];
 

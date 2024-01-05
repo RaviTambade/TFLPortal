@@ -1,12 +1,15 @@
 <div>
-
+   
     <h2> My Timesheets </h2>
     <div class="mb-2">
+        <label >Status</label>
+        <select class="mx-2 form-control-sm" [(ngModel)]="selectedStatus" (change)="onIntervalChange()">
+            <option *ngFor="let status of timesheetStatus" [value]="status"> {{status}}</option>
+        </select>
         <label>Interval</label>
         <select class="mx-2 form-control-sm" [(ngModel)]="selectedInterval" (change)="onIntervalChange()">
             <option *ngFor="let interval of intervals" [value]="interval"> {{interval}}</option>
         </select>
-        <a class="mx-2 float-end" [routerLink]="['../create']"> Create New Timesheet</a>
     </div>
 
     <table class="table table-bordered">
