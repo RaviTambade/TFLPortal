@@ -39,7 +39,6 @@ export const projectRoutes: Routes = [
   {  path:'todaysemployeework/:id',component:TodaysemployeeworkComponent},
   {  path:'update/:id',component:UpdateemployeeworkComponent},
   {  path:'allProjectList',component:AllProjectsListComponent},
-  {  path:'addWork',component:AddActivityComponent},
   {  path:'projectActivities',component:ProjectActivitiesComponent}
 
 ];
