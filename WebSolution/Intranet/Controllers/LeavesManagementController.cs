@@ -173,10 +173,10 @@ public class LeavesManagementController : ControllerBase
         return status; 
     }
 
-    [HttpPut]
-    public async Task<bool> UpdateLeaveApplication(EmployeeLeave employeeLeave)
+    [HttpPut("{leaveId}/{leaveStatus}")]
+    public async Task<bool> UpdateLeaveApplication(int leaveId,string leaveStatus)
     {
-        bool status= await _service.UpdateLeaveApplication(employeeLeave);
+        bool status= await _service.UpdateLeaveApplication(leaveId,leaveStatus);
         return status;
     }
 

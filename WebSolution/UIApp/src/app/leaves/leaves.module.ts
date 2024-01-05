@@ -19,6 +19,7 @@ import { UpdateRoleBasedLeaveComponent } from './Components/forms/update-role-ba
 import { ConsumedLeaveComponent } from './Components/consumed-leave/consumed-leave.component';
 import { TotalLeaveComponent } from './Components/total-leave/total-leave.component';
 import { AllLeaveCountComponent } from './Components/all-leave-count/all-leave-count.component';
+import { UpdateStatusComponent } from './Components/forms/update-status/update-status.component';
 
 
 export const leaveRoutes: Routes = [
@@ -28,6 +29,7 @@ export const leaveRoutes: Routes = [
   children: [
     // { path: 'leaveform', component: AddLeaveComponent  },
     { path: 'pendingleave', component: LeaveRoutingComponent},
+    { path: 'updateleave/:id', component: UpdateStatusComponent},
     { path: 'appliedleave', component: TeamMemberLeaveRequestComponent},
     { path: 'applied', component: AllEmployeeLeavesComponent},
     { path: '', redirectTo: 'list', pathMatch: 'full' },
@@ -58,6 +60,7 @@ export const leaveRoutes: Routes = [
     ConsumedLeaveComponent,
     TotalLeaveComponent,
     AllLeaveCountComponent,
+    UpdateStatusComponent,
   ],
   imports: [
     CommonModule,

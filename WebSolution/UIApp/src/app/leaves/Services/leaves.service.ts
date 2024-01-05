@@ -7,6 +7,7 @@ import { LeaveDetails } from '../Models/LeaveDetails';
 import { LeaveApplication } from '../Models/LeaveApplication';
 import { RoleBasedLeaveDetails } from '../Models/RoleBasedLeaveDetails';
 import { RoleBasedLeave } from '../Models/RoleBasedLeave';
+import { LeaveStatus } from '../Models/LeaveStatus';
 
 @Injectable({
   providedIn: 'root'
@@ -78,6 +79,11 @@ export class LeavesService {
   updateEmployeeLeave(leaveApplication:LeaveApplication):Observable<LeaveApplication>{
     let url="http://localhost:5263/api/leaves";
     return this.http.put<LeaveApplication>(url,leaveApplication);
+  }
+
+  updateLeaveApplication(leaveId:number,status:string):Observable<any>{
+    let url="http://localhost:5263/api/leaves/" +leaveId+ "/"+status;
+    return this.http.put<any>(url,{});
   }
 
   updateRoleBasedLeave(roleBasedLeave:RoleBasedLeave):Observable<RoleBasedLeave>{

@@ -13,11 +13,12 @@
             </thead>
             <tbody *ngFor="let leave of employeeLeaves">
                 <tr>
-                    <td style="cursor: pointer; text-decoration: underline ; color:  #0000EE;" [routerLink]="['../details',leave.id]">{{leave.applicationDate |date}}</td>
+                    <td >{{leave.applicationDate |date}}</td>
                     <td>{{leave.fromDate |date}}</td>
                     <td>{{leave.toDate |date}}</td>
                     <td>{{leave.status}}</td>
                     <td>{{leave.leaveType}}</td>
+                    <button [routerLink]="['../updateleave',leave.id]">update</button>
                 </tr>
             </tbody>
     </table>

@@ -11,6 +11,7 @@ import { TimesheetComponent } from './components/timesheet/timesheet.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { timeSheetRoutes } from '../time-sheet/time-sheet.module';
 import { HRRouteGaurd } from './Gaurds/gaurd';
+import { leaveRoutes } from '../leaves/leaves.module';
 
 export const hrRoutes: Routes = [
   {
@@ -22,7 +23,8 @@ export const hrRoutes: Routes = [
         path: 'timesheet',
         component: TimesheetComponent, children:timeSheetRoutes
       },
-      { path: 'leave', component: LeavesComponent },
+      { path: 'leave',
+       component: LeavesComponent ,children: leaveRoutes},
       {
         path: 'projects',
         component: ProjectComponent,

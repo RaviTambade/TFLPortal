@@ -653,7 +653,7 @@ public class LeaveManagementService : ILeaveManagementService
         }
         return status;
     }
-    public async Task<bool> UpdateLeaveApplication(EmployeeLeave employeeLeave)
+    public async Task<bool> UpdateLeaveApplication(int leaveId ,string leaveStatus)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
@@ -662,8 +662,8 @@ public class LeaveManagementService : ILeaveManagementService
         {
             string query = "Update employeeleaves set status=@status where id =@Id";
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@Id", employeeLeave.Id);
-            cmd.Parameters.AddWithValue("@status", employeeLeave.Status);
+            cmd.Parameters.AddWithValue("@Id", leaveId);
+            cmd.Parameters.AddWithValue("@status",leaveStatus);
             await connection.OpenAsync();
             int rowsAffected = cmd.ExecuteNonQuery();
             if (rowsAffected > 0)

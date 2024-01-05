@@ -18,7 +18,7 @@ public interface ILeaveManagementService
     Task<bool> AddNewLeaveApplication(EmployeeLeave employeeLeave);
     Task<bool> AddNewRoleBasedLeave(RoleBasedLeave roleBasedLeave);
     Task<bool> UpdateRoleBasedLeave(RoleBasedLeave roleBasedLeave);
-    Task<bool> UpdateLeaveApplication(EmployeeLeave employeeLeave);
+    Task<bool> UpdateLeaveApplication(int leaveId,string leaveStatus);
     Task<bool> UpdateEmployeeLeave(EmployeeLeave employeeLeave);
     Task<bool> DeleteRoleBasedLeave(int id);
     Task<bool> DeleteEmployeeLeave(int id);
