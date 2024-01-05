@@ -19,29 +19,34 @@ public class TimesheetService : ITimesheetService
             ?? throw new ArgumentNullException("connectionString");
     }
 
-    public async Task<List<TimesheetDuration>> GetTimesheets(int employeeId, string fromDate,string toDate )
+    public async Task<List<TimesheetDuration>> GetTimesheets(int employeeId, string status, DateOnly fromDate,DateOnly toDate )
     {
         List<TimesheetDuration> timesheets = new List<TimesheetDuration>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
+             string fromdate=fromDate.ToString("yyyy-MM-dd");
+            string todate=toDate.ToString("yyyy-MM-dd");
+
             string query = @"select timesheets.* , 
                     COALESCE(CAST(((SUM(TIME_TO_SEC(TIMEDIFF(totime,fromtime))))/3600)AS DECIMAL(10,2)),0) as time_in_hour
                     from timesheets
                     LEFT JOIN timesheetdetails on timesheetdetails.timesheetid=timesheets.id
-                    where  employeeid =@employeeId AND timesheetdate>=@fromdate AND timesheetdate<=@todate
+                    where  employeeid =@employeeId AND timesheets.status=@status AND timesheetdate>=@fromdate AND timesheetdate<=@todate 
                     GROUP BY timesheetdate";
             MySqlCommand command = new MySqlCommand(query, connection);
+           
             command.Parameters.AddWithValue("@employeeId", employeeId);
-            command.Parameters.AddWithValue("@fromdate", fromDate);
-            command.Parameters.AddWithValue("@todate", toDate);
+            command.Parameters.AddWithValue("@status", status);
+            command.Parameters.AddWithValue("@fromdate", fromdate);
+            command.Parameters.AddWithValue("@todate", todate);
             await connection.OpenAsync();
             MySqlDataReader reader = (MySqlDataReader)await command.ExecuteReaderAsync();
             while (await reader.ReadAsync())
             {
                 int id = int.Parse(reader["id"].ToString());
-                string status = reader["status"].ToString();
+                // string status = reader["status"].ToString();
                 double hours=double.Parse(reader["time_in_hour"].ToString());
                 DateTime timesheetDate = DateTime.Parse(reader["timesheetdate"].ToString());
                 DateTime statusChangedDate = DateTime.Parse(reader["statuschangeddate"].ToString());
@@ -70,13 +75,15 @@ public class TimesheetService : ITimesheetService
         return timesheets;
     }
 
-      public async Task<List<TimesheetViewModel>> GetTimesheets( int hrmanagerId ,string status, string fromDate,string toDate )
+      public async Task<List<TimesheetViewModel>> GetEmployeeTimesheetsForHRManager(int hrmanagerId ,string status, DateOnly fromDate,DateOnly toDate )
     {
         List<TimesheetViewModel> timesheets = new List<TimesheetViewModel>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
+             string fromdate=fromDate.ToString("yyyy-MM-dd");
+            string todate=toDate.ToString("yyyy-MM-dd");
             string query = @"select timesheets.* , employees.userid,
                     CAST(((SUM(TIME_TO_SEC(TIMEDIFF(totime,fromtime))))/3600)AS DECIMAL(10,2)) as time_in_hour
                     from timesheets
@@ -87,8 +94,8 @@ public class TimesheetService : ITimesheetService
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@hrmanagerid", hrmanagerId);
             command.Parameters.AddWithValue("@status", status);
-            command.Parameters.AddWithValue("@fromdate", fromDate);
-            command.Parameters.AddWithValue("@todate", toDate);
+            command.Parameters.AddWithValue("@fromdate", fromdate);
+            command.Parameters.AddWithValue("@todate", todate);
             await connection.OpenAsync();
             MySqlDataReader reader = (MySqlDataReader)await command.ExecuteReaderAsync();
             while (await reader.ReadAsync())
@@ -126,7 +133,7 @@ public class TimesheetService : ITimesheetService
         return timesheets;
     }
 
-    public async Task<TimesheetViewModel> GetTimesheet(int employeeId, string date)
+    public async Task<TimesheetViewModel> GetTimesheet(int employeeId, DateOnly date)
     {
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
@@ -144,7 +151,8 @@ public class TimesheetService : ITimesheetService
                 LEFT JOIN projects ON employeework.projectid=projects.id
                 WHERE timesheets.timesheetdate = @timesheetDate AND timesheets.employeeId = @employeeId";
             MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@timesheetDate", date);
+             string formatedDate=date.ToString("yyyy-MM-dd");
+            command.Parameters.AddWithValue("@timesheetDate", formatedDate);
             command.Parameters.AddWithValue("@employeeId", employeeId);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
@@ -159,7 +167,7 @@ public class TimesheetService : ITimesheetService
                 {
                     Id = timesheetId,
                     Status = status,
-                    TimesheetDate = DateTime.Parse(date),
+                    TimesheetDate = DateTime.Parse(formatedDate),
                     StatusChangedDate = statusChangedDate,
                     EmployeeId = employeeId,
                     Employee = new Employee { UserId = employeeUserId },
@@ -463,7 +471,7 @@ public async Task<TimesheetViewModel> GetTimesheet(int timesheetId)
         return workCategoryDetails;
     }
 
-    public async Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(int employeeId,string fromDate,string toDate)
+    public async Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(int employeeId,DateOnly fromDate,DateOnly toDate)
     {
         List<ProjectWorkHours> projectsHoursList = new();
 
@@ -474,10 +482,12 @@ public async Task<TimesheetViewModel> GetTimesheet(int timesheetId)
             @"CALL getprojectwiseemployeeworkhours(@employee_id,@fromdate,@todate)";
         try
         {
+            string fromdate=fromDate.ToString("yyyy-MM-dd");
+            string todate=toDate.ToString("yyyy-MM-dd");
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@employee_id", employeeId);
-            command.Parameters.AddWithValue("@fromdate", fromDate);
-            command.Parameters.AddWithValue("@todate", toDate);
+            command.Parameters.AddWithValue("@fromdate", fromdate);
+            command.Parameters.AddWithValue("@todate", todate);
 
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();

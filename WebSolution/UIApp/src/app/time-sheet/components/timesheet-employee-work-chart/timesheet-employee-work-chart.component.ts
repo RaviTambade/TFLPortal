@@ -30,6 +30,7 @@ export class TimesheetEmployeeWorkChartComponent {
   };
   intervals: string[] = ['week', 'month', 'year'];
   selectedInterval: string = this.intervals[0];
+  totalHours:number=0
 
   projects: Project[] = [
     {
@@ -134,12 +135,12 @@ export class TimesheetEmployeeWorkChartComponent {
         this.WorkCategoryDetails = res;
         this.chart.data.datasets = [];
         this.workCategory = new WorkCategoryDetails(0,0,0,0,0,0,0,0,0,'');
-        this.WorkCategoryDetails.forEach((category, index) => {
+        this.totalHours=0;
+        this.WorkCategoryDetails.forEach((category) => {
           let cl = this.workmgmtSvc.randomColorPicker();
           let obj = {
             label: this.getLabelName(
-              category.label,
-              index
+              category.label
             ) /* "week"+ (index+1)*/,
             data: [
               category.userStory,
@@ -165,12 +166,17 @@ export class TimesheetEmployeeWorkChartComponent {
           this.workCategory.mentoring += Number(category.mentoring);
           this.workCategory.learning += Number(category.learning);
           this.workCategory.other += Number(category.other);
+
         });
+       this.totalHours=this.workCategory.bug+this.workCategory.userStory+this.workCategory.task+
+       this.workCategory.clientCall+this.workCategory.meeting+this.workCategory.issues+
+       this.workCategory.mentoring+this.workCategory.learning+this.workCategory.other;
+
         this.chart.update();
       });
   }
 
-  getLabelName(orignalLabel: string, index: number) {
+  getLabelName(orignalLabel: string) {
     let label: any = '';
     switch (this.selectedInterval) {
       case 'week':

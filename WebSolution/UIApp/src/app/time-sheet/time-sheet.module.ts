@@ -19,9 +19,11 @@ import { AddTimesheetEntryComponent } from './components/forms/add-timesheet-ent
 import { EmployeeGuard } from './Gaurds/employee.guard';
 import { TimesheetApprovalComponent } from './components/timesheet-approval/timesheet-approval.component';
 import { HRRouteGaurd } from '../hrmanager/Gaurds/gaurd';
+import { TimesheetDashboardComponent } from './components/timesheet-dashboard/timesheet-dashboard.component';
 
 export const timeSheetRoutes: Routes = [
-  { path: '', redirectTo: 'list', pathMatch: 'full' },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: 'dashboard', component:TimesheetDashboardComponent },
   { path: 'list', component: ListComponent },
   {
     path: 'create',
@@ -78,7 +80,8 @@ export const timeSheetRoutes: Routes = [
     TimesheetEmployeeAnalyticsComponent,
     CreateTimesheetComponent,
     AddTimesheetEntryComponent,
-    TimesheetApprovalComponent
+    TimesheetApprovalComponent,
+    TimesheetDashboardComponent
   ],
   imports: [
     CommonModule,

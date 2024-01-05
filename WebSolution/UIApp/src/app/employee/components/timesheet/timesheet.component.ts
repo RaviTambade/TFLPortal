@@ -10,7 +10,8 @@ import { UrlType } from 'src/app/shared/models/UrlType';
 export class TimesheetComponent {
   
   timesheetMenuRoutes: UrlType[] = [
-    { displayName: 'Timesheet', Url: 'list' },
+    { displayName: 'Dashboard', Url: 'dashboard' },
+    // { displayName: 'Timesheet', Url: 'list' },
     { displayName: 'View', Url: 'view' },
     { displayName: 'Analytics', Url: 'analytics' },
     // { displayName: 'Approval', Url: 'approval' },

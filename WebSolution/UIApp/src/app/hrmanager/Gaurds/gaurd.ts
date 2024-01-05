@@ -9,7 +9,7 @@ import { Role } from 'src/app/shared/enums/role';
 import { TokenClaims } from 'src/app/shared/enums/tokenclaims';
 import { JwtService } from 'src/app/shared/services/jwt.service';
 
-export function HRRouteGaurd():| CanMatchFn| CanActivateChildFn | CanActivateFn {
+export function HRRouteGaurd(): CanMatchFn| CanActivateChildFn | CanActivateFn {
   return function () {
     const jwtSvc: JwtService = inject(JwtService);
     const role = jwtSvc.getClaimFromToken(TokenClaims.role);
