@@ -12,9 +12,10 @@ import { ProjectplanningModule } from './ProjectPlanning/projectplanning/project
 import { ActivityModule } from './activity/activity.module';
 import { BiModule } from './bi/bi.module';
 import { LeavesModule } from './leaves/leaves.module';
-import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
+import { JWT_OPTIONS, JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { LayoutModule } from './layout/layout.module';
 import { SharedModule } from './shared/shared.module';
+import { LocalStorageKeys } from './shared/enums/local-storage-keys';
 
 
 
@@ -34,22 +35,16 @@ import { SharedModule } from './shared/shared.module';
     LeavesModule,
     LayoutModule,
     SharedModule,
+    JwtModule.forRoot({
+      config:{
+        tokenGetter:()=> localStorage.getItem(LocalStorageKeys.jwt)  
+      }
+    }),
     ActivityModule
 
   ],
 
-  providers: [
-    {
-      provide: JWT_OPTIONS,
-      useValue: {
-        tokenGetter: () => {
-          return;
-        },
-        throwNoTokenError: true,
-      },
-    },
-    JwtHelperService,
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
