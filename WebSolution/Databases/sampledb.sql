@@ -164,7 +164,7 @@ INSERT INTO sprintmaster(title,startdate,enddate,goal) VALUES ('sprint 6',"2023-
 
 -- Inventory Management
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
-VALUES ('userstory','As a  Store Worker, I want to be able to reset my password in case I forget it.','',4,1, '2024-01-04', '2024-01-04', '2024-01-04', 10, 7, 'inprogress','2024-01-04');
+VALUES ('userstory','As a  Store Worker, I want to be able to reset my password in case I forget it.','',4,1, '2024-01-06', '2024-01-06', '2024-01-06', 10, 7, 'inprogress','2024-01-06');
 
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
 VALUES ('userstory','As a Store Worker, I want to view a graph that shows my daily, weekly, and monthly delivered orders, so that i can monitor my performance','',4,1,  '2023-12-05', '2023-12-06', '2023-12-10',  10, 7,  'inprogress','2023-12-04');

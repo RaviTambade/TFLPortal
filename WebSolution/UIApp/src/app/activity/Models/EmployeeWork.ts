@@ -3,6 +3,7 @@ export class EmployeeWork{
         public  title:string,
         public  description:string,
         public  projectWorkType:string,
+        public  sprintId:number,
         public  projectId:number,
         public  projectName:number,
         public  assignedBy:number,
@@ -10,6 +11,7 @@ export class EmployeeWork{
         public  assignDate:string,
         public  startDate:string,
         public  dueDate:string,
-        public  status:string){}
+        public  status:string,
+        public  createdDate:string,){}
 
 }
