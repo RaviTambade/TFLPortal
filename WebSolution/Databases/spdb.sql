@@ -121,3 +121,5 @@ set remainingPaidLeaves=sanctionedPaidLeaves-consumedPaidLeaves;
 set remainingUnpaidLeaves=sanctionedUnpaidLeaves-consumedUnpaidLeaves;
 END $$
 DELIMITER ;
+
+
