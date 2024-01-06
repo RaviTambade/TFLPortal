@@ -12,6 +12,10 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { timeSheetRoutes } from '../time-sheet/time-sheet.module';
 import { HRRouteGaurd } from './Gaurds/gaurd';
 import { leaveRoutes } from '../leaves/leaves.module';
+import { SalaryprocessingComponent } from './components/payroll/salaryprocessing/salaryprocessing.component';
+import { MonthlysalarystructureComponent } from './components/payroll/monthlysalarystructure/monthlysalarystructure.component';
+import { EmployeedetailsComponent } from './components/payroll/employeedetails/employeedetails.component';
+import { FormsModule } from '@angular/forms';
 
 export const hrRoutes: Routes = [
   {
@@ -46,7 +50,11 @@ export const hrRoutes: Routes = [
     EventsComponent,
     PerformenceApprisalComponent,
     TimesheetComponent,
+    SalaryprocessingComponent,
+    MonthlysalarystructureComponent,
+    EmployeedetailsComponent,
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule,FormsModule],
+  exports: [EmployeedetailsComponent,SalaryprocessingComponent],
 })
 export class HrmanagerModule {}

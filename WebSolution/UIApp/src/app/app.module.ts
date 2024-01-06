@@ -16,6 +16,7 @@ import { JWT_OPTIONS, JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { LayoutModule } from './layout/layout.module';
 import { SharedModule } from './shared/shared.module';
 import { LocalStorageKeys } from './shared/enums/local-storage-keys';
+import { HrmanagerModule } from './hrmanager/hrmanager.module';
 
 
 
@@ -40,7 +41,8 @@ import { LocalStorageKeys } from './shared/enums/local-storage-keys';
         tokenGetter:()=> localStorage.getItem(LocalStorageKeys.jwt)  
       }
     }),
-    ActivityModule
+    ActivityModule,
+    HrmanagerModule
 
   ],
 

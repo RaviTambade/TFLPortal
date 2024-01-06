@@ -4,7 +4,7 @@ import { MembersService } from 'src/app/resource-management/Services/members.ser
 import { HrService } from 'src/app/shared/services/hr.service';
 
 @Component({
-  selector: 'app-employee-details',
+  selector: 'emp-details',
   templateUrl: './employee-details.component.html',
   styleUrls: ['./employee-details.component.css']
 })
