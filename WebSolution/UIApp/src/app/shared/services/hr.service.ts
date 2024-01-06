@@ -38,7 +38,7 @@ export class HrService {
   }
   
   getSalaryStructure(employeeId:number):Observable<any>{
-    let url=this.serviceurl+"/hr/employees/salarystructure/"+employeeId;
+    let url=this.serviceurl+"/payroll/salaries/employees/"+employeeId;
     return this.httpClient.get<any>(url);
   }
 

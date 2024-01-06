@@ -1,5 +1,6 @@
 <label>EmployeeId :</label>
-<input type="number" name="employeeId" [(ngModel)]="employeeId" >
-<button>Search</button>
+<input type="number" name="employeeId" [(ngModel)]="searchString" >
+<button (click)="onSearch()" >Search</button>
 
 <app-employeedetails [employeeId]="employeeId"></app-employeedetails>
+<app-monthlysalarystructure [employeeId]="employeeId"></app-monthlysalarystructure>

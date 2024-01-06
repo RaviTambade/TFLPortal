@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./salaryprocessing.component.css']
 })
 export class SalaryprocessingComponent {
-employeeId:number|undefined;
+employeeId:number=0;
+searchString:number=0;
+
+onSearch(){
+  this.employeeId=this.searchString
+}
 }

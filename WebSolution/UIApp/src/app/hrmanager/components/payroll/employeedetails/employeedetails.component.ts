@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { Employee } from 'src/app/activity/Models/Employee';
 import { HrService } from 'src/app/shared/services/hr.service';
 
@@ -7,17 +7,16 @@ import { HrService } from 'src/app/shared/services/hr.service';
   templateUrl: './employeedetails.component.html',
   styleUrls: ['./employeedetails.component.css']
 })
-export class EmployeedetailsComponent implements OnInit{
+export class EmployeedetailsComponent{
 
   constructor(private hrSvc:HrService){
-
   }
-@Input() employeeid:number=10;
+  @Input() employeeId:number|undefined;
   employee:Employee|undefined;
-  ngOnInit(): void {
-    this.hrSvc.getEmployeeDetails(this.employeeid).subscribe((res)=>{
+
+  ngOnChanges(changes:SimpleChanges): void {
+    this.hrSvc.getEmployeeDetails(changes ["employeeId"].currentValue).subscribe((res)=>{
     this.employee=res;
     })
   }
-
 }
