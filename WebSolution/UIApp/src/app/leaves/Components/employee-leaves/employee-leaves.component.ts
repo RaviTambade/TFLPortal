@@ -19,6 +19,10 @@ export class EmployeeLeavesComponent implements OnInit{
     // this.employeeId=localStorage.getItem(LocalStorageKeys.employeeId);
   }
   ngOnInit(): void {
+    this.service.getAllEmployeeLeaves().subscribe((res)=>{
+    console.log(res);
+    
+    })
     this.service.getEmployeeLeaves(this.employeeId).subscribe((res)=>{
     this.employees=res;
     })

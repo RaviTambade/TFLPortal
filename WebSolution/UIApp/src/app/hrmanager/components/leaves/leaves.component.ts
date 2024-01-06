@@ -10,8 +10,9 @@ import { UrlType } from 'src/app/shared/models/UrlType';
 export class LeavesComponent {
  
   leaveMenuRoutes: UrlType[] = [
-    { displayName: 'All leave', Url: 'appliedleave' },
+    // { displayName: 'All leave', Url: 'appliedleave' },
     { displayName: 'leave', Url: 'applied' },
+    { displayName: 'employeeleave', Url: 'employeeleave' },
   ];
 
   constructor(private router: Router, private route: ActivatedRoute) {}
