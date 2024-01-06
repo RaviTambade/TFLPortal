@@ -23,7 +23,9 @@ export class UpdateemployeeworkComponent {
     assignDate: '',
     startDate: '',
     dueDate: '',
-    status: ''
+    status: '',
+    sprintId: 0,
+    createdDate: ''
   };
   activityform=new FormGroup({
     title:new FormControl(),

@@ -255,3 +255,8 @@ SELECT * from employeework;
 select employees.userid from employees INNER JOIN employeework ON employees.id=employeework.assignedto
  INNER JOIN projects ON employeework.projectid=projects.id WHERE projects.id =4;
 
+Show tables;
+
+SELECT * from sprintmaster;
+
+SELECT * from employeework;

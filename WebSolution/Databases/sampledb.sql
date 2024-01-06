@@ -115,7 +115,7 @@ Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) valu
 Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(4,45000,5000,500,500,350);
 Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(5,20000,6000,600,500,400);
 Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(6,19000,3200,600,600,600);
-Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(7,45000,5000,500,500,350);
+Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,v  ariablepay) values(7,45000,5000,500,500,350);
 Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(8,20000,6000,600,500,400);
 Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(9,19000,3200,600,600,600);
 Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(10,19000,3200,600,600,600);
@@ -164,7 +164,7 @@ INSERT INTO sprintmaster(title,startdate,enddate,goal) VALUES ('sprint 6',"2023-
 
 -- Inventory Management
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
-VALUES ('userstory','As a  Store Worker, I want to be able to reset my password in case I forget it.','',4,1, '2024-01-04', '2024-01-04', '2024-01-04', 10, 7, 'inprogress','2024-01-04');
+VALUES ('userstory','As a  Store Worker, I want to be able to reset my password in case I forget it.','',4,1, '2024-01-06', '2024-01-06', '2024-01-06', 10, 7, 'inprogress','2024-01-06');
 
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
 VALUES ('userstory','As a Store Worker, I want to view a graph that shows my daily, weekly, and monthly delivered orders, so that i can monitor my performance','',4,1,  '2023-12-05', '2023-12-06', '2023-12-10',  10, 7,  'inprogress','2023-12-04');

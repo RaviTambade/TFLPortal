@@ -15,6 +15,7 @@ import { EmployeeworkrouteroutletComponent } from './Components/employeeworkrout
 import { TodaysemployeeworkComponent } from './Components/todaysemployeework/todaysemployeework.component';
 import { MyworkingprojectsComponent } from './Components/myworkingprojects/myworkingprojects.component';
 import { UpdateemployeeworkComponent } from './Components/updateemployeework/updateemployeework.component';
+import { CreateemployeeworkComponent } from './Components/Forms/createemployeework/createemployeework.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { UpdateemployeeworkComponent } from './Components/updateemployeework/upd
     EmployeeworkrouteroutletComponent,
     TodaysemployeeworkComponent,
     MyworkingprojectsComponent,
-    UpdateemployeeworkComponent
+    UpdateemployeeworkComponent,
+    CreateemployeeworkComponent
   ],
   imports: [
     CommonModule,
@@ -50,7 +52,8 @@ import { UpdateemployeeworkComponent } from './Components/updateemployeework/upd
     EmployeeworksdetailsComponent,
     EmployeeworksdetailsComponent,
     MyworkingprojectsComponent,
-    TodaysemployeeworkComponent
+    TodaysemployeeworkComponent,
+    CreateemployeeworkComponent
     
   ]
 })

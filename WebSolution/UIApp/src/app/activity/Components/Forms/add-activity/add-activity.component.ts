@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { EmployeeWork } from 'src/app/activity/Models/EmployeeWork';
 import { ActivityService } from 'src/app/activity/Services/activity.service';
 import { Project } from 'src/app/projects/Models/project';
+import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { HrService } from 'src/app/shared/services/hr.service';
 import { ProjectService } from 'src/app/shared/services/project.service';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
@@ -36,19 +37,22 @@ activity:EmployeeWork={
   startDate: '',
   dueDate: '',
   status: '',
-  projectName: 0
+  projectName: 0,
+  sprintId: 0,
+  createdDate: ''
 };
 activityform=new FormGroup({
   title:new FormControl(),
   activitytype:new FormControl(),
   description:new FormControl(),
-  assigndate:new FormControl(),
-  startdate:new FormControl(),
+  sprintid:new FormControl(),
+  // assigndate:new FormControl(),
+  startdate:new FormControl(new Date().toISOString().slice(0,10)),
   duedate:new FormControl(),
   projectid:new FormControl(),
   assignedby:new FormControl(),
   assignedto:new FormControl(),
-  createddate:new FormControl(),
+ // createddate:new FormControl(new Date().toISOString().slice(0,10)),
   status:new FormControl(),
 
 
@@ -60,18 +64,17 @@ activityform=new FormGroup({
 onSubmit(){
 
   this.activity.projectWorkType=this.activityform.get("activitytype")?.value;
-  this.activity.assignDate=this.activityform.get("assigndate")?.value;
+  this.activity.assignDate=new Date().toISOString().slice(0,10);
   this.activity.assignedBy=this.activityform.get("assignedby")?.value;
   this.activity.assignedTo=this.activityform.get("assignedto")?.value;
   this.activity.description=this.activityform.get("description")?.value;
   this.activity.dueDate=this.activityform.get("duedate")?.value;
   this.activity.projectId=this.activityform.get("projectid")?.value;
-  this.activity.startDate=this.activityform.get("startdate")?.value;
+  this.activity.sprintId=this.activityform.get("sprintid")?.value;
+  this.activity.startDate=this.activityform.get("startdate")?.value||"";
   this.activity.title=this.activityform.get("title")?.value;
-
-  this.activity.assignedBy=1;
- 
-  this.activity.startDate="2023-12-28"
+ this.activity.createdDate=new Date().toISOString().slice(0,10);
+  this.activity.assignedBy=Number(localStorage.getItem(LocalStorageKeys.employeeId));
  
   this.activity.status="todo"
   console.log(this.activity);
