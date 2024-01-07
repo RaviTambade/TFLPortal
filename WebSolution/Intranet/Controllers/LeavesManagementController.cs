@@ -12,7 +12,7 @@ namespace Intranet.Controllers;
 [Route("/api/leaves")]
 public class LeavesManagementController : ControllerBase
 {
-    private readonly ILeaveManagementService _service;
+    private readonly ILeaveManagementService _service;   
     private readonly IHRService  _hrService;
     private readonly ExternalApiService _apiService;
     public LeavesManagementController(ILeaveManagementService service,ExternalApiService apiService,IHRService hrService)
@@ -26,6 +26,37 @@ public class LeavesManagementController : ControllerBase
     public async Task<List<EmployeeLeave>> GetAllEmployeeLeaves()
     {
         return await _service.GetAllEmployeeLeaves();
+    }
+
+    [HttpGet("getallemployee")]
+    public async Task<List<LeaveResponse>> GetAllEmployee()
+    {
+        List<EmployeeLeave> leaves=await _service.GetAllEmployeeLeaves();
+        string employeeIds = string.Join(',', leaves.Select(m => m.EmployeeId).ToList());
+        var employees = await _hrService.GetEmployees(employeeIds);
+        string userIds = string.Join(',', employees.Select(m => m.UserId).ToList());
+        var users = await _apiService.GetUserDetails(userIds);
+        List<LeaveResponse> leaveResponses = new();
+        foreach (var employee in leaves)
+        {
+            var userDetail = users.FirstOrDefault(u => u.Id == employee.EmployeeId);
+            if (userDetail != null)
+            {
+                var leaveResponse = new LeaveResponse
+                {
+                    FullName = userDetail.FirstName+" "+userDetail.LastName,
+                    FromDate = employee.FromDate,
+                    ToDate = employee.ToDate,
+                    Status = employee.Status,
+                    LeaveType = employee.LeaveType,
+                    EmployeeId = employee.EmployeeId,
+                    ApplicationDate=employee.ApplicationDate,
+                    Year=employee.Year
+                };
+                leaveResponses.Add(leaveResponse);
+            }
+        }
+        return leaveResponses;
     }
 
     [HttpGet("rolebasedleaves")]

@@ -30,8 +30,11 @@ public class PayrollController : ControllerBase
     public async Task<SalaryResponse> GetSalaryStructure(int employeeId)
     {
         Salary salaryStructure = await _payrollService.GetSalary(employeeId);
+        Console.WriteLine(salaryStructure);
         Employee employee = await _hrService.GetEmployeeById(salaryStructure.EmployeeId);
+        Console.WriteLine(employee);
         BankAccount account = await _apiService.GetUserBankAccount(employee.UserId, "I");
+        Console.WriteLine(account);
         var user = await _apiService.GetUser(employee.UserId);
         SalaryResponse salaryDetails = new SalaryResponse()
         {
