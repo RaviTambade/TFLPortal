@@ -21,6 +21,7 @@ import { TotalLeaveComponent } from './Components/total-leave/total-leave.compon
 import { AllLeaveCountComponent } from './Components/all-leave-count/all-leave-count.component';
 import { UpdateStatusComponent } from './Components/forms/update-status/update-status.component';
 import { LeaveDetailsComponent } from './Components/leave-details/leave-details.component';
+import { EmployeeLeavesByDateComponent } from './Components/employee-leaves-by-date/employee-leaves-by-date.component';
 
 
 export const leaveRoutes: Routes = [
@@ -65,6 +66,7 @@ export const leaveRoutes: Routes = [
     AllLeaveCountComponent,
     UpdateStatusComponent,
     LeaveDetailsComponent,
+    EmployeeLeavesByDateComponent,
   ],
   imports: [
     CommonModule,
@@ -75,6 +77,7 @@ export const leaveRoutes: Routes = [
   ],
   exports: [
     AddLeaveComponent,
+    EmployeeLeavesByDateComponent,
     TeamMemberLeaveRequestComponent,
     PendingLeaveComponent,
     EmployeeLeavesComponent,

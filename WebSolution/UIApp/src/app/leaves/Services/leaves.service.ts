@@ -81,6 +81,11 @@ export class LeavesService {
     return this.http.get<LeaveDetails[]>(url);
   }
 
+  getLeaveDetailsByDate(date:string):Observable<LeaveDetails[]>{
+    let url="http://localhost:5263/api/leaves/date/"+date;
+    return this.http.get<LeaveDetails[]>(url);
+  }
+
   updateEmployeeLeave(leaveApplication:LeaveApplication):Observable<LeaveApplication>{
     let url="http://localhost:5263/api/leaves";
     return this.http.put<LeaveApplication>(url,leaveApplication);
