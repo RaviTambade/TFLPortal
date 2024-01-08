@@ -18,12 +18,15 @@ export class ListComponent implements OnInit {
   intervals: string[] = ['week', 'month'];
   selectedInterval: string = this.intervals[0];
   timesheetStatus: string[] = [TimeSheetStatus.inprogress,TimeSheetStatus.submitted,TimeSheetStatus.rejected ,TimeSheetStatus.approved];
-  selectedStatus: string = this.timesheetStatus[0];
+  // selectedStatus: string = this.timesheetStatus[0];
+  selectedStatus: { [key: string]: boolean } = {};
+
 
   constructor(private workmgmtSvc: WorkmgmtService) {}
 
   ngOnInit(): void {
     this.employeeId=Number(localStorage.getItem(LocalStorageKeys.employeeId))
+    this.selectedStatus[this.timesheetStatus[0]] = true;
     this.onIntervalChange();
   }
 
@@ -43,8 +46,10 @@ export class ListComponent implements OnInit {
 
     }
     if (this.fromDate && this.toDate) {
+      const selectedStatusArray = Object.keys(this.selectedStatus).filter(status => this.selectedStatus[status]);
+      console.log('Selected Status:', selectedStatusArray);
       this.workmgmtSvc
-        .getAllTimeSheets(this.employeeId, this.selectedStatus, this.fromDate, this.toDate)
+        .getAllTimeSheets(this.employeeId, selectedStatusArray, this.fromDate, this.toDate)
         .subscribe((res) => {
           this.timeSheets = res;
         });

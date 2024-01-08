@@ -12,7 +12,7 @@ namespace Intranet.Controllers;
 [Route("/api/leaves")]
 public class LeavesManagementController : ControllerBase
 {
-    private readonly ILeaveManagementService _service;
+    private readonly ILeaveManagementService _service;   
     private readonly IHRService  _hrService;
     private readonly ExternalApiService _apiService;
     public LeavesManagementController(ILeaveManagementService service,ExternalApiService apiService,IHRService hrService)
@@ -26,6 +26,37 @@ public class LeavesManagementController : ControllerBase
     public async Task<List<EmployeeLeave>> GetAllEmployeeLeaves()
     {
         return await _service.GetAllEmployeeLeaves();
+    }
+
+    [HttpGet("getallemployee")]
+    public async Task<List<LeaveResponse>> GetAllEmployee()
+    {
+        List<EmployeeLeave> leaves=await _service.GetAllEmployeeLeaves();
+        string employeeIds = string.Join(',', leaves.Select(m => m.EmployeeId).ToList());
+        var employees = await _hrService.GetEmployees(employeeIds);
+        string userIds = string.Join(',', employees.Select(m => m.UserId).ToList());
+        var users = await _apiService.GetUserDetails(userIds);
+        List<LeaveResponse> leaveResponses = new();
+        foreach (var employee in leaves)
+        {
+            var userDetail = users.FirstOrDefault(u => u.Id == employee.EmployeeId);
+            if (userDetail != null)
+            {
+                var leaveResponse = new LeaveResponse
+                {
+                    FullName = userDetail.FirstName+" "+userDetail.LastName,
+                    FromDate = employee.FromDate,
+                    ToDate = employee.ToDate,
+                    Status = employee.Status,
+                    LeaveType = employee.LeaveType,
+                    EmployeeId = employee.EmployeeId,
+                    ApplicationDate=employee.ApplicationDate,
+                    Year=employee.Year
+                };
+                leaveResponses.Add(leaveResponse);
+            }
+        }
+        return leaveResponses;
     }
 
     [HttpGet("rolebasedleaves")]
@@ -82,9 +113,87 @@ public class LeavesManagementController : ControllerBase
 
     [HttpGet]
     [Route ("details/{leaveId}")]
-    public async Task<EmployeeLeave> GetLeaveDetails(int leaveId)
+    public async Task<LeaveResponse> GetLeaveDetails(int leaveId)
     {
-        return await _service.GetLeaveDetails(leaveId);
+        EmployeeLeaveDetails leave =await _service.GetLeaveDetails(leaveId);
+        // string userIds = string.Join(',', leaves.Select(m => m.EmployeeId).ToList());
+        User user = await _apiService.GetUser(leave.UserId);
+        LeaveResponse leaveResponse = new LeaveResponse
+            {
+                    Id = leave.Id,
+                    FullName = user.FirstName+" "+user.LastName,
+                    FromDate = leave.FromDate,
+                    ToDate = leave.ToDate,
+                    Status = leave.Status,
+                    LeaveType = leave.LeaveType,
+                    EmployeeId = leave.EmployeeId,
+                    ApplicationDate=leave.ApplicationDate,
+                    Year=leave.Year
+            };
+         return leaveResponse;
+    } 
+
+
+    [HttpGet]
+    [Route ("date/{date}")]
+    public async Task<List<LeaveResponse>> GetLeaveDetailsByDate(string date)
+    {
+        List<EmployeeLeaveDetails> leaves =await _service.GetLeaveDetailsByDate(date);
+        string userIds = string.Join(',', leaves.Select(m => m.UserId).ToList());
+        var users = await _apiService.GetUserDetails(userIds);
+        List<LeaveResponse> leaveResponses = new();
+        foreach (var employee in leaves)
+        {
+            var userDetail = users.FirstOrDefault(u => u.Id == employee.EmployeeId);
+            if (userDetail != null)
+            {
+                var leaveResponse = new LeaveResponse
+                {
+                    Id = employee.Id,
+                    FullName = userDetail.FirstName+" "+userDetail.LastName,
+                    FromDate = employee.FromDate,
+                    ToDate = employee.ToDate,
+                    Status = employee.Status,
+                    LeaveType = employee.LeaveType,
+                    EmployeeId = employee.EmployeeId,
+                    ApplicationDate=employee.ApplicationDate,
+                    Year=employee.Year
+                };
+                leaveResponses.Add(leaveResponse);
+            }
+        }
+        return leaveResponses;
+    }    
+       
+    [HttpGet]
+    [Route ("status/{leaveStatus}")]
+    public async Task<List<LeaveResponse>> GetLeaveDetails(string leaveStatus)
+    {
+        List<EmployeeLeaveDetails> leaves =await _service.GetLeaveDetails(leaveStatus);
+        string userIds = string.Join(',', leaves.Select(m => m.UserId).ToList());
+        var users = await _apiService.GetUserDetails(userIds);
+        List<LeaveResponse> leaveResponses = new();
+        foreach (var employee in leaves)
+        {
+            var userDetail = users.FirstOrDefault(u => u.Id == employee.EmployeeId);
+            if (userDetail != null)
+            {
+                var leaveResponse = new LeaveResponse
+                {
+                    Id = employee.Id,
+                    FullName = userDetail.FirstName+" "+userDetail.LastName,
+                    FromDate = employee.FromDate,
+                    ToDate = employee.ToDate,
+                    Status = employee.Status,
+                    LeaveType = employee.LeaveType,
+                    EmployeeId = employee.EmployeeId,
+                    ApplicationDate=employee.ApplicationDate,
+                    Year=employee.Year
+                };
+                leaveResponses.Add(leaveResponse);
+            }
+        }
+        return leaveResponses;
     }
 
     [HttpGet]

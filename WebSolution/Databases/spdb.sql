@@ -123,3 +123,27 @@ END $$
 DELIMITER ;
 
 
+
+-- get available leaves of employee
+DELIMITER $$
+CREATE PROCEDURE getConsumedLeavesOfEmployee
+(In employee_Id int,In role_id int,In year int,out SickLeaves int,out Casualleaves int, out PaidLeaves int,out UnpaidLeaves int)
+BEGIN
+Declare consumedSickLeaves int default 0;
+Declare consumedCasualLeaves int default 0;
+Declare consumedPaidLeaves int default 0;
+Declare consumedUnpaidLeaves int default 0;
+select coalesce(sum(datediff(todate,fromdate)+1),0) Into consumedCasualLeaves  from employeeleaves where employeeId=employee_Id and leavetype="casual" and status="sanctioned" and year(fromdate)=year;
+select coalesce(sum(datediff(todate,fromdate)+1),0) Into consumedSickLeaves  from employeeleaves where employeeId=employee_Id and leavetype="sick" and status="sanctioned" and year(fromdate)=year;
+select coalesce(sum(datediff(todate,fromdate)+1),0) Into consumedPaidLeaves  from employeeleaves where employeeId=employee_Id and leavetype="paid" and status="sanctioned" and year(fromdate)=year;
+select coalesce(sum(datediff(todate,fromdate)+1),0) Into consumedUnpaidLeaves  from employeeleaves where employeeId=employee_Id and leavetype="unpaid" and status="sanctioned" and year(fromdate)=year;
+
+set SickLeaves=consumedSickLeaves;
+set casualLeaves= consumedCasualLeaves;
+set PaidLeaves=consumedPaidLeaves;
+set UnpaidLeaves=consumedUnpaidLeaves;
+END $$
+DELIMITER ;
+
+call getConsumedLeavesOfEmployee(12,4,2023,@SickLeaves,@Casualleaves,@PaidLeaves,@UnpaidLeaves);
+select @SickLeaves,@Casualleaves,@PaidLeaves,@UnpaidLeaves;

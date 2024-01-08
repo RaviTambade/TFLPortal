@@ -53,6 +53,42 @@ public class HRService : IHRService
             }
             return employee;
         }
+
+        public async Task<List<Employee>> GetEmployees(string employeeIds)
+        {
+            List<Employee> employees = new List<Employee>();
+            MySqlConnection connection = new MySqlConnection();
+            connection.ConnectionString = _connectionString;
+            try
+            {
+                string query =
+                    $"select * from employees where id IN ({employeeIds})";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                await connection.OpenAsync();
+                MySqlDataReader reader = command.ExecuteReader();
+                if (await reader.ReadAsync())
+                {
+                    Employee employee = new Employee
+                    {
+                        Id = reader.GetInt32("id"),
+                        UserId = reader.GetInt32("userid"),
+                        HireDate = reader.GetDateTime("hiredate"),
+                        ReportingId = reader.GetInt32("reportingid"),
+                    };
+                    employees.Add(employee);
+                }
+                await reader.CloseAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                await connection.CloseAsync();
+            }
+            return employees;
+        }
     public async Task<Employee> GetEmployeeByUserId(int userId)
         {
             Employee employee = null;
@@ -88,10 +124,7 @@ public class HRService : IHRService
             }
             return employee;
         }
-
-        
-
-}
+    }
    
    
    
