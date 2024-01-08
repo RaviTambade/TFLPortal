@@ -61,9 +61,9 @@ export class LeavesService {
     return this.http.get<LeaveApplication[]>(url);
   }
 
-  getEmployeeLeavesDetails(leaveId:number):Observable<LeaveApplication>{
+  getEmployeeLeavesDetails(leaveId:number):Observable<LeaveDetails>{
     let url="http://localhost:5263/api/leaves/details/"+leaveId;
-    return this.http.get<LeaveApplication>(url);
+    return this.http.get<LeaveDetails>(url);
   }
 
   getAllEmployeeLeaves():Observable<LeaveApplication[]>{
@@ -74,6 +74,11 @@ export class LeavesService {
   getAllRoleBasedLeaves():Observable<RoleBasedLeaveDetails[]>{
     let url="http://localhost:5263/api/leaves/rolebasedleaves";
     return this.http.get<RoleBasedLeaveDetails[]>(url);
+  }
+
+  getLeaveDetails(leaveStatus:string):Observable<LeaveDetails[]>{
+    let url="http://localhost:5263/api/leaves/status/"+leaveStatus;
+    return this.http.get<LeaveDetails[]>(url);
   }
 
   updateEmployeeLeave(leaveApplication:LeaveApplication):Observable<LeaveApplication>{
