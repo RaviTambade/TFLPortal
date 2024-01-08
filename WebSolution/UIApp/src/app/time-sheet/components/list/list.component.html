@@ -1,15 +1,19 @@
 <div>
    
-    <h2> My Timesheets </h2>
-    <div class="mb-2">
-        <label >Status</label>
-        <select class="mx-2 form-control-sm" [(ngModel)]="selectedStatus" (change)="onIntervalChange()">
-            <option *ngFor="let status of timesheetStatus" [value]="status"> {{status}}</option>
-        </select>
-        <label>Interval</label>
-        <select class="mx-2 form-control-sm" [(ngModel)]="selectedInterval" (change)="onIntervalChange()">
-            <option *ngFor="let interval of intervals" [value]="interval"> {{interval}}</option>
-        </select>
+    <h2> My {{selectedInterval |titlecase}}ly Timesheets </h2>
+    <div class="mb-2 d-flex" >
+
+    <label>Interval</label>
+    <select class="mx-2 form-control-sm" [(ngModel)]="selectedInterval" (change)="onIntervalChange()">
+        <option *ngFor="let interval of intervals" [value]="interval"> {{interval}}</option>
+    </select>
+    <div *ngFor="let status of timesheetStatus">
+        <label>
+            <input type="checkbox" class="mx-2 form-check-input" [(ngModel)]="selectedStatus[status]" (change)="onIntervalChange()">
+            {{status}}
+        </label>
+    </div>
+    
     </div>
 
     <table class="table table-bordered">

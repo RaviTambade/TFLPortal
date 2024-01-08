@@ -2,7 +2,6 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
-import { TimeSheetDetails } from 'src/app/time-sheet/models/timesheetdetails';
 import { TimeSheetStatus } from 'src/app/time-sheet/models/timesheetstatus';
 import { TimesheetView } from 'src/app/time-sheet/models/timesheetview';
 import { Timesheet } from 'src/app/time-sheet/models/timesheet';

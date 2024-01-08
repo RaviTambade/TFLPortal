@@ -20,16 +20,17 @@ public class TimesheetsController : ControllerBase
         _timesheetService = service;
     }
 
-    [HttpGet("employees/{employeeId}/status/{status}/from/{fromDate}/to/{toDate}")]
+    [HttpPost("employees/{employeeId}/status/from/{fromDate}/to/{toDate}")]
     public async Task<List<TimesheetDuration>> GetTimesheets(
         int employeeId,
-        string status,
         DateOnly fromDate,
-        DateOnly toDate
+        DateOnly toDate,
+        [FromBody]List<string> status
     )
     {
         return await _timesheetService.GetTimesheets(employeeId, status,fromDate, toDate);
     }
+
 
     [HttpGet("employees/{employeeId}/date/{date}")]
     public async Task<TimesheetResponse> GetTimesheet(int employeeId, DateOnly date)
@@ -53,6 +54,11 @@ public class TimesheetsController : ControllerBase
         }
         return new TimesheetResponse() { };
     }
+
+    [HttpGet("timesheetid/employees/{employeeId}/date/{date}")]
+      public async Task<int> GetTimesheetId(int employeeId, DateOnly date){
+        return await _timesheetService.GetTimesheetId(employeeId,date);
+      }
 
   
     [HttpGet("{timesheetId}")]
@@ -154,6 +160,7 @@ public class TimesheetsController : ControllerBase
     public async Task<bool> AddTimesheet(Timesheet timesheet)
     {
         return await _timesheetService.AddTimesheet(timesheet);
+        
     }
 
     [HttpPost("timesheetdetails")]

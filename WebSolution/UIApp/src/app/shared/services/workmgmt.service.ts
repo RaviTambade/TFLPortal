@@ -77,9 +77,9 @@ export class WorkmgmtService {
 
 
 
-  getAllTimeSheets(employeeId: number, status:string,fromDate:string,toDate:string): Observable<TimesheetDuration[]> {
-    let url = `${this.serviceurl}/workmgmt/timesheets/employees/${employeeId}/status/${status}/from/${fromDate}/to/${toDate}`;
-    return this.http.get<TimesheetDuration[]>(url);
+  getAllTimeSheets(employeeId: number, status:string[],fromDate:string,toDate:string): Observable<TimesheetDuration[]> {
+    let url = `${this.serviceurl}/workmgmt/timesheets/employees/${employeeId}/status/from/${fromDate}/to/${toDate}`;
+    return this.http.post<TimesheetDuration[]>(url,status);
   }
 
   getTimesheetsByStatus(reportingToId:number,status: string,fromDate:string,toDate:string): Observable<TimesheetView[]> {
@@ -89,6 +89,12 @@ export class WorkmgmtService {
   getTimeSheet(employeeId: number, date: string): Observable<TimesheetView> {
     let url = `${this.serviceurl}/workmgmt/timesheets/employees/${employeeId}/date/${date}`;
     return this.http.get<TimesheetView>(url);
+  }
+
+
+  getTimeSheetId(employeeId: number, date: string): Observable<number> {
+    let url = `${this.serviceurl}/workmgmt/timesheets/timesheetid/employees/${employeeId}/date/${date}`;
+    return this.http.get<number>(url);
   }
 
   getTimeSheetById(timesheetId: number): Observable<TimesheetView> {
