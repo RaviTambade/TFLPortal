@@ -1,3 +1,4 @@
+using System.Reflection.Metadata.Ecma335;
 using Microsoft.AspNetCore.Mvc;
 using Transflower.Notifications.Mail;
 using Transflower.TFLPortal.TFLOBL.Entities;
@@ -32,6 +33,8 @@ public class DocumentController : ControllerBase
     [HttpGet("salaryslip/employees/{employeeId}")]
     public async Task<IActionResult> GenrateSalarySlip(int employeeId)
     {
+
+
         Salary salaryStructure = await _payrollService.GetSalary(employeeId);
         Employee employee = await _hrService.GetEmployeeById(salaryStructure.EmployeeId);
         BankAccount account = await _apiService.GetUserBankAccount(employee.UserId, "I");

@@ -1,0 +1,33 @@
+<div class="container">
+    <h2> Project Works List</h2>
+    <div class="card">
+        <table class="table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>AssignedDate</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>description</th>
+                    <th>projectWorkType</th>
+                    <th>assignedBy</th>
+                    <th>assignedTo</th>
+                    <th>dueDate</th>
+                   </tr>
+            </thead>
+            <tbody >
+                <tr *ngFor="let employeework of employeeworks">
+                    <td> {{employeework.assignDate |date}}</td>
+                    <td>{{employeework.title}}</td>
+                    <td> {{employeework.status}}</td>
+                    <td> {{employeework.description}}</td>
+                    <td> {{employeework.projectWorkType}}</td>
+                    <td> {{employeework.assignedBy}}</td>
+                    <td> {{employeework.assignedTo}}</td>
+                    <td> {{employeework.dueDate |date}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+

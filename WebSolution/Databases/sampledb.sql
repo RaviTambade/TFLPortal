@@ -109,19 +109,19 @@ Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,yea
 
 
 
-Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(1,30000,3000,200,300,200);
-Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(2,40000,2200,300,200,250);
-Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(3,30000,1000,400,400,330);
-Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(4,45000,5000,500,500,350);
-Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(5,20000,6000,600,500,400);
-Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(6,19000,3200,600,600,600);
-Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,v  ariablepay) values(7,45000,5000,500,500,350);
-Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(8,20000,6000,600,500,400);
-Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(9,19000,3200,600,600,600);
-Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(10,19000,3200,600,600,600);
+-- Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(1,30000,3000,200,300,200);
+-- Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(2,40000,2200,300,200,250);
+-- Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(3,30000,1000,400,400,330);
+-- Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(4,45000,5000,500,500,350);
+-- Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(5,20000,6000,600,500,400);
+-- Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(6,19000,3200,600,600,600);
+-- Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,v  ariablepay) values(7,45000,5000,500,500,350);
+-- Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(8,20000,6000,600,500,400);
+-- Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(9,19000,3200,600,600,600);
+-- Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(10,19000,3200,600,600,600);
 
 
-INSERT INTO projects(title,startdate,enddate,description,managerid,status)VALUES('EKrushi','2023-11-03','2024-02-02','Krushi Product Management',8,'notstarted');
+INSERT INTO projects(title,startdate,enddate,description,managerid,status)VALUES('EKrushi','2023-11-03','2024-02-02','Krushi Product Management',1,'notstarted');
 INSERT INTO projects(title,startdate,enddate,description,managerid,status)VALUES('PMSAPP','2023-11-02','2024-02-02','Project Management System App',7,'notstarted');
 INSERT INTO projects(title,startdate,enddate,description,managerid,status)VALUES('EAgroServices','2023-11-13','2025-02-02','Farmers Goods Management',9,'notstarted');
 INSERT INTO projects(title,startdate,enddate,description,managerid,status)VALUES('Inventory','2017-02-02','2024-02-02','Store Management App',7,'inprogress');
@@ -163,6 +163,10 @@ INSERT INTO sprintmaster(title,startdate,enddate,goal) VALUES ('sprint 6',"2023-
 
 
 -- Inventory Management
+
+-- INSERT INTO employeework (projectworktype,assignedby,assignedto,projectid,sprintid)
+-- VALUES ('userstory',1,1,1,0);
+
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
 VALUES ('userstory','As a  Store Worker, I want to be able to reset my password in case I forget it.','',4,1, '2024-01-06', '2024-01-06', '2024-01-06', 10, 7, 'inprogress','2024-01-06');
 
@@ -182,7 +186,7 @@ INSERT INTO employeework (projectworktype,title, description, projectid,sprintid
 VALUES ('userstory','As a Store Worker, I want to access order details including the order-id, and pickup/delivery locations so that i can prepare for the tasks.','',4,1,  '2023-12-05', '2023-12-06', '2023-12-10', 15, 7,'inprogress','2023-12-04');
 
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
-VALUES ('userstory','As a Store Worker, I want to mark orders as picked up when I collect the materials from the inventory so that i can change status of order.','',4,1,'2023-12-28', '2023-12-28', '2023-12-28',  15, 7,'inprogress','2023-12-28');
+VALUES ('userstory','As a Store Worker, I want to mark orders as picked up when I collect the materials from the inventory so that i can change status of order.','',5,1,'2023-12-28', '2023-12-28', '2023-12-28',  15, 7,'inprogress','2023-12-28');
 
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
 VALUES ('userstory','As a Supervisor Incharge, I want to view an overview of employee information and departments so that I can efficiently manage teams and make informed decisions regarding staffing and resource allocation.','',4,1,  '2023-12-10','2023-12-06', '2023-12-10',  1, 7,'inprogress','2023-12-04');

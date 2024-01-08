@@ -1,15 +1,13 @@
 <div>
 
   <label for="projectId"> Select Project :</label>
-    <select id="projectId" name="projectId" formControlName="projectId" (change)="onClick()">
+    <select id="projectId" name="projectId" [(ngModel)]="projectId" (change)="onClick()">
       <option *ngFor="let project of projects" [value]="project.id">{{project.title}}</option>
     </select>
 
-    <button>Create Work</button>
+    
 </div>
-
-
-
+<div (click)="showForm()"><button>Create Work</button></div>
 
 
 <form [formGroup]="activityform" (ngSubmit)="onSubmit()" *ngIf="createactivityform">

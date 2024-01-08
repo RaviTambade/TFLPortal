@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./salaryprocessing.component.css']
 })
 export class SalaryprocessingComponent {
-employeeId:number|undefined;
+// employeeId:number|undefined;
 }

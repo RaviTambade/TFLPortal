@@ -35,11 +35,28 @@ public class ProjectsController : ControllerBase
         return projects;
     }
 
+
+    [HttpGet("projectmanager/{managerId}")]
+    public async Task<List<Project>> GetAllProjectsOfProjectManager(int managerId)
+    {
+        List<Project> projects = await _service.GetAllProjectsOfProjectManager(managerId);
+        return projects;
+    }
+
     [HttpPost]
     [Route ("addproject")]
     public async Task<bool> AddProject(Project project)
     {
         bool status =await _service.AddProject(project);
         return status;
+    }
+
+
+    [HttpGet("projectmanager/employees/{projectId}")]
+    public async Task<List<int>> GetAllEmployee(int projectId)
+    {
+        List<int> projects = await _service.GetAllEmployees(projectId);
+        
+        return projects;
     }
 }

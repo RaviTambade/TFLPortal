@@ -12,6 +12,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AddActivityComponent } from '../activity/Components/Forms/add-activity/add-activity.component';
 import { AddsprintComponent } from './components/addsprint/addsprint.component';
 import { CreateemployeeworkComponent } from '../activity/Components/Forms/createemployeework/createemployeework.component';
+import { ProjectListComponent } from './components/project-list/project-list.component';
+import { ProjectdetailsComponent } from './components/project-list/projectdetails/projectdetails.component';
+import { EmployeeProjectWorksComponent } from './components/employee-project-works/employee-project-works.component';
 
 export const projectManagerRoutes: Routes = [
   {
@@ -27,9 +30,10 @@ export const projectManagerRoutes: Routes = [
       { path: 'leave', component: LeavesComponent },
       {
         path: 'projects',
-        component: ProjectComponent,children:[{path:'',pathMatch:'full',redirectTo:'creatework'},
-                                              {path:'addwork',component:AddActivityComponent},
-                                              {path:'creatework',component:CreateemployeeworkComponent}],
+        component: ProjectComponent,children:[{path:'',pathMatch:'full',redirectTo:'Projects'},
+                                              {path:'Projects',component:ProjectListComponent},
+                                              {path:'projectdetails/:id',component:ProjectdetailsComponent,children:[{path:'showdetails/:id',component:EmployeeProjectWorksComponent}]}
+      ],
       },
       { path: 'events', component: EventsComponent },
       { path: 'payroll', component: PayrollComponent },
@@ -49,6 +53,9 @@ export const projectManagerRoutes: Routes = [
     PerformenceApprisalComponent,
     TimesheetComponent,
     AddsprintComponent,
+    ProjectListComponent,
+    ProjectdetailsComponent,
+    EmployeeProjectWorksComponent,
   ],
   imports: [CommonModule, RouterModule],
 })

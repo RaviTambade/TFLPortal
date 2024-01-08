@@ -252,11 +252,18 @@ select * from projects;
 SELECT * from employeework;
 
 -- this query gives us employees of project
-select employees.userid from employees INNER JOIN employeework ON employees.id=employeework.assignedto
+select DISTINCT(employees.userid) from employees INNER JOIN employeework ON employees.id=employeework.assignedto
  INNER JOIN projects ON employeework.projectid=projects.id WHERE projects.id =4;
 
 Show tables;
 
 SELECT * from sprintmaster;
 
-SELECT * from employeework;
+SELECT * from projects where managerid =8;
+
+SELECT * from employeework where projectid =4;
+
+SELECT * from projectmembership;
+
+
+SELECT DISTINCT(employees.userid) from employees INNER JOIN  projectmembership on employees.id = projectmembership.employeeid where projectmembership.projectid=4;
