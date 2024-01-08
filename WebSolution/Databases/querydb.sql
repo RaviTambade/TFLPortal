@@ -1,4 +1,4 @@
--- Active: 1694968636816@@127.0.0.1@3306@tflportal
+-- Active: 1696576841746@@127.0.0.1@3306@tflportal
 
 SELECT * FROM activities where assignedto=15 AND assigneddate='2023-12-14';
 SELECT timesheets.id as timesheetid,timesheets.status,timesheets.statuschangeddate,timesheetdetails.id as timesheetdetailid,
@@ -30,6 +30,7 @@ INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
 WHERE timesheets.employeeid=10  AND YEAR(timesheets.timesheetdate)='2023'
 GROUP BY timesheetentries.workcategory ;
 
+SELECT * FROM sprintmaster;
 
 SELECT timesheetdate,status,
  CAST(((SUM(TIME_TO_SEC(TIMEDIFF(totime,fromtime))))/3600)AS DECIMAL(10,2)) as time_in_hour
