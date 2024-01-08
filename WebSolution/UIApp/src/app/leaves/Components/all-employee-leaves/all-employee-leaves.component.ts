@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LeavesService } from '../../Services/leaves.service';
-import { LeaveApplication } from '../../Models/LeaveApplication';
+import { LeaveDetails } from '../../Models/LeaveDetails';
 
 @Component({
   selector: 'app-all-employee-leaves',
@@ -9,16 +9,15 @@ import { LeaveApplication } from '../../Models/LeaveApplication';
 })
 export class AllEmployeeLeavesComponent implements OnInit{
 
-  leaves:LeaveApplication[]=[];
-  employeeLeaves:any[]=[];
+  employeeLeaves:LeaveDetails[]=[];
+  leaveStatus:string="applied";
 
   constructor(private leaveService:LeavesService){}
 
   ngOnInit(): void {
-   this.leaveService.getAllEmployeeLeaves().subscribe((res)=>{
-    this.leaves=res;
+   this.leaveService.getLeaveDetails(this.leaveStatus).subscribe((res)=>{
+    this.employeeLeaves=res;
     console.log(res);
-    this.employeeLeaves=this.leaves.filter(u=>u.status="applied");
-   })
+   });
   }
 }
