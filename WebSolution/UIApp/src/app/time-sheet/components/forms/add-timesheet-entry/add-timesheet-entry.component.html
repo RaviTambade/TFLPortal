@@ -1,17 +1,42 @@
-<h2>Add Timesheet Entry</h2>
-  <label>Project:</label>
-  <select class="form-control" [(ngModel)]="selectedProjectId" (change)="getWorks()">
-    <option *ngFor="let project of projects;" [value]="project.id">{{project.title | titlecase}}</option>
-  </select>
-  <label>Work:</label>
-  <select class="form-control"  [(ngModel)]="timesheetDetail.employeeWorkId">
-    <option *ngFor="let work of employeeWorks; let i = index" [value]="work.id">{{work.title | titlecase}}</option>
-  </select>
-  <label>From :</label>
-  <input type="time" class="form-control d-flex flex-row-reverse gap-4 justify-content-start" name="fromTime" [(ngModel)]="timesheetDetail.fromTime" (change)="getDuration(timesheetDetail)">
-  <label>TO:</label>
-  <input type="time" class="form-control d-flex flex-row-reverse gap-4 justify-content-start" name="toTime" [(ngModel)]="timesheetDetail.toTime" (change)="getDuration(timesheetDetail)">
-<br>
-<p>Duration: {{timesheetDetail.durationInHours}}</p>
-<button class="btn btn-success mx-2" type="submit" (click)="onClickAdd()">Add</button>
-<button class="btn btn-danger" (click)="onClickCancel()">Cancel</button>
+<div class="col-4">
+  <h2>Add Timesheet Entry</h2>
+
+  <div class="form-group row mb-1">
+    <label for="project" class="col-sm-2 col-form-label">Project:</label>
+    <div class="col-sm-10">
+      <select id="project" class="form-control" [(ngModel)]="selectedProjectId" (change)="getWorks()">
+        <option *ngFor="let project of projects;" [value]="project.id">{{project.title | titlecase}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row mb-1">
+    <label for="work" class="col-sm-2 col-form-label">Work:</label>
+    <div class="col-sm-10">
+      <select id="work" class="form-control" [(ngModel)]="timesheetDetail.employeeWorkId">
+        <option *ngFor="let work of employeeWorks; let i = index" [value]="work.id">{{work.title | titlecase}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row mb-1">
+    <label for="fromTime" class="col-sm-2 col-form-label">From:</label>
+    <div class="col-sm-10">
+      <input id="fromTime" type="time" class="form-control" name="fromTime" [(ngModel)]="timesheetDetail.fromTime" (change)="getDuration(timesheetDetail)">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="toTime" class="col-sm-2 col-form-label">To:</label>
+    <div class="col-sm-10">
+      <input id="toTime" type="time" class="form-control" name="toTime" [(ngModel)]="timesheetDetail.toTime" (change)="getDuration(timesheetDetail)">
+    </div>
+  </div>
+
+  <br>
+
+  <p>Duration: {{timesheetDetail.durationInHours}}</p>
+
+  <button class="btn btn-success mx-2" type="submit" (click)="onClickAdd()">Add</button>
+  <button class="btn btn-danger" (click)="onClickCancel()">Cancel</button>
+</div>
