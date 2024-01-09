@@ -5,6 +5,7 @@ import { Project } from 'src/app/projects/Models/project';
 import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { ProjectService } from 'src/app/shared/services/project.service';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
+import { Sprint } from 'src/app/time-sheet/models/sprint';
 import { TimeSheetDetailView } from 'src/app/time-sheet/models/timesheet-detail-view';
 import { TimeSheetDetails } from 'src/app/time-sheet/models/timesheetdetails';
 
@@ -29,10 +30,13 @@ export class AddTimesheetEntryComponent {
   };
 
   projects: Project[] = [];
-  selectedProjectId: number = 0;
   employeeId: number = 0;
+  selectedProjectId: number = 0;
+  selectedSprintId: number = 0;
   employeeWorks: EmployeeWork[] = [];
   timesheetId: number | undefined;
+  sprints: Sprint[] = [];
+
   constructor(
     private workmgmtSvc: WorkmgmtService,
     private projectSvc: ProjectService,
@@ -45,13 +49,47 @@ export class AddTimesheetEntryComponent {
       this.timesheetId = Number(params.get('id'));
     });
     this.employeeId = Number(localStorage.getItem(LocalStorageKeys.employeeId));
+    this.onProjectChange();
+  }
+
+  onProjectChange() {
     this.projectSvc.getProjectsOfEmployee(this.employeeId).subscribe((res) => {
       this.projects = res;
-      if (this.projects.length > 0) {
+      if (this.projects.length > 0 && this.selectedProjectId==0) {
         this.selectedProjectId = this.projects[0].id;
-        this.getWorks();
       }
+      this.onSprintChange();
     });
+  }
+
+  onSprintChange() {
+    this.workmgmtSvc
+      .getOngoingSprints(
+        this.selectedProjectId,
+        new Date().toISOString().slice(0, 10)
+      )
+      .subscribe((res) => {
+        console.log(res);
+        this.sprints = res;
+        if (this.sprints.length > 0  ) {
+          this.selectedSprintId = this.sprints[0].id;
+        }
+        this.getWorks();
+      });
+  }
+
+  getWorks() {
+    this.workmgmtSvc
+      .getEmployeeWorkBySprintAndStatus(
+        this.selectedSprintId,
+        this.employeeId,
+        'inprogress'
+      )
+      .subscribe((res) => {
+        this.employeeWorks = res;
+        if (this.employeeWorks.length > 0)
+          this.timesheetDetail.employeeWorkId = this.employeeWorks[0].id;
+      });
   }
 
   onClickAdd() {
@@ -81,19 +119,6 @@ export class AddTimesheetEntryComponent {
     });
   }
 
-  getWorks() {
-    this.workmgmtSvc
-      .getEmployeeWorkByProjectAndStatus(
-        this.employeeId,
-        this.selectedProjectId,
-        'inprogress'
-      )
-      .subscribe((res) => {
-        this.employeeWorks = res;
-        if (this.employeeWorks.length > 0)
-          this.timesheetDetail.employeeWorkId = this.employeeWorks[0].id;
-      });
-  }
   getDuration(timeSheetDetail: TimeSheetDetailView) {
     this.timesheetDetail = this.workmgmtSvc.getDurationOfWork(timeSheetDetail);
   }

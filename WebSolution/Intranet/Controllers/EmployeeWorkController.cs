@@ -57,12 +57,19 @@ public class EmployeeWorkController : ControllerBase
     }
 
      
-      [HttpGet("projects/{projectId}/employees/{employeeId}/status/{status}")]
+    [HttpGet("projects/{projectId}/employees/{employeeId}/status/{status}")]
     public async Task<List<EmployeeWork>> GetProjectEmployeeWorks(int projectId, int employeeId,string status)
     {
         List<EmployeeWork> employeeWorks = await _service.GetProjectEmployeeWorks(projectId,employeeId,status);
         return employeeWorks;
     }
+
+    [HttpGet("sprints/{sprintId}/employees/{employeeId}/status/{status}")]
+    public async Task<List<EmployeeWork>> GetSprintEmployeeWorks(int sprintId, int employeeId, string status)
+    {
+        return await _service.GetSprintEmployeeWorks(sprintId,employeeId,status);
+    }
+
 
     [HttpGet("projects/{employeeWorkId}")]
     public async Task<EmployeeWorkDetails> GetEmployeeWorkDetails(int employeeWorkId)

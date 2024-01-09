@@ -9,15 +9,17 @@ import { LeaveDetails } from '../../Models/LeaveDetails';
 })
 export class EmployeeLeavesByDateComponent implements OnInit {
 
-  date:string="2023-06-17"
+  date:string="";
   leaveDetails:LeaveDetails[]=[];
   constructor(private leaveService:LeavesService){}
-  ngOnInit(): void {
-    this.leaveService.getLeaveDetailsByDate(this.date).subscribe((res)=>{
-      this.leaveDetails=res;
-    })
+  
+  ngOnInit(): void {  
   }
 
-  
-
+  onSearch(date:string){
+    console.log(date);
+    this.leaveService.getLeaveDetailsByDate(date).subscribe((res)=>{
+      this.leaveDetails=res;
+    });
+  }
 }

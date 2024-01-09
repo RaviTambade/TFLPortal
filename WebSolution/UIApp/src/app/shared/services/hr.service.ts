@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Employee } from 'src/app/activity/Models/Employee';
 import { User } from 'src/app/resource-management/Models/User';
 import { SalaryStructure } from 'src/app/resource-management/Models/SalaryStructure';
+import { EmployeeDetails } from 'src/app/activity/Models/EmployeeDetails';
+import { Employee } from 'src/app/activity/Models/Employee';
 
 @Injectable({
   providedIn: 'root'
@@ -22,9 +23,9 @@ export class HrService {
     return this.httpClient.get<Employee>(url);
   }
 
-  getEmployeeDetails(employeeId: number): Observable<Employee> {
+  getEmployeeDetails(employeeId: number): Observable<EmployeeDetails> {
     let url = this.serviceurl + '/hr/employees/employee' + '/' + employeeId;
-    return this.httpClient.get<Employee>(url);
+    return this.httpClient.get<EmployeeDetails>(url);
   }
 
   getEmployee(contactNumber:string):Observable<User>{
@@ -40,6 +41,11 @@ export class HrService {
   getSalaryStructure(employeeId:number):Observable<any>{
     let url=this.serviceurl+"/payroll/salaries/employees/"+employeeId;
     return this.httpClient.get<any>(url);
+  }
+
+  paySalary(employeeId: number): Observable<any> {
+    let url = this.serviceurl + '/hr/employees/employee/salary/' + employeeId;
+    return this.httpClient.post<any>(url,employeeId);
   }
 
 

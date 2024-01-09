@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectsModule } from '../../projects.module';
 import { ProjectsService } from '../../Services/projects.service';
-import { ProjectMembership } from '../../Models/projectmembership';
-import { MembersService } from 'src/app/resource-management/Services/members.service';
 import { Router } from '@angular/router';
 import { ProjectMembershipDetails } from '../../Models/projectmembershipdetails';
 

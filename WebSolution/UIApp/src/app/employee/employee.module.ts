@@ -13,6 +13,7 @@ import { leaveRoutes } from '../leaves/leaves.module';
 import { projectRoutes } from '../projects/projects.module';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { EmployeeProfileComponent } from './components/employee-profile/employee-profile.component';
 
 export const employeeRoutes: Routes = [
   {
@@ -49,7 +50,9 @@ export const employeeRoutes: Routes = [
     PayrollComponent,
     EventsComponent,
     PerformenceApprisalComponent,
+    EmployeeProfileComponent,
   ],
-  imports: [CommonModule, RouterModule,SharedModule],  
+  imports: [CommonModule, RouterModule,SharedModule], 
+  exports:[EmployeeProfileComponent] 
 })
 export class EmployeeModule {}

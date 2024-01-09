@@ -164,22 +164,22 @@ INSERT INTO projectmembership(projectrole,projectassigndate,projectreleasedate,c
 INSERT INTO projectmembership(projectrole,projectassigndate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',3,15);
 INSERT INTO projectmembership(projectrole,projectassigndate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',4,15);
 
-INSERT INTO sprintmaster(title,startdate,enddate,goal) VALUES ('inventory sprint 1',"2024-01-01","2024-01-07","Resolve critical and high-priority bugs");
-INSERT INTO sprintmaster(title,startdate,enddate,goal) VALUES ('inventory sprint 2',"2024-01-08","2024-01-14","Enhance system performance by optimizing database queries");
-INSERT INTO sprintmaster(title,startdate,enddate,goal) VALUES ('inventory sprint 3',"2024-01-15","2024-01-21","Refactor codebase");
-INSERT INTO sprintmaster(title,startdate,enddate,goal) VALUES ('inventory sprint 4',"2024-01-22","2024-01-28","Improve project documentation");
-INSERT INTO sprintmaster(title,startdate,enddate,goal) VALUES ('inventory sprint 5',"2024-01-29","2024-02-04","Integration Testing");
-INSERT INTO sprintmaster(title,startdate,enddate,goal) VALUES ('ekrushi sprint 1',"2024-01-01","2024-01-07","Resolve critical and high-priority bugs");
-INSERT INTO sprintmaster(title,startdate,enddate,goal) VALUES ('ekrushi sprint 2',"2024-01-08","2024-01-14","Enhance system performance by optimizing database queries");
-INSERT INTO sprintmaster(title,startdate,enddate,goal) VALUES ('ekrushi sprint 3',"2024-01-15","2024-01-21","Refactor codebase");
-INSERT INTO sprintmaster(title,startdate,enddate,goal) VALUES ('ekrushi sprint 4',"2024-01-22","2024-01-28","Improve project documentation");
-INSERT INTO sprintmaster(title,startdate,enddate,goal) VALUES ('ekrushi sprint 5',"2024-01-29","2024-02-04","Integration Testing");
+INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('inventory sprint 1',"2024-01-01","2024-01-07","Resolve critical and high-priority bugs",4);
+INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('inventory sprint 2',"2024-01-08","2024-01-14","Enhance system performance by optimizing database queries",4);
+INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('inventory sprint 3',"2024-01-15","2024-01-21","Refactor codebase",4);
+INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('inventory sprint 4',"2024-01-22","2024-01-28","Improve project documentation",4);
+INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('inventory sprint 5',"2024-01-29","2024-02-04","Integration Testing",4);
+INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('ekrushi sprint 1',"2024-01-01","2024-01-07","Resolve critical and high-priority bugs",1);
+INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('ekrushi sprint 2',"2024-01-08","2024-01-14","Enhance system performance by optimizing database queries",1);
+INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('ekrushi sprint 3',"2024-01-15","2024-01-21","Refactor codebase",1);
+INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('ekrushi sprint 4',"2024-01-22","2024-01-28","Improve project documentation",1);
+INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('ekrushi sprint 5',"2024-01-29","2024-02-04","Integration Testing",1);
 
-INSERT INTO sprintmaster(title,startdate,enddate,goal) VALUES ('eagro sprint 1',"2024-01-01","2024-01-07","Resolve critical and high-priority bugs");
-INSERT INTO sprintmaster(title,startdate,enddate,goal) VALUES ('eagro sprint 2',"2024-01-08","2024-01-14","Enhance system performance by optimizing database queries");
-INSERT INTO sprintmaster(title,startdate,enddate,goal) VALUES ('eagro sprint 3',"2024-01-15","2024-01-21","Refactor codebase");
-INSERT INTO sprintmaster(title,startdate,enddate,goal) VALUES ('eagro sprint 4',"2024-01-22","2024-01-28","Improve project documentation");
-INSERT INTO sprintmaster(title,startdate,enddate,goal) VALUES ('eagro sprint 5',"2024-01-29","2024-02-04","Integration Testing");
+INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('eagro sprint 1',"2024-01-01","2024-01-07","Resolve critical and high-priority bugs",3);
+INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('eagro sprint 2',"2024-01-08","2024-01-14","Enhance system performance by optimizing database queries",3);
+INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('eagro sprint 3',"2024-01-15","2024-01-21","Refactor codebase",3);
+INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('eagro sprint 4',"2024-01-22","2024-01-28","Improve project documentation",3);
+INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('eagro sprint 5',"2024-01-29","2024-02-04","Integration Testing",3);
 
 
 
@@ -558,13 +558,11 @@ INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2024-01-05','Ap
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2024-01-06','Approved',10);
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2024-01-08','Approved',10);
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES
-('2023-01-09 ','submitted',10),
-('2023-01-10 ','submitted',10),
-('2023-01-11 ','inprogress',10),
-('2023-01-12 ','submitted',10),
-('2023-01-13 ','inprogress',10);
--- SELECT employeework.id,employeework.title,employeework.projectid FROM employeework INNER join sprintmaster on employeework.sprintid=sprintmaster.id
---  where sprintmaster.startdate>='2024-01-08' and  sprintmaster.enddate<='2024-01-14';
+('2024-01-09 ','submitted',10),
+('2024-01-10 ','submitted',10),
+('2024-01-11 ','inprogress',10),
+('2024-01-12 ','submitted',10),
+('2024-01-13 ','inprogress',10);
 
 INSERT INTO timesheetdetails( fromtime, totime, timesheetid,employeeworkid)
 VALUES

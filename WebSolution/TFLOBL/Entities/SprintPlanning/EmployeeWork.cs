@@ -14,7 +14,5 @@ public class EmployeeWork
    public int SprintId{get;set;}
    public string? Status{get;set;}
    public int AssignedBy{get; set;} 
-
-  
-  
+    
 }

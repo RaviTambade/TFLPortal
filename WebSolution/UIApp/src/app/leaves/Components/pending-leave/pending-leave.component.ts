@@ -14,9 +14,7 @@ export class PendingLeaveComponent implements OnInit {
   pendingLeave:PendingLeave |undefined;
   year:number=2023;
 
-
   constructor(private service:LeavesService){
-    //  this.employeeId=localStorage.getItem(LocalStorageKeys.employeeId);
   }
 
   ngOnInit(): void {

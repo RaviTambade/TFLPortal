@@ -3,7 +3,7 @@ using Transflower.TFLPortal.Intranet.Responses;
 using Transflower.TFLPortal.TFLOBL.Entities;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 using Transflower.TFLPortal.TFLSAL.Services;
-
+using Transflower.TFLPortal.TFLOBL.External;
 
 namespace Transflower.TFLPortal.Intranet.Controllers;
 
@@ -14,29 +14,33 @@ public class HRController : ControllerBase
     private readonly IHRService _service;
     private readonly ExternalApiService _apiService;
 
-    public HRController(
-        IHRService service,
-        ExternalApiService apiService
-    )
+    public HRController(IHRService service, ExternalApiService apiService)
     {
         _service = service;
         _apiService = apiService;
     }
 
-
-
     [HttpGet("employee/{employeeId}")]
     public async Task<EmployeeResponse> GetEmployeeDetails(int employeeId)
     {
         Employee employee = await _service.GetEmployeeById(employeeId);
-        var user = await _apiService.GetUser(employee.UserId);
+        User? user = await _apiService.GetUser(employee.UserId);
+        if (user == null)
+        {
+            return new EmployeeResponse();
+        }
         EmployeeResponse emp = new EmployeeResponse()
         {
             HireDate = employee.HireDate,
             FirstName = user.FirstName,
             LastName = user.LastName,
             Email = user.Email,
-            ContactNumber = user.ContactNumber
+            Gender = user.Gender,
+            ContactNumber = user.ContactNumber,
+            ImageUrl = user.ImageUrl,
+            BirthDate = user.BirthDate,
+            EmployeeId = employee.Id,
+            UserId = user.Id
         };
         return emp;
     }
@@ -60,7 +64,7 @@ public class HRController : ControllerBase
     //     };
     //     int transactionId = await _apiService.FundTransfer(request);
 
-    
+
     //     return transactionId > 0;
     // }
 
@@ -79,5 +83,4 @@ public class HRController : ControllerBase
         List<Employee> employees = await _service.GetEmployees(employeeIds);
         return employees;
     }
-
 }
