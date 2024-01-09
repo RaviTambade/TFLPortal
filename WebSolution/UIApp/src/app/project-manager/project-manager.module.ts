@@ -17,6 +17,7 @@ import { ProjectdetailsComponent } from './components/project-list/projectdetail
 import { EmployeeProjectWorksComponent } from './components/employee-project-works/employee-project-works.component';
 import { EmployeeprojectworkdetailsComponent } from './components/employee-project-works/employeeprojectworkdetails/employeeprojectworkdetails.component';
 import { ProjectWorkChartComponent } from './components/project-work-chart/project-work-chart.component';
+import { TimeSheetModule } from '../time-sheet/time-sheet.module';
 
 export const projectManagerRoutes: Routes = [
   {
@@ -61,6 +62,6 @@ export const projectManagerRoutes: Routes = [
     EmployeeprojectworkdetailsComponent,
     ProjectWorkChartComponent,
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule,TimeSheetModule],
 })
 export class ProjectManagerModule {}
