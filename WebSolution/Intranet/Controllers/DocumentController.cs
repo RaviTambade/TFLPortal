@@ -56,7 +56,7 @@ public class DocumentController : ControllerBase
             Deduction = salaryStructure.Deduction
         };
         DocumentGenerator generator = new DocumentGenerator();
-        // fire and forgot thats why not awaited
+        // fire and forgot thats why not awaited might  be risky 
         generator.GenerateSalarySlip(salaryDetails);
 
         // chaining of fire and forgot calls  first method output needed for second method

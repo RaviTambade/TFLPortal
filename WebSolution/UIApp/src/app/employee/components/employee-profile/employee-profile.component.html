@@ -1,0 +1,27 @@
+
+    <!--  <p>First Name:{{employee.firstName}}</p> 
+   <p>Last Name:{{employee.lastName}}</p> 
+   <p>contactNumber:{{employee.contactNumber}}</p> 
+   <p>Gender:{{employee.gender}}</p> 
+   <p>Email:{{employee.email}}</p> 
+   <p>hireDate:{{employee.hireDate}}</p>
+   <p>BirthDate:{{employee.birthDate}}</p>
+   <p>imageUrl:{{employee.imageUrl}}</p>
+</div>
+
+
+ -->
+<div class="m-2" *ngIf="employee">
+    <div class="d-flex justify-content-center  ">
+        <img style="border-radius: 250px;" [src]="imageServer +employee.imageUrl" width="260" height="260">
+        <div class="mx-4">
+            <h2>{{ employee.firstName |titlecase }} {{ employee.lastName |titlecase }}</h2>
+            <p><b>Birth Date:</b> {{ employee.birthDate | date }}</p>
+            <p><b>Gender:</b> {{ employee.gender |titlecase }}</p>
+            <p><b>Email:</b> {{ employee.email }}</p>
+            <p><b>Contact Number:</b> {{ employee.contactNumber }}</p>
+            <p><b>Hire Date :</b> {{ employee.hireDate |date }}</p>
+            <a [routerLink]="['home']" routerLinkActive="highlighted">Update Profile</a>
+        </div>
+    </div>
+</div>

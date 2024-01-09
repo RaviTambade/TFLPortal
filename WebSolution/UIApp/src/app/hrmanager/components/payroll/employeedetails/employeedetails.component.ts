@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { Employee } from 'src/app/activity/Models/Employee';
+import { EmployeeDetails } from 'src/app/activity/Models/EmployeeDetails';
 import { HrService } from 'src/app/shared/services/hr.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class EmployeedetailsComponent{
   constructor(private hrSvc:HrService){
   }
   @Input() employeeId:number|undefined;
-  employee:Employee|undefined;
+  employee:EmployeeDetails|undefined;
 
   ngOnChanges(changes:SimpleChanges): void {
     this.hrSvc.getEmployeeDetails(changes ["employeeId"].currentValue).subscribe((res)=>{

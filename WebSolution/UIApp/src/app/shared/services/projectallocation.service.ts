@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Employee } from 'src/app/activity/Models/Employee';
+
 import { ProjectEmployees } from 'src/app/project-manager/Model/ProjectEmployes';
 import { ProjectMembership } from 'src/app/projects/Models/projectmembership';
 import { ProjectMembershipDetails } from 'src/app/projects/Models/projectmembershipdetails';

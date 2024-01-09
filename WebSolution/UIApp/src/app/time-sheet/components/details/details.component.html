@@ -1,7 +1,7 @@
 <!-- <div class="container"> -->
     <label class="d-block mb-2">Date: {{timesheet?.timesheetDate | date}}</label>
     <label class="d-block mb-2">Status: {{timesheet?.status | titlecase}}</label>
-    <label class="d-block mb-2">Employee Name: {{timesheet?.employeeName}}</label>
+    <label class="d-block mb-2" >Employee Name: <a [routerLink]="['/profile',timesheet?.employeeId]"> {{timesheet?.employeeName}} </a></label>
 
     <button *ngIf="isTimeSheetEditable()" class="btn btn-primary mb-2" (click)="onClickAddTimeSheetDetails()">Add Entry</button>
 

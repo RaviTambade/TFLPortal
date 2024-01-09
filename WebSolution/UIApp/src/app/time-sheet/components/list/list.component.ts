@@ -27,8 +27,8 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.employeeId=Number(localStorage.getItem(LocalStorageKeys.employeeId))
     this.selectedStatus[this.timesheetStatus[0]] = true;
-    this.onIntervalChange();
-  }
+    this.onIntervalChange()
+      }
 
   onIntervalChange() {
     switch (this.selectedInterval) {
