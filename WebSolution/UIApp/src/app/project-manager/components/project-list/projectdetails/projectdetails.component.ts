@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Employee } from 'src/app/activity/Models/Employee';
 import { ProjectEmployees } from 'src/app/project-manager/Model/ProjectEmployes';
 import { Project } from 'src/app/projects/Models/project';
 import { ProjectService } from 'src/app/shared/services/project.service';
@@ -24,16 +23,10 @@ export class ProjectdetailsComponent implements OnInit{
     this.projectSvc.getProjectDetails(this.projectId).subscribe((res)=>{
       this.project=res;
     })
-   
-   
-  }
-
-
-  onClick(){
     this.projectAllocSvc.getEmployeesOfProject(this.projectId,this.status).subscribe((res)=>{
       this.employees=res;
       console.log(res);
       })
-  }
+    }
 
 }

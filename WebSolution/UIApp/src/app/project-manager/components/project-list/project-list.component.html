@@ -1,11 +1,12 @@
 
 <p>List Of Project</p>
+<div >
 <div  class="d-flex gap-2">  
-<div *ngFor="let project of projects">
+<div *ngFor="let project of projects" >
 <ul class="list-group list-group-horizontal">
     <li class="list-group-item" (click)="onClick(project.id)">{{project.title}}</li>
   </ul>
 </div>
 </div>
-
+</div>
 <router-outlet></router-outlet>

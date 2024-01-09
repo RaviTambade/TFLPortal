@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MembersService } from 'src/app/resource-management/Services/members.service';
+import { HrService } from 'src/app/shared/services/hr.service';
 
 @Component({
   selector: 'employee-details',
@@ -8,7 +8,7 @@ import { MembersService } from 'src/app/resource-management/Services/members.ser
 })
 export class DetailsComponent {
 
-  constructor(private svc:MembersService){}
+  constructor(private svc:HrService){}
 
   employee:any | undefined;
   employeeId:number=1;

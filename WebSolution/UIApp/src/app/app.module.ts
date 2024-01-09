@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProjectsModule } from './projects/projects.module';
 import { HttpClientModule } from '@angular/common/http';
-import { TaskModule } from './task/task.module';
 import { ResourceManagementModule } from './resource-management/resource-management.module';
 import { CalenderComponent } from './calender/calender.component';
 import { TimeSheetModule, timeSheetRoutes } from './time-sheet/time-sheet.module';
@@ -17,6 +16,7 @@ import { LayoutModule } from './layout/layout.module';
 import { SharedModule } from './shared/shared.module';
 import { LocalStorageKeys } from './shared/enums/local-storage-keys';
 import { HrmanagerModule } from './hrmanager/hrmanager.module';
+import { EmployeeModule } from './employee/employee.module';
 
 
 
@@ -26,10 +26,8 @@ import { HrmanagerModule } from './hrmanager/hrmanager.module';
     BiModule,
     BrowserModule,
     AppRoutingModule,
-    // AuthenticationModule,
     ProjectsModule,
     HttpClientModule,
-    TaskModule,
     ResourceManagementModule,
     TimeSheetModule,
     ProjectplanningModule,
@@ -42,7 +40,8 @@ import { HrmanagerModule } from './hrmanager/hrmanager.module';
       }
     }),
     ActivityModule,
-    HrmanagerModule
+    HrmanagerModule,
+    EmployeeModule
 
   ],
 

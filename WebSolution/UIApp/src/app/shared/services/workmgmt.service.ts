@@ -241,7 +241,7 @@ export class WorkmgmtService {
   }
   
 
-  fetchEmployeeDetailsById(employeeWorkId:number){
+  fetchEmployeeWorkDetailsById(employeeWorkId:number){
     let url=this.serviceurl+'/workmgmt/employeework/projects/'+employeeWorkId;
     return this.http.get<any>(url);
   }

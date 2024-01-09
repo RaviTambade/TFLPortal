@@ -4,30 +4,34 @@
         <table class="table-bordered text-center">
             <thead>
                 <tr>
-                    <th>AssignedDate</th>
+                    <!-- <th>AssignedDate</th> -->
                     <th>Title</th>
                     <th>Status</th>
-                    <th>description</th>
+                    <!-- <th>description</th>
                     <th>projectWorkType</th>
-                    <th>assignedBy</th>
+                    <th>assignedBy</th> -->
                     <th>assignedTo</th>
-                    <th>dueDate</th>
+                    <!-- <th>dueDate</th> -->
+                    <th>action</th>
                    </tr>
             </thead>
             <tbody >
                 <tr *ngFor="let employeework of employeeworks">
-                    <td> {{employeework.assignDate |date}}</td>
+                    <!-- <td> {{employeework.assignDate |date}}</td> -->
                     <td>{{employeework.title}}</td>
                     <td> {{employeework.status}}</td>
-                    <td> {{employeework.description}}</td>
-                    <td> {{employeework.projectWorkType}}</td>
-                    <td> {{employeework.assignedBy}}</td>
+                    <!-- <td> {{employeework.description}}</td> -->
+                    <!-- <td> {{employeework.projectWorkType}}</td>
+                    <td> {{employeework.assignedBy}}</td> -->
                     <td> {{employeework.assignedTo}}</td>
-                    <td> {{employeework.dueDate |date}}</td>
+                    <!-- <td> {{employeework.dueDate |date}}</td> -->
+                    <th><a class="link-underline" [routerLink]="['details',employeework.id]">Details</a></th>
                 </tr>
             </tbody>
         </table>
     </div>
 
+    <button>Assign Work</button>
 
+<router-outlet></router-outlet>
 
