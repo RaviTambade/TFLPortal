@@ -1,6 +1,8 @@
 -- Active: 1696576841746@@127.0.0.1@3306@tflportal
 
-SELECT * FROM activities where assignedto=15 AND assigneddate='2023-12-14';
+SELECT sprintmaster.* FROM sprintmaster where projectid=4;
+
+where assignedto=15 AND assigneddate='2023-12-14';
 SELECT timesheets.id as timesheetid,timesheets.status,timesheets.statuschangeddate,timesheetdetails.id as timesheetdetailid,
 timesheetdetails.employeeworkid,timesheetdetails.fromtime,timesheetdetails.totime,employeework.projectid,projects.title,employeework.projectworktype,employeework.title,
 employees.userid

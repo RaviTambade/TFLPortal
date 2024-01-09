@@ -92,8 +92,10 @@
             title VARCHAR(40) NOT NULL,  
             startdate DATETIME NOT NULL,
             enddate DATETIME NOT NULL,
-            goal VARCHAR(200)
-    );
+            goal VARCHAR(200),
+            projectid INT NULL,
+            CONSTRAINT fk_sprint_projects FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE
+        );
 
     CREATE TABLE employeework(
             id INT PRIMARY KEY AUTO_INCREMENT,

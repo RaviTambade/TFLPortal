@@ -319,6 +319,67 @@ public class EmployeeWorkService : IEmployeeWorkService
         return activities;
     }
 
+    
+    public async Task<List<EmployeeWork>> GetSprintEmployeeWorks(int sprintId, int employeeId, string status)
+    {
+         List<EmployeeWork> works = new List<EmployeeWork>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query = "select * from employeework where  sprintid =@sprintid and status=@status and assignedto=@assignedto";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@sprintid", sprintId);
+            command.Parameters.AddWithValue("@status", status);
+            command.Parameters.AddWithValue("@assignedto", employeeId);
+
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {
+                int id = int.Parse(reader["id"].ToString());
+                string title = reader["title"].ToString();
+                string description = reader["description"].ToString();
+                int projectId = int.Parse(reader["projectid"].ToString());
+                DateTime createDate = DateTime.Parse(reader["createddate"].ToString());
+                int assignedBy = int.Parse(reader["assignedby"].ToString());
+                DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
+                DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
+                string projectWorkType = reader["projectworktype"].ToString();
+                int managerId = int.Parse(reader["assignedby"].ToString());
+
+                EmployeeWork work = new EmployeeWork
+                {
+                    Id = id,
+                    Title = title,
+                    ProjectWorkType = projectWorkType,
+                    Description = description,
+                    ProjectId = projectId,
+                    SprintId=sprintId,
+                    AssignDate = assignDate,
+                    StartDate = startDate,
+                    DueDate = dueDate,
+                    AssignedTo = employeeId,
+                    Status = status,
+                    AssignedBy = managerId,
+
+                };
+                works.Add(work);
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return works;
+    }
+
     public async Task<EmployeeWorkDetails> GetEmployeeWorkDetails(int employeeWorkId)
     {
        EmployeeWorkDetails activity = null;
