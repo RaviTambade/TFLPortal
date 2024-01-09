@@ -11,8 +11,8 @@ export class LeavesComponent {
  
   leaveMenuRoutes: UrlType[] = [
     // { displayName: 'All leave', Url: 'appliedleave' },
-    { displayName: 'leave', Url: 'applied' },
-    // { displayName: 'employeeleave', Url: 'employeeleave' },
+    { displayName: 'Leave', Url: 'applied' },
+    { displayName: 'LeaveApplication', Url: 'leavesbystatus' },
   ];
 
   constructor(private router: Router, private route: ActivatedRoute) {}

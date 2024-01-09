@@ -19,7 +19,7 @@ export class EmployeeAllActivitiesComponent {
   projectId: number = 0;
   employeeId:number|any;
   visibleActivities: EmployeeWork[]=[];
-role:string|undefined=undefined;
+  role:string|undefined=undefined;
   checkStatusTodo: boolean = true;
   checkStatusInProgress: boolean = true;
   checkStatusCompleted: boolean = true;
