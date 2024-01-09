@@ -15,6 +15,8 @@ import { CreateemployeeworkComponent } from '../activity/Components/Forms/create
 import { ProjectListComponent } from './components/project-list/project-list.component';
 import { ProjectdetailsComponent } from './components/project-list/projectdetails/projectdetails.component';
 import { EmployeeProjectWorksComponent } from './components/employee-project-works/employee-project-works.component';
+import { EmployeeprojectworkdetailsComponent } from './components/employee-project-works/employeeprojectworkdetails/employeeprojectworkdetails.component';
+import { ProjectWorkChartComponent } from './components/project-work-chart/project-work-chart.component';
 
 export const projectManagerRoutes: Routes = [
   {
@@ -32,7 +34,7 @@ export const projectManagerRoutes: Routes = [
         path: 'projects',
         component: ProjectComponent,children:[{path:'',pathMatch:'full',redirectTo:'Projects'},
                                               {path:'Projects',component:ProjectListComponent},
-                                              {path:'projectdetails/:id',component:ProjectdetailsComponent,children:[{path:'showdetails/:id',component:EmployeeProjectWorksComponent}]}
+                                              {path:'projectdetails/:id',component:ProjectdetailsComponent,children:[{path:'showdetails/:id',component:EmployeeProjectWorksComponent,children:[{path:'details/:id' ,component:EmployeeprojectworkdetailsComponent}]}]}
       ],
       },
       { path: 'events', component: EventsComponent },
@@ -56,6 +58,8 @@ export const projectManagerRoutes: Routes = [
     ProjectListComponent,
     ProjectdetailsComponent,
     EmployeeProjectWorksComponent,
+    EmployeeprojectworkdetailsComponent,
+    ProjectWorkChartComponent,
   ],
   imports: [CommonModule, RouterModule],
 })

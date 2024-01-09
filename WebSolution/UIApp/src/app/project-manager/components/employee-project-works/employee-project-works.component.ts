@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EmployeeWork } from 'src/app/activity/Models/EmployeeWork';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';

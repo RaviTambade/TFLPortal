@@ -24,16 +24,10 @@ export class ProjectdetailsComponent implements OnInit{
     this.projectSvc.getProjectDetails(this.projectId).subscribe((res)=>{
       this.project=res;
     })
-   
-   
-  }
-
-
-  onClick(){
     this.projectAllocSvc.getEmployeesOfProject(this.projectId,this.status).subscribe((res)=>{
       this.employees=res;
       console.log(res);
       })
-  }
+    }
 
 }

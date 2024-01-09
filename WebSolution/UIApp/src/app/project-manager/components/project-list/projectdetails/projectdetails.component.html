@@ -1,63 +1,72 @@
+
+
+
 <div class="container">
-    <h2> My Project Details</h2>
-    <div class="card" *ngIf="project">
-        <table class="table-bordered text-center">
-            <thead>
-                <tr>
-                    
-                    <th>Project Name</th>
-                    <th>StartDate</th>
-                    <th>EndDate</th>
-                    <th>Description</th>
-                    <th>Status:</th>
-                    <th>Action</th>
-            
-                </tr>
-            </thead>
-            <tbody  >
-                <tr>
-            
-                    <td><a href="#">{{project.title}}</a></td>
-                    <td>{{project.startDate}}</td>
-                    <td>{{project.endDate}}</td>
-                    <td>{{project.description}}</td>
-                    <td>{{project.status}}</td>
-                    <td><a class="link-underline-primary" (click)="onClick()"> show project members</a>|<a [routerLink]="['showdetails',project.id]">Show Employees Work</a></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="container">
+                <h2>Project Details</h2>
+                <div class="card" *ngIf="project">
+                    <table>
+                        <thead>
+                            <tr>
+                                
+                                <th>Project Name</th>
+                                <th>Description</th>
+                                <th>Status:</th>
+                                <th>StartDate</th>
+                                <th>EndDate</th>
+                                </tr>
+                        </thead>
+                        <tbody  >
+                            <tr>
+                        
+                                <td><a>{{project.title}}</a></td>
+                                <td>{{project.description}}</td>
+                                <td>{{project.status}}</td>
+                                <td>{{project.startDate|date}}</td>
+                                <td>{{project.endDate|date}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+            <div class="col-sm-6">
+                <app-project-work-chart >Work With Hours</app-project-work-chart>
+             
+            </div>
 
-
-
-    <h1>Project Employees List</h1>
-    <div class="container">
-    <div class="card" *ngFor="let employee of employees">
-        <table class="table-bordered text-center">
-            <thead>
-                <tr>
+            <h1>Members List</h1>
+            <div class="col-sm-6">
+            <div class="container">
+                <div class="card" >
+                    <table>
+                <thead>
+                  <tr>
                     <th>FullName</th>
                     <th>Role</th>
-                    <th>Project Assigned Date</th>
-                </tr>
-            </thead>
-            <tbody  >
-                <tr>
-            
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let employee of employees">
                     <td>{{employee.fullName}}</td>
                     <td>{{employee.projectRole}}</td>
-                    <td>{{employee.projectAssignDate|date}}</td>
-    
-                </tr>
-               
-            </tbody>
-        </table>
+                  </tr>
+                </tbody>
+              </table>
+                </div>
+            </div>
+            </div>
+           
+              
+     </div>
+
+        
+
+        <div >
+            <a class="link-underline" [routerLink]="['showdetails', project?.id]">Show Employees Work</a>
+        </div>
     </div>
-</div>
-</div>
-
-   
-  <router-outlet></router-outlet>
-
-
+    <router-outlet></router-outlet>
 

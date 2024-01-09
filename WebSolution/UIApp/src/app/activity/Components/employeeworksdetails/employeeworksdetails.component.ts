@@ -18,7 +18,7 @@ export class EmployeeworksdetailsComponent implements  OnInit{
    
     this.route.paramMap.subscribe((param)=>{
       this.employeeworkid=param.get("id");
-      this.workMgmtSvc.fetchEmployeeDetailsById(this.employeeworkid).subscribe((res)=>{
+      this.workMgmtSvc.fetchEmployeeWorkDetailsById(this.employeeworkid).subscribe((res)=>{
       this.employeeworks=res;
       console.log(res);
       })

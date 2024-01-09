@@ -1,4 +1,4 @@
--- Active: 1696576841746@@127.0.0.1@3306@tflportal
+-- Active: 1694968636816@@127.0.0.1@3306@tflportal
 
 -- director
 INSERT INTO employees(userid,hiredate,reportingid) VALUES (1,'2013-01-01',1);
@@ -129,7 +129,6 @@ Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) valu
 Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(8,20000,6000,600,500,400);
 Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(9,19000,3200,600,600,600);
 Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(10,19000,3200,600,600,600);
->>>>>>> ed595972f6763cb6d2e6e02cdd7a77e891b51ebf
 
 
 INSERT INTO projects(title,startdate,enddate,description,managerid,status)VALUES('EKrushi','2023-11-03','2024-02-02','Krushi Product Management',1,'notstarted');
@@ -152,10 +151,10 @@ INSERT INTO projectmembership(projectrole,projectassigndate,currentprojectworkin
 INSERT INTO projectmembership(projectrole,projectassigndate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Developer','2023-11-03','yes',3,10);
 INSERT INTO projectmembership(projectrole,projectassigndate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Developer','2023-11-02','yes',4,10);
 
-INSERT INTO projectmembership(projectrole,projectassigndate,projectreleasedate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Developer','2023-11-13','2017-10-10','no',3,12);
-INSERT INTO projectmembership(projectrole,projectassigndate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Developer','2017-02-02','yes',4,13);
+INSERT INTO projectmembership(projectrole,projectassigndate,projectreleasedate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Developer','2023-11-13','2017-10-10','no',5,12);
+INSERT INTO projectmembership(projectrole,projectassigndate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Tester','2017-02-02','yes',5,13);
 INSERT INTO projectmembership(projectrole,projectassigndate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Developer','2017-10-10','yes',5,14);
-INSERT INTO projectmembership(projectrole,projectassigndate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Developer','2017-10-10','yes',6,15);
+INSERT INTO projectmembership(projectrole,projectassigndate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Developer','2017-10-10','yes',5,15);
 INSERT INTO projectmembership(projectrole,projectassigndate,projectreleasedate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Developer','2016-02-02','2017-10-10','no',7,16);
 INSERT INTO projectmembership(projectrole,projectassigndate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',8,15);
 INSERT INTO projectmembership(projectrole,projectassigndate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',9,15);
@@ -193,13 +192,13 @@ INSERT INTO employeework (projectworktype,title, description, projectid,sprintid
 VALUES ('userstory','As a  Store Worker, I want to be able to reset my password in case I forget it.','',4,1, '2024-01-06', '2024-01-06', '2024-01-06', 10, 7, 'inprogress','2024-01-06');
 
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
-VALUES ('userstory','As a Store Worker, I want to view a graph that shows my daily, weekly, and monthly delivered orders, so that i can monitor my performance','',4,1,  '2023-12-05', '2023-12-06', '2023-12-10',  10, 7,  'inprogress','2023-12-04');
+VALUES ('userstory','As a Store Worker, I want to view a graph that shows my daily, weekly, and monthly delivered orders, so that i can monitor my performance','',4,1,  '2023-12-05', '2023-12-06', '2023-12-10',  12, 7,  'inprogress','2023-12-04');
 
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
-VALUES ('userstory', 'As a Store Worker, I want to mark orders as delivered when I successfully hand over the materials to the manufacturing supervisors so that i can ensure order is delivered.','',4,1,  '2023-12-05', '2023-12-06', '2023-12-10', 10, 7,'inprogress','2023-12-04');
+VALUES ('userstory', 'As a Store Worker, I want to mark orders as delivered when I successfully hand over the materials to the manufacturing supervisors so that i can ensure order is delivered.','',5,1,  '2023-12-05', '2023-12-06', '2023-12-10', 13, 7,'inprogress','2023-12-04');
 
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
-VALUES ('userstory', 'As a Store Worker, I want to access information about the supervisors who will receive the deliveries, including their contact details so that I can efficiently communicate regarding the delivery process and resolve any potential issues.','',4,1,  '2023-12-05', '2023-12-06', '2023-12-10', 10, 7,'inprogress','2023-12-04');
+VALUES ('userstory', 'As a Store Worker, I want to access information about the supervisors who will receive the deliveries, including their contact details so that I can efficiently communicate regarding the delivery process and resolve any potential issues.','',5,1,  '2023-12-05', '2023-12-06', '2023-12-10', 14, 7,'inprogress','2023-12-04');
 
 INSERT INTO employeework (projectworktype,title, description, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
 VALUES ('userstory','As a Store Worker, I want to receive notifications for new task that require pickup and delivery, so that i can stay updated on my tasks.','', 4,1,  '2024-01-04', '2024-01-04', '2024-01-04', 3, 7, 'inprogress','2024-01-04');
