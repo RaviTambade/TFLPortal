@@ -37,4 +37,10 @@ export class ProjectService {
     let url=this.serviceurl+"/projectmgmt/projectallocation/employees/"+projectId;
     return this.httpClient.get<any[]>(url);
   }
+
+
+  fetchAllProjectOfProjectManager(managerId:number):Observable<Project[]>{
+    let url=this.serviceurl+"/projectmgmt/projects/projectmanager/"+managerId;
+    return this.httpClient.get<Project[]>(url);
+  }
 }

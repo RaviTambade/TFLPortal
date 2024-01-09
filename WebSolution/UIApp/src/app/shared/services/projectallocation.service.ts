@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Employee } from 'src/app/activity/Models/Employee';
+import { ProjectEmployees } from 'src/app/project-manager/Model/ProjectEmployes';
 import { ProjectMembership } from 'src/app/projects/Models/projectmembership';
 import { ProjectMembershipDetails } from 'src/app/projects/Models/projectmembershipdetails';
 import { environment } from 'src/environments/environment';
@@ -51,5 +53,10 @@ export class ProjectallocationService {
   getUnssignedEmployeesOfProject(projectId:number){
     let url=this.serviceurl+"/projectmgmt/projectallocation/unassignemployees/" +projectId;  
     return this.httpClient.get<any>(url);
+  }
+
+  getEmployeesOfProject(projectId:number,status:string){
+    let url=this.serviceurl+"/projectmgmt/projectallocation/projects/"+projectId+"/status/"+status+"/employees";  
+    return this.httpClient.get<ProjectEmployees[]>(url);
   }
 }

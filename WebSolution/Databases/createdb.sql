@@ -92,22 +92,24 @@
             title VARCHAR(40) NOT NULL,  
             startdate DATETIME NOT NULL,
             enddate DATETIME NOT NULL,
-            goal VARCHAR(200)
-    );
+            goal VARCHAR(200),
+            projectid INT NULL,
+            CONSTRAINT fk_sprint_projects FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE
+        );
 
     CREATE TABLE employeework(
             id INT PRIMARY KEY AUTO_INCREMENT,
-            title VARCHAR(500) NOT NULL,
+            title VARCHAR(500),
             projectworktype ENUM("userstory","task","bug","issues","meeting","learning","mentoring","other"),
-            description VARCHAR(400),
-            projectid INT NOT NULL DEFAULT 0,
-            sprintid INT NOT NULL DEFAULT 0,
-            assignedto INT NOT NULL, 
-            assignedby INT NOT NULL,
-            createddate DATETIME NOT NULL,
-            assigneddate DATETIME,
-            startdate DATETIME,
-            duedate DATETIME,
+            description VARCHAR(400) DEFAULT '',
+            projectid INT NULL,
+            sprintid INT NULL,
+            assignedto INT NULL, 
+            assignedby INT NULL,
+            createddate DATETIME NULL,
+            assigneddate DATETIME NULL,
+            startdate DATETIME NULL,
+            duedate DATETIME NULL,
             status ENUM ( 'todo','inprogress','completed') DEFAULT 'todo' , 
             CONSTRAINT fk_projectwork_members FOREIGN KEY (assignedby) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
             CONSTRAINT fk_projectwork_members2 FOREIGN KEY (assignedto) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,

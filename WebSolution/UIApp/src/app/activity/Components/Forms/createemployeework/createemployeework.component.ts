@@ -15,6 +15,7 @@ import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 export class CreateemployeeworkComponent implements OnInit{
   constructor(private projectSvc:ProjectService,private workMgmtSvc:WorkmgmtService){}
   projects:Project[]=[];
+  projectId:number=0;
   createactivityform:boolean=false;
 
   activity:EmployeeWork={
@@ -57,18 +58,18 @@ export class CreateemployeeworkComponent implements OnInit{
   }
 
   onSubmit(){
-
+   console.log(this.activity.projectId);
     this.activity.projectWorkType=this.activityform.get("activitytype")?.value;
     this.activity.assignDate=new Date().toISOString().slice(0,10);
-    this.activity.assignedBy=this.activityform.get("assignedby")?.value;
-    this.activity.assignedTo=this.activityform.get("assignedto")?.value;
-    this.activity.description=this.activityform.get("description")?.value;
+    this.activity.assignedBy=0;
+    this.activity.assignedTo=0;
+    this.activity.description='';
     this.activity.dueDate=this.activityform.get("duedate")?.value;
-    this.activity.projectId=this.activityform.get("projectid")?.value;
-    this.activity.sprintId=this.activityform.get("sprintid")?.value;
+   // this.activity.projectId=this.projectId
+    this.activity.sprintId=0;
     this.activity.startDate=this.activityform.get("startdate")?.value||"";
     this.activity.title=this.activityform.get("title")?.value;
-   this.activity.createdDate=new Date().toISOString().slice(0,10);
+    this.activity.createdDate=new Date().toISOString().slice(0,10);
     this.activity.assignedBy=Number(localStorage.getItem(LocalStorageKeys.employeeId));
    
     this.activity.status="todo"
@@ -80,8 +81,12 @@ export class CreateemployeeworkComponent implements OnInit{
   
 
   onClick(){
+
+   this.activity.projectId=this.projectId
+  }
+
+  showForm(){
     this.createactivityform=true;
-    console.log(this.activity.projectId);
   }
 
 }

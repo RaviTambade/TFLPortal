@@ -12,6 +12,7 @@ import { WorkCategoryDetails } from 'src/app/time-sheet/models/workcategorydetai
 import { EmployeeWork } from 'src/app/activity/Models/EmployeeWork';
 import { TimesheetDuration } from 'src/app/time-sheet/models/timesheetduratiom';
 import { Week } from 'src/app/time-sheet/models/Week';
+import { Sprint } from 'src/app/time-sheet/models/sprint';
 
 
 @Injectable({
@@ -75,11 +76,20 @@ export class WorkmgmtService {
     return this.http.get<EmployeeWork[]>(url);
   }
 
+  getEmployeeWorkBySprintAndStatus(sprintId:number,employeeId:number,status:string):Observable<EmployeeWork[]>{
+    let url=`${this.serviceurl}/workmgmt/employeeWork/sprints/${sprintId}/employees/${employeeId}/status/${status}`;
+    return this.http.get<EmployeeWork[]>(url);
+  }
 
 
   getAllTimeSheets(employeeId: number, status:string[],fromDate:string,toDate:string): Observable<TimesheetDuration[]> {
     let url = `${this.serviceurl}/workmgmt/timesheets/employees/${employeeId}/status/from/${fromDate}/to/${toDate}`;
     return this.http.post<TimesheetDuration[]>(url,status);
+  }
+
+  getOngoingSprints(projectId:number,date:string):Observable<Sprint[]>{
+    let url=`${this.serviceurl}/workmgmt/sprints/projects/${projectId}/date/${date}`;
+    return this.http.get<Sprint[]>(url);
   }
 
   getTimesheetsByStatus(reportingToId:number,status: string,fromDate:string,toDate:string): Observable<TimesheetView[]> {

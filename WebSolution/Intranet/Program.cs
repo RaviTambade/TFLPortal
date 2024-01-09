@@ -24,6 +24,7 @@ builder.Services.AddScoped<IProjectMembershipService, ProjectMembershipService>(
 builder.Services.AddScoped<ILeaveManagementService, LeaveManagementService>();
 builder.Services.AddScoped<IHRService, HRService>();
 builder.Services.AddScoped<IPayrollService, PayrollService>();
+builder.Services.AddScoped<ISprintService,SprintService>();
 builder.Services.AddHttpClient();
 
 
