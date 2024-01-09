@@ -558,13 +558,11 @@ INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2024-01-05','Ap
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2024-01-06','Approved',10);
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2024-01-08','Approved',10);
 INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES
-('2023-01-09 ','submitted',10),
-('2023-01-10 ','submitted',10),
-('2023-01-11 ','inprogress',10),
-('2023-01-12 ','submitted',10),
-('2023-01-13 ','inprogress',10);
--- SELECT employeework.id,employeework.title,employeework.projectid FROM employeework INNER join sprintmaster on employeework.sprintid=sprintmaster.id
---  where sprintmaster.startdate>='2024-01-08' and  sprintmaster.enddate<='2024-01-14';
+('2024-01-09 ','submitted',10),
+('2024-01-10 ','submitted',10),
+('2024-01-11 ','inprogress',10),
+('2024-01-12 ','submitted',10),
+('2024-01-13 ','inprogress',10);
 
 INSERT INTO timesheetdetails( fromtime, totime, timesheetid,employeeworkid)
 VALUES
