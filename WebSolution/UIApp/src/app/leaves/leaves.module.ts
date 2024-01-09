@@ -22,6 +22,9 @@ import { AllLeaveCountComponent } from './Components/all-leave-count/all-leave-c
 import { UpdateStatusComponent } from './Components/forms/update-status/update-status.component';
 import { LeaveDetailsComponent } from './Components/leave-details/leave-details.component';
 import { EmployeeLeavesByDateComponent } from './Components/employee-leaves-by-date/employee-leaves-by-date.component';
+import { EmployeeConsumedLeavesComponent } from './Components/employee-consumed-leaves/employee-consumed-leaves.component';
+import { EmployeePendingLeavesComponent } from './Components/employee-pending-leaves/employee-pending-leaves.component';
+import { TodaysEmployeeLeaveComponent } from './Components/todays-employee-leave/todays-employee-leave.component';
 
 
 export const leaveRoutes: Routes = [
@@ -29,19 +32,21 @@ export const leaveRoutes: Routes = [
   path: '',
   component: LeaveRouterContainerComponent,
   children: [
-    // { path: 'leaveform', component: AddLeaveComponent  },
+    { path: '', redirectTo: 'applied', pathMatch: 'full' },
     { path: 'pendingleave', component: LeaveRoutingComponent},
     { path: 'updateleave/:id', component: UpdateStatusComponent},
     { path: 'employeedetails/:id', component: LeaveDetailsComponent},
     { path: 'appliedleave', component: TeamMemberLeaveRequestComponent},
     { path: 'applied', component: AllEmployeeLeavesComponent},
-    { path: '', redirectTo: 'list', pathMatch: 'full' },
+    { path: 'leavebydate',component:EmployeeLeavesByDateComponent},
+    { path: 'todaysleave',component:TodaysEmployeeLeaveComponent},
     { path: 'list', component: EmployeeLeaveListComponent },
     { path: 'leavecount', component: AllLeaveCountComponent },
     { path: 'details/:id', component: EmployeeLeaveDetailsComponent },
     { path: 'add', component: AddLeaveComponent },
     { path: 'update/:id', component: UpdateEmployeeLeaveComponent },
-    { path: 'employeeleave', component: EmployeeLeavesComponent }
+    { path: 'employeeleave', component: EmployeeLeavesComponent },
+    { path: 'employeeleavesbydate', component: EmployeeLeavesByDateComponent }
   ],
 },
 ]
@@ -67,6 +72,9 @@ export const leaveRoutes: Routes = [
     UpdateStatusComponent,
     LeaveDetailsComponent,
     EmployeeLeavesByDateComponent,
+    EmployeeConsumedLeavesComponent,
+    EmployeePendingLeavesComponent,
+    TodaysEmployeeLeaveComponent
   ],
   imports: [
     CommonModule,
@@ -86,7 +94,7 @@ export const leaveRoutes: Routes = [
     AllEmployeeLeavesComponent,
     UpdateEmployeeLeaveComponent,
     AllRoleBasedLeavesComponent,
-    UpdateRoleBasedLeaveComponent
+    UpdateRoleBasedLeaveComponent,
   ]
 })
 export class LeavesModule { }

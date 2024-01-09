@@ -16,7 +16,7 @@ export class LeaveDetailsComponent {
     id: 0,
     status: ''
   }
-  LeaveId:number=0;
+  leaveId:number=0;
   leaveDetails:LeaveDetails |undefined;
 
   constructor(
@@ -27,9 +27,9 @@ export class LeaveDetailsComponent {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params)=>{
-      this.LeaveId=Number(params.get('id'));
-        console.log(this.LeaveId);
-    this.leaveService.getEmployeeLeavesDetails(this.LeaveId).subscribe((res)=>{
+      this.leaveId=Number(params.get('id'));
+        console.log(this.leaveId);
+    this.leaveService.getEmployeeLeavesDetails(this.leaveId).subscribe((res)=>{
       console.log(res);
       this.leaveDetails=res;
        })

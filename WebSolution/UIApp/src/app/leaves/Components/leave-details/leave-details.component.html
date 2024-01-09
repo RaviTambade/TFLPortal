@@ -1,29 +1,30 @@
-<h3>Leaves Details</h3>
-<div class="container">
-    <div class="card col-6">
-    <table class="table-bordered text-center">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Application Date</th>
-                    <th>From Date</th>
-                    <th>To Date</th>
-                    <th>Status</th>
-                    <th>LeaveType</th>
-                   </tr>
-            </thead>
-            <tbody *ngIf="leaveDetails">
-                <tr>
-                    <td>{{leaveDetails.fullName}}</td>
-                    <td>{{leaveDetails.applicationDate |date}}</td>
-                    <td>{{leaveDetails.fromDate |date}}</td>
-                    <td>{{leaveDetails.toDate |date}}</td>
-                    <td>{{leaveDetails.status}}</td>
-                    <td>{{leaveDetails.leaveType}}</td>
-                </tr>
-                <a style="cursor: pointer; text-decoration: underline ; color:  #0000EE;" (click)="onApproved(leaveDetails.id)">Approved</a>
-                <br>
-                <a style="cursor: pointer; text-decoration: underline ; color:  #0000EE;" (click)="onReject(leaveDetails.id)">Reject</a>
-            </tbody>   
-    </table>  
+<h2>Leave Details</h2>
+<div class="row">
+    <div class="row">
+        <div class="col-md-6">
+            <div >
+                <div *ngIf="leaveDetails">
+                                    <p><label>Name:</label>{{leaveDetails.fullName}}</p>
+                                    <p><label>Application Date:</label>{{leaveDetails.applicationDate |date}}</p>
+                                    <p><label>From Date:</label>{{leaveDetails.fromDate |date}}</p>
+                                    <p><label>To Date:</label>{{leaveDetails.toDate |date}}</p>
+                                    <p><label>Status:</label>{{leaveDetails.status}}</p>
+                                    <p><label>LeaveType:</label>{{leaveDetails.leaveType}}</p>
+                                    <div class="button-container">
+                                        <button type="button" class="btn btn-success" (click)="onApproved(leaveDetails.id)">Approve</button>&nbsp;
+                                        <button type="button" class="btn btn-danger" (click)="onReject(leaveDetails.id)">Reject</button>
+                                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <app-employee-consumed-leaves [leaveId]="leaveId"></app-employee-consumed-leaves>
+            <app-employee-pending-leaves [leaveId]="leaveId"></app-employee-pending-leaves> 
+        </div>
+        <div class="row">
+        <div class="col-md-6">
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
 </div>

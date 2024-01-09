@@ -12,13 +12,13 @@ export class LeavesComponent {
   leaveMenuRoutes: UrlType[] = [
     // { displayName: 'All leave', Url: 'appliedleave' },
     { displayName: 'leave', Url: 'applied' },
-    { displayName: 'employeeleave', Url: 'employeeleave' },
+    // { displayName: 'employeeleave', Url: 'employeeleave' },
   ];
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.navigateUrl(this.leaveMenuRoutes[3].Url);
+    this.navigateUrl(this.leaveMenuRoutes[0].Url);
   }
 
   navigateUrl(url: string) {
