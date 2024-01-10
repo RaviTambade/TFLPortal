@@ -9,7 +9,6 @@ public interface ITimesheetService
     Task<List<TimesheetViewModel>> GetEmployeeTimesheetsForHRManager(int hrmanagerId,string status,DateOnly fromDate,DateOnly toDate);
     Task<TimesheetViewModel> GetTimesheet(int employeeId, DateOnly date);
     Task<int> GetTimesheetId(int employeeId, DateOnly date);
-
     Task<TimesheetViewModel> GetTimesheet(int timesheetId);
     Task<List<TimesheetDetailViewModel>> GetTimesheetDetails(int timesheetId);
     Task<List<WorkCategoryDetails>> GetActivityWiseHours(int employeeId,string intervalType,int projectId);
@@ -22,6 +21,4 @@ public interface ITimesheetService
     Task<bool> UpdateTimesheetDetail(int timesheetDetailId,TimesheetDetail timesheetEntry);
     Task<bool> RemoveTimesheetDetail(int timesheetDetailId);
     Task<bool> RemoveAllTimesheetDetails(int timesheetId);
-
-
 }
