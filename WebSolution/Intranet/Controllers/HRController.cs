@@ -40,7 +40,8 @@ public class HRController : ControllerBase
             ImageUrl = user.ImageUrl,
             BirthDate = user.BirthDate,
             EmployeeId = employee.Id,
-            UserId = user.Id
+            UserId = user.Id,
+            AadharId=user.AadharId
         };
         return emp;
     }
