@@ -15,13 +15,12 @@ public class ExternalApiService
         httpClient = factory.CreateClient();
     }
 
-
-    public async Task<User?> GetUser(int userId)
+    public async Task<User> GetUser(int userId)
     {
         var response = await httpClient.GetFromJsonAsync<User>(
             $"http://localhost:5142/api/users/{userId}"
         );
-        return response;
+        return response ?? new User();
     }
 
     public async Task<BankAccount?> GetUserBankAccount(int userId, string userType)
@@ -52,15 +51,19 @@ public class ExternalApiService
 
     public async Task<List<User>> GetUserDetails(string userIds)
     {
-        var response = await httpClient.GetFromJsonAsync<List<User>>(
+        if (string.IsNullOrEmpty(userIds))
+        {
+            return new List<User>();
+        }
+        List<User>? response = await httpClient.GetFromJsonAsync<List<User>>(
             $"http://localhost:5142/api/users/name/{userIds}"
         );
-        return response;
+        return response ?? new List<User>();
     }
 
-     public async Task<List<Role>> GetRoleOfUser(int userId)
+    public async Task<List<Role>> GetRoleOfUser(int userId)
     {
-        string lob="PMS";
+        string lob = "PMS";
         var response = await httpClient.GetFromJsonAsync<List<Role>>(
             $"http://localhost:5142/api/roles/{userId}/{lob}"
         );
@@ -69,10 +72,14 @@ public class ExternalApiService
 
     public async Task<List<Role>> GetRoleDetails(string roleIds)
     {
+        if (string.IsNullOrEmpty(roleIds))
+        {
+            return new List<Role>();
+        }
         var response = await httpClient.GetFromJsonAsync<List<Role>>(
             $"http://localhost:5142/api/roles/{roleIds}"
         );
-        return response;
+        return response ?? new List<Role>();
     }
 
     // public async Task<List<Role>> GetAllRole()

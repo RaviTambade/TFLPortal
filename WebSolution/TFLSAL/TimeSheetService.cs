@@ -15,13 +15,11 @@ public class TimesheetService : ITimesheetService
     {
         _configuration = configuration;
         _connectionString =
-            _configuration.GetConnectionString("DefaultConnection")
-            ?? throw new ArgumentNullException("connectionString");
+            _configuration.GetConnectionString("DefaultConnection")?? throw new ArgumentNullException("connectionString");
     }
 
     public async Task<List<TimesheetDuration>> GetTimesheets(
         int employeeId,
-        List<string> status,
         DateOnly fromDate,
         DateOnly toDate
     )
@@ -33,39 +31,31 @@ public class TimesheetService : ITimesheetService
         {
             string fromdate = fromDate.ToString("yyyy-MM-dd");
             string todate = toDate.ToString("yyyy-MM-dd");
-            string statusClause = string.Join(",", status);
+            
 
             string query =
                 @$"select timesheets.* , 
                     COALESCE(CAST(((SUM(TIME_TO_SEC(TIMEDIFF(totime,fromtime))))/3600)AS DECIMAL(10,2)),0) as time_in_hour
                     from timesheets
                     LEFT JOIN timesheetdetails on timesheetdetails.timesheetid=timesheets.id
-                    where  FIND_IN_SET(timesheets.status, @status)  AND  employeeid =@employeeId   AND timesheetdate>=@fromdate AND timesheetdate<=@todate 
+                    WHERE  employeeid =@employeeId   AND timesheetdate>=@fromdate AND timesheetdate<=@todate 
                     GROUP BY timesheetdate";
             MySqlCommand command = new MySqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@employeeId", employeeId);
-            command.Parameters.AddWithValue("@status", statusClause);
             command.Parameters.AddWithValue("@fromdate", fromdate);
             command.Parameters.AddWithValue("@todate", todate);
             await connection.OpenAsync();
             MySqlDataReader reader = (MySqlDataReader)await command.ExecuteReaderAsync();
             while (await reader.ReadAsync())
             {
-                int id = int.Parse(reader["id"].ToString());
-                string dbstatus = reader["status"].ToString();
-                double hours = double.Parse(reader["time_in_hour"].ToString());
-                DateTime timesheetDate = DateTime.Parse(reader["timesheetdate"].ToString());
-                DateTime statusChangedDate = DateTime.Parse(reader["statuschangeddate"].ToString());
-
                 TimesheetDuration timesheet = new TimesheetDuration()
                 {
-                    Id = id,
-                    TimesheetDate = timesheetDate,
-                    Status = dbstatus,
-                    EmployeeId = employeeId,
-                    StatusChangedDate = statusChangedDate,
-                    Hours = hours
+                    Id = reader.GetInt32("id"),
+                    Status = reader.GetString("status"),
+                    TimesheetDate = reader.GetDateTime("timesheetdate"),
+                    StatusChangedDate = reader.GetDateTime("statuschangeddate"),
+                    Hours = reader.GetDouble("time_in_hour"),
                 };
                 timesheets.Add(timesheet);
             }
@@ -113,22 +103,16 @@ public class TimesheetService : ITimesheetService
             MySqlDataReader reader = (MySqlDataReader)await command.ExecuteReaderAsync();
             while (await reader.ReadAsync())
             {
-                int id = int.Parse(reader["id"].ToString());
-                int userId = int.Parse(reader["userid"].ToString());
-                int employeeId = int.Parse(reader["employeeid"].ToString());
-                double hours = double.Parse(reader["time_in_hour"].ToString());
-                DateTime timesheetDate = DateTime.Parse(reader["timesheetdate"].ToString());
-                DateTime statusChangedDate = DateTime.Parse(reader["statuschangeddate"].ToString());
-
                 TimesheetViewModel timesheet = new TimesheetViewModel()
                 {
-                    Id = id,
-                    TimesheetDate = timesheetDate,
-                    Status = status,
-                    EmployeeId = employeeId,
-                    StatusChangedDate = statusChangedDate,
-                    Hours = hours,
-                    Employee = new Employee { UserId = userId }
+                    Id = reader.GetInt32("id"),
+                    Status = reader.GetString("status"),
+                    TimesheetDate = reader.GetDateTime("timesheetdate"),
+                    StatusChangedDate = reader.GetDateTime("statuschangeddate"),
+                    EmployeeId = reader.GetInt32("employeeid"),
+                    Hours = reader.GetDouble("time_in_hour"),
+                    Employee = new Employee { UserId = reader.GetInt32("userid") },
+                    TimeSheetDetails = new List<TimesheetDetailViewModel>()
                 };
                 timesheets.Add(timesheet);
             }
@@ -145,7 +129,7 @@ public class TimesheetService : ITimesheetService
         return timesheets;
     }
 
-      public async Task<int> GetTimesheetId(int employeeId, DateOnly date)
+    public async Task<int> GetTimesheetId(int employeeId, DateOnly date)
     {
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
@@ -164,7 +148,7 @@ public class TimesheetService : ITimesheetService
             MySqlDataReader reader = command.ExecuteReader();
             if (await reader.ReadAsync())
             {
-                timesheetId = int.Parse(reader["timesheetid"].ToString());
+                timesheetId = reader.GetInt32("timesheetid");
             }
             await reader.CloseAsync();
         }
@@ -204,45 +188,33 @@ public class TimesheetService : ITimesheetService
             MySqlDataReader reader = command.ExecuteReader();
             if (await reader.ReadAsync())
             {
-                int timesheetId = int.Parse(reader["timesheetid"].ToString());
-                int employeeUserId = int.Parse(reader["userid"].ToString());
-                string status = reader["status"].ToString();
-                DateTime statusChangedDate = DateTime.Parse(reader["statuschangeddate"].ToString());
+                int timesheetId = reader.GetInt32("timesheetid");
 
                 timesheet = new TimesheetViewModel()
                 {
                     Id = timesheetId,
-                    Status = status,
+                    Status = reader.GetString("status"),
                     TimesheetDate = DateTime.Parse(formatedDate),
-                    StatusChangedDate = statusChangedDate,
+                    StatusChangedDate = reader.GetDateTime("statuschangeddate"),
                     EmployeeId = employeeId,
-                    Employee = new Employee { UserId = employeeUserId },
+                    Employee = new Employee { UserId = reader.GetInt32("userid") },
                     TimeSheetDetails = new List<TimesheetDetailViewModel>()
                 };
                 do
                 {
                     if (reader["timesheetdetailid"] != DBNull.Value)
                     {
-                        int timesheetDetailId = int.Parse(reader["timesheetdetailid"].ToString());
-                        int employeeWorkId = int.Parse(reader["employeeworkid"].ToString());
-                        int projectId = int.Parse(reader["projectId"].ToString());
-                        string projectName = reader["projectname"].ToString();
-                        string workTitle = reader["worktitle"].ToString();
-                        string workType = reader["worktype"].ToString();
-                        TimeOnly fromtime = TimeOnly.Parse(reader["fromtime"].ToString());
-                        TimeOnly totime = TimeOnly.Parse(reader["totime"].ToString());
-
                         TimesheetDetailViewModel timesheetDetail = new TimesheetDetailViewModel()
                         {
-                            Id = timesheetDetailId,
-                            FromTime = fromtime,
-                            ToTime = totime,
-                            EmployeeWorkId = employeeWorkId,
+                            Id = reader.GetInt32("timesheetdetailid"),
+                            FromTime = TimeOnly.Parse(reader.GetString("fromtime")),
+                            ToTime = TimeOnly.Parse(reader.GetString("totime")),
+                            EmployeeWorkId = reader.GetInt32("employeeworkid"),
                             TimesheetId = timesheetId,
-                            projectId = projectId,
-                            ProjectName = projectName,
-                            WorkTitle = workTitle,
-                            WorkType = workType
+                            ProjectId = reader.GetInt32("projectId"),
+                            ProjectName = reader.GetString("projectname"),
+                            WorkTitle = reader.GetString("worktitle"),
+                            WorkType = reader.GetString("worktype")
                         };
                         timesheet.TimeSheetDetails.Add(timesheetDetail);
                     }
@@ -286,46 +258,31 @@ public class TimesheetService : ITimesheetService
             MySqlDataReader reader = command.ExecuteReader();
             if (await reader.ReadAsync())
             {
-                int employeeId = int.Parse(reader["employeeid"].ToString());
-                int employeeUserId = int.Parse(reader["userid"].ToString());
-                string status = reader["status"].ToString();
-                DateTime timesheetDate = DateTime.Parse(reader["timesheetdate"].ToString());
-                DateTime statusChangedDate = DateTime.Parse(reader["statuschangeddate"].ToString());
-
                 timesheet = new TimesheetViewModel()
                 {
                     Id = timesheetId,
-                    Status = status,
-                    TimesheetDate = timesheetDate,
-                    StatusChangedDate = statusChangedDate,
-                    EmployeeId = employeeId,
-                    Employee = new Employee { UserId = employeeUserId },
+                    Status = reader.GetString("status"),
+                    TimesheetDate = reader.GetDateTime("timesheetdate"),
+                    StatusChangedDate = reader.GetDateTime("statuschangeddate"),
+                    EmployeeId = reader.GetInt32("employeeid"),
+                    Employee = new Employee { UserId = reader.GetInt32("userid") },
                     TimeSheetDetails = new List<TimesheetDetailViewModel>()
                 };
                 do
                 {
                     if (reader["timesheetdetailid"] != DBNull.Value)
                     {
-                        int timesheetDetailId = int.Parse(reader["timesheetdetailid"].ToString());
-                        int employeeWorkId = int.Parse(reader["employeeworkid"].ToString());
-                        int projectId = int.Parse(reader["projectId"].ToString());
-                        string projectName = reader["projectname"].ToString();
-                        string workTitle = reader["worktitle"].ToString();
-                        string workType = reader["worktype"].ToString();
-                        TimeOnly fromtime = TimeOnly.Parse(reader["fromtime"].ToString());
-                        TimeOnly totime = TimeOnly.Parse(reader["totime"].ToString());
-
                         TimesheetDetailViewModel timesheetDetail = new TimesheetDetailViewModel()
                         {
-                            Id = timesheetDetailId,
-                            FromTime = fromtime,
-                            ToTime = totime,
-                            EmployeeWorkId = employeeWorkId,
+                            Id = reader.GetInt32("timesheetdetailid"),
+                            FromTime = TimeOnly.Parse(reader.GetString("fromtime")),
+                            ToTime = TimeOnly.Parse(reader.GetString("totime")),
+                            EmployeeWorkId = reader.GetInt32("employeeworkid"),
                             TimesheetId = timesheetId,
-                            projectId = projectId,
-                            ProjectName = projectName,
-                            WorkTitle = workTitle,
-                            WorkType = workType
+                            ProjectId = reader.GetInt32("projectId"),
+                            ProjectName = reader.GetString("projectname"),
+                            WorkTitle = reader.GetString("worktitle"),
+                            WorkType = reader.GetString("worktype")
                         };
                         timesheet.TimeSheetDetails.Add(timesheetDetail);
                     }
@@ -346,17 +303,19 @@ public class TimesheetService : ITimesheetService
 
     public async Task<TimesheetDetailViewModel> GetTimesheetDetail(int timesheetDetailId)
     {
-        TimesheetDetailViewModel timesheetDetail = null;
+        TimesheetDetailViewModel timesheetDetail =  new TimesheetDetailViewModel();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
             string query =
                 @"SELECT timesheetdetails.*,employeework.projectid,projects.title as projectname,
+                 sprintmaster.id as sprintid,sprintmaster.title as sprinttitle,
                  employeework.projectworktype as worktype,employeework.title as worktitle
                  from timesheetdetails 
                  INNER JOIN employeework ON timesheetdetails.employeeworkid=employeework.id
                  INNER JOIN projects ON employeework.projectid=projects.id
+                 INNER JOIN sprintmaster ON employeework.sprintid=sprintmaster.id
                  WHERE timesheetdetails.id=@timesheetDetailId";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@timesheetDetailId", timesheetDetailId);
@@ -364,26 +323,19 @@ public class TimesheetService : ITimesheetService
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
-                TimeOnly fromtime = TimeOnly.Parse(reader["fromtime"].ToString());
-                TimeOnly totime = TimeOnly.Parse(reader["totime"].ToString());
-                int employeeWorkId = int.Parse(reader["employeeworkid"].ToString());
-                int timesheetId = int.Parse(reader["timesheetid"].ToString());
-                int projectId = int.Parse(reader["projectId"].ToString());
-                string projectName = reader["projectname"].ToString();
-                string workTitle = reader["worktitle"].ToString();
-                string workType = reader["worktype"].ToString();
-
                 timesheetDetail = new TimesheetDetailViewModel()
                 {
-                    Id = timesheetDetailId,
-                    FromTime = fromtime,
-                    ToTime = totime,
-                    EmployeeWorkId = employeeWorkId,
-                    TimesheetId = timesheetId,
-                    projectId = projectId,
-                    ProjectName = projectName,
-                    WorkTitle = workTitle,
-                    WorkType = workType
+                    Id = reader.GetInt32("id"),
+                    FromTime = TimeOnly.Parse(reader.GetString("fromtime")),
+                    ToTime = TimeOnly.Parse(reader.GetString("totime")),
+                    EmployeeWorkId = reader.GetInt32("employeeworkid"),
+                    TimesheetId = reader.GetInt32("timesheetid"),
+                    ProjectId = reader.GetInt32("projectId"),
+                    ProjectName = reader.GetString("projectname"),
+                    WorkTitle = reader.GetString("worktitle"),
+                    WorkType = reader.GetString("worktype"),
+                    SprintId = reader.GetInt32("sprintid"),
+                    SprintName = reader.GetString("sprinttitle"),
                 };
             }
             await reader.CloseAsync();
@@ -418,26 +370,17 @@ public class TimesheetService : ITimesheetService
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
-                TimeOnly fromtime = TimeOnly.Parse(reader["fromtime"].ToString());
-                TimeOnly totime = TimeOnly.Parse(reader["totime"].ToString());
-                int timesheetDetailId = int.Parse(reader["id"].ToString());
-                int employeeWorkId = int.Parse(reader["employeeworkid"].ToString());
-                int projectId = int.Parse(reader["projectId"].ToString());
-                string projectName = reader["projectname"].ToString();
-                string workTitle = reader["worktitle"].ToString();
-                string workType = reader["worktype"].ToString();
-
                 TimesheetDetailViewModel timesheetDetail = new TimesheetDetailViewModel()
                 {
-                    Id = timesheetDetailId,
-                    FromTime = fromtime,
-                    ToTime = totime,
-                    EmployeeWorkId = employeeWorkId,
+                    Id = reader.GetInt32("id"),
+                    FromTime = TimeOnly.Parse(reader.GetString("fromtime")),
+                    ToTime = TimeOnly.Parse(reader.GetString("totime")),
+                    EmployeeWorkId = reader.GetInt32("employeeworkid"),
                     TimesheetId = timesheetId,
-                    projectId = projectId,
-                    ProjectName = projectName,
-                    WorkTitle = workTitle,
-                    WorkType = workType
+                    ProjectId = reader.GetInt32("projectId"),
+                    ProjectName = reader.GetString("projectname"),
+                    WorkTitle = reader.GetString("worktitle"),
+                    WorkType = reader.GetString("worktype")
                 };
 
                 timesheetDetails.Add(timesheetDetail);
@@ -478,29 +421,18 @@ public class TimesheetService : ITimesheetService
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
-                string userstory = reader["userstory"].ToString();
-                string label = reader["label"].ToString();
-                string task = reader["task"].ToString();
-                string bug = reader["bug"].ToString();
-                string issues = reader["issues"].ToString();
-                string meeting = reader["meeting"].ToString();
-                string learning = reader["learning"].ToString();
-                string mentoring = reader["mentoring"].ToString();
-                string clientcall = reader["clientcall"].ToString();
-                string other = reader["other"].ToString();
-
                 WorkCategoryDetails workCategoryDetail = new WorkCategoryDetails()
                 {
-                    Label = label,
-                    UserStory = userstory,
-                    Task = task,
-                    Bug = bug,
-                    Issues = issues,
-                    Meeting = meeting,
-                    Learning = learning,
-                    Mentoring = mentoring,
-                    ClientCall = clientcall,
-                    Other = other
+                    Label = reader.GetString("label"),
+                    UserStory = reader.GetDouble("userstory"),
+                    Task = reader.GetDouble("task"),
+                    Bug = reader.GetDouble("bug"),
+                    Issues = reader.GetDouble("issues"),
+                    Meeting = reader.GetDouble("meeting"),
+                    Learning = reader.GetDouble("learning"),
+                    Mentoring = reader.GetDouble("mentoring"),
+                    ClientCall = reader.GetDouble("clientcall"),
+                    Other = reader.GetDouble("other")
                 };
                 workCategoryDetails.Add(workCategoryDetail);
             }
@@ -541,13 +473,10 @@ public class TimesheetService : ITimesheetService
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
-                string projectName = reader["projectname"].ToString();
-                double hours = double.Parse(reader["hours"].ToString());
-
                 ProjectWorkHours projectHours = new ProjectWorkHours()
                 {
-                    ProjectName = projectName,
-                    Hours = hours
+                    ProjectName = reader.GetString("projectname"),
+                    Hours = reader.GetDouble("hours")
                 };
                 projectsHoursList.Add(projectHours);
             }
@@ -785,6 +714,4 @@ public class TimesheetService : ITimesheetService
         }
         return status;
     }
-
-  
 }

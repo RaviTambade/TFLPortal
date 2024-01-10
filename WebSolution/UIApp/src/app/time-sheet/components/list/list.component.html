@@ -9,7 +9,7 @@
     </select>
     <div *ngFor="let status of timesheetStatus">
         <label>
-            <input type="checkbox" class="mx-2 form-check-input" [(ngModel)]="selectedStatus[status]" (change)="onIntervalChange()">
+            <input type="checkbox" class="mx-2 form-check-input" [(ngModel)]="selectedStatus[status]" (change)="onStatusChange()">
             {{status}}
         </label>
     </div>
@@ -25,7 +25,7 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody *ngFor="let timesheet of timeSheets">
+        <tbody *ngFor="let timesheet of filteredTimeSheets">
             <tr>
                 <td> {{timesheet.timesheetDate | date:'dd-MM-yyy'}}</td>
                 <td> {{timesheet.status}}</td>

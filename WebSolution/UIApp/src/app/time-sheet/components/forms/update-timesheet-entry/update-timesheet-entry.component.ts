@@ -5,6 +5,7 @@ import { Project } from 'src/app/projects/Models/project';
 import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { ProjectService } from 'src/app/shared/services/project.service';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
+import { Sprint } from 'src/app/time-sheet/models/sprint';
 import { TimeSheetDetailView } from 'src/app/time-sheet/models/timesheet-detail-view';
 import { TimeSheetDetails } from 'src/app/time-sheet/models/timesheetdetails';
 
@@ -16,8 +17,11 @@ import { TimeSheetDetails } from 'src/app/time-sheet/models/timesheetdetails';
 export class UpdateTimesheetEntryComponent implements OnInit {
   projects: Project[] = [];
   selectedProjectId: number = 0;
+  selectedSprintId: number = 0;
   employeeId: number = 0;
   employeeWorks: EmployeeWork[] = [];
+  sprints: Sprint[] = [];
+
 
   @Input() timesheetDetails!: TimeSheetDetailView;
   @Output() stateChangeEvent = new EventEmitter<boolean>();
@@ -32,6 +36,11 @@ export class UpdateTimesheetEntryComponent implements OnInit {
     private projectSvc: ProjectService
   ) {}
 
+  get workDescription(){
+    return this.employeeWorks.filter((work)=> work.id==this.timesheetDetails.employeeWorkId)
+                       .map((work)=> work.description).at(0);
+   }
+
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       let timesheetDetailId = params.get('id');
@@ -43,26 +52,44 @@ export class UpdateTimesheetEntryComponent implements OnInit {
           this.timesheetDetails.fromTime = this.timesheetDetails.fromTime.slice(0, 5);
           this.timesheetDetails.toTime = this.timesheetDetails.toTime.slice(0,5 );
           this.getDuration(this.timesheetDetails);
+          this.selectedProjectId = this.timesheetDetails.projectId;
+          this.selectedSprintId=this.timesheetDetails.sprintId;
+          console.log(res)
+         this.onSprintChange();
+
         });
     });
 
     this.employeeId = Number(localStorage.getItem(LocalStorageKeys.employeeId));
     this.projectSvc.getProjectsOfEmployee(this.employeeId).subscribe((res) => {
-      this.projects = res;
-      if (this.projects.length > 0) {
-        this.selectedProjectId = this.projects[0].id;
-        this.getWorks();
-      }
+    this.projects = res;
     });
+
+
+
     console.log(this.router.url)
     this.currentUrl=this.router.url;
   }
 
+  onSprintChange() {
+    this.workmgmtSvc
+      .getOngoingSprints(
+        this.selectedProjectId,
+        new Date().toISOString().slice(0, 10)
+      )
+      .subscribe((res) => {
+        console.log(res);
+        this.sprints = res;
+        this.getWorks();
+      });
+  }
+
+
   getWorks() {
     this.workmgmtSvc
-      .getEmployeeWorkByProjectAndStatus(
+      .getEmployeeWorkBySprintAndStatus(
+        this.selectedSprintId,
         this.employeeId,
-        this.selectedProjectId,
         'inprogress'
       )
       .subscribe((res) => {
@@ -83,19 +110,15 @@ export class UpdateTimesheetEntryComponent implements OnInit {
       .updateTimeSheetDetails(timesheetDetails.id, timesheetDetails)
       .subscribe((res) => {
         if (res) {
-          this.stateChangeEvent.emit(true);
-
+        this.stateChangeEvent.emit(true);
         this.navigateToUrl();
-
         }
       });
   }
 
   onCancelClick() {
     console.log(this.timesheetDetails)
-
     this.navigateToUrl();
-
   }
 
   getDuration(timeSheetEnrty: TimeSheetDetailView) {

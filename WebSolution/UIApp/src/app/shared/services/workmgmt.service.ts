@@ -82,9 +82,9 @@ export class WorkmgmtService {
   }
 
 
-  getAllTimeSheets(employeeId: number, status:string[],fromDate:string,toDate:string): Observable<TimesheetDuration[]> {
+  getAllTimeSheets(employeeId: number,fromDate:string,toDate:string): Observable<TimesheetDuration[]> {
     let url = `${this.serviceurl}/workmgmt/timesheets/employees/${employeeId}/status/from/${fromDate}/to/${toDate}`;
-    return this.http.post<TimesheetDuration[]>(url,status);
+    return this.http.get<TimesheetDuration[]>(url);
   }
 
   getOngoingSprints(projectId:number,date:string):Observable<Sprint[]>{
