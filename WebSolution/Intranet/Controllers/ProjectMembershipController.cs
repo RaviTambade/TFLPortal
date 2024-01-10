@@ -27,13 +27,15 @@ public class ProjectMembershipController : ControllerBase
         return status;
     }
 
-    [HttpPut("projects/{projectId}/release/employee/{employeeId}")]
-    public async Task<bool> ReleaseEmployeeFromProject(int projectId,int employeeId,ProjectMembership project)
+    [HttpGet("projects/{projectId}/employee/{employeeId}")]
+    public async Task<ProjectMembership> GetProjectMemberDetails(int employeeId,int projectId)
     {
-        bool status= await _service.ReleaseEmployeeFromProject(projectId,employeeId,project);
-        Console.WriteLine(status);
-        return status;
+        ProjectMembership employee= await _service.GetProjectMemberDetails(employeeId,projectId);
+        return employee;
     }
+
+
+
 
     [HttpGet("projects/release/employees")]
     public async Task<List<EmployeeResponse>> GetUnassignedEmployees()

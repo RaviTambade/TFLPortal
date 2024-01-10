@@ -283,6 +283,44 @@ public class ProjectMembershipService : IProjectMembershipService
         }
         return projects;
     }
+     public async Task<ProjectMembershipDetails> GetProjectMemberDetails(int employeeId,int projectId)
+    {
+        ProjectMembershipDetails employee= null;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query ="SELECT * from projectmembership where projectid=@projectId and employeeid=@employeeId";
+                
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@employeeId", employeeId);
+             command.Parameters.AddWithValue("@projectId", projectId);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {
+                 employee = new ProjectMembershipDetails
+                {
+                    Id = reader.GetInt32("id"),
+                    ProjectId = reader.GetInt32("projectid"),
+                    EmployeeId = reader.GetInt32("employeeid"),
+                    ProjectRole = reader.GetString("projectrole"),
+                    ProjectAssignDate = reader.GetDateTime("projectassigndate")
+                };
+            
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return employee;
+    }
 
 }  
 
