@@ -14,16 +14,19 @@ export class LeaveByStatusComponent implements OnInit{
   // checkStatusSanctioned: boolean = true;
   // checkStatusNotSanctioned: boolean = false;
   checkStatus: string = "applied";
-  leaves:LeaveApplication[]=[];
-  leaveDetails:LeaveApplication[]=[];
+  // leaves:LeaveApplication[]=[];
+  leaveDetails:LeaveDetails[]=[];
   constructor(private service:LeavesService){}
   
   ngOnInit(): void {
-    this.service.getAllEmployeeLeaves().subscribe((res)=>{
-      console.log(res);
-      this.leaves=res;
-      this.filterLeaves();
+    this.service.getLeaveDetails(this.checkStatus).subscribe((res)=>{
+      this.leaveDetails=res
     })
+    // this.service.getAllEmployeeLeaves().subscribe((res)=>{
+    //   console.log(res);
+    //   this.leaves=res;
+    //   this.filterLeaves();
+    // })
   }
 
   // filterActivities(): void {

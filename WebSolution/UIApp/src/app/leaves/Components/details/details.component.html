@@ -1,0 +1,7 @@
+<div *ngIf="leave">
+    <tr><th>Name:</th><td>{{leave.fullName}}</td></tr>
+    <tr><th>Application Date:</th><td>{{leave.applicationDate |date}}</td></tr>
+    <tr><th>LeaveType:</th><td>{{leave.leaveType}}</td></tr>
+    <tr><th>From Date:</th><td>{{leave.fromDate |date}}</td><th>To Date:</th><td>{{leave.toDate |date}}</td></tr>   
+    <tr><th><label>Status:</label></th><td>{{leave.status}}</td></tr> 
+</div>
