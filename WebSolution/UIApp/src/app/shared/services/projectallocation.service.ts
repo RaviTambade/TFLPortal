@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { MemberDetails } from 'src/app/project-manager/Model/MemberDetails';
 
 import { ProjectEmployees } from 'src/app/project-manager/Model/ProjectEmployes';
 import { ProjectMembership } from 'src/app/projects/Models/projectmembership';
@@ -59,4 +60,10 @@ export class ProjectallocationService {
     let url=this.serviceurl+"/projectmgmt/projectallocation/projects/"+projectId+"/status/"+status+"/employees";  
     return this.httpClient.get<ProjectEmployees[]>(url);
   }
+
+  getMemberDetails(projectId:number,employeeId:number):Observable<MemberDetails>{
+    let url=this.serviceurl+"/projectmgmt/projectallocation/projects/"+projectId+"/employee/"+employeeId;  
+    return this.httpClient.get<MemberDetails>(url);
+  }
+
 }

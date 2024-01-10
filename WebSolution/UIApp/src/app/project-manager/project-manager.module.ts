@@ -18,6 +18,10 @@ import { EmployeeProjectWorksComponent } from './components/employee-project-wor
 import { EmployeeprojectworkdetailsComponent } from './components/employee-project-works/employeeprojectworkdetails/employeeprojectworkdetails.component';
 import { ProjectWorkChartComponent } from './components/project-work-chart/project-work-chart.component';
 import { TimeSheetModule } from '../time-sheet/time-sheet.module';
+import { MembersdetailsComponent } from './components/membersdetails/membersdetails.component';
+import { SprintListComponent } from './components/sprint-list/sprint-list.component';
+import { SprintDetailsComponent } from './components/sprint-details/sprint-details.component';
+import { MembersListComponent } from './components/members-list/members-list.component';
 
 export const projectManagerRoutes: Routes = [
   {
@@ -35,6 +39,7 @@ export const projectManagerRoutes: Routes = [
         path: 'projects',
         component: ProjectComponent,children:[{path:'',pathMatch:'full',redirectTo:'Projects'},
                                               {path:'Projects',component:ProjectListComponent},
+                                              {path:'memberdetails/:employeeId/:projectId',component:MembersdetailsComponent},
                                               {path:'projectdetails/:id',component:ProjectdetailsComponent,children:[{path:'showdetails/:id',component:EmployeeProjectWorksComponent,children:[{path:'details/:id' ,component:EmployeeprojectworkdetailsComponent}]}]}
       ],
       },
@@ -61,6 +66,10 @@ export const projectManagerRoutes: Routes = [
     EmployeeProjectWorksComponent,
     EmployeeprojectworkdetailsComponent,
     ProjectWorkChartComponent,
+    MembersdetailsComponent,
+    SprintListComponent,
+    SprintDetailsComponent,
+    MembersListComponent
   ],
   imports: [CommonModule, RouterModule,TimeSheetModule],
 })

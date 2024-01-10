@@ -266,7 +266,7 @@ SELECT * from projects where managerid =8;
 
 SELECT * from employeework where projectid =4;
 
-SELECT * from projectmembership;
+SELECT * from projectmembership where projectid=4 and employeeid=10;
 
 
 SELECT DISTINCT(employees.userid) from employees INNER JOIN  projectmembership on employees.id = projectmembership.employeeid where projectmembership.projectid=4;
