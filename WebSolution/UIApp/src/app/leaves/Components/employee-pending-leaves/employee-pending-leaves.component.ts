@@ -10,23 +10,17 @@ import { LeaveDetails } from '../../Models/LeaveDetails';
 })
 export class EmployeePendingLeavesComponent {
 
-  @Input() leaveId:number=0;
+  @Input() employeeId:number=0;
   pendingLeave:PendingLeave |undefined;
   year:number=2024;
-  employeeId:number |undefined;
-  leaveDetails:LeaveDetails |undefined;
+ 
   constructor(private service:LeavesService){
   }
 
   ngOnInit(): void {
-    this.service.getEmployeeLeavesDetails(this.leaveId).subscribe((res)=>{
-      console.log(res);
-      this.leaveDetails=res;
-      this.employeeId=res.employeeId;
     this.service.getPendingLeaves(this.employeeId,this.year).subscribe((res)=>{
       this.pendingLeave=res;
       console.log(res);
     }) 
-    })
  }
 }

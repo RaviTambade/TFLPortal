@@ -26,6 +26,7 @@ import { EmployeeConsumedLeavesComponent } from './Components/employee-consumed-
 import { EmployeePendingLeavesComponent } from './Components/employee-pending-leaves/employee-pending-leaves.component';
 import { TodaysEmployeeLeaveComponent } from './Components/todays-employee-leave/todays-employee-leave.component';
 import { LeaveByStatusComponent } from './Components/leave-by-status/leave-by-status.component';
+import { DetailsComponent } from './Components/details/details.component';
 
 
 export const leaveRoutes: Routes = [
@@ -37,6 +38,7 @@ export const leaveRoutes: Routes = [
     { path: 'pendingleave', component: LeaveRoutingComponent},
     { path: 'updateleave/:id', component: UpdateStatusComponent},
     { path: 'employeedetails/:id', component: LeaveDetailsComponent},
+    { path: 'detail/:id', component: DetailsComponent},
     { path: 'appliedleave', component: TeamMemberLeaveRequestComponent},
     { path: 'applied', component: AllEmployeeLeavesComponent},
     { path: 'leavebydate',component:EmployeeLeavesByDateComponent},
@@ -77,7 +79,8 @@ export const leaveRoutes: Routes = [
     EmployeeConsumedLeavesComponent,
     EmployeePendingLeavesComponent,
     TodaysEmployeeLeaveComponent,
-    LeaveByStatusComponent
+    LeaveByStatusComponent,
+    DetailsComponent
   ],
   imports: [
     CommonModule,
