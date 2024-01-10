@@ -14,6 +14,7 @@ public interface IProjectMembershipService {
     Task<List<ProjectMembership>> GetAllProjectsBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate);
 
     Task<List<ProjectMembershipDetails>> GetEmployeesOfProject(int projectId,string status);
+    Task<ProjectMembershipDetails> GetProjectMemberDetails(int employeeId,int projectId);
 
     Task<List<ProjectMembership>> GetProjectsOfEmployeeBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate);
 

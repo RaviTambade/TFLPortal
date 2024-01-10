@@ -1,8 +1,10 @@
 <!-- <div class="container"> -->
+    <h3> Timesheet Details</h3>
     <label class="d-block mb-2">Date: {{timesheet?.timesheetDate | date}}</label>
     <label class="d-block mb-2">Status: {{timesheet?.status | titlecase}}</label>
     <label class="d-block mb-2" >Employee Name: <a [routerLink]="['/profile',timesheet?.employeeId]"> {{timesheet?.employeeName}} </a></label>
 
+    <p class="mb-2"> <b>Total Hours: {{totalminutes}} </b></p>
     <button *ngIf="isTimeSheetEditable()" class="btn btn-primary mb-2" (click)="onClickAddTimeSheetDetails()">Add Entry</button>
 
     <table class="table table-bordered">
@@ -35,7 +37,6 @@
         </ng-container>
     </table>
 
-    <p class="mb-2">Total Hours: {{totalminutes}}</p>
 
     <ng-container *ngIf="timesheet && timesheet.timeSheetDetails.length > 0 && isTimeSheetEditable()">
         <button class="btn btn-success" type="submit" (click)="onSubmit()">Submit</button>

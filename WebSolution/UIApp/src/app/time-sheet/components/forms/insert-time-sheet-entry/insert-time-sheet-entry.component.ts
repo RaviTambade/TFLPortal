@@ -24,7 +24,9 @@ export class InsertTimeSheetEntryComponent implements OnInit {
     projectId: 0,
     projectName: '',
     durationInMinutes: 0,
-    durationInHours: ''
+    durationInHours: '',
+    sprintName: '',
+    sprintId: 0
   };
 
   projects: Project[] = [];

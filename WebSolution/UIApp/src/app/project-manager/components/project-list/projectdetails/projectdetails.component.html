@@ -5,68 +5,46 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="container">
-                <h2>Project Details</h2>
                 <div class="card" *ngIf="project">
-                    <table>
-                        <thead>
+                    <div class="card-body">
+                          <h2>Project Details</h2>
+                        <table class="table table-bordered">
                             <tr>
-                                
                                 <th>Project Name</th>
-                                <th>Description</th>
-                                <th>Status:</th>
-                                <th>StartDate</th>
-                                <th>EndDate</th>
-                                </tr>
-                        </thead>
-                        <tbody  >
-                            <tr>
-                        
                                 <td><a>{{project.title}}</a></td>
-                                <td>{{project.description}}</td>
-                                <td>{{project.status}}</td>
-                                <td>{{project.startDate|date}}</td>
-                                <td>{{project.endDate|date}}</td>
                             </tr>
-                        </tbody>
-                    </table>
+                            <tr>
+                                <th>Description</th>
+                                <td>{{project.description}}</td>
+                            </tr>
+                            <tr>
+                                <th>Status:</th>
+                                <td>{{project.status}}</td>
+                            </tr>
+                            <tr>
+                                <th>StartDate</th>
+                                <td>{{project.startDate | date}}</td>
+                            </tr>
+                            <tr>
+                                <th>EndDate</th>
+                                <td>{{project.endDate | date}}</td>
+                            </tr>
+                        </table>
+                        <app-members-list [projectId]="project.id"></app-members-list>
+                    </div>
                 </div>
             </div>
         </div>
-            <div class="col-sm-6">
-                <app-project-work-chart >Work With Hours</app-project-work-chart>
-             
-            </div>
-
-            <h1>Members List</h1>
-            <div class="col-sm-6">
-            <div class="container">
-                <div class="card" >
-                    <table>
-                <thead>
-                  <tr>
-                    <th>FullName</th>
-                    <th>Role</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let employee of employees">
-                    <td>{{employee.fullName}}</td>
-                    <td>{{employee.projectRole}}</td>
-                  </tr>
-                </tbody>
-              </table>
-                </div>
-            </div>
-            </div>
-           
-              
-     </div>
-
-        
-
-        <div >
-            <a class="link-underline" [routerLink]="['showdetails', project?.id]">Show Employees Work</a>
+        <div class="col-sm-6">
+            <app-project-work-chart></app-project-work-chart>
         </div>
     </div>
+</div>
+
+
+       <div >
+            <a class="link-underline" [routerLink]="['showdetails', project?.id]">Show Employees Work</a>
+        </div>
+    
     <router-outlet></router-outlet>
 
