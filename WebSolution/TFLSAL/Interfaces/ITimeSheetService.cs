@@ -5,7 +5,7 @@ namespace Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 public interface ITimesheetService
 {
     
-    Task<List<TimesheetDuration>> GetTimesheets(int employeeId, List<string> status,DateOnly fromDate,DateOnly toDate);
+    Task<List<TimesheetDuration>> GetTimesheets(int employeeId,DateOnly fromDate,DateOnly toDate);
     Task<List<TimesheetViewModel>> GetEmployeeTimesheetsForHRManager(int hrmanagerId,string status,DateOnly fromDate,DateOnly toDate);
     Task<TimesheetViewModel> GetTimesheet(int employeeId, DateOnly date);
     Task<int> GetTimesheetId(int employeeId, DateOnly date);

@@ -27,6 +27,8 @@ export class AddTimesheetEntryComponent {
     projectName: '',
     durationInMinutes: 0,
     durationInHours: '',
+    sprintName: '',
+    sprintId: 0
   };
 
   projects: Project[] = [];
@@ -37,6 +39,10 @@ export class AddTimesheetEntryComponent {
   timesheetId: number | undefined;
   sprints: Sprint[] = [];
 
+  get workDescription(){
+   return this.employeeWorks.filter((work)=> work.id==this.timesheetDetail.employeeWorkId)
+                      .map((work)=> work.description).at(0);
+  }
   constructor(
     private workmgmtSvc: WorkmgmtService,
     private projectSvc: ProjectService,
@@ -49,18 +55,14 @@ export class AddTimesheetEntryComponent {
       this.timesheetId = Number(params.get('id'));
     });
     this.employeeId = Number(localStorage.getItem(LocalStorageKeys.employeeId));
-    this.onProjectChange();
-  }
-
-  onProjectChange() {
     this.projectSvc.getProjectsOfEmployee(this.employeeId).subscribe((res) => {
       this.projects = res;
       if (this.projects.length > 0 && this.selectedProjectId==0) {
         this.selectedProjectId = this.projects[0].id;
+        this.onSprintChange();
       }
-      this.onSprintChange();
-    });
-  }
+  })
+}
 
   onSprintChange() {
     this.workmgmtSvc

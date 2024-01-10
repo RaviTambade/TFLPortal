@@ -12,13 +12,13 @@ import { TimeSheetStatus } from '../../models/timesheetstatus';
 export class ListComponent implements OnInit {
   employeeId: number = 0;
   timeSheets: TimesheetDuration[] = [];
+  filteredTimeSheets: TimesheetDuration[] = [];
 
   fromDate: string | undefined;
   toDate: string | undefined;
   intervals: string[] = ['week', 'month'];
   selectedInterval: string = this.intervals[0];
   timesheetStatus: string[] = [TimeSheetStatus.inprogress,TimeSheetStatus.submitted,TimeSheetStatus.rejected ,TimeSheetStatus.approved];
-  // selectedStatus: string = this.timesheetStatus[0];
   selectedStatus: { [key: string]: boolean } = {};
 
 
@@ -28,7 +28,7 @@ export class ListComponent implements OnInit {
     this.employeeId=Number(localStorage.getItem(LocalStorageKeys.employeeId))
     this.selectedStatus[this.timesheetStatus[0]] = true;
     this.onIntervalChange()
-      }
+  }
 
   onIntervalChange() {
     switch (this.selectedInterval) {
@@ -46,13 +46,19 @@ export class ListComponent implements OnInit {
 
     }
     if (this.fromDate && this.toDate) {
-      const selectedStatusArray = Object.keys(this.selectedStatus).filter(status => this.selectedStatus[status]);
-      console.log('Selected Status:', selectedStatusArray);
       this.workmgmtSvc
-        .getAllTimeSheets(this.employeeId, selectedStatusArray, this.fromDate, this.toDate)
+        .getAllTimeSheets(this.employeeId,this.fromDate, this.toDate)
         .subscribe((res) => {
           this.timeSheets = res;
+          this.filteredTimeSheets=res;
+          this.onStatusChange();
         });
     }
+  }
+
+  onStatusChange(){
+    const selectedStatusArray = Object.keys(this.selectedStatus).filter(status => this.selectedStatus[status]);
+    console.log('Selected Status:', selectedStatusArray);
+    this.filteredTimeSheets=this.timeSheets.filter((timesheet)=> selectedStatusArray.includes(timesheet.status));  
   }
 }

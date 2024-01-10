@@ -15,13 +15,11 @@ public class TimesheetService : ITimesheetService
     {
         _configuration = configuration;
         _connectionString =
-            _configuration.GetConnectionString("DefaultConnection")
-            ?? throw new ArgumentNullException("connectionString");
+            _configuration.GetConnectionString("DefaultConnection")?? throw new ArgumentNullException("connectionString");
     }
 
     public async Task<List<TimesheetDuration>> GetTimesheets(
         int employeeId,
-        List<string> status,
         DateOnly fromDate,
         DateOnly toDate
     )
@@ -33,19 +31,18 @@ public class TimesheetService : ITimesheetService
         {
             string fromdate = fromDate.ToString("yyyy-MM-dd");
             string todate = toDate.ToString("yyyy-MM-dd");
-            string statusClause = string.Join(",", status);
+            
 
             string query =
                 @$"select timesheets.* , 
                     COALESCE(CAST(((SUM(TIME_TO_SEC(TIMEDIFF(totime,fromtime))))/3600)AS DECIMAL(10,2)),0) as time_in_hour
                     from timesheets
                     LEFT JOIN timesheetdetails on timesheetdetails.timesheetid=timesheets.id
-                    where  FIND_IN_SET(timesheets.status, @status)  AND  employeeid =@employeeId   AND timesheetdate>=@fromdate AND timesheetdate<=@todate 
+                    WHERE  employeeid =@employeeId   AND timesheetdate>=@fromdate AND timesheetdate<=@todate 
                     GROUP BY timesheetdate";
             MySqlCommand command = new MySqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@employeeId", employeeId);
-            command.Parameters.AddWithValue("@status", statusClause);
             command.Parameters.AddWithValue("@fromdate", fromdate);
             command.Parameters.AddWithValue("@todate", todate);
             await connection.OpenAsync();
@@ -214,7 +211,7 @@ public class TimesheetService : ITimesheetService
                             ToTime = TimeOnly.Parse(reader.GetString("totime")),
                             EmployeeWorkId = reader.GetInt32("employeeworkid"),
                             TimesheetId = timesheetId,
-                            projectId = reader.GetInt32("projectId"),
+                            ProjectId = reader.GetInt32("projectId"),
                             ProjectName = reader.GetString("projectname"),
                             WorkTitle = reader.GetString("worktitle"),
                             WorkType = reader.GetString("worktype")
@@ -282,7 +279,7 @@ public class TimesheetService : ITimesheetService
                             ToTime = TimeOnly.Parse(reader.GetString("totime")),
                             EmployeeWorkId = reader.GetInt32("employeeworkid"),
                             TimesheetId = timesheetId,
-                            projectId = reader.GetInt32("projectId"),
+                            ProjectId = reader.GetInt32("projectId"),
                             ProjectName = reader.GetString("projectname"),
                             WorkTitle = reader.GetString("worktitle"),
                             WorkType = reader.GetString("worktype")
@@ -313,10 +310,12 @@ public class TimesheetService : ITimesheetService
         {
             string query =
                 @"SELECT timesheetdetails.*,employeework.projectid,projects.title as projectname,
+                 sprintmaster.id as sprintid,sprintmaster.title as sprinttitle,
                  employeework.projectworktype as worktype,employeework.title as worktitle
                  from timesheetdetails 
                  INNER JOIN employeework ON timesheetdetails.employeeworkid=employeework.id
                  INNER JOIN projects ON employeework.projectid=projects.id
+                 INNER JOIN sprintmaster ON employeework.sprintid=sprintmaster.id
                  WHERE timesheetdetails.id=@timesheetDetailId";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@timesheetDetailId", timesheetDetailId);
@@ -331,10 +330,12 @@ public class TimesheetService : ITimesheetService
                     ToTime = TimeOnly.Parse(reader.GetString("totime")),
                     EmployeeWorkId = reader.GetInt32("employeeworkid"),
                     TimesheetId = reader.GetInt32("timesheetid"),
-                    projectId = reader.GetInt32("projectId"),
+                    ProjectId = reader.GetInt32("projectId"),
                     ProjectName = reader.GetString("projectname"),
                     WorkTitle = reader.GetString("worktitle"),
-                    WorkType = reader.GetString("worktype")
+                    WorkType = reader.GetString("worktype"),
+                    SprintId = reader.GetInt32("sprintid"),
+                    SprintName = reader.GetString("sprinttitle"),
                 };
             }
             await reader.CloseAsync();
@@ -376,7 +377,7 @@ public class TimesheetService : ITimesheetService
                     ToTime = TimeOnly.Parse(reader.GetString("totime")),
                     EmployeeWorkId = reader.GetInt32("employeeworkid"),
                     TimesheetId = timesheetId,
-                    projectId = reader.GetInt32("projectId"),
+                    ProjectId = reader.GetInt32("projectId"),
                     ProjectName = reader.GetString("projectname"),
                     WorkTitle = reader.GetString("worktitle"),
                     WorkType = reader.GetString("worktype")

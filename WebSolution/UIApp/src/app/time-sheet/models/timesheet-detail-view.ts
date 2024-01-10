@@ -7,6 +7,8 @@ export class TimeSheetDetailView extends TimeSheetDetails{
                 public override toTime:string,
                 public override timesheetId:number,
                 public workTitle:string,
+                public sprintName:string,
+                public sprintId:number,
                 public workType:string,
                 public projectId:number,
                 public projectName:string,
