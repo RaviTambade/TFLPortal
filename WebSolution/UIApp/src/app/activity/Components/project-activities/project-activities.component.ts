@@ -41,7 +41,7 @@ role:string|undefined=undefined;
       }
       else if(this.role=='Employee'){
         
-        this.workMgmtSvc.getAllEmployeeWorkOfEmployee(this.projectId,this.employeeId).subscribe((res)=>{
+        this.workMgmtSvc.getAllEmployeeWork(this.projectId,this.employeeId).subscribe((res)=>{
           console.log(this.employeeId);
           console.log(this.projectId);
           this.activities=res;

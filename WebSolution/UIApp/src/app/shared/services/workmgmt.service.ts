@@ -133,7 +133,7 @@ export class WorkmgmtService {
     let url = `${this.serviceurl}/workmgmt/timesheets/projects/workinghours/employees/${employeeId}/from/${fromDate}/to/${toDate}`;
     return this.http.get<ProjectWorkHour[]>(url);
   }
-  getAllEmployeeWorkOfEmployee(projectId:number,employeeId:number){
+  getAllEmployeeWork(projectId:number,employeeId:number){
   let url =this.serviceurl +'/workmgmt/employeeWork/projects/'+projectId+'/employees/'+employeeId;
     return this.http.get<any>(url);
   }

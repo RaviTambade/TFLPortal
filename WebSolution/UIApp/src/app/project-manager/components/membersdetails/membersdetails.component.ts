@@ -21,6 +21,7 @@ export class MembersdetailsComponent  implements OnInit{
 
     this.projectMembership.getMemberDetails(this.projectId,this.employeeId).subscribe((res)=>{
     this.employee=res;
+    console.log(res);
     })
     })
   }

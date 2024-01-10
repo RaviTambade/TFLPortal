@@ -3,7 +3,9 @@ export class MemberDetails{
    public employeeId : number,
     public projectId  :number,
    public  projectRole :string,
-   public projectAssignDate:Date
+   public projectAssignDate:Date,
+   public hireDate:Date
+
    ){
 
    } 
