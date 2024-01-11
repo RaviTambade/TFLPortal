@@ -14,6 +14,8 @@ import { projectRoutes } from '../projects/projects.module';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EmployeeProfileComponent } from './components/employee-profile/employee-profile.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
 
 export const employeeRoutes: Routes = [
   {
@@ -51,8 +53,9 @@ export const employeeRoutes: Routes = [
     EventsComponent,
     PerformenceApprisalComponent,
     EmployeeProfileComponent,
+    UpdateProfileComponent
   ],
-  imports: [CommonModule, RouterModule,SharedModule], 
+  imports: [CommonModule, RouterModule,SharedModule,ReactiveFormsModule], 
   exports:[EmployeeProfileComponent] 
 })
 export class EmployeeModule {}

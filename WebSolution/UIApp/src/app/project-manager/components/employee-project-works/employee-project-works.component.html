@@ -1,37 +1,38 @@
 <div class="container">
     <h2>Project Works List</h2>
-    <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <div>
-                    <table *ngFor="let employeework of employeeworks">
-                        <tr>
-                            <th>Title</th>
-                            <td>{{employeework.title}}</td>
-                        </tr>
-                        <tr>
-                            <th>Status</th>
-                            <td>{{employeework.status}}</td>
-                        </tr>
-                        <tr>
-                            <th>Assigned To</th>
-                            <td>{{employeework.assignedTo}}</td>
-                        </tr>
-                        <tr>
-                            <th>Action</th>
-                            <td><a class="link-underline" [routerLink]="['details', employeework.id]">Details</a></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"><hr></td>
-                        </tr>
-                    </table>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Status</th>
+                                    <th>Assigned To</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let employeework of employeeworks">
+                                    <td>{{employeework.title}}</td>
+                                    <td>{{employeework.status}}</td>
+                                    <td>{{employeework.assignedTo}}</td>
+                                    <td><a class="link-underline" [routerLink]="['details', employeework.id]">Details</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <button class="btn btn-primary">Assign Work</button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <router-outlet></router-outlet>
                 </div>
             </div>
         </div>
     </div>
-
-    <router-outlet></router-outlet>
 </div>

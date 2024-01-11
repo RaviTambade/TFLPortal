@@ -9,10 +9,5 @@ export class User {
     public gender: string,
     public email: string,
     public contactNumber: string,
-    public password: string,
-    public createdOn: string,
-    public modifiedOn: string,
-    public hireDate:string,
-    public salary:number
   ) {}
 }
