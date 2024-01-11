@@ -42,7 +42,9 @@ export const leaveRoutes: Routes = [
     { path: 'appliedleave', component: TeamMemberLeaveRequestComponent},
     { path: 'applied', component: AllEmployeeLeavesComponent},
     { path: 'leavebydate',component:EmployeeLeavesByDateComponent},
-    { path: 'todaysleave',component:TodaysEmployeeLeaveComponent},
+    { path: 'todaysleave',component:TodaysEmployeeLeaveComponent,
+    children:
+    [{path: 'detail/:id', component: DetailsComponent}]},
     { path: 'list', component: EmployeeLeaveListComponent },
     { path: 'leavecount', component: AllLeaveCountComponent },
     { path: 'details/:id', component: EmployeeLeaveDetailsComponent },

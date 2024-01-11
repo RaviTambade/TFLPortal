@@ -1,5 +1,10 @@
-<h3>Todays employee on Leaves </h3>
-<div>
+<h3>Todays employees on Leave </h3>
+<div *ngFor="let leave of leaves">
+    <!-- <p>Name:</p> -->
+    <P style="cursor: pointer; text-decoration: underline ; color:  #0000EE;" [routerLink]="['../detail',leave.id]">{{leave.fullName}}</P>
+</div>
+
+<!-- <div>
     <div class="card col-6">
     <table class="table-bordered text-center">
             <thead>
@@ -7,9 +12,9 @@
                     <th>Name</th>
                     <th>Application Date</th>
                     <th>From Date</th>
-                    <th>To Date</th>
-                    <!-- <th>Status</th> -->
-                    <th>LeaveType</th>
+                    <th>To Date</th> 
+                     <th>Status</th> 
+                    <th>LeaveType</th> 
                    </tr>
             </thead>
             <tbody >
@@ -17,11 +22,11 @@
                     <td>{{leave.fullName}}</td>
                     <td>{{leave.applicationDate|date }}</td>
                     <td>{{leave.fromDate|date }}</td>
-                    <td>{{leave.toDate|date }}</td>
-                    <!-- <td>{{leave.status}}</td> -->
-                    <td>{{leave.leaveType}}</td>
+                    <td>{{leave.toDate|date }}</td> 
+                    <td>{{leave.status}}</td> 
+                    <td>{{leave.leaveType}}</td> 
                 </tr>
             </tbody>   
     </table>  
     </div>
-</div>
+</div> -->
