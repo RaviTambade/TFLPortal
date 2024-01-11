@@ -42,6 +42,7 @@ export const projectManagerRoutes: Routes = [
                                               {path:'Projects',component:ProjectListComponent},
                                               {path:'memberdetails/:employeeId/:projectId',component:MembersdetailsComponent},
                                               {path:'projectdetails/:id',component:ProjectdetailsComponent},
+                                              {path:'sprintDetails/:id',component:SprintDetailsComponent},
                                               {path:'showdetails/:id',component:EmployeeProjectWorksComponent,
                                               children:[{path:'details/:id' ,component:EmployeeprojectworkdetailsComponent}]}
       ],
