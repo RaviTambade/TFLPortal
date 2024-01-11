@@ -1,1 +1,7 @@
-<p>sprint-details works!</p>
+<h2>Current Ongoing Sprints</h2>
+<div *ngFor="let sprint of sprints">
+    <p>SprintName:{{sprint.title}}</p>
+    <p>SprintGoal:{{sprint.goal}}</p>
+    <p>SprintStartdate:{{sprint.startDate}}</p>
+    <p>SprintEndDate:{{sprint.endDate}}</p>
+</div>

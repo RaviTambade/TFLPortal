@@ -1,1 +1,4 @@
-<p>sprint-list works!</p>
+<h2>Current Ongoing Sprints</h2>
+<div *ngFor="let sprint of sprints">
+    <p [routerLink]="['/projectmanager/projects/sprintDetails',sprint.projectId]">SprintName : {{sprint.title}}</p>
+</div>
