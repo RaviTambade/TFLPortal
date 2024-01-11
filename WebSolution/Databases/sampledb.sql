@@ -130,6 +130,29 @@ Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) valu
 Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(9,19000,3200,600,600,600);
 Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(10,19000,3200,600,600,600);
 
+Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(11,30000,1000,400,400,330);
+Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(12,45000,5000,500,500,350);
+Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(13,20000,6000,600,500,400);
+Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(14,19000,3200,600,600,600);
+Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(15,45000,5000,500,500,350);
+Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(16,20000,6000,600,500,400);
+Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(17,19000,3200,600,600,600);
+Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(18,19000,3200,600,600,600);
+
+
+
+Insert Into salaries(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(11,'2024-01-11',24,600,600,600,20000);
+Insert Into salaries(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(12,'2024-01-11',25,600,600,600,20000);
+Insert Into salaries(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(13,'2024-01-11',24,600,600,600,20000);
+Insert Into salaries(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(14,'2024-01-11',25,600,600,600,20000);
+Insert Into salaries(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(15,'2024-01-11',24,600,600,600,20000);
+Insert Into salaries(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(16,'2024-01-11',25,600,600,600,20000);
+Insert Into salaries(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(17,'2024-01-11',24,600,600,600,20000);
+Insert Into salaries(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(18,'2024-01-11',25,600,600,600,20000);
+
+
+
+
 
 INSERT INTO projects(title,startdate,enddate,description,managerid,status)VALUES('EKrushi','2023-11-03','2024-02-02','Krushi Product Management',1,'notstarted');
 INSERT INTO projects(title,startdate,enddate,description,managerid,status)VALUES('PMSAPP','2023-11-02','2024-02-02','Project Management System App',7,'notstarted');
