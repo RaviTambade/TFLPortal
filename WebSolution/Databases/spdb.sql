@@ -147,3 +147,39 @@ DELIMITER ;
 
 call getConsumedLeavesOfEmployee(12,4,2023,@SickLeaves,@Casualleaves,@PaidLeaves,@UnpaidLeaves);
 select @SickLeaves,@Casualleaves,@PaidLeaves,@UnpaidLeaves;
+
+
+DELIMITER $$
+create procedure calculatesalary(IN employee_Id INT ,IN month INT,In Year INT)
+BEGIN
+Declare workingdays int default 0;
+Declare consumedpaidleaves int default 0;
+Declare monthlybasicsalary double;
+Declare monthlyhra double;
+Declare dailyallowance double;
+Declare variablepayamount double default 0;
+Declare leaveTravelallowance double;
+Declare totalamount double;
+Declare deduction double;
+Declare Pf double default 500;
+Declare tax double default 1000;
+SELECT  COUNT(*) Into workingdays from timesheets
+WHERE employeeid =employee_Id AND MONTH(timesheetdate)=month AND YEAR(timesheetdate)=Year AND status="approved";
+
+SELECT coalesce(sum(datediff(todate,fromdate)+1),0) Into consumedpaidleaves From employeeleaves
+WHERE employeeid = employee_Id
+AND MONTH(fromdate)=month AND YEAR(fromdate)=Year AND status="sanctioned"
+AND leavetype<>"unpaid" group by employeeid;
+
+SELECT da,(lta/12),variablepay,(basicsalary/12),CAST((hra/12)as DECIMAL(10,2)) Into dailyallowance,leaveTravelallowance,
+variablepayamount,monthlybasicsalary,monthlyhra FROM salarystructures WHERE employeeid=employee_Id;
+set deduction=pf+tax;
+set totalamount = ((dailyallowance*(workingdays+consumedpaidleaves))+monthlybasicsalary+monthlyhra+leaveTravelallowance+variablepayamount)-(deduction);
+
+select totalamount,monthlybasicsalary,variablepayamount,monthlyhra,dailyallowance,leaveTravelallowance,pf,tax,deduction,workingdays,consumedpaidleaves;
+END $$
+DELIMITER ;
+
+
+call calculatesalary(10,1,2024);
+
