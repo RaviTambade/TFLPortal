@@ -22,9 +22,9 @@ export class DetailsComponent {
   }
 
   paySalary(employeeId: number){
-    this.svc.paySalary(this.employeeId).subscribe((res)=>{
-      this.status =res;
-      console.log(res);
-    })
+    // this.svc.paySalary(this.employeeId).subscribe((res)=>{
+    //   this.status =res;
+    //   console.log(res);
+    // })
   }
 }

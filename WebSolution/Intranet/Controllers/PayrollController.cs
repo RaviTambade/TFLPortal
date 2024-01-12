@@ -26,12 +26,12 @@ public class PayrollController : ControllerBase
         _apiService = apiService;
     }
 
-    [HttpGet("salaries/employees/{employeeId}")]
-    public async Task<SalaryResponse> GetSalaryStructure(int employeeId)
+    [HttpGet("salaries/employees/{employeeId}/month/{month}/year/{year}")]
+    public async Task<SalaryResponse> GetSalaryStructure(int employeeId,int month,int year)
     {
-        Salary salaryStructure = await _payrollService.GetSalary(employeeId);
+        MonthSalary salaryStructure = await _payrollService.CalculateSalary(employeeId,month,year);
         Console.WriteLine(salaryStructure);
-        Employee employee = await _hrService.GetEmployeeById(salaryStructure.EmployeeId);
+        Employee employee = await _hrService.GetEmployeeById(employeeId);
         Console.WriteLine(employee);
         BankAccount account = await _apiService.GetUserBankAccount(employee.UserId, "I");
         Console.WriteLine(account);
@@ -46,11 +46,18 @@ public class PayrollController : ControllerBase
             AccountNumber = account.AccountNumber,
             IFSC = account.IFSCCode,
             HRA = salaryStructure.HRA,
-            BasicSalary = salaryStructure.BasicSalary,
+            MonthlyBasicsalary = salaryStructure.MonthlyBasicsalary,
             DA = salaryStructure.DA,
             LTA = salaryStructure.LTA,
             VariablePay = salaryStructure.VariablePay,
-            Deduction = salaryStructure.Deduction
+            Deduction = salaryStructure.Deduction,
+            ConsumedPaidLeaves=salaryStructure.ConsumedPaidLeaves,
+            WorkingDays=salaryStructure.WorkingDays,
+            Pf=salaryStructure.Pf,
+            Tax=salaryStructure.Tax,
+            TotalAmount=salaryStructure.TotalAmount
+
+
         };
 
         return salaryDetails;
@@ -60,5 +67,14 @@ public class PayrollController : ControllerBase
     public async Task<bool> InsertSalaryStructure(Salary salary)
     {
         return await _payrollService.AddSalary(salary);
+    }
+
+
+
+     [HttpGet("employees/{employeeId}/month/{month}/year/{year}")]
+    public async Task<MonthSalary> CalculateSalary(int employeeId,int month,int year){
+     
+     MonthSalary salary= await _payrollService.CalculateSalary(employeeId,month,year);
+     return salary;
     }
 }

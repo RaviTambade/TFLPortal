@@ -1,4 +1,7 @@
-<h2>Current Ongoing Sprints</h2>
+
+<p class="box-decoration-slice bg-gradient-to-r from-indigo-600 to-pink-500 text-white px-2 ...">
+    Current Ongoing Sprints
+</p>
 <div *ngFor="let sprint of sprints">
     <p [routerLink]="['/projectmanager/projects/sprintDetails',sprint.projectId]">SprintName : {{sprint.title}}</p>
 </div>

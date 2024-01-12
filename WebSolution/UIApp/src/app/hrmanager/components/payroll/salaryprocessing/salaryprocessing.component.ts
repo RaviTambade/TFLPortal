@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HrService } from 'src/app/shared/services/hr.service';
 
 @Component({
   selector: 'app-salaryprocessing',
@@ -7,11 +8,23 @@ import { Component } from '@angular/core';
 })
 export class SalaryprocessingComponent {
 
-// employeeId:number|undefined;
+constructor(private svc :HrService){}
+
+status:boolean= false;
 employeeId:number=0;
 searchString:number=0;
+month:number=1;
+year:number=2024;
 
 onSearch(){
   this.employeeId=this.searchString
+}
+
+paySalary(employeeId: number){
+  console.log(employeeId);
+  this.svc.paySalary(this.employeeId,this.month,this.year).subscribe((res)=>{
+    this.status =res;
+    console.log(res);
+  })
 }
 }

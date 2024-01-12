@@ -3,9 +3,9 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 /* @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css"; */
 
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 .highlighted {
   color: red;
