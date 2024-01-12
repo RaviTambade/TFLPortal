@@ -2,6 +2,7 @@ using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Configuration;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 using Transflower.TFLPortal.TFLOBL.Entities;
+using System.Data;
 
 namespace Transflower.TFLPortal.TFLSAL.Services;
 public class PayrollService : IPayrollService
@@ -95,4 +96,50 @@ public class PayrollService : IPayrollService
         }
 
 
-}
+      public async  Task<MonthSalary> CalculateSalary(int employeeId,int month,int year){
+        MonthSalary salary = null;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+
+        string query = "CALL calculatesalary(@employee_Id,@month,@year)";
+        try
+        {
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@employee_Id", employeeId);
+            command.Parameters.AddWithValue("@month", month);
+            command.Parameters.AddWithValue("@year", year);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {
+                 salary = new MonthSalary()
+                {
+                    TotalAmount = reader.GetDouble("totalamount"),
+                    MonthlyBasicsalary = reader.GetDouble("monthlybasicsalary"),
+                    HRA =reader.GetDouble("monthlyhra"),
+                    DA =reader.GetDouble("dailyallowance"),
+                    LTA=reader.GetDouble("leaveTravelallowance"),
+                    VariablePay=reader.GetDouble("variablepayamount"),
+                    Deduction=reader.GetDouble("deduction"),
+                    Pf=reader.GetDouble("Pf"),
+                    Tax=reader.GetDouble("tax"),
+                    ConsumedPaidLeaves=reader.GetInt32("consumedpaidleaves"),
+                    WorkingDays=reader.GetInt32("workingdays"),
+                };
+            }
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return salary;
+    }
+       
+       
+ }
+
+

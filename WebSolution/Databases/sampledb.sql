@@ -108,6 +108,8 @@ Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,yea
 Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-12-12','2023-12-15','2023-12-18',"sanctioned",2023,"casual");
 
 
+Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(10,'2024-01-13','2024-01-15','2024-01-17',"sanctioned",2023,"sick");
+
 
 -- Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(1,30000,3000,200,300,200);
 -- Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(2,40000,2200,300,200,250);
@@ -128,7 +130,6 @@ Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) valu
 Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(7,45000,5000,500,500,350);
 Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(8,20000,6000,600,500,400);
 Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(9,19000,3200,600,600,600);
-Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(10,19000,3200,600,600,600);
 
 Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(11,30000,1000,400,400,330);
 Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(12,45000,5000,500,500,350);
@@ -139,7 +140,7 @@ Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) valu
 Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(17,19000,3200,600,600,600);
 Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(18,19000,3200,600,600,600);
 
-
+Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(10,450000,44000,100,4000,6000);
 
 Insert Into salaries(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(11,'2024-01-11',24,600,600,600,20000);
 Insert Into salaries(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(12,'2024-01-11',25,600,600,600,20000);

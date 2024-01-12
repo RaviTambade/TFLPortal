@@ -61,4 +61,13 @@ public class PayrollController : ControllerBase
     {
         return await _payrollService.AddSalary(salary);
     }
+
+
+
+     [HttpGet("employees/{employeeId}/month/{month}/year/{year}")]
+    public async Task<MonthSalary> CalculateSalary(int employeeId,int month,int year){
+     
+     MonthSalary salary= await _payrollService.CalculateSalary(employeeId,month,year);
+     return salary;
+    }
 }
