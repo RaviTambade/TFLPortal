@@ -43,10 +43,8 @@ export class HrService {
     return this.httpClient.get<any>(url);
   }
 
-  paySalary(employeeId: number): Observable<any> {
-    let url = this.serviceurl + '/hr/employees/employee/salary/' + employeeId;
+  paySalary(employeeId: number,month:number,year:number): Observable<any> {
+    let url = this.serviceurl + '/hr/employees/employee/salary/'+ employeeId+'/month/'+month+'/year/'+year;
     return this.httpClient.post<any>(url,employeeId);
   }
-
-
 }
