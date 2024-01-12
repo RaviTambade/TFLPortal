@@ -12,12 +12,14 @@ namespace Transflower.TFLPortal.Intranet.Controllers;
 public class HRController : ControllerBase
 {
     private readonly IHRService _service;
+    private readonly IPayrollService _payrollService;
     private readonly ExternalApiService _apiService;
 
-    public HRController(IHRService service, ExternalApiService apiService)
+    public HRController(IHRService service, ExternalApiService apiService,IPayrollService payrollService)
     {
         _service = service;
         _apiService = apiService;
+        _payrollService=payrollService;
     }
 
     [HttpGet("employee/{employeeId}")]
@@ -46,28 +48,28 @@ public class HRController : ControllerBase
         return emp;
     }
 
-    // [HttpPost("employee/salary/{employeeId}")]
-    // public async Task<bool> PaySalary(int employeeId)
-    // {
-    //     Employee employee = await _service.GetEmployeeById(employeeId);
-    //     var userAccount = await _apiService.GetUserBankAccount(
-    //         userId: employee.UserId,
-    //         userType: "I"
-    //     );
-    //     FundTransferRequest request = new FundTransferRequest()
-    //     {
-    //         FromAcct = "39025546601",
-    //         FromIfsc = "MAHB0000286",
-    //         ToAcct = userAccount.AccountNumber,
-    //         ToIfsc = userAccount.IFSCCode,
-    //         Amount = employee.Salary,
-    //         TransactionType = "Transfer"
-    //     };
-    //     int transactionId = await _apiService.FundTransfer(request);
 
-
-    //     return transactionId > 0;
-    // }
+    [HttpPost("employee/salary/{employeeId}/month/{month}/year/{year}")]
+    public async Task<bool> PaySalary(int employeeId,int month,int year)
+    {
+        MonthSalary salaryStructure = await _payrollService.CalculateSalary(employeeId,month,year);
+        Employee employee = await _service.GetEmployeeById(employeeId);
+        var userAccount = await _apiService.GetUserBankAccount(
+            userId: employee.UserId,
+            userType: "I"
+        );
+        FundTransferRequest request = new FundTransferRequest()
+        {
+            FromAcct = "39025546601",
+            FromIfsc = "MAHB0000286",
+            ToAcct = userAccount.AccountNumber,
+            ToIfsc = userAccount.IFSCCode,
+            Amount = salaryStructure.TotalAmount,
+            TransactionType = "Transfer"
+        };
+        int transactionId = await _apiService.FundTransfer(request);
+        return transactionId > 0;
+    }
 
 
 
