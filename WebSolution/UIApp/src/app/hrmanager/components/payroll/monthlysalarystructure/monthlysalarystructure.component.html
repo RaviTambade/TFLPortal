@@ -13,20 +13,23 @@
             <tr>
                 <th>Contact NO:</th>
                 <td>{{salaryStructure.contactNumber}}</td>
-                <th>Name</th>
+                <th>Name :</th>
                 <td>{{salaryStructure.firstName}} {{salaryStructure.lastName}}</td>
+                <th>WorkingDays :</th>
+                <td>{{salaryStructure.workingDays}}</td>
+               
             </tr>
             <tr>
-                <th>Bank A/c No.</th>
+                <th>Bank A/c No :</th>
                 <td>{{salaryStructure.accountNumber}}</td>
-                <th>IFSC</th>
+                <th>IFSC :</th>
                 <td>{{salaryStructure.ifsc}}</td>
+                <th>ConsumedPaidLeaves :</th>
+                <td>{{salaryStructure.consumedPaidLeaves}}</td>
             </tr>
             <tr>
-                <th>DOB</th>
-                <td>{{salaryStructure.birthDate |date}}</td>
-                <th>Designation</th>
-                <td>Software Developer</td>
+                <th>DOB :</th>
+                <td>{{salaryStructure.birthDate|date}}</td>
             </tr>
         </table>
         <br />
@@ -39,29 +42,36 @@
             </tr>
             <tr>
                 <td>Basic salary</td>
-                <td>{{salaryStructure.basicSalary}}</td>
+                <td>{{salaryStructure.monthlyBasicsalary}}</td>
                 <td>provident fund</td>
-                <td>1900</td>
+                <td>{{salaryStructure.pf}}</td>
+                
             </tr>
             <tr>
                 <td>House Rent Allowance</td>
                 <td>{{salaryStructure.hra}}</td>
-                <td>Daily Allowance</td>
-                <td>{{salaryStructure.da}}</td>
+                <td>Tax</td>
+                <td>{{salaryStructure.tax}}</td>
             </tr>
             <tr>
+               
                 <td>Leave Travel Allowance</td>
-                <td>{{salaryStructure.lta}}</td>
-                <td>Variable Pay</td>
-                <td>{{salaryStructure.variablePay}}</td>
-            </tr>
-            <tr>
+                <td>{{salaryStructure.lta.toFixed(2)}}</td>
                 <td>Deduction</td>
                 <td>{{salaryStructure.deduction}}</td>
             </tr>
             <tr>
+                <td>Variable Pay</td>
+                <td>{{salaryStructure.variablePay}}</td>
+            </tr>
+            <tr>
+                <td>Daily Allowance</td>
+                <td>{{salaryStructure.da}}</td> 
+                 
+            </tr>
+            <tr>
                 <td><strong>NET PAY</strong></td>
-                <td>Rs.35500</td>
+                <td>{{salaryStructure.totalAmount.toFixed(2)}}</td>
             </tr>
         </table>
     </div>
