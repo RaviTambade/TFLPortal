@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Salary } from 'src/app/resource-management/Models/Salary';
 import { HrService } from 'src/app/shared/services/hr.service';
+import { PayrollService } from 'src/app/shared/services/payroll.service';
 
 @Component({
   selector: 'app-salaryprocessing',
@@ -8,7 +10,7 @@ import { HrService } from 'src/app/shared/services/hr.service';
 })
 export class SalaryprocessingComponent {
 
-constructor(private svc :HrService){}
+constructor(private svc :HrService,private service:PayrollService){}
 
 status:boolean= false;
 employeeId:number=0;
@@ -25,6 +27,7 @@ paySalary(employeeId: number){
   this.svc.paySalary(this.employeeId,this.month,this.year).subscribe((res)=>{
     this.status =res;
     console.log(res);
+  
   })
 }
 }

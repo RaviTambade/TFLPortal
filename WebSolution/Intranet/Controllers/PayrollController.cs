@@ -64,17 +64,21 @@ public class PayrollController : ControllerBase
     }
 
     [HttpPost("employees/salary")]
-    public async Task<bool> InsertSalaryStructure(Salary salary)
+    public async Task<bool> InsertSalaryStructure(SalaryStructure salary)
     {
         return await _payrollService.AddSalary(salary);
     }
 
-
-
-     [HttpGet("employees/{employeeId}/month/{month}/year/{year}")]
+    [HttpGet("employees/{employeeId}/month/{month}/year/{year}")]
     public async Task<MonthSalary> CalculateSalary(int employeeId,int month,int year){
-     
-     MonthSalary salary= await _payrollService.CalculateSalary(employeeId,month,year);
-     return salary;
+    MonthSalary salary= await _payrollService.CalculateSalary(employeeId,month,year);
+    return salary;
+    }
+
+    [HttpPost("insertsalary")]
+    public async Task<bool> InsertSalary(Salary salary)
+    {
+      bool status=await _payrollService.InsertSalary(salary);
+      return status;
     }
 }

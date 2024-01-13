@@ -53,6 +53,18 @@ public class HRController : ControllerBase
     public async Task<bool> PaySalary(int employeeId,int month,int year)
     {
         MonthSalary salaryStructure = await _payrollService.CalculateSalary(employeeId,month,year);
+        Salary salary = new Salary{
+            EmployeeId=employeeId,
+            PayDate=DateTime.Now,
+            MonthlyWorkingDays=salaryStructure.WorkingDays,
+            Deduction=salaryStructure.Deduction,
+            Tax=salaryStructure.Tax,
+            PF=salaryStructure.Pf,
+            Amount=salaryStructure.TotalAmount
+        };
+        if(salary){
+           await _payrollService.InsertSalary(salary);
+        } 
         Employee employee = await _service.GetEmployeeById(employeeId);
         var userAccount = await _apiService.GetUserBankAccount(
             userId: employee.UserId,
