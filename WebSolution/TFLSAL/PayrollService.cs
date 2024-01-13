@@ -17,7 +17,7 @@ public class PayrollService : IPayrollService
     }
 
     
-    public async Task<bool> AddSalary(Salary salaryStructure)
+    public async Task<bool> AddSalary(SalaryStructure salaryStructure)
     {
         bool status=false;
         MySqlConnection connection = new MySqlConnection();
@@ -26,7 +26,7 @@ public class PayrollService : IPayrollService
 
         try
         {
-            string query = "Insert Into salaries(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(@employeeId,@basicSalary,@hra,@da,@lta,@variablePay,@deduction)";
+            string query = "Insert Into salarystructure(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(@employeeId,@basicSalary,@hra,@da,@lta,@variablePay,@deduction)";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@employeeId",salaryStructure.EmployeeId);
             cmd.Parameters.AddWithValue("@basicSalary", salaryStructure.BasicSalary);
@@ -55,22 +55,22 @@ public class PayrollService : IPayrollService
         return status;
     }
 
-    public async Task<Salary> GetSalary(int employeeId)
+    public async Task<SalaryStructure> GetSalary(int employeeId)
         {
-            Salary salary = null;
+            SalaryStructure salary = null;
             MySqlConnection connection = new MySqlConnection();
             connection.ConnectionString = _connectionString;
             try
             {
                 string query =
-                    "select * from salaries where employeeid=@employeeId";
+                    "select * from salarystructure where employeeid=@employeeId";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@employeeId", employeeId);
                 await connection.OpenAsync();
                 MySqlDataReader reader = command.ExecuteReader();
                 if (await reader.ReadAsync())
                 {
-                    salary = new Salary
+                    salary = new SalaryStructure
                     {
                         Id = reader.GetInt32("id"),
                         EmployeeId = reader.GetInt32("employeeid"),
@@ -137,6 +137,44 @@ public class PayrollService : IPayrollService
             await connection.CloseAsync();
         }
         return salary;
+    }
+
+    public async Task<bool> InsertSalary(Salary salary)
+    {
+        bool status=false;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        var assigndate =DateTime.Now;
+
+        try
+        {
+            string query = "Insert Into salaries(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(@employeeId,@payDate,@monthlyWorkingDays,@deduction,@tax,@pf,@amount)";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@employeeId",salary.EmployeeId);
+            cmd.Parameters.AddWithValue("@payDate", salary.PayDate);
+            cmd.Parameters.AddWithValue("@monthlyWorkingDays", salary.MonthlyWorkingDays);
+            cmd.Parameters.AddWithValue("@deduction", salary.Deduction);
+            cmd.Parameters.AddWithValue("@tax", salary.Tax);
+            cmd.Parameters.AddWithValue("@pf", salary.PF);
+            cmd.Parameters.AddWithValue("@amount", salary.Amount);
+            await connection.OpenAsync();
+            int rowsAffected = cmd.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                status = true;
+            }
+            await connection.CloseAsync();
+
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return status;
     }
        
        

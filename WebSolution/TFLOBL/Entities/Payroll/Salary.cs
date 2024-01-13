@@ -4,11 +4,11 @@ public class Salary
 {
     public int Id { get; set; }
     public int EmployeeId { get; set; }
-    public double BasicSalary { get; set; }
-    public double HRA { get; set; }
-    public double DA { get; set; }
-    public double LTA { get; set; }
-    public double VariablePay { get; set; }
+    public DateTime PayDate { get; set; }
+    public int MonthlyWorkingDays { get; set; }
     public double Deduction { get; set; }
+    public double Tax { get; set; }
+    public double PF { get; set; }
+    public double Amount { get; set; }
  
 }

@@ -35,7 +35,7 @@ public class DocumentController : ControllerBase
     {
 
 
-        Salary salaryStructure = await _payrollService.GetSalary(employeeId);
+        SalaryStructure salaryStructure = await _payrollService.GetSalary(employeeId);
         Employee employee = await _hrService.GetEmployeeById(salaryStructure.EmployeeId);
         BankAccount account = await _apiService.GetUserBankAccount(employee.UserId, "I");
         var user = await _apiService.GetUser(employee.UserId);
