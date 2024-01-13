@@ -19,6 +19,7 @@ ngOnInit(): void {
   this.projectId=Number(param.get('id'));
  this.workMgmt.getOngoingSprints(this.projectId,this.todaysDate).subscribe((res)=>{
   this.sprints=res;
+  console.log(res);
  })
 })
 }

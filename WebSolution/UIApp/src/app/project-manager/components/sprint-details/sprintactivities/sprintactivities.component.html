@@ -1,6 +1,5 @@
 <div class="container">
-    <span>
-        Project Works List</span>
+    <span>Sprint Works</span>
     <div class="row">
         <div class="col-md-6">
             <div class="card">
@@ -16,11 +15,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let employeework of employeeworks">
+                                <tr *ngFor="let employeework of empployeeWorks">
                                     <td>{{employeework.title}}</td>
                                     <td>{{employeework.status}}</td>
                                     <td>{{employeework.assignedTo}}</td>
-                                    <td><a class="link-underline" [routerLink]="['details', employeework.id]">Details</a></td>
+                                    <td><a class="link-underline" [routerLink]="['/projectmanager/projects/details', employeework.id]">Details</a></td>
                                 </tr>
                             </tbody>
                         </table>

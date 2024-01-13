@@ -270,3 +270,10 @@ SELECT * from projectmembership where projectid=4 and employeeid=10;
 
 
 SELECT DISTINCT(employees.userid) from employees INNER JOIN  projectmembership on employees.id = projectmembership.employeeid where projectmembership.projectid=4;
+
+select * from employeework;
+SELECT * from sprintmaster;
+
+
+-- this query gives employeework of particular sprint
+SELECT * from employeework where sprintid in (SELECT id from sprintmaster where id=3);
