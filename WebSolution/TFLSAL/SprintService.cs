@@ -92,20 +92,23 @@ public class SprintService : ISprintService
         return sprints;
     }
 
-    public async Task<List<EmployeeWork>> GetSprintWorks(int sprintId){
-        List<EmployeeWork> employeeWorks = new List<EmployeeWork>();
+    public async Task<List<SprintDetails>> GetSprintWorks(int sprintId){
+        List<SprintDetails> employeeWorks = new List<SprintDetails>();
         MySqlConnection connection =new MySqlConnection();
         connection.ConnectionString=_connectionString;
         try{
 ;
-            string query ="SELECT * from employeework where sprintid in (SELECT id from sprintmaster where id=@sprintId)";
+            string query =@"select employeework.* , employees.userid  from employeework 
+                           INNER join sprintmaster on employeework.sprintid=sprintmaster.id
+                           INNER join employees ON employeework.assignedto=employees.id
+                           WHERE sprintmaster.id=@sprintId;";
             MySqlCommand command = new MySqlCommand(query,connection);
             command.Parameters.AddWithValue("@sprintId",sprintId);
             await connection.OpenAsync();
             MySqlDataReader reader = (MySqlDataReader) await command.ExecuteReaderAsync();
             while( await reader.ReadAsync()){
               
-                 EmployeeWork employeeWork=new EmployeeWork(){
+                 SprintDetails employeeWork=new SprintDetails(){
                     Id = int.Parse(reader["id"].ToString()),
                     Title = reader["title"].ToString(),
                     ProjectWorkType = reader["projectworktype"].ToString(),
@@ -118,6 +121,7 @@ public class SprintService : ISprintService
                     StartDate = DateTime.Parse(reader["startdate"].ToString()),
                     DueDate = DateTime.Parse(reader["duedate"].ToString()),
                     Status = reader["status"].ToString(),
+                    UserId=int.Parse(reader["userid"].ToString())
                  };
                employeeWorks.Add(employeeWork);
                  

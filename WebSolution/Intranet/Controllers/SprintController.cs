@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Transflower.TFLPortal.TFLOBL.Entities;
+using Transflower.TFLPortal.TFLSAL.Services;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 
 namespace Intranet.Controllers;
@@ -9,10 +10,12 @@ namespace Intranet.Controllers;
 public class SprintController : ControllerBase
 {
     private readonly ISprintService _sprintService;
+     private readonly ExternalApiService _apiService;
 
-    public SprintController(ISprintService service)
+    public SprintController(ISprintService service,ExternalApiService apiService)
     {
         _sprintService = service;
+        _apiService=apiService;
     }
 
     [HttpGet("projects/{projectId}")]
@@ -29,8 +32,11 @@ public class SprintController : ControllerBase
 
 
      [HttpGet("project/employeeWork/{sprintId}")]
-    public async Task<List<EmployeeWork>> GetSprintWorks(int sprintId)
+    public async Task<List<SprintDetails>> GetSprintWorks(int sprintId)
     {
-        return await _sprintService.GetSprintWorks(sprintId);
+       List<SprintDetails> employees = await _sprintService.GetSprintWorks(sprintId);
+        string userIds=string.Join(',', employees.Select(m => m.UserId).ToList());
+        var users = await _apiService.GetUserDetails(userIds);
+        return employees; 
     }
 }
