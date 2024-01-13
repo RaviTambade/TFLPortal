@@ -26,4 +26,11 @@ public class SprintController : ControllerBase
     {
         return await _sprintService.GetOngoingSprints(projectId, date);
     }
+
+
+     [HttpGet("project/employeeWork/{sprintId}")]
+    public async Task<List<EmployeeWork>> GetSprintWorks(int sprintId)
+    {
+        return await _sprintService.GetSprintWorks(sprintId);
+    }
 }
