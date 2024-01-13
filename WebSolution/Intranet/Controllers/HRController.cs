@@ -62,7 +62,9 @@ public class HRController : ControllerBase
             PF=salaryStructure.Pf,
             Amount=salaryStructure.TotalAmount
         };
-        bool status=await _payrollService.InsertSalary(salary);
+        if(salary){
+           await _payrollService.InsertSalary(salary);
+        } 
         Employee employee = await _service.GetEmployeeById(employeeId);
         var userAccount = await _apiService.GetUserBankAccount(
             userId: employee.UserId,
