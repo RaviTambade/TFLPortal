@@ -30,23 +30,4 @@ paySalary(employeeId: number){
   
   })
 }
-
-
-// onSubmit(){
-//   let leaves:LeaveApplication={
-//     id: this.id,
-//     employeeId: this.employeeId,
-//     applicationDate:new Date().toISOString(),
-//     fromDate: this.leaveForm.get("fromDate")?.value,
-//     toDate: this.leaveForm.get("toDate")?.value,
-//     year:this.leaveForm.get("year")?.value,
-//     leaveType: this.leaveForm.get("leaveType")?.value,
-//     status:" "
-//   }
-//   console.log(leaves);
-//   this.service.updateEmployeeLeave(leaves).subscribe((res)=>{
-//   console.log(res);    
-// });
-// console.log(this.leaveForm.value)
-// }
 }

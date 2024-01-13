@@ -34,7 +34,9 @@ export const hrRoutes: Routes = [
         component: ProjectComponent,
       },
       { path: 'events', component: EventsComponent },
-      { path: 'payroll', component: PayrollComponent },
+      { path: 'payroll', component: PayrollComponent,
+       children:[{ path: 'salary', component:SalaryprocessingComponent}]
+      },
       { path: 'performance', component: PerformenceApprisalComponent },
     ],
   },
