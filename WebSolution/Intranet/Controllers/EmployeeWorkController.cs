@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Transflower.TFLPortal.Intranet.Responses;
 using Transflower.TFLPortal.TFLOBL.Entities;
 using Transflower.TFLPortal.TFLSAL.Services;
 using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
@@ -10,18 +11,54 @@ namespace Intranet.Controllers;
 public class EmployeeWorkController : ControllerBase
 {
     private readonly IEmployeeWorkService _service;
+
+     private readonly ExternalApiService _apiService;
    
-    public EmployeeWorkController(IEmployeeWorkService service)
+    public EmployeeWorkController(IEmployeeWorkService service,ExternalApiService apiService)
     {
         _service = service;
+        _apiService=apiService;
 
     }
 
     [HttpGet("selectedProject/{projectId}")]
-    public async Task<List<EmployeeWork>> GetEmployeeWorkByProject(int projectId)
+    public async Task<List<EmployeeWorkResponse>> GetEmployeeWorkByProject(int projectId)
     {
-        List<EmployeeWork> employeeWork = await _service.GetEmployeeWorkByProject(projectId);
-        return employeeWork;
+        List<EmployeeWork> employeeWorks = await _service.GetEmployeeWorkByProject(projectId);
+          string userIds = string.Join(',', employeeWorks.Select(m => m.AssignedTo).ToList());
+          string userIdsofAssignBy = string.Join(',', employeeWorks.Select(m => m.AssignedBy).ToList());
+          var users = await _apiService.GetUserDetails(userIds);
+          var usersOfAssignBy = await _apiService.GetUserDetails(userIdsofAssignBy);
+          Console.WriteLine(usersOfAssignBy);
+          List<EmployeeWorkResponse> employeeWorksResponses = new();
+        foreach (var employee in employeeWorks)
+        {
+            var userDetail = users.FirstOrDefault(u => u.Id == employee.AssignedTo);
+            var userDetailsAssignBy = usersOfAssignBy.FirstOrDefault(u => u.Id == employee.AssignedBy);
+            if (userDetail != null)
+            {
+                var employeeWorksResponse = new EmployeeWorkResponse
+                {
+                   AssignedToEmployee=userDetail.FirstName+userDetail.LastName,
+                   AssignedByEmployee=userDetailsAssignBy.First+userDetailsAssignBy.Last,
+                   Id=employee.Id,
+                   Title=employee.Title,
+                   ProjectWorkType=employee.ProjectWorkType,
+                   Description=employee.Description,
+                   AssignDate=employee.AssignDate,
+                   StartDate=employee.StartDate,
+                   DueDate=employee.DueDate,
+                   CreatedDate=employee.CreatedDate,
+                   AssignedTo=employee.AssignedTo,
+                   ProjectId=employee.ProjectId,
+                   SprintId=employee.SprintId,
+                   Status=employee.Status,
+                   AssignedBy=employee.AssignedBy
+                };
+                employeeWorksResponses.Add(employeeWorksResponse);
+            }
+        } 
+        return employeeWorksResponses;
     }
 
 
