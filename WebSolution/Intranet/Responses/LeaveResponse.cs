@@ -4,6 +4,7 @@ namespace Transflower.TFLPortal.Intranet.Responses;
 public class LeaveResponse
 {
     public int Id { get; set; }
+    public int UserId { get; set; }
     public int EmployeeId { get; set; }
     public DateTime FromDate { get; set; }
     public DateTime ToDate { get; set; }   
