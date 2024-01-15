@@ -277,3 +277,10 @@ SELECT * from sprintmaster;
 
 -- this query gives employeework of particular sprint
 SELECT * from employeework where sprintid in (SELECT id from sprintmaster where id=3);
+
+SELECT * from employees;
+
+select employeework.* , employees.userid  from employeework 
+INNER join sprintmaster on employeework.sprintid=sprintmaster.id
+INNER join employees ON employeework.assignedto=employees.id
+WHERE sprintmaster.id=2;
