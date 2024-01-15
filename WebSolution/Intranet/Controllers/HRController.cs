@@ -62,9 +62,9 @@ public class HRController : ControllerBase
             PF=salaryStructure.Pf,
             Amount=salaryStructure.TotalAmount
         };
-        
+        if(salary!=null){
            await _payrollService.InsertSalary(salary);
-        
+        }
         Employee employee = await _service.GetEmployeeById(employeeId);
         var userAccount = await _apiService.GetUserBankAccount(
             userId: employee.UserId,
@@ -82,8 +82,6 @@ public class HRController : ControllerBase
         int transactionId = await _apiService.FundTransfer(request);
         return transactionId > 0;
     }
-
-
 
     [HttpGet("users/{userId}")]
     public async Task<Employee> GetEmployee(int userId)

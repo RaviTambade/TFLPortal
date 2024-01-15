@@ -16,8 +16,48 @@ public class PayrollService : IPayrollService
         _connectionString =_configuration.GetConnectionString("DefaultConnection") ?? throw new ArgumentNullException("connectionString");
     }
 
+
+    public async Task<List<SalaryDetails>> GetSalaryDetails(int month,int year)
+    {
+        List<SalaryDetails> salaryDetails = new List<SalaryDetails>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString=_connectionString;
+        try
+        {
+            string query="select salaries.*,employees.userid from salaries inner join employees on salaries.employeeid=employees.id where MONTH(paydate)=@month and YEAR(paydate)=@year";
+            MySqlCommand command=new MySqlCommand(query,connection);
+            command.Parameters.AddWithValue("@month",month);
+            command.Parameters.AddWithValue("@year",year);
+            await connection.OpenAsync();
+            MySqlDataReader reader=command.ExecuteReader();
+            while(await reader.ReadAsync()){
+                    SalaryDetails details=new SalaryDetails{
+                    EmployeeId=reader.GetInt32("employeeid"),
+                    UserId=reader.GetInt32("userid"),
+                    PayDate=reader.GetDateTime("paydate"),
+                    MonthlyWorkingDays=reader.GetInt32("monthlyworkingdays"),
+                    Deduction=reader.GetDouble("deduction"),
+                    Tax=reader.GetDouble("tax"),
+                    PF=reader.GetDouble("pf"),
+                    Amount=reader.GetDouble("amount"),             
+                };
+                salaryDetails.Add(details);
+            }
+            await reader.CloseAsync();
+        }
+        catch(Exception)
+        {
+          throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return salaryDetails;
+    }
+
     
-    public async Task<bool> AddSalary(SalaryStructure salaryStructure)
+    public async Task<bool> AddSalaryStructure(SalaryStructure salaryStructure)
     {
         bool status=false;
         MySqlConnection connection = new MySqlConnection();

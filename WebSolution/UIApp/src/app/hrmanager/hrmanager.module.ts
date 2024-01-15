@@ -16,6 +16,7 @@ import { SalaryprocessingComponent } from './components/payroll/salaryprocessing
 import { MonthlysalarystructureComponent } from './components/payroll/monthlysalarystructure/monthlysalarystructure.component';
 import { EmployeedetailsComponent } from './components/payroll/employeedetails/employeedetails.component';
 import { FormsModule } from '@angular/forms';
+import { AllEmployeesComponent } from './components/payroll/all-employees/all-employees.component';
 
 export const hrRoutes: Routes = [
   {
@@ -35,8 +36,9 @@ export const hrRoutes: Routes = [
       },
       { path: 'events', component: EventsComponent },
       { path: 'payroll', component: PayrollComponent,
-       children:[{ path: 'salary', component:SalaryprocessingComponent}]
-      },
+       children:[{ path: 'salary', component:SalaryprocessingComponent},
+                 { path: 'salarydetails', component:AllEmployeesComponent}
+      ]},
       { path: 'performance', component: PerformenceApprisalComponent },
     ],
   },
@@ -55,8 +57,9 @@ export const hrRoutes: Routes = [
     SalaryprocessingComponent,
     MonthlysalarystructureComponent,
     EmployeedetailsComponent,
+    AllEmployeesComponent,
   ],
   imports: [CommonModule, RouterModule,FormsModule],
-  exports: [EmployeedetailsComponent,SalaryprocessingComponent],
+  exports: [EmployeedetailsComponent,SalaryprocessingComponent,AllEmployeesComponent],
 })
 export class HrmanagerModule {}
