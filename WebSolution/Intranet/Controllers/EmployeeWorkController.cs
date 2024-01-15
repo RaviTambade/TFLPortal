@@ -22,30 +22,36 @@ public class EmployeeWorkController : ControllerBase
     }
 
     [HttpGet("selectedProject/{projectId}")]
-    public async Task<List<EmployeeWorkResponse>> GetEmployeeWorkByProject(int projectId)
+   public async Task<List<EmployeeWorkResponse>> GetEmployeeWorkByProjectAsync(int projectId)
+{
+    try
     {
         List<EmployeeWork> employeeWorks = await _service.GetEmployeeWorkByProject(projectId);
-          string userIds = string.Join(',', employeeWorks.Select(m => m.AssignedTo).ToList());
-          string userIdsofAssignBy = string.Join(',', employeeWorks.Select(m => m.AssignedBy).ToList());
-          var users = await _apiService.GetUserDetails(userIds);
-          var usersOfAssignBy = await _apiService.GetUserDetails(userIdsofAssignBy);
-          Console.WriteLine(usersOfAssignBy);
-          List<EmployeeWorkResponse> employeeWorksResponses = new();
+
+        string userIds = string.Join(',', employeeWorks.Select(m => m.AssignedTo).ToList());
+        string userIdsOfAssignBy = string.Join(',', employeeWorks.Select(m => m.AssignedBy).ToList());
+
+        var users = await _apiService.GetUserDetails(userIds);
+        var usersOfAssignBy = await _apiService.GetUserDetails(userIdsOfAssignBy);
+
+        List<EmployeeWorkResponse> employeeWorksResponses = new List<EmployeeWorkResponse>();
+
         foreach (var employee in employeeWorks)
         {
             var userDetail = users.FirstOrDefault(u => u.Id == employee.AssignedTo);
             var userDetailsAssignBy = usersOfAssignBy.FirstOrDefault(u => u.Id == employee.AssignedBy);
-            if (userDetail != null)
+
+            if (userDetail != null && userDetailsAssignBy != null)
             {
                 var employeeWorksResponse = new EmployeeWorkResponse
                 {
-                   AssignedToEmployee=userDetail.FirstName+userDetail.LastName,
-                   AssignedByEmployee=userDetailsAssignBy.First+userDetailsAssignBy.Last,
-                   Id=employee.Id,
-                   Title=employee.Title,
-                   ProjectWorkType=employee.ProjectWorkType,
-                   Description=employee.Description,
-                   AssignDate=employee.AssignDate,
+                    AssignedToEmployee = $"{userDetail.FirstName} {userDetail.LastName}",
+                    AssignedByEmployee = $"{userDetailsAssignBy.FirstName} {userDetailsAssignBy.LastName}",
+                    Id = employee.Id,
+                    Title=employee.Title,
+                    ProjectWorkType=employee.ProjectWorkType,
+                    Description=employee.Description,
+                    AssignDate=employee.AssignDate,
                    StartDate=employee.StartDate,
                    DueDate=employee.DueDate,
                    CreatedDate=employee.CreatedDate,
@@ -57,9 +63,18 @@ public class EmployeeWorkController : ControllerBase
                 };
                 employeeWorksResponses.Add(employeeWorksResponse);
             }
-        } 
+        }
+
         return employeeWorksResponses;
     }
+    catch (Exception ex)
+    {
+        // Handle exceptions appropriately (logging, rethrow, etc.)
+        Console.WriteLine($"An error occurred: {ex.Message}");
+        return new List<EmployeeWorkResponse>();
+    }
+}
+
 
 
      [HttpGet]
@@ -109,11 +124,42 @@ public class EmployeeWorkController : ControllerBase
 
 
     [HttpGet("projects/{employeeWorkId}")]
-    public async Task<EmployeeWorkDetails> GetEmployeeWorkDetails(int employeeWorkId)
+    public async Task<EmployeeWorkResponse> GetEmployeeWorkDetails(int employeeWorkId)
     {
+        
+    
+    
         EmployeeWorkDetails employeeWork = await _service.GetEmployeeWorkDetails(employeeWorkId);
-        return employeeWork;
-    }
+        var user = await _apiService.GetUser(employeeWork.AssignedTo);
+        var usersOfAssignBy = await _apiService.GetUser(employeeWork.AssignedBy);
+
+        EmployeeWorkResponse employeeWorksResponses = new ()
+                {
+                    AssignedToEmployee = $"{user.FirstName} {user.LastName}",
+                    AssignedByEmployee = $"{usersOfAssignBy.FirstName} {usersOfAssignBy.LastName}",
+                    Id = employeeWork.Id,
+                    Title=employeeWork.Title,
+                    ProjectWorkType=employeeWork.ProjectWorkType,
+                    Description=employeeWork.Description,
+                    AssignDate=employeeWork.AssignDate,
+                   StartDate=employeeWork.StartDate,
+                   DueDate=employeeWork.DueDate,
+                   CreatedDate=employeeWork.CreatedDate,
+                   AssignedTo=employeeWork.AssignedTo,
+                   ProjectId=employeeWork.ProjectId,
+                   SprintId=employeeWork.SprintId,
+                   Status=employeeWork.Status,
+                   AssignedBy=employeeWork.AssignedBy
+                };
+         
+            return employeeWorksResponses;
+        }
+          
+          
+
+    
+
+
 
     [HttpPost]
     public async Task<bool> AddEmployeeWork(EmployeeWork activity)
