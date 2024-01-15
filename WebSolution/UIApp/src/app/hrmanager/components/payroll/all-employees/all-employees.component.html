@@ -1,5 +1,13 @@
-<!-- <h3>Employee Leaves Details</h3>
-<div class="container">
+<label>Month:</label>
+<input type="number" name="month" [(ngModel)]="month">
+
+<label>Year:</label>
+<input type="number" name="year" [(ngModel)]="year">
+
+<button (click)="onClick(month,year)">Search</button>
+
+<h3>Employee Salary Details</h3>
+ <div>
     <div class="card col-6">
     <table class="table-bordered text-center">
             <thead>
@@ -13,16 +21,16 @@
                     <th>Amount</th>
                    </tr>
             </thead>
-            <tbody *ngIf="salaries">
+            <tbody *ngFor="let salary of salaries">
                 <tr>
-                    <td>{{salaries.firstName}}{{salaries.lastName}}</td>
-                    <td>{{salaries.payDate |date}}</td>
-                    <td>{{salaries.monthlyWorkingDays }}</td>
-                    <td>{{salaries.deduction}}</td>
-                    <td>{{salaries.tax}}</td>
-                    <td>{{salaries.pf}}</td>
-                    <td>{{salaries.amount}}</td>
+                    <td>{{salary.firstName}}{{salary.lastName}}</td>
+                    <td>{{salary.payDate |date}}</td>
+                    <td>{{salary.monthlyWorkingDays }}</td>
+                    <td>{{salary.deduction}}</td>
+                    <td>{{salary.tax}}</td>
+                    <td>{{salary.pf}}</td>
+                    <td>{{salary.amount}}</td>
                 </tr>
             </tbody>
     </table>
-</div> -->
+</div> 

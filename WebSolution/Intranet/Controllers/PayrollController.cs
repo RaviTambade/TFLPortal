@@ -66,7 +66,7 @@ public class PayrollController : ControllerBase
     [HttpPost("employees/salary")]
     public async Task<bool> InsertSalaryStructure(SalaryStructure salary)
     {
-        return await _payrollService.AddSalary(salary);
+        return await _payrollService.AddSalaryStructure(salary);
     }
 
     [HttpGet("employees/{employeeId}/month/{month}/year/{year}")]
@@ -80,5 +80,38 @@ public class PayrollController : ControllerBase
     {
       bool status=await _payrollService.InsertSalary(salary);
       return status;
+    }
+
+
+    [HttpGet("employees/salary/month/{month}/year/{year}")]
+    public async Task<List<SalaryDetailResponse>> GetSalaryDetails(int month,int year)
+    {
+        List<SalaryDetails> details= await _payrollService.GetSalaryDetails(month,year);
+        string userIds = string.Join(',', details.Select(m => m.UserId).ToList());
+        var users = await _apiService.GetUserDetails(userIds);
+        List<SalaryDetailResponse> Salaries = new();
+        foreach (var employee in details)
+        {
+            var userDetail = users.FirstOrDefault(u => u.Id == employee.EmployeeId);
+            if (userDetail != null)
+            {
+                var salary = new SalaryDetailResponse
+                {
+                    Id = employee.Id,
+                    FirstName = userDetail.FirstName,
+                    LastName= userDetail.LastName,
+                    PayDate = employee.PayDate,
+                    MonthlyWorkingDays = employee.MonthlyWorkingDays,
+                    Deduction = employee.Deduction,
+                    Tax = employee.Tax,
+                    EmployeeId = employee.EmployeeId,
+                    PF=employee.PF,
+                    Amount=employee.Amount,
+                    UserId=employee.UserId
+                };
+                Salaries.Add(salary);
+            }
+        }
+        return Salaries;
     }
 }
