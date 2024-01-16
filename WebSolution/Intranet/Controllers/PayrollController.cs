@@ -56,8 +56,6 @@ public class PayrollController : ControllerBase
             Pf=salaryStructure.Pf,
             Tax=salaryStructure.Tax,
             TotalAmount=salaryStructure.TotalAmount
-
-
         };
 
         return salaryDetails;
@@ -116,10 +114,17 @@ public class PayrollController : ControllerBase
     }
 
 
-[HttpGet("employees/unpaid/month/{month}/year/{year}")]
+      [HttpGet("employees/unpaid/month/{month}/year/{year}")]
       public async Task<List<int>> GetUnPaidEmployees(int month,int year)
       {
         List<int> userIds=await _payrollService.GetUnPaidEmployees(month,year);
         return userIds;
+      }
+
+      [HttpGet("employee/{employeeId}")]
+      public async Task<List<Salary>> GetEmployeeSalaryDetails(int employeeId)
+      {
+        List<Salary> salaries=await _payrollService.GetEmployeeSalaryDetails(employeeId);
+        return salaries;
       }
 }
