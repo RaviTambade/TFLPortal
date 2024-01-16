@@ -4,14 +4,17 @@ import { TooltipDirective } from './directives/tooltip.directive';
 import { ChunkPipe } from './pipes/chunk.pipe';
 import { HourConvertorPipe } from './pipes/hour-convertor.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
-
-
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
-  declarations: [TooltipDirective,ChunkPipe, HourConvertorPipe,HighlightDirective],
-  imports: [
-    CommonModule
+  declarations: [
+    TooltipDirective,
+    ChunkPipe,
+    HourConvertorPipe,
+    HighlightDirective,
+    PaginationComponent,
   ],
-  exports:[TooltipDirective,ChunkPipe,HourConvertorPipe,HighlightDirective]
+  imports: [CommonModule],
+  exports: [TooltipDirective, ChunkPipe, HourConvertorPipe, HighlightDirective,PaginationComponent],
 })
-export class SharedModule { }
+export class SharedModule {}
