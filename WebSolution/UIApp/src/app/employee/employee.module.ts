@@ -13,9 +13,7 @@ import { leaveRoutes } from '../leaves/leaves.module';
 import { projectRoutes } from '../projects/projects.module';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { EmployeeProfileComponent } from './components/employee-profile/employee-profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
 
 export const employeeRoutes: Routes = [
   {
@@ -51,11 +49,9 @@ export const employeeRoutes: Routes = [
     EmployeeLeftSidebarComponent,
     PayrollComponent,
     EventsComponent,
-    PerformenceApprisalComponent,
-    EmployeeProfileComponent,
-    UpdateProfileComponent
+    PerformenceApprisalComponent
   ],
   imports: [CommonModule, RouterModule,SharedModule,ReactiveFormsModule], 
-  exports:[EmployeeProfileComponent] 
+  exports:[] 
 })
 export class EmployeeModule {}

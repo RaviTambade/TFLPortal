@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { User } from 'src/app/resource-management/Models/User';
+import { User } from 'src/app/user/Models/User';
 import { MembershipService } from 'src/app/shared/services/membership.service';
-import { StateChangeEvent } from '../../Models/stateChangeEvent';
 import { EmployeeDetails } from 'src/app/activity/Models/EmployeeDetails';
+import { StateChangeEvent } from '../../Models/stateChangeEvent';
 
 @Component({
   selector: 'update-profile',
