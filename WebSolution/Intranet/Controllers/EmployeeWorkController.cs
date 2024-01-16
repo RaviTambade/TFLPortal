@@ -26,10 +26,7 @@ public class EmployeeWorkController : ControllerBase
     {
  
         List<EmployeeWork> employeeWorks = await _service.GetEmployeeWorkByProject(projectId);
-
-        string userIdAssignTo = string.Join(',', employeeWorks.DistinctBy(m=>m.AssignedTo).Select(m => m.AssignedTo).ToList());
-        string userIdsOfAssignBy = string.Join(',', employeeWorks.DistinctBy(m=>m.AssignedBy).Select(m => m.AssignedBy).ToList());
-        string userIds=userIdAssignTo+","+userIdsOfAssignBy;
+        string userIds = string.Join(',', employeeWorks.SelectMany(m => new []{m.AssignedTo,m.AssignedBy}).Distinct().ToList());
         var users = await _apiService.GetUserDetails(userIds);
 
         List<EmployeeWorkResponse> employeeWorksResponses = new List<EmployeeWorkResponse>();
