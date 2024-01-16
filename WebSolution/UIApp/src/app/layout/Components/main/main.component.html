@@ -18,7 +18,7 @@
                     (mouseleave)="showUserLinks = false">
                     welcome {{userName}}
                     <div *ngIf="showUserLinks" class="card position-absolute text-center ">
-                        <a class="nav-link text-dark" [routerLink]="['/user/profile',employeeId]">Profile</a>
+                        <a class="nav-link text-dark" [routerLink]="['/user/profile']">Profile</a>
                         <a class="nav-link text-dark">Orders</a>
                         <a class="nav-link text-dark">Payment </a>
                     </div>

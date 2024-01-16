@@ -17,13 +17,11 @@ export class MainComponent implements OnInit {
   userName: string = '';
   isLoggedIn: boolean = false;
   showUserLinks: boolean = false;
-  employeeId:number=0
   isExpanded = false;
 
   constructor(
     private layoutSvc: LayoutService,
     private jwtSvc: JwtService,
-    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -33,7 +31,6 @@ export class MainComponent implements OnInit {
     }
 
     this.userName = this.jwtSvc.getClaimFromToken(TokenClaims.userName);
-    this.employeeId=Number(localStorage.getItem(LocalStorageKeys.employeeId));
 
     // this.router.events
     //   .pipe(filter((event) => event instanceof NavigationEnd))

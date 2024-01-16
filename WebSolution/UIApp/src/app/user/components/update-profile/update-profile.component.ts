@@ -11,18 +11,16 @@ import { StateChangeEvent } from '../../Models/stateChangeEvent';
   styleUrls: ['./update-profile.component.css'],
 })
 export class UpdateProfileComponent {
-  @Input() user: EmployeeDetails = {
-    employeeId: 0,
-    userId: 0,
+  @Input() user: User = {
     aadharId: '',
-    hireDate: '',
     firstName: '',
     lastName: '',
     email: '',
     gender: '',
     imageUrl: '',
     birthDate: '',
-    contactNumber: ''
+    contactNumber: '',
+    id: 0
   };
 
   @Output() onUpdateFinished = new EventEmitter<StateChangeEvent>();
@@ -105,7 +103,7 @@ export class UpdateProfileComponent {
           birthDate: this.dob.value,
           gender: this.gender.value,
           email: this.email.value,
-          id: this.user.userId,
+          id: this.user.id,
           imageUrl: this.user.imageUrl,
           contactNumber: this.user.contactNumber
         }
