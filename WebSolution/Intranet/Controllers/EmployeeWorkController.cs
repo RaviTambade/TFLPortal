@@ -21,13 +21,12 @@ public class EmployeeWorkController : ControllerBase
 
     }
 
-    [HttpGet("selectedProject/{projectId}")]
+   [HttpGet("selectedProject/{projectId}")]
    public async Task<List<EmployeeWorkResponse>> GetEmployeeWorkByProjectAsync(int projectId)
-{
-    try
+   {
+   try
     {
         List<EmployeeWork> employeeWorks = await _service.GetEmployeeWorkByProject(projectId);
-
         string userIds = string.Join(',', employeeWorks.Select(m => m.AssignedTo).ToList());
         string userIdsOfAssignBy = string.Join(',', employeeWorks.Select(m => m.AssignedBy).ToList());
 
@@ -77,7 +76,7 @@ public class EmployeeWorkController : ControllerBase
 
 
 
-     [HttpGet]
+    [HttpGet]
     public async Task<List<EmployeeWork>> GetAllEmployeeWork()
     {
         List<EmployeeWork> employeeWorks = await _service.GetAllEmployeeWork();
@@ -154,12 +153,6 @@ public class EmployeeWorkController : ControllerBase
          
             return employeeWorksResponses;
         }
-          
-          
-
-    
-
-
 
     [HttpPost]
     public async Task<bool> AddEmployeeWork(EmployeeWork activity)

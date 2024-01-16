@@ -17,6 +17,7 @@ import { MonthlysalarystructureComponent } from './components/payroll/monthlysal
 import { EmployeedetailsComponent } from './components/payroll/employeedetails/employeedetails.component';
 import { FormsModule } from '@angular/forms';
 import { AllEmployeesComponent } from './components/payroll/all-employees/all-employees.component';
+import { EmployeeLeavesComponent } from './components/payroll/employee-leaves/employee-leaves.component';
 
 export const hrRoutes: Routes = [
   {
@@ -58,6 +59,7 @@ export const hrRoutes: Routes = [
     MonthlysalarystructureComponent,
     EmployeedetailsComponent,
     AllEmployeesComponent,
+    EmployeeLeavesComponent,
   ],
   imports: [CommonModule, RouterModule,FormsModule],
   exports: [EmployeedetailsComponent,SalaryprocessingComponent,AllEmployeesComponent],

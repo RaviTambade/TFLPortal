@@ -28,5 +28,4 @@ export class MembershipService {
     let url = `http://localhost:5142/api/users/${id}`;
     return this.httpClient.put<any>(url, user);
   }
-
 }
