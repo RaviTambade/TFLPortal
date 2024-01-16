@@ -22,13 +22,8 @@ export class ProjectListComponent implements OnInit{
     {this.projects=res;
       console.log(res);
     });
-   
   
   }
 
-  onClick(Id:number){
-    this.projectId=Id;
-    this.router.navigate(['/projectmanager/projects/projectdetails',this.projectId]);
-  }
 
 }

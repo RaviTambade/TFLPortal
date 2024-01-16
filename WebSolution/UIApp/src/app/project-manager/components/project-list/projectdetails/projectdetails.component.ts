@@ -11,14 +11,14 @@ import { ProjectallocationService } from 'src/app/shared/services/projectallocat
   styleUrls: ['./projectdetails.component.css']
 })
 export class ProjectdetailsComponent implements OnInit{
-  constructor(private projectSvc:ProjectService,private router:ActivatedRoute,private projectAllocSvc:ProjectallocationService){this.router.paramMap.subscribe((param)=>{
-    this.projectId=param.get("id");})}
+  constructor(private projectSvc:ProjectService,private router:ActivatedRoute,private projectAllocSvc:ProjectallocationService){}
   projectId:number|any;
   project:Project|undefined;
   status:string='yes';
   employees:ProjectEmployees[]=[];
   ngOnInit(): void {
-   
+    this.router.paramMap.subscribe((param)=>{
+      this.projectId=param.get("id");
    
     this.projectSvc.getProjectDetails(this.projectId).subscribe((res)=>{
       this.project=res;
@@ -27,6 +27,8 @@ export class ProjectdetailsComponent implements OnInit{
       this.employees=res;
       console.log(res);
       })
+    })
     }
+
 
 }

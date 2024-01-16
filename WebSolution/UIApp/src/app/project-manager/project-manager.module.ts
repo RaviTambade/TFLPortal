@@ -40,7 +40,7 @@ export const projectManagerRoutes: Routes = [
       {
         path: 'projects',
         component: ProjectComponent,children:[{path:'',pathMatch:'full',redirectTo:'Projects'},
-                                              {path:'Projects',component:ProjectListComponent},
+                                              {path:'Projects',component:ProjectListComponent,children:[{path:'projectdetails/:id',component:ProjectdetailsComponent}]},
                                               {path:'details/:id' ,component:EmployeeprojectworkdetailsComponent},
 
                                               {path:'memberdetails/:employeeId/:projectId',component:MembersdetailsComponent},
