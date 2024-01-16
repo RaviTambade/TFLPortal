@@ -18,19 +18,20 @@ public class LeaveManagementService : ILeaveManagementService
         _connectionString = _configuration.GetConnectionString("DefaultConnection")  ?? throw new ArgumentNullException("connectionString");
     }
 
-    public async Task<List<EmployeeLeave>> GetAllEmployeeLeaves()
+    public async Task<List<EmployeeLeaveDetails>> GetAllEmployeeLeaves()
     {
-        List<EmployeeLeave> leaveApplications = new List<EmployeeLeave>();
+        List<EmployeeLeaveDetails> leaveApplications = new List<EmployeeLeaveDetails>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select * from employeeleaves";
+            string query = "select employeeleaves.*,employees.userid from employeeleaves inner join employees on employees.id=employeeleaves.employeeid";
             MySqlCommand command = new MySqlCommand(query, connection);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
+                int userId = int.Parse(reader["userid"].ToString());
                 int id = int.Parse(reader["id"].ToString());
                 int employeeId = int.Parse(reader["employeeid"].ToString());
                 DateTime applicationDate = DateTime.Parse(reader["applicationdate"].ToString());
@@ -40,9 +41,10 @@ public class LeaveManagementService : ILeaveManagementService
                 int year = int.Parse(reader["year"].ToString());
                 string leaveType = reader["leavetype"].ToString();
 
-                EmployeeLeave leave = new EmployeeLeave()
+                EmployeeLeaveDetails leave = new EmployeeLeaveDetails()
                 {
                     Id = id,
+                    UserId=userId,
                     EmployeeId = employeeId,
                     ApplicationDate=applicationDate,
                     FromDate = fromDate,
@@ -405,15 +407,20 @@ public class LeaveManagementService : ILeaveManagementService
         return employeeLeaves;
     }
 
-    public async Task<List<EmployeeLeave>> GetTeamLeaveDetails(int projectId, string status)
+    public async Task<List<EmployeeLeaveDetails>> GetTeamLeaveDetails(int projectId, string status)
     {
-        List<EmployeeLeave> leaveApplications = new List<EmployeeLeave>();
+        List<EmployeeLeaveDetails> leaveApplications = new List<EmployeeLeaveDetails>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
             string query =
-                "select projectmembership.employeeid,employeeleaves.status,employeeleaves.leavetype,employeeleaves.applicationdate,employeeleaves.year,employeeleaves.fromdate,employeeleaves.todate from projects inner join projectmembership on projects.id=projectmembership.projectid  inner join employeeleaves on employeeleaves.employeeid=projectmembership.employeeid  where projects.id=@projectId and employeeleaves.status=@status";
+                @"select projectmembership.employeeid,employeeleaves.status,employees.userid,employeeleaves.leavetype,
+                employeeleaves.applicationdate,employeeleaves.year,employeeleaves.fromdate,employeeleaves.todate from projects
+                inner join projectmembership on projects.id=projectmembership.projectid
+                inner join employeeleaves on employeeleaves.employeeid=projectmembership.employeeid 
+                inner join employees on employeeleaves.employeeid=employees.id where projects.id=@projectId 
+                and employeeleaves.status=@status";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);
             command.Parameters.AddWithValue("@status", status);
@@ -421,6 +428,7 @@ public class LeaveManagementService : ILeaveManagementService
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
+                int userId = int.Parse(reader["userid"].ToString());
                 int employeeId = int.Parse(reader["employeeid"].ToString());
                 DateTime applicationDate = DateTime.Parse(reader["applicationdate"].ToString());
                 DateTime fromDate = DateTime.Parse(reader["fromdate"].ToString());
@@ -428,8 +436,9 @@ public class LeaveManagementService : ILeaveManagementService
                 int year = int.Parse(reader["year"].ToString());
                 string leaveType = reader["leavetype"].ToString();
 
-                EmployeeLeave leave = new EmployeeLeave()
+                EmployeeLeaveDetails leave = new EmployeeLeaveDetails()
                 {
+                    UserId=userId,
                     EmployeeId = employeeId,
                     ApplicationDate=applicationDate,
                     FromDate = fromDate,
