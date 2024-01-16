@@ -3,31 +3,51 @@
 
 <div class="container">
     <h2> Project Work Details</h2>
-    <div class="col-md-4">
-    <div class="card">
+    
         <table class="table-bordered text-center">
-            <thead>
+            <div *ngIf="employeeWork">
                 <tr>
                     <th>AssignedDate</th>
-                    <th>Status</th>
-                    <th>description</th>
-                    <th>projectWorkType</th>
-                    <th>assignedBy</th>
-                    <th>assignedTo</th>
-                    <th>DueDate</th>
-                   </tr>
-            </thead>
-            <tbody >
-                <tr *ngIf="employeeWork">
+                    
                     <td> {{employeeWork.assignDate |date}}</td>
+                    </tr>
+                   
+                   
+                    <tr>
+                        <th>Status</th>
                     <td> {{employeeWork.status}}</td>
+                </tr>
+                 
+                 
+                    <tr>
+                        <th>description</th>
                     <td> {{employeeWork.description}}</td>
+                </tr>
+                   
+                    
+                    <tr>
+                        <th>projectWorkType</th>
                     <td> {{employeeWork.projectWorkType}}</td>
+                </tr>
+                    
+                    
+                    <tr>
+                        <th>assignedBy</th>
                     <td> {{employeeWork.assignedByEmployee}}</td>
+                </tr>
+                   
+                    
+                    <tr>
+                        <th>assignedTo</th>
                     <td> {{employeeWork.assignedToEmployee}}</td>
+                </tr>
+                   
+                   
+                    <tr>
+                        <th>DueDate</th>
                     <td> {{employeeWork.dueDate |date}}</td>
                 </tr>
-            </tbody>
-        </table>
-    </div>
+                   
+                </div>  
+            </table>
 </div>
