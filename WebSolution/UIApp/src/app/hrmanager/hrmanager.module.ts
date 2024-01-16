@@ -10,7 +10,7 @@ import { ProjectComponent } from './components/project/project.component';
 import { TimesheetComponent } from './components/timesheet/timesheet.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { timeSheetRoutes } from '../time-sheet/time-sheet.module';
-import { HRRouteGaurd } from './Gaurds/gaurd';
+
 import { leaveRoutes } from '../leaves/leaves.module';
 import { SalaryprocessingComponent } from './components/payroll/salaryprocessing/salaryprocessing.component';
 import { MonthlysalarystructureComponent } from './components/payroll/monthlysalarystructure/monthlysalarystructure.component';

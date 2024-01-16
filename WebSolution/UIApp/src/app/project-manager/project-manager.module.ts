@@ -22,7 +22,6 @@ import { MembersdetailsComponent } from './components/membersdetails/membersdeta
 import { SprintListComponent } from './components/sprint-list/sprint-list.component';
 import { SprintDetailsComponent } from './components/sprint-details/sprint-details.component';
 import { MembersListComponent } from './components/members-list/members-list.component';
-import { EmployeeprojectComponent } from './components/employee-project-works/employeeproject/employeeproject.component';
 import { SprintactivitiesComponent } from './components/sprint-details/sprintactivities/sprintactivities.component';
 
 export const projectManagerRoutes: Routes = [
@@ -40,7 +39,7 @@ export const projectManagerRoutes: Routes = [
       {
         path: 'projects',
         component: ProjectComponent,children:[{path:'',pathMatch:'full',redirectTo:'Projects'},
-                                              {path:'Projects',component:ProjectListComponent},
+                                              {path:'Projects',component:ProjectListComponent,children:[{path:'projectdetails/:id',component:ProjectdetailsComponent}]},
                                               {path:'details/:id' ,component:EmployeeprojectworkdetailsComponent},
 
                                               {path:'memberdetails/:employeeId/:projectId',component:MembersdetailsComponent},
@@ -78,7 +77,6 @@ export const projectManagerRoutes: Routes = [
     SprintListComponent,
     SprintDetailsComponent,
     MembersListComponent,
-    EmployeeprojectComponent,
     SprintactivitiesComponent,
   ],
   imports: [CommonModule, RouterModule,TimeSheetModule],

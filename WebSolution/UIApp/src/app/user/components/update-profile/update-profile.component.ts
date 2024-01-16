@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { User } from 'src/app/resource-management/Models/User';
+import { User } from 'src/app/user/Models/User';
 import { MembershipService } from 'src/app/shared/services/membership.service';
-import { StateChangeEvent } from '../../Models/stateChangeEvent';
 import { EmployeeDetails } from 'src/app/activity/Models/EmployeeDetails';
+import { StateChangeEvent } from '../../Models/stateChangeEvent';
 
 @Component({
   selector: 'update-profile',
@@ -11,18 +11,16 @@ import { EmployeeDetails } from 'src/app/activity/Models/EmployeeDetails';
   styleUrls: ['./update-profile.component.css'],
 })
 export class UpdateProfileComponent {
-  @Input() user: EmployeeDetails = {
-    employeeId: 0,
-    userId: 0,
+  @Input() user: User = {
     aadharId: '',
-    hireDate: '',
     firstName: '',
     lastName: '',
     email: '',
     gender: '',
     imageUrl: '',
     birthDate: '',
-    contactNumber: ''
+    contactNumber: '',
+    id: 0
   };
 
   @Output() onUpdateFinished = new EventEmitter<StateChangeEvent>();
@@ -105,7 +103,7 @@ export class UpdateProfileComponent {
           birthDate: this.dob.value,
           gender: this.gender.value,
           email: this.email.value,
-          id: this.user.userId,
+          id: this.user.id,
           imageUrl: this.user.imageUrl,
           contactNumber: this.user.contactNumber
         }

@@ -6,13 +6,13 @@ import { employeeRoutes } from './employee/employee.module';
 import { hrRoutes } from './hrmanager/hrmanager.module';
 import { directorRoutes } from './director/director.module';
 import { projectManagerRoutes } from './project-manager/project-manager.module';
-import { HRRouteGaurd } from './hrmanager/Gaurds/gaurd';
-import { EmployeeProfileComponent } from './employee/components/employee-profile/employee-profile.component';
+import { HRRouteGaurd } from './shared/Gaurds/gaurd';
+import { userRoutes } from './user/user.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'profile/:id', component: EmployeeProfileComponent },
+  { path: 'user', children: userRoutes },
   { path: 'auth', children: authRoutes },
   { path: 'employee', children: employeeRoutes },
   { path: 'hrmanager', children: hrRoutes, canActivateChild: [HRRouteGaurd()] },
