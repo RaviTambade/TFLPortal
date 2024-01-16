@@ -1,0 +1,62 @@
+
+LayoutModule 
+
+1.Home               - Home page
+2 Main               - Nav bar
+
+
+ SharedModule
+ 
+-directives
+     highlight.directive.ts    - highlight current selected elemnt from list
+     tooltip.directive.ts      - show tooltip on hover 
+     
+-enums
+     local-storage-keys.ts     - localstorage keys
+     role.ts                   - roles of application
+     tokenclaims.ts            - JWT Token claims keys
+     
+-Gaurds
+     employee.guard.ts         - triditional gaurd
+     gaurd.ts                  - Updated syntax of gaurd
+     
+-models
+     UrlType.ts
+     UserRole.ts
+     
+-pipes
+     chunk.pipe.ts             - convert array into 2D array
+     hour-convertor.pipe.ts    - change minutes to hours
+     
+-services
+        bi.service.ts
+        hr.service.ts 
+        jwt.service.ts
+        leaves.service.ts
+        membership.service.ts
+        payroll.service.ts
+        project.service.ts
+        projectallocation.service.ts
+        sprint.service.ts
+        workmgmt.service.ts
+        
+
+
+
+Timesheet -
+ components -                                                                                     
+ 1. add-timesheet-entry                   - Add timesheet entry inexisting timesheet                                                                           
+ 2. create-timesheet                      - create timesheet for today                                                                            
+ 3.details                                - specifc timesheet details                                                                                   
+ 4.list                                   - list of timesheets                                                                      
+ 5.timesheet-approval                     - approval of timesheet                                                                           
+ 6.update-timesheet-entry                 - updating timesheet entry                                                                 
+ 7.timesheet-employee-project-hours       - pie chart of projectwise hour distribution  of week,month,year                                                     
+ 8.timesheet-employee-work-chart          - bar chart of projectwise worktype distribution                                                          
+ 9.timesheet-dashboard                    - timesheet-employee-work-chart +  list                                                                    
+ 10.timesheet-employee-analytics          - timesheet-employee-work-chart   + timesheet-employee-project-hours                                                             
+
+User-
+
+1. user-profile                           - user profile            
+2. update-profile                         - update user profile     
