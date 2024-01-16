@@ -79,3 +79,29 @@ componets List :
 13.payroll  : vertical link
 14.leaves   : vertical link
 15.event    : vertical link
+
+Leaves Module:
+1.All Employee Leaves: It gives list of applied leaves of employee.
+2.All Leave count:pendingleave,consumedleave,totalleave,applied leave list of particular employee.
+3.All Role based Leaves: list of role based leaves.
+4.consumed leave: employee consumed leave in year.
+5.details: leave details
+6.employee consumed leaves:employees consumed leave.
+7.Employee leaves by date: list of employees on leave
+8.Employee Pending leaves:employees pending leave.
+9.Leave  by status:applied,sanctioned,notsanctioned.
+10.leave details:leave details,approve/reject
+11.Add leave: add leave.
+12.pending leave:employee pending leave in year.
+13.Todays employee leave:Todays employees on leave.
+14.Total leave:employee Total leave in year.
+15.Add role based leave: add role based leave.
+16.Update Employee leave: update existing leave.
+17.Update Role based leave: update role based leave.
+18.Update status:update leave status.
+
+
+
+
+
+

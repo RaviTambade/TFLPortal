@@ -25,12 +25,6 @@ leaves:any[]=[];
       this.LeaveId=Number(params.get('id'));
         console.log(this.LeaveId);
     }); 
-    // this.service.getAllEmployeeLeaves().subscribe((res)=>{
-    //   this.leaves=res;
-    //   console.log(this.leaves);
-    //   this.leaveStatus=this.leaves.map(item => item.status).filter((value, index, self) => self.indexOf(value) === index);
-    //   console.log(this.leaveStatus);
-    // })
   }
 
   onSubmit(){

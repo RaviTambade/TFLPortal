@@ -10,7 +10,7 @@ import { LeavesService } from '../../Services/leaves.service';
 export class ConsumedLeaveComponent {
 
   employeeId:number=12;
-  pendingLeave:PendingLeave |undefined;
+  consumedLeave:PendingLeave |undefined;
   year:number=2023;
 
 
@@ -20,7 +20,7 @@ export class ConsumedLeaveComponent {
 
   ngOnInit(): void {
     this.service.getConsumedLeaves(this.employeeId,this.year).subscribe((res)=>{
-      this.pendingLeave=res;
+      this.consumedLeave=res;
       console.log(res);
     }) 
   }
