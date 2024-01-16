@@ -60,3 +60,22 @@ User-
 
 1. user-profile                           - user profile            
 2. update-profile                         - update user profile     
+
+
+Project Manager Module
+componets List :
+1.project Manager Left sidebar  : It used for vertical Links releted to project manager.
+2.project List : It shows project manager project list.
+3.project Details  : It shows the project details.
+4.member List  :It shows the members of the project.
+5.member details : It shows the member details of the project. 
+6.employeeProjectWork : It shows the employeework list.
+7.employeeProjectWorkDetails : It shows the employee Work details.
+8.sprint List  : It shows the ongoing sprint list
+9.sprint Details :It shows the sprint details.
+10.timesheet  : vertial link
+11.project  : vertical link
+12.perforamnce apprisal : vertical link
+13.payroll  : vertical link
+14.leaves   : vertical link
+15.event    : vertical link
