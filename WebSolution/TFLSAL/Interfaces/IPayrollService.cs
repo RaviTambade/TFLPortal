@@ -6,8 +6,12 @@ namespace Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 public interface IPayrollService
 {
     Task<List<SalaryDetails>> GetSalaryDetails(int month,int year);
+
+    Task<List<Salary>> GetEmployeeSalaryDetails(int employeeId);
     Task<bool> AddSalaryStructure(SalaryStructure salary); 
     Task<SalaryStructure> GetSalary(int employeeId);
+
+
     Task<MonthSalary> CalculateSalary(int employeeId,int month,int year);
     // Task<Salary> GetSalaryDetails(int employeeId);
     Task<bool> InsertSalary(Salary salary);
