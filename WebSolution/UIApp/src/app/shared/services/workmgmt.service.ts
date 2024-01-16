@@ -13,6 +13,7 @@ import { EmployeeWork } from 'src/app/activity/Models/EmployeeWork';
 import { TimesheetDuration } from 'src/app/time-sheet/models/timesheetduratiom';
 import { Week } from 'src/app/time-sheet/models/Week';
 import { Sprint } from 'src/app/time-sheet/models/sprint';
+import { EmployeeWorkDetails } from 'src/app/project-manager/Model/EmployeeWorkDetails';
 
 
 @Injectable({
@@ -34,10 +35,10 @@ export class WorkmgmtService {
     return this.http.post<boolean>(url, addactivity);
   }
 
-  fetchEmployeeWorkByProject(projectId: number): Observable<EmployeeWork[]> {
+  fetchEmployeeWorkByProject(projectId: number): Observable<EmployeeWorkDetails[]> {
     let url = this.serviceurl + '/workmgmt/employeeWork/selectedProject/' + projectId;
     console.log(url);
-    return this.http.get<EmployeeWork[]>(url);
+    return this.http.get<EmployeeWorkDetails[]>(url);
   }
 
 

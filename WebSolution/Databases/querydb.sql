@@ -1,4 +1,4 @@
--- Active: 1694968636816@@127.0.0.1@3306@tflportal
+-- Active: 1678339848098@@127.0.0.1@3306@tflportal
 
 SELECT sprintmaster.* FROM sprintmaster where projectid=4;
 
@@ -284,3 +284,14 @@ select employeework.* , employees.userid  from employeework
 INNER join sprintmaster on employeework.sprintid=sprintmaster.id
 INNER join employees ON employeework.assignedto=employees.id
 WHERE sprintmaster.id=2;
+
+select * from salaries;
+select * from salarystructures;
+SELECT * FROM employees;
+
+SELECT employees.userid
+                         FROM employees 
+                         LEFT JOIN salaries ON employees.id = salaries.employeeid
+                        AND MONTH(salaries.paydate) = 1
+                        AND YEAR(salaries.paydate) = 2024
+             WHERE salaries.employeeid IS NULL

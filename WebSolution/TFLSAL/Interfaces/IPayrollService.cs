@@ -11,4 +11,5 @@ public interface IPayrollService
     Task<MonthSalary> CalculateSalary(int employeeId,int month,int year);
     // Task<Salary> GetSalaryDetails(int employeeId);
     Task<bool> InsertSalary(Salary salary);
+    Task<List<int>> GetUnPaidEmployees(int month,int year);
 }   

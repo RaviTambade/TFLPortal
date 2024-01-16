@@ -12,6 +12,7 @@ export class EmployeeWork{
         public  startDate:string,
         public  dueDate:string,
         public  status:string,
-        public  createdDate:string,){}
+        public  createdDate:string,
+        ){}
 
 }

@@ -114,4 +114,12 @@ public class PayrollController : ControllerBase
         }
         return Salaries;
     }
+
+
+[HttpGet("employees/unpaid/month/{month}/year/{year}")]
+      public async Task<List<int>> GetUnPaidEmployees(int month,int year)
+      {
+        List<int> userIds=await _payrollService.GetUnPaidEmployees(month,year);
+        return userIds;
+      }
 }

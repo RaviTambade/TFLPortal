@@ -216,8 +216,44 @@ public class PayrollService : IPayrollService
         }
         return status;
     }
-       
-       
- }
+
+    public async Task<List<int>> GetUnPaidEmployees(int month, int year)
+    {
+            List<int>? userIds=new();
+            MySqlConnection connection = new MySqlConnection();
+            connection.ConnectionString = _connectionString;
+            try
+            {
+                string query =
+                   @"SELECT employees.userid
+                         FROM employees
+                         LEFT JOIN salaries ON employees.id = salaries.employeeid
+                         AND MONTH(salaries.paydate) = @month
+                         AND YEAR(salaries.paydate) = @year
+                         WHERE salaries.employeeid IS NULL";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                System.Console.WriteLine(month);
+                System.Console.WriteLine(year);
+                command.Parameters.AddWithValue("@month", month);
+                command.Parameters.AddWithValue("@year", year);
+                await connection.OpenAsync();
+                MySqlDataReader reader = command.ExecuteReader();
+                while(await reader.ReadAsync())
+                {
+                     userIds.Add(reader.GetInt32(reader.GetOrdinal("userid")));
+                }
+                await reader.CloseAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                await connection.CloseAsync();
+            }
+            return userIds;
+    }
+}
 
 
