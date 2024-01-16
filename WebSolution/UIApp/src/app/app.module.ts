@@ -7,7 +7,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ResourceManagementModule } from './resource-management/resource-management.module';
 import { CalenderComponent } from './calender/calender.component';
 import { TimeSheetModule, timeSheetRoutes } from './time-sheet/time-sheet.module';
-import { ProjectplanningModule } from './ProjectPlanning/projectplanning/projectplanning.module';
 import { ActivityModule } from './activity/activity.module';
 import { BiModule } from './bi/bi.module';
 import { LeavesModule } from './leaves/leaves.module';
@@ -31,7 +30,6 @@ import { UserModule } from './user/user.module';
     HttpClientModule,
     ResourceManagementModule,
     TimeSheetModule,
-    ProjectplanningModule,
     LeavesModule,
     LayoutModule,
     SharedModule,
