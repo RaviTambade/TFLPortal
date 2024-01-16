@@ -64,7 +64,7 @@ public class EmployeeWorkController : ControllerBase
     }
    
 
-     [HttpGet]
+    [HttpGet]
     public async Task<List<EmployeeWork>> GetAllEmployeeWork()
     {
         List<EmployeeWork> employeeWorks = await _service.GetAllEmployeeWork();
@@ -141,12 +141,6 @@ public class EmployeeWorkController : ControllerBase
          
             return employeeWorksResponses;
         }
-          
-          
-
-    
-
-
 
     [HttpPost]
     public async Task<bool> AddEmployeeWork(EmployeeWork activity)

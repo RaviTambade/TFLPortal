@@ -16,6 +16,7 @@ import { SharedModule } from './shared/shared.module';
 import { LocalStorageKeys } from './shared/enums/local-storage-keys';
 import { HrmanagerModule } from './hrmanager/hrmanager.module';
 import { EmployeeModule } from './employee/employee.module';
+import { UserModule } from './user/user.module';
 
 
 
@@ -39,7 +40,7 @@ import { EmployeeModule } from './employee/employee.module';
     }),
     ActivityModule,
     HrmanagerModule,
-    EmployeeModule
+    EmployeeModule,
 
   ],
 

@@ -2,18 +2,18 @@ import { HttpEventType } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EmployeeDetails } from 'src/app/activity/Models/EmployeeDetails';
-import { User } from 'src/app/resource-management/Models/User';
+import { User } from 'src/app/user/Models/User';
 import { HrService } from 'src/app/shared/services/hr.service';
 import { MembershipService } from 'src/app/shared/services/membership.service';
 import { environment } from 'src/environments/environment';
 import { StateChangeEvent } from '../../Models/stateChangeEvent';
 
 @Component({
-  selector: 'app-employee-profile',
-  templateUrl: './employee-profile.component.html',
-  styleUrls: ['./employee-profile.component.css'],
+  selector: 'app-user-profile',
+  templateUrl: './user-profile.component.html',
+  styleUrls: ['./user-profile.component.css']
 })
-export class EmployeeProfileComponent {
+export class UserProfileComponent {
   employee: EmployeeDetails | undefined;
   employeeId: number |undefined;
   imageServer = environment.imagerServerUrl;
@@ -103,4 +103,5 @@ export class EmployeeProfileComponent {
     })
   }
 }
+
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Output,EventEmitter } from '@angular/core';
-import { User } from 'src/app/resource-management/Models/User';
+import { User } from 'src/app/user/Models/User';
 import { HrService } from 'src/app/shared/services/hr.service';
 
 @Component({

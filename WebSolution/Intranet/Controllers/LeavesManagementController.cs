@@ -266,6 +266,12 @@ public class LeavesManagementController : ControllerBase
        
     }
 
+    [HttpGet("employees/{employeeId}/month/{month}/year/{year}")]
+    public async Task<List<LeaveDetails>> GetEmployeeLeaves(int employeeId,int month,int year)
+    {
+        return await _service.GetEmployeeLeaves(employeeId,month,year);   
+    }
+
     [HttpPost("addnewrolebasedleave")]
     public async Task<bool> AddNewRoleBasedLeave(RoleBasedLeave roleBasedLeave)
     {

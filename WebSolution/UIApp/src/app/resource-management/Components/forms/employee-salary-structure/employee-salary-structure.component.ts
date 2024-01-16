@@ -20,7 +20,6 @@ export class EmployeeSalaryStructureComponent {
     da:new FormControl(),
     lta:new FormControl(),
     variablePay:new FormControl(),
-    deduction:new FormControl()
   });
 
   onSubmit(){
@@ -31,7 +30,6 @@ export class EmployeeSalaryStructureComponent {
       da: this.salaryStructureForm.get("da")?.value,
       lta: this.salaryStructureForm.get("lta")?.value,
       variablePay: this.salaryStructureForm.get("variablePay")?.value,
-      deduction:this.salaryStructureForm.get("deduction")?.value
     }
     console.log(salaryStructure);
    this.hrSvc.getEmployeeSalaryStructure(salaryStructure).subscribe((res)=>{

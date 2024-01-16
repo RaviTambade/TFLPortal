@@ -1,6 +1,7 @@
+<h2 class="m-4 ">My Profile </h2>
 <div class="m-4 " *ngIf="employee">
     
-    <div class="d-flex justify-content-center">
+    <div class="d-flex ">
         <div class="text-center"  *ngIf="!selectedImageUrl">
         <img style=" border-radius: 250px;" [src]="imageServer +employee.imageUrl" width="260" height="260">
         <br>

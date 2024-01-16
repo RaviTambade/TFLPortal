@@ -113,6 +113,48 @@ public class LeaveManagementService : ILeaveManagementService
         return leaves;
     }
 
+    public async Task<List<LeaveDetails>> GetEmployeeLeaves(int employeeId,int month,int year)
+    {
+        List<LeaveDetails> leaves = new List<LeaveDetails>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query = @"SELECT leavetype,coalesce(sum(datediff(todate,fromdate)+1),0) as leavecount From employeeleaves
+                           WHERE employeeid = @employeeId AND MONTH(fromdate)=@month AND YEAR(fromdate)=@year AND status=@status group by leavetype";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@employeeId", employeeId);
+            command.Parameters.AddWithValue("@month", month);
+            command.Parameters.AddWithValue("@year", year);
+            command.Parameters.AddWithValue("@status", "sanctioned");
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {
+                string leaveType = reader["leavetype"].ToString();
+                int leaveCount = int.Parse(reader["leavecount"].ToString());
+
+                LeaveDetails leave = new LeaveDetails()
+                {
+                    LeaveType = leaveType,
+                    ConsumedLeaves=leaveCount
+                };
+                leaves.Add(leave);
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return leaves;
+
+    }
+
     public async Task<List<EmployeeLeave>> GetLeaveDetailsOfEmployee(int employeeId)
     {
         List<EmployeeLeave> leaveApplications = new List<EmployeeLeave>();

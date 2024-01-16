@@ -6,6 +6,7 @@ public interface ILeaveManagementService
 {
     Task<List<EmployeeLeaveDetails>> GetAllEmployeeLeaves();    
     Task<List<RoleBasedLeave>> GetAllRoleBasedLeaves();
+    Task<List<LeaveDetails>> GetEmployeeLeaves(int employeeId,int month,int year);
     Task<List<EmployeeLeave>> GetLeaveDetailsOfEmployee(int employeeId);
     Task<List<EmployeeLeave>> GetLeaveDetailsOfEmployee(int employeeId, string status);
     Task<RoleBasedLeave> GetRoleBasedLeaveDetails(int Id);

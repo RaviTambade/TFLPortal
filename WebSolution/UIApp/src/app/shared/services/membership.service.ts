@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserRole } from '../models/UserRole';
-import { User } from 'src/app/resource-management/Models/User';
+import { User } from 'src/app/user/Models/User';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +28,4 @@ export class MembershipService {
     let url = `http://localhost:5142/api/users/${id}`;
     return this.httpClient.put<any>(url, user);
   }
-
 }

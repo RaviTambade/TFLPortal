@@ -10,13 +10,14 @@ import { ProjectComponent } from './components/project/project.component';
 import { TimesheetComponent } from './components/timesheet/timesheet.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { timeSheetRoutes } from '../time-sheet/time-sheet.module';
-import { HRRouteGaurd } from './Gaurds/gaurd';
+
 import { leaveRoutes } from '../leaves/leaves.module';
 import { SalaryprocessingComponent } from './components/payroll/salaryprocessing/salaryprocessing.component';
 import { MonthlysalarystructureComponent } from './components/payroll/monthlysalarystructure/monthlysalarystructure.component';
 import { EmployeedetailsComponent } from './components/payroll/employeedetails/employeedetails.component';
 import { FormsModule } from '@angular/forms';
 import { AllEmployeesComponent } from './components/payroll/all-employees/all-employees.component';
+import { EmployeeLeavesComponent } from './components/payroll/employee-leaves/employee-leaves.component';
 
 export const hrRoutes: Routes = [
   {
@@ -58,6 +59,7 @@ export const hrRoutes: Routes = [
     MonthlysalarystructureComponent,
     EmployeedetailsComponent,
     AllEmployeesComponent,
+    EmployeeLeavesComponent,
   ],
   imports: [CommonModule, RouterModule,FormsModule],
   exports: [EmployeedetailsComponent,SalaryprocessingComponent,AllEmployeesComponent],
