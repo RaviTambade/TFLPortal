@@ -62,6 +62,9 @@ User-
 2. update-profile                         - update user profile     
 
 
+
+
+
 Project Manager Module
 componets List :
 1.project Manager Left sidebar  : It used for vertical Links releted to project manager.
@@ -80,7 +83,6 @@ componets List :
 14.leaves   : vertical link
 15.event    : vertical link
 
-<<<<<<< HEAD
 Leaves Module:
 1.All Employee Leaves: It gives list of applied leaves of employee.
 2.All Leave count:pendingleave,consumedleave,totalleave,applied leave list of particular employee.
@@ -101,26 +103,6 @@ Leaves Module:
 17.Update Role based leave: update role based leave.
 18.Update status:update leave status.
 
-HR Manager Module:
-Payroll :
-1.All Employees: list of paid employees.
-2.Employee Leaves: month leaves of employee.
-3.Employee Details : Employee personal details.
-4.Monthly salary structure: Salary slip.
-5.Salary Processing: process salary.
-
-
-
-
-
-
-
-
-
-
-
-
-=======
 
 Activity Module :
 
@@ -137,4 +119,3 @@ Activity Module :
 11.projectActivities : All Activities of Project.
 12.todaysemployeeWork:getTodaysEmployeeWOrk.
 13.updateemployeeWork:UpdateEmployyeWork
->>>>>>> cdeabc793731b6f95fe438b47c0f40d5e835527f
