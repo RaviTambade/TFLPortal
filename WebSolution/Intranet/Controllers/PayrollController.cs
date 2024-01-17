@@ -127,4 +127,11 @@ public class PayrollController : ControllerBase
         List<Salary> salaries=await _payrollService.GetEmployeeSalaryDetails(employeeId);
         return salaries;
       }
+
+      [HttpGet("employee/salary/{salaryId}")]
+      public async Task<Salary> GetPaidEmployeeSalaryDetails(int salaryId)
+      {
+        Salary salary=await _payrollService.GetPaidEmployeeSalaryDetails(salaryId);
+        return salary;
+      }
 }

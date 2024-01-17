@@ -53,6 +53,44 @@ public class PayrollService : IPayrollService
         }
         return salaryDetails;
     }
+
+    public async Task<SalaryDetails> GetPaidEmployeeSalaryDetails(int salaryId)
+    {
+        SalaryDetails salaryDetails = null;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString=_connectionString;
+        try
+        {
+            string query="select salaries.*,employees.userid from salaries inner join employees where employees.id=salaries.employeeid where id=@salaryId";
+            MySqlCommand command=new MySqlCommand(query,connection);
+            command.Parameters.AddWithValue("@salaryId",salaryId);
+            await connection.OpenAsync();
+            MySqlDataReader reader=command.ExecuteReader();
+            while(await reader.ReadAsync()){
+                    salaryDetails=new SalaryDetails{
+                    EmployeeId=reader.GetInt32("employeeid"),
+                    UserId=reader.GetInt32("userid"),
+                    PayDate=reader.GetDateTime("paydate"),
+                    MonthlyWorkingDays=reader.GetInt32("monthlyworkingdays"),
+                    Deduction=reader.GetDouble("deduction"),
+                    Tax=reader.GetDouble("tax"),
+                    PF=reader.GetDouble("pf"),
+                    Amount=reader.GetDouble("amount"),             
+                };
+            }
+            await reader.CloseAsync();
+        }
+        catch(Exception)
+        {
+          throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return salaryDetails;
+
+    }
     public async Task<List<SalaryDetails>> GetSalaryDetails(int month,int year)
     {
         List<SalaryDetails> salaryDetails = new List<SalaryDetails>();

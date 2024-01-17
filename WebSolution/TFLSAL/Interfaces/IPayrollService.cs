@@ -8,6 +8,7 @@ public interface IPayrollService
     Task<List<SalaryDetails>> GetSalaryDetails(int month,int year);
 
     Task<List<Salary>> GetEmployeeSalaryDetails(int employeeId);
+    Task<SalaryDetails> GetPaidEmployeeSalaryDetails(int salaryId);
     Task<bool> AddSalaryStructure(SalaryStructure salary); 
     Task<SalaryStructure> GetSalary(int employeeId);
 
