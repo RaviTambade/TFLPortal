@@ -49,63 +49,23 @@ Insert Into rolebasedleaves(roleid,sick,casual,paid,unpaid,financialyear) values
 
 
 
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(11,'2023-04-01','2023-04-03','2023-04-05',"notsanctioned",2023,"casual");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-04-01','2023-04-03','2023-04-05',"sanctioned",2023,"casual");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(13,'2023-03-01','2023-03-03','2023-03-20',"applied",2023,"casual");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(14,'2023-04-01','2023-04-10','2023-04-15',"sanctioned",2023,"casual");
+Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(11,'2024-04-01','2024-04-03','2023-04-05',"notsanctioned",2023,"casual");
+Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2024-04-01','2024-04-03','2023-04-05',"sanctioned",2023,"casual");
+Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(13,'2024-03-01','2024-03-03','2023-03-20',"sanctioned",2023,"casual");
+Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(14,'2024-04-01','2024-04-10','2023-04-15',"sanctioned",2023,"casual");
 
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(11,'2023-04-30','2023-04-03','2023-05-05',"notsanctioned",2023,"sick");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-04-01','2023-04-15','2023-05-05',"sanctioned",2023,"paid");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(13,'2023-02-01','2023-03-03','2023-05-20',"applied",2023,"unpaid");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(14,'2023-04-01','2023-04-10','2023-02-15',"sanctioned",2023,"casual");
-
-
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-04-01','2023-04-20','2023-04-21',"sanctioned",2023,"paid");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-01-20','2023-01-22','2023-01-22',"sanctioned",2023,"unpaid");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-01-20','2023-01-26','2023-01-26',"sanctioned",2023,"sick");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-01-20','2023-01-26','2023-01-26',"sanctioned",2023,"paid");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-01-15','2023-02-25','2023-02-25',"sanctioned",2023,"casual");
-
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-02-20','2023-02-22','2023-02-22',"sanctioned",2023,"unpaid");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-02-20','2023-02-26','2023-02-26',"sanctioned",2023,"sick");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-02-20','2023-02-26','2023-02-26',"sanctioned",2023,"paid");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-02-15','2023-02-25','2023-02-25',"sanctioned",2023,"casual");
-
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-03-01','2023-03-22','2023-03-22',"sanctioned",2023,"unpaid");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-03-05','2023-03-26','2023-03-26',"sanctioned",2023,"sick");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-03-10','2023-03-26','2023-03-26',"sanctioned",2023,"paid");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-03-12','2023-03-25','2023-03-25',"sanctioned",2023,"casual");
-
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-04-01','2023-04-22','2023-04-22',"sanctioned",2023,"unpaid");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-04-05','2023-04-26','2023-04-26',"sanctioned",2023,"sick");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-04-10','2023-04-26','2023-04-26',"sanctioned",2023,"paid");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-04-12','2023-04-25','2023-04-25',"sanctioned",2023,"casual");
+Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(15,'2024-11-01','2024-11-22','2023-11-22',"applied",2023,"unpaid");
+Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(16,'2024-11-05','2024-11-26','2023-11-28',"applied",2023,"sick");
+Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(17,'2024-12-12','2024-12-26','2023-12-27',"applied",2023,"paid");
+Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(18,'2024-12-12','2024-12-15','2023-12-18',"applied",2023,"casual");
+Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(19,'2024-01-15','2024-01-17','2024-01-17',"sanctioned",2024,"casual");
+Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(18,'2024-01-14','2024-01-17','2024-01-17',"sanctioned",2024,"casual");
 
 
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-05-01','2023-05-22','2023-05-22',"sanctioned",2023,"unpaid");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-05-05','2023-05-26','2023-05-28',"sanctioned",2023,"sick");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-05-10','2023-05-26','2023-05-27',"sanctioned",2023,"paid");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-05-12','2023-05-15','2023-05-18',"sanctioned",2023,"casual");
+Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(10,'2024-01-13','2024-01-14','2024-01-15',"sanctioned",2024,"unpaid");
 
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-06-01','2023-06-22','2023-06-22',"sanctioned",2023,"unpaid");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-06-05','2023-06-26','2023-06-28',"sanctioned",2023,"sick");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-06-10','2023-06-26','2023-06-27',"sanctioned",2023,"paid");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-06-12','2023-06-15','2023-06-18',"sanctioned",2023,"casual");
 
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-07-01','2023-07-22','2023-07-22',"sanctioned",2023,"unpaid");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-07-05','2023-07-26','2023-07-28',"sanctioned",2023,"sick");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-08-10','2023-08-26','2023-08-27',"sanctioned",2023,"paid");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-08-12','2023-08-15','2023-08-18',"sanctioned",2023,"casual");
 
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-09-01','2023-09-22','2023-09-22',"sanctioned",2023,"unpaid");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-09-05','2023-09-26','2023-09-28',"sanctioned",2023,"sick");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-10-10','2023-10-26','2023-10-27',"sanctioned",2023,"paid");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-10-12','2023-10-15','2023-10-18',"sanctioned",2023,"casual");
-
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-11-01','2023-11-22','2023-11-22',"sanctioned",2023,"unpaid");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-11-05','2023-11-26','2023-11-28',"sanctioned",2023,"sick");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-12-12','2023-12-26','2023-12-27',"sanctioned",2023,"paid");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(12,'2023-12-12','2023-12-15','2023-12-18',"sanctioned",2023,"casual");
 
 
 Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(10,'2024-01-13','2024-01-15','2024-01-17',"sanctioned",2023,"sick");
