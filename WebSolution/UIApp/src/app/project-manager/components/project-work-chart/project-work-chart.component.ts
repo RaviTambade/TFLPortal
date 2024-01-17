@@ -14,7 +14,7 @@ export class ProjectWorkChartComponent implements OnInit{
   createChart(){
   
     this.chart = new Chart("MyChart", {
-      type: 'pie', //this denotes tha type of chart
+      type: 'bar', //this denotes tha type of chart
 
       data: {// values on X-Axis
         labels: ['A', 'B', 'C','D',
