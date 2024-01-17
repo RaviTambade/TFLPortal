@@ -79,3 +79,20 @@ componets List :
 13.payroll  : vertical link
 14.leaves   : vertical link
 15.event    : vertical link
+
+
+Activity Module :
+
+1.Activity List : All Activities of Employee.
+2.Activity Details : Activity Details of Employee.
+3.Employee All Activities :  Employees All Activities of particular project.
+4.Employee Todays-Activities : It shows todays all activities.
+5.Employee Work : Employees activities.
+6.EmployeeWork Details :Employee activity details.
+7.Add activity : this used for add new activity.
+8.CreateEmployeeWork: it used for create employeeWork.
+9.UpdateActivity:It is used for update Activity.
+10.myWorkingProjects : get All myWorkingProjects.
+11.projectActivities : All Activities of Project.
+12.todaysemployeeWork:getTodaysEmployeeWOrk.
+13.updateemployeeWork:UpdateEmployyeWork
