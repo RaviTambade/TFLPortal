@@ -16,21 +16,8 @@ export class TimesheetEmployeeWorkChartComponent {
   employeeId: number = 0;
   fromDate: string | undefined;
   toDate: string | undefined;
-  workCategory: WorkCategoryDetails = {
-    userStory: 0,
-    task: 0,
-    bug: 0,
-    issues: 0,
-    meeting: 0,
-    learning: 0,
-    mentoring: 0,
-    clientCall: 0,
-    other: 0,
-    label: '',
-  };
   intervals: string[] = ['week', 'month', 'year'];
   selectedInterval: string = this.intervals[0];
-  totalHours:number=0
 
   projects: Project[] = [
     {
@@ -44,9 +31,7 @@ export class TimesheetEmployeeWorkChartComponent {
     }
   ];
   selectedProjectId = this.projects[0].id;
-
   WorkCategoryDetails: WorkCategoryDetails[] = [];
-
   chart: any;
 
   createChart() {
@@ -119,11 +104,9 @@ export class TimesheetEmployeeWorkChartComponent {
         this.toDate = `${currentYear}-12-31`;
         break;
 
-      // case 'custom':
-      //   break;
+     
     }
     if (this.fromDate && this.toDate) {
-      // this.getWorkHours(this.employeeId, this.fromDate, this.toDate);
       this.getChartData();
     }
   }
@@ -134,14 +117,11 @@ export class TimesheetEmployeeWorkChartComponent {
       .subscribe((res) => {
         this.WorkCategoryDetails = res;
         this.chart.data.datasets = [];
-        this.workCategory = new WorkCategoryDetails(0,0,0,0,0,0,0,0,0,'');
-        this.totalHours=0;
+        
         this.WorkCategoryDetails.forEach((category) => {
           let cl = this.workmgmtSvc.randomColorPicker();
           let obj = {
-            label: this.getLabelName(
-              category.label
-            ) /* "week"+ (index+1)*/,
+            label: this.getLabelName(category.label) ,
             data: [
               category.userStory,
               category.task,
@@ -156,22 +136,8 @@ export class TimesheetEmployeeWorkChartComponent {
             backgroundColor: cl,
             borderColor: cl,
           };
-          this.chart.data.datasets.push(obj);
-          this.workCategory.userStory += Number(category.userStory);
-          this.workCategory.task += Number(category.task);
-          this.workCategory.clientCall += Number(category.clientCall);
-          this.workCategory.meeting += Number(category.meeting);
-          this.workCategory.issues += Number(category.issues);
-          this.workCategory.bug += Number(category.bug);
-          this.workCategory.mentoring += Number(category.mentoring);
-          this.workCategory.learning += Number(category.learning);
-          this.workCategory.other += Number(category.other);
-
+          this.chart.data.datasets.push(obj); 
         });
-       this.totalHours=this.workCategory.bug+this.workCategory.userStory+this.workCategory.task+
-       this.workCategory.clientCall+this.workCategory.meeting+this.workCategory.issues+
-       this.workCategory.mentoring+this.workCategory.learning+this.workCategory.other;
-
         this.chart.update();
       });
   }

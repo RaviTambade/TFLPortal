@@ -20,6 +20,7 @@ import { EmployeeGuard } from '../shared/Gaurds/employee.guard';
 import { TimesheetApprovalComponent } from './components/timesheet-approval/timesheet-approval.component';
 import { HRRouteGaurd } from '../shared/Gaurds/gaurd';
 import { TimesheetDashboardComponent } from './components/timesheet-dashboard/timesheet-dashboard.component';
+import { TimesheetEmployeeWorkDataComponent } from './components/timesheet-employee-work-chart/timesheet-employee-work-data/timesheet-employee-work-data.component';
 
 export const timeSheetRoutes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -81,7 +82,8 @@ export const timeSheetRoutes: Routes = [
     CreateTimesheetComponent,
     AddTimesheetEntryComponent,
     TimesheetApprovalComponent,
-    TimesheetDashboardComponent
+    TimesheetDashboardComponent,
+    TimesheetEmployeeWorkDataComponent
   ],
   imports: [
     CommonModule,
