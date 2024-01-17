@@ -14,6 +14,7 @@ import { projectRoutes } from '../projects/projects.module';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SalaryHistoryComponent } from './components/salary-history/salary-history.component';
 
 export const employeeRoutes: Routes = [
   {
@@ -35,7 +36,8 @@ export const employeeRoutes: Routes = [
         children: projectRoutes,
       },
       { path: 'events', component: EventsComponent },
-      { path: 'payroll', component: PayrollComponent },
+      { path: 'payroll', component: PayrollComponent,
+    children: [{path: 'salaryhistory', component: SalaryHistoryComponent}] },
       { path: 'performance', component: PerformenceApprisalComponent },
     ],
   },
@@ -49,6 +51,7 @@ export const employeeRoutes: Routes = [
     EmployeeLeftSidebarComponent,
     PayrollComponent,
     EventsComponent,
+    SalaryHistoryComponent,
     PerformenceApprisalComponent
   ],
   imports: [CommonModule, RouterModule,SharedModule,ReactiveFormsModule], 
