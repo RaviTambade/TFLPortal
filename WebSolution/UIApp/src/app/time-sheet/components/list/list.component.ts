@@ -11,8 +11,10 @@ import { TimeSheetStatus } from '../../models/timesheetstatus';
 })
 export class ListComponent implements OnInit {
   employeeId: number = 0;
-  timeSheets: TimesheetDuration[] = [];
-  filteredTimeSheets: TimesheetDuration[] = [];
+  timesheets: TimesheetDuration[] = [];
+  filteredTimesheets: TimesheetDuration[] = [];
+  pagedFilterTimesheets: TimesheetDuration[] = [];
+
 
   fromDate: string | undefined;
   toDate: string | undefined;
@@ -49,8 +51,8 @@ export class ListComponent implements OnInit {
       this.workmgmtSvc
         .getAllTimeSheets(this.employeeId,this.fromDate, this.toDate)
         .subscribe((res) => {
-          this.timeSheets = res;
-          this.filteredTimeSheets=res;
+          this.timesheets = res;
+          this.filteredTimesheets=res;
           this.onStatusChange();
         });
     }
@@ -59,6 +61,10 @@ export class ListComponent implements OnInit {
   onStatusChange(){
     const selectedStatusArray = Object.keys(this.selectedStatus).filter(status => this.selectedStatus[status]);
     console.log('Selected Status:', selectedStatusArray);
-    this.filteredTimeSheets=this.timeSheets.filter((timesheet)=> selectedStatusArray.includes(timesheet.status));  
+    this.filteredTimesheets=this.timesheets.filter((timesheet)=> selectedStatusArray.includes(timesheet.status));  
+  }
+
+  onReceivePagedData(e:any){
+    this.pagedFilterTimesheets=e;
   }
 }
