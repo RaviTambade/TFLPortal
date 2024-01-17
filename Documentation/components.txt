@@ -100,6 +100,20 @@ Leaves Module:
 17.Update Role based leave: update role based leave.
 18.Update status:update leave status.
 
+HR Manager Module:
+Payroll :
+1.All Employees: list of paid employees.
+2.Employee Leaves: month leaves of employee.
+3.Employee Details : Employee personal details.
+4.Monthly salary structure: Salary slip.
+5.Salary Processing: process salary.
+
+
+
+
+
+
+
 
 
 
