@@ -5,7 +5,7 @@ import { WorkCategoryDetails } from '../../models/workcategorydetails';
 import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { Project } from 'src/app/projects/Models/project';
 import { ProjectService } from 'src/app/shared/services/project.service';
-
+import { HourConvertorPipe } from 'src/app/shared/pipes/hour-convertor.pipe';
 
 @Component({
   selector: 'timesheet-employee-work-chart',
@@ -28,7 +28,7 @@ export class TimesheetEmployeeWorkChartComponent {
       status: '',
       endDate: '',
       description: '',
-    }
+    },
   ];
   selectedProjectId = this.projects[0].id;
   WorkCategoryDetails: WorkCategoryDetails[] = [];
@@ -55,6 +55,28 @@ export class TimesheetEmployeeWorkChartComponent {
       },
       options: {
         aspectRatio: 2.5,
+
+        plugins: {
+          title: {
+            display: true,
+            text: 'ActivityWise Time Utilization In Hours',
+          },
+          tooltip: {
+            enabled: true,
+            usePointStyle: true,
+            callbacks: {
+              label: function (context) {
+                return (
+                  context.dataset.label +
+                  ' : ' +
+                  new HourConvertorPipe().transform(
+                    context.dataset.data.at(context.dataIndex)!
+                  )
+                );
+              },
+            },
+          },
+        },
         scales: {
           y: {
             title: {
@@ -73,14 +95,17 @@ export class TimesheetEmployeeWorkChartComponent {
     });
   }
 
-  constructor(private workmgmtSvc: WorkmgmtService,private projectSvc:ProjectService) {}
+  constructor(
+    private workmgmtSvc: WorkmgmtService,
+    private projectSvc: ProjectService
+  ) {}
   ngOnInit(): void {
     this.employeeId = Number(localStorage.getItem(LocalStorageKeys.employeeId));
     this.onIntervalChange();
     this.createChart();
-    this.projectSvc.getProjectsOfEmployee(this.employeeId).subscribe((res)=>{
-      this.projects=[...this.projects, ...res];
-    })
+    this.projectSvc.getProjectsOfEmployee(this.employeeId).subscribe((res) => {
+      this.projects = [...this.projects, ...res];
+    });
   }
 
   onIntervalChange() {
@@ -103,8 +128,6 @@ export class TimesheetEmployeeWorkChartComponent {
         this.fromDate = `${currentYear}-01-01`;
         this.toDate = `${currentYear}-12-31`;
         break;
-
-     
     }
     if (this.fromDate && this.toDate) {
       this.getChartData();
@@ -113,15 +136,19 @@ export class TimesheetEmployeeWorkChartComponent {
 
   getChartData() {
     this.workmgmtSvc
-      .getActivityWiseHours(this.employeeId, this.selectedInterval,this.selectedProjectId)
+      .getActivityWiseHours(
+        this.employeeId,
+        this.selectedInterval,
+        this.selectedProjectId
+      )
       .subscribe((res) => {
         this.WorkCategoryDetails = res;
         this.chart.data.datasets = [];
-        
+
         this.WorkCategoryDetails.forEach((category) => {
           let cl = this.workmgmtSvc.randomColorPicker();
           let obj = {
-            label: this.getLabelName(category.label) ,
+            label: this.getLabelName(category.label),
             data: [
               category.userStory,
               category.task,
@@ -136,7 +163,7 @@ export class TimesheetEmployeeWorkChartComponent {
             backgroundColor: cl,
             borderColor: cl,
           };
-          this.chart.data.datasets.push(obj); 
+          this.chart.data.datasets.push(obj);
         });
         this.chart.update();
       });
