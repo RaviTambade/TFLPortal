@@ -36,8 +36,29 @@ I can change updated information as needed.
 7.As an employee, I want to view my total leaves so that I can have a clear understanding of my overall leave allocation.
 
 
+Employee Timesheet  Point of View UserStories:
+1. As a employee I Want to Create timesheet so that I can fill my daily timesheet.
 
-HR Manager  Project Point of View UserStories :
+2. As a employee I Want to update timesheet so that if any changes in timesheet details i can modify it.
+
+3. As a employee I want to Remove timesheet details so that I can maintain corrected timesheet data .
+
+4. As a employee I want to View list of timesheets  so that I can see my past timesheet Data.
+
+5. As a employee I want to View Details of  timesheet so that I can see what tasks I did on that day .
+ 
+
+
+
+ HR Manager  Timesheet  Point of View UserStories :
+ 1. As a HR Manager I want  to see timesheet details of all employees so that i can track employee daily activities.
+
+ 2. As a HR Manager I want to Approved or reject timesheet so that i can ensure employee added right Data  in timesheet.
+
+
+
+Project Manager- Project Point of View UserStories :
+
 
 1.As a project manager, I want to see a list  all ongoing projects with information so that I can quickly access the overall project information.
 
@@ -63,3 +84,6 @@ HR Manager  Project Point of View UserStories :
 
 12.As a project manager, I want to view  list of all works of  a project, so that I can see work releted all infomation of project .
  
+
+Project Manager- Timesheet Point of View UserStories :
+1. As a Project Manager I want  to see timesheet details of all employees woking on project so that i can track project member daily activities.
