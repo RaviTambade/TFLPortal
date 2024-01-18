@@ -1,39 +1,10 @@
 <form [formGroup]="activityform">
-    <div *ngIf="employeeworks">
       <div>
-        <label for="projectName">Project Name:</label>
-        <input type="text" id="projectName" formControlName="projectName">
-      </div>
-      <div>
-        <label for="assignedTo">Assign Employee:</label>
-        <input type="text" id="assignedTo" formControlName="assignedTo">
-      </div>
-      <div>
-        <label for="title">Activity Title:</label>
-        <input type="text" id="title" formControlName="title">
-      </div>
-      <div>
-        <label for="projectWorkType">Activity Type:</label>
-        <select id="projectWorkType" formControlName="projectWorkType">
-          <option value="task">Task</option>
-          <option value="userstory">User Story</option>
-        </select>
-      </div>
-      <div>
-        <label for="description">Description:</label>
-        <input type="text" id="description" formControlName="description">
-      </div>
-      <div>
-        <label for="startDate">Start Date:</label>
-        <input type="date" id="startDate" formControlName="startDate">
-      </div>
-      <div>
-        <label for="dueDate">Due Date:</label>
-        <input type="date" id="dueDate" formControlName="dueDate" placeholder="yy-mm-dd">
+        <label for="status">Status :</label>
+        <input type="text" id="status" formControlName="status">
       </div>
       <div>
         <button type="submit">Submit</button>
       </div>
-    </div>
   </form>
   

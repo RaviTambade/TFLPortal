@@ -14,15 +14,11 @@ import { projectRoutes } from '../projects/projects.module';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
-<<<<<<< HEAD
 import { MyProjectsComponent } from './components/my-projects/my-projects.component';
 import { MyProjectDetailsComponent } from './components/my-projects/my-project-details/my-project-details.component';
 import { MyTodaysActivitiesComponent } from './components/my-projects/my-todays-activities/my-todays-activities.component';
 import { MyProjectActivitiesComponent } from './components/my-projects/my-project-activities/my-project-activities.component';
 import { UpdateEmployeeWorkComponent } from './components/Forms/update-employee-work/update-employee-work.component';
-=======
-import { EmployeeProfileComponent } from './components/employee-profile/employee-profile.component';
->>>>>>> 2cf31f221bd4d3017294e22cdb20d0fc7282eed3
 
 export const employeeRoutes: Routes = [
   {

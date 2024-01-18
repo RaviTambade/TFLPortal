@@ -13,20 +13,22 @@ export class UpdateEmployeeWorkComponent implements OnInit{
   @Input() activityId:number=0;
   employeeworks:EmployeeWork|undefined;
   
-  activityform:any=new FormGroup({});
- 
+  // activityform:any=new FormGroup({});
+  activityform=new FormGroup({
+    status:new FormControl(),
+  });
   
   constructor(private workMgmtSvc:WorkmgmtService){}
 
 
-status:string='';
+// status:string='';
 
-  update(){
-    // this.status=this.activityform.get("status")?.value;
-    this.workMgmtSvc.updateEmployeeWork(this.activityId,this.status,).subscribe((res)=>{
-     console.log(res);
-     })
-  }
+  // update(){
+  //   // this.status=this.activityform.get("status")?.value;
+  //   this.workMgmtSvc.updateEmployeeWork(this.activityId,this.status,).subscribe((res)=>{
+  //    console.log(res);
+  //    })
+  // }
 
 
   
@@ -36,24 +38,8 @@ status:string='';
    
        this.workMgmtSvc.fetchEmployeeWorkDetailsById(this.activityId).subscribe((res)=>{
        this.employeeworks=res;
+       this.activityform.patchValue({status:res.status});
        console.log(res);
-
-       this.activityform=new FormGroup({
-        title:new FormControl(this.employeeworks?.title),
-        projectName:new FormControl(),
-        projectWorkType:new FormControl(),
-        description:new FormControl(),
-        assignDate:new FormControl(),
-        startDate:new FormControl(),
-        dueDate:new FormControl(),
-        projectId:new FormControl(),
-        assignedBy:new FormControl(),
-        assignedTo:new FormControl(),
-        createdDate:new FormControl(),
-        status:new FormControl(),
-      
-      
-      });
        })
 
        
