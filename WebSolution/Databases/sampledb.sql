@@ -1,4 +1,4 @@
--- Active: 1678339848098@@127.0.0.1@3306@tflportal
+-- Active: 1694968636816@@127.0.0.1@3306@tflportal
 
 -- director
 INSERT INTO employees(userid,hiredate,reportingid) VALUES (1,'2013-01-01',1);
@@ -171,10 +171,10 @@ INSERT INTO employeework (projectworktype,description, title, projectid,sprintid
 VALUES ('userstory','As a Store Worker, I want to view a graph that shows my daily, weekly, and monthly delivered orders, so that i can monitor my performance','orders chart',4,1,  '2023-12-05', '2023-12-06', '2023-12-10',  12, 7,  'inprogress','2023-12-04');
 
 INSERT INTO employeework (projectworktype,description, title, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
-VALUES ('userstory', 'As a Store Worker, I want to mark orders as delivered when I successfully hand over the materials to the manufacturing supervisors so that i can ensure order is delivered.','change order status',5,1,  '2023-12-05', '2023-12-06', '2023-12-10', 13, 7,'inprogress','2023-12-04');
+VALUES ('userstory', 'As a Store Worker, I want to mark orders as delivered when I successfully hand over the materials to the manufacturing supervisors so that i can ensure order is delivered.','change order status',4,1,  '2023-12-05', '2023-12-06', '2023-12-10', 13, 7,'inprogress','2023-12-04');
 
 INSERT INTO employeework (projectworktype,description, title, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
-VALUES ('userstory', 'As a Store Worker, I want to access information about the supervisors who will receive the deliveries, including their contact details so that I can efficiently communicate regarding the delivery process and resolve any potential issues.','communication with supervisors',5,1,  '2023-12-05', '2023-12-06', '2023-12-10', 14, 7,'inprogress','2023-12-04');
+VALUES ('userstory', 'As a Store Worker, I want to access information about the supervisors who will receive the deliveries, including their contact details so that I can efficiently communicate regarding the delivery process and resolve any potential issues.','communication with supervisors',4,1,  '2023-12-05', '2023-12-06', '2023-12-10', 14, 7,'inprogress','2023-12-04');
 
 INSERT INTO employeework (projectworktype,description, title, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
 VALUES ('userstory','As a Store Worker, I want to receive notifications for new task that require pickup and delivery, so that i can stay updated on my tasks.','notifiaction receiving pickup and delivery', 4,1,  '2024-01-04', '2024-01-04', '2024-01-04', 3, 7, 'inprogress','2024-01-04');
@@ -183,7 +183,7 @@ INSERT INTO employeework (projectworktype,description, title, projectid,sprintid
 VALUES ('userstory','As a Store Worker, I want to access order details including the order-id, and pickup/delivery locations so that i can prepare for the tasks.','order details',4,1,  '2023-12-05', '2023-12-06', '2023-12-10', 15, 7,'inprogress','2023-12-04');
 
 INSERT INTO employeework (projectworktype,description, title, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
-VALUES ('userstory','As a Store Worker, I want to mark orders as picked up when I collect the materials from the inventory so that i can change status of order.','change status of order',5,1,'2023-12-28', '2023-12-28', '2023-12-28',  15, 7,'inprogress','2023-12-28');
+VALUES ('userstory','As a Store Worker, I want to mark orders as picked up when I collect the materials from the inventory so that i can change status of order.','change status of order',4,1,'2023-12-28', '2023-12-28', '2023-12-28',  15, 7,'inprogress','2023-12-28');
 
 INSERT INTO employeework (projectworktype,description, title, projectid,sprintid,assigneddate, startdate, duedate, assignedto, assignedby, status,createddate)
 VALUES ('userstory','As a Supervisor Incharge, I want to view an overview of employee information and departments so that I can efficiently manage teams and make informed decisions regarding staffing and resource allocation.','employee information',4,1,  '2023-12-10','2023-12-06', '2023-12-10',  1, 7,'inprogress','2023-12-04');

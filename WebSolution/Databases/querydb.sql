@@ -1,7 +1,8 @@
--- Active: 1678339848098@@127.0.0.1@3306@tflportal
+-- Active: 1696576841746@@127.0.0.1@3306@tflportal
 
 SELECT sprintmaster.* FROM sprintmaster where projectid=4;
 
+SELECT id, projectid FROM employeework  ORDER BY id;
 where assignedto=15 AND assigneddate='2023-12-14';
 SELECT timesheets.id as timesheetid,timesheets.status,timesheets.statuschangeddate,timesheetdetails.id as timesheetdetailid,
 timesheetdetails.employeeworkid,timesheetdetails.fromtime,timesheetdetails.totime,employeework.projectid,projects.title,employeework.projectworktype,employeework.title,

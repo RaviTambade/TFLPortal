@@ -1,0 +1,18 @@
+<div class="row justify-content-center mx-2" *ngIf="workCategory != undefined">
+    <h3>Time Utilization - {{totalHours |hourConvertor}}</h3>
+    <div class="col">
+        <p>UserStory: {{workCategory.userStory | hourConvertor}}</p>
+        <p>Task: {{workCategory.task | hourConvertor}}</p>
+        <p>Bug: {{workCategory.bug | hourConvertor}}</p>
+        <p>Mentoring: {{workCategory.mentoring | hourConvertor}}</p>
+        <p>Learning: {{workCategory.learning | hourConvertor}}</p>
+    </div>
+    
+    <div class="col">
+        <p>Clientcall: {{workCategory.clientCall | hourConvertor}}</p>
+        <p>Issues: {{workCategory.issues | hourConvertor}}</p>
+        <p>Meeting: {{workCategory.meeting | hourConvertor}}</p>
+        <p>Other: {{workCategory.other | hourConvertor}}</p>
+        
+    </div>
+</div>

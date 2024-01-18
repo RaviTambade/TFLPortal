@@ -18,7 +18,7 @@ export class TimesheetApprovalComponent {
   intervals: string[] = ['week', 'month'];
   selectedInterval: string = this.intervals[0];
   TimesheetStatus=TimeSheetStatus;
-  timesheetStatus: string[] = [ TimeSheetStatus.submitted, TimeSheetStatus.approved];
+  timesheetStatus: string[] = [ TimeSheetStatus.submitted, TimeSheetStatus.approved,TimeSheetStatus.rejected];
 
   selectedStatus: string = this.timesheetStatus[0];
 

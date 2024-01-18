@@ -14,7 +14,15 @@ import { projectRoutes } from '../projects/projects.module';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
+<<<<<<< HEAD
 import { SalaryHistoryComponent } from './components/salary-history/salary-history.component';
+=======
+import { MyProjectsComponent } from './components/my-projects/my-projects.component';
+import { MyProjectDetailsComponent } from './components/my-projects/my-project-details/my-project-details.component';
+import { MyTodaysActivitiesComponent } from './components/my-projects/my-todays-activities/my-todays-activities.component';
+import { MyProjectActivitiesComponent } from './components/my-projects/my-project-activities/my-project-activities.component';
+import { UpdateEmployeeWorkComponent } from './components/Forms/update-employee-work/update-employee-work.component';
+>>>>>>> 0ee367da66ad7e49a0e346d9dcd064f58d7f358e
 
 export const employeeRoutes: Routes = [
   {
@@ -32,8 +40,12 @@ export const employeeRoutes: Routes = [
       children: leaveRoutes },
       {
         path: 'projects',
-        component: ProjectComponent,
-        children: projectRoutes,
+        component: ProjectComponent,children:[{path:'',pathMatch:'full',component:MyProjectsComponent},
+                                              {path:'employeeworkdetails/:id',component:MyProjectDetailsComponent},
+                                              {path:'myProjects',component:MyProjectsComponent,
+                                              children:[{path:'projectActivities/:id',component:MyProjectActivitiesComponent}]},
+                                          
+                                              ]
       },
       { path: 'events', component: EventsComponent },
       { path: 'payroll', component: PayrollComponent,
@@ -51,8 +63,17 @@ export const employeeRoutes: Routes = [
     EmployeeLeftSidebarComponent,
     PayrollComponent,
     EventsComponent,
+<<<<<<< HEAD
     SalaryHistoryComponent,
     PerformenceApprisalComponent
+=======
+    PerformenceApprisalComponent,
+    MyProjectsComponent,
+    MyProjectDetailsComponent,
+    MyTodaysActivitiesComponent,
+    MyProjectActivitiesComponent,
+    UpdateEmployeeWorkComponent
+>>>>>>> 0ee367da66ad7e49a0e346d9dcd064f58d7f358e
   ],
   imports: [CommonModule, RouterModule,SharedModule,ReactiveFormsModule], 
   exports:[] 

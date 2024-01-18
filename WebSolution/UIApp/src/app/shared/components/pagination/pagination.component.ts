@@ -14,7 +14,7 @@ import {
 })
 export class PaginationComponent implements  OnChanges {
  
-   pageSize:number=10;
+  pageSize:number=10;
   @Input() OriginalArray:any[]=[]
   current: number = 1;
   total: number = 0;

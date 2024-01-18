@@ -3,6 +3,7 @@ import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 import { ProjectWorkHour } from '../../models/projectworkhour';
 import { Chart } from 'chart.js';
 import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
+import { HourConvertorPipe } from 'src/app/shared/pipes/hour-convertor.pipe';
 
 @Component({
   selector: 'timesheet-employee-project-hours',
@@ -16,43 +17,47 @@ export class TimesheetEmployeeProjectHoursComponent implements OnInit {
   employeeId: number = 0;
   fromDate: string | undefined;
   toDate: string | undefined;
-  chart: any ;
- 
-  
+  chart: any;
 
-  createChart(){
-  
-    this.chart = new Chart("MyPieChart", {
-      type:'pie', 
-      
+  createChart() {
+    this.chart = new Chart('MyPieChart', {
+      type: 'pie',
+
       data: {
-        
-        labels: [], 
-	       datasets: [
+        labels: [],
+        datasets: [
           {
             data: [],
-            backgroundColor: []
-          }
-        ]
+            backgroundColor: [],
+          },
+        ],
       },
       options: {
-        aspectRatio:3,
+        aspectRatio: 3,
         plugins: {
           title: {
             display: true,
-            text: 'Projectwise Time Utilization In Hours'
+            text: 'Projectwise Time Utilization In Hours',
+          },
+          tooltip: {
+            enabled: true,
+            // usePointStyle: true,
+            callbacks: {
+              label: function (context) {
+                return new HourConvertorPipe().transform(
+                  context.dataset.data.at(context.dataIndex)!
+                );
+              },
+            },
           },
         },
-     
-      }
-      
+      },
     });
   }
 
-
   constructor(private workmgmtSvc: WorkmgmtService) {}
   ngOnInit(): void {
-    this.employeeId=Number(localStorage.getItem(LocalStorageKeys.employeeId));
+    this.employeeId = Number(localStorage.getItem(LocalStorageKeys.employeeId));
     this.createChart();
     this.onIntervalChange();
   }
@@ -77,23 +82,27 @@ export class TimesheetEmployeeProjectHoursComponent implements OnInit {
         this.toDate = `${currentYear}-12-31`;
         break;
     }
-      this.getChartData();
+    this.getChartData();
   }
 
-  getChartData(){
-    if (this.fromDate && this.toDate) 
-    this.workmgmtSvc.getProjectwiseTimeSpent(this.employeeId,this.fromDate,this.toDate).subscribe((res) => {
-      this.projectHours = res;
-      this.chart.data.labels=[];
-      this.chart.data.datasets[0].data=[]
-      this.chart.data.datasets[0].backgroundColor=[]
-      this.projectHours.forEach((projectHour)=>{
-        this.chart.data.labels.push(projectHour.projectName);
-        this.chart.data.datasets[0].data.push(projectHour.hours);
-        this.chart.data.datasets[0].backgroundColor.push(this.workmgmtSvc.randomColorPicker());
-      });
-      console.table(this.projectHours);
-      this.chart.update();
-    });
+  getChartData() {
+    if (this.fromDate && this.toDate)
+      this.workmgmtSvc
+        .getProjectwiseTimeSpent(this.employeeId, this.fromDate, this.toDate)
+        .subscribe((res) => {
+          this.projectHours = res;
+          this.chart.data.labels = [];
+          this.chart.data.datasets[0].data = [];
+          this.chart.data.datasets[0].backgroundColor = [];
+          this.projectHours.forEach((projectHour) => {
+            this.chart.data.labels.push(projectHour.projectName);
+            this.chart.data.datasets[0].data.push(projectHour.hours);
+            this.chart.data.datasets[0].backgroundColor.push(
+              this.workmgmtSvc.randomColorPicker()
+            );
+          });
+          console.table(this.projectHours);
+          this.chart.update();
+        });
   }
 }
