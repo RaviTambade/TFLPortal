@@ -3,15 +3,19 @@
 
 #### Project Management
 ##### Role: Project Member
-1. As an employee,I want to see a list of projects I am currently working on; so that I can check ongoing projects.
-2. As an employee,I want to show information of  project,So that I can understand the project's releted information.
-3. As an employee,I want to view list of works related to my projects,So that I can manage my work responsibilities.
 
-4. As an employee,I want to show information about a  work,So that I can understand about work.
-5. As an employee,I want to see a list of sprints of a project,So that I can track my  project work .
-6. As an employee,I want to show information about sprint,So that I can understand  particular sprint  information.
-7. As an employee,I want to see my work of sprint,So that I can focus on completing my sprint-related work .
-8. As an employee,I want update the status of work,So that I can provide real-time work information.
+1. As a member of Project,I want to see a list of projects working on so that I can search more information about project form list.
+2. As a member of Project,I want to see particular project details so that I can check sprints and tasks assigned to me.
+3. As a member of Project,I want to see list of Sprints belong to current project so that I can track other memebers activities and shedule of current ongoing sprint.
+4. As a member of Project,I want to update status of activity sothat other team members can see latest infomation about task assigned by other members.
+5. As a member of Project,I want to see list of tasks assigned to me from a sprint,So that I update status of my work.
+6. As a member of Project,I want to see list of tasks assigned to others for a sprint,So that I would keep myself welinfomed about ongoing project activities.
+
+##### Role: Project Manager
+
+
+
+
 #### TimeSheet
 #### Leave Management
 #### Payrol
