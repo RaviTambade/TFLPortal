@@ -2,9 +2,10 @@
 ### User Stories
 
 #### Project Management
-<hr/>
-##### Role: Project Member
 
+<hr/>
+
+##### Role: Project Member
 1. As a member of Project,I want to see a list of projects working on so that I can search more information about project form list.
 2. As a member of Project,I want to see particular project details so that I can check sprints and tasks assigned to me.
 3. As a member of Project,I want to see list of Sprints belong to current project so that I can track other memebers activities and shedule of current ongoing sprint.
@@ -32,8 +33,13 @@
 
 
 #### TimeSheet
+<hr/>
+
 #### Leave Management
+<hr/>
+
 #### Payrol
+<hr/>
 
 
 
