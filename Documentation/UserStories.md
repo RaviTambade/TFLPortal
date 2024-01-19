@@ -59,11 +59,20 @@
 <hr/>
 
 #### Payrol
+
+#### Role Employee
+1.As an employee, I want to view a list of my payments, so that I can easily track my salary transactions.
+
+2.As an employee, I want to see detailed information about each payment so that I can check particular salary information.
+
+3.As an employee, I want to download my salary slip ,so that I can check financial history.
+
+
+##### Role: HR Manager
 <hr/>
 
 
 
-Employee Project Point of View UserStories
 
 
 
