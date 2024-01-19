@@ -69,7 +69,7 @@ export class UserProfileComponent {
                 lastName: this.user.lastName,
                 birthDate: this.user.birthDate,
                 aadharId: this.user.aadharId,
-                imageUrl: this.user.imageUrl,
+                imageUrl: newImageUrl,
                 gender: this.user.gender,
                 email: this.user.email,
                 contactNumber: this.user.contactNumber,
