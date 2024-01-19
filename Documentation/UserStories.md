@@ -66,23 +66,23 @@ HR Manager  Project Point of View UserStories :
 
 HR Manager Leave Point of View UserStories : 
 
-As a HrManager,I want to approve or reject leave applications,So that I can manage leave requests appropriately.
+1.As a HrManager,I want to approve or reject leave applications,So that I can manage leave requests appropriately.
 
-As a HrManager,I want to view a list of leave applications submitted by employees,
+2.As a HrManager,I want to view a list of leave applications submitted by employees,
 So that I can have an overview of pending and approved leave requests.
 
-As a HrManager,
+3.As a HrManager,
 I want to view detailed information about a specific leave application of an employee,
 So that I can make informed decisions and provide necessary approvals.
 
-As a HrManager,I want to update the number of leaves assigned for a specific role,So that I can adjust leave policies.
+4.As a HrManager,I want to update the number of leaves assigned for a specific role,So that I can adjust leave policies.
 
-As a HrManager,
-I want to insert a new leave policy for a particular role,
+5.As a HrManager,
+I want to insert a new role based leave  for a particular role,
 So that  I can effectively manage and tailor leave policies.
 
-As a HrManager,
-I want to view the role based leave details for each role,
+6.As a HrManager,
+I want to view the role based leave details,
 So that I can ensure equitable and appropriate distribution of leave allowances.
 
 
