@@ -2,6 +2,7 @@
 ### User Stories
 
 #### Project Management
+<hr/>
 ##### Role: Project Member
 
 1. As a member of Project,I want to see a list of projects working on so that I can search more information about project form list.
@@ -12,7 +13,21 @@
 6. As a member of Project,I want to see list of tasks assigned to others for a sprint,So that I would keep myself welinfomed about ongoing project activities.
 
 ##### Role: Project Manager
+1. As a project manager, I want to see a list  all ongoing projects with information so that I can quickly access the overall project information.
+2. As a project manager, I want to access detailed project information so that I can see project progress.
+3. As a project manager, I want to view  list of work  employee so that I can effectively manage work.
+4. As a project manager, I want to access detailed task information for a specific employee so that I can see progress and challenges.
+5. As a project manager, I want to see a list of all sprints for a project so that I can track project progress .
+6. As a project manager, I want to see  information about a sprint so that I can see work releted to this sprint.
+7. As a project manager, I want to see work of employee in spint, so that I can allocate work to the employee.
+8. As a project manager, I want to assign specific work to employee so that I can  distribute project work.
+9. As a project manager, I want to modify work , so that I can adapt to changing project requirements.
+10. As a project manager, I want to remove a work of employee, so that I can reassignment new work as per requirements.
 
+11.As a project manager, I want  to add new work to the project so that I can easily introduce new work.
+
+12.As a project manager, I want to view  list of all works of  a project, so that I can see work releted all infomation of project .
+ 
 
 
 
@@ -72,30 +87,7 @@ Employee Timesheet  Point of View UserStories:
 Project Manager- Project Point of View UserStories :
 
 
-1.As a project manager, I want to see a list  all ongoing projects with information so that I can quickly access the overall project information.
 
-2.As a project manager, I want to access detailed project information so that I can see project progress.
-
-3.As a project manager, I want to view  list of work  employee so that I can effectively manage work.
-
-4.As a project manager, I want to access detailed task information for a specific employee so that I can see progress and challenges.
-
-5.As a project manager, I want to see a list of all sprints for a project so that I can track project progress .
-
-6.As a project manager, I want to see  information about a sprint so that I can see work releted to this sprint.
-
-7.As a project manager, I want to see work of employee in spint, so that I can allocate work to the employee.
-
-8.As a project manager, I want to assign specific work to employee so that I can  distribute project work.
-
-9.As a project manager, I want to modify work , so that I can adapt to changing project requirements.
-
-10.As a project manager, I want to remove a work of employee, so that I can reassignment new work as per requirements.
-
-11.As a project manager, I want  to add new work to the project so that I can easily introduce new work.
-
-12.As a project manager, I want to view  list of all works of  a project, so that I can see work releted all infomation of project .
- 
 
 HR Manager Leave Point of View UserStories : 
 
