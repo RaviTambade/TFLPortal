@@ -24,10 +24,7 @@ export class UpdateTimesheetEntryComponent implements OnInit {
 
 
   @Input() timesheetDetails!: TimeSheetDetailView;
-  @Output() stateChangeEvent = new EventEmitter<boolean>();
 
-  date: string = '';
-  currentUrl:string=''
 
   constructor(
     private workmgmtSvc: WorkmgmtService,
@@ -44,7 +41,6 @@ export class UpdateTimesheetEntryComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       let timesheetDetailId = params.get('id');
-      this.date = params.get('date') || '';
       this.workmgmtSvc
         .getTimesheetDetail(Number(timesheetDetailId))
         .subscribe((res) => {
@@ -64,11 +60,6 @@ export class UpdateTimesheetEntryComponent implements OnInit {
     this.projectSvc.getProjectsOfEmployee(this.employeeId).subscribe((res) => {
     this.projects = res;
     });
-
-
-
-    console.log(this.router.url)
-    this.currentUrl=this.router.url;
   }
 
   onSprintChange() {
@@ -110,29 +101,21 @@ export class UpdateTimesheetEntryComponent implements OnInit {
       .updateTimeSheetDetails(timesheetDetails.id, timesheetDetails)
       .subscribe((res) => {
         if (res) {
-        this.stateChangeEvent.emit(true);
-        this.navigateToUrl();
+        this.router.navigate(['../../details', this.timesheetDetails.timesheetId] ,{relativeTo:this.route});
+
         }
       });
   }
 
   onCancelClick() {
     console.log(this.timesheetDetails)
-    this.navigateToUrl();
+    this.router.navigate(['../../details', this.timesheetDetails.timesheetId] ,{relativeTo:this.route});
+
   }
 
   getDuration(timeSheetEnrty: TimeSheetDetailView) {
     this.workmgmtSvc.getDurationOfWork(timeSheetEnrty);
   }
 
-  navigateToUrl(){
-     if(this.currentUrl.includes('/timesheet/view')){
-      this.router.navigate(['../../view/add', this.date],{relativeTo:this.route});
-    }
-    else if(this.currentUrl.includes('/timesheet')){
-
-      this.router.navigate(['../../details', this.timesheetDetails.timesheetId] ,{relativeTo:this.route});
-    }
  
-  }
 }
