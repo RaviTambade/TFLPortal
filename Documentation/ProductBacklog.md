@@ -32,22 +32,17 @@
 
 #### TimeSheet
 
-##### Role: Employee
-1. As a employee I Want to Create timesheet so that I can fill my daily timesheet.
+##### Role: Project Member
 
-2. As a employee I Want to update timesheet so that if any changes in timesheet details i can modify it.
-
-3. As a employee I want to Remove timesheet details so that I can maintain corrected timesheet data .
-
-4. As a employee I want to View list of timesheets  so that I can see my past timesheet Data.
-
-5. As a employee I want to View Details of  timesheet so that I can see what tasks I did on that day .
+1. As a Project Member I Want to Create timesheet so that I can fill my daily timesheet.
+2. As a Project Member I Want to update timesheet so that if any changes in timesheet details i can modify it.
+3. As a Project Member I want to Remove timesheet details so that I can maintain corrected timesheet data .
+4. As a Project Member I want to View list of timesheets  so that I can see my past timesheet Data.
+5. As a Project Member I want to View Details of  timesheet so that I can see what tasks I did on that day .
  
-
-
-##### Role: HR Manager
- 1. As a HR Manager I want  to see timesheet details of all employees so that i can track employee daily activities.
- 2. As a HR Manager I want to Approved or reject timesheet so that i can ensure employee added right Data  in timesheet.
+##### Role: Project Manager
+ 1. As a Project Manager I want  to see timesheet details of all employees so that i can track employee daily activities.
+ 2. As a Project Manager I want to Approved or reject timesheet so that i can ensure employee added right Data  in timesheet.
 
 <hr/>
 
@@ -55,56 +50,35 @@
 
 <hr/>
 
-##### Role: Project Member
+##### Role: Employee
+
 1. As an employee, I want to apply for leave so that I can take the necessary time off 
 for personal or professional reasons.
- 
-2. As an employee, I want to check the current status of my applied leave so that
-I can plan based on the status of my request.
- 
+2. As an employee, I want to check the current status of my applied leave so that I can plan based on the status of my request.
 3. As an employee, I want to cancel a submitted leave application so that I can save my leave .
- 
-4. As an employee, I want to update details of an existing leave application so that 
-I can change updated information as needed.
- 
+4. As an employee, I want to update details of an existing leave application so that  I can change updated information as needed.
 5. As an employee, I want to view my current available leave so that I can plan for future leave.
- 
 6. As an employee, I want to view my consumed leave so that I can keep track of the time I have taken off and plan future leaves effectively.
- 
 7. As an employee, I want to view my total leaves so that I can have a clear understanding of my overall leave allocation.
 
-
 ##### Role: HR Manager
-1. As a HrManager,I want to approve or reject leave applications so that I can manage leave requests appropriately.
 
-2. As a HrManager,I want to view a list of leave applications submitted by employees
-so that I can have an overview of pending and approved leave requests.
+1. As a HrManager,I want to approve or reject leave applications,So that I can manage leave requests appropriately.
+2. As a HrManager,I want to view a list of leave applications submitted by employees,So that I can have an overview of pending and approved leave requests.
+3. As a HrManager, I want to view detailed information about a specific leave application of an employee,So that I can make informed decisions and provide necessary approvals.
+4. As a HrManager,I want to update the number of leaves assigned for a specific role,So that I can adjust leave policies.
+5. As a HrManager, I want to insert a new role based leave  for a particular role, So that  I can effectively manage and tailor leave policies.
+6. I want to view the role based leave details, So that I can ensure equitable and appropriate distribution of leave allowances.
 
-3. As a HrManager,I want to view detailed information about a specific leave application of an employee so that I can make informed decisions and provide necessary approvals.
-
-4. As a HrManager,I want to update the number of leaves assigned for a specific role so that I can adjust leave policies.
-
-5. As a HrManager,I want to insert a new role based leave  for a particular role
-so that  I can effectively manage and tailor leave policies.
-
-6. As a HrManager,I want to view the role based leave details so that I can ensure equitable and appropriate distribution of leave allowances.
+<hr/>
 
 #### Payrol
 
-#### Role Employee
-1. As an employee, I want to view a list of my payments, so that I can easily track my salary transactions.
-2. As an employee, I want to see detailed information about each payment so that I can check particular salary information.
-3. As an employee, I want to download my salary slip ,so that I can check financial history.
-
-
-##### Role: HR Manager
 <hr/>
 
+#### Role Employee
+1. As an employee, I want to view a list of  salaried paid, so that I can easily track my salary transactions.
+2. As an employee, I want to see detailed information about each salary so that I can check particular salary information.
+3. As an employee, I want to download my salary slip ,so that I can check financial history.
 
-
-
-
-
-
-
-
+#### Role HR Manager
