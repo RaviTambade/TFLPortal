@@ -55,6 +55,40 @@
 
 <hr/>
 
+##### Role: Project Member
+1. As an employee, I want to apply for leave so that I can take the necessary time off 
+for personal or professional reasons.
+ 
+2. As an employee, I want to check the current status of my applied leave so that
+I can plan based on the status of my request.
+ 
+3. As an employee, I want to cancel a submitted leave application so that I can save my leave .
+ 
+4. As an employee, I want to update details of an existing leave application so that 
+I can change updated information as needed.
+ 
+5. As an employee, I want to view my current available leave so that I can plan for future leave.
+ 
+6. As an employee, I want to view my consumed leave so that I can keep track of the time I have taken off and plan future leaves effectively.
+ 
+7. As an employee, I want to view my total leaves so that I can have a clear understanding of my overall leave allocation.
+
+
+##### Role: HR Manager
+1. As a HrManager,I want to approve or reject leave applications so that I can manage leave requests appropriately.
+
+2. As a HrManager,I want to view a list of leave applications submitted by employees
+so that I can have an overview of pending and approved leave requests.
+
+3. As a HrManager,I want to view detailed information about a specific leave application of an employee so that I can make informed decisions and provide necessary approvals.
+
+4. As a HrManager,I want to update the number of leaves assigned for a specific role so that I can adjust leave policies.
+
+5. As a HrManager,I want to insert a new role based leave  for a particular role
+so that  I can effectively manage and tailor leave policies.
+
+6. As a HrManager,I want to view the role based leave details so that I can ensure equitable and appropriate distribution of leave allowances.
+
 #### Payrol
 
 #### Role Employee
@@ -75,22 +109,6 @@
 
 Employee Leave Point of View UserStories:
 
-1.As an employee, I want to apply for leave so that I can take the necessary time off 
-for personal or professional reasons.
- 
-2.As an employee, I want to check the current status of my applied leave so that
-I can plan based on the status of my request.
- 
-3.As an employee, I want to cancel a submitted leave application so that I can save my leave .
- 
-4.As an employee, I want to update details of an existing leave application so that 
-I can change updated information as needed.
- 
-5.As an employee, I want to view my current available leave so that I can plan for future leave.
- 
-6.As an employee, I want to view my consumed leave so that I can keep track of the time I have taken off and plan future leaves effectively.
- 
-7.As an employee, I want to view my total leaves so that I can have a clear understanding of my overall leave allocation.
 
 
 
@@ -104,25 +122,4 @@ Project Manager- Project Point of View UserStories :
 
 
 HR Manager Leave Point of View UserStories : 
-
-1.As a HrManager,I want to approve or reject leave applications,So that I can manage leave requests appropriately.
-
-2.As a HrManager,I want to view a list of leave applications submitted by employees,
-So that I can have an overview of pending and approved leave requests.
-
-3.As a HrManager,
-I want to view detailed information about a specific leave application of an employee,
-So that I can make informed decisions and provide necessary approvals.
-
-4.As a HrManager,I want to update the number of leaves assigned for a specific role,So that I can adjust leave policies.
-
-5.As a HrManager,
-I want to insert a new role based leave  for a particular role,
-So that  I can effectively manage and tailor leave policies.
-
-6.As a HrManager,
-I want to view the role based leave details,
-So that I can ensure equitable and appropriate distribution of leave allowances.
-
-
 
