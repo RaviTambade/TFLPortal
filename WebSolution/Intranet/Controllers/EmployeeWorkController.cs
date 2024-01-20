@@ -113,9 +113,6 @@ public class EmployeeWorkController : ControllerBase
     [HttpGet("projects/{employeeWorkId}")]
     public async Task<EmployeeWorkResponse> GetEmployeeWorkDetails(int employeeWorkId)
     {
-        
-    
-    
         EmployeeWorkDetails employeeWork = await _service.GetEmployeeWorkDetails(employeeWorkId);
         var user = await _apiService.GetUser(employeeWork.AssignedTo);
         var usersOfAssignBy = await _apiService.GetUser(employeeWork.AssignedBy);

@@ -20,7 +20,7 @@ public class TimesheetsController : ControllerBase
         _timesheetService = service;
     }
 
-    [HttpGet("employees/{employeeId}/status/from/{fromDate}/to/{toDate}")]
+    [HttpGet("employees/{employeeId}/from/{fromDate}/to/{toDate}")]
     public async Task<List<TimesheetDuration>> GetTimesheets(
         int employeeId,
         DateOnly fromDate,
@@ -28,29 +28,6 @@ public class TimesheetsController : ControllerBase
     )
     {
         return await _timesheetService.GetTimesheets(employeeId, fromDate, toDate);
-    }
-
-    [HttpGet("employees/{employeeId}/date/{date}")]
-    public async Task<TimesheetResponse> GetTimesheet(int employeeId, DateOnly date)
-    {
-        TimesheetViewModel timesheet = await _timesheetService.GetTimesheet(employeeId, date);
-
-        if (timesheet.Employee != null)
-        {
-            var user = await _apiService.GetUserDetails(timesheet.Employee.UserId.ToString());
-            TimesheetResponse timeSheetResponse = new TimesheetResponse
-            {
-                Id = timesheet.Id,
-                TimesheetDate = timesheet.TimesheetDate,
-                StatusChangedDate = timesheet.StatusChangedDate,
-                Status = timesheet.Status,
-                TimeSheetDetails = timesheet.TimeSheetDetails,
-                EmployeeId = timesheet.EmployeeId,
-                EmployeeName = user[0].FirstName + " " + user[0].LastName,
-            };
-            return timeSheetResponse;
-        }
-        return new TimesheetResponse() { };
     }
 
     [HttpGet("timesheetid/employees/{employeeId}/date/{date}")]
@@ -122,11 +99,7 @@ public class TimesheetsController : ControllerBase
         return await _timesheetService.GetTimesheetDetail(timesheetDetailId);
     }
 
-    [HttpGet("{timesheetId}/timesheetdetails")]
-    public async Task<List<TimesheetDetailViewModel>> GetTimesheetDetails(int timesheetId)
-    {
-        return await _timesheetService.GetTimesheetDetails(timesheetId);
-    }
+ 
 
     [HttpGet("employees/{employeeId}/workduration/{intervalType}/{projectId}")]
     public async Task<List<WorkCategoryDetails>> GetActivityWiseHours(

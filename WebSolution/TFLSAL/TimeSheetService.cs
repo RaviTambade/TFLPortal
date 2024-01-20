@@ -163,77 +163,7 @@ public class TimesheetService : ITimesheetService
         return timesheetId;
     }
 
-    public async Task<TimesheetViewModel> GetTimesheet(int employeeId, DateOnly date)
-    {
-        MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _connectionString;
-        TimesheetViewModel timesheet = new TimesheetViewModel();
-        try
-        {
-            string query =
-                @"SELECT timesheets.id as timesheetid,timesheets.status,timesheets.statuschangeddate,timesheetdetails.id as timesheetdetailid,
-                timesheetdetails.employeeworkid,timesheetdetails.fromtime,timesheetdetails.totime,employeework.projectid,projects.title as projectname,
-                employeework.projectworktype as worktype,employeework.title as worktitle,employees.userid
-                FROM timesheets  
-                LEFT JOIN  timesheetdetails ON  timesheets.id= timesheetdetails.timesheetid
-                LEFT JOIN employees ON timesheets.employeeid =employees.id
-                LEFT JOIN employeework ON timesheetdetails.employeeworkid=employeework.id
-                LEFT JOIN projects ON employeework.projectid=projects.id
-                WHERE timesheets.timesheetdate = @timesheetDate AND timesheets.employeeId = @employeeId";
-            MySqlCommand command = new MySqlCommand(query, connection);
-            string formatedDate = date.ToString("yyyy-MM-dd");
-            command.Parameters.AddWithValue("@timesheetDate", formatedDate);
-            command.Parameters.AddWithValue("@employeeId", employeeId);
-            await connection.OpenAsync();
-            MySqlDataReader reader = command.ExecuteReader();
-            if (await reader.ReadAsync())
-            {
-                int timesheetId = reader.GetInt32("timesheetid");
-
-                timesheet = new TimesheetViewModel()
-                {
-                    Id = timesheetId,
-                    Status = reader.GetString("status"),
-                    TimesheetDate = DateTime.Parse(formatedDate),
-                    StatusChangedDate = reader.GetDateTime("statuschangeddate"),
-                    EmployeeId = employeeId,
-                    Employee = new Employee { UserId = reader.GetInt32("userid") },
-                    TimeSheetDetails = new List<TimesheetDetailViewModel>()
-                };
-                do
-                {
-                    if (reader["timesheetdetailid"] != DBNull.Value)
-                    {
-                        TimesheetDetailViewModel timesheetDetail = new TimesheetDetailViewModel()
-                        {
-                            Id = reader.GetInt32("timesheetdetailid"),
-                            FromTime = TimeOnly.Parse(reader.GetString("fromtime")),
-                            ToTime = TimeOnly.Parse(reader.GetString("totime")),
-                            EmployeeWorkId = reader.GetInt32("employeeworkid"),
-                            TimesheetId = timesheetId,
-                            ProjectId = reader.GetInt32("projectId"),
-                            ProjectName = reader.GetString("projectname"),
-                            WorkTitle = reader.GetString("worktitle"),
-                            WorkType = reader.GetString("worktype")
-                        };
-                        timesheet.TimeSheetDetails.Add(timesheetDetail);
-                    }
-                } while (await reader.ReadAsync());
-            }
-            await reader.CloseAsync();
-        }
-        catch (Exception)
-        {
-            throw;
-        }
-        finally
-        {
-            await connection.CloseAsync();
-        }
-        return timesheet;
-    }
-
-    public async Task<TimesheetViewModel> GetTimesheet(int timesheetId)
+      public async Task<TimesheetViewModel> GetTimesheet(int timesheetId)
     {
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
@@ -350,54 +280,6 @@ public class TimesheetService : ITimesheetService
         }
         return timesheetDetail;
     }
-
-    public async Task<List<TimesheetDetailViewModel>> GetTimesheetDetails(int timesheetId)
-    {
-        List<TimesheetDetailViewModel> timesheetDetails = new List<TimesheetDetailViewModel>();
-        MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _connectionString;
-        try
-        {
-            string query =
-                @"SELECT timesheetdetails.*,employeework.projectid,projects.title as projectname,
-                 employeework.projectworktype as worktype,employeework.title as worktitle
-                 from timesheetdetails 
-                 INNER JOIN employeework ON timesheetdetails.employeeworkid=employeework.id
-                 INNER JOIN projects ON employeework.projectid=projects.id  WHERE timesheetid=@timesheetId";
-            MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@timesheetId", timesheetId);
-            await connection.OpenAsync();
-            MySqlDataReader reader = command.ExecuteReader();
-            while (await reader.ReadAsync())
-            {
-                TimesheetDetailViewModel timesheetDetail = new TimesheetDetailViewModel()
-                {
-                    Id = reader.GetInt32("id"),
-                    FromTime = TimeOnly.Parse(reader.GetString("fromtime")),
-                    ToTime = TimeOnly.Parse(reader.GetString("totime")),
-                    EmployeeWorkId = reader.GetInt32("employeeworkid"),
-                    TimesheetId = timesheetId,
-                    ProjectId = reader.GetInt32("projectId"),
-                    ProjectName = reader.GetString("projectname"),
-                    WorkTitle = reader.GetString("worktitle"),
-                    WorkType = reader.GetString("worktype")
-                };
-
-                timesheetDetails.Add(timesheetDetail);
-            }
-            await reader.CloseAsync();
-        }
-        catch (Exception)
-        {
-            throw;
-        }
-        finally
-        {
-            await connection.CloseAsync();
-        }
-        return timesheetDetails;
-    }
-
     public async Task<List<WorkCategoryDetails>> GetActivityWiseHours(
         int employeeId,
         string intervalType,
