@@ -11,8 +11,8 @@
 <b>Transflower : a learning experience.</b>
 - <a href="https://github.com/RaviTambade/TFLPortal/blob/main/Documentation/SRS.md"> System Requirements Specification(SRS)</a>
 - <a href="https://github.com/RaviTambade/TFLPortal/blob/main/Documentation/ProductBacklog.md"> User Stories</a>
-- <a href="https://github.com/RaviTambade/TFLPortal/blob/main/Documentation/ProductBacklog.md"> Web API EndPoints</a>
-- <a href="https://github.com/RaviTambade/TFLPortal/blob/main/Documentation/ListOfAPI.txt">UI  Components</a>
+- <a href="https://github.com/RaviTambade/TFLPortal/blob/main/Documentation/EndPoints.md"> Web API EndPoints</a>
+- <a href="https://github.com/RaviTambade/TFLPortal/blob/main/Documentation/components.md">UI  Components</a>
 - <a href=" https://github.com/RaviTambade/TFLPortal/blob/main/WebSolution/Databases/createdb.sql">Database</a>
 - <a href="https://github.com/RaviTambade/TFLPortal/blob/main/WebSolution/Databases/sampledb.sql">Sample Database</a>
 - <a href="https://github.com/RaviTambade/TFLPortal/blob/main/WebSolution/Databases/spdb.sql">Reusable Stored Procedures</a>
