@@ -1,4 +1,86 @@
-**Functional Requirements:**
+
+<a href=""> Project Tracker</a>
+<a href=""> Timesheet Managment </a>
+<a href=""> Payroll </a>
+<a href=""> Resource Management </a>
+
+
+
+
+
+
+
+
+Adapts to your leave policies
+Define leave entitlement, set accruals, specify leave applicability, and introduce new leave types to customize the system and ensure your organization stays compliant
+
+Facilitates easy approvals
+Enable your employees to raise leave requests in just a few steps. Managers and department heads can approve or reject these requests instantly.
+
+
+Keeps employees informed
+Our employee dashboard lets employees track their leave requests, check their leave balances, and view upcoming holidays, all from Transflower People.
+
+Mitigates employee absenteeism
+Minimize unplanned absences as Bradford Score in Transflower People helps you stay on top of employee absenteeism trends by calculating the absence score for each employee.
+
+
+Supports special leave requests
+Accommodate special leave requests from your employees that fall outside of the usual leave entitlements with the Leave Grant feature in Transflower People.
+
+Instant leave approvals
+Location-based leave management
+Easy-to-use leave calendars
+Customized leave policies
+
+Email & Mobile Notifications
+Alerts & Reminders in real-time for employees, supervisors and management to their mobile and email.
+
+Wide range of Reports
+Easily generate and download a wide range of reports within seconds.
+
+Automate Payroll Management with the Easiest-to-use HROne
+Error-free payroll every time, on-time!
+Auto- statutory compliant, always.
+Insightful payroll data in the hand
+
+A payroll management system describes the specialist software that can empower companies by streamlining and automatically carrying out the processes involved in payroll such as working out take home pay and taxes – saving time for the employer and reducing the number of errors.
+
+Working out wages
+Employers need to ensure hours worked by employees are correctly recorded, and this function is built into payroll management software. After gross wages are figured out, deductions need to be calculated. These include taxes, deductions that are voluntary such as life insurance, and deductions that are compulsory, such as child support or student loans. Once deductions are removed, the amount remaining is an employee’s net pay, also known as take home pay.
+
+Calculating Taxes
+Business owners are responsible for making sure they take out government taxes and national insurance payments from their employees’ wages, and payroll management systems can automate this process. In the UK, HMRC approved software is important to ensure compliance with the country’s employment and tax legislation and therefore avoid expensive fines. Her Majesty’s Revenue and Customs is the full name for the UK government body that’s in charge of the nation’s taxes and benefits, and their system for collecting national insurance and income tax is known as PAYE – or Pay as you earn.
+
+Pay Statement for employees
+Another important feature of a payroll management system is providing pay statements for employees alongside the payment of their wages. These statements should accurately reflect their net pay, including pay rates, deductions, gross pay and the take home amount.
+
+
+
+Simplify Salary Structure Creation 
+Effortlessly assign pay groups at different levels and auto-calculate your employees' salaries. 
+
+Convenient Auto-Schedule Payroll 
+Empower HR with in-house payroll system and ensure timely payroll processing every time.
+Quick Payroll Error Verification 
+Automatically receive an elaborated salary variance reports for instant resolution of errors.
+
+Reliable Statutory Compliances 
+Updated system as per latest payroll guidelines of respective states for statutory calculations.
+
+Responsive Employee Self Service 
+Unload payroll admin & empower your employees to do more than download salary slips with ESS.
+
+
+
+Let HR or admins access employees’ attendance data anytime for actual paid days calculation 
+Let your HR approve or reject loan and reimbursement requests in a click
+Let your payroll related data be password protected to ensure utmost security
+Let your people access their CTC structure, download payroll slips, etc. from anywhere
+
+In-depth Payout Insights and Dashboards 
+40+ comprehensive tabular reports to discover CTC trends, actual liabilities, and more.
+
 
 **User Registration and Login (UI01):**
 - The system will allow registering a new Employee.
@@ -41,6 +123,8 @@
   - Input: The admin selects to enable the clock in/out features.
   - Action: The system will allow employees to use the web interface to clock in and out.
   - Output: The system will display a confirmation message upon a successful update or an error message upon a failed update.
+
+
 
 **Create Task Interface (UI02.1):**
 - This create task contains one form that has parameters like select employee, description of the task, starting date, end date, and create button.
