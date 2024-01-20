@@ -13,6 +13,7 @@
 - <a href="https://github.com/RaviTambade/TFLPortal/blob/main/Documentation/ProductBacklog.md"> User Stories</a>
 - <a href="https://github.com/RaviTambade/TFLPortal/blob/main/Documentation/EndPoints.md"> Web API EndPoints</a>
 - <a href="https://github.com/RaviTambade/TFLPortal/blob/main/Documentation/components.md">UI  Components</a>
-- <a href=" https://github.com/RaviTambade/TFLPortal/blob/main/WebSolution/Databases/createdb.sql">Database</a>
+- <a href="https://github.com/RaviTambade/TFLPortal/blob/main/WebSolution/Databases/createdb.sql">Database</a>
 - <a href="https://github.com/RaviTambade/TFLPortal/blob/main/WebSolution/Databases/sampledb.sql">Sample Database</a>
+- <a href="https://github.com/RaviTambade/TFLPortal/blob/main/WebSolution/Databases/sampledb.sql">SQL Queries</a>
 - <a href="https://github.com/RaviTambade/TFLPortal/blob/main/WebSolution/Databases/spdb.sql">Reusable Stored Procedures</a>
