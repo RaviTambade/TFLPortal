@@ -131,6 +131,9 @@ public class ProjectMembershipController : ControllerBase
     //     return projectAllocationResponse;
     // }
 
+
+
+    //Listing of All employees working on project project123  who are working or who left
     [HttpGet("projects/{projectId}/status/{status}/employees")]
     public async Task<List<ProjectMembershipResponse>> GetEmployeesOfProject(int projectId,string status)
     {
