@@ -1,24 +1,18 @@
 # Transflower Portal
 
-1. Transflower Portal is a intranet application  built as learning project to apply technology learning. This project work helps to understand complete end to end Software Development process using Agile Methodolgy. The main purpose of this activity is to learn technologies by doing hands on. We could learn and apply skills of Software Development to build FullStack .NET Developer Skill.
+Transflower Portal is a intranet application  built as learning project to apply technology learning. This project work helps to understand complete end to end Software Development process using Agile Methodolgy. The main purpose of this activity is to learn technologies by doing hands on. We could learn and apply skills of Software Development to build FullStack .NET Developer Skill.
 
 Intern participate in each and every process of Application Development and apply technical concepts to solve business problem. TFL Portal is being developed by TAP (Transflower Acceleration Program) interns using .NET 8.0, Angular , MySql and React.
- Tranflower Portal is now  just a software solution but it is a journey of a learner from zero knowledge of Software Development to Project Ready Resource for an IT (Information Technology) company.
+ Tranflower Portal is not  just a software solution but it is a journey of a learner from zero knowledge of Software Development to Project Ready Resource for an IT (Information Technology) company.
+ Transflower : a learning experience.
+
 
  TFL Portal is a Software Crafting expereince along with Mentor and team .
 
-<a href=""> System Requirements Specification</a>
-<a href=""> User Stories</a>
+<a href="https://github.com/RaviTambade/TFLPortal/blob/main/Documentation/SRS.md"> System Requirements Specification</a>
+<a href="https://github.com/RaviTambade/TFLPortal/blob/main/Documentation/userstory.md"> User Stories</a>
 
-  System Web Application is intended to provide a suitable solution for Project Managers and Project team members to create, assign, complete, update, and find daily Time Sheets of team members' working process.
-2. The ability for managers is to create daily tasks, assign tasks to team members, check time sheets of employees, check updates of tasks from employees, also have the ability to update tasks, delete tasks, delete team members from projects, etc.
-3. The ability for team members is to complete tasks which will be assigned by the project manager and update task status and also have the ability to update their daily time sheet.
-4. Time sheet management is also provided for recording the amount of team members' time spent on allocated jobs. Time sheet management is a conventional method of calculating team members' performance and is done by tabular format using an Excel sheet, etc.
-5. Initially, the time sheet was used in fields of payroll calculation and account management.
-6. From the time sheet, the start date and end date of the project can be recorded, and these statistics can be later used for accounting, payroll, billing of clients, tracking, estimation, and calculating hours of team members.
-
-
-
+  
 
 **Purpose:**
 1. This documentation specifies the System Requirements Specification (SRS) for the Project Management System (PMS). It describes the scope of the system, both functional and non-functional requirements for the software, design constraints, and system interfaces.
