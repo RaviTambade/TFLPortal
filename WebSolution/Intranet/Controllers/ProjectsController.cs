@@ -15,18 +15,26 @@ public class ProjectsController : ControllerBase
         _service = service;
     }
 
+
+    
+    //http://localhost:8989/api/projects
     [HttpGet]
     public async Task<List<Project>> GetAllProjects()
     {
         List<Project> projects = await _service.GetAllProjects();
         return projects;
     }
+
+    
+    //http://localhost:8989/api/projects/project/453
     [HttpGet("{projectId}")]
     public async Task<Project> GetProjectDetails(int projectId)
     {
         Project projects = await _service.GetProjectDetails(projectId);
         return projects;
     }
+
+    //http://localhost:8989/api/projects/employee/453
 
     [HttpGet("employees/{employeeid}")]
     public async Task<List<Project>> GetProjectsOfEmployee(int employeeid)
@@ -35,6 +43,8 @@ public class ProjectsController : ControllerBase
         return projects;
     }
 
+    //Get All project belong to project manager
+    // http://localhost:8989/api/projects/manager/453
 
     [HttpGet("projectmanager/{managerId}")]
     public async Task<List<Project>> GetAllProjectsOfProjectManager(int managerId)
@@ -43,6 +53,9 @@ public class ProjectsController : ControllerBase
         return projects;
     }
 
+
+
+    // http://localhost:8989/api/projects
     [HttpPost]
     [Route ("addproject")]
     public async Task<bool> AddProject(Project project)
@@ -52,11 +65,11 @@ public class ProjectsController : ControllerBase
     }
 
 
+    // http://localhost:8989/api/employeeids/project/45
     [HttpGet("projectmanager/employees/{projectId}")]
     public async Task<List<int>> GetAllEmployee(int projectId)
     {
-        List<int> projects = await _service.GetAllEmployees(projectId);
-        
-        return projects;
+        List<int> employeeIds = await _service.GetAllEmployees(projectId);
+        return employeeIds;
     }
 }
