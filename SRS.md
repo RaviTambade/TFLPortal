@@ -175,3 +175,46 @@
 - Managers can get feedback directly on their port.
 - From this above project, the working process will get more connection between employees and managers.
 - It also increases efficiency in working.
+
+
+**Specific Requirements:**
+
+**External Interfaces:**
+- The interface for the Timesheet System will be split among the user groups. Administrator will be able to log in and have a screen that allows them to:
+  - Override timesheet values
+  - View timesheet values
+  - Add/Remove Employees
+  - Update the database with values.
+- Employees will be able to log in and view a screen that allows them to:
+  - View projects and tasks assigned to them.
+  - View timesheet values
+  - Finalize time worked
+  - Clock in and clock out.
+
+**Requirements User Interfaces:**
+- Admin/Project manager
+- Employee
+
+**Hardware Interfaces:**
+- Processor: Intel Core i5
+- RAM: Min 4 GB
+- Hard Disk: 1TB
+
+**Software Interfaces:**
+- Operating system: Windows 10
+- Technology Used: Asp.Net Core, HTTP server, IIS Server
+- Database: My SQL
+- Tools used: Vs Code
+
+**Communications Interfaces:**
+- Postman tool
+- Web browser
+
+
+
+**Purpose of Project:**
+- Increasing communication between employees & managers.
+- Increasing Productivity.
+- Reducing complications between communications.
+- Reducing meetings between employees & managers and meetings time.
+- Reducing the calculation of working time of every employee from timesheet.
