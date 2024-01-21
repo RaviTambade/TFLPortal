@@ -21,7 +21,7 @@ public class EmployeeWorkController : ControllerBase
 
     }
 
-    [HttpGet("selectedProject/{projectId}")]
+    [HttpGet("selectProject/{projectId}")]
    public async Task<List<EmployeeWorkResponse>> GetEmployeeWorkByProject(int projectId)
     {
  

@@ -9,10 +9,10 @@ public class EmployeeTask
    public DateTime StartDate{get;set;}
    public DateTime DueDate{get;set;}
    public DateTime CreatedDate{get;set;}
-   public Member  AssignedTo{get;set;}
+   // public Member  AssignedTo{get;set;}
    public int ProjectId{get;set;}
    public int SprintId{get;set;}
    public string? Status{get;set;}
-   public Member AssignedBy{get; set;} 
+   // public Member AssignedBy{get; set;} 
     
 }
