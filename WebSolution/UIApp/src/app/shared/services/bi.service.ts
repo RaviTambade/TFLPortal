@@ -13,7 +13,7 @@ export class BiService {
   private serviceurl: string = environment.apiUrl;
 
   getMonthlyLeaves(employeeId:number,year:number):Observable<any>{
-    let url = this.serviceurl + '/leaves/leavescount/'+employeeId+'/year/'+year;
+    let url = this.serviceurl + '/leaves/monthlyconsumedleave/employee/'+employeeId+'/year/'+year;
     return this.httpClient.get<any>(url);
   }
 }

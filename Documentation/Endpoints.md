@@ -1,16 +1,17 @@
+## TFL Portal Web API List
+
 Authentication Service:
 
 
-1)
-Url  : http:localhost:portnumber/api/users/getallusers
+
+- Url  : http:localhost:portnumber/api/users/getallusers
 Mehtod : GET
 Return : json object of all users
 Body   : Null
 Header : List of users
 Authentication : Admin and Employee only
 
-2)
-Url  :http:localhost:portnumber/api/users/getuser/{id}
+- Url  :http:localhost:portnumber/api/users/getuser/{id}
 id   :User Id
 Method :GET
 Return :json object of user
@@ -19,7 +20,7 @@ Header :User Details
 Authentication : Admin and Employee only
 
 
-3) 
+-  
 Url  :http:localhost:portnumber/api/users/insertuser
 Method :POST
 Return :True or False
@@ -34,7 +35,7 @@ Authentication :
 
 [ When new employee inserted his details that time user automatically inserted in user tables by trigger]
 
-4) 
+-  
 Url  :http:localhost:portnumber/api/users/updateuser/{id}
 id   :User Id 
 Method :PUT
@@ -49,7 +50,7 @@ Header :Update User Details
 Authentication :
 
 
-5) 
+-  
 Url  :http:localhost:portnumber/api/users/Deleteuser/{id}
 id   :User Id 
 Method :Delete
@@ -60,7 +61,7 @@ Authentication :
 
 Accounts:
  
-1)
+- 
 Url  : http:localhost:portnumber/api/accounts/getallaccounts
 Mehtod : GET
 Return : json object of all users
@@ -68,7 +69,7 @@ Body   : Null
 Header : List of Accounts
 Authentication : Admin and Employee only
 
-2)
+- 
 Url  :http:localhost:portnumber/api/accounts/getaccount/{id}
 id   :Account Id
 Method :GET
@@ -77,8 +78,7 @@ Body   :Null
 Header :Account Details
 Authentication : Admin and Employee only
 
-
-3) 
+-  
 Url  :http:localhost:portnumber/api/accounts/insertaccount
 Method :POST
 Return :True or False
@@ -93,7 +93,7 @@ Header :Add new account
 Authentication :
 
 
-4) 
+-  
 Url  :http:localhost:portnumber/api/accounts/updateaccount/{id}
 id   :Account Id 
 Method :PUT
@@ -110,7 +110,7 @@ Header :Update User Details
 Authentication :
 
 
-5) 
+-  
 Url  :http:localhost:portnumber/api/accounts/Deletaccount/{id}
 id   :Account Id 
 Method :Delete
@@ -122,7 +122,7 @@ Authentication :
 
 [Employees Service ]
 
-1)
+- 
 Url  : http:localhost:portnumber/api/employees/getallemployees
 Mehtod : GET
 Return : json object of all employees
@@ -130,7 +130,7 @@ Body   : Null
 Header : List of employees
 Authentication : Admin and Employee only
 
-2)
+- 
 Url  :http:localhost:portnumber/api/employees/getemployee/{id}
 id   :Employee Id
 Method :GET
@@ -140,7 +140,7 @@ Header :Employee Details
 Authentication : Admin and Employee only
 
 
-3)
+- 
 Url  :http:localhost:portnumber/api/employees/insertemployee
 Method :POST
 Return :True or False
@@ -157,7 +157,7 @@ Header :Add new Employee
 Authentication :
 
 
-4)
+- 
 Url  :http:localhost:portnumber/api/employees/updateemployee/{id}
 id   :employee Id 
 Method :PUT
@@ -177,7 +177,7 @@ Header :Update Employee Details
 Authentication :
 
 
-5) 
+-  
 Url  :http:localhost:portnumber/api/employees/Deleteemployee/{id}
 id   :Employee Id 
 Method :Delete
@@ -189,7 +189,7 @@ Authentication :
 
 [Team]
 
-1)
+- 
 Url  : http:localhost:portnumber/api/teams/getallteams
 Mehtod : GET
 Return : json object of all teams
@@ -197,7 +197,7 @@ Body   : Null
 Header : List of teams
 Authentication : Admin and Employee only
 
-2)
+- 
 Url  :http:localhost:portnumber/api/teams/getteam/{id}
 id   :Team Id
 Method :GET
@@ -207,7 +207,7 @@ Header :Team Details
 Authentication : Admin and Employee only
 
 
-3) 
+-  
 Url  :http:localhost:portnumber/api/teams/insertteam
 Method :POST
 Return :True or False
@@ -219,7 +219,7 @@ Header :Add new Team
 Authentication :
 
 
-4) 
+-  
 Url  :http:localhost:portnumber/api/teams/updateteam/{id}
 id   :Team Id 
 Method :PUT

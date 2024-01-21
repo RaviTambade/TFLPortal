@@ -27,32 +27,33 @@ export class LeavesService {
   }
 
   getPendingLeaves(employeeId:number,year:number):Observable<PendingLeave>{
-    let url="http://localhost:5263/api/leaves/pendingleaves/employees/"+employeeId+"/year/"+year;
+    let url="http://localhost:5263/api/leaves/annualavailableleaves/employee/"+employeeId+"/year/"+year;
     return this.http.get<PendingLeave>(url);
   }
 
   getConsumedLeaves(employeeId:number,year:number):Observable<PendingLeave>{
-    let url="http://localhost:5263/api/leaves/consumedleaves/employees/"+employeeId+"/year/"+year;
+    let url="http://localhost:5263/api/leaves/annualconsumedleaves/employee/"+employeeId+"/year/"+year;
     return this.http.get<PendingLeave>(url);
   }
 
   getTotalLeaves(employeeId:number,year:number):Observable<PendingLeave>{
-    let url="http://localhost:5263/api/leaves/totalleaves/employees/"+employeeId+"/year/"+year;
+    let url="http://localhost:5263/api/leaves/annualleaves/employee/"+employeeId+"/year/"+year;
     return this.http.get<PendingLeave>(url);
   }
 
+  //
   getEmployeeLeaves(employeeId:number):Observable<LeaveApplication[]>{
-    let url="http://localhost:5263/api/leaves/"+employeeId;
+    let url="http://localhost:5263/api/leaves/employee/"+employeeId;
     return this.http.get<LeaveApplication[]>(url);
   }
 
   getRoleBasedLeaveDetails(id:number):Observable<RoleBasedLeave>{
-    let url="http://localhost:5263/api/leaves/getrolebasedleavedetails/" +id;
+    let url="http://localhost:5263/api/leaves/" +id;
     return this.http.get<RoleBasedLeave>(url);
   }
 
   getTeamLeaveDetails(projectId:number,status:string):Observable<LeaveDetails[]>{
-    let url="http://localhost:5263/api/leaves/projects/"+projectId+"/status/"+status;
+    let url="http://localhost:5263/api/leaves/project/"+projectId+"/status/"+status;
     return this.http.get<LeaveDetails[]>(url);
   }
 
@@ -62,7 +63,7 @@ export class LeavesService {
   }
 
   getEmployeeLeavesDetails(leaveId:number):Observable<LeaveDetails>{
-    let url="http://localhost:5263/api/leaves/details/"+leaveId;
+    let url="http://localhost:5263/api/leaves/leave/"+leaveId;
     return this.http.get<LeaveDetails>(url);
   }
 
@@ -92,7 +93,7 @@ export class LeavesService {
   }
 
   updateLeaveApplication(leaveId:number,status:string):Observable<any>{
-    let url="http://localhost:5263/api/leaves/" +leaveId+ "/"+status;
+    let url="http://localhost:5263/api/leaves/" +leaveId+ "/updatestatus/"+status;
     return this.http.put<any>(url,{});
   }
 

@@ -28,7 +28,7 @@ public class LeavesManagementController : ControllerBase
         return await _service.GetAllEmployeeLeaves();
     }
 
-    [HttpGet("getallemployee")]
+    [HttpGet("employees")]
     public async Task<List<LeaveResponse>> GetAllEmployee()
     {
         List<EmployeeLeaveDetails> leaves=await _service.GetAllEmployeeLeaves();
@@ -88,7 +88,7 @@ public class LeavesManagementController : ControllerBase
     }
 
     [HttpGet]
-    [Route ("{employeeId}")]
+    [Route ("employee/{employeeId}")]
     public async Task<List<EmployeeLeave>> GetLeaveDetailsOfEmployee(int employeeId)
     {
         return await _service.GetLeaveDetailsOfEmployee(employeeId);
@@ -101,15 +101,18 @@ public class LeavesManagementController : ControllerBase
         return await _service.GetLeaveDetailsOfEmployee(employeeId,status);
     }
 
+
+  
     [HttpGet]
-    [Route ("getrolebasedleavedetails/{id}")]
+    [Route ("{id}")]
     public async Task<RoleBasedLeave> GetRoleBasedLeaveDetails(int id)
     {
         return await _service.GetRoleBasedLeaveDetails(id);
     }
-
+    
+ 
     [HttpGet]
-    [Route ("details/{leaveId}")]
+    [Route ("leave/{leaveId}")]
     public async Task<LeaveResponse> GetLeaveDetails(int leaveId)
     {
         EmployeeLeaveDetails leave =await _service.GetLeaveDetails(leaveId);
@@ -193,7 +196,7 @@ public class LeavesManagementController : ControllerBase
     }
 
     [HttpGet]
-    [Route ("projects/{projectId}/status/{status}")]
+    [Route ("project/{projectId}/status/{status}")]
     public async Task<List<LeaveResponse>> GetTeamLeaveDetails(int projectId,string status)
     {
         List<EmployeeLeaveDetails> leaves =await _service.GetTeamLeaveDetails(projectId,status);
@@ -225,14 +228,14 @@ public class LeavesManagementController : ControllerBase
 
 
     [HttpGet]
-    [Route ("leavescount/{employeeId}/year/{year}")]
+    [Route ("monthlyconsumedleave/employee/{employeeId}/year/{year}")]
     public async Task<List<LeaveDetails>> GetAnnualLeavesCountByMonth(int employeeId,int year)
     {
       return await _service.GetAnnualLeavesCountByMonth(employeeId,year);
     }
 
-
-    [HttpGet("pendingleaves/employees/{employeeId}/year/{year}")]
+  
+    [HttpGet("annualavailableleaves/employee/{employeeId}/year/{year}")]
     public async Task<PendingLeaveDetails> GetPendingLeaves(int employeeId,int year)
     {
         Employee employee= await _hrService.GetEmployeeById(employeeId);
@@ -241,7 +244,7 @@ public class LeavesManagementController : ControllerBase
        return await _service.GetPendingLeaves(employeeId,roleId,year);   
     }
 
-    [HttpGet("consumedleaves/employees/{employeeId}/year/{year}")]
+    [HttpGet("annualconsumedleaves/employee/{employeeId}/year/{year}")]
     public async Task<PendingLeaveDetails> GetConsumedLeaves(int employeeId,int year)
     {
         Employee employee= await _hrService.GetEmployeeById(employeeId);
@@ -250,7 +253,8 @@ public class LeavesManagementController : ControllerBase
        return await _service.GetConsumedLeaves(employeeId,roleId,year);   
     }
 
-    [HttpGet("totalleaves/employees/{employeeId}/year/{year}")]
+ 
+    [HttpGet("annualleaves/employee/{employeeId}/year/{year}")]
     public async Task<PendingLeaveDetails> GetTotalLeaves(int employeeId,int year)
     {
         Employee employee= await _hrService.GetEmployeeById(employeeId);
@@ -265,14 +269,15 @@ public class LeavesManagementController : ControllerBase
         return await _service.AddNewLeaveApplication(employeeLeave);
        
     }
-
-    [HttpGet("employees/{employeeId}/month/{month}/year/{year}")]
+ 
+ 
+    [HttpGet("employee/{employeeId}/month/{month}/year/{year}")]
     public async Task<List<LeaveDetails>> GetEmployeeLeaves(int employeeId,int month,int year)
     {
         return await _service.GetEmployeeLeaves(employeeId,month,year);   
     }
 
-    [HttpPost("addnewrolebasedleave")]
+    [HttpPost("addrolebasedleave")]
     public async Task<bool> AddNewRoleBasedLeave(RoleBasedLeave roleBasedLeave)
     {
         return await _service.AddNewRoleBasedLeave(roleBasedLeave);
@@ -284,8 +289,9 @@ public class LeavesManagementController : ControllerBase
        bool status= await _service.UpdateRoleBasedLeave(roleBasedLeave);
         return status; 
     }
+ 
 
-    [HttpPut("{leaveId}/{leaveStatus}")]
+    [HttpPut("{leaveId}/updatestatus/{leaveStatus}")]
     public async Task<bool> UpdateLeaveApplication(int leaveId,string leaveStatus)
     {
         bool status= await _service.UpdateLeaveApplication(leaveId,leaveStatus);

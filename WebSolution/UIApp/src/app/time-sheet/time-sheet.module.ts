@@ -2,14 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListComponent } from './components/list/list.component';
 import { DetailsComponent } from './components/details/details.component';
-import { InsertTimeSheetEntryComponent } from './oldcomponents/insert-time-sheet-entry/insert-time-sheet-entry.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InsertTimeSheetComponent } from './oldcomponents/insert-time-sheet/insert-time-sheet.component';
-import { PopupComponent } from './oldcomponents/popup/popup.component';
 import { UpdateTimesheetEntryComponent } from './components/update-timesheet-entry/update-timesheet-entry.component';
 import { RouterModule, Routes } from '@angular/router';
-import { EmployeeTimesheetComponent } from './oldcomponents/employee-timesheet/employee-timesheet.component';
-import { TimesheetEmployeeCalenderComponent } from './oldcomponents/timesheet-employee-calender/timesheet-employee-calender.component';
 import { SharedModule } from '../shared/shared.module';
 import { TimesheetEmployeeWorkChartComponent } from './components/timesheet-employee-work-chart/timesheet-employee-work-chart.component';
 import { TimesheetEmployeeProjectHoursComponent } from './components/timesheet-employee-project-hours/timesheet-employee-project-hours.component';
@@ -47,20 +42,6 @@ export const timeSheetRoutes: Routes = [
     // canActivate: [EmployeeGuard],
   },
 
-  {
-    path: 'view',
-    component: EmployeeTimesheetComponent,
-    children: [
-      {
-        path: 'add/:date',
-        component: InsertTimeSheetComponent,
-      },
-      {
-        path: 'update/:id/date/:date',
-        component: UpdateTimesheetEntryComponent,
-      },
-    ],
-  },
   { path: 'analytics', component: TimesheetEmployeeAnalyticsComponent },
   { path: 'approval', component: TimesheetApprovalComponent, canActivate:[HRRouteGaurd()] },
 
@@ -70,12 +51,7 @@ export const timeSheetRoutes: Routes = [
   declarations: [
     ListComponent,
     DetailsComponent,
-    InsertTimeSheetEntryComponent,
-    InsertTimeSheetComponent,
-    PopupComponent,
-    UpdateTimesheetEntryComponent,
-    EmployeeTimesheetComponent,
-    TimesheetEmployeeCalenderComponent,
+    TimesheetEmployeeWorkChartComponent,
     TimesheetEmployeeWorkChartComponent,
     TimesheetEmployeeProjectHoursComponent,
     TimesheetEmployeeAnalyticsComponent,
@@ -83,7 +59,8 @@ export const timeSheetRoutes: Routes = [
     AddTimesheetEntryComponent,
     TimesheetApprovalComponent,
     TimesheetDashboardComponent,
-    TimesheetEmployeeWorkDataComponent
+    TimesheetEmployeeWorkDataComponent,
+    UpdateTimesheetEntryComponent
   ],
   imports: [
     CommonModule,
@@ -95,8 +72,6 @@ export const timeSheetRoutes: Routes = [
   exports: [
     ListComponent,
     DetailsComponent,
-    InsertTimeSheetEntryComponent,
-    InsertTimeSheetComponent,
     TimesheetEmployeeWorkChartComponent,
   ],
   providers: [],
