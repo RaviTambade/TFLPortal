@@ -58,7 +58,7 @@
 #### Leave Management
 <hr/>
 
-#### Payrol
+#### Payrol Management
 
 #### Role Employee
 1.As an employee, I want to view a list of my payments, so that I can easily track my salary transactions.
