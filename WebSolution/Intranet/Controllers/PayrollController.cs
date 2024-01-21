@@ -26,7 +26,8 @@ public class PayrollController : ControllerBase
         _apiService = apiService;
     }
 
-    [HttpGet("salaries/employees/{employeeId}/month/{month}/year/{year}")]
+    //salaries/employees/{employeeId}/month/{month}/year/{year}"
+    [HttpGet("salaries/employee/{employeeId}/month/{month}/year/{year}")]
     public async Task<SalaryResponse> GetSalaryStructure(int employeeId,int month,int year)
     {
         MonthSalary salaryStructure = await _payrollService.CalculateSalary(employeeId,month,year);
@@ -60,8 +61,9 @@ public class PayrollController : ControllerBase
 
         return salaryDetails;
     }
-
-    [HttpPost("employees/salary")]
+    
+    //"employees/salary"
+    [HttpPost("employees/addsalarystructure")]
     public async Task<bool> InsertSalaryStructure(SalaryStructure salary)
     {
         return await _payrollService.AddSalaryStructure(salary);
@@ -72,8 +74,9 @@ public class PayrollController : ControllerBase
     MonthSalary salary= await _payrollService.CalculateSalary(employeeId,month,year);
     return salary;
     }
-
-    [HttpPost("insertsalary")]
+    
+    //"insertsalary"
+    [HttpPost("employees/addsalary")]
     public async Task<bool> InsertSalary(Salary salary)
     {
       bool status=await _payrollService.InsertSalary(salary);
