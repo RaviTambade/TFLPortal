@@ -81,7 +81,7 @@ public class EmployeeWorkController : ControllerBase
         return employeeWorks;
     }
    
-    [HttpGet("projects/{projectId}/type/{projectWorkType}")]
+    [HttpGet("projects/{projectId}/projectWorkType/{projectWorkType}")]
     public async Task<List<EmployeeWork>>GetProjectEmployeeWorkByWorkType(int projectId, string projectWorkType)
     {
         List<EmployeeWork> employeeWorks = await _service.GetProjectEmployeeWorkByWorkType(projectId,projectWorkType);
@@ -110,7 +110,7 @@ public class EmployeeWorkController : ControllerBase
     }
 
 
-    [HttpGet("projects/{employeeWorkId}")]
+    [HttpGet("projects/employeeWorkId/{employeeWorkId}")]
     public async Task<EmployeeWorkResponse> GetEmployeeWorkDetails(int employeeWorkId)
     {
         EmployeeWorkDetails employeeWork = await _service.GetEmployeeWorkDetails(employeeWorkId);
@@ -165,7 +165,7 @@ public class EmployeeWorkController : ControllerBase
  
 
 
-   [HttpPut("project/{employeeWorkId}/status/{Status}")]
+   [HttpPut("project/employeeWorkId/{employeeWorkId}/status/{Status}")]
     public async Task<bool> UpdateEmployeeWork(string Status,int employeeWorkId)
     {
         bool status = await _service.UpdateEmployeeWork(Status, employeeWorkId);

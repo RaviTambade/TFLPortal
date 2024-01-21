@@ -55,6 +55,8 @@
 
 <hr/>
 
+
+#### Payrol Management
 ##### Role: Project Member
 1. As an employee, I want to apply for leave so that I can take the necessary time off 
 for personal or professional reasons.
@@ -90,6 +92,7 @@ so that  I can effectively manage and tailor leave policies.
 6. As a HrManager,I want to view the role based leave details so that I can ensure equitable and appropriate distribution of leave allowances.
 
 #### Payrol
+
 
 #### Role Employee
 1. As an employee, I want to view a list of my payments, so that I can easily track my salary transactions.
