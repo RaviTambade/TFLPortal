@@ -44,7 +44,7 @@ export class HrService {
   }
 
   getSalaryHistory(employeeId:number):Observable<any>{
-    let url=this.serviceurl+"/payroll/employee/"+employeeId;
+    let url=this.serviceurl+"/payroll/salaries/employee/"+employeeId;
     return this.httpClient.get<any>(url);
   }
 

@@ -22,7 +22,7 @@ export class LeavesService {
   }
 
   addRoleBasedLeave(leave:RoleBasedLeave):Observable<boolean>{
-    let url="http://localhost:5263/api/leaves/addnewrolebasedleave";
+    let url="http://localhost:5263/api/leaves/rolebasedleave";
     return this.http.post<boolean>(url,leave);
   }
 
@@ -43,7 +43,7 @@ export class LeavesService {
 
   //
   getEmployeeLeaves(employeeId:number):Observable<LeaveApplication[]>{
-    let url="http://localhost:5263/api/leaves/employee/"+employeeId;
+    let url="http://localhost:5263/api/leaves/employees/"+employeeId;
     return this.http.get<LeaveApplication[]>(url);
   }
 
@@ -53,12 +53,12 @@ export class LeavesService {
   }
 
   getTeamLeaveDetails(projectId:number,status:string):Observable<LeaveDetails[]>{
-    let url="http://localhost:5263/api/leaves/project/"+projectId+"/status/"+status;
+    let url="http://localhost:5263/api/leaves/projects/"+projectId+"/status/"+status;
     return this.http.get<LeaveDetails[]>(url);
   }
 
   getLeaveDetailsOfEmployee(employeeId:number,status:string):Observable<LeaveApplication[]>{
-    let url=" http://localhost:5263/api/leaves/employee/"+employeeId+"/status/"+status;
+    let url=" http://localhost:5263/api/leaves/employees/"+employeeId+"/status/"+status;
     return this.http.get<LeaveApplication[]>(url);
   }
 
@@ -83,7 +83,7 @@ export class LeavesService {
   }
 
   getLeaveDetailsByDate(date:string):Observable<LeaveDetails[]>{
-    let url="http://localhost:5263/api/leaves/date/"+date;
+    let url="http://localhost:5263/api/leaves/employees/date/"+date;
     return this.http.get<LeaveDetails[]>(url);
   }
 
@@ -98,7 +98,7 @@ export class LeavesService {
   }
 
   updateRoleBasedLeave(roleBasedLeave:RoleBasedLeave):Observable<RoleBasedLeave>{
-    let url="http://localhost:5263/api/leaves/updaterolebasedleave";
+    let url="http://localhost:5263/api/leaves/rolebasedleave";
     return this.http.put<RoleBasedLeave>(url,roleBasedLeave);
   }
 

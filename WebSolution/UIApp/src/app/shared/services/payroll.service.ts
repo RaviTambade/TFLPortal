@@ -14,17 +14,17 @@ export class PayrollService {
   constructor(private httpClient:HttpClient) { }
 
   getEmployeeSalary(employeeId:number,month:number,year:number):Observable<MonthSalary>{
-    let url="http://localhost:5263/api/payroll/salaries/employees/"+employeeId+"/month/"+month+"/year/"+year;
+    let url="http://localhost:5263/api/payroll/salaries/employee/"+employeeId+"/month/"+month+"/year/"+year;
     return this.httpClient.get<MonthSalary>(url);
   }
 
   insertSalary(salary:Salary):Observable<Salary>{
-    let url="http://localhost:5263/api/payroll/insertsalary";
+    let url="http://localhost:5263/api/payroll/salaries/employee/addsalary";
     return this.httpClient.post<Salary>(url,salary);
   }
 
-  getAllEmployee(month:number,year:number):Observable<SalaryDetails[]>{
-    let url="http://localhost:5263/api/payroll/employees/salary/month/"+month+"/year/"+year;
+  getAllEmployees(month:number,year:number):Observable<SalaryDetails[]>{
+    let url="http://localhost:5263/api/payroll/employees/paid/month/"+month+"/year/"+year;
     return this.httpClient.get<SalaryDetails[]>(url);
   }
 }
