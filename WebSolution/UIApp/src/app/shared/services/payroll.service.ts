@@ -19,12 +19,12 @@ export class PayrollService {
   }
 
   insertSalary(salary:Salary):Observable<Salary>{
-    let url="http://localhost:5263/api/payroll/salaries/employee/addsalary";
+    let url="http://localhost:5263/api/payroll/salaries";
     return this.httpClient.post<Salary>(url,salary);
   }
 
   getAllEmployees(month:number,year:number):Observable<SalaryDetails[]>{
-    let url="http://localhost:5263/api/payroll/employees/paid/month/"+month+"/year/"+year;
+    let url="http://localhost:5263/api/payroll/salaries/paid/month/"+month+"/year/"+year;
     return this.httpClient.get<SalaryDetails[]>(url);
   }
 }
