@@ -21,11 +21,7 @@ public class TimesheetsController : ControllerBase
     }
 
     [HttpGet("employees/{employeeId}/from/{fromDate}/to/{toDate}")]
-    public async Task<List<TimesheetDuration>> GetTimesheets(
-        int employeeId,
-        DateOnly fromDate,
-        DateOnly toDate
-    )
+    public async Task<List<TimesheetDuration>> GetTimesheets(int employeeId,DateOnly fromDate,DateOnly toDate)
     {
         return await _timesheetService.GetTimesheets(employeeId, fromDate, toDate);
     }
@@ -101,7 +97,7 @@ public class TimesheetsController : ControllerBase
 
  
 
-    [HttpGet("employees/{employeeId}/workduration/{intervalType}/{projectId}")]
+    [HttpGet("employees/{employeeId}/workduration/{intervalType}/projects/{projectId}")]
     public async Task<List<WorkCategoryDetails>> GetActivityWiseHours(
         int employeeId,
         string intervalType,
