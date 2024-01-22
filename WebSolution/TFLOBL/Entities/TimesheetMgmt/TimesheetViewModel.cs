@@ -6,3 +6,4 @@ public class TimesheetViewModel : TimesheetDuration
     public List<TimesheetDetailViewModel> TimeSheetDetails { get; set; } =
         new List<TimesheetDetailViewModel>();
 }
+    

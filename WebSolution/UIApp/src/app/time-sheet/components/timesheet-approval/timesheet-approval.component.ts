@@ -12,7 +12,7 @@ import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 })
 export class TimesheetApprovalComponent {
   timeSheets: TimesheetView[] = [];
-  reportingToId:number=0;
+  projectManagerId:number=0;
   fromDate: string | undefined;
   toDate: string | undefined;
   intervals: string[] = ['week', 'month'];
@@ -25,7 +25,7 @@ export class TimesheetApprovalComponent {
   constructor(private workmgmtSvc: WorkmgmtService) {}
 
   ngOnInit(): void {
-    this.reportingToId=Number(localStorage.getItem(LocalStorageKeys.employeeId));
+    this.projectManagerId=Number(localStorage.getItem(LocalStorageKeys.employeeId));
     this.onIntervalChange();
   }
 
@@ -45,7 +45,7 @@ export class TimesheetApprovalComponent {
     }
     if (this.fromDate && this.toDate) {
       this.workmgmtSvc
-        .getTimesheetsByStatus(this.reportingToId,this.selectedStatus, this.fromDate, this.toDate)
+        .getTimesheetsByStatus(this.projectManagerId,this.selectedStatus, this.fromDate, this.toDate)
         .subscribe((res) => {
           this.timeSheets = res;
         });

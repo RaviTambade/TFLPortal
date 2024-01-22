@@ -59,16 +59,16 @@ public class TimesheetsController : ControllerBase
         return new TimesheetResponse() { };
     }
 
-    [HttpGet("hrmanager/{hrmanagerId}/status/{status}/from/{fromDate}/to/{toDate}")]
-    public async Task<List<TimesheetResponse>> GetEmployeeTimesheetsForHRManager(
-        int hrmanagerId,
+    [HttpGet("projectmanager/{projectManagerId}/status/{status}/from/{fromDate}/to/{toDate}")]
+    public async Task<List<TimesheetResponse>>  GetEmployeesTimeSheetsForProjectManager(
+        int projectManagerId,
         string status,
         DateOnly fromDate,
         DateOnly toDate
     )
     {
         List<TimesheetViewModel> timesheets =
-        await _timesheetService.GetEmployeeTimesheetsForHRManager(hrmanagerId,status,fromDate,toDate );
+        await _timesheetService.GetEmployeesTimeSheetsForProjectManager(projectManagerId,status,fromDate,toDate );
         string userIds = string.Join(',', timesheets.Select(t => t.Employee.UserId).ToList());
         List<TimesheetResponse> timesheetResponses = new List<TimesheetResponse>();
         List<User> users = await _apiService.GetUserDetails(userIds);
@@ -132,7 +132,7 @@ public class TimesheetsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<bool> AddTimesheet(Timesheet timesheet)
+    public async Task<bool > AddTimesheet(Timesheet timesheet)
     {
         return await _timesheetService.AddTimesheet(timesheet);
     }

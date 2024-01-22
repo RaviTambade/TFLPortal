@@ -93,8 +93,8 @@ export class WorkmgmtService {
     return this.http.get<Sprint[]>(url);
   }
 
-  getTimesheetsByStatus(reportingToId:number,status: string,fromDate:string,toDate:string): Observable<TimesheetView[]> {
-    let url = `${this.serviceurl}/workmgmt/timesheets/hrmanager/${reportingToId}/status/${status}/from/${fromDate}/to/${toDate}`;
+  getTimesheetsByStatus(projectManagerId:number,status: string,fromDate:string,toDate:string): Observable<TimesheetView[]> {
+    let url = `${this.serviceurl}/workmgmt/timesheets/projectmanager/${projectManagerId}/status/${status}/from/${fromDate}/to/${toDate}`;
     return this.http.get<TimesheetView[]>(url);
   }
   getTimeSheet(employeeId: number, date: string): Observable<TimesheetView> {

@@ -1,5 +1,9 @@
 -- Active: 1696576841746@@127.0.0.1@3306@tflportal
 
+SELECT projectmembership.* from projectmembership 
+INNER JOIN projects on projectmembership.projectid=projects.id
+INNER join employees on  projects.managerid=employees.id
+WHERE projects.managerid=7 and projectmembership.currentprojectworkingstatus='yes';
 SELECT sprintmaster.* FROM sprintmaster where projectid=4;
 
 SELECT id, projectid FROM employeework  ORDER BY id;

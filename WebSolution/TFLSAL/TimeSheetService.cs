@@ -72,8 +72,8 @@ public class TimesheetService : ITimesheetService
         return timesheets;
     }
 
-    public async Task<List<TimesheetViewModel>> GetEmployeeTimesheetsForHRManager(
-        int hrmanagerId,
+    public async Task<List<TimesheetViewModel>> GetEmployeesTimeSheetsForProjectManager(
+        int projectManagerId,
         string status,
         DateOnly fromDate,
         DateOnly toDate
@@ -87,15 +87,19 @@ public class TimesheetService : ITimesheetService
             string fromdate = fromDate.ToString("yyyy-MM-dd");
             string todate = toDate.ToString("yyyy-MM-dd");
             string query =
-                @"select timesheets.* , employees.userid,
+                @"SELECT timesheets.* , employees.userid,
                     CAST(((SUM(TIME_TO_SEC(TIMEDIFF(totime,fromtime))))/3600)AS DECIMAL(10,2)) as time_in_hour
-                    from timesheets
+                    FROM timesheets
                     INNER JOIN timesheetdetails on timesheetdetails.timesheetid=timesheets.id
                     INNER JOIN employees ON timesheets.employeeid =employees.id
-                    where  status =@status AND timesheetdate>=@fromdate AND timesheetdate<=@todate AND employees.reportingid=@hrmanagerid
-                    GROUP BY timesheetdate";
+                    WHERE  status =@status AND timesheetdate>=@fromdate AND timesheetdate<=@todate AND  timesheets.employeeid IN (
+                    SELECT projectmembership.employeeid from projectmembership 
+                    INNER JOIN projects on projectmembership.projectid=projects.id
+                    INNER join employees on  projects.managerid=employees.id
+                    WHERE projects.managerid=@projectmanagerId AND projectmembership.currentprojectworkingstatus='yes'
+                    )GROUP BY timesheetdate";
             MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@hrmanagerid", hrmanagerId);
+            command.Parameters.AddWithValue("@projectmanagerId", projectManagerId);
             command.Parameters.AddWithValue("@status", status);
             command.Parameters.AddWithValue("@fromdate", fromdate);
             command.Parameters.AddWithValue("@todate", todate);
