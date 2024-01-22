@@ -17,7 +17,7 @@ import { ProjectdetailsComponent } from './components/project-list/projectdetail
 import { EmployeeProjectWorksComponent } from './components/employee-project-works/employee-project-works.component';
 import { EmployeeprojectworkdetailsComponent } from './components/employee-project-works/employeeprojectworkdetails/employeeprojectworkdetails.component';
 import { ProjectWorkChartComponent } from './components/project-work-chart/project-work-chart.component';
-import { TimeSheetModule } from '../time-sheet/time-sheet.module';
+import { TimeSheetModule, timeSheetRoutes } from '../time-sheet/time-sheet.module';
 import { MembersdetailsComponent } from './components/membersdetails/membersdetails.component';
 import { SprintListComponent } from './components/sprint-list/sprint-list.component';
 import { SprintDetailsComponent } from './components/sprint-details/sprint-details.component';
@@ -34,6 +34,7 @@ export const projectManagerRoutes: Routes = [
       {
         path: 'timesheet',
         component: TimesheetComponent,
+        children:timeSheetRoutes
       },
       { path: 'leave', component: LeavesComponent },
       {

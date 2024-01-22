@@ -12,7 +12,7 @@ export class TimesheetComponent {
   timesheetMenuRoutes: UrlType[] = [
     { displayName: 'Dashboard', Url: 'dashboard' },
     { displayName: 'Analytics', Url: 'analytics' },
-    { displayName: 'Approval', Url: 'approval' },
+    // { displayName: 'Approval', Url: 'approval' },
   ];
 
   constructor(private router: Router, private route: ActivatedRoute) {}

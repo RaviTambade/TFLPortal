@@ -7,7 +7,7 @@ using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 namespace Intranet.Controllers;
 
 [ApiController]
-[Route("/api/workmgmt/employeework")]
+[Route("/api/workmgmt/Tasks")]
 public class TasksController : ControllerBase
 {
     private readonly IEmployeeWorkService _service;

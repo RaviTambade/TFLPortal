@@ -43,7 +43,7 @@ export const timeSheetRoutes: Routes = [
   },
 
   { path: 'analytics', component: TimesheetEmployeeAnalyticsComponent },
-  { path: 'approval', component: TimesheetApprovalComponent, canActivate:[HRRouteGaurd()] },
+  { path: 'approval', component: TimesheetApprovalComponent, /*canActivate:[HRRouteGaurd()]*/ },
 
 ];
 

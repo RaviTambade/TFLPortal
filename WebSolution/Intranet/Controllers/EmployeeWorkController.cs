@@ -7,7 +7,7 @@ using Transflower.TFLPortal.TFLSAL.Services.Interfaces;
 namespace Intranet.Controllers;
 
 [ApiController]
-[Route("/api/workmgmt/employeework")]
+[Route("/api/workmgmt/employeeworks")]
 public class EmployeeWorkController : ControllerBase
 {
     private readonly IEmployeeWorkService _service;
@@ -21,7 +21,7 @@ public class EmployeeWorkController : ControllerBase
 
     }
 
-    [HttpGet("selectProject/{projectId}")]
+    [HttpGet("projects/{projectId}")]
    public async Task<List<EmployeeWorkResponse>> GetEmployeeWorkByProject(int projectId)
     {
  
@@ -81,7 +81,7 @@ public class EmployeeWorkController : ControllerBase
         return employeeWorks;
     }
    
-    [HttpGet("projects/{projectId}/projectWorkType/{projectWorkType}")]
+    [HttpGet("projects/{projectId}/projectworktypes/{projectWorkType}")]
     public async Task<List<EmployeeWork>>GetProjectEmployeeWorkByWorkType(int projectId, string projectWorkType)
     {
         List<EmployeeWork> employeeWorks = await _service.GetProjectEmployeeWorkByWorkType(projectId,projectWorkType);
@@ -110,7 +110,7 @@ public class EmployeeWorkController : ControllerBase
     }
 
 
-    [HttpGet("projects/employeeWorkId/{employeeWorkId}")]
+    [HttpGet("{employeeWorkId}")]
     public async Task<EmployeeWorkResponse> GetEmployeeWorkDetails(int employeeWorkId)
     {
         EmployeeWorkDetails employeeWork = await _service.GetEmployeeWorkDetails(employeeWorkId);
@@ -165,7 +165,7 @@ public class EmployeeWorkController : ControllerBase
  
 
 
-   [HttpPut("project/employeeWorkId/{employeeWorkId}/status/{Status}")]
+   [HttpPut("{employeeWorkId}/status/{Status}")]
     public async Task<bool> UpdateEmployeeWork(string Status,int employeeWorkId)
     {
         bool status = await _service.UpdateEmployeeWork(Status, employeeWorkId);
@@ -174,7 +174,7 @@ public class EmployeeWorkController : ControllerBase
     }
 
 
-  [HttpGet("employeework/todo/{projectId}/{assignedTo}")]
+  [HttpGet("projects/{projectId}/employees/{assignedTo}")]
     public async Task<List<EmployeeWorkDetails>> GetAllEmployeeWorks(int projectId,int assignedTo)
     {
         List<EmployeeWorkDetails> employeeWorks = await _service.GetAllEmployeeWorks(projectId,assignedTo);
@@ -182,14 +182,14 @@ public class EmployeeWorkController : ControllerBase
     }
 
 
- [HttpGet("EmployeeWorkCount")]
+ [HttpGet("employeeworkcounts")]
     public async Task<EmployeeWorkStatusCount> GetEmployeesWorkCount()
     {
         EmployeeWorkStatusCount employeeWorks = await _service.GetEmployeesWorkCount();
         return employeeWorks;
     }
 
-    [HttpGet("project/{projectId}/date/{date}")]
+    [HttpGet("projects/{projectId}/date/{date}")]
     public async Task<List<EmployeeWork>> GetTodayEmployeesWork(int projectId,DateTime date)
     {
         List<EmployeeWork> employeeWorks = await _service.GetTodayEmployeesWork(projectId,date);
