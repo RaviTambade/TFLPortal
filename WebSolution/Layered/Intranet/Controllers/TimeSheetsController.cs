@@ -27,9 +27,11 @@ public class TimesheetsController : ControllerBase
     }
 
     [HttpGet("timesheetid/employees/{employeeId}/date/{date}")]
-    public async Task<int> GetTimesheetId(int employeeId, DateOnly date)
+    // return timesheet
+    public async Task<Timesheet> GetTimesheet(int employeeId, DateOnly date)
     {
-        return await _timesheetService.GetTimesheetId(employeeId, date);
+        // return await _timesheetService.GetTimesheetId(employeeId, date);
+        return new Timesheet();
     }
 
     [HttpGet("{timesheetId}")]
@@ -55,10 +57,11 @@ public class TimesheetsController : ControllerBase
         return new TimesheetResponse() { };
     }
 
-    [HttpGet("projectmanager/{projectManagerId}/status/{status}/from/{fromDate}/to/{toDate}")]
-    public async Task<List<TimesheetResponse>>  GetEmployeesTimeSheetsForProjectManager(
+    // [HttpGet("projectmanager/{projectManagerId}/status/{status}/from/{fromDate}/to/{toDate}")]
+    [HttpGet("pendingapproval/from/{fromDate}/to/{toDate}/manager/{projectManagerId}")]
+    public async Task<List<TimesheetResponse>>  GetTimeSheetsForApproval(
         int projectManagerId,
-        string status,
+        string status,  
         DateOnly fromDate,
         DateOnly toDate
     )
@@ -134,7 +137,7 @@ public class TimesheetsController : ControllerBase
     }
 
     [HttpPost("timesheetdetails")]
-    public async Task<bool> AddTimesheetDetail([FromBody] TimesheetDetail timesheetEntry)
+    public async Task<bool> AddTimesheetDetail([FromBody] TimesheetEntry timesheetEntry)
     {
         return await _timesheetService.AddTimesheetDetail(timesheetEntry);
     }
@@ -148,7 +151,7 @@ public class TimesheetsController : ControllerBase
     [HttpPut("timesheetdetails/{timesheetDetailId}")]
     public async Task<bool> UpdateTimesheetDetail(
         int timesheetDetailId,
-        TimesheetDetail timesheetEntry
+        TimesheetEntry timesheetEntry
     )
     {
         return await _timesheetService.UpdateTimesheetDetail(timesheetDetailId, timesheetEntry);

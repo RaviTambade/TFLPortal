@@ -14,9 +14,9 @@ public interface ITimesheetService
     Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(int employeeId,DateOnly fromDate,DateOnly toDate);
     Task<int> GetEmployeeWorkingDaysInMonth(int employeeId,int year,int month);
     Task<bool> AddTimesheet(Timesheet timesheet);
-    Task<bool> AddTimesheetDetail(TimesheetDetail timesheetEntry);
+    Task<bool> AddTimesheetDetail(TimesheetEntry timesheetEntry);
     Task<bool> ChangeTimesheetStatus(int timesheetId, Timesheet timesheet);
-    Task<bool> UpdateTimesheetDetail(int timesheetDetailId,TimesheetDetail timesheetEntry);
+    Task<bool> UpdateTimesheetDetail(int timesheetDetailId,TimesheetEntry timesheetEntry);
     Task<bool> RemoveTimesheetDetail(int timesheetDetailId);
     Task<bool> RemoveAllTimesheetDetails(int timesheetId);
 }

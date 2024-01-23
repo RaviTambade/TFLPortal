@@ -1,6 +1,6 @@
 namespace Transflower.TFLPortal.TFLOBL.Entities.TimesheetMgmt;
 
-public class TimesheetDetailViewModel : TimesheetDetail
+public class TimesheetDetailViewModel : TimesheetEntry
 {
     public int ProjectId { get; set; }
     public string? ProjectName { get; set; }

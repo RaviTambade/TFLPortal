@@ -441,7 +441,7 @@ public class TimesheetService : ITimesheetService
         return status;
     }
 
-    public async Task<bool> AddTimesheetDetail(TimesheetDetail timesheetDetail)
+    public async Task<bool> AddTimesheetDetail(TimesheetEntry timesheetDetail)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
@@ -509,7 +509,7 @@ public class TimesheetService : ITimesheetService
 
     public async Task<bool> UpdateTimesheetDetail(
         int timesheetDetailId,
-        TimesheetDetail timesheetDetail
+        TimesheetEntry timesheetDetail
     )
     {
         bool status = false;

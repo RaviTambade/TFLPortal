@@ -1,7 +1,7 @@
 namespace Transflower.TFLPortal.TFLOBL.Entities.TimesheetMgmt;
 
 
-public class TimesheetDetail
+public class TimesheetEntry
 {
    public int Id { get; set; }
    public TimeOnly FromTime { get; set; }

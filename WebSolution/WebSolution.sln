@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFLOBL", "TFLOBL\TFLOBL.csproj", "{BF5B01C3-61BD-4547-A617-F12788B2DC7E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFLOBL", "Layered\TFLOBL\TFLOBL.csproj", "{BF5B01C3-61BD-4547-A617-F12788B2DC7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFLSAL", "TFLSAL\TFLSAL.csproj", "{322364A8-37E9-4D73-B2E8-988A5BBF0D1A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFLSAL", "Layered\TFLSAL\TFLSAL.csproj", "{322364A8-37E9-4D73-B2E8-988A5BBF0D1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intranet", "Intranet\Intranet.csproj", "{A46B0CAC-E164-4C74-907B-CFEFAF98DC8E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intranet", "Layered\Intranet\Intranet.csproj", "{A46B0CAC-E164-4C74-907B-CFEFAF98DC8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationLib", "NotificationLib\NotificationLib.csproj", "{2A77D5E3-DACE-4A97-9FCA-A6AF77BDE375}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationLib", "Layered\NotificationLib\NotificationLib.csproj", "{2A77D5E3-DACE-4A97-9FCA-A6AF77BDE375}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilityLib", "UtilityLib\UtilityLib.csproj", "{44529013-B6C5-421C-89F9-4A6C4D280E21}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilityLib", "Layered\UtilityLib\UtilityLib.csproj", "{44529013-B6C5-421C-89F9-4A6C4D280E21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
