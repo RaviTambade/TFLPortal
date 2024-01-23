@@ -281,7 +281,6 @@ public class LeavesManagementController : ControllerBase
        bool status= await _service.UpdateRoleBasedLeave(roleBasedLeave);
         return status; 
     }
- 
 
     [HttpPut("{leaveId}/updatestatus/{leaveStatus}")]
     public async Task<bool> UpdateLeaveApplication(int leaveId,string leaveStatus)
