@@ -19,7 +19,7 @@ export class TotalLeaveComponent {
   }
 
   ngOnInit(): void {
-    this.service.getTotalLeaves(this.employeeId,this.year).subscribe((res)=>{
+    this.service.getAnnualLeaves(this.employeeId,this.year).subscribe((res)=>{
       this.pendingLeave=res;
       console.log(res);
     }) 

@@ -18,7 +18,7 @@ export class PendingLeaveComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.service.getPendingLeaves(this.employeeId,this.year).subscribe((res)=>{
+    this.service.getAnnualAvailableLeaves(this.employeeId,this.year).subscribe((res)=>{
       this.pendingLeave=res;
       console.log(res);
     }) 

@@ -23,7 +23,7 @@ export class PayrollService {
     return this.httpClient.post<Salary>(url,salary);
   }
 
-  getAllEmployees(month:number,year:number):Observable<SalaryDetails[]>{
+  getAllPaidEmployees(month:number,year:number):Observable<SalaryDetails[]>{
     let url="http://localhost:5263/api/payroll/salaries/paid/month/"+month+"/year/"+year;
     return this.httpClient.get<SalaryDetails[]>(url);
   }

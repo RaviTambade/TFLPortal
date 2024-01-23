@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
 import { PendingLeave } from '../Models/PendingLeave';
 import { LeaveDetails } from '../Models/LeaveDetails';
 import { LeaveApplication } from '../Models/LeaveApplication';
@@ -26,22 +25,21 @@ export class LeavesService {
     return this.http.post<boolean>(url,leave);
   }
 
-  getPendingLeaves(employeeId:number,year:number):Observable<PendingLeave>{
+  getAnnualAvailableLeaves(employeeId:number,year:number):Observable<PendingLeave>{
     let url="http://localhost:5263/api/leaves/annualavailableleaves/employee/"+employeeId+"/year/"+year;
     return this.http.get<PendingLeave>(url);
   }
 
-  getConsumedLeaves(employeeId:number,year:number):Observable<PendingLeave>{
+  getAnnualConsumedLeaves(employeeId:number,year:number):Observable<PendingLeave>{
     let url="http://localhost:5263/api/leaves/annualconsumedleaves/employee/"+employeeId+"/year/"+year;
     return this.http.get<PendingLeave>(url);
   }
 
-  getTotalLeaves(employeeId:number,year:number):Observable<PendingLeave>{
+  getAnnualLeaves(employeeId:number,year:number):Observable<PendingLeave>{
     let url="http://localhost:5263/api/leaves/annualleaves/employee/"+employeeId+"/year/"+year;
     return this.http.get<PendingLeave>(url);
   }
 
-  //
   getEmployeeLeaves(employeeId:number):Observable<LeaveApplication[]>{
     let url="http://localhost:5263/api/leaves/employees/"+employeeId;
     return this.http.get<LeaveApplication[]>(url);

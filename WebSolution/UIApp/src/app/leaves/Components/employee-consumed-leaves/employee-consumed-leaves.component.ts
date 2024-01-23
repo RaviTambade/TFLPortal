@@ -17,7 +17,7 @@ export class EmployeeConsumedLeavesComponent {
   }
 
   ngOnInit(): void {
-      this.service.getConsumedLeaves(this.employeeId,this.year).subscribe((res)=>{
+      this.service.getAnnualConsumedLeaves(this.employeeId,this.year).subscribe((res)=>{
         this.consumedLeave=res;
         console.log(res);
       }) 

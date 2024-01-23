@@ -19,7 +19,7 @@ export class AllEmployeesComponent implements OnInit{
   }
 
   onClick(month:number,year:number){
-    this.service.getAllEmployees(month,year).subscribe((res)=>{
+    this.service.getAllPaidEmployees(month,year).subscribe((res)=>{
       this.salaries=res;
       console.log(res);
      })
