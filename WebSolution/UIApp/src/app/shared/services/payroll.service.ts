@@ -18,7 +18,7 @@ export class PayrollService {
     return this.httpClient.get<MonthSalary>(url);
   }
 
-  insertSalary(salary:Salary):Observable<Salary>{
+  AddSalary(salary:Salary):Observable<Salary>{
     let url="http://localhost:5263/api/payroll/salaries";
     return this.httpClient.post<Salary>(url,salary);
   }
