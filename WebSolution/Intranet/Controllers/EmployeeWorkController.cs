@@ -25,7 +25,7 @@ public class EmployeeWorkController : ControllerBase
    public async Task<List<EmployeeWorkResponse>> GetEmployeeWorkByProject(int projectId)
     {
  
-        List<EmployeeWork> employeeWorks = await _service.GetEmployeeWorkByProject(projectId);
+        List<EmployeeWork> employeeWorks = await _service.GetWorkByProject(projectId);
         string userIds = string.Join(',', employeeWorks.SelectMany(m => new []{m.AssignedTo,m.AssignedBy}).Distinct().ToList());
         var users = await _apiService.GetUserDetails(userIds);
 
@@ -65,9 +65,9 @@ public class EmployeeWorkController : ControllerBase
    
 
     [HttpGet]
-    public async Task<List<EmployeeWork>> GetAllEmployeeWork()
+    public async Task<List<EmployeeWork>> GetAllWork()
     {
-        List<EmployeeWork> employeeWorks = await _service.GetAllEmployeeWork();
+        List<EmployeeWork> employeeWorks = await _service.GetAllWorks();
         return employeeWorks;
     }
 
@@ -75,45 +75,45 @@ public class EmployeeWorkController : ControllerBase
 //this method gives all activities of employee.     
    
     [HttpGet("employees/{employeeId}")]
-    public async Task<List<EmployeeWork>> GetAllEmployeeWorks(int employeeId)
+    public async Task<List<EmployeeWork>> GetAllWorks(int employeeId)
     {
-        List<EmployeeWork> employeeWorks = await _service.GetAllEmployeeWorks(employeeId);
+        List<EmployeeWork> employeeWorks = await _service.GetAllWorks(employeeId);
         return employeeWorks;
     }
    
     [HttpGet("projects/{projectId}/projectworktypes/{projectWorkType}")]
-    public async Task<List<EmployeeWork>>GetProjectEmployeeWorkByWorkType(int projectId, string projectWorkType)
+    public async Task<List<EmployeeWork>>GetWorkByType(int projectId, string projectWorkType)
     {
-        List<EmployeeWork> employeeWorks = await _service.GetProjectEmployeeWorkByWorkType(projectId,projectWorkType);
+        List<EmployeeWork> employeeWorks = await _service.GetWorkByType(projectId,projectWorkType);
         return employeeWorks;
     }
 
      [HttpGet("projects/{projectId}/employees/{employeeId}")]
-    public async Task<List<EmployeeWork>> GetProjectEmployeeWorks(int projectId,int employeeId)
+    public async Task<List<EmployeeWork>> GetProjectWorks(int projectId,int employeeId)
     {
-        List<EmployeeWork> employeeWorks = await _service.GetProjectEmployeeWorks(projectId,employeeId);
+        List<EmployeeWork> employeeWorks = await _service.GetWorks(projectId,employeeId);
         return employeeWorks;
     }
 
      
     [HttpGet("projects/{projectId}/employees/{employeeId}/status/{status}")]
-    public async Task<List<EmployeeWork>> GetProjectEmployeeWorks(int projectId, int employeeId,string status)
+    public async Task<List<EmployeeWork>> GetProjectWorks(int projectId, int employeeId,string status)
     {
-        List<EmployeeWork> employeeWorks = await _service.GetProjectEmployeeWorks(projectId,employeeId,status);
+        List<EmployeeWork> employeeWorks = await _service.GetWorks(projectId,employeeId,status);
         return employeeWorks;
     }
 
     [HttpGet("sprints/{sprintId}/employees/{employeeId}/status/{status}")]
-    public async Task<List<EmployeeWork>> GetSprintEmployeeWorks(int sprintId, int employeeId, string status)
+    public async Task<List<EmployeeWork>> GetSprintWorks(int sprintId, int employeeId, string status)
     {
-        return await _service.GetSprintEmployeeWorks(sprintId,employeeId,status);
+        return await _service.GetSprintWorks(sprintId,employeeId,status);
     }
 
 
     [HttpGet("{employeeWorkId}")]
-    public async Task<EmployeeWorkResponse> GetEmployeeWorkDetails(int employeeWorkId)
+    public async Task<EmployeeWorkResponse> GetWorkDetails(int employeeWorkId)
     {
-        EmployeeWorkDetails employeeWork = await _service.GetEmployeeWorkDetails(employeeWorkId);
+        EmployeeWorkDetails employeeWork = await _service.GetWorkDetails(employeeWorkId);
         var user = await _apiService.GetUser(employeeWork.AssignedTo);
         var usersOfAssignBy = await _apiService.GetUser(employeeWork.AssignedBy);
 
@@ -140,59 +140,59 @@ public class EmployeeWorkController : ControllerBase
         }
 
     [HttpPost]
-    public async Task<bool> AddEmployeeWork(EmployeeWork activity)
+    public async Task<bool> AddWork(EmployeeWork activity)
     {
-        bool status = await _service.AddEmployeeWork(activity);
+        bool status = await _service.AddWork(activity);
         return status;
 
     }
 
     [HttpGet("fromassigneddate/{fromAssignedDate}/toassigneddate/{toAssignedDate}")]
-    public async Task<List<EmployeeWork>> GetAllEmployeesWorksBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate)
+    public async Task<List<EmployeeWork>> GetAllWorksBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate)
     {
-        List<EmployeeWork> employeeWorks = await _service.GetAllEmployeesWorksBetweenDates(fromAssignedDate,toAssignedDate);
+        List<EmployeeWork> employeeWorks = await _service.GetAllWorksBetweenDates(fromAssignedDate,toAssignedDate);
         return employeeWorks;
     }
 
     
 
     [HttpGet("employees/{employeeId}/fromassigneddate/{fromAssignedDate}/toassigneddate/{toAssignedDate}")]
-    public async Task<List<EmployeeWork>> GetEmployeeWorksBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
+    public async Task<List<EmployeeWork>> GetWorksBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
     {
-        List<EmployeeWork> employeeWorks = await _service.GetEmployeeWorksBetweenDates(employeeId,fromAssignedDate,toAssignedDate);
+        List<EmployeeWork> employeeWorks = await _service.GetWorksBetweenDates(employeeId,fromAssignedDate,toAssignedDate);
         return employeeWorks;
     }
  
 
 
    [HttpPut("{employeeWorkId}/status/{Status}")]
-    public async Task<bool> UpdateEmployeeWork(string Status,int employeeWorkId)
+    public async Task<bool> UpdateWork(string Status,int employeeWorkId)
     {
-        bool status = await _service.UpdateEmployeeWork(Status, employeeWorkId);
+        bool status = await _service.UpdateWork(Status, employeeWorkId);
         return status;
 
     }
 
 
   [HttpGet("projects/{projectId}/employees/{assignedTo}")]
-    public async Task<List<EmployeeWorkDetails>> GetAllEmployeeWorks(int projectId,int assignedTo)
+    public async Task<List<EmployeeWorkDetails>> GetAllWorks(int projectId,int assignedTo)
     {
-        List<EmployeeWorkDetails> employeeWorks = await _service.GetAllEmployeeWorks(projectId,assignedTo);
+        List<EmployeeWorkDetails> employeeWorks = await _service.GetAllWorks(projectId,assignedTo);
         return employeeWorks;
     }
 
 
  [HttpGet("employeeworkcounts")]
-    public async Task<EmployeeWorkStatusCount> GetEmployeesWorkCount()
+    public async Task<EmployeeWorkStatusCount> GetWorkCount()
     {
-        EmployeeWorkStatusCount employeeWorks = await _service.GetEmployeesWorkCount();
+        EmployeeWorkStatusCount employeeWorks = await _service.GetWorksCount();
         return employeeWorks;
     }
 
     [HttpGet("projects/{projectId}/date/{date}")]
-    public async Task<List<EmployeeWork>> GetTodayEmployeesWork(int projectId,DateTime date)
+    public async Task<List<EmployeeWork>> GetTodayWork(int projectId,DateTime date)
     {
-        List<EmployeeWork> employeeWorks = await _service.GetTodayEmployeesWork(projectId,date);
+        List<EmployeeWork> employeeWorks = await _service.GetTodayWork(projectId,date);
         return employeeWorks;
     }
 
