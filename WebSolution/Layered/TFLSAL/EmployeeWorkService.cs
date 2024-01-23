@@ -18,7 +18,7 @@ public class EmployeeWorkService : IEmployeeWorkService
             ?? throw new ArgumentNullException("connectionString");
     }
 
-    public async Task<List<EmployeeWork>> GetAllEmployeeWork(){
+    public async Task<List<EmployeeWork>> GetAllWorks(){
         List<EmployeeWork> activities = new List<EmployeeWork>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
@@ -75,7 +75,7 @@ public class EmployeeWorkService : IEmployeeWorkService
         }
         return activities;
     }
-    public async Task<List<EmployeeWork>> GetEmployeeWorkByProject(int projectId)
+    public async Task<List<EmployeeWork>> GetWorkByProject(int projectId)
     {
         List<EmployeeWork> activities = new List<EmployeeWork>();
         MySqlConnection connection = new MySqlConnection();
@@ -134,7 +134,7 @@ public class EmployeeWorkService : IEmployeeWorkService
         return activities;
     }
 
-    public async Task<List<EmployeeWork>> GetProjectEmployeeWorkByWorkType(int projectId, string projectworktype)
+    public async Task<List<EmployeeWork>> GetWorkByType(int projectId, string projectworktype)
     {
 
         List<EmployeeWork> activities = new List<EmployeeWork>();
@@ -196,7 +196,7 @@ public class EmployeeWorkService : IEmployeeWorkService
         return activities;
     }
 
-    public async Task<List<EmployeeWork>> GetProjectEmployeeWorks(int projectId, int employeeId)
+    public async Task<List<EmployeeWork>> GetWorks(int projectId, int employeeId)
     {
 
         List<EmployeeWork> activities = new List<EmployeeWork>();
@@ -257,7 +257,7 @@ public class EmployeeWorkService : IEmployeeWorkService
         }
         return activities;
     }
-    public async Task<List<EmployeeWork>> GetProjectEmployeeWorks(int projectId, int employeeId, string status)
+    public async Task<List<EmployeeWork>> GetWorks(int projectId, int employeeId, string status)
     {
 
         List<EmployeeWork> activities = new List<EmployeeWork>();
@@ -319,7 +319,7 @@ public class EmployeeWorkService : IEmployeeWorkService
     }
 
     
-    public async Task<List<EmployeeWork>> GetSprintEmployeeWorks(int sprintId, int employeeId, string status)
+    public async Task<List<EmployeeWork>> GetSprintWorks(int sprintId, int employeeId, string status)
     {
          List<EmployeeWork> works = new List<EmployeeWork>();
         MySqlConnection connection = new MySqlConnection();
@@ -379,7 +379,7 @@ public class EmployeeWorkService : IEmployeeWorkService
         return works;
     }
 
-    public async Task<EmployeeWorkDetails> GetEmployeeWorkDetails(int employeeWorkId)
+    public async Task<EmployeeWorkDetails> GetWorkDetails(int employeeWorkId)
     {
        EmployeeWorkDetails activity = null;
         MySqlConnection connection = new MySqlConnection();
@@ -453,7 +453,7 @@ public class EmployeeWorkService : IEmployeeWorkService
         return activity;
     }
 
-    public async Task<bool> AddEmployeeWork(EmployeeWork employeeWork)
+    public async Task<bool> AddWork(EmployeeWork employeeWork)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
@@ -494,7 +494,7 @@ public class EmployeeWorkService : IEmployeeWorkService
         return status;
     }
 
-     public async Task<List<EmployeeWork>> GetAllEmployeeWorks(int employeeId){
+     public async Task<List<EmployeeWork>> GetAllWorks(int employeeId){
       List<EmployeeWork> activities = new List<EmployeeWork>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
@@ -552,7 +552,7 @@ public class EmployeeWorkService : IEmployeeWorkService
         return activities;
     }
 
-    public async Task<List<EmployeeWork>> GetAllEmployeesWorksBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate)
+    public async Task<List<EmployeeWork>> GetAllWorksBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate)
     {
         List<EmployeeWork> activities = new List<EmployeeWork>();
         MySqlConnection connection = new MySqlConnection();
@@ -615,7 +615,7 @@ public class EmployeeWorkService : IEmployeeWorkService
     } 
 
 
-    public async Task<List<EmployeeWork>> GetEmployeeWorksBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
+    public async Task<List<EmployeeWork>> GetWorksBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
     {
         List<EmployeeWork> activities = new List<EmployeeWork>();
         MySqlConnection connection = new MySqlConnection();
@@ -677,7 +677,7 @@ public class EmployeeWorkService : IEmployeeWorkService
     } 
 
 
-    public async Task<bool> UpdateEmployeeWork(string Status,int employeeWorkId)
+    public async Task<bool> UpdateWork(string Status,int employeeWorkId)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
@@ -713,7 +713,7 @@ public class EmployeeWorkService : IEmployeeWorkService
 
 
 
-     public async Task<List<EmployeeWorkDetails>> GetAllEmployeeWorks(int projectId,int employeeId){
+     public async Task<List<EmployeeWorkDetails>> GetAllWorks(int projectId,int employeeId){
       List<EmployeeWorkDetails> activities = new List<EmployeeWorkDetails>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
@@ -773,7 +773,7 @@ public class EmployeeWorkService : IEmployeeWorkService
         return activities;
     }
 
-    public async Task<EmployeeWorkStatusCount> GetEmployeesWorkCount()
+    public async Task<EmployeeWorkStatusCount> GetWorksCount()
     {
     EmployeeWorkStatusCount countSp = null;
     MySqlConnection con = new MySqlConnection();
@@ -820,7 +820,7 @@ public class EmployeeWorkService : IEmployeeWorkService
 }
 
 
-public async Task<List<EmployeeWork>> GetTodayEmployeesWork(int projectId,DateTime date)
+public async Task<List<EmployeeWork>> GetTodayWork(int projectId,DateTime date)
     {
         List<EmployeeWork> activities = new List<EmployeeWork>();
         MySqlConnection connection = new MySqlConnection();
@@ -857,7 +857,6 @@ public async Task<List<EmployeeWork>> GetTodayEmployeesWork(int projectId,DateTi
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
-                    //AssignDate = assigndate,
                     StartDate = startdate,
                     DueDate = duedate,
                     AssignedTo = assignedto,
@@ -879,5 +878,4 @@ public async Task<List<EmployeeWork>> GetTodayEmployeesWork(int projectId,DateTi
         }
         return activities;
     }
-
 }

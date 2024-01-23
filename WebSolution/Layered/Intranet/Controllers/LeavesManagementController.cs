@@ -23,28 +23,28 @@ public class LeavesManagementController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<List<LeaveResponse>> GetAllEmployee()
+    public async Task<List<LeaveResponse>> GetAllEmployeeLeaves()
     {
         List<EmployeeLeaveDetails> leaves=await _service.GetAllEmployeeLeaves();
         string userIds = string.Join(',', leaves.Select(m => m.UserId).ToList());
         var users = await _apiService.GetUserDetails(userIds);
         List<LeaveResponse> leaveResponses = new();
-        foreach (var employee in leaves)
+        foreach (var leave in leaves)
         {
-            var userDetail = users.FirstOrDefault(u => u.Id == employee.EmployeeId);
+            var userDetail = users.FirstOrDefault(u => u.Id == leave.EmployeeId);
             if (userDetail != null)
             {
                 var leaveResponse = new LeaveResponse
                 {
                     FullName = userDetail.FirstName+" "+userDetail.LastName,
-                    FromDate = employee.FromDate,
-                    ToDate = employee.ToDate,
-                    Status = employee.Status,
-                    LeaveType = employee.LeaveType,
-                    EmployeeId = employee.EmployeeId,
-                    ApplicationDate=employee.ApplicationDate,
-                    Year=employee.Year,
-                    UserId=employee.UserId
+                    FromDate = leave.FromDate,
+                    ToDate = leave.ToDate,
+                    Status = leave.Status,
+                    LeaveType = leave.LeaveType,
+                    EmployeeId = leave.EmployeeId,
+                    ApplicationDate=leave.ApplicationDate,
+                    Year=leave.Year,
+                    UserId=leave.UserId
                 };
                 leaveResponses.Add(leaveResponse);
             }
@@ -133,22 +133,22 @@ public class LeavesManagementController : ControllerBase
         string userIds = string.Join(',', leaves.Select(m => m.UserId).ToList());
         var users = await _apiService.GetUserDetails(userIds);
         List<LeaveResponse> leaveResponses = new();
-        foreach (var employee in leaves)
+        foreach (var leave in leaves)
         {
-            var userDetail = users.FirstOrDefault(u => u.Id == employee.EmployeeId);
+            var userDetail = users.FirstOrDefault(u => u.Id == leave.EmployeeId);
             if (userDetail != null)
             {
                 var leaveResponse = new LeaveResponse
                 {
-                    Id = employee.Id,
+                    Id = leave.Id,
                     FullName = userDetail.FirstName+" "+userDetail.LastName,
-                    FromDate = employee.FromDate,
-                    ToDate = employee.ToDate,
-                    Status = employee.Status,
-                    LeaveType = employee.LeaveType,
-                    EmployeeId = employee.EmployeeId,
-                    ApplicationDate=employee.ApplicationDate,
-                    Year=employee.Year
+                    FromDate = leave.FromDate,
+                    ToDate = leave.ToDate,
+                    Status = leave.Status,
+                    LeaveType = leave.LeaveType,
+                    EmployeeId = leave.EmployeeId,
+                    ApplicationDate=leave.ApplicationDate,
+                    Year=leave.Year
                 };
                 leaveResponses.Add(leaveResponse);
             }
@@ -164,22 +164,22 @@ public class LeavesManagementController : ControllerBase
         string userIds = string.Join(',', leaves.Select(m => m.UserId).ToList());
         var users = await _apiService.GetUserDetails(userIds);
         List<LeaveResponse> leaveResponses = new();
-        foreach (var employee in leaves)
+        foreach (var leave in leaves)
         {
-            var userDetail = users.FirstOrDefault(u => u.Id == employee.EmployeeId);
+            var userDetail = users.FirstOrDefault(u => u.Id == leave.EmployeeId);
             if (userDetail != null)
             {
                 var leaveResponse = new LeaveResponse
                 {
-                    Id = employee.Id,
+                    Id = leave.Id,
                     FullName = userDetail.FirstName+" "+userDetail.LastName,
-                    FromDate = employee.FromDate,
-                    ToDate = employee.ToDate,
-                    Status = employee.Status,
-                    LeaveType = employee.LeaveType,
-                    EmployeeId = employee.EmployeeId,
-                    ApplicationDate=employee.ApplicationDate,
-                    Year=employee.Year
+                    FromDate = leave.FromDate,
+                    ToDate = leave.ToDate,
+                    Status = leave.Status,
+                    LeaveType = leave.LeaveType,
+                    EmployeeId = leave.EmployeeId,
+                    ApplicationDate=leave.ApplicationDate,
+                    Year=leave.Year
                 };
                 leaveResponses.Add(leaveResponse);
             }
@@ -195,22 +195,22 @@ public class LeavesManagementController : ControllerBase
         string userIds = string.Join(',', leaves.Select(m => m.UserId).ToList());
         var users = await _apiService.GetUserDetails(userIds);
         List<LeaveResponse> leaveResponses = new();
-        foreach (var employee in leaves)
+        foreach (var leave in leaves)
         {
-            var userDetail = users.FirstOrDefault(u => u.Id == employee.EmployeeId);
+            var userDetail = users.FirstOrDefault(u => u.Id == leave.EmployeeId);
             if (userDetail != null)
             {
                 var leaveResponse = new LeaveResponse
                 {
                     FullName = userDetail.FirstName+" "+userDetail.LastName,
-                    FromDate = employee.FromDate,
-                    ToDate = employee.ToDate,
-                    Status = employee.Status,
-                    LeaveType = employee.LeaveType,
-                    EmployeeId = employee.EmployeeId,
-                    ApplicationDate=employee.ApplicationDate,
-                    Year=employee.Year,
-                    UserId=employee.UserId
+                    FromDate = leave.FromDate,
+                    ToDate = leave.ToDate,
+                    Status = leave.Status,
+                    LeaveType = leave.LeaveType,
+                    EmployeeId = leave.EmployeeId,
+                    ApplicationDate=leave.ApplicationDate,
+                    Year=leave.Year,
+                    UserId=leave.UserId
                 };
                 leaveResponses.Add(leaveResponse);
             }
@@ -228,38 +228,31 @@ public class LeavesManagementController : ControllerBase
 
   
     [HttpGet("annualavailableleaves/employee/{employeeId}/year/{year}")]
-    public async Task<PendingLeaveDetails> GetPendingLeaves(int employeeId,int year)
+    public async Task<PendingLeaveDetails> GetAnnualAvailableLeaves(int employeeId,int year)
     {
         Employee employee= await _hrService.GetEmployeeById(employeeId);
         List<Role> roles= await _apiService.GetRoleOfUser(employee.UserId);
         int roleId=roles.FirstOrDefault().Id;
-       return await _service.GetPendingLeaves(employeeId,roleId,year);   
+       return await _service.GetAnnualAvailableLeaves(employeeId,roleId,year);   
     }
 
     [HttpGet("annualconsumedleaves/employee/{employeeId}/year/{year}")]
-    public async Task<PendingLeaveDetails> GetConsumedLeaves(int employeeId,int year)
+    public async Task<PendingLeaveDetails> GetAnnualConsumedLeaves(int employeeId,int year)
     {
         Employee employee= await _hrService.GetEmployeeById(employeeId);
         List<Role> roles= await _apiService.GetRoleOfUser(employee.UserId);
         int roleId=roles.FirstOrDefault().Id;
-       return await _service.GetConsumedLeaves(employeeId,roleId,year);   
+       return await _service.GetAnnualConsumedLeaves(employeeId,roleId,year);   
     }
 
  
     [HttpGet("annualleaves/employee/{employeeId}/year/{year}")]
-    public async Task<PendingLeaveDetails> GetTotalLeaves(int employeeId,int year)
+    public async Task<PendingLeaveDetails> GetAnnualLeaves(int employeeId,int year)
     {
         Employee employee= await _hrService.GetEmployeeById(employeeId);
         List<Role> roles= await _apiService.GetRoleOfUser(employee.UserId);
         int roleId=roles.FirstOrDefault().Id;
-       return await _service.GetTotalLeaves(roleId,year);   
-    }
-
-    [HttpPost]
-    public async Task<bool> AddLeave(EmployeeLeave employeeLeave)
-    {
-        return await _service.AddNewLeaveApplication(employeeLeave);
-       
+       return await _service.GetAnnualLeaves(roleId,year);   
     }
  
  
@@ -267,6 +260,13 @@ public class LeavesManagementController : ControllerBase
     public async Task<List<LeaveDetails>> GetEmployeeLeaves(int employeeId,int month,int year)
     {
         return await _service.GetEmployeeLeaves(employeeId,month,year);   
+    }
+
+    [HttpPost]
+    public async Task<bool> AddNewLeaveApplication(EmployeeLeave employeeLeave)
+    {
+        return await _service.AddNewLeaveApplication(employeeLeave);
+       
     }
 
     [HttpPost("rolebasedleave")]
@@ -281,7 +281,6 @@ public class LeavesManagementController : ControllerBase
        bool status= await _service.UpdateRoleBasedLeave(roleBasedLeave);
         return status; 
     }
- 
 
     [HttpPut("{leaveId}/updatestatus/{leaveStatus}")]
     public async Task<bool> UpdateLeaveApplication(int leaveId,string leaveStatus)

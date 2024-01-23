@@ -15,9 +15,9 @@ public interface ILeaveManagementService
     Task<List<EmployeeLeaveDetails>> GetLeaveDetails(string leaveStatus);
     Task<List<EmployeeLeaveDetails>> GetTeamLeaveDetails(int projectId, string status);
     Task<List<LeaveDetails>> GetAnnualLeavesCountByMonth(int employeeId,int year);
-    Task<PendingLeaveDetails> GetPendingLeaves(int employeeId, int roleId, int year);
-    Task<PendingLeaveDetails> GetConsumedLeaves(int employeeId, int roleId, int year);
-    Task<PendingLeaveDetails> GetTotalLeaves(int roleId, int year);
+    Task<PendingLeaveDetails> GetAnnualAvailableLeaves(int employeeId, int roleId, int year);
+    Task<PendingLeaveDetails> GetAnnualConsumedLeaves(int employeeId, int roleId, int year);
+    Task<PendingLeaveDetails> GetAnnualLeaves(int roleId, int year);
     Task<bool> AddNewLeaveApplication(EmployeeLeave employeeLeave);
     Task<bool> AddNewRoleBasedLeave(RoleBasedLeave roleBasedLeave);
     Task<bool> UpdateRoleBasedLeave(RoleBasedLeave roleBasedLeave);

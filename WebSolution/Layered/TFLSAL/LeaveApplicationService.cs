@@ -547,7 +547,7 @@ public class LeaveManagementService : ILeaveManagementService
         return leaves;
     }
 
-    public async Task<PendingLeaveDetails> GetPendingLeaves(int employeeId, int roleId, int year)
+    public async Task<PendingLeaveDetails> GetAnnualAvailableLeaves(int employeeId, int roleId, int year)
     {
         PendingLeaveDetails leaves = null;
         MySqlConnection con = new MySqlConnection();
@@ -600,7 +600,7 @@ public class LeaveManagementService : ILeaveManagementService
         return leaves;
     }
 
-    public async Task<PendingLeaveDetails> GetConsumedLeaves(int employeeId, int roleId, int year)
+    public async Task<PendingLeaveDetails> GetAnnualConsumedLeaves(int employeeId, int roleId, int year)
     {
         PendingLeaveDetails leaves = null;
         MySqlConnection con = new MySqlConnection();
@@ -652,7 +652,7 @@ public class LeaveManagementService : ILeaveManagementService
         return leaves;
     }
 
-    public async Task<PendingLeaveDetails> GetTotalLeaves(int roleId, int year)
+    public async Task<PendingLeaveDetails> GetAnnualLeaves(int roleId, int year)
     {
         PendingLeaveDetails leave = null;
         MySqlConnection connection = new MySqlConnection();
