@@ -5,31 +5,31 @@ namespace TFLPortal.Services.Interfaces;
 
 public interface ITaskService
 {
-    Task<List<ProjectTask>> GetAllEmployeeWork();
-    Task<List<ProjectTask>> GetEmployeeWorkByProject(int projectId);
-    Task<List<ProjectTask>> GetProjectEmployeeWorkByWorkType(int projectId, string ProjectWorkType);
-    Task<List<ProjectTask>> GetProjectEmployeeWorks(int projectId, int employeeId);
-    Task<List<ProjectTask>> GetProjectEmployeeWorks(int projectId, int employeeId, string status);
-    Task<List<ProjectTask>> GetSprintEmployeeWorks(int sprintId, int employeeId, string status);
-    Task<ProjectTask> GetEmployeeWorkDetails(int employeeWorkId);
-    Task<bool> AddEmployeeWork(ProjectTask employeeWork);
-    Task<bool> UpdateEmployeeWork(string status, int employeeWorkId);
-    Task<List<ProjectTask>> GetAllEmployeeWorks(int employeeId);
+    Task<List<ProjectTask>> GetAllTasks();
+    Task<List<ProjectTask>> GetTasksByProject(int projectId);
+    Task<List<ProjectTask>> GetProjectTasksByType(int projectId, string ProjectWorkType);
+    Task<List<ProjectTask>> GetProjectTasks(int projectId, int employeeId);
+    Task<List<ProjectTask>> GetProjectTasks(int projectId, int employeeId, string status);
+    Task<List<ProjectTask>> GetSprintTasks(int sprintId, int employeeId, string status);
+    Task<ProjectTask> GetTaskDetails(int taskId);
+    Task<bool> AddTask(ProjectTask theTask);
+    Task<bool> UpdateTask(string status, int taskId);
+    Task<List<ProjectTask>> GetAllTasks(int employeeId);
 
-    Task<List<ProjectTask>> GetAllEmployeesWorksBetweenDates(
+    Task<List<ProjectTask>> GetAllTasksBetweenDates(
         DateTime fromAssignedDate,
         DateTime toAssignedDate
     );
 
-    Task<List<ProjectTask>> GetEmployeeWorksBetweenDates(
+    Task<List<ProjectTask>> GetTasksBetweenDates(
         int employeeId,
         DateTime fromAssignedDate,
         DateTime toAssignedDate
     );
 
-    Task<List<ProjectTask>> GetAllEmployeeWorks(int projectId, int employeeId);
+    Task<List<ProjectTask>> GetAllTasks(int projectId, int employeeId);
 
-    Task<TaskStatusCount> GetEmployeesWorkCount();
+    Task<TaskStatusCount> GetTasksCount();
 
-    Task<List<ProjectTask>> GetTodayEmployeesWork(int projectId, DateTime date);
+    Task<List<ProjectTask>> GetTodaysTasks(int projectId, DateTime date);
 }
