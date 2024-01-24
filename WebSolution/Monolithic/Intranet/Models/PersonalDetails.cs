@@ -1,4 +1,4 @@
-namespace Transflower.TFLPortal.Intranet.Models;
+namespace TFLPortal.Models;
 
 
 public class PersonalDetails

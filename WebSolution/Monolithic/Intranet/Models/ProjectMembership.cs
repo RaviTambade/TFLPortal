@@ -1,12 +1,12 @@
-namespace Transflower.TFLPortal.Intranet.Models;
+namespace TFLPortal.Models;
 
-public class ProjectMembership
+public class ProjectAllocation
 {
-    public int ProjectMembershipId { get; set; }
-    public Project Project { get; set; }//ProjectId
-    public Employee Employee { get; set; } //EmployeeId
-    public string? ProjectRole {get; set;}
-    public DateTime ProjectAssignDate { get; set; }
-    public DateTime ProjectReleaseDate { get; set; }
-    public string? CurrentProjectWorkingStatus { get; set; }
+    public int AllocationId { get; set; }
+    public int ProjectId { get; set; }//ProjectId
+    public int MemberId { get; set; } //EmployeeId
+    public string? MembershipRole {get; set;}
+    public DateTime AssignedDate { get; set; }
+    public DateTime ReleaseDate { get; set; }
+    public string? Status { get; set; }
 }

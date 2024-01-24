@@ -1,11 +1,11 @@
-namespace Transflower.TFLPortal.Intranet.Models;
+namespace TFLPortal.Models;
 
 public class Sprint
 {
-    public int SprintId { get; set; }
+    public int Id { get; set; }
     public string? Title { get; set; }
     public string? Goal { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
-    public Project CurrentProject { get; set; } //ProjectId
+    public int ProjectId { get; set; } //ProjectId
 }

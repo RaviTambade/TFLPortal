@@ -1,4 +1,4 @@
-namespace TFLPortal.Models;
+namespace TFLPortal.Responses;
 public class Role
 {
     public int Id { get; set; }

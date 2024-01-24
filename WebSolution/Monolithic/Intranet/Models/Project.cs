@@ -1,4 +1,4 @@
-﻿namespace Transflower.TFLPortal.Intranet.Models;
+﻿namespace TFLPortal.Models;
 
 
 public class Project
@@ -9,5 +9,5 @@ public class Project
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
     public string? Status { get; set; }
-    public Employee Manager { get; set; }  //ManagerId
+    public int ManagerId { get; set; }  //ManagerId
 }

@@ -1,4 +1,4 @@
-namespace Transflower.TFLPortal.Intranet.Models;
+namespace TFLPortal.Models;
 public class Task
 {
    public int TaskId{get;set;}
@@ -11,8 +11,8 @@ public class Task
    public DateTime CreatedDate{get;set;}
    public string? Status{get;set;}
 
-   public Employee Assignee{get;set;}  //AssignedTo
-   public Employee Assigner{get;set;}  //AssignedBy
-   // public Project CurrentProject{get;set;}  //ProjectId
-   public Sprint CurrentSprint{get;set;}//SprintId    
+   public int Assignee{get;set;}  //AssignedTo
+   public int Assigner{get;set;}  //AssignedBy
+   public int ProjectId{get;set;}  //ProjectId
+   public int SprintId{get;set;}//SprintId    
 }

@@ -1,4 +1,4 @@
-namespace Transflower.TFLPortal.Intranet.Models;
+namespace TFLPortal.Models;
 
 public class LeaveApplication
 {
@@ -9,4 +9,5 @@ public class LeaveApplication
     public string? Status { get; set; }
     public string? LeaveType { get; set; }
     public int ApplicantId { get; set; }
+    // public Employee Applicant {get;set;}
 }

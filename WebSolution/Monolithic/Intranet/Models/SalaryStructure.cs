@@ -1,9 +1,9 @@
-namespace Transflower.TFLPortal.Intranet.Models;
+namespace TFLPortal.Models;
 
 public class SalaryStructure
 {
-    public int SalaryStructureId { get; set; }
-    public Employee Employee { get; set; } //EmployeeId
+    public int Id { get; set; }
+    public int EmployeeId { get; set; } //EmployeeId
     public double BasicSalary { get; set; }
     public double HRA { get; set; }
     public double DA { get; set; }
