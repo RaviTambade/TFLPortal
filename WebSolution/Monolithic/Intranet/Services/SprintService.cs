@@ -92,8 +92,8 @@ public class SprintService : ISprintService
         return sprints;
     }
 
-    public async Task<List<SprintDetails>> GetSprintWorks(int sprintId){
-        List<SprintDetails> employeeWorks = new List<SprintDetails>();
+    public async Task<List<Sprint>> GetSprintWorks(int sprintId){
+        List<Sprint> employeeWorks = new List<Sprint>();
         MySqlConnection connection =new MySqlConnection();
         connection.ConnectionString=_connectionString;
         try{
@@ -108,7 +108,7 @@ public class SprintService : ISprintService
             MySqlDataReader reader = (MySqlDataReader) await command.ExecuteReaderAsync();
             while( await reader.ReadAsync()){
               
-                 SprintDetails employeeWork=new SprintDetails(){
+                 Sprint employeeWork=new Sprint(){
                     Id = int.Parse(reader["id"].ToString()),
                     Title = reader["title"].ToString(),
                     ProjectWorkType = reader["projectworktype"].ToString(),
