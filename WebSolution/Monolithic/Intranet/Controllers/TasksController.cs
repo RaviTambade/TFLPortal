@@ -4,32 +4,32 @@ using TFLPortal.Models;
 using TFLPortal.Services;
 using ProjectTask=TFLPortal.Models.Task;
 using TFLPortal.Services.Interfaces;
-
+using TFLPortal.Models.BI;
 namespace Intranet.Controllers;
 
 [ApiController]
-[Route("/api/workmgmt/Tasks")]
+[Route("/api/tasks/")]
 public class TasksController : ControllerBase
 {
-    private readonly ITaskService _service;
+    private readonly ITaskService  _service;
    
-    public TasksController(ITaskService service,ExternalApiService apiService)
+    public TasksController(ITaskService service)
     {
         _service = service;
 
     }
 
-    [HttpGet("selectedProject/{projectId}")]
-   public async Task<List<ProjectTask>> GetEmployeeWorkByProject(int projectId)
+    [HttpGet("projects/{projectId}")]
+   public async Task<List<ProjectTask>> GetAllTasks(int projectId)
     {
  
-        List<ProjectTask> tasks = await _service.GetTasksByProject(projectId);
+        List<ProjectTask> tasks = await _service.GetAllTasks(projectId);
         return tasks;
     }
    
 
     [HttpGet]
-    public async Task<List<ProjectTask>> GetAllEmployeeWork()
+    public async Task<List<ProjectTask>> GetAllTasks()
     {
         List<ProjectTask> tasks = await _service.GetAllTasks();
         return tasks;
@@ -37,45 +37,45 @@ public class TasksController : ControllerBase
 
    
     [HttpGet("employees/{employeeId}")]
-    public async Task<List<ProjectTask>> GetAllEmployeeWorks(int employeeId)
+    public async Task<List<ProjectTask>> GetAllMemberTasks(int employeeId)
     {
-        List<ProjectTask> tasks = await _service.GetAllTasks(employeeId);
+        List<ProjectTask> tasks = await _service.GetMemberTasks(employeeId);
         return tasks;
     }
    
     [HttpGet("projects/{projectId}/type/{projectWorkType}")]
-    public async Task<List<ProjectTask>>GetProjectTasksByType(int projectId, string projectWorkType)
+    public async Task<List<ProjectTask>>GetAllTasks(int projectId, string taskType)
     {
-        List<ProjectTask> tasks = await _service.GetProjectTasksByType(projectId,projectWorkType);
+        List<ProjectTask> tasks = await _service.GetAllTasks(projectId,taskType);
         return tasks;
     }
 
      [HttpGet("projects/{projectId}/employees/{employeeId}")]
-    public async Task<List<ProjectTask>> GetProjectEmployeeWorks(int projectId,int employeeId)
+    public async Task<List<ProjectTask>> GetAllTasks(int projectId,int employeeId)
     {
-        List<ProjectTask> tasks = await _service.GetProjectTasks(projectId,employeeId);
+        List<ProjectTask> tasks = await _service.GetAllTasks(projectId,employeeId);
         return tasks;
     }
 
      
     [HttpGet("projects/{projectId}/employees/{employeeId}/status/{status}")]
-    public async Task<List<ProjectTask>> GetProjectEmployeeWorks(int projectId, int employeeId,string status)
+    public async Task<List<ProjectTask>> GetAllTasks(int projectId, int employeeId,string status)
     {
-        List<ProjectTask> tasks = await _service.GetProjectTasks(projectId,employeeId,status);
+        List<ProjectTask> tasks = await _service.GetAllTasks(projectId,employeeId,status);
         return tasks;
     }
 
     [HttpGet("sprints/{sprintId}/employees/{employeeId}/status/{status}")]
-    public async Task<List<ProjectTask>> GetSprintEmployeeWorks(int sprintId, int employeeId, string status)
+    public async Task<List<ProjectTask>> GetAllSprintTasks(int sprintId, int employeeId, string status)
     {
-        return await _service.GetSprintTasks(sprintId,employeeId,status);
+        return await _service.GetAllSprintTasks(sprintId,employeeId,status);
     }
 
 
     [HttpGet("projects/{employeeWorkId}")]
-    public async Task<ProjectTask> GetEmployeeWorkDetails(int employeeWorkId)
+    public async Task<ProjectTask> GetTask(int taskId)
     {
-        ProjectTask task = await _service.GetTaskDetails(employeeWorkId);
+        ProjectTask task = await _service.GetTask(taskId);
          
             return task;
     }
@@ -89,18 +89,18 @@ public class TasksController : ControllerBase
     }
 
     [HttpGet("fromassigneddate/{fromAssignedDate}/toassigneddate/{toAssignedDate}")]
-    public async Task<List<ProjectTask>> GetAllEmployeesWorksBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate)
+    public async Task<List<ProjectTask>> GetAllTasks(DateTime fromAssignedDate,DateTime toAssignedDate)
     {
-        List<ProjectTask> tasks = await _service.GetAllTasksBetweenDates(fromAssignedDate,toAssignedDate);
+        List<ProjectTask> tasks = await _service.GetAllTasks(fromAssignedDate,toAssignedDate);
         return tasks;
     }
 
     
 
     [HttpGet("employees/{employeeId}/fromassigneddate/{fromAssignedDate}/toassigneddate/{toAssignedDate}")]
-    public async Task<List<ProjectTask>> GetTasksBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
+    public async Task<List<ProjectTask>> GetAllTasks(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
     {
-        List<ProjectTask> tasks = await _service.GetTasksBetweenDates(employeeId,fromAssignedDate,toAssignedDate);
+        List<ProjectTask> tasks = await _service.GetAllTasks(employeeId,fromAssignedDate,toAssignedDate);
         return tasks;
     }
  
@@ -115,23 +115,15 @@ public class TasksController : ControllerBase
     }
 
 
-  [HttpGet("employeework/todo/{projectId}/{assignedTo}")]
-    public async Task<List<ProjectTask>> GetAllTask(int projectId,int assignedTo)
-    {
-        List<ProjectTask> tasks = await _service.GetAllTasks(projectId,assignedTo);
-        return tasks;
-    }
-
-
  [HttpGet("EmployeeWorkCount")]
-    public async Task<EmployeeWorkStatusCount> GetEmployeesWorkCount()
+    public async Task<TaskStatusCount> GetTasksCount()
     {
-        EmployeeWorkStatusCount task = await _service.GetTasksCount();
+        TaskStatusCount task = await _service.GetTasksCount();
         return task;
     }
 
     [HttpGet("project/{projectId}/date/{date}")]
-    public async Task<List<ProjectTask>> GetTodayEmployeesWork(int projectId,DateTime date)
+    public async Task<List<ProjectTask>> GetTodaysTasks(int projectId,DateTime date)
     {
         List<ProjectTask> tasks = await _service.GetTodaysTasks(projectId,date);
         return tasks;
