@@ -75,7 +75,7 @@ public class LeavesManagementController : ControllerBase
        
     [HttpGet]
     [Route ("status/{leaveStatus}")]
-    public async Task<List<LeaveApplication>> GetLeaveApplications(string leaveStatus)
+    public async Task<List<LeaveApplication>> GetLeaveApplicationDetails(string leaveStatus)
     {
         List<LeaveApplication> leaves =await _service.GetLeaveApplications(leaveStatus);
         return leaves;
@@ -99,30 +99,30 @@ public class LeavesManagementController : ControllerBase
 
   
     [HttpGet("annualavailableleaves/employee/{employeeId}/year/{year}")]
-    public async Task<LeavesCount> GetAnnualAvailableLeaves(int employeeId,int year)
+    public async Task<LeavesCount> GetAnnualAvailableLeaves(int employeeId,int roleId,int year)
     {
-        Employee employee= await _hrService.GetEmployeeById(employeeId);
-        List<Role> roles= await _apiService.GetRoleOfUser(employee.UserId);
-        int roleId=roles.FirstOrDefault().Id;
+        // Employee employee= await _hrService.GetEmployeeById(employeeId);
+        // List<Role> roles= await _apiService.GetRoleOfUser(employee.UserId);
+        // int roleId=roles.FirstOrDefault().Id;
        return await _service.GetAnnualAvailableLeaves(employeeId,roleId,year);   
     }
 
     [HttpGet("annualconsumedleaves/employee/{employeeId}/year/{year}")]
-    public async Task<LeavesCount> GetAnnualConsumedLeaves(int employeeId,int year)
+    public async Task<LeavesCount> GetAnnualConsumedLeaves(int employeeId,int roleId,int year)
     {
-        Employee employee= await _hrService.GetEmployeeById(employeeId);
-        List<Role> roles= await _apiService.GetRoleOfUser(employee.UserId);
-        int roleId=roles.FirstOrDefault().Id;
+        // Employee employee= await _hrService.GetEmployeeById(employeeId);
+        // List<Role> roles= await _apiService.GetRoleOfUser(employee.UserId);
+        // int roleId=roles.FirstOrDefault().Id;
        return await _service.GetAnnualConsumedLeaves(employeeId,roleId,year);   
     }
 
  
     [HttpGet("annualleaves/employee/{employeeId}/year/{year}")]
-    public async Task<LeavesCount> GetAnnualLeaves(int employeeId,int year)
+    public async Task<LeavesCount> GetAnnualLeaves(int roleId,int year)
     {
-        Employee employee= await _hrService.GetEmployeeById(employeeId);
-        List<Role> roles= await _apiService.GetRoleOfUser(employee.UserId);
-        int roleId=roles.FirstOrDefault().Id;
+        // Employee employee= await _hrService.GetEmployeeById(employeeId);
+        // List<Role> roles= await _apiService.GetRoleOfUser(employee.UserId);
+        // int roleId=roles.FirstOrDefault().Id;
        return await _service.GetAnnualLeaves(roleId,year);   
     }
  
@@ -143,7 +143,7 @@ public class LeavesManagementController : ControllerBase
     [HttpPost("rolebasedleave")]
     public async Task<bool> AddNewRoleLeavesCount(RoleLeavesCount roleLeavesCount)
     {
-        return await _service.AddNewRoleLeavesCount(RoleLeavesCount);
+        return await _service.AddNewRoleLeavesCount(roleLeavesCount);
     }
 
     [HttpPut("rolebasedleave")]

@@ -1,6 +1,5 @@
 namespace TFLPortal.Models;
 
-
 public class PersonalDetails
 {
   public int Id { get; set; }

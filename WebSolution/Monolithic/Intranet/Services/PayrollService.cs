@@ -17,9 +17,9 @@ public class PayrollService : IPayrollService
     }
 
     
-    public async Task<List<Salary>> GetEmployeeSalaryDetails(int employeeId)
+    public async Task<List<SalarySlip>> GetEmployeeSalaryDetails(int employeeId)
     {
-        List<Salary> salaryDetails = new List<Salary>();
+        List<SalarySlip> salaryDetails = new List<SalarySlip>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString=_connectionString;
         try
@@ -30,7 +30,7 @@ public class PayrollService : IPayrollService
             await connection.OpenAsync();
             MySqlDataReader reader=command.ExecuteReader();
             while(await reader.ReadAsync()){
-                    SalaryDetails details=new SalaryDetails{
+                    SalarySlip details=new SalarySlip{
                     EmployeeId=reader.GetInt32("employeeid"),
                     PayDate=reader.GetDateTime("paydate"),
                     MonthlyWorkingDays=reader.GetInt32("monthlyworkingdays"),
@@ -54,9 +54,9 @@ public class PayrollService : IPayrollService
         return salaryDetails;
     }
 
-    public async Task<SalaryDetails> GetPaidEmployeeSalaryDetails(int salaryId)
+    public async Task<SalarySlip> GetPaidEmployeeSalaryDetails(int salaryId)
     {
-        SalaryDetails salaryDetails = null;
+        SalarySlip salaryDetails = null;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString=_connectionString;
         try
@@ -67,9 +67,8 @@ public class PayrollService : IPayrollService
             await connection.OpenAsync();
             MySqlDataReader reader=command.ExecuteReader();
             while(await reader.ReadAsync()){
-                    salaryDetails=new SalaryDetails{
+                    salaryDetails=new SalarySlip{
                     EmployeeId=reader.GetInt32("employeeid"),
-                    UserId=reader.GetInt32("userid"),
                     PayDate=reader.GetDateTime("paydate"),
                     MonthlyWorkingDays=reader.GetInt32("monthlyworkingdays"),
                     Deduction=reader.GetDouble("deduction"),
@@ -91,9 +90,9 @@ public class PayrollService : IPayrollService
         return salaryDetails;
 
     }
-    public async Task<List<SalaryDetails>> GetSalaryDetails(int month,int year)
+    public async Task<List<SalarySlip>> GetSalaryDetails(int month,int year)
     {
-        List<SalaryDetails> salaryDetails = new List<SalaryDetails>();
+        List<SalarySlip> salaryDetails = new List<SalarySlip>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString=_connectionString;
         try
@@ -105,9 +104,8 @@ public class PayrollService : IPayrollService
             await connection.OpenAsync();
             MySqlDataReader reader=command.ExecuteReader();
             while(await reader.ReadAsync()){
-                    SalaryDetails details=new SalaryDetails{
+                    SalarySlip details=new SalarySlip{
                     EmployeeId=reader.GetInt32("employeeid"),
-                    UserId=reader.GetInt32("userid"),
                     PayDate=reader.GetDateTime("paydate"),
                     MonthlyWorkingDays=reader.GetInt32("monthlyworkingdays"),
                     Deduction=reader.GetDouble("deduction"),
@@ -253,7 +251,7 @@ public class PayrollService : IPayrollService
         return salary;
     }
 
-    public async Task<bool> InsertSalary(Salary salary)
+    public async Task<bool> InsertSalary(SalarySlip salarySlip)
     {
         bool status=false;
         MySqlConnection connection = new MySqlConnection();
@@ -264,13 +262,13 @@ public class PayrollService : IPayrollService
         {
             string query = "Insert Into salaries(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(@employeeId,@payDate,@monthlyWorkingDays,@deduction,@tax,@pf,@amount)";
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@employeeId",salary.EmployeeId);
-            cmd.Parameters.AddWithValue("@payDate", salary.PayDate);
-            cmd.Parameters.AddWithValue("@monthlyWorkingDays", salary.MonthlyWorkingDays);
-            cmd.Parameters.AddWithValue("@deduction", salary.Deduction);
-            cmd.Parameters.AddWithValue("@tax", salary.Tax);
-            cmd.Parameters.AddWithValue("@pf", salary.PF);
-            cmd.Parameters.AddWithValue("@amount", salary.Amount);
+            cmd.Parameters.AddWithValue("@employeeId",salarySlip.EmployeeId);
+            cmd.Parameters.AddWithValue("@payDate", salarySlip.PayDate);
+            cmd.Parameters.AddWithValue("@monthlyWorkingDays", salarySlip.MonthlyWorkingDays);
+            cmd.Parameters.AddWithValue("@deduction", salarySlip.Deduction);
+            cmd.Parameters.AddWithValue("@tax", salarySlip.Tax);
+            cmd.Parameters.AddWithValue("@pf", salarySlip.PF);
+            cmd.Parameters.AddWithValue("@amount", salarySlip.Amount);
             await connection.OpenAsync();
             int rowsAffected = cmd.ExecuteNonQuery();
             if (rowsAffected > 0)

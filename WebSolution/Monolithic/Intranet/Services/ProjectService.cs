@@ -42,7 +42,7 @@ public class ProjectService : IProjectService
 
                 Project project = new Project()
                 {
-                    Id = id,
+                    ProjectId = id,
                     Title = title,
                     Description = description,
                     Status = status,
@@ -92,7 +92,7 @@ public class ProjectService : IProjectService
 
                 Project project = new Project()
                 {
-                    Id = id,
+                    ProjectId = id,
                     Title = title,
                     Description = description,
                     Status = status,
@@ -178,7 +178,7 @@ public class ProjectService : IProjectService
 
                 project = new Project
                 {
-                    Id = id,
+                    ProjectId = id,
                     Title = title,
                     Description = description,
                     Status = status,
@@ -227,7 +227,7 @@ public class ProjectService : IProjectService
 
                 Project project = new Project()
                 {
-                    Id = id,
+                    ProjectId = id,
                     Title = title,
                     Description = description,
                     Status = status,
