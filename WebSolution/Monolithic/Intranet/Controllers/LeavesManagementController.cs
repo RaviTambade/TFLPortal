@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TFLPortal.Responses;
 using TFLPortal.Models;
-using TFLPortal.Models.LeaveMgmt;
-using Transflower.TFLPortal.TFLOBL.External;
 using TFLPortal.Services;
 using TFLPortal.Services.Interfaces;
 
@@ -12,10 +10,10 @@ namespace Intranet.Controllers;
 [Route("/api/leaves")]
 public class LeavesManagementController : ControllerBase
 {
-    private readonly ILeaveManagementService _service;   
+    private readonly ILeaveService _service;   
     private readonly IHRService  _hrService;
     private readonly ExternalApiService _apiService;
-    public LeavesManagementController(ILeaveManagementService service,ExternalApiService apiService,IHRService hrService)
+    public LeavesManagementController(ILeaveService service,ExternalApiService apiService,IHRService hrService)
     {
         _service = service;
         _apiService=apiService;
@@ -23,212 +21,85 @@ public class LeavesManagementController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<List<LeaveResponse>> GetAllEmployeeLeaves()
+    public async Task<List<LeaveApplication>> GetLeaveApplications()
     {
-        List<EmployeeLeaveDetails> leaves=await _service.GetAllEmployeeLeaves();
-        string userIds = string.Join(',', leaves.Select(m => m.UserId).ToList());
-        var users = await _apiService.GetUserDetails(userIds);
-        List<LeaveResponse> leaveResponses = new();
-        foreach (var leave in leaves)
-        {
-            var userDetail = users.FirstOrDefault(u => u.Id == leave.EmployeeId);
-            if (userDetail != null)
-            {
-                var leaveResponse = new LeaveResponse
-                {
-                    FullName = userDetail.FirstName+" "+userDetail.LastName,
-                    FromDate = leave.FromDate,
-                    ToDate = leave.ToDate,
-                    Status = leave.Status,
-                    LeaveType = leave.LeaveType,
-                    EmployeeId = leave.EmployeeId,
-                    ApplicationDate=leave.ApplicationDate,
-                    Year=leave.Year,
-                    UserId=leave.UserId
-                };
-                leaveResponses.Add(leaveResponse);
-            }
-        }
-        return leaveResponses;
+        List<LeaveApplication> leaves= await _service.GetLeaveApplications();
+        return leaves;
     }
 
     [HttpGet("rolebasedleaves")]
-    public async Task<List<RoleResponse>> GetAllRoleBasedLeaves()
+    public async Task<List<RoleLeavesCount>> GetRoleLeavesCount()
     {
-        List<RoleBasedLeave> leaves=await _service.GetAllRoleBasedLeaves();
-        var roleIds = string.Join(',', leaves.Select(m => m.RoleId).ToList());
-        var roles = await _apiService.GetRoleDetails(roleIds);
-        List<RoleResponse> roleResponses = new();
-        foreach (var role in leaves)
-        {
-            var roleDetail = roles.FirstOrDefault(u => u.Id == role.RoleId);
-            if (roleDetail != null)
-            {
-                var roleResponse = new RoleResponse
-                {
-                    Id = role.Id,
-                    RoleId = role.RoleId,
-                    Sick = role.Sick,
-                    Casual = role.Casual,
-                    Paid = role.Paid,
-                    Unpaid = role.Unpaid,
-                    FinancialYear=role.FinancialYear,
-                    Role=roleDetail.Name
-                };
-                roleResponses.Add(roleResponse);
-            }
-        }
-        return roleResponses;
+        List<RoleLeavesCount> leaves=await _service.GetRoleLeavesCount();
+        return leaves;
     }
 
     [HttpGet]
     [Route ("employees/{employeeId}")]
-    public async Task<List<EmployeeLeave>> GetLeaveDetailsOfEmployee(int employeeId)
+    public async Task<List<LeaveApplication>> GetLeaveApplications(int employeeId)
     {
-        return await _service.GetLeaveDetailsOfEmployee(employeeId);
+        return await _service.GetLeaveApplications(employeeId);
     }
 
     [HttpGet]
     [Route ("employees/{employeeId}/status/{status}")]
-    public async Task<List<EmployeeLeave>> GetLeaveDetailsOfEmployee(int employeeId,string status)
+    public async Task<List<LeaveApplication>> GetLeaveApplications(int employeeId,string status)
     {
-        return await _service.GetLeaveDetailsOfEmployee(employeeId,status);
+        return await _service.GetLeaveApplications(employeeId,status);
     }
 
     [HttpGet]
     [Route ("{roleId}")]
-    public async Task<RoleBasedLeave> GetRoleBasedLeaveDetails(int roleId)
+    public async Task<RoleLeavesCount> GetRoleLeavesDetails(int roleId)
     {
-        return await _service.GetRoleBasedLeaveDetails(roleId);
+        return await _service.GetRoleLeavesDetails(roleId);
     }
     
  
     [HttpGet]
     [Route ("leave/{leaveId}")]
-    public async Task<LeaveResponse> GetLeaveDetails(int leaveId)
+    public async Task<LeaveApplication> GetLeaveApplication(int leaveId)
     {
-        EmployeeLeaveDetails leave =await _service.GetLeaveDetails(leaveId);
-        User user = await _apiService.GetUser(leave.UserId);
-        LeaveResponse leaveResponse = new LeaveResponse
-            {
-                    Id = leave.Id,
-                    FullName = user.FirstName+" "+user.LastName,
-                    FromDate = leave.FromDate,
-                    ToDate = leave.ToDate,
-                    Status = leave.Status,
-                    LeaveType = leave.LeaveType,
-                    EmployeeId = leave.EmployeeId,
-                    ApplicationDate=leave.ApplicationDate,
-                    Year=leave.Year
-            };
-         return leaveResponse;
+        LeaveApplication leave =await _service.GetLeaveApplication(leaveId);
+        return leave;
     } 
 
 
     [HttpGet]
     [Route ("employees/date/{date}")]
-    public async Task<List<LeaveResponse>> GetLeaveDetailsByDate(string date)
+    public async Task<List<LeaveApplication>> GetLeaveApplications(string date)
     {
-        List<EmployeeLeaveDetails> leaves =await _service.GetLeaveDetailsByDate(date);
-        string userIds = string.Join(',', leaves.Select(m => m.UserId).ToList());
-        var users = await _apiService.GetUserDetails(userIds);
-        List<LeaveResponse> leaveResponses = new();
-        foreach (var leave in leaves)
-        {
-            var userDetail = users.FirstOrDefault(u => u.Id == leave.EmployeeId);
-            if (userDetail != null)
-            {
-                var leaveResponse = new LeaveResponse
-                {
-                    Id = leave.Id,
-                    FullName = userDetail.FirstName+" "+userDetail.LastName,
-                    FromDate = leave.FromDate,
-                    ToDate = leave.ToDate,
-                    Status = leave.Status,
-                    LeaveType = leave.LeaveType,
-                    EmployeeId = leave.EmployeeId,
-                    ApplicationDate=leave.ApplicationDate,
-                    Year=leave.Year
-                };
-                leaveResponses.Add(leaveResponse);
-            }
-        }
-        return leaveResponses;
+        List<LeaveApplication> leaves =await _service.GetLeaveApplications(date);
+        return leaves;
     }    
        
     [HttpGet]
     [Route ("status/{leaveStatus}")]
-    public async Task<List<LeaveResponse>> GetLeaveDetails(string leaveStatus)
+    public async Task<List<LeaveApplication>> GetLeaveApplications(string leaveStatus)
     {
-        List<EmployeeLeaveDetails> leaves =await _service.GetLeaveDetails(leaveStatus);
-        string userIds = string.Join(',', leaves.Select(m => m.UserId).ToList());
-        var users = await _apiService.GetUserDetails(userIds);
-        List<LeaveResponse> leaveResponses = new();
-        foreach (var leave in leaves)
-        {
-            var userDetail = users.FirstOrDefault(u => u.Id == leave.EmployeeId);
-            if (userDetail != null)
-            {
-                var leaveResponse = new LeaveResponse
-                {
-                    Id = leave.Id,
-                    FullName = userDetail.FirstName+" "+userDetail.LastName,
-                    FromDate = leave.FromDate,
-                    ToDate = leave.ToDate,
-                    Status = leave.Status,
-                    LeaveType = leave.LeaveType,
-                    EmployeeId = leave.EmployeeId,
-                    ApplicationDate=leave.ApplicationDate,
-                    Year=leave.Year
-                };
-                leaveResponses.Add(leaveResponse);
-            }
-        }
-        return leaveResponses;
+        List<LeaveApplication> leaves =await _service.GetLeaveApplications(leaveStatus);
+        return leaves;
     }
 
     [HttpGet]
     [Route ("projects/{projectId}/status/{status}")]
-    public async Task<List<LeaveResponse>> GetTeamLeaveDetails(int projectId,string status)
+    public async Task<List<LeaveApplication>> GetTeamLeaveDetails(int projectId,string status)
     {
-        List<EmployeeLeaveDetails> leaves =await _service.GetTeamLeaveDetails(projectId,status);
-        string userIds = string.Join(',', leaves.Select(m => m.UserId).ToList());
-        var users = await _apiService.GetUserDetails(userIds);
-        List<LeaveResponse> leaveResponses = new();
-        foreach (var leave in leaves)
-        {
-            var userDetail = users.FirstOrDefault(u => u.Id == leave.EmployeeId);
-            if (userDetail != null)
-            {
-                var leaveResponse = new LeaveResponse
-                {
-                    FullName = userDetail.FirstName+" "+userDetail.LastName,
-                    FromDate = leave.FromDate,
-                    ToDate = leave.ToDate,
-                    Status = leave.Status,
-                    LeaveType = leave.LeaveType,
-                    EmployeeId = leave.EmployeeId,
-                    ApplicationDate=leave.ApplicationDate,
-                    Year=leave.Year,
-                    UserId=leave.UserId
-                };
-                leaveResponses.Add(leaveResponse);
-            }
-        }
-        return leaveResponses;
+        List<LeaveApplication> leaves =await _service.GetTeamLeaveDetails(projectId,status);
+        return leaves;
     }
 
 
     [HttpGet]
     [Route ("monthlyconsumedleaves/employees/{employeeId}/year/{year}")]
-    public async Task<List<LeaveDetails>> GetAnnualLeavesCountByMonth(int employeeId,int year)
+    public async Task<List<ConsumedLeaveDetails>> GetAnnualLeavesCount(int employeeId,int year)
     {
-      return await _service.GetAnnualLeavesCountByMonth(employeeId,year);
+      return await _service.GetAnnualLeavesCount(employeeId,year);
     }
 
   
     [HttpGet("annualavailableleaves/employee/{employeeId}/year/{year}")]
-    public async Task<PendingLeaveDetails> GetAnnualAvailableLeaves(int employeeId,int year)
+    public async Task<LeavesCount> GetAnnualAvailableLeaves(int employeeId,int year)
     {
         Employee employee= await _hrService.GetEmployeeById(employeeId);
         List<Role> roles= await _apiService.GetRoleOfUser(employee.UserId);
@@ -237,7 +108,7 @@ public class LeavesManagementController : ControllerBase
     }
 
     [HttpGet("annualconsumedleaves/employee/{employeeId}/year/{year}")]
-    public async Task<PendingLeaveDetails> GetAnnualConsumedLeaves(int employeeId,int year)
+    public async Task<LeavesCount> GetAnnualConsumedLeaves(int employeeId,int year)
     {
         Employee employee= await _hrService.GetEmployeeById(employeeId);
         List<Role> roles= await _apiService.GetRoleOfUser(employee.UserId);
@@ -247,7 +118,7 @@ public class LeavesManagementController : ControllerBase
 
  
     [HttpGet("annualleaves/employee/{employeeId}/year/{year}")]
-    public async Task<PendingLeaveDetails> GetAnnualLeaves(int employeeId,int year)
+    public async Task<LeavesCount> GetAnnualLeaves(int employeeId,int year)
     {
         Employee employee= await _hrService.GetEmployeeById(employeeId);
         List<Role> roles= await _apiService.GetRoleOfUser(employee.UserId);
@@ -257,28 +128,28 @@ public class LeavesManagementController : ControllerBase
  
  
     [HttpGet("employees/{employeeId}/month/{month}/year/{year}")]
-    public async Task<List<LeaveDetails>> GetEmployeeLeaves(int employeeId,int month,int year)
+    public async Task<List<ConsumedLeaveDetails>> GetMonthlyLeaveCount(int employeeId,int month,int year)
     {
-        return await _service.GetEmployeeLeaves(employeeId,month,year);   
+        return await _service.GetMonthlyLeaveCount(employeeId,month,year);   
     }
 
     [HttpPost]
-    public async Task<bool> AddNewLeaveApplication(EmployeeLeave employeeLeave)
+    public async Task<bool> AddNewLeaveApplication(LeaveApplication leaveApplication)
     {
-        return await _service.AddNewLeaveApplication(employeeLeave);
+        return await _service.AddNewLeaveApplication(leaveApplication);
        
     }
 
     [HttpPost("rolebasedleave")]
-    public async Task<bool> AddNewRoleBasedLeave(RoleBasedLeave roleBasedLeave)
+    public async Task<bool> AddNewRoleLeavesCount(RoleLeavesCount roleLeavesCount)
     {
-        return await _service.AddNewRoleBasedLeave(roleBasedLeave);
+        return await _service.AddNewRoleLeavesCount(RoleLeavesCount);
     }
 
     [HttpPut("rolebasedleave")]
-    public async Task<bool> UpdateRoleBasedLeave(RoleBasedLeave roleBasedLeave)
+    public async Task<bool> UpdateLeaveMaster(RoleLeavesCount roleLeavesCount)
     {
-       bool status= await _service.UpdateRoleBasedLeave(roleBasedLeave);
+       bool status= await _service.UpdateLeaveMaster(roleLeavesCount);
         return status; 
     }
 
@@ -290,23 +161,23 @@ public class LeavesManagementController : ControllerBase
     }
 
     [HttpPut("updateleaves")]
-    public async Task<bool> UpdateEmployeeLeave(EmployeeLeave employeeLeave)
+    public async Task<bool> Update(LeaveApplication leaveApplication)
     {
-       bool status= await _service.UpdateEmployeeLeave(employeeLeave);
+       bool status= await _service.Update(leaveApplication);
         return status; 
     }
 
     [HttpDelete("deleterolebasedleave/{id}")]
-    public async Task<bool> DeleteRoleBasedLeave(int id)
+    public async Task<bool> DeleteLeaveMaster(int id)
     {
-       bool status= await _service.DeleteRoleBasedLeave(id);
+       bool status= await _service.DeleteLeaveMaster(id);
         return status; 
     }
 
     [HttpDelete("{id}")]
-    public async Task<bool> DeleteEmployeeLeave(int id)
+    public async Task<bool> Delete(int id)
     {
-       bool status= await _service.DeleteEmployeeLeave(id);
+       bool status= await _service.Delete(id);
         return status; 
     }
 }
