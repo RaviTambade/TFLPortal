@@ -1,7 +1,7 @@
 using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
-using Transflower.TFLPortal.TFLOBL.External;
+using TFLPortal.Responses;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace TFLPortal.Services;
