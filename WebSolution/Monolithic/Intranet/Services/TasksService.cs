@@ -2,10 +2,12 @@ using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Configuration;
 using TFLPortal.Services.Interfaces;
 using TFLPortal.Models;
+using ProjectTask= TFLPortal.Models.Task;
 using System.Data;
+using Transflower.TFLPortal.Intranet.Controllers;
 
 namespace TFLPortal.Services;
-public class EmployeeWorkService : IEmployeeWorkService
+public class TaskService :ITaskService
 {
     private readonly IConfiguration _configuration;
     private readonly string _connectionString;
@@ -18,8 +20,8 @@ public class EmployeeWorkService : IEmployeeWorkService
             ?? throw new ArgumentNullException("connectionString");
     }
 
-    public async Task<List<EmployeeWork>> GetAllWorks(){
-        List<EmployeeWork> activities = new List<EmployeeWork>();
+    public async Task<List<ProjectTask>> GetAllTasks(){
+        List<ProjectTask> tasks = new List<ProjectTask>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -45,11 +47,11 @@ public class EmployeeWorkService : IEmployeeWorkService
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
-                EmployeeWork act = new EmployeeWork
+                ProjectTask theTask = new ProjectTask
                 {
                     Id = id,
                     Title = title,
-                    ProjectWorkType = activityType,
+                    TaskType = activityType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
@@ -61,7 +63,7 @@ public class EmployeeWorkService : IEmployeeWorkService
                     AssignedBy = managerId,
 
                 };
-                activities.Add(act);
+                tasks.Add(theTask);
             }
             await reader.CloseAsync();
         }
@@ -73,11 +75,11 @@ public class EmployeeWorkService : IEmployeeWorkService
         {
             await connection.CloseAsync();
         }
-        return activities;
+        return tasks;
     }
-    public async Task<List<EmployeeWork>> GetWorkByProject(int projectId)
+    public async Task<List<ProjectTask>> GetTasksByProject(int projectId)
     {
-        List<EmployeeWork> activities = new List<EmployeeWork>();
+        List<ProjectTask> tasks = new List<ProjectTask>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -103,11 +105,11 @@ public class EmployeeWorkService : IEmployeeWorkService
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
-                EmployeeWork act = new EmployeeWork
+                ProjectTask theTask = new ProjectTask
                 {
                     Id = id,
                     Title = title,
-                    ProjectWorkType = activityType,
+                    TaskType = activityType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
@@ -119,7 +121,7 @@ public class EmployeeWorkService : IEmployeeWorkService
                     AssignedBy = managerId,
 
                 };
-                activities.Add(act);
+                tasks.Add(theTask);
             }
             await reader.CloseAsync();
         }
@@ -131,13 +133,13 @@ public class EmployeeWorkService : IEmployeeWorkService
         {
             await connection.CloseAsync();
         }
-        return activities;
+        return tasks;
     }
 
-    public async Task<List<EmployeeWork>> GetWorkByType(int projectId, string projectworktype)
+    public async Task<List<ProjectTask>> GetTasksByType(int projectId, string projectworktype)
     {
 
-        List<EmployeeWork> activities = new List<EmployeeWork>();
+        List<ProjectTask> tasks = new List<ProjectTask>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -164,11 +166,11 @@ public class EmployeeWorkService : IEmployeeWorkService
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
-                EmployeeWork act = new EmployeeWork
+                ProjectTask theTask = new ProjectTask
                 {
                     Id = id,
                     Title = title,
-                    ProjectWorkType = projectworktype,
+                    TaskType = projectworktype,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
@@ -181,7 +183,7 @@ public class EmployeeWorkService : IEmployeeWorkService
 
                 };
 
-                activities.Add(act);
+                tasks.Add(theTask);
             }
             await reader.CloseAsync();
         }
@@ -193,13 +195,13 @@ public class EmployeeWorkService : IEmployeeWorkService
         {
             await connection.CloseAsync();
         }
-        return activities;
+        return tasks;
     }
 
-    public async Task<List<EmployeeWork>> GetWorks(int projectId, int employeeId)
+    public async Task<List<ProjectTask>> GetTasks(int projectId, int employeeId)
     {
 
-        List<EmployeeWork> activities = new List<EmployeeWork>();
+        List<ProjectTask> tasks = new List<ProjectTask>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -227,11 +229,11 @@ public class EmployeeWorkService : IEmployeeWorkService
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
-                EmployeeWork act = new EmployeeWork
+                ProjectTask act = new ProjectTask
                 {
                     Id = id,
                     Title = title,
-                    ProjectWorkType = activityType,
+                    TaskType = activityType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
@@ -255,12 +257,12 @@ public class EmployeeWorkService : IEmployeeWorkService
         {
             await connection.CloseAsync();
         }
-        return activities;
+        return tasks;
     }
-    public async Task<List<EmployeeWork>> GetWorks(int projectId, int employeeId, string status)
+    public async Task<List<ProjectTask>> GetTasks(int projectId, int employeeId, string status)
     {
 
-        List<EmployeeWork> activities = new List<EmployeeWork>();
+        List<ProjectTask> tasks = new List<ProjectTask>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -287,7 +289,7 @@ public class EmployeeWorkService : IEmployeeWorkService
                 string projectWorkType = reader["projectworktype"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
-                EmployeeWork act = new EmployeeWork
+                ProjectTask theTask = new ProjectTask
                 {
                     Id = id,
                     Title = title,
@@ -303,7 +305,7 @@ public class EmployeeWorkService : IEmployeeWorkService
                     AssignedBy = managerId,
 
                 };
-                activities.Add(act);
+                tasks.Add(theTask);
             }
             await reader.CloseAsync();
         }
@@ -315,13 +317,13 @@ public class EmployeeWorkService : IEmployeeWorkService
         {
             await connection.CloseAsync();
         }
-        return activities;
+        return tasks;
     }
 
     
-    public async Task<List<EmployeeWork>> GetSprintWorks(int sprintId, int employeeId, string status)
+    public async Task<List<ProjectTask>> GetSprintTasks(int sprintId, int employeeId, string status)
     {
-         List<EmployeeWork> works = new List<EmployeeWork>();
+         List<ProjectTask> works = new List<ProjectTask>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -348,11 +350,11 @@ public class EmployeeWorkService : IEmployeeWorkService
                 string projectWorkType = reader["projectworktype"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
-                EmployeeWork work = new EmployeeWork
+                ProjectTask theTask = new ProjectTask
                 {
                     Id = id,
                     Title = title,
-                    ProjectWorkType = projectWorkType,
+                    TaskType = projectWorkType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
@@ -364,7 +366,7 @@ public class EmployeeWorkService : IEmployeeWorkService
                     AssignedBy = managerId,
 
                 };
-                works.Add(work);
+                tasks.Add(theTask);
             }
             await reader.CloseAsync();
         }
@@ -379,9 +381,9 @@ public class EmployeeWorkService : IEmployeeWorkService
         return works;
     }
 
-    public async Task<EmployeeWorkDetails> GetWorkDetails(int employeeWorkId)
+    public async Task<ProjectTask> GetTaskDetails(int taskId)
     {
-       EmployeeWorkDetails activity = null;
+       ProjectTask task = null;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -412,7 +414,7 @@ public class EmployeeWorkService : IEmployeeWorkService
                 activity = new EmployeeWorkDetails()
                 {
                     Id = employeeWorkId,
-                    ProjectWorkType = activityType,
+                    taskType = activityType,
                     Title = title,
                     CreatedDate = createDate,
                     Description = description,
@@ -450,10 +452,10 @@ public class EmployeeWorkService : IEmployeeWorkService
         {
             await connection.CloseAsync();
         }
-        return activity;
+        return task;
     }
 
-    public async Task<bool> AddWork(EmployeeWork employeeWork)
+    public async Task<bool> AddTask(ProjectTask theTask)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
@@ -494,8 +496,8 @@ public class EmployeeWorkService : IEmployeeWorkService
         return status;
     }
 
-     public async Task<List<EmployeeWork>> GetAllWorks(int employeeId){
-      List<EmployeeWork> activities = new List<EmployeeWork>();
+     public async Task<List<ProjectTask>> GetAllTasks(int employeeId){
+      List<ProjectTask> tasks = new List<ProjectTask>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -521,11 +523,11 @@ public class EmployeeWorkService : IEmployeeWorkService
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
-                EmployeeWork act = new EmployeeWork
+                ProjectTask theTask = new ProjectTask
                 {
                     Id = id,
                     Title = title,
-                    ProjectWorkType = activityType,
+                    TaskType = activityType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
@@ -537,7 +539,7 @@ public class EmployeeWorkService : IEmployeeWorkService
                     AssignedBy = managerId,
 
                 };
-                activities.Add(act);
+                tasks.Add(theTask);
             }
             await reader.CloseAsync();
         }
@@ -549,12 +551,12 @@ public class EmployeeWorkService : IEmployeeWorkService
         {
             await connection.CloseAsync();
         }
-        return activities;
+        return tasks;
     }
 
-    public async Task<List<EmployeeWork>> GetAllWorksBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate)
+    public async Task<List<ProjectTask>> GetAllTasksBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate)
     {
-        List<EmployeeWork> activities = new List<EmployeeWork>();
+        List<ProjectTask> tasks = new List<ProjectTask>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -569,7 +571,7 @@ public class EmployeeWorkService : IEmployeeWorkService
             {
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
-                string projectWorkType = reader["projectworktype"].ToString();
+                string taskType = reader["projectworktype"].ToString();
                 string description = reader["description"].ToString();
                  int sprintId = int.Parse(reader["sprintid"].ToString());
                 int projectId = int.Parse(reader["projectid"].ToString());
@@ -583,11 +585,11 @@ public class EmployeeWorkService : IEmployeeWorkService
                 int employeeId = int.Parse(reader["assignedto"].ToString());
 
 
-                EmployeeWork activity = new EmployeeWork
+                ProjectTask theTask = new ProjectTask
                 {
                     Id = id,
                     Title = title,
-                    ProjectWorkType = projectWorkType,
+                    TaskType = taskType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
@@ -599,7 +601,7 @@ public class EmployeeWorkService : IEmployeeWorkService
                     AssignedBy = managerId,
 
                 };
-                activities.Add(activity);
+                tasks.Add(theTask);
             }
             await reader.CloseAsync();
         }
@@ -611,13 +613,13 @@ public class EmployeeWorkService : IEmployeeWorkService
         {
             await connection.CloseAsync();
         }
-        return activities;
+        return tasks;
     } 
 
 
-    public async Task<List<EmployeeWork>> GetWorksBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
+    public async Task<List<ProjectTask>> GetTasksBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
     {
-        List<EmployeeWork> activities = new List<EmployeeWork>();
+        List<ProjectTask> tasks = new List<ProjectTask>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -645,11 +647,11 @@ public class EmployeeWorkService : IEmployeeWorkService
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
             
-                EmployeeWork activity = new EmployeeWork
+                ProjectTask theTask = new ProjectTask
                 {
                     Id = id,
                     Title = title,
-                    ProjectWorkType = projectWorkType,
+                    TaskType = projectWorkType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
@@ -661,7 +663,7 @@ public class EmployeeWorkService : IEmployeeWorkService
                     AssignedBy = managerId,
 
                 };
-                activities.Add(activity);
+                tasks.Add(theTask);
             }
             await reader.CloseAsync();
         }
@@ -673,11 +675,11 @@ public class EmployeeWorkService : IEmployeeWorkService
         {
             await connection.CloseAsync();
         }
-        return activities;
+        return tasks;
     } 
 
 
-    public async Task<bool> UpdateWork(string Status,int employeeWorkId)
+    public async Task<bool> UpdateTask(string Status,int taskId)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
@@ -688,7 +690,7 @@ public class EmployeeWorkService : IEmployeeWorkService
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@startDate", DateTime.Now);
             cmd.Parameters.AddWithValue("@status", Status);
-            cmd.Parameters.AddWithValue("@employeeWorkId",employeeWorkId );
+            cmd.Parameters.AddWithValue("@employeeWorkId",taskId );
     
             await connection.OpenAsync();
             int rowsAffected = cmd.ExecuteNonQuery();
@@ -713,8 +715,8 @@ public class EmployeeWorkService : IEmployeeWorkService
 
 
 
-     public async Task<List<EmployeeWorkDetails>> GetAllWorks(int projectId,int employeeId){
-      List<EmployeeWorkDetails> activities = new List<EmployeeWorkDetails>();
+     public async Task<List<ProjectTask>> GetAllTasks(int projectId,int employeeId){
+      List<ProjectTask> tasks = new List<ProjectTask>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -742,11 +744,11 @@ public class EmployeeWorkService : IEmployeeWorkService
                 int managerId = int.Parse(reader["assignedby"].ToString());
                 string projectName = reader["projectname"].ToString();
 
-                EmployeeWorkDetails act = new EmployeeWorkDetails
+                ProjectTask theTask = new ProjectTask
                 {
                     Id = id,
                     Title = title,
-                    ProjectWorkType = activityType,
+                    TaskType = activityType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
@@ -758,7 +760,7 @@ public class EmployeeWorkService : IEmployeeWorkService
                     AssignedBy = managerId,
                     ProjectName=projectName,
                 };
-                activities.Add(act);
+                tasks.Add(theTask);
             }
             await reader.CloseAsync();
         }
@@ -770,10 +772,10 @@ public class EmployeeWorkService : IEmployeeWorkService
         {
             await connection.CloseAsync();
         }
-        return activities;
+        return tasks;
     }
 
-    public async Task<EmployeeWorkStatusCount> GetWorksCount()
+    public async Task<EmployeeWorkStatusCount> GetTasksCount()
     {
     EmployeeWorkStatusCount countSp = null;
     MySqlConnection con = new MySqlConnection();
@@ -820,9 +822,9 @@ public class EmployeeWorkService : IEmployeeWorkService
 }
 
 
-public async Task<List<EmployeeWork>> GetTodayWork(int projectId,DateTime date)
+public async Task<List<ProjectTask>> GetTodaysTasks(int projectId,DateTime date)
     {
-        List<EmployeeWork> activities = new List<EmployeeWork>();
+        List<ProjectTask> tasks = new List<ProjectTask>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -849,11 +851,11 @@ public async Task<List<EmployeeWork>> GetTodayWork(int projectId,DateTime date)
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
-                EmployeeWork act = new EmployeeWork
+                ProjectTask theTask = new ProjectTask
                 {
                     Id = id,
                     Title = title,
-                    ProjectWorkType = projectWorkType,
+                    TaskType = projectWorkType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
@@ -864,7 +866,7 @@ public async Task<List<EmployeeWork>> GetTodayWork(int projectId,DateTime date)
                     AssignedBy = managerId,
 
                 };
-                activities.Add(act);
+                tasks.Add(theTask);
             }
             await reader.CloseAsync();
         }
@@ -876,6 +878,6 @@ public async Task<List<EmployeeWork>> GetTodayWork(int projectId,DateTime date)
         {
             await connection.CloseAsync();
         }
-        return activities;
+        return tasks;
     }
 }
