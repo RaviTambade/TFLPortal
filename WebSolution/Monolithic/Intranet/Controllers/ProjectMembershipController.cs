@@ -38,9 +38,9 @@ public class ProjectAllocationController : ControllerBase
 
 
     [HttpGet("projects/release/employees")]
-    public async Task<List<ProjectAllocation>> GetUnassignedEmployees()
+    public async Task<List<Employee>> GetUnassignedEmployees()
     {
-        List<ProjectAllocation> projects= await _service.GetUnassignedEmployees();
+        List<Employee> projects= await _service.GetUnassignedEmployees();
         return projects;
     }
 
