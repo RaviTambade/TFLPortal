@@ -116,7 +116,9 @@ public class ProjectService : IProjectService
     }
 
 
-
+    //Update 
+    //Delete project
+    
   public async Task<bool> AddProject(Project project){
         bool status = false;
         MySqlConnection connection =new MySqlConnection();

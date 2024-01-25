@@ -68,6 +68,8 @@
             managerid INT NOT NULL,
             CONSTRAINT fk_employees_projects FOREIGN KEY(managerid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
             status ENUM(
+                'incomplete'
+                'cancelled'
                 'notstarted',
                 'inprogress',
                 'completed') DEFAULT 'notstarted'
@@ -87,7 +89,7 @@
             CONSTRAINT fk_employee_projectmemberss FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
-      CREATE TABLE sprintmaster(
+      CREATE TABLE sprints(
             id INT PRIMARY KEY AUTO_INCREMENT,
             title VARCHAR(40) NOT NULL,  
             startdate DATETIME NOT NULL,
@@ -97,7 +99,7 @@
             CONSTRAINT fk_sprint_projects FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE
         );
 
-    CREATE TABLE employeework(
+    CREATE TABLE tasks(
             id INT PRIMARY KEY AUTO_INCREMENT,
             title VARCHAR(500),
             projectworktype ENUM("userstory","task","bug","issues","meeting","learning","mentoring","other"),

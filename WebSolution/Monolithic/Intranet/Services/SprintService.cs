@@ -19,6 +19,13 @@ public class SprintService : ISprintService
             ?? throw new ArgumentNullException("connectionString");
     }
 
+    // public async  Task<bool> UpdateSprint(sprintid, Sprint){
+
+    //}
+
+    //insert sprint
+
+    //remove (Cancel Sprint)
     public async Task<Sprint> GetCurrentSprint(int projectId, DateOnly date)
     {
         Sprint sprint = null;
@@ -93,7 +100,7 @@ public class SprintService : ISprintService
         return sprints;
     }
 
-    public async Task<List<ProjectTask>> GetSprintWorks(int sprintId){
+    public async Task<List<ProjectTask>> GetSprintTasks(int sprintId){
         List<ProjectTask> tasks = new List<ProjectTask>();
         MySqlConnection connection =new MySqlConnection();
         connection.ConnectionString=_connectionString;
@@ -123,19 +130,15 @@ public class SprintService : ISprintService
                     DueDate = DateTime.Parse(reader["duedate"].ToString()),
                     Status = reader["status"].ToString(),
                  };
-               tasks.Add(task);
-                 
+               tasks.Add(task);  
             }
-             
         }
         catch(Exception ee){
             throw ee;
         }
         finally{
-
             connection.CloseAsync();
         }
-
         return tasks;
     }
 }
