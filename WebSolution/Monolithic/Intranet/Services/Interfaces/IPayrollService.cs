@@ -1,6 +1,6 @@
 
 using TFLPortal.Models;
-
+using TFLPortal.Responses;
 namespace TFLPortal.Services.Interfaces;
 
 public interface IPayrollService

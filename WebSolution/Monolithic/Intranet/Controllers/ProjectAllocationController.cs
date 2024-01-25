@@ -12,12 +12,10 @@ namespace Transflower.TFLPortal.Intranet.Controllers;
 public class ProjectAllocationController : ControllerBase
 {
     private readonly IProjectAllocationService _service;
-    private readonly ExternalApiService _apiService;
 
-    public ProjectAllocationController(IProjectAllocationService service, ExternalApiService apiService)
+    public ProjectAllocationController(IProjectAllocationService service)
     {
         _service = service;
-        _apiService = apiService;
     }
 
     [HttpPost("projects/{projectId}/allocate/employee/{employeeId}")]
