@@ -3,7 +3,7 @@ using TFLPortal.Responses;
 using TFLPortal.Models;
 using TFLPortal.Services;
 using TFLPortal.Services.Interfaces;
-
+using ProjectTask=TFLPortal.Models.Task;
 namespace Intranet.Controllers;
 
 [ApiController]
@@ -26,49 +26,17 @@ public class SprintController : ControllerBase
     }
 
     [HttpGet("projects/{projectId}/date/{date}")]
-    public async Task<List<Sprint>> GetOngoingSprints(int projectId, DateOnly date)
+    public async Task<Sprint> GetOngoingSprints(int projectId, DateOnly date)
     {
-        return await _sprintService.GetOngoingSprints(projectId, date);
+        return await _sprintService.GetCurrentSprint(projectId, date);
     }
 
 
  [HttpGet("project/employeeWork/{sprintId}")]
-public async Task<List<SprintResponse>> GetSprintWorks(int sprintId)
+public async Task<List<ProjectTask>> GetSprintWorks(int sprintId)
 {
-    List<SprintDetails> employees = await _sprintService.GetSprintWorks(sprintId);
-    string userIds = string.Join(',', employees.Select(m => m.UserId).ToList());
-    var users = await _apiService.GetUserDetails(userIds);
-     List<SprintResponse> sprintResponses = new();
-        foreach (var employee in employees)
-        {
-            var userDetail = users.FirstOrDefault(u => u.Id == employee.AssignedTo);
-            if (userDetail != null)
-            {
-                var sprintResponse = new SprintResponse
-                {
-                    FirstName=userDetail.FirstName,
-                    LastName=userDetail.LastName,
-                    Id=employee.Id,
-                    
-                   Title=employee.Title,
-                   ProjectWorkType=employee.ProjectWorkType,
-                   Description=employee.Description,
-                   AssignDate=employee.AssignDate,
-                   StartDate=employee.StartDate,
-                   DueDate=employee.DueDate,
-                   CreatedDate=employee.CreatedDate,
-                   AssignedTo=employee.AssignedTo,
-                   ProjectId=employee.ProjectId,
-                   SprintId=employee.SprintId,
-                   Status=employee.Status,
-                   AssignedBy=employee.AssignedBy
-                };
-                sprintResponses.Add(sprintResponse);
-            }
-        }
-
-
-    return sprintResponses;
+    List<ProjectTask> tasks = await _sprintService.GetSprintWorks(sprintId);
+    return tasks;
 }
 
 }

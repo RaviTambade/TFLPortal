@@ -11,8 +11,8 @@ public class Task
    public DateTime CreatedDate{get;set;}
    public string? Status{get;set;}
 
-   public int Assignee{get;set;}  //AssignedTo
-   public int Assigner{get;set;}  //AssignedBy
+   public int AssignedTo{get;set;}  //AssignedTo
+   public int AssignedBy{get;set;}  //AssignedBy
    public int ProjectId{get;set;}  //ProjectId
    public int SprintId{get;set;}//SprintId    
 }

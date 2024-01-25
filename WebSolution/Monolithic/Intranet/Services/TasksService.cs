@@ -59,9 +59,9 @@ public class TaskService : ITaskService
                     AssignDate = assignDate,
                     StartDate = startDate,
                     DueDate = dueDate,
-                    Assignee = assignedTo,
+                    AssignedTo = assignedTo,
                     Status = status,
-                    Assigner = managerId,
+                    AssignedBy = managerId,
 
                 };
                 tasks.Add(theTask);
@@ -117,9 +117,9 @@ public class TaskService : ITaskService
                     AssignDate = assignDate,
                     StartDate = startDate,
                     DueDate = dueDate,
-                    Assignee = assignedTo,
+                    AssignedTo = assignedTo,
                     Status = status,
-                    Assigner = managerId,
+                    AssignedBy = managerId,
 
                 };
                 tasks.Add(theTask);
@@ -178,9 +178,9 @@ public class TaskService : ITaskService
                     AssignDate = assignDate,
                     StartDate = startDate,
                     DueDate = dueDate,
-                    Assignee = assignedTo,
+                    AssignedTo = assignedTo,
                     Status = status,
-                    Assigner = managerId,
+                    AssignedBy = managerId,
 
                 };
 
@@ -241,9 +241,9 @@ public class TaskService : ITaskService
                     AssignDate = assignDate,
                     StartDate = startDate,
                     DueDate = dueDate,
-                    Assignee = employeeId,
+                    AssignedTo = employeeId,
                     Status = status,
-                    Assigner = managerId,
+                    AssignedBy = managerId,
 
                 };
                 tasks.Add(act);
@@ -301,9 +301,9 @@ public class TaskService : ITaskService
                     AssignDate = assignDate,
                     StartDate = startDate,
                     DueDate = dueDate,
-                    Assignee = employeeId,
+                    AssignedTo= employeeId,
                     Status = status,
-                    Assigner = managerId,
+                    AssignedBy = managerId,
 
                 };
                 tasks.Add(theTask);
@@ -362,9 +362,9 @@ public class TaskService : ITaskService
                     AssignDate = assignDate,
                     StartDate = startDate,
                     DueDate = dueDate,
-                    Assignee = employeeId,
+                    AssignedTo = employeeId,
                     Status = status,
-                    Assigner = managerId,
+                    AssignedBy = managerId,
 
                 };
                 tasks.Add(theTask);
@@ -423,8 +423,8 @@ public class TaskService : ITaskService
                     SprintId=sprintId,
                     AssignDate = assignDate,
                     StartDate = startDate,
-                    Assignee = memberId,
-                    Assigner = managerId,
+                    AssignedTo = memberId,
+                    AssignedBy = managerId,
                     DueDate = dueDate,
                     Status = status,
                 };
@@ -458,11 +458,11 @@ public class TaskService : ITaskService
             cmd.Parameters.AddWithValue("@assigndate", theTask.AssignDate);
             cmd.Parameters.AddWithValue("@startDate", theTask.StartDate);
             cmd.Parameters.AddWithValue("@dueDate", theTask.DueDate);
-            cmd.Parameters.AddWithValue("@assignedTo", theTask.Assignee);
+            cmd.Parameters.AddWithValue("@assignedTo", theTask.AssignedTo);
             cmd.Parameters.AddWithValue("@projectId", theTask.ProjectId);
             cmd.Parameters.AddWithValue("@sprintId", theTask.SprintId);
             cmd.Parameters.AddWithValue("@status", theTask.Status);
-            cmd.Parameters.AddWithValue("@assignedBy", theTask.Assigner);
+            cmd.Parameters.AddWithValue("@assignedBy", theTask.AssignedBy);
             await connection.OpenAsync();
             int rowsAffected = cmd.ExecuteNonQuery();
             if (rowsAffected > 0)
@@ -521,9 +521,9 @@ public class TaskService : ITaskService
                     AssignDate = assignDate,
                     StartDate = startDate,
                     DueDate = dueDate,
-                    Assignee = employeeId,
+                    AssignedTo = employeeId,
                     Status = status,
-                    Assigner = managerId,
+                    AssignedBy = managerId,
 
                 };
                 tasks.Add(theTask);
@@ -583,9 +583,9 @@ public class TaskService : ITaskService
                     AssignDate = assignDate,
                     StartDate = startDate,
                     DueDate = dueDate,
-                    Assignee = employeeId,
+                    AssignedTo = employeeId,
                     Status = status,
-                    Assigner = managerId,
+                    AssignedBy = managerId,
 
                 };
                 tasks.Add(theTask);
@@ -645,9 +645,9 @@ public class TaskService : ITaskService
                     AssignDate = assignDate,
                     StartDate = startDate,
                     DueDate = dueDate,
-                    Assignee = employeeId,
+                    AssignedTo = employeeId,
                     Status = status,
-                    Assigner = managerId,
+                    AssignedBy = managerId,
 
                 };
                 tasks.Add(theTask);
@@ -786,9 +786,9 @@ public async Task<List<ProjectTask>> GetTodaysTasks(int projectId,DateTime date)
                     SprintId=sprintId,
                     StartDate = startdate,
                     DueDate = duedate,
-                    Assignee = assignedto,
+                    AssignedTo = assignedto,
                     Status = status,
-                  Assigner = managerId,
+                  AssignedBy = managerId,
 
                 };
                 tasks.Add(theTask);
