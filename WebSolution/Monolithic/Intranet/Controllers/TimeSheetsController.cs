@@ -27,7 +27,7 @@ public class TimesheetsController : ControllerBase
     }
 
     [HttpGet("employees/{employeeId}/date/{date}")]
-    public async Task<Timesheet> GetTimesheetId(int employeeId, DateOnly date)
+    public async Task<Timesheet> GetTimesheet(int employeeId, DateOnly date)
     {
         return await _timesheetService.GetTimesheet(employeeId, date);
     }

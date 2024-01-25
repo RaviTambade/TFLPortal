@@ -1,5 +1,5 @@
 using TFLPortal.Models;
-using TFLPortal.Models.BI;
+using TFLPortal.Responses;
 
 namespace TFLPortal.Services.Interfaces;
 
