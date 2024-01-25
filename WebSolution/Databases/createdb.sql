@@ -31,7 +31,6 @@
             fromdate DateTime,
             todate DateTime,
             status enum("notsanctioned","sanctioned","applied")DEFAULT 'applied',
-            year int default (Year(curdate())),
             leavetype enum("casual","sick","paid","unpaid"));
 
      CREATE TABLE salarystructures(
