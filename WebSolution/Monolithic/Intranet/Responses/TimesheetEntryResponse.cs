@@ -8,8 +8,4 @@ public class TimesheetEntryResponse
     public int TimesheetId { get; set; }
     public int TaskId { get; set; }
     public int ProjectId { get; set; }
-    public int SprintId { get; set; }
-    public string ProjectTitle { get; set; }
-    public string SprintTitle { get; set; }
-    public string TaskType { get; set; }
 }
