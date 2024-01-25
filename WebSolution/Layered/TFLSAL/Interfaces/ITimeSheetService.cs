@@ -6,8 +6,8 @@ public interface ITimesheetService
 {
     
     Task<List<TimesheetDuration>> GetTimesheets(int employeeId,DateOnly fromDate,DateOnly toDate);
-    Task<List<TimesheetViewModel>> GetEmployeesTimeSheetsForProjectManager(int projectManagerId,string status,DateOnly fromDate,DateOnly toDate);
-    Task<int> GetTimesheetId(int employeeId, DateOnly date);
+    Task<List<TimesheetViewModel>> GetTimeSheetsForApproval(int projectManagerId,DateOnly fromDate,DateOnly toDate);
+    Task<Timesheet> GetTimesheet(int employeeId, DateOnly date);
     Task<TimesheetViewModel> GetTimesheet(int timesheetId);
     Task<TimesheetDetailViewModel> GetTimesheetDetail(int timesheetDetailId);
     Task<List<WorkCategoryDetails>> GetActivityWiseHours(int employeeId,string intervalType,int projectId);

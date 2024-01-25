@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
 using TFLPortal.Models;
+using ProjectTask= TFLPortal.Models.Task;
 using TFLPortal.Services.Interfaces;
 
 namespace TFLPortal.Services;
@@ -18,9 +19,9 @@ public class SprintService : ISprintService
             ?? throw new ArgumentNullException("connectionString");
     }
 
-    public async Task<List<Sprint>> GetOngoingSprints(int projectId, DateOnly date)
+    public async Task<Sprint> GetCurrentSprint(int projectId, DateOnly date)
     {
-        List<Sprint> sprints = new List<Sprint>();
+        Sprint sprint = null;
         MySqlConnection connection = new MySqlConnection(_connectionString);
         try
         {
@@ -33,7 +34,7 @@ public class SprintService : ISprintService
             MySqlDataReader reader = (MySqlDataReader)await command.ExecuteReaderAsync();
             while (await reader.ReadAsync())
             {
-                Sprint sprint = new Sprint()
+                 sprint = new Sprint()
                 {
                     Id = reader.GetInt32("id"),
                     ProjectId = reader.GetInt32("projectid"),
@@ -42,7 +43,7 @@ public class SprintService : ISprintService
                     StartDate = reader.GetDateTime("startdate"),
                     EndDate = reader.GetDateTime("enddate"),
                 };
-                sprints.Add(sprint);
+             
             }
         }
         catch (Exception)
@@ -53,7 +54,7 @@ public class SprintService : ISprintService
         {
             await connection.CloseAsync();
         }
-        return sprints;
+        return sprint;
     }
 
     public async Task<List<Sprint>> GetSprints(int projectId)
@@ -92,8 +93,8 @@ public class SprintService : ISprintService
         return sprints;
     }
 
-    public async Task<List<Sprint>> GetSprintWorks(int sprintId){
-        List<Sprint> employeeWorks = new List<Sprint>();
+    public async Task<List<ProjectTask>> GetSprintWorks(int sprintId){
+        List<ProjectTask> tasks = new List<ProjectTask>();
         MySqlConnection connection =new MySqlConnection();
         connection.ConnectionString=_connectionString;
         try{
@@ -108,10 +109,10 @@ public class SprintService : ISprintService
             MySqlDataReader reader = (MySqlDataReader) await command.ExecuteReaderAsync();
             while( await reader.ReadAsync()){
               
-                 Sprint employeeWork=new Sprint(){
-                    Id = int.Parse(reader["id"].ToString()),
+                 ProjectTask task=new ProjectTask(){
+                    TaskId = int.Parse(reader["id"].ToString()),
                     Title = reader["title"].ToString(),
-                    ProjectWorkType = reader["projectworktype"].ToString(),
+                    TaskType = reader["projectworktype"].ToString(),
                     SprintId = int.Parse(reader["sprintid"].ToString()),
                     Description = reader["description"].ToString(),
                     CreatedDate = DateTime.Parse(reader["createddate"].ToString()),
@@ -121,9 +122,8 @@ public class SprintService : ISprintService
                     StartDate = DateTime.Parse(reader["startdate"].ToString()),
                     DueDate = DateTime.Parse(reader["duedate"].ToString()),
                     Status = reader["status"].ToString(),
-                    UserId=int.Parse(reader["userid"].ToString())
                  };
-               employeeWorks.Add(employeeWork);
+               tasks.Add(task);
                  
             }
              
@@ -136,6 +136,6 @@ public class SprintService : ISprintService
             connection.CloseAsync();
         }
 
-        return employeeWorks;
+        return tasks;
     }
 }

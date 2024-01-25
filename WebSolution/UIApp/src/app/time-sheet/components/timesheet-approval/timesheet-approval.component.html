@@ -6,10 +6,10 @@
         <select class="mx-2 form-control-sm" [(ngModel)]="selectedInterval" (change)="onIntervalChange()">
             <option *ngFor="let interval of intervals" [value]="interval"> {{interval}}</option>
         </select>
-        <label >Status</label>
+        <!-- <label >Status</label>
         <select class="mx-2 form-control-sm" [(ngModel)]="selectedStatus" (change)="onIntervalChange()">
             <option *ngFor="let status of timesheetStatus" [value]="status"> {{status}}</option>
-        </select>
+        </select> -->
     </div>
 
     <table class="table table-bordered">
@@ -19,7 +19,7 @@
                 <th>Employee Name </th>
                 <th>hours</th>
                 <th>Details</th>
-                <th *ngIf="selectedStatus==TimesheetStatus.submitted">Actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody *ngFor="let timesheet of timeSheets">
@@ -29,7 +29,7 @@
                 <td> {{timesheet.hours |hourConvertor}}</td>
                 <td><a [routerLink]="['../details',timesheet.id]"> Details</a></td>
 
-                <td *ngIf="selectedStatus==TimesheetStatus.submitted">
+                <td >
                     <button class="btn btn-warning mx-2 my-2 " (click)="onChangeStatusbuttonclick(timesheet,TimesheetStatus.approved)" >Approve</button>
                     <button class="btn btn-danger" (click)="onChangeStatusbuttonclick(timesheet,TimesheetStatus.rejected)">Reject</button>
                 </td>

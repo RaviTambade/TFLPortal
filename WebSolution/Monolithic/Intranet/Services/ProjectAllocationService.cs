@@ -102,9 +102,9 @@ public class ProjectAllocationService : IProjectAllocationService
                 Employee employee = new Employee
                 {
                     EmployeeId = reader.GetInt32("id"),
-                    User = reader.GetInt32("userid"),
+                    //UserId = reader.GetInt32("userid"),
                     HireDate = reader.GetDateTime("hiredate"),
-                    ReportingId = reader.GetInt32("reportingid"),
+                   // ReportingId = reader.GetInt32("reportingid"),
                 };
                 employees.Add(employee);
             }

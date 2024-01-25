@@ -26,12 +26,10 @@ public class TimesheetsController : ControllerBase
         return await _timesheetService.GetTimesheets(employeeId, fromDate, toDate);
     }
 
-    [HttpGet("timesheetid/employees/{employeeId}/date/{date}")]
-    // return timesheet
+    [HttpGet("employees/{employeeId}/date/{date}")]
     public async Task<Timesheet> GetTimesheet(int employeeId, DateOnly date)
     {
-        // return await _timesheetService.GetTimesheetId(employeeId, date);
-        return new Timesheet();
+        return await _timesheetService.GetTimesheet(employeeId, date);
     }
 
     [HttpGet("{timesheetId}")]
@@ -61,13 +59,12 @@ public class TimesheetsController : ControllerBase
     [HttpGet("pendingapproval/from/{fromDate}/to/{toDate}/manager/{projectManagerId}")]
     public async Task<List<TimesheetResponse>>  GetTimeSheetsForApproval(
         int projectManagerId,
-        string status,  
         DateOnly fromDate,
         DateOnly toDate
     )
     {
         List<TimesheetViewModel> timesheets =
-        await _timesheetService.GetEmployeesTimeSheetsForProjectManager(projectManagerId,status,fromDate,toDate );
+        await _timesheetService.GetTimeSheetsForApproval(projectManagerId,fromDate,toDate );
         string userIds = string.Join(',', timesheets.Select(t => t.Employee.UserId).ToList());
         List<TimesheetResponse> timesheetResponses = new List<TimesheetResponse>();
         List<User> users = await _apiService.GetUserDetails(userIds);
