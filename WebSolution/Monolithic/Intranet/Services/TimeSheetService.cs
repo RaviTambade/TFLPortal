@@ -1,7 +1,7 @@
 using MySql.Data.MySqlClient;
-using Microsoft.Extensions.Configuration;
-using TFLPortal.Models;
 using TFLPortal.Services.Interfaces;
+using TFLPortal.Models;
+using TFLPortal.Models.BI;
 
 
 namespace Transflower.TFLPortal.TFLSAL.Services;
@@ -321,13 +321,13 @@ public class TimesheetService : ITimesheetService
         return timesheetEntry;
     }
 
-    public async Task<List<WorkCategoryDetails>> GetActivityWiseHours(
+    public async Task<List<WorkTimeUtilizationResponse>> GetActivityWiseHours(
         int employeeId,
         string intervalType,
         int projectId
     )
     {
-        List<WorkCategoryDetails> workCategoryDetails = new();
+        List<WorkTimeUtilizationResponse> workCategoryDetails = new();
 
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
@@ -344,7 +344,7 @@ public class TimesheetService : ITimesheetService
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
-                WorkCategoryDetails workCategoryDetail = new WorkCategoryDetails()
+                WorkTimeUtilizationResponse workCategoryDetail = new WorkTimeUtilizationResponse()
                 {
                     Label = reader.GetString("label"),
                     UserStory = reader.GetDouble("userstory"),
@@ -371,13 +371,13 @@ public class TimesheetService : ITimesheetService
         return workCategoryDetails;
     }
 
-    public async Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(
+    public async Task<List<ProjectWorkHoursResponse>> GetProjectWiseTimeSpentByEmployee(
         int employeeId,
         DateOnly fromDate,
         DateOnly toDate
     )
     {
-        List<ProjectWorkHours> projectsHoursList = new();
+        List<ProjectWorkHoursResponse> projectsHoursList = new();
 
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
@@ -396,7 +396,7 @@ public class TimesheetService : ITimesheetService
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
-                ProjectWorkHours projectHours = new ProjectWorkHours()
+                ProjectWorkHoursResponse projectHours = new ProjectWorkHoursResponse()
                 {
                     ProjectName = reader.GetString("projectname"),
                     Hours = reader.GetDouble("hours")
@@ -637,4 +637,6 @@ public class TimesheetService : ITimesheetService
         }
         return status;
     }
+
+
 }

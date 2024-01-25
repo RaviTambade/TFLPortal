@@ -208,8 +208,8 @@ public class PayrollService : IPayrollService
         }
 
 
-      public async  Task<MonthSalary> CalculateSalary(int employeeId,int month,int year){
-        MonthSalary salary = null;
+      public async  Task<MonthSalaryResponse> CalculateSalary(int employeeId,int month,int year){
+        MonthSalaryResponse salary = null;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
 
@@ -224,7 +224,7 @@ public class PayrollService : IPayrollService
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
-                 salary = new MonthSalary()
+                 salary = new MonthSalaryResponse()
                 {
                     TotalAmount = reader.GetDouble("totalamount"),
                     MonthlyBasicsalary = reader.GetDouble("monthlybasicsalary"),

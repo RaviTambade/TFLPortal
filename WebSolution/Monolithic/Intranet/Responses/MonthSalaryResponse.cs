@@ -1,6 +1,6 @@
-namespace TFLPortal.Models;
+namespace TFLPortal.Responses;
 
-public class MonthSalary
+public class MonthSalaryResponse
 {
     public double TotalAmount { get; set; }
     public double MonthlyBasicsalary { get; set; }

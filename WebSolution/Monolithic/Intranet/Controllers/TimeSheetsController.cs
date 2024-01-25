@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TFLPortal.Models;
+using TFLPortal.Responses;
 using TFLPortal.Services.Interfaces;
 
 namespace Transflower.TFLPortal.Intranet.Controllers;
@@ -63,7 +64,7 @@ public class TimesheetsController : ControllerBase
 
 
         [HttpGet("employees/{employeeId}/workduration/{intervalType}/projects/{projectId}")]
-        public async Task<List<WorkCategoryDetails>> GetActivityWiseHours(
+        public async Task<List<WorkTimeUtilizationResponse>> GetActivityWiseHours(
             int employeeId,
             string intervalType,
             int projectId
@@ -73,7 +74,7 @@ public class TimesheetsController : ControllerBase
         }
 
         [HttpGet("projects/workinghours/employees/{employeeId}/from/{fromDate}/to/{toDate}")]
-        public async Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(
+        public async Task<List<ProjectWorkHoursResponse>> GetProjectWiseTimeSpentByEmployee(
             int employeeId,
             DateOnly fromDate,
             DateOnly toDate

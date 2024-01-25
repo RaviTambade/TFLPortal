@@ -17,6 +17,6 @@ public interface ITaskService
     Task<List<ProjectTask>> GetMemberTasks(int employeeId);
     Task<List<ProjectTask>> GetAllTasks(DateTime fromAssignedDate, DateTime toAssignedDate);
     Task<List<ProjectTask>> GetAllTasks(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate);
-    Task<TaskStatusCount> GetTasksCount();
+    Task<TaskStatusCountResponse> GetTasksCount();
     Task<List<ProjectTask>> GetTodaysTasks(int projectId, DateTime date);
 }

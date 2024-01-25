@@ -1,4 +1,5 @@
 using TFLPortal.Models;
+using TFLPortal.Models.BI;
 
 namespace TFLPortal.Services.Interfaces;
 
@@ -14,12 +15,12 @@ public interface ITimesheetService
     Task<Timesheet> GetTimesheet(int employeeId, DateOnly date);
     Task<Timesheet> GetTimesheet(int timesheetId);
     Task<TimesheetEntry> GetTimesheetDetail(int timesheetDetailId);
-    Task<List<WorkCategoryDetails>> GetActivityWiseHours(
+    Task<List<WorkTimeUtilizationResponse>> GetActivityWiseHours(
         int employeeId,
         string intervalType,
         int projectId
     );
-    Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(
+    Task<List<ProjectWorkHoursResponse>> GetProjectWiseTimeSpentByEmployee(
         int employeeId,
         DateOnly fromDate,
         DateOnly toDate

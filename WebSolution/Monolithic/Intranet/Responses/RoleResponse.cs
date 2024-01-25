@@ -1,5 +1,5 @@
-namespace TFLPortal.Models.BI;
-public class TaskStatusCount
+namespace TFLPortal.Responses;
+public class TaskStatusCountResponse
 {
    
    public  int Todo{get;set;}

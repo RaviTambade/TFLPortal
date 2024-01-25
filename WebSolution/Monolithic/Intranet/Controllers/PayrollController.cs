@@ -28,7 +28,7 @@ public class PayrollController : ControllerBase
     // [HttpGet("salaries/employee/{employeeId}/month/{month}/year/{year}")]
     // public async Task<SalaryResponse> GetSalaryStructure(int employeeId,int month,int year)
     // {
-    //     MonthSalary salaryStructure = await _payrollService.CalculateSalary(employeeId,month,year);
+    //     MonthSalaryResponse salaryStructure = await _payrollService.CalculateSalary(employeeId,month,year);
     //     Console.WriteLine(salaryStructure);
     //     Employee employee = await _hrService.GetEmployeeById(employeeId);
     //     Console.WriteLine(employee);
@@ -68,8 +68,8 @@ public class PayrollController : ControllerBase
     }
 
     [HttpGet("employees/{employeeId}/month/{month}/year/{year}")]
-    public async Task<MonthSalary> CalculateSalary(int employeeId,int month,int year){
-        MonthSalary salary= await _payrollService.CalculateSalary(employeeId,month,year);
+    public async Task<MonthSalaryResponse> CalculateSalary(int employeeId,int month,int year){
+        MonthSalaryResponse salary= await _payrollService.CalculateSalary(employeeId,month,year);
         return salary;
     }
     

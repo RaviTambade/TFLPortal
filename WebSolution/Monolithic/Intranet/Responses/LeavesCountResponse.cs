@@ -1,6 +1,6 @@
-namespace TFLPortal.Models;
+namespace TFLPortal.Responses;
 
-public class LeavesCount
+public class LeavesCountResponse
 {
     public int Sick { get; set; }
     public int Casual { get; set; }
