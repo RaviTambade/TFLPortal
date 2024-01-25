@@ -12,7 +12,7 @@
           
     );
 
-     CREATE TABLE rolebasedleaves(
+     CREATE TABLE leavesallocated(
                 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                 roleid INT NOT NULL UNIQUE,
                 sick INT NOT NULL,
@@ -23,7 +23,7 @@
 
 
 
-      CREATE TABLE employeeleaves(
+      CREATE TABLE leaveapplications(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
             employeeid INT NOT NULL,
             CONSTRAINT fk_projectmembers1 FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -31,12 +31,13 @@
             fromdate DateTime,
             todate DateTime,
             status enum("notsanctioned","sanctioned","applied")DEFAULT 'applied',
-            leavetype enum("casual","sick","paid","unpaid"));
+            leavetype enum("casual","sick","paid","unpaid")
+            );
 
      CREATE TABLE salarystructures(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             employeeid INT NOT NULL,
-            CONSTRAINT fk_employee_projectmembers1 FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
+            CONSTRAINT fk_employee_salarystructure FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
             basicsalary DOUBLE NOT NULL,
             hra DOUBLE NOT NULL,
             da DOUBLE NOT NULL,
@@ -45,10 +46,10 @@
             );
 
 
-       CREATE TABLE salaries(
+       CREATE TABLE salaryslips(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             employeeid INT NOT NULL,
-            CONSTRAINT fk_employee2_projectmembers1 FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
+            CONSTRAINT fk_employee_salaryslips FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
             paydate DateTime,
             monthlyworkingdays INT NOT NULL,
             deduction DOUBLE NOT NULL,
@@ -76,14 +77,14 @@
 
 
 
-    CREATE TABLE projectmembership(
+    CREATE TABLE projectmembers(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             projectid INT NOT NULL,
             employeeid INT NOT NULL,
-            projectrole VARCHAR(20),
-            projectassigndate DATETIME,
-            projectreleasedate DATETIME default null,
-            currentprojectworkingstatus enum('yes','no') default 'yes' ,
+            title VARCHAR(20),
+            assignedon DATETIME,
+            releasedon DATETIME default null,
+            status enum('yes','no') default 'yes' ,
             CONSTRAINT fk_projects_project1 FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
             CONSTRAINT fk_employee_projectmemberss FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
@@ -91,7 +92,7 @@
       CREATE TABLE sprints(
             id INT PRIMARY KEY AUTO_INCREMENT,
             title VARCHAR(40) NOT NULL,  
-            startdate DATETIME NOT NULL,
+            startdate DATETIME NOT NULL, 
             enddate DATETIME NOT NULL,
             goal VARCHAR(200),
             projectid INT NULL,
@@ -101,7 +102,7 @@
     CREATE TABLE tasks(
             id INT PRIMARY KEY AUTO_INCREMENT,
             title VARCHAR(500),
-            projectworktype ENUM("userstory","task","bug","issues","meeting","learning","mentoring","other"),
+            tasktype ENUM("userstory","task","bug","issues","meeting","learning","mentoring","others"),
             description VARCHAR(400) DEFAULT '',
             projectid INT NULL,
             sprintid INT NULL,
@@ -112,10 +113,10 @@
             startdate DATETIME NULL,
             duedate DATETIME NULL,
             status ENUM ( 'todo','inprogress','completed') DEFAULT 'todo' , 
-            CONSTRAINT fk_projectwork_members FOREIGN KEY (assignedby) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
-            CONSTRAINT fk_projectwork_members2 FOREIGN KEY (assignedto) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
-            CONSTRAINT fk_projectwork_projects FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
-            CONSTRAINT fk_projectwork_projects3 FOREIGN KEY (sprintid) REFERENCES sprintmaster(id) ON UPDATE CASCADE ON DELETE CASCADE
+            CONSTRAINT fk_tasks_members FOREIGN KEY (assignedby) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
+            CONSTRAINT fk_tasks_members2 FOREIGN KEY (assignedto) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
+            CONSTRAINT fk_tasks_projects FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
+            CONSTRAINT fk_tasks_sprints FOREIGN KEY (sprintid) REFERENCES sprints(id) ON UPDATE CASCADE ON DELETE CASCADE
         );
 
   
@@ -124,28 +125,29 @@
 
     CREATE TABLE timesheets(
             id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-            timesheetdate DATETIME ,
+            createdon DATETIME ,
             status ENUM ( 
                 'inprogress',
                 'submitted',
                 'approved',
                 'rejected'
                 ) DEFAULT 'inprogress', 
-            statuschangeddate DATETIME DEFAULT  CURRENT_TIMESTAMP,
-            employeeid INT NOT NULL,
-            CONSTRAINT unique_emp_timesheet UNIQUE KEY(timesheetdate,employeeid ) ,
-            CONSTRAINT fk_timesheets_taskallocations FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
+            modifiedon DATETIME DEFAULT  CURRENT_TIMESTAMP,
+            createdby INT NOT NULL,
+            CONSTRAINT unique_emp_timesheet UNIQUE KEY(createdon,createdby) ,
+            CONSTRAINT fk_timesheets_employees FOREIGN KEY(createdby) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
 
 
-    CREATE TABLE timesheetdetails(
+    CREATE TABLE timesheetentries(
         id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
         fromtime TIME,
         totime TIME,
         timesheetid INT NOT NULL,
-        employeeworkid  INT ,
-        CONSTRAINT fk_timesheet_projects FOREIGN KEY (employeeworkid) REFERENCES employeework(id) ON UPDATE CASCADE  ON DELETE CASCADE,
+        taskid  INT ,
+        duration DOUBLE,
+        CONSTRAINT fk_timesheet_projects FOREIGN KEY (taskid) REFERENCES tasks(id) ON UPDATE CASCADE  ON DELETE CASCADE,
         CONSTRAINT fk_timesheets_timesheetentries FOREIGN KEY(timesheetid) REFERENCES timesheets(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
