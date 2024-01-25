@@ -58,52 +58,54 @@ public class PayrollController : ControllerBase
     //     return salaryDetails;
     // }
     
-    //"employees/salary"
-    [HttpPost("employees/salarystructure")]
-    public async Task<bool> InsertSalaryStructure(SalaryStructure salary)
-    {
-        return await _payrollService.AddSalaryStructure(salary);
-    }
+    
 
     [HttpGet("employees/{employeeId}/month/{month}/year/{year}")]
-    public async Task<MonthSalaryResponse> CalculateSalary(int employeeId,int month,int year){
-        MonthSalaryResponse salary= await _payrollService.CalculateSalary(employeeId,month,year);
+    public async Task<MonthSalaryResponse> GetSalary(int employeeId,int month,int year){
+        MonthSalaryResponse salary= await _payrollService.GetSalary(employeeId,month,year);
         return salary;
-    }
-    
-    [HttpPost("salaries")]
-    public async Task<bool> InsertSalary(SalarySlip salarySlip)
-    {
-      bool status=await _payrollService.InsertSalary(salarySlip);
-      return status;
     }
 
     [HttpGet("salaries/paid/month/{month}/year/{year}")]
     public async Task<List<SalarySlip>> GetSalaryDetails(int month,int year)
     {
-        List<SalarySlip> salaries= await _payrollService.GetSalaryDetails(month,year);
+        List<SalarySlip> salaries= await _payrollService.GetPaidSalaries(month,year);
         return salaries;
     }
 
 
       [HttpGet("salaries/unpaid/month/{month}/year/{year}")]
-      public async Task<List<int>> GetUnPaidEmployees(int month,int year)
+      public async Task<List<int>> GetUnPaidSalaries(int month,int year)
       {
-        List<int> userIds=await _payrollService.GetUnPaidEmployees(month,year);
+        List<int> userIds=await _payrollService.GetUnPaidSalaries(month,year);
         return userIds;
       }
 
       [HttpGet("salaries/employees/{employeeId}")]
-      public async Task<List<SalarySlip>> GetEmployeeSalaryDetails(int employeeId)
+      public async Task<List<SalarySlip>> GetSalaries(int employeeId)
       {
-        List<SalarySlip> salaries=await _payrollService.GetEmployeeSalaryDetails(employeeId);
+        List<SalarySlip> salaries=await _payrollService.GetSalaries(employeeId);
         return salaries;
       }
 
       [HttpGet("employee/salary/{salaryId}")]
-      public async Task<SalarySlip> GetPaidEmployeeSalaryDetails(int salaryId)
+      public async Task<SalarySlip> GetSalary(int salaryId)
       {
-        SalarySlip salary=await _payrollService.GetPaidEmployeeSalaryDetails(salaryId);
+        SalarySlip salary=await _payrollService.GetSalary(salaryId);
         return salary;
       }
+
+      //"employees/salary"
+    [HttpPost("employees/salarystructure")]
+    public async Task<bool> AddSalaryStructure(SalaryStructure salary)
+    {
+        return await _payrollService.AddSalaryStructure(salary);
+    }
+
+    [HttpPost("salaries")]
+    public async Task<bool> AddSalary(SalarySlip salarySlip)
+    {
+      bool status=await _payrollService.AddSalary(salarySlip);
+      return status;
+    }
 }

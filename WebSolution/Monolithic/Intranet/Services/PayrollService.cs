@@ -18,7 +18,7 @@ public class PayrollService : IPayrollService
     }
 
     
-    public async Task<List<SalarySlip>> GetEmployeeSalaryDetails(int employeeId)
+    public async Task<List<SalarySlip>> GetSalaries(int employeeId)
     {
         List<SalarySlip> salaryDetails = new List<SalarySlip>();
         MySqlConnection connection = new MySqlConnection();
@@ -55,7 +55,7 @@ public class PayrollService : IPayrollService
         return salaryDetails;
     }
 
-    public async Task<SalarySlip> GetPaidEmployeeSalaryDetails(int salaryId)
+    public async Task<SalarySlip> GetSalary(int salaryId)
     {
         SalarySlip salaryDetails = null;
         MySqlConnection connection = new MySqlConnection();
@@ -91,7 +91,7 @@ public class PayrollService : IPayrollService
         return salaryDetails;
 
     }
-    public async Task<List<SalarySlip>> GetSalaryDetails(int month,int year)
+    public async Task<List<SalarySlip>> GetPaidSalaries(int month,int year)
     {
         List<SalarySlip> salaryDetails = new List<SalarySlip>();
         MySqlConnection connection = new MySqlConnection();
@@ -129,46 +129,45 @@ public class PayrollService : IPayrollService
         return salaryDetails;
     }
 
-    
-    public async Task<bool> AddSalaryStructure(SalaryStructure salaryStructure)
+    public async Task<List<int>> GetUnPaidSalaries(int month, int year)
     {
-        bool status=false;
-        MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _connectionString;
-        var assigndate =DateTime.Now;
-
-        try
-        {
-            string query = "Insert Into salarystructure(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(@employeeId,@basicSalary,@hra,@da,@lta,@variablePay,@deduction)";
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@employeeId",salaryStructure.EmployeeId);
-            cmd.Parameters.AddWithValue("@basicSalary", salaryStructure.BasicSalary);
-            cmd.Parameters.AddWithValue("@hra", salaryStructure.HRA);
-            cmd.Parameters.AddWithValue("@da", salaryStructure.DA);
-            cmd.Parameters.AddWithValue("@lta", salaryStructure.LTA);
-            cmd.Parameters.AddWithValue("@variablePay", salaryStructure.VariablePay);
-            cmd.Parameters.AddWithValue("@deduction", salaryStructure.Deduction);
-            await connection.OpenAsync();
-            int rowsAffected = cmd.ExecuteNonQuery();
-            if (rowsAffected > 0)
+            List<int>? userIds=new();
+            MySqlConnection connection = new MySqlConnection();
+            connection.ConnectionString = _connectionString;
+            try
             {
-                status = true;
+                string query =
+                   @"SELECT employees.userid
+                         FROM employees
+                         LEFT JOIN salaries ON employees.id = salaries.employeeid
+                         AND MONTH(salaries.paydate) = @month
+                         AND YEAR(salaries.paydate) = @year
+                         WHERE salaries.employeeid IS NULL";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                System.Console.WriteLine(month);
+                System.Console.WriteLine(year);
+                command.Parameters.AddWithValue("@month", month);
+                command.Parameters.AddWithValue("@year", year);
+                await connection.OpenAsync();
+                MySqlDataReader reader = command.ExecuteReader();
+                while(await reader.ReadAsync())
+                {
+                     userIds.Add(reader.GetInt32(reader.GetOrdinal("userid")));
+                }
+                await reader.CloseAsync();
             }
-            await connection.CloseAsync();
-
-        }
-        catch (Exception e)
-        {
-            throw e;
-        }
-        finally
-        {
-            await connection.CloseAsync();
-        }
-        return status;
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                await connection.CloseAsync();
+            }
+            return userIds;
     }
 
-    public async Task<SalaryStructure> GetSalary(int employeeId)
+    public async Task<SalaryStructure> GetSalaryStructure(int employeeId)
         {
             SalaryStructure salary = null;
             MySqlConnection connection = new MySqlConnection();
@@ -207,9 +206,7 @@ public class PayrollService : IPayrollService
             }
             return salary;
         }
-
-
-      public async  Task<MonthSalaryResponse> CalculateSalary(int employeeId,int month,int year){
+    public async  Task<MonthSalaryResponse> GetSalary(int employeeId,int month,int year){
         MonthSalaryResponse salary = null;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
@@ -251,8 +248,46 @@ public class PayrollService : IPayrollService
         }
         return salary;
     }
+    
+    public async Task<bool> AddSalaryStructure(SalaryStructure salaryStructure)
+    {
+        bool status=false;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        var assigndate =DateTime.Now;
 
-    public async Task<bool> InsertSalary(SalarySlip salarySlip)
+        try
+        {
+            string query = "Insert Into salarystructure(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(@employeeId,@basicSalary,@hra,@da,@lta,@variablePay,@deduction)";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@employeeId",salaryStructure.EmployeeId);
+            cmd.Parameters.AddWithValue("@basicSalary", salaryStructure.BasicSalary);
+            cmd.Parameters.AddWithValue("@hra", salaryStructure.HRA);
+            cmd.Parameters.AddWithValue("@da", salaryStructure.DA);
+            cmd.Parameters.AddWithValue("@lta", salaryStructure.LTA);
+            cmd.Parameters.AddWithValue("@variablePay", salaryStructure.VariablePay);
+            cmd.Parameters.AddWithValue("@deduction", salaryStructure.Deduction);
+            await connection.OpenAsync();
+            int rowsAffected = cmd.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                status = true;
+            }
+            await connection.CloseAsync();
+
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return status;
+    }   
+
+    public async Task<bool> AddSalary(SalarySlip salarySlip)
     {
         bool status=false;
         MySqlConnection connection = new MySqlConnection();
@@ -290,43 +325,7 @@ public class PayrollService : IPayrollService
         return status;
     }
 
-    public async Task<List<int>> GetUnPaidEmployees(int month, int year)
-    {
-            List<int>? userIds=new();
-            MySqlConnection connection = new MySqlConnection();
-            connection.ConnectionString = _connectionString;
-            try
-            {
-                string query =
-                   @"SELECT employees.userid
-                         FROM employees
-                         LEFT JOIN salaries ON employees.id = salaries.employeeid
-                         AND MONTH(salaries.paydate) = @month
-                         AND YEAR(salaries.paydate) = @year
-                         WHERE salaries.employeeid IS NULL";
-                MySqlCommand command = new MySqlCommand(query, connection);
-                System.Console.WriteLine(month);
-                System.Console.WriteLine(year);
-                command.Parameters.AddWithValue("@month", month);
-                command.Parameters.AddWithValue("@year", year);
-                await connection.OpenAsync();
-                MySqlDataReader reader = command.ExecuteReader();
-                while(await reader.ReadAsync())
-                {
-                     userIds.Add(reader.GetInt32(reader.GetOrdinal("userid")));
-                }
-                await reader.CloseAsync();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            finally
-            {
-                await connection.CloseAsync();
-            }
-            return userIds;
-    }
+    
 }
 
 
