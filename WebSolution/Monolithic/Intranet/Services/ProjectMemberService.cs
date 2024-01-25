@@ -5,11 +5,11 @@ using TFLPortal.Services.Interfaces;
 
 namespace TFLPortal.Services;
 
-public class ProjectAllocationService : IProjectAllocationService
+public class ProjectMemberService : IProjectMemberService
 {
     private readonly IConfiguration _configuration;
     private readonly string _connectionString;
-    public ProjectAllocationService(IConfiguration configuration)
+    public ProjectMemberService(IConfiguration configuration)
     {
         _configuration = configuration;
         _connectionString =
