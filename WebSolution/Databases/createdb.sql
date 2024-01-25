@@ -145,8 +145,8 @@
         fromtime TIME,
         totime TIME,
         timesheetid INT NOT NULL,
-        taskid  INT ,
-        duration DOUBLE,
+        taskid  INT,
+        durationinhours DECIMAL(10,2) as ((( TIME_TO_SEC(TIMEDIFF(totime,fromtime)))/3600)),
         CONSTRAINT fk_timesheet_projects FOREIGN KEY (taskid) REFERENCES tasks(id) ON UPDATE CASCADE  ON DELETE CASCADE,
         CONSTRAINT fk_timesheets_timesheetentries FOREIGN KEY(timesheetid) REFERENCES timesheets(id) ON UPDATE CASCADE ON DELETE CASCADE
     );

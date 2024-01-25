@@ -64,7 +64,7 @@ public class TimesheetsController : ControllerBase
 
 
         [HttpGet("employees/{employeeId}/workduration/{intervalType}/projects/{projectId}")]
-        public async Task<List<WorkTimeUtilizationResponse>> GetActivityWiseHours(
+        public async Task<List<MemberUtilizationResponse>> GetActivityWiseHours(
             int employeeId,
             string intervalType,
             int projectId

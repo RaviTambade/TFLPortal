@@ -275,13 +275,13 @@ public class TimesheetService : ITimesheetService
         return timesheetEntry;
     }
 
-    public async Task<List<WorkTimeUtilizationResponse>> GetActivityWiseHours(
+    public async Task<List<MemberUtilizationResponse>> GetActivityWiseHours(
         int employeeId,
         string intervalType,
         int projectId
     )
     {
-        List<WorkTimeUtilizationResponse> workCategoryDetails = new();
+        List<MemberUtilizationResponse> workCategoryDetails = new();
 
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
@@ -298,7 +298,7 @@ public class TimesheetService : ITimesheetService
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
-                WorkTimeUtilizationResponse workCategoryDetail = new WorkTimeUtilizationResponse()
+                MemberUtilizationResponse workCategoryDetail = new MemberUtilizationResponse()
                 {
                     Label = reader.GetString("label"),
                     UserStory = reader.GetDouble("userstory"),
@@ -352,6 +352,7 @@ public class TimesheetService : ITimesheetService
             {
                 ProjectWorkHoursResponse projectHours = new ProjectWorkHoursResponse()
                 {
+                    ProjectId=1,
                     ProjectName = reader.GetString("projectname"),
                     Hours = reader.GetDouble("hours")
                 };
