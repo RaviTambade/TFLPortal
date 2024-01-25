@@ -12,11 +12,9 @@ public class LeavesManagementController : ControllerBase
 {
     private readonly ILeaveService _service;   
     private readonly IHRService  _hrService;
-    private readonly ExternalApiService _apiService;
-    public LeavesManagementController(ILeaveService service,ExternalApiService apiService,IHRService hrService)
+    public LeavesManagementController(ILeaveService service,IHRService hrService)
     {
         _service = service;
-        _apiService=apiService;
         _hrService=hrService;
     }
 

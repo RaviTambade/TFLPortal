@@ -35,10 +35,13 @@ public class HRService : IHRService
                 {
                     employee = new Employee
                     {
-                        Id = reader.GetInt32("id"),
+                        EmployeeId = reader.GetInt32("id"),
+
                         UserId = reader.GetInt32("userid"),
+
+                        // UserId = reader.GetInt32("userid"),
                         HireDate = reader.GetDateTime("hiredate"),
-                        ReportingId = reader.GetInt32("reportingid"),
+                        // ReportingId = reader.GetInt32("reportingid"),
                     };
                 }
                 await reader.CloseAsync();
@@ -70,10 +73,13 @@ public class HRService : IHRService
                 {
                     Employee employee = new Employee
                     {
-                        Id = reader.GetInt32("id"),
+                        EmployeeId = reader.GetInt32("id"),
+
                         UserId = reader.GetInt32("userid"),
+
+                        // UserId = reader.GetInt32("userid");
                         HireDate = reader.GetDateTime("hiredate"),
-                        ReportingId = reader.GetInt32("reportingid"),
+                        // ReportingId = reader.GetInt32("reportingid"),
                     };
                     employees.Add(employee);
                 }
@@ -106,10 +112,10 @@ public class HRService : IHRService
                 {
                     employee = new Employee
                     {
-                        Id = reader.GetInt32("id"),
+                        EmployeeId = reader.GetInt32("id"),
                         UserId = reader.GetInt32("userid"),
                         HireDate = reader.GetDateTime("hiredate"),
-                        ReportingId = reader.GetInt32("reportingid"),
+                        // ReportingId = reader.GetInt32("reportingid"),
                     };
                 }
                 await reader.CloseAsync();

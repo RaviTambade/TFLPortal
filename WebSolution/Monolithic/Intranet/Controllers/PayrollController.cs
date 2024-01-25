@@ -3,6 +3,7 @@ using TFLPortal.Responses;
 using TFLPortal.Models;
 using TFLPortal.Services;
 using TFLPortal.Services.Interfaces;
+using TFLPortal.Responses;
 
 namespace Intranet.Controllers;
 
@@ -12,16 +13,13 @@ public class PayrollController : ControllerBase
 {
     private readonly IPayrollService _payrollService;
     private readonly IHRService _hrService;
-    private readonly ExternalApiService _apiService;
     public PayrollController(
         IPayrollService payrollService,
-        IHRService hrService,
-        ExternalApiService apiService
+        IHRService hrService
     )
     {
         _payrollService = payrollService;
         _hrService = hrService;
-        _apiService = apiService;
     }
 
     //salaries/employees/{employeeId}/month/{month}/year/{year}"

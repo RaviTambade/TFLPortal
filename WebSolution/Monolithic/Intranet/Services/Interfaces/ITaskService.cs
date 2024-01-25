@@ -1,4 +1,5 @@
-using TFLPortal.Models.BI;
+
+using TFLPortal.Responses;
 using ProjectTask = TFLPortal.Models.Task;
 
 namespace TFLPortal.Services.Interfaces;
