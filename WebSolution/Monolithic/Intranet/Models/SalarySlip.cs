@@ -10,8 +10,4 @@ public class SalarySlip
     public double Tax { get; set; }
     public double PF { get; set; }
     public double Amount { get; set; }
-
-
-
- 
 }

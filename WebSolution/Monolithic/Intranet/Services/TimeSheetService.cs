@@ -10,18 +10,12 @@ public class TimesheetService : ITimesheetService
 {
     private readonly IConfiguration _configuration;
     private readonly string _connectionString;
-    // private readonly UserHelper _userHelper;
 
-    public TimesheetService(
-        IConfiguration configuration
-    )
-    {
+    public TimesheetService(IConfiguration configuration) {
         _configuration = configuration;
         _connectionString =
             _configuration.GetConnectionString("DefaultConnection")
             ?? throw new ArgumentNullException("connectionString");
-
-        // _userHelper = userHelper;
     }
 
     public async Task<List<Timesheet>> GetTimesheets(
@@ -58,7 +52,7 @@ public class TimesheetService : ITimesheetService
                 {
                     Id = reader.GetInt32("id"),
                     Status = reader.GetString("status"),
-                    TheDate = reader.GetDateTime("timesheetdate"),
+                    TimesheetDate = reader.GetDateTime("timesheetdate"),
                     ModifiedOn = reader.GetDateTime("statuschangeddate"),
                     TotalHours = reader.GetDouble("time_in_hour"),
                 };
@@ -115,7 +109,7 @@ public class TimesheetService : ITimesheetService
                 {
                     Id = reader.GetInt32("id"),
                     Status = reader.GetString("status"),
-                    TheDate = reader.GetDateTime("timesheetdate"),
+                    TimesheetDate = reader.GetDateTime("timesheetdate"),
                     ModifiedOn = reader.GetDateTime("statuschangeddate"),
                     EmployeeId=reader.GetInt32("employeeid"),
                     TotalHours = reader.GetDouble("time_in_hour"),
@@ -165,7 +159,7 @@ public class TimesheetService : ITimesheetService
                 {
                     Id = reader.GetInt32("id"),
                     Status = reader.GetString("status"),
-                    TheDate = reader.GetDateTime("timesheetdate"),
+                    TimesheetDate = reader.GetDateTime("timesheetdate"),
                     EmployeeId=employeeId,
                     ModifiedOn = reader.GetDateTime("statuschangeddate"),
                 };
@@ -188,76 +182,36 @@ public class TimesheetService : ITimesheetService
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         Timesheet timesheet = new Timesheet();
-        // try
-        // {
-        //     string query =
-        //         @"SELECT timesheets.id as timesheetid,timesheets.status,timesheets.timesheetdate,
-        //         timesheets.employeeid, timesheets.statuschangeddate,timesheetdetails.id as timesheetdetailid,
-        //         timesheetdetails.employeeworkid,timesheetdetails.fromtime,timesheetdetails.totime,
-        //         employeework.projectid,projects.title as projectname,
-        //         employeework.projectworktype as worktype,employeework.title as worktitle,
-        //         employees.userid FROM timesheets  
-        //         LEFT JOIN  timesheetdetails ON  timesheets.id= timesheetdetails.timesheetid
-        //         LEFT JOIN employees ON timesheets.employeeid =employees.id
-        //         LEFT JOIN employeework ON timesheetdetails.employeeworkid=employeework.id
-        //         LEFT JOIN projects ON employeework.projectid=projects.id
-        //         WHERE timesheets.id = @timesheetid";
-        //     MySqlCommand command = new MySqlCommand(query, connection);
-        //     command.Parameters.AddWithValue("@timesheetid", timesheetId);
-        //     await connection.OpenAsync();
-        //     MySqlDataReader reader = command.ExecuteReader();
-        //     if (await reader.ReadAsync())
-        //     {
-        //         timesheet = new Timesheet()
-        //         {
-        //             Id = timesheetId,
-        //             Status = reader.GetString("status"),
-        //             TheDate = reader.GetDateTime("timesheetdate"),
-        //             ModifiedOn = reader.GetDateTime("statuschangeddate"),
-        //             // TheEmployee = new Employee
-        //             // {
-        //             //     EmployeeId = reader.GetInt32("employeeid"),
-        //             //     Details = new PersonalDetails { UserId = reader.GetInt32("userid") }
-        //             // },
-        //             // Entries = new List<TimesheetEntry>()
-        //         };
-        //         do
-        //         {
-        //             if (reader["timesheetdetailid"] != DBNull.Value)
-        //             {
-        //                 TimesheetEntry timesheetEntry = new TimesheetEntry()
-        //                 {
-        //                     TimesheetEntryId = reader.GetInt32("timesheetdetailid"),
-        //                     FromTime = TimeOnly.Parse(reader.GetString("fromtime")),
-        //                     ToTime = TimeOnly.Parse(reader.GetString("totime")),
-        //                     EmployeeWork = new EmployeeWork
-        //                     {
-        //                         EmployeeWorkId = reader.GetInt32("employeeworkid"),
-        //                         Title = reader.GetString("worktitle"),
-        //                         ProjectWorkType = reader.GetString("worktype"),
-        //                         Project = new Project
-        //                         {
-        //                             ProjectId = reader.GetInt32("projectId"),
-        //                             Title = reader.GetString("projectname"),
-        //                         }
-        //                     }
-        //                 };
-        //                 timesheet.Entries.Add(timesheetEntry);
-        //             }
-        //         } while (await reader.ReadAsync());
-        //     }
-        //     await reader.CloseAsync();
-        // }
-        // catch (Exception)
-        // {
-        //     throw;
-        // }
-        // finally
-        // {
-        //     await connection.CloseAsync();
-        // }
+        try
+        {
+            string query =
+                @"SELECT * from timesheets WHERE timesheets.id = @timesheetid";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@timesheetid", timesheetId);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            if (await reader.ReadAsync())
+            {
+                timesheet = new Timesheet()
+                {
+                    Id = timesheetId,
+                    Status = reader.GetString("status"),
+                    TimesheetDate = reader.GetDateTime("timesheetdate"),
+                    EmployeeId= reader.GetInt32("employeeId"),
+                    ModifiedOn = reader.GetDateTime("statuschangeddate"),
+                };
+            await reader.CloseAsync();
+        }
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
 
-        // await _userHelper.FetchUser(timesheet.TheEmployee.Details);
         return timesheet;
     }
 
@@ -458,7 +412,7 @@ public class TimesheetService : ITimesheetService
             string query =
                 "INSERT INTO timesheets(timesheetdate,employeeid) VALUES (@timesheetdate,@empid)";
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@timesheetdate", timesheet.TheDate);
+            cmd.Parameters.AddWithValue("@timesheetdate", timesheet.TimesheetDate);
             cmd.Parameters.AddWithValue("@empid", timesheet.EmployeeId);
             await connection.OpenAsync();
             int rowsAffected = await cmd.ExecuteNonQueryAsync();
@@ -637,6 +591,4 @@ public class TimesheetService : ITimesheetService
         }
         return status;
     }
-
-
 }
