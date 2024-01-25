@@ -10,7 +10,7 @@ public interface IPayrollService
     Task<SalarySlip> GetPaidEmployeeSalaryDetails(int salaryId);
     Task<bool> AddSalaryStructure(SalaryStructure salary); 
     Task<SalaryStructure> GetSalary(int employeeId);
-    Task<MonthSalary> CalculateSalary(int employeeId,int month,int year);
+    Task<MonthSalaryResponse> CalculateSalary(int employeeId,int month,int year);
     Task<bool> InsertSalary(SalarySlip salarySlip);
     Task<List<int>> GetUnPaidEmployees(int month,int year);
 }   

@@ -1,5 +1,5 @@
 namespace TFLPortal.Responses;
-public class BankAccount
+public class BankAccountResponse
 {
     public string? AccountNumber { get; set; }
     public string? IFSCCode { get; set; }

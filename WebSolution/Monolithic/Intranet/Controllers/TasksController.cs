@@ -4,7 +4,6 @@ using TFLPortal.Models;
 using TFLPortal.Services;
 using ProjectTask=TFLPortal.Models.Task;
 using TFLPortal.Services.Interfaces;
-using TFLPortal.Models.BI;
 namespace Intranet.Controllers;
 
 [ApiController]
@@ -116,9 +115,9 @@ public class TasksController : ControllerBase
 
 
  [HttpGet("EmployeeWorkCount")]
-    public async Task<TaskStatusCount> GetTasksCount()
+    public async Task<TaskStatusCountResponse> GetTasksCount()
     {
-        TaskStatusCount task = await _service.GetTasksCount();
+        TaskStatusCountResponse task = await _service.GetTasksCount();
         return task;
     }
 

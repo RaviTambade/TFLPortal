@@ -3,7 +3,7 @@ namespace TFLPortal.Models;
 public class Employee
 {
     public int EmployeeId { get; set; }
-    public PersonalDetails Details { get; set; } //userId
+    public int UserId { get; set; } //userId
     public DateTime HireDate { get; set; }
-    public Employee Manager { get; set; } //reportingId
+    public int ReportingId { get; set; } //reportingId
 }

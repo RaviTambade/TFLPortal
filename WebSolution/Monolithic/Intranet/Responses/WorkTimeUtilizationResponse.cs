@@ -1,6 +1,6 @@
-namespace TFLPortal.Models;
+namespace TFLPortal.Responses;
 
-public class WorkCategoryDetails
+public class WorkTimeUtilizationResponse
 {
     public double UserStory { get; set; }
 

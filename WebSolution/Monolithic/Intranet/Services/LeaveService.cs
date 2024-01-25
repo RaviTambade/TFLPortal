@@ -1,6 +1,7 @@
 using MySql.Data.MySqlClient;
 using System.Data;
 using TFLPortal.Models;
+using TFLPortal.Responses;
 using TFLPortal.Services.Interfaces;
 
 namespace TFLPortal.Services;
@@ -108,9 +109,9 @@ public class LeaveService : ILeaveService
         return leaves;
     }
 
-    public async Task<List<ConsumedLeaveDetails>> GetMonthlyLeaveCount(int employeeId,int month,int year)
+    public async Task<List<ConsumedLeaveDetailResponse>> GetMonthlyLeaveCount(int employeeId,int month,int year)
     {
-        List<ConsumedLeaveDetails> leaves = new List<ConsumedLeaveDetails>();
+        List<ConsumedLeaveDetailResponse> leaves = new List<ConsumedLeaveDetailResponse>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -129,7 +130,7 @@ public class LeaveService : ILeaveService
                 string leaveType = reader["leavetype"].ToString();
                 int leaveCount = int.Parse(reader["leavecount"].ToString());
 
-                ConsumedLeaveDetails leave = new ConsumedLeaveDetails()
+                ConsumedLeaveDetailResponse leave = new ConsumedLeaveDetailResponse()
                 {
                     LeaveType = leaveType,
                     Count=leaveCount
@@ -480,9 +481,9 @@ public class LeaveService : ILeaveService
         return leaveApplications;
     }
 
-    public async Task<List<ConsumedLeaveDetails>> GetAnnualLeavesCount(int employeeId, int year)
+    public async Task<List<ConsumedLeaveDetailResponse>> GetAnnualLeavesCount(int employeeId, int year)
     {
-        List<ConsumedLeaveDetails> leaves = new List<ConsumedLeaveDetails>();
+        List<ConsumedLeaveDetailResponse> leaves = new List<ConsumedLeaveDetailResponse>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -501,7 +502,7 @@ public class LeaveService : ILeaveService
                 int consumedLeaves = int.Parse(reader["consumedleaves"].ToString());
                 int month = int.Parse(reader["month"].ToString());
 
-                ConsumedLeaveDetails leave = new ConsumedLeaveDetails()
+                ConsumedLeaveDetailResponse leave = new ConsumedLeaveDetailResponse()
                 {
                     LeaveType=leaveType,
                     Count = consumedLeaves,
@@ -522,9 +523,9 @@ public class LeaveService : ILeaveService
         return leaves;
     }
 
-    public async Task<LeavesCount> GetAnnualAvailableLeaves(int employeeId, int roleId, int year)
+    public async Task<LeavesCountResponse> GetAnnualAvailableLeaves(int employeeId, int roleId, int year)
     {
-        LeavesCount leaves = null;
+        LeavesCountResponse leaves = null;
         MySqlConnection con = new MySqlConnection();
         con.ConnectionString = _connectionString;
         try
@@ -555,7 +556,7 @@ public class LeaveService : ILeaveService
             int paidLeaves = Convert.ToInt32(cmd.Parameters["@remainingPaidLeaves"].Value);
             int unPaidLeaves = Convert.ToInt32(cmd.Parameters["@remainingUnpaidLeaves"].Value);
 
-            leaves = new LeavesCount()
+            leaves = new LeavesCountResponse()
             {
                 Sick = sickLeaves,
                 Casual = casualLeaves,
@@ -575,9 +576,9 @@ public class LeaveService : ILeaveService
         return leaves;
     }
 
-    public async Task<LeavesCount> GetAnnualConsumedLeaves(int employeeId, int roleId, int year)
+    public async Task<LeavesCountResponse> GetAnnualConsumedLeaves(int employeeId, int roleId, int year)
     {
-        LeavesCount leaves = null;
+        LeavesCountResponse leaves = null;
         MySqlConnection con = new MySqlConnection();
         con.ConnectionString = _connectionString;
         try
@@ -607,7 +608,7 @@ public class LeaveService : ILeaveService
             int paidLeaves = Convert.ToInt32(cmd.Parameters["@paidLeaves"].Value);
             int unPaidLeaves = Convert.ToInt32(cmd.Parameters["@unpaidLeaves"].Value);
 
-            leaves = new LeavesCount()
+            leaves = new LeavesCountResponse()
             {
                 Sick = sickLeaves,
                 Casual = casualLeaves,
@@ -627,10 +628,9 @@ public class LeaveService : ILeaveService
         return leaves;
     }
 
-    //employeeId 
-    public async Task<LeavesCount> GetAnnualLeaves(int roleId, int year)
+    public async Task<LeavesCountResponse> GetAnnualLeaves(int roleId, int year)
     {
-        LeavesCount leave = null;
+        LeavesCountResponse leave = null;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -649,7 +649,7 @@ public class LeaveService : ILeaveService
                 int paid = int.Parse(reader["paid"].ToString());
                 int unpaid = int.Parse(reader["unpaid"].ToString());
 
-                leave = new LeavesCount()
+                leave = new LeavesCountResponse()
                 {
                     Sick = sick,
                     Casual = casual,

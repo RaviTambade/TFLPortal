@@ -52,7 +52,7 @@
 //     [HttpPost("employee/salary/{employeeId}/month/{month}/year/{year}")]
 //     public async Task<bool> PaySalary(int employeeId,int month,int year)
 //     {
-//         MonthSalary salaryStructure = await _payrollService.CalculateSalary(employeeId,month,year);
+//         MonthSalaryResponse salaryStructure = await _payrollService.CalculateSalary(employeeId,month,year);
 //         Salary salary = new Salary{
 //             EmployeeId=employeeId,
 //             PayDate=DateTime.Now,

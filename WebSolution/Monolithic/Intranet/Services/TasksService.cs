@@ -700,9 +700,9 @@ public class TaskService : ITaskService
 
     }
 
-    public async Task<TaskStatusCount> GetTasksCount()
+    public async Task<TaskStatusCountResponse> GetTasksCount()
     {
-    TaskStatusCount countSp = null;
+    TaskStatusCountResponse countSp = null;
     MySqlConnection con = new MySqlConnection();
     con.ConnectionString = _connectionString;
     try
@@ -727,7 +727,7 @@ public class TaskService : ITaskService
         int inprogress = Convert.ToInt32(cmd.Parameters["@inprogress"].Value);
         int completed = Convert.ToInt32(cmd.Parameters["@completed"].Value);
 
-        countSp = new TaskStatusCount()
+        countSp = new TaskStatusCountResponse()
         {
             Todo = todo,
             InProgress = inprogress,
