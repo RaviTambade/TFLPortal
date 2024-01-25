@@ -1,4 +1,4 @@
--- Active: 1705924796699@@127.0.0.1@3306@tflportal
+-- Active: 1694968636816@@127.0.0.1@3306@tflportal
 
     DROP DATABASE IF EXISTS TFLPortal;
     CREATE DATABASE TFLPortal;
@@ -68,8 +68,8 @@
             managerid INT NOT NULL,
             CONSTRAINT fk_employees_projects FOREIGN KEY(managerid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
             status ENUM(
-                'incomplete'
-                'cancelled'
+                'incomplete',
+                'cancelled',
                 'notstarted',
                 'inprogress',
                 'completed') DEFAULT 'notstarted'

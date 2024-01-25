@@ -6,58 +6,58 @@ BEGIN
 
     IF interval_type='year' THEN 
     SELECT MONTHNAME(timesheets.timesheetdate) as label,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="userstory" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as userstory,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="task" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as task,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="bug" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as bug,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="issues" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as issues,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="meeting" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as meeting,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="learning" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as learning,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="mentoring" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as mentoring,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="break" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as break,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="clientcall" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as clientcall,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="other" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as other
+    CAST(((SUM( CASE WHEN  tasks.tasktype="userstory" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as userstory,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="task" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as task,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="bug" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as bug,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="issues" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as issues,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="meeting" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as meeting,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="learning" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as learning,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="mentoring" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as mentoring,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="break" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as break,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="clientcall" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as clientcall,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="other" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as other
     FROM timesheetdetails
     INNER JOIN timesheets ON timesheetdetails.timesheetid=timesheets.id
-    INNER JOIN employeework ON  timesheetdetails.employeeworkid=employeework.id
-    WHERE timesheets.employeeid=employee_id AND YEAR(timesheets.timesheetdate)=YEAR(CURDATE()) AND employeework.projectid=COALESCE(project_id,employeework.projectid)
+    INNER JOIN tasks ON  timesheetdetails.employeeworkid=tasks.id
+    WHERE timesheets.employeeid=employee_id AND YEAR(timesheets.timesheetdate)=YEAR(CURDATE()) AND tasks.projectid=COALESCE(project_id,tasks.projectid)
     GROUP BY MONTH(timesheets.timesheetdate);
  ELSEIF interval_type='month' THEN 
     SELECT
     DATE_ADD(timesheets.timesheetdate, INTERVAL(1-DAYOFWEEK(timesheets.timesheetdate)) DAY) as label,
     DATE_ADD(timesheets.timesheetdate, INTERVAL(7-DAYOFWEEK(timesheets.timesheetdate)) DAY) as end_of_week,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="userstory" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as userstory,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="task" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as task,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="bug" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as bug,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="issues" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as issues,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="meeting" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as meeting,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="learning" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as learning,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="mentoring" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as mentoring,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="break" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as break,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="clientcall" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as clientcall,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="other" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as other
+    CAST(((SUM( CASE WHEN  tasks.tasktype="userstory" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as userstory,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="task" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as task,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="bug" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as bug,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="issues" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as issues,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="meeting" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as meeting,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="learning" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as learning,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="mentoring" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as mentoring,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="break" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as break,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="clientcall" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as clientcall,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="other" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as other
     FROM timesheetdetails
     INNER JOIN timesheets ON timesheetdetails.timesheetid=timesheets.id
-    INNER JOIN employeework ON  timesheetdetails.employeeworkid=employeework.id
-    WHERE  timesheets.employeeid=employee_id AND MONTH(timesheets.timesheetdate)=MONTH(CURDATE()) AND YEAR (timesheets.timesheetdate)=YEAR(CURDATE()) AND employeework.projectid=COALESCE(project_id,employeework.projectid)
+    INNER JOIN tasks ON  timesheetdetails.employeeworkid=tasks.id
+    WHERE  timesheets.employeeid=employee_id AND MONTH(timesheets.timesheetdate)=MONTH(CURDATE()) AND YEAR (timesheets.timesheetdate)=YEAR(CURDATE()) AND tasks.projectid=COALESCE(project_id,tasks.projectid)
     GROUP BY WEEK(timesheets.timesheetdate);
 
  ELSEIF interval_type='week' THEN 
  SELECT timesheets.timesheetdate as label,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="userstory" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as userstory,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="task" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as task,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="bug" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as bug,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="issues" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as issues,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="meeting" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as meeting,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="learning" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as learning,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="mentoring" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as mentoring,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="break" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as break,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="clientcall" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as clientcall,
-    CAST(((SUM( CASE WHEN  employeework.projectworktype="other" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as other
+    CAST(((SUM( CASE WHEN  tasks.tasktype="userstory" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as userstory,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="task" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as task,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="bug" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as bug,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="issues" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as issues,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="meeting" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as meeting,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="learning" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as learning,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="mentoring" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as mentoring,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="break" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as break,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="clientcall" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as clientcall,
+    CAST(((SUM( CASE WHEN  tasks.tasktype="other" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as other
     FROM timesheetdetails
     INNER JOIN timesheets ON timesheetdetails.timesheetid=timesheets.id
-    INNER JOIN employeework ON  timesheetdetails.employeeworkid=employeework.id
+    INNER JOIN tasks ON  timesheetdetails.employeeworkid=tasks.id
     WHERE  timesheets.employeeid=employee_id AND timesheets.timesheetdate >= DATE_ADD(CURDATE(), INTERVAL(1-DAYOFWEEK(CURDATE())) DAY) AND 
-    timesheets.timesheetdate<= DATE_ADD(CURDATE(), INTERVAL(7-DAYOFWEEK(CURDATE())) DAY)  AND employeework.projectid=COALESCE(project_id,employeework.projectid)
+    timesheets.timesheetdate<= DATE_ADD(CURDATE(), INTERVAL(7-DAYOFWEEK(CURDATE())) DAY)  AND tasks.projectid=COALESCE(project_id,tasks.projectid)
     GROUP BY timesheets.timesheetdate;
   END IF;
 END;
@@ -76,8 +76,8 @@ CREATE procedure getprojectwiseemployeeworkhours(IN employee_id INT,IN from_date
     CAST(((SUM( TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ))/3600)AS DECIMAL(10,2)) AS hours 
     FROM timesheetdetails
     INNER JOIN timesheets on timesheetdetails.timesheetid=timesheets.id
-    INNER JOIN employeework on timesheetdetails.employeeworkid=employeework.id
-    INNER JOIN projects on employeework.projectid=projects.id
+    INNER JOIN tasks on timesheetdetails.employeeworkid=tasks.id
+    INNER JOIN projects on tasks.projectid=projects.id
     WHERE  timesheets.employeeid=employee_id  AND timesheets.timesheetdate>= from_date AND timesheets.timesheetdate<= to_date
     GROUP BY projects.id;
 END;
