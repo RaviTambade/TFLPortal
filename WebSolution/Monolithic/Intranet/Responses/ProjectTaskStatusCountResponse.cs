@@ -1,6 +1,6 @@
 namespace TFLPortal.Responses;
 
-public class TaskStatusCountResponse
+public class ProjectTaskStatusCountResponse
 {
     public int Todo { get; set; }
     public int InProgress { get; set; }

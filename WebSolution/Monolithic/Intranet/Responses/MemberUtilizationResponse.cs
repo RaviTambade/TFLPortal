@@ -1,6 +1,6 @@
 namespace TFLPortal.Responses;
 
-public class WorkTimeUtilizationResponse
+public class MemberUtilizationResponse
 {
     public double UserStory { get; set; }
     public double Task { get; set; }
