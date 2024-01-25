@@ -14,8 +14,8 @@ public interface ILeaveService
     Task<List<LeaveApplication>> GetTeamLeaveDetails(int projectId, string status);
    
     Task<LeaveApplication> GetLeaveApplication(int id);
-    Task<List<ConsumedLeaveDetailResponse>> GetAnnualLeavesCount(int employeeId,int year);
-    Task<List<ConsumedLeaveDetailResponse>> GetMonthlyLeaveCount(int employeeId,int month,int year);
+    Task<List<ConsumedLeaveResponse>> GetAnnualLeavesCount(int employeeId,int year);
+    Task<List<ConsumedLeaveResponse>> GetMonthlyLeaveCount(int employeeId,int month,int year);
 
     Task<LeavesCountResponse> GetAnnualAvailableLeaves(int employeeId, int roleId, int year);
     Task<LeavesCountResponse> GetAnnualConsumedLeaves(int employeeId, int roleId, int year);

@@ -18,56 +18,60 @@ public class ProjectAllocationController : ControllerBase
         _service = service;
     }
 
-    [HttpPost("projects/{projectId}/allocate/employee/{employeeId}")]
-    public async Task<bool> AssignEmployeeToProject(int projectId,int employeeId,ProjectAllocation project)
+    [HttpPost]
+    public async Task<bool> Assign(Member member)
     {
-        bool status= await _service.AssignEmployeeToProject(projectId,employeeId,project);
+        bool status= await _service.Assign(member);
         return status;
     }
 
-    [HttpGet("projects/{projectId}/employee/{employeeId}")]
-    public async Task<ProjectAllocation> GetProjectMemberDetails(int employeeId,int projectId)
+    [HttpPut]
+    public async Task<bool> Release(Member member)
     {
-        ProjectAllocation employee= await _service.GetProjectMemberDetails(employeeId,projectId);
-        return employee;
+        bool status= await _service.Release(member);
+        return status;
     }
 
-
-
+    [HttpGet("projects/{projectId}")]
+    public async Task<List<Member>> GetProjectMembers(int projectId)
+    {
+        List<Member> members= await _service.GetProjectMembers(projectId);
+        return members;
+    }
 
     [HttpGet("projects/release/employees")]
-    public async Task<List<Employee>> GetUnassignedEmployees()
+    public async Task<List<Employee>> GetEmployeesOnBench()
     {
-        List<Employee> projects= await _service.GetUnassignedEmployees();
+        List<Employee> projects= await _service.GetEmployeesOnBench();
         return projects;
     }
 
-    [HttpGet("projects/allocated/employees/{status}")]
-    public async Task<List<ProjectAllocation>> GetAllocatedEmployees(string status)
-    {
-        List<ProjectAllocation> employees = await _service.GetAllocatedEmployees(status);
-        return employees;
-    }
+    // [HttpGet("projects/allocated/employees/{status}")]
+    // public async Task<List<ProjectAllocation>> GetAllocatedEmployees(string status)
+    // {
+    //     List<ProjectAllocation> employees = await _service.GetAllocatedEmployees(status);
+    //     return employees;
+    // }
 
-    [HttpGet("projects/fromassigneddate/{fromAssignedDate}/toassigneddate/{toAssignedDate}")]
-    public async Task<List<ProjectAllocation>> GetAllProjectsBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate)
-    {
-        List<ProjectAllocation> projects = await _service.GetAllProjectsBetweenDates(fromAssignedDate,toAssignedDate);
-        return projects;
-    }
+    // [HttpGet("projects/fromassigneddate/{fromAssignedDate}/toassigneddate/{toAssignedDate}")]
+    // public async Task<List<ProjectAllocation>> GetAllProjectsBetweenDates(DateTime fromAssignedDate,DateTime toAssignedDate)
+    // {
+    //     List<ProjectAllocation> projects = await _service.GetAllProjectsBetweenDates(fromAssignedDate,toAssignedDate);
+    //     return projects;
+    // }
 
-    [HttpGet("projects/employees/{employeeId}/fromassigneddate/{fromAssignedDate}/toassigneddate/{toAssignedDate}")]
-    public async Task<List<ProjectAllocation>> GetProjectsOfEmployeeBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
-    {
-        List<ProjectAllocation> projects = await _service.GetProjectsOfEmployeeBetweenDates(employeeId,fromAssignedDate,toAssignedDate);
-        return projects;
-    }
+    // [HttpGet("projects/employees/{employeeId}/fromassigneddate/{fromAssignedDate}/toassigneddate/{toAssignedDate}")]
+    // public async Task<List<ProjectAllocation>> GetProjectsOfEmployeeBetweenDates(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
+    // {
+    //     List<ProjectAllocation> projects = await _service.GetProjectsOfEmployeeBetweenDates(employeeId,fromAssignedDate,toAssignedDate);
+    //     return projects;
+    // }
 
-    //Listing of All employees working on project project123  who are working or who left
-    [HttpGet("projects/{projectId}/status/{status}/employees")]
-    public async Task<List<ProjectAllocation>> GetEmployeesOfProject(int projectId,string status)
-    {
-        List<ProjectAllocation> employees = await _service.GetEmployeesOfProject(projectId,status);
-        return employees;
-    }
+    // //Listing of All employees working on project project123  who are working or who left
+    // [HttpGet("projects/{projectId}/status/{status}/employees")]
+    // public async Task<List<ProjectAllocation>> GetEmployeesOfProject(int projectId,string status)
+    // {
+    //     List<ProjectAllocation> employees = await _service.GetEmployeesOfProject(projectId,status);
+    //     return employees;
+    // }
 }

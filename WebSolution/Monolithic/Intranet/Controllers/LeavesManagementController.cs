@@ -90,7 +90,7 @@ public class LeavesManagementController : ControllerBase
 
     [HttpGet]
     [Route ("monthlyconsumedleaves/employees/{employeeId}/year/{year}")]
-    public async Task<List<ConsumedLeaveDetailResponse>> GetAnnualLeavesCount(int employeeId,int year)
+    public async Task<List<ConsumedLeaveResponse>> GetAnnualLeavesCount(int employeeId,int year)
     {
       return await _service.GetAnnualLeavesCount(employeeId,year);
     }
@@ -126,7 +126,7 @@ public class LeavesManagementController : ControllerBase
  
  
     [HttpGet("employees/{employeeId}/month/{month}/year/{year}")]
-    public async Task<List<ConsumedLeaveDetailResponse>> GetMonthlyLeaveCount(int employeeId,int month,int year)
+    public async Task<List<ConsumedLeaveResponse>> GetMonthlyLeaveCount(int employeeId,int month,int year)
     {
         return await _service.GetMonthlyLeaveCount(employeeId,month,year);   
     }

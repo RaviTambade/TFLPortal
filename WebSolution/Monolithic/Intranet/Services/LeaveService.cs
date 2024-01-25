@@ -109,9 +109,9 @@ public class LeaveService : ILeaveService
         return leaves;
     }
 
-    public async Task<List<ConsumedLeaveDetailResponse>> GetMonthlyLeaveCount(int employeeId,int month,int year)
+    public async Task<List<ConsumedLeaveResponse>> GetMonthlyLeaveCount(int employeeId,int month,int year)
     {
-        List<ConsumedLeaveDetailResponse> leaves = new List<ConsumedLeaveDetailResponse>();
+        List<ConsumedLeaveResponse> leaves = new List<ConsumedLeaveResponse>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -130,7 +130,7 @@ public class LeaveService : ILeaveService
                 string leaveType = reader["leavetype"].ToString();
                 int leaveCount = int.Parse(reader["leavecount"].ToString());
 
-                ConsumedLeaveDetailResponse leave = new ConsumedLeaveDetailResponse()
+                ConsumedLeaveResponse leave = new ConsumedLeaveResponse()
                 {
                     LeaveType = leaveType,
                     Count=leaveCount
@@ -481,9 +481,9 @@ public class LeaveService : ILeaveService
         return leaveApplications;
     }
 
-    public async Task<List<ConsumedLeaveDetailResponse>> GetAnnualLeavesCount(int employeeId, int year)
+    public async Task<List<ConsumedLeaveResponse>> GetAnnualLeavesCount(int employeeId, int year)
     {
-        List<ConsumedLeaveDetailResponse> leaves = new List<ConsumedLeaveDetailResponse>();
+        List<ConsumedLeaveResponse> leaves = new List<ConsumedLeaveResponse>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -502,7 +502,7 @@ public class LeaveService : ILeaveService
                 int consumedLeaves = int.Parse(reader["consumedleaves"].ToString());
                 int month = int.Parse(reader["month"].ToString());
 
-                ConsumedLeaveDetailResponse leave = new ConsumedLeaveDetailResponse()
+                ConsumedLeaveResponse leave = new ConsumedLeaveResponse()
                 {
                     LeaveType=leaveType,
                     Count = consumedLeaves,
