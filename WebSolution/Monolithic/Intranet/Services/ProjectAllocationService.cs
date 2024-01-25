@@ -128,7 +128,9 @@ public class ProjectAllocationService : IProjectAllocationService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query ="Select * from projectmembership inner join employees on projectmembership.employeeid=employees.id  where projectmembership.currentprojectworkingstatus=@status";
+            string query =@"Select * from projectmembership inner join employees 
+            on projectmembership.employeeid=employees.id 
+             where projectmembership.currentprojectworkingstatus=@status";
                 
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@status", status);

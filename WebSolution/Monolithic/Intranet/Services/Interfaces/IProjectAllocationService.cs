@@ -3,9 +3,9 @@ namespace TFLPortal.Services.Interfaces;
 
 public interface IProjectAllocationService {
 
-    Task<bool> AssignEmployeeToProject(int employeeId,int projectId,ProjectAllocation project);
+    Task<bool> AssignMemberToProject(int employeeId,int projectId,ProjectAllocation project);
 
-    Task<bool> ReleaseEmployeeFromProject(int projectId,int employeeId,ProjectAllocation project);
+    Task<bool> ReleaseMemberFromProject(int projectId,int employeeId,ProjectAllocation project);
 
     Task<List<Employee>> GetUnassignedEmployees();
 
