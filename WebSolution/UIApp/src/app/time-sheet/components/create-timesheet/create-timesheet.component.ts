@@ -40,10 +40,10 @@ export class CreateTimesheetComponent implements OnInit {
   getTimeSheetId() {
     if (this.employeeId && this.date)
       this.workmgmtSvc
-        .getTimeSheetId(this.employeeId, this.date)
+        .getTimeSheet(this.employeeId, this.date)
         .subscribe((res) => {
           console.log(res);
-          if ( res && res!= 0) {
+          if ( res && res.id!= 0) {
             this.router.navigate(['../details', res], {
               relativeTo: this.route,
             });

@@ -93,8 +93,8 @@ export class WorkmgmtService {
     return this.http.get<Sprint[]>(url);
   }
 
-  getTimesheetsByStatus(projectManagerId:number,status: string,fromDate:string,toDate:string): Observable<TimesheetView[]> {
-    let url = `${this.serviceurl}/workmgmt/timesheets/projectmanager/${projectManagerId}/status/${status}/from/${fromDate}/to/${toDate}`;
+  getTimesheetsByStatus(projectManagerId:number,fromDate:string,toDate:string): Observable<TimesheetView[]> {
+    let url = `${this.serviceurl}/workmgmt/timesheets/pendingapproval/from/${fromDate}/to/${toDate}/manager/${projectManagerId}`;
     return this.http.get<TimesheetView[]>(url);
   }
   getTimeSheet(employeeId: number, date: string): Observable<TimesheetView> {
@@ -103,10 +103,10 @@ export class WorkmgmtService {
   }
 
 
-  getTimeSheetId(employeeId: number, date: string): Observable<number> {
-    let url = `${this.serviceurl}/workmgmt/timesheets/timesheetid/employees/${employeeId}/date/${date}`;
-    return this.http.get<number>(url);
-  }
+  // getTimeSheetId(employeeId: number, date: string): Observable<number> {
+  //   let url = `${this.serviceurl}/workmgmt/timesheets/timesheetid/employees/${employeeId}/date/${date}`;
+  //   return this.http.get<number>(url);
+  // }
 
   getTimeSheetById(timesheetId: number): Observable<TimesheetView> {
     let url = `${this.serviceurl}/workmgmt/timesheets/${timesheetId}`;

@@ -18,9 +18,9 @@ export class TimesheetApprovalComponent {
   intervals: string[] = ['week', 'month'];
   selectedInterval: string = this.intervals[0];
   TimesheetStatus=TimeSheetStatus;
-  timesheetStatus: string[] = [ TimeSheetStatus.submitted, TimeSheetStatus.approved,TimeSheetStatus.rejected];
+  // timesheetStatus: string[] = [ TimeSheetStatus.submitted, TimeSheetStatus.approved,TimeSheetStatus.rejected];
 
-  selectedStatus: string = this.timesheetStatus[0];
+  // selectedStatus: string = this.timesheetStatus[0];
 
   constructor(private workmgmtSvc: WorkmgmtService) {}
 
@@ -45,7 +45,7 @@ export class TimesheetApprovalComponent {
     }
     if (this.fromDate && this.toDate) {
       this.workmgmtSvc
-        .getTimesheetsByStatus(this.projectManagerId,this.selectedStatus, this.fromDate, this.toDate)
+        .getTimesheetsByStatus(this.projectManagerId, this.fromDate, this.toDate)
         .subscribe((res) => {
           this.timeSheets = res;
         });
