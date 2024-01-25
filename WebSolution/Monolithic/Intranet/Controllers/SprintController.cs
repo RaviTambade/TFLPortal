@@ -11,12 +11,9 @@ namespace Intranet.Controllers;
 public class SprintController : ControllerBase
 {
     private readonly ISprintService _sprintService;
-     private readonly ExternalApiService _apiService;
-
-    public SprintController(ISprintService service,ExternalApiService apiService)
+    public SprintController(ISprintService service)
     {
         _sprintService = service;
-        _apiService=apiService;
     }
 
     [HttpGet("projects/{projectId}")]
@@ -35,7 +32,7 @@ public class SprintController : ControllerBase
  [HttpGet("project/employeeWork/{sprintId}")]
 public async Task<List<ProjectTask>> GetSprintWorks(int sprintId)
 {
-    List<ProjectTask> tasks = await _sprintService.GetSprintWorks(sprintId);
+    List<ProjectTask> tasks = await _sprintService.GetSprintTasks(sprintId);
     return tasks;
 }
 
