@@ -30,25 +30,25 @@ export class WorkmgmtService {
   // http://localhost:5263/api/workmgmt/activities/1
 
   addActivity(addactivity: EmployeeWork): Observable<boolean> {
-    let url = this.serviceurl + '/workmgmt/employeeWork';
+    let url = this.serviceurl + '/workmgmt/employeeworks';
     console.log('service called');
     return this.http.post<boolean>(url, addactivity);
   }
 
   fetchEmployeeWorkByProject(projectId: number): Observable<EmployeeWorkDetails[]> {
-    let url = this.serviceurl + '/workmgmt/employeeWork/selectedProject/' + projectId;
+    let url = this.serviceurl + '/workmgmt/employeeworks/selectedProject/' + projectId;
     console.log(url);
     return this.http.get<EmployeeWorkDetails[]>(url);
   }
 
 
   fetchTodaysEmployeeWork(projectId: number,date:string): Observable<EmployeeWork[]> {
-    let url = this.serviceurl + '/workmgmt/employeeWork/project/' + projectId+'/date/'+date;
+    let url = this.serviceurl + '/workmgmt/employeeworks/project/' + projectId+'/date/'+date;
     console.log(url);
     return this.http.get<EmployeeWork[]>(url);
   }
   fetchAllEmployeeWorkOfEmployee(assignedTo: number): Observable<EmployeeWork[]> {
-    let url = this.serviceurl + '/workmgmt/employeeWork/employees/' + assignedTo;
+    let url = this.serviceurl + '/workmgmt/employeeworks/employees/' + assignedTo;
     console.log(url);
     return this.http.get<EmployeeWork[]>(url);
   }
@@ -57,14 +57,14 @@ export class WorkmgmtService {
   // http://localhost:5263/api/workmgmt/activities/activity/todo/4/15
 
   getAllNotStartedEmployeeWork(projectId: number, employeeId: number): Observable<EmployeeWork[]> {
-    let url = this.serviceurl + '/workmgmt/employeeWork/activity/todo/' + projectId + '/' + employeeId;
+    let url = this.serviceurl + '/workmgmt/employeeworks/activity/todo/' + projectId + '/' + employeeId;
     return this.http.get<EmployeeWork[]>(url);
   }
 
   // http://localhost:5263/api/workmgmt/activities/Update/1/4/15
 
   updateEmployeeWork(activityId: number,status: string): Observable<boolean> {
-    let url = this.serviceurl +'/workmgmt/employeeWork/project/'+ activityId+'/status/'+status ;
+    let url = this.serviceurl +'/workmgmt/employeeworks/project/'+ activityId+'/status/'+status ;
     return this.http.put<boolean>(url, status);
 
     // let url = this.serviceurl +'/workmgmt/activities/Update/' +status +'/' + activityId;
@@ -73,12 +73,12 @@ export class WorkmgmtService {
   }
 
   getEmployeeWorkByProjectAndStatus(employeeId:number,projectId:number,status:string):Observable<EmployeeWork[]>{
-    let url=`${this.serviceurl}/workmgmt/employeeWork/projects/${projectId}/employees/${employeeId}/status/${status}`;
+    let url=`${this.serviceurl}/workmgmt/employeeworks/projects/${projectId}/employees/${employeeId}/status/${status}`;
     return this.http.get<EmployeeWork[]>(url);
   }
 
   getEmployeeWorkBySprintAndStatus(sprintId:number,employeeId:number,status:string):Observable<EmployeeWork[]>{
-    let url=`${this.serviceurl}/workmgmt/employeeWork/sprints/${sprintId}/employees/${employeeId}/status/${status}`;
+    let url=`${this.serviceurl}/workmgmt/employeeworks/sprints/${sprintId}/employees/${employeeId}/status/${status}`;
     return this.http.get<EmployeeWork[]>(url);
   }
 
@@ -132,7 +132,7 @@ export class WorkmgmtService {
     return this.http.get<ProjectWorkHour[]>(url);
   }
   getAllEmployeeWork(projectId:number,employeeId:number){
-  let url =this.serviceurl +'/workmgmt/employeeWork/projects/'+projectId+'/employees/'+employeeId;
+  let url =this.serviceurl +'/workmgmt/employeeworks/projects/'+projectId+'/employees/'+employeeId;
     return this.http.get<any>(url);
   }
 
@@ -168,7 +168,7 @@ export class WorkmgmtService {
   }
 
   getAllEmployeeWorkCount(): Observable<any> {
-    let url =this.serviceurl +'/workmgmt/employeeWork/ActivitySp';
+    let url =this.serviceurl +'/workmgmt/employeeworks/ActivitySp';
     return this.http.get<any>(url);
   }
 

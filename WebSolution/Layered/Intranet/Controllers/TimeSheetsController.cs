@@ -28,10 +28,10 @@ public class TimesheetsController : ControllerBase
 
     [HttpGet("timesheetid/employees/{employeeId}/date/{date}")]
     // return timesheet
-    public async Task<Timesheet> GetTimesheet(int employeeId, DateOnly date)
+    public async Task<int> GetTimesheet(int employeeId, DateOnly date)
     {
-        // return await _timesheetService.GetTimesheetId(employeeId, date);
-        return new Timesheet();
+        return await _timesheetService.GetTimesheetId(employeeId, date);
+        // return new Timesheet();
     }
 
     [HttpGet("{timesheetId}")]
