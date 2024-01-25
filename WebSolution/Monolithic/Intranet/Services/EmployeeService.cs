@@ -36,9 +36,12 @@ public class HRService : IHRService
                     employee = new Employee
                     {
                         EmployeeId = reader.GetInt32("id"),
+
                         UserId = reader.GetInt32("userid"),
+
+                        // UserId = reader.GetInt32("userid"),
                         HireDate = reader.GetDateTime("hiredate"),
-                        ReportingId = reader.GetInt32("reportingid"),
+                        // ReportingId = reader.GetInt32("reportingid"),
                     };
                 }
                 await reader.CloseAsync();
@@ -71,9 +74,13 @@ public class HRService : IHRService
                     Employee employee = new Employee
                     {
                         EmployeeId = reader.GetInt32("id"),
+<<<<<<< HEAD
                         UserId = reader.GetInt32("userid"),
+=======
+                        // UserId = reader.GetInt32("userid"),
+>>>>>>> 5c34d6f17cf9f8a8babcefd1f6a63bbcefb2527e
                         HireDate = reader.GetDateTime("hiredate"),
-                        ReportingId = reader.GetInt32("reportingid"),
+                        // ReportingId = reader.GetInt32("reportingid"),
                     };
                     employees.Add(employee);
                 }
@@ -107,9 +114,13 @@ public class HRService : IHRService
                     employee = new Employee
                     {
                         EmployeeId = reader.GetInt32("id"),
+<<<<<<< HEAD
                         UserId = reader.GetInt32("userid"),
+=======
+                        // UserId = reader.GetInt32("userid"),
+>>>>>>> 5c34d6f17cf9f8a8babcefd1f6a63bbcefb2527e
                         HireDate = reader.GetDateTime("hiredate"),
-                        ReportingId = reader.GetInt32("reportingid"),
+                        // ReportingId = reader.GetInt32("reportingid"),
                     };
                 }
                 await reader.CloseAsync();
