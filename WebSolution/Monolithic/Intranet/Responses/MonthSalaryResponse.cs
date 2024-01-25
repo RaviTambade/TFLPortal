@@ -2,6 +2,8 @@ namespace TFLPortal.Responses;
 
 public class MonthSalaryResponse
 {
+    public int EmployeeID{get;set;}
+    public int Month{get;set;}
     public double TotalAmount { get; set; }
     public double MonthlyBasicsalary { get; set; }
     public double HRA { get; set; }
