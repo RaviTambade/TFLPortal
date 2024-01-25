@@ -7,5 +7,5 @@ public interface ISprintService
 {
     Task<List<Sprint>> GetSprints(int projectId);
     Task<Sprint> GetCurrentSprint(int projectId,DateOnly date);
-    Task<List<ProjectTask>> GetSprintWorks(int sprintId);
+    Task<List<ProjectTask>> GetSprintTasks(int sprintId);
 }   
