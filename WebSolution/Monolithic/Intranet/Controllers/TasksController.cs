@@ -128,5 +128,13 @@ public class TasksController : ControllerBase
         return tasks;
     }
 
+
+    [HttpDelete]
+    public async Task<bool> Delete(int taskId)
+    {
+        bool  status = await _service.Delete(taskId);
+        return status;
+    }
+
    
 }
