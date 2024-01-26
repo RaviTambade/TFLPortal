@@ -141,4 +141,74 @@ public class SprintService : ISprintService
         }
         return tasks;
     }
+
+
+    public async Task<bool> InsertSprint(Sprint theSprint){
+
+        bool status=false;
+        MySqlConnection connection =new MySqlConnection();
+        connection.ConnectionString=_connectionString;
+
+        try{
+
+            string query ="Insert into sprints(title,goal,startdate,enddate,projectid) values (@title,@goal,@startdate,@enddate,@projectId)";
+            MySqlCommand command = new MySqlCommand(query,connection);
+
+            command.Parameters.AddWithValue("@title",theSprint.Title);
+            command.Parameters.AddWithValue("@goal",theSprint.Goal);
+            command.Parameters.AddWithValue("@startdate",theSprint.StartDate);
+            command.Parameters.AddWithValue("@enddate",theSprint.EndDate);
+            command.Parameters.AddWithValue("@projectId",theSprint.ProjectId);
+            connection.OpenAsync();
+            int rowsAffected= await command.ExecuteNonQueryAsync();
+
+            if(rowsAffected>0){
+                status=true;
+            }
+
+            
+        }
+        catch(Exception ee){
+            throw ee;
+        }
+        finally{
+
+           await connection.CloseAsync();
+        }
+       
+
+       return status;
+
+    }
+
+
+    public async Task<bool> Delete(int sprintId){
+
+        bool status=false;
+        MySqlConnection connection =new MySqlConnection();
+        connection.ConnectionString=_connectionString;
+
+        try{
+
+            string query ="delete from sprints where id = @sprintId ";
+            MySqlCommand command = new MySqlCommand(query,connection);
+            command.Parameters.AddWithValue("@sprintId",sprintId);
+            connection.OpenAsync();
+            int rowsAffected= await command.ExecuteNonQueryAsync();
+
+            if(rowsAffected>0){
+                status=true;
+            }
+         }
+        catch(Exception ee){
+            throw ee;
+        }
+        finally{
+
+           await connection.CloseAsync();
+        }
+       
+    return status;
+
+    }
 }

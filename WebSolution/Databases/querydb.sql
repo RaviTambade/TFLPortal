@@ -6,16 +6,16 @@ INNER join employees on  projects.managerid=employees.id
 WHERE projects.managerid=7 and projectmembership.currentprojectworkingstatus='yes';
 SELECT sprintmaster.* FROM sprintmaster where projectid=4;
 
-SELECT id, projectid FROM employeework  ORDER BY id;
+SELECT id, projectid FROM tasks  ORDER BY id;
 where assignedto=15 AND assigneddate='2023-12-14';
 SELECT timesheets.id as timesheetid,timesheets.status,timesheets.statuschangeddate,timesheetdetails.id as timesheetdetailid,
-timesheetdetails.employeeworkid,timesheetdetails.fromtime,timesheetdetails.totime,employeework.projectid,projects.title,employeework.projectworktype,employeework.title,
+timesheetdetails.employeeworkid,timesheetdetails.fromtime,timesheetdetails.totime,tasks.projectid,projects.title,tasks.tasktype,tasks.title,
 employees.userid
 FROM timesheets  
 LEFT JOIN  timesheetdetails ON  timesheets.id= timesheetdetails.timesheetid
 INNER JOIN employees ON timesheets.employeeid =employees.id
-INNER JOIN employeework ON timesheetdetails.employeeworkid=employeework.id
-INNER JOIN projects ON employeework.projectid=projects.id
+INNER JOIN tasks ON timesheetdetails.employeeworkid=tasks.id
+INNER JOIN projects ON tasks.projectid=projects.id
 WHERE timesheets.timesheetdate = '2023-12-04' AND timesheets.employeeId = 10;
 
 -- activitywise time spent of month 
@@ -46,13 +46,13 @@ SELECT timesheetdate,status,
 
 -- employee woeking days in month 
                 SELECT timesheets.id as timesheetid,timesheets.status,timesheets.statuschangeddate,timesheetdetails.id as timesheetdetailid,
-                timesheetdetails.employeeworkid,timesheetdetails.fromtime,timesheetdetails.totime,employeework.projectid,projects.title as projectname,
-                employeework.projectworktype as worktype,employeework.title as worktitle,employees.userid
+                timesheetdetails.employeeworkid,timesheetdetails.fromtime,timesheetdetails.totime,tasks.projectid,projects.title as projectname,
+                tasks.tasktype as worktype,tasks.title as worktitle,employees.userid
                 FROM timesheets  
                 LEFT JOIN  timesheetdetails ON  timesheets.id= timesheetdetails.timesheetid
                 LEFT JOIN employees ON timesheets.employeeid =employees.id
-                LEFT JOIN employeework ON timesheetdetails.employeeworkid=employeework.id
-                LEFT JOIN projects ON employeework.projectid=projects.id
+                LEFT JOIN tasks ON timesheetdetails.employeeworkid=tasks.id
+                LEFT JOIN projects ON tasks.projectid=projects.id
                 WHERE timesheets.timesheetdate = '2023-12-19' AND timesheets.employeeId = 10;
 
 SELECT COUNT(*) AS WorkingDays FROM timesheets WHERE employeeid=10 AND status='approved' AND MONTH(timesheetdate)=12;
@@ -257,11 +257,11 @@ WHERE employeeId = 12 AND status = "sanctioned" AND YEAR(fromdate) = 2023 GROUP 
 select * from employees;
 select * from projects;
 
-SELECT * from employeework;
+SELECT * from tasks;
 
 -- this query gives us employees of project
-select DISTINCT(employees.userid) from employees INNER JOIN employeework ON employees.id=employeework.assignedto
- INNER JOIN projects ON employeework.projectid=projects.id WHERE projects.id =4;
+select DISTINCT(employees.userid) from employees INNER JOIN tasks ON employees.id=tasks.assignedto
+ INNER JOIN projects ON tasks.projectid=projects.id WHERE projects.id =4;
 
 Show tables;
 
@@ -269,25 +269,25 @@ SELECT * from sprintmaster;
 
 SELECT * from projects where managerid =8;
 
-SELECT * from employeework where projectid =4;
+SELECT * from tasks where projectid =4;
 
 SELECT * from projectmembership where projectid=4 and employeeid=10;
 
 
 SELECT DISTINCT(employees.userid) from employees INNER JOIN  projectmembership on employees.id = projectmembership.employeeid where projectmembership.projectid=4;
 
-select * from employeework;
+select * from tasks;
 SELECT * from sprintmaster;
 
 
--- this query gives employeework of particular sprint
-SELECT * from employeework where sprintid in (SELECT id from sprintmaster where id=3);
+-- this query gives tasks of particular sprint
+SELECT * from tasks where sprintid in (SELECT id from sprintmaster where id=3);
 
 SELECT * from employees;
 
-select employeework.* , employees.userid  from employeework 
-INNER join sprintmaster on employeework.sprintid=sprintmaster.id
-INNER join employees ON employeework.assignedto=employees.id
+select tasks.* , employees.userid  from tasks 
+INNER join sprintmaster on tasks.sprintid=sprintmaster.id
+INNER join employees ON tasks.assignedto=employees.id
 WHERE sprintmaster.id=2;
 
 select * from salaries;

@@ -36,4 +36,19 @@ public async Task<List<ProjectTask>> GetSprintWorks(int sprintId)
     return tasks;
 }
 
+
+
+ [HttpPost]
+public async Task<bool> InsertSprint(Sprint theSprint)
+{
+    bool status = await _sprintService.InsertSprint(theSprint);
+    return status;
+}
+
+ [HttpDelete]
+public async Task<bool> Delete(int sprintId)
+{
+    bool status = await _sprintService.Delete(sprintId);
+    return status;
+}
 }
