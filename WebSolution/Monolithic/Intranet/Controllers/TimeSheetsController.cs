@@ -33,10 +33,14 @@ public class TimesheetsController : ControllerBase
     }
 
     [HttpGet("{timesheetId}")]
-    public async Task<Timesheet> GetTimesheet(int timesheetId)
+    public async Task<IActionResult> GetTimesheet(int timesheetId)
     {
         Timesheet timesheet = await _timesheetService.GetTimesheet(timesheetId);
-        return timesheet;
+        if (timesheet is null)
+        {
+            return NotFound();
+        }
+        return Ok(timesheet);
     }
 
     [HttpGet("pendingapproval/from/{fromDate}/to/{toDate}/manager/{projectManagerId}")]
@@ -46,89 +50,99 @@ public class TimesheetsController : ControllerBase
         DateOnly toDate
     )
     {
-        List<Timesheet> timesheets =
-            await _timesheetService.GetTimeSheetsForApproval(
-                projectManagerId,
-                fromDate,
-                toDate
-            );
+        List<Timesheet> timesheets = await _timesheetService.GetTimeSheetsForApproval(
+            projectManagerId,
+            fromDate,
+            toDate
+        );
         return timesheets;
     }
 
-        [HttpGet("timesheetdetails/{timesheetDetailId}")]
-        public async Task<TimesheetEntry> GetTimesheetDetail(int timesheetDetailId)
+    [HttpGet("{timesheetId}/timesheetentries")]
+    public async Task<List<TimesheetEntry>> GetTimesheetEntries(int timesheetId)
+    {
+        return await _timesheetService.GetTimesheetEntries(timesheetId);
+    }
+
+    [HttpGet("timesheetentries/{timesheetEntryId}")]
+    public async Task<IActionResult> GetTimesheetEntry(int timesheetEntryId)
+    {
+        TimesheetEntry entry = await _timesheetService.GetTimesheetEntry(timesheetEntryId);
+        if (entry is null)
         {
-            return await _timesheetService.GetTimesheetDetail(timesheetDetailId);
+            return NotFound();
         }
+        return Ok(entry);
+    }
 
+    [HttpGet(
+        "memberutilization/employees/{employeeId}/interval/{intervalType}/projects/{projectId}"
+    )]
+    public async Task<List<MemberUtilizationResponse>> GetActivityWiseHours(
+        int employeeId,
+        string intervalType,
+        int projectId
+    )
+    {
+        return await _timesheetService.GetActivityWiseHours(employeeId, intervalType, projectId);
+    }
 
+    [HttpGet("projects/workinghours/employees/{employeeId}/from/{fromDate}/to/{toDate}")]
+    public async Task<List<ProjectWorkHoursResponse>> GetProjectWiseTimeSpentByEmployee(
+        int employeeId,
+        DateOnly fromDate,
+        DateOnly toDate
+    )
+    {
+        return await _timesheetService.GetProjectWiseTimeSpentByEmployee(
+            employeeId,
+            fromDate,
+            toDate
+        );
+    }
 
-        [HttpGet("employees/{employeeId}/workduration/{intervalType}/projects/{projectId}")]
-        public async Task<List<MemberUtilizationResponse>> GetActivityWiseHours(
-            int employeeId,
-            string intervalType,
-            int projectId
-        )
-        {
-            return await _timesheetService.GetActivityWiseHours(employeeId, intervalType, projectId);
-        }
+    [HttpGet("workingdays/employees/{employeeId}/years/{year}/months/{month}")]
+    public async Task<int> GetEmployeeWorkingDaysInMonth(int employeeId, int year, int month)
+    {
+        return await _timesheetService.GetEmployeeWorkingDaysInMonth(employeeId, year, month);
+    }
 
-        [HttpGet("projects/workinghours/employees/{employeeId}/from/{fromDate}/to/{toDate}")]
-        public async Task<List<ProjectWorkHoursResponse>> GetProjectWiseTimeSpentByEmployee(
-            int employeeId,
-            DateOnly fromDate,
-            DateOnly toDate
-        )
-        {
-            return await _timesheetService.GetProjectWiseTimeSpentByEmployee(
-                employeeId,
-                fromDate,
-                toDate
-            );
-        }
+    [HttpPost]
+    public async Task<bool> AddTimesheet(Timesheet timesheet)
+    {
+        return await _timesheetService.AddTimesheet(timesheet);
+    }
 
-        [HttpGet("workingdays/employees/{employeeId}/years/{year}/months/{month}")]
-        public async Task<int> GetEmployeeWorkingDaysInMonth(int employeeId, int year, int month)
-        {
-            return await _timesheetService.GetEmployeeWorkingDaysInMonth(employeeId, year, month);
-        }
+    [HttpPost("timesheetentries")]
+    public async Task<bool> AddTimesheetEntry([FromBody] TimesheetEntry timesheetEntry)
+    {
+        return await _timesheetService.AddTimesheetEntry(timesheetEntry);
+    }
 
-        [HttpPost]
-        public async Task<bool > AddTimesheet(Timesheet timesheet)
-        {
-            return await _timesheetService.AddTimesheet(timesheet);
-        }
+    [HttpPut("{timesheetId}")]
+    public async Task<bool> ChangeTimesheetStatus(int timesheetId, Timesheet timesheet)
+    {
+        return await _timesheetService.ChangeTimesheetStatus(timesheetId, timesheet);
+    }
 
-        [HttpPost("timesheetdetails")]
-        public async Task<bool> AddTimesheetDetail([FromBody] TimesheetEntry timesheetEntry)
-        {
-            return await _timesheetService.AddTimesheetDetail(timesheetEntry);
-        }
+    [HttpPut("timesheetentries/{timesheetEntryId}")]
+    public async Task<bool> UpdateTimesheetEntry(
+        int timesheetEntryId,
+        TimesheetEntry timesheetEntry
+    )
+    {
+        return await _timesheetService.UpdateTimesheetEntry(timesheetEntryId, timesheetEntry);
+    }
 
-        [HttpPut("{timesheetId}")]
-        public async Task<bool> ChangeTimesheetStatus(int timesheetId, Timesheet timesheet)
-        {
-            return await _timesheetService.ChangeTimesheetStatus(timesheetId, timesheet);
-        }
+    [HttpDelete("timesheetentries/{timesheetEntryId}")]
+    public async Task<bool> RemoveTimesheetEntry(int timesheetEntryId)
+    {
+        return await _timesheetService.RemoveTimesheetEntry(timesheetEntryId);
+    }
 
-        [HttpPut("timesheetdetails/{timesheetDetailId}")]
-        public async Task<bool> UpdateTimesheetDetail(
-            int timesheetDetailId,
-            TimesheetEntry timesheetEntry
-        )
-        {
-            return await _timesheetService.UpdateTimesheetDetail(timesheetDetailId, timesheetEntry);
-        }
-
-        [HttpDelete("timesheetdetails/remove/{timesheetDetailId}")]
-        public async Task<bool> RemoveTimesheetDetail(int timesheetDetailId)
-        {
-            return await _timesheetService.RemoveTimesheetDetail(timesheetDetailId);
-        }
-
-        [HttpDelete("timesheetdetails/removeall/{timesheetId}")]
-        public async Task<bool> RemoveAllTimesheetDetails(int timesheetId)
-        {
-            return await _timesheetService.RemoveAllTimesheetDetails(timesheetId);
-        }
+    [HttpDelete("{timesheetId}/timesheetentries/removeall")]
+    public async Task<bool> RemoveAllTimesheetEntries(int timesheetId)
+    {
+        return await _timesheetService.RemoveAllTimesheetEntries(timesheetId);
+    }
 }

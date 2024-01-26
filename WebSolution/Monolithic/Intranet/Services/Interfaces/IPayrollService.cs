@@ -11,6 +11,6 @@ public interface IPayrollService
     Task<MonthSalaryResponse> GetSalary(int employeeId,int month,int year);
     Task<List<int>> GetUnPaidSalaries(int month,int year);
     Task<bool> AddSalaryStructure(SalaryStructure salary); 
-    Task<bool> AddSalary(SalarySlip salarySlip);
+    Task<bool> AddSalarySlip(SalarySlip salarySlip);
 
 }   

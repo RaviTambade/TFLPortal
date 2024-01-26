@@ -1,158 +1,105 @@
 -- Active: 1694968636816@@127.0.0.1@3306@tflportal
 
-SELECT projectmembership.* from projectmembership 
-INNER JOIN projects on projectmembership.projectid=projects.id
-INNER join employees on  projects.managerid=employees.id
-WHERE projects.managerid=7 and projectmembership.currentprojectworkingstatus='yes';
+select * from leaveapplications;
+
+select * from leavesallocated;
+
+-- get monthly leave count of employee by leavetype
+SELECT leavetype,coalesce(sum(datediff(todate,fromdate)+1),0) as leavecount From leaveapplications
+WHERE employeeid = 10 AND MONTH(fromdate)=4 AND YEAR(fromdate)=@year AND status="sanctioned" group by leavetype;
+
+-- get leaves of employee;
+select * from leaveapplications where employeeid =1;
+
+-- get all appliedleaves of employee
+select * from leaveapplications where employeeid =1 and status="applied";
+
+-- get leave of particular date.
+select * from leaveapplications where status="sanctioned" and fromdate<="2024-01-26" and todate>="2024-04-26";
+
+-- get leavesallocated of particular role
+select * from leavesallocated where id =1;
+
+-- get leaveapplication details
+select * from leaveapplications where id=1;
+
+-- get sanctioned leaves
+select * from leaveapplications where status="sanctioned";
+
+-- get leaveapplication details of employees of particular project
+select projectmembers.employeeid,leaveapplications.status,leaveapplications.leavetype,
+                leaveapplications.createdon,leaveapplications.fromdate,leaveapplications.todate from projects
+                inner join projectmembers on projects.id=projectmembers.projectid
+                inner join leaveapplications on leaveapplications.employeeid=projectmembers.employeeid 
+                inner join employees on leaveapplications.employeeid=employees.id where projects.id=1 
+                and leaveapplications.status="sanctioned";
+
+
+-- get employee leaveapplication of particular month
+SELECT leavetype,COALESCE(SUM(DATEDIFF(todate, fromdate) + 1), 0) AS consumedleaves,MONTH(fromdate) AS month FROM leaveapplications
+ WHERE employeeId = 10 AND status = "sanctioned" AND YEAR(fromdate) = 2024 GROUP BY leavetype,MONTH(fromdate);
+
+
+-- get leaves allocated of role
+select sick,casual,paid,unpaid from leavesallocated where roleid=2 and financialyear=2024;
+
+-- get consumed leaves of employee
+call getConsumedLeavesOfEmployee(12,4,2023,@SickLeaves,@Casualleaves,@PaidLeaves,@UnpaidLeaves);
+
+-- get available leaves of employee
+call getAvailableLeavesOfEmployee(12,4,2023,@SickLeaves,@Casualleaves,@PaidLeaves,@UnpaidLeaves);
+
+
+
+
+-- get timesheets of employee between dates
+SELECT timesheets.* , COALESCE(SUM(timesheetentries.durationinhours),0) AS time_in_hour from timesheets
+LEFT JOIN timesheetentries on timesheetentries.timesheetid=timesheets.id
+WHERE  createdby =10  AND createdon BETWEEN '2024-01-01' AND '2024-01-09' 
+GROUP BY createdon;
+
+-- get timesheets for approval
+SELECT timesheets.* ,SUM(timesheetentries.durationinhours) AS time_in_hour  FROM timesheets
+INNER JOIN timesheetentries on timesheetentries.timesheetid=timesheets.id
+INNER JOIN employees ON timesheets.createdby =employees.id
+WHERE  status ="submitted" AND  createdon BETWEEN '2024-01-01' AND '2024-01-13' AND  timesheets.createdby IN (
+SELECT projectmembers.employeeid from projectmembers
+INNER JOIN projects on projectmembers.projectid=projects.id
+WHERE projects.managerid=7 AND projectmembers.status='yes'
+)GROUP BY createdon;
+
+
+-- get timesheet of employee by date
+SELECT *, COALESCE(SUM(timesheetentries.durationinhours),0) AS time_in_hour
+FROM timesheets
+LEFT JOIN timesheetentries on timesheetentries.timesheetid=timesheets.id    
+WHERE timesheets.createdon = '2024-01-12' AND timesheets.createdby = 10;
+
+-- get timesheet of employee by timesheetId
+SELECT timesheets.*, COALESCE(SUM(timesheetentries.durationinhours),0) AS time_in_hour
+FROM timesheets
+INNER JOIN timesheetentries on timesheetentries.timesheetid=timesheets.id    
+WHERE timesheets.id = 5;
+
+-- get timesheet entries of a timesheet
+SELECT * FROM timesheetentries
+WHERE timesheetentries.timesheetid=4;
+
+-- get timesheet entry by Id
+SELECT * FROM timesheetentries WHERE timesheetentries.id=22;
+
+-- get working days of employee of a month
+SELECT COUNT(*) AS WorkingDays FROM timesheets WHERE createdby=10
+AND status='approved' AND MONTH(createdon)=1 AND YEAR(createdon)=2024;
+
+
+
 SELECT sprintmaster.* FROM sprintmaster where projectid=4;
 
 SELECT id, projectid FROM tasks  ORDER BY id;
 where assignedto=15 AND assigneddate='2023-12-14';
-SELECT timesheets.id as timesheetid,timesheets.status,timesheets.statuschangeddate,timesheetdetails.id as timesheetdetailid,
-timesheetdetails.employeeworkid,timesheetdetails.fromtime,timesheetdetails.totime,tasks.projectid,projects.title,tasks.tasktype,tasks.title,
-employees.userid
-FROM timesheets  
-LEFT JOIN  timesheetdetails ON  timesheets.id= timesheetdetails.timesheetid
-INNER JOIN employees ON timesheets.employeeid =employees.id
-INNER JOIN tasks ON timesheetdetails.employeeworkid=tasks.id
-INNER JOIN projects ON tasks.projectid=projects.id
-WHERE timesheets.timesheetdate = '2023-12-04' AND timesheets.employeeId = 10;
-
--- activitywise time spent of month 
-SELECT  COUNT(*), MONTHNAME(timesheets.timesheetdate), CAST(((SUM(TIME_TO_SEC(TIMEDIFF(totime,fromtime))))/3600)AS DECIMAL(10,2)) as time_in_hour,workcategory  from timesheetentries   
-INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
-WHERE timesheets.employeeid=10  AND MONTHNAME(timesheets.timesheetdate)='November' AND YEAR(timesheets.timesheetdate)='2023'
-GROUP BY timesheetentries.workcategory ;
-
-
---  activitywise time spent between two dates (can be week , or custom range or single day)
-SELECT  COUNT(*), CAST(((SUM(TIME_TO_SEC(TIMEDIFF(totime,fromtime))))/3600)AS DECIMAL(10,2)) as time_in_hour,workcategory  from timesheetentries   
-INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
-WHERE timesheets.employeeid=10  AND timesheets.timesheetdate>='2023-12-04' and  timesheets.timesheetdate<='2023-12-04'
-GROUP BY timesheetentries.workcategory ;
-
--- activitywise time spent YEAR
-SELECT  COUNT(*), YEAR(timesheets.timesheetdate), CAST(((SUM(TIME_TO_SEC(TIMEDIFF(totime,fromtime))))/3600)AS DECIMAL(10,2)) as time_in_hour,workcategory  from timesheetentries   
-INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
-WHERE timesheets.employeeid=10  AND YEAR(timesheets.timesheetdate)='2023'
-GROUP BY timesheetentries.workcategory ;
-
-SELECT * FROM sprintmaster;
-
-SELECT timesheetdate,status,
- CAST(((SUM(TIME_TO_SEC(TIMEDIFF(totime,fromtime))))/3600)AS DECIMAL(10,2)) as time_in_hour
- FROM timesheets INNER JOIN timesheetdetails on timesheets.id=timesheetdetails.timesheetid
- GROUP BY timesheetdate;
-
--- employee woeking days in month 
-                SELECT timesheets.id as timesheetid,timesheets.status,timesheets.statuschangeddate,timesheetdetails.id as timesheetdetailid,
-                timesheetdetails.employeeworkid,timesheetdetails.fromtime,timesheetdetails.totime,tasks.projectid,projects.title as projectname,
-                tasks.tasktype as worktype,tasks.title as worktitle,employees.userid
-                FROM timesheets  
-                LEFT JOIN  timesheetdetails ON  timesheets.id= timesheetdetails.timesheetid
-                LEFT JOIN employees ON timesheets.employeeid =employees.id
-                LEFT JOIN tasks ON timesheetdetails.employeeworkid=tasks.id
-                LEFT JOIN projects ON tasks.projectid=projects.id
-                WHERE timesheets.timesheetdate = '2023-12-19' AND timesheets.employeeId = 10;
 
 SELECT COUNT(*) AS WorkingDays FROM timesheets WHERE employeeid=10 AND status='approved' AND MONTH(timesheetdate)=12;
-
--- Get overall time spent between dates by specific employee
-SELECT
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="userstory" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as userstory,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="task" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as task,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="bug" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as bug,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="issues" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as issues,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="meeting" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as meeting,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="learning" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as learning,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="mentoring" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as mentoring,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="break" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as break,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="clientcall" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as clientcall,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="other" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as other
-from timesheetentries   
-INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
-WHERE timesheets.employeeid=10  AND timesheets.timesheetdate>='2023-12-04' and  timesheets.timesheetdate<='2023-12-04';
-
--- Get overall time spent between dates by all  employees
-SELECT  COUNT(*),  YEAR(timesheets.timesheetdate),
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="userstory" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as userstory,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="task" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as task,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="bug" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as bug,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="issues" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as issues,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="meeting" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as meeting,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="learning" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as learning,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="mentoring" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as mentoring,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="break" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as break,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="clientcall" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as clientcall,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="other" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as other
-from timesheetentries   
-INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
-WHERE  timesheets.timesheetdate>='2023-12-04' and  timesheets.timesheetdate<='2023-12-04';
-
-
-SELECT datediff(
-
-)
-
-COALESCE
--- get months data of year by acticitytype
-SELECT MONTHNAME(timesheets.timesheetdate),
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="userstory" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as userstory,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="task" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as task,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="bug" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as bug,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="issues" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as issues,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="meeting" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as meeting,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="learning" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as learning,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="mentoring" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as mentoring,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="break" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as break,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="clientcall" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as clientcall,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="other" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as other
-FROM timesheetentries
-INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
-WHERE YEAR(timesheets.timesheetdate)=YEAR(CURDATE())
-GROUP BY MONTH(timesheets.timesheetdate);
-
-
--- get weeks data of month by acticitytype
-SELECT
-DATE_ADD(timesheets.timesheetdate, INTERVAL(1-DAYOFWEEK(timesheets.timesheetdate)) DAY) as start_of_week,
-DATE_ADD(timesheets.timesheetdate, INTERVAL(7-DAYOFWEEK(timesheets.timesheetdate)) DAY) as end_of_week,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="userstory" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as userstory,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="task" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as task,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="bug" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as bug,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="issues" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as issues,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="meeting" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as meeting,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="learning" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as learning,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="mentoring" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as mentoring,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="break" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as break,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="clientcall" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as clientcall,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="other" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as other
-FROM timesheetentries   
-INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
-WHERE MONTH(timesheets.timesheetdate)=MONTH(CURDATE()) and YEAR (timesheets.timesheetdate)=YEAR(CURDATE())
-GROUP BY WEEK(timesheets.timesheetdate);
-
--- get daily data of a week  by acticitytype
-SELECT timesheets.timesheetdate,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="userstory" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as userstory,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="task" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as task,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="bug" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as bug,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="issues" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as issues,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="meeting" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as meeting,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="learning" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as learning,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="mentoring" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as mentoring,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="break" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as break,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="clientcall" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as clientcall,
-CAST(((SUM( CASE WHEN  timesheetentries.workcategory="other" THEN TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ELSE 0 END))/3600)AS DECIMAL(10,2)) as other
-FROM timesheetentries
-INNER JOIN timesheets on timesheetentries.timesheetid=timesheets.id
-WHERE timesheets.timesheetdate >= DATE_ADD(CURDATE(), INTERVAL(1-DAYOFWEEK(CURDATE())) DAY) and 
-timesheets.timesheetdate<= DATE_ADD(CURDATE(), INTERVAL(7-DAYOFWEEK(CURDATE())) DAY) 
-GROUP BY timesheets.timesheetdate;
-
-
-
-select DATE_ADD('2023-12-09', INTERVAL(1-DAYOFWEEK('2023-12-09')) DAY) as start_of_week;
 
 -- list of timesheets of employee
 select * from timesheets where  employeeid =10;
@@ -223,9 +170,6 @@ GROUP BY employeeid
 HAVING COUNT(CASE WHEN status = 'yes' THEN 1 END) > 0);
 
 
-
-INSERT INTO projectallocations(projectid,employeeid,membership,assigndate,status) VALUES(1,2,"developer","2023-03-01","yes");
-
 -- Release employee from project
 Update projectallocations set releasedate="2023-03-03",status="no" where projectid=1 and employeeId=2;
 
@@ -235,17 +179,13 @@ Select * from projectallocations inner join employees where projectallocations.s
 -- get project allocations between "2023-02-03" and "2023-04-05"
 select * from projectallocations where assigndate BETWEEN "2023-02-03" AND "2023-04-05";
 
-
 -- get unassigned project of employee
 select * from employees inner join projectallocations on projectallocations.employeeid=employees.id where projectallocations.status="no" and projectallocations.projectid=1;
 
 -- get project allocations of particular employee between dates "2023-02-03" and "2023-04-05"
 select * from projectallocations where employeeid=1 and assigndate BETWEEN "2023-02-03" AND "2023-04-05";
 
-DROP Procedure getActivityCounts;
 
-
-call getActivityCounts(@todo,@inprogress,@completed);
 SELECT @todo,@inprogress,@completed;
 
 -- get monthly leave count of employee by leavetype
@@ -254,18 +194,11 @@ WHERE employeeId = 12 AND status = "sanctioned" AND YEAR(fromdate) = 2023 GROUP 
     
 
 
-select * from employees;
-select * from projects;
-
-SELECT * from tasks;
 
 -- this query gives us employees of project
 select DISTINCT(employees.userid) from employees INNER JOIN tasks ON employees.id=tasks.assignedto
  INNER JOIN projects ON tasks.projectid=projects.id WHERE projects.id =4;
 
-Show tables;
-
-SELECT * from sprintmaster;
 
 SELECT * from projects where managerid =8;
 
@@ -276,23 +209,14 @@ SELECT * from projectmembership where projectid=4 and employeeid=10;
 
 SELECT DISTINCT(employees.userid) from employees INNER JOIN  projectmembership on employees.id = projectmembership.employeeid where projectmembership.projectid=4;
 
-select * from tasks;
-SELECT * from sprintmaster;
-
-
 -- this query gives tasks of particular sprint
 SELECT * from tasks where sprintid in (SELECT id from sprintmaster where id=3);
 
-SELECT * from employees;
 
 select tasks.* , employees.userid  from tasks 
 INNER join sprintmaster on tasks.sprintid=sprintmaster.id
 INNER join employees ON tasks.assignedto=employees.id
 WHERE sprintmaster.id=2;
-
-select * from salaries;
-select * from salarystructures;
-SELECT * FROM employees;
 
 SELECT employees.userid
                          FROM employees 

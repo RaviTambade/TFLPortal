@@ -1,3 +1,4 @@
+
 -- Active: 1694968636816@@127.0.0.1@3306@tflportal
 
     DROP DATABASE IF EXISTS TFLPortal;
@@ -27,7 +28,7 @@
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
             employeeid INT NOT NULL,
             CONSTRAINT fk_projectmembers1 FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
-            applicationdate DateTime,
+            createdon DateTime,
             fromdate DateTime,
             todate DateTime,
             status enum("notsanctioned","sanctioned","applied")DEFAULT 'applied',

@@ -1,9 +1,9 @@
 ﻿namespace TFLPortal.Models;
 
-public class RoleLeavesCount
+public class LeaveAllocation
 {
     public int Id { get; set; }
-    public int RoleId { get; set; } //RoleId
+    public int RoleId { get; set; } 
     public int Year { get; set; }
     public int Sick { get; set; }
     public int Casual { get; set; }

@@ -24,13 +24,13 @@ public class ProjectMemberService : IProjectMemberService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "INSERT INTO projectmembership(projectid,employeeid,projectrole,projectassigndate,currentprojectworkingstatus) VALUES(@projectId,@employeeId,@projectRole,@projectAssignDate,@currentProjectWorkingStatus)";
+            string query = "INSERT INTO projectmembers(projectid,employeeid,title,assignedon,status) VALUES(@projectId,@employeeId,@title,@assignedOn,@status)";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@projectId", member.ProjectId);
             cmd.Parameters.AddWithValue("@employeeId", member.EmployeeId);
-            cmd.Parameters.AddWithValue("@projectRole", member.Title);
-            cmd.Parameters.AddWithValue("@projectAssignDate",member.AssignedOn);
-            cmd.Parameters.AddWithValue("@currentProjectWorkingStatus", member.Status);
+            cmd.Parameters.AddWithValue("@title", member.Title);
+            cmd.Parameters.AddWithValue("@assignedOn",member.AssignedOn);
+            cmd.Parameters.AddWithValue("@status", member.Status);
             await connection.OpenAsync();
             int rowsAffected = cmd.ExecuteNonQuery();
             if (rowsAffected > 0)
@@ -59,12 +59,11 @@ public class ProjectMemberService : IProjectMemberService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "Update projectmembership set projectreleasedate=@projectReleasedate,currentprojectworkingstatus=@currentprojectworkingstatus where projectid=@projectId and employeeId=@employeeId";
+            string query = "Update projectmembers set releasedon=@releasedOn,status=@status where id=@Id";
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@projectReleasedate", member.ReleasedOn);
-            cmd.Parameters.AddWithValue("@currentprojectworkingstatus", member.Status);
-            cmd.Parameters.AddWithValue("@projectId", member.ProjectId);
-            cmd.Parameters.AddWithValue("@employeeId", member.EmployeeId);
+            cmd.Parameters.AddWithValue("@releasedOn", member.ReleasedOn);
+            cmd.Parameters.AddWithValue("@status", member.Status);
+            cmd.Parameters.AddWithValue("@Id", member.Id);
             await connection.OpenAsync();
             int rowsAffected = cmd.ExecuteNonQuery();
             if (rowsAffected > 0)
@@ -92,7 +91,8 @@ public class ProjectMemberService : IProjectMemberService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query ="SELECT * FROM employees WHERE id not in (SELECT employeeid FROM projectmembership GROUP BY employeeid HAVING COUNT(CASE WHEN currentprojectworkingstatus = 'yes' THEN 1 END) > 0)";       
+            string query =@"SELECT * FROM employees
+           WHERE id not in (SELECT employeeid FROM projectmembers GROUP BY employeeid HAVING COUNT(CASE WHEN status = 'yes' THEN 1 END) > 0)";       
             MySqlCommand command = new MySqlCommand(query, connection);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
@@ -127,7 +127,7 @@ public class ProjectMemberService : IProjectMemberService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query =@"Select * from projectmembership where projectid=@projectId currentprojectworkingstatus=@status";
+            string query =@"Select * from projectmembers where projectid=@projectId and status=@status";
                 
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);

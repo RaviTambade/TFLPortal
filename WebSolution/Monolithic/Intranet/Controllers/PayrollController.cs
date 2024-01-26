@@ -105,7 +105,7 @@ public class PayrollController : ControllerBase
     [HttpPost("salaries")]
     public async Task<bool> AddSalary(SalarySlip salarySlip)
     {
-      bool status=await _payrollService.AddSalary(salarySlip);
+      bool status=await _payrollService.AddSalarySlip(salarySlip);
       return status;
     }
 }

@@ -21,13 +21,13 @@ public interface ILeaveService
     Task<LeavesCountResponse> GetAnnualConsumedLeaves(int employeeId, int roleId, int year);
     Task<LeavesCountResponse> GetAnnualLeaves(int roleId, int year);
 
-    Task<List<RoleLeavesCount>> GetRoleLeavesCount();
-    Task<RoleLeavesCount> GetRoleLeavesDetails(int id);
+    Task<List<LeaveAllocation>> GetLeaveAllocation();
+    Task<LeaveAllocation> GetRoleLeavesDetails(int id);
 
     Task<bool> AddNewLeaveApplication(LeaveApplication employeeLeave);
-    Task<bool> AddNewRoleLeavesCount(RoleLeavesCount roleLeaveCount);
+    Task<bool> AddNewLeaveAllocation(LeaveAllocation roleLeaveCount);
     Task<bool> Update(LeaveApplication leaveApplication);
-    Task<bool> UpdateLeaveMaster(RoleLeavesCount roleLeaveCount);
+    Task<bool> UpdateLeaveMaster(LeaveAllocation roleLeaveCount);
 
     Task<bool> UpdateLeaveApplication(int leaveId,string leaveStatus);
     Task<bool> Delete(int leaveId);

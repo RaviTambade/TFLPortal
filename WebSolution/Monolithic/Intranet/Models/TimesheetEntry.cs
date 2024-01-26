@@ -1,3 +1,5 @@
+using System;
+
 namespace TFLPortal.Models;
 
 
@@ -8,5 +10,7 @@ public class TimesheetEntry
    public TimeOnly ToTime { get; set; }
    public int TimesheetId { get; set; }
    public int TaskId { get; set; } 
+
+   public double DurationInHours {get;set;}
    
 }

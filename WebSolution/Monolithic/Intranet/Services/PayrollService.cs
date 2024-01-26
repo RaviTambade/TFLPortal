@@ -25,7 +25,7 @@ public class PayrollService : IPayrollService
         connection.ConnectionString=_connectionString;
         try
         {
-            string query="select * from salaries where employeeid=@employeeId";
+            string query="select * from salaryslips where employeeid=@employeeId";
             MySqlCommand command=new MySqlCommand(query,connection);
             command.Parameters.AddWithValue("@employeeId",employeeId);
             await connection.OpenAsync();
@@ -62,7 +62,7 @@ public class PayrollService : IPayrollService
         connection.ConnectionString=_connectionString;
         try
         {
-            string query="select salaries.*,employees.userid from salaries inner join employees where employees.id=salaries.employeeid where id=@salaryId";
+            string query="select * from salaryslips where id=@salaryId";
             MySqlCommand command=new MySqlCommand(query,connection);
             command.Parameters.AddWithValue("@salaryId",salaryId);
             await connection.OpenAsync();
@@ -98,7 +98,7 @@ public class PayrollService : IPayrollService
         connection.ConnectionString=_connectionString;
         try
         {
-            string query="select salaries.*,employees.userid from salaries inner join employees on salaries.employeeid=employees.id where MONTH(paydate)=@month and YEAR(paydate)=@year";
+            string query="select * from salaryslips where MONTH(paydate)=@month and YEAR(paydate)=@year";
             MySqlCommand command=new MySqlCommand(query,connection);
             command.Parameters.AddWithValue("@month",month);
             command.Parameters.AddWithValue("@year",year);
@@ -175,7 +175,7 @@ public class PayrollService : IPayrollService
             try
             {
                 string query =
-                    "select * from salarystructure where employeeid=@employeeId";
+                    "select * from salarystructures where employeeid=@employeeId";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@employeeId", employeeId);
                 await connection.OpenAsync();
@@ -258,7 +258,7 @@ public class PayrollService : IPayrollService
 
         try
         {
-            string query = "Insert Into salarystructure(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(@employeeId,@basicSalary,@hra,@da,@lta,@variablePay,@deduction)";
+            string query = "Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(@employeeId,@basicSalary,@hra,@da,@lta,@variablePay,@deduction)";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@employeeId",salaryStructure.EmployeeId);
             cmd.Parameters.AddWithValue("@basicSalary", salaryStructure.BasicSalary);
@@ -287,7 +287,7 @@ public class PayrollService : IPayrollService
         return status;
     }   
 
-    public async Task<bool> AddSalary(SalarySlip salarySlip)
+    public async Task<bool> AddSalarySlip(SalarySlip salarySlip)
     {
         bool status=false;
         MySqlConnection connection = new MySqlConnection();
@@ -296,7 +296,7 @@ public class PayrollService : IPayrollService
 
         try
         {
-            string query = "Insert Into salaries(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(@employeeId,@payDate,@monthlyWorkingDays,@deduction,@tax,@pf,@amount)";
+            string query = "Insert Into salaryslips(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(@employeeId,@payDate,@monthlyWorkingDays,@deduction,@tax,@pf,@amount)";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@employeeId",salarySlip.EmployeeId);
             cmd.Parameters.AddWithValue("@payDate", salarySlip.PayDate);

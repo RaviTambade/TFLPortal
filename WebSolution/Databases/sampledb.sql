@@ -1,3 +1,4 @@
+
 -- Active: 1694968636816@@127.0.0.1@3306@tflportal
 
 -- director
@@ -50,18 +51,18 @@ Insert Into leavesallocated(roleid,sick,casual,paid,unpaid,financialyear) values
 
 
 
-Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,leavetype) values(10,'2024-01-13','2024-01-14','2024-01-15',"sanctioned","unpaid");
-Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,leavetype) values(11,'2024-04-01','2024-04-03','2024-04-05',"notsanctioned","casual");
-Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,leavetype) values(12,'2024-04-01','2024-04-03','2024-04-05',"sanctioned","casual");
-Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,leavetype) values(13,'2024-03-01','2024-03-03','2024-03-20',"sanctioned","casual");
-Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,leavetype) values(14,'2024-04-01','2024-04-10','2024-04-15',"sanctioned","casual");
+Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(10,'2024-01-13','2024-01-14','2024-01-15',"sanctioned","unpaid");
+Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(11,'2024-04-01','2024-04-03','2024-04-05',"notsanctioned","casual");
+Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(12,'2024-04-01','2024-04-03','2024-04-05',"sanctioned","casual");
+Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(13,'2024-03-01','2024-03-03','2024-03-20',"sanctioned","casual");
+Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(14,'2024-04-01','2024-04-10','2024-04-15',"sanctioned","casual");
 
-Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,leavetype) values(15,'2024-11-01','2024-11-22','2024-11-22',"applied","unpaid");
-Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,leavetype) values(16,'2024-11-05','2024-11-26','2024-11-28',"applied","sick");
-Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,leavetype) values(17,'2024-12-12','2024-12-26','2024-12-27',"applied","paid");
-Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,leavetype) values(18,'2024-12-12','2024-12-15','2024-12-18',"applied","casual");
-Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,leavetype) values(19,'2024-01-15','2024-01-17','2024-01-17',"sanctioned","casual");
-Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,leavetype) values(18,'2024-01-14','2024-01-17','2024-01-17',"sanctioned","casual");
+Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(15,'2024-11-01','2024-11-22','2024-11-22',"applied","unpaid");
+Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(16,'2024-11-05','2024-11-26','2024-11-28',"applied","sick");
+Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(17,'2024-12-12','2024-12-26','2024-12-27',"applied","paid");
+Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(18,'2024-12-12','2024-12-15','2024-12-18',"applied","casual");
+Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(19,'2024-01-15','2024-01-17','2024-01-17',"sanctioned","casual");
+Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(18,'2024-01-14','2024-01-17','2024-01-17',"sanctioned","casual");
 
 
 -- Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(1,30000,3000,200,300,200);
