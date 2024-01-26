@@ -19,13 +19,6 @@ public class SprintService : ISprintService
             ?? throw new ArgumentNullException("connectionString");
     }
 
-    // public async  Task<bool> UpdateSprint(sprintid, Sprint){
-
-    //}
-
-    //insert sprint
-
-    //remove (Cancel Sprint)
     public async Task<Sprint> GetCurrentSprint(int projectId, DateOnly date)
     {
         Sprint sprint = null;
@@ -70,7 +63,7 @@ public class SprintService : ISprintService
         MySqlConnection connection = new MySqlConnection(_connectionString);
         try
         {
-            string query = "SELECT sprintmaster.* FROM sprintmaster where projectid=@projectid";
+            string query = "SELECT * FROM sprintmaster where projectid=@projectid";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectid", projectId);
             await connection.OpenAsync();
@@ -106,9 +99,9 @@ public class SprintService : ISprintService
         connection.ConnectionString=_connectionString;
         try{
 ;
-            string query =@"select employeework.* , employees.userid  from employeework 
-                           INNER join sprintmaster on employeework.sprintid=sprintmaster.id
-                           INNER join employees ON employeework.assignedto=employees.id
+            string query =@"select tasks.* , employees.userid  from tasks 
+                           INNER join sprintmaster on tasks.sprintid=sprintmaster.id
+                           INNER join employees ON tasks.assignedto=employees.id
                            WHERE sprintmaster.id=@sprintId;";
             MySqlCommand command = new MySqlCommand(query,connection);
             command.Parameters.AddWithValue("@sprintId",sprintId);
@@ -119,7 +112,7 @@ public class SprintService : ISprintService
                  ProjectTask task=new ProjectTask(){
                     TaskId = int.Parse(reader["id"].ToString()),
                     Title = reader["title"].ToString(),
-                    TaskType = reader["projectworktype"].ToString(),
+                    TaskType = reader["tasktype"].ToString(),
                     SprintId = int.Parse(reader["sprintid"].ToString()),
                     Description = reader["description"].ToString(),
                     CreatedDate = DateTime.Parse(reader["createddate"].ToString()),
@@ -143,7 +136,7 @@ public class SprintService : ISprintService
     }
 
 
-    public async Task<bool> InsertSprint(Sprint theSprint){
+    public async Task<bool> Insert(Sprint theSprint){
 
         bool status=false;
         MySqlConnection connection =new MySqlConnection();
@@ -152,6 +145,7 @@ public class SprintService : ISprintService
         try{
 
             string query ="Insert into sprints(title,goal,startdate,enddate,projectid) values (@title,@goal,@startdate,@enddate,@projectId)";
+            
             MySqlCommand command = new MySqlCommand(query,connection);
 
             command.Parameters.AddWithValue("@title",theSprint.Title);

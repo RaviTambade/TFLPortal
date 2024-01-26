@@ -39,7 +39,7 @@ public async Task<List<ProjectTask>> GetSprintWorks(int sprintId)
 
 
  [HttpPost]
-public async Task<bool> InsertSprint(Sprint theSprint)
+public async Task<bool> Insert(Sprint theSprint)
 {
     bool status = await _sprintService.InsertSprint(theSprint);
     return status;
