@@ -27,7 +27,7 @@
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
             employeeid INT NOT NULL,
             CONSTRAINT fk_projectmembers1 FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
-            applicationdate DateTime,
+            createdon DateTime,
             fromdate DateTime,
             todate DateTime,
             status enum("notsanctioned","sanctioned","applied")DEFAULT 'applied',
