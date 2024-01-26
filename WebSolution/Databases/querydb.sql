@@ -227,9 +227,43 @@ SELECT employees.userid
 
 
 
+-- task releted queries
+select * from tasks;
 
-  INSERT INTO sprints (title, goal, startdate, enddate, projectid) 
-VALUES ("dgh", "xdbzxbfv", '2024-01-01', '2024-01-01', 2);
+select * from tasks where  projectid =@projectId;
+
+select * from tasks where  projectid =@projectId and tasktype=@tasktype;
+
+select * from tasks where  projectid =@projectId and assignedto=@assignedto;
+
+select * from tasks where  projectid =@projectId and status=@status and assignedto=@assignedto;
+
+select * from tasks where  sprintid =@sprintid and status=@status and assignedto=@assignedto;
+
+select tasks.* ,e1.userid as assignbyuserid,e2.userid as assigntouserid,projects.title as projectname from tasks INNER JOIN employees e1  on tasks.assignedto =e1.id INNER JOIN employees e2   on  tasks.assignedby=e2.id INNER JOIN projects ON tasks.projectid =projects.id WHERE tasks.id=@taskId;
+
+select * from tasks where  assignedto =@memberId;
+
+select * FROM tasks where assigneddate BETWEEN @from AND @to ORDER BY assigneddate;
+
+select * FROM tasks where assigneddate BETWEEN @fromAssignedDate AND @toAssignedDate And assignedto=@assignedto ORDER BY assigneddate;
+
+Update  tasks set startdate=@startdate,status=@status where id =@taskId;
+
+delete from tasks where id= @taskId;
 
 
-select * from tasks where  projectid =3;
+-- sprint releted query
+
+SELECT * FROM sprints WHERE projectid=@projectid AND sprints.startdate<=@date AND sprints.enddate>=@date;
+SELECT * FROM sprints where projectid=@projectid;
+select tasks.* , employees.userid  from tasks 
+                           INNER join sprints on tasks.sprintid=sprints.id
+                           INNER join employees ON tasks.assignedto=employees.id
+                           WHERE sprints.id=@sprintId;
+Insert into sprints(title,goal,startdate,enddate,projectid) values (@title,@goal,@startdate,@enddate,@projectId);
+delete from sprints where id = @sprintId;
+Update sprints set title=@title,startdate=@startdate,enddate=@enddate,projectid=@projectid where id = @sprintId ;
+
+
+
