@@ -7,7 +7,7 @@ using TFLPortal.Services.Interfaces;
 namespace Intranet.Controllers;
 
 [ApiController]
-[Route("/api/tasks/")]
+[Route("/api/tasks")]
 public class TasksController : ControllerBase
 {
     private readonly ITaskService  _service;
@@ -18,7 +18,7 @@ public class TasksController : ControllerBase
 
     }
 
-    [HttpGet("projects/{projectId}")]
+    [HttpGet("{projectId}")]
    public async Task<List<ProjectTask>> GetAllTasks(int projectId)
     {
  
@@ -42,7 +42,7 @@ public class TasksController : ControllerBase
         return tasks;
     }
    
-    [HttpGet("projects/{projectId}/type/{projectWorkType}")]
+    [HttpGet("projects/{projectId}/type/{taskType}")]
     public async Task<List<ProjectTask>>GetAllTasks(int projectId, string taskType)
     {
         List<ProjectTask> tasks = await _service.GetAllTasks(projectId,taskType);
@@ -71,7 +71,7 @@ public class TasksController : ControllerBase
     }
 
 
-    [HttpGet("projects/{employeeWorkId}")]
+    [HttpGet("projects/{taskId}")]
     public async Task<ProjectTask> GetTask(int taskId)
     {
         ProjectTask task = await _service.GetTask(taskId);

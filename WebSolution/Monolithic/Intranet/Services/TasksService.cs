@@ -287,14 +287,14 @@ public class TaskService : ITaskService
                 DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
-                string projectWorkType = reader["projectworktype"].ToString();
+                string taskType = reader["tasktype"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
                 ProjectTask theTask = new ProjectTask
                 {
                     TaskId = id,
                     Title = title,
-                    TaskType = projectWorkType,
+                    TaskType = taskType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
@@ -348,14 +348,14 @@ public class TaskService : ITaskService
                 DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
-                string projectWorkType = reader["projectworktype"].ToString();
+                string taskType = reader["tasktype"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
                 ProjectTask theTask = new ProjectTask
                 {
                     TaskId = id,
                     Title = title,
-                    TaskType = projectWorkType,
+                    TaskType = taskType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
