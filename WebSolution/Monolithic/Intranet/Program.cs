@@ -9,6 +9,7 @@ builder.Services.AddControllers();
 builder.Services.AddScoped<IProjectMemberService, ProjectMemberService>();
 builder.Services.AddScoped<ILeaveService, LeaveService>();
 builder.Services.AddScoped<IPayrollService, PayrollService>();
+builder.Services.AddScoped<IHRService, HRService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 // builder.Services.Add<ITaskService,TaskService>;
 builder.Services.AddEndpointsApiExplorer();

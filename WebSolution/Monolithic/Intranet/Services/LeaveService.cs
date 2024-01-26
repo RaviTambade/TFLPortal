@@ -216,7 +216,6 @@ public class LeaveService : ILeaveService
                 DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
                 DateTime fromDate = DateTime.Parse(reader["fromdate"].ToString());       
                 DateTime toDate = DateTime.Parse(reader["todate"].ToString());
-                int year = int.Parse(reader["year"].ToString());
                 string leaveType = reader["leavetype"].ToString();
 
                 LeaveApplication leave = new LeaveApplication()
@@ -357,7 +356,6 @@ public class LeaveService : ILeaveService
                 DateTime fromDate = DateTime.Parse(reader["fromdate"].ToString());       
                 DateTime toDate = DateTime.Parse(reader["todate"].ToString());
                 string status = reader["status"].ToString();
-                int year = int.Parse(reader["year"].ToString());
                 string leaveType = reader["leavetype"].ToString();
 
                 leaveApplication = new LeaveApplication()
@@ -439,7 +437,7 @@ public class LeaveService : ILeaveService
         {
             string query =
                 @"select projectmembers.employeeid,leaveapplications.status,leaveapplications.leavetype,
-                leaveapplications.applicationdate,leaveapplications.fromdate,leaveapplications.todate from projects
+                leaveapplications.createdon,leaveapplications.fromdate,leaveapplications.todate from projects
                 inner join projectmembers on projects.id=projectmembers.projectid
                 inner join leaveapplications on leaveapplications.employeeid=projectmembers.employeeid 
                 inner join employees on leaveapplications.employeeid=employees.id where projects.id=@projectId 
@@ -709,7 +707,7 @@ public class LeaveService : ILeaveService
     }
 
 
-    public async Task<bool> AddNewLeaveAllocation(LeaveAllocation LeaveAllocation)
+    public async Task<bool> AddNewLeaveAllocation(LeaveAllocation leaveAllocation)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
@@ -721,12 +719,12 @@ public class LeaveService : ILeaveService
                 "Insert into leavesallocated(roleid,sick,casual,paid,unpaid,financialyear) values(@roleId,@sick,@casual,@paid,@unpaid,@financialyear)";
             command.Connection = connection;
             await connection.OpenAsync();
-            command.Parameters.AddWithValue("@roleId", LeaveAllocation.RoleId);
-            command.Parameters.AddWithValue("@sick", LeaveAllocation.Sick);
-            command.Parameters.AddWithValue("@casual", LeaveAllocation.Casual);
-            command.Parameters.AddWithValue("@paid", LeaveAllocation.Paid);
-            command.Parameters.AddWithValue("@unpaid", LeaveAllocation.Unpaid);
-            command.Parameters.AddWithValue("@financialyear", LeaveAllocation.Year);
+            command.Parameters.AddWithValue("@roleId", leaveAllocation.RoleId);
+            command.Parameters.AddWithValue("@sick", leaveAllocation.Sick);
+            command.Parameters.AddWithValue("@casual", leaveAllocation.Casual);
+            command.Parameters.AddWithValue("@paid", leaveAllocation.Paid);
+            command.Parameters.AddWithValue("@unpaid", leaveAllocation.Unpaid);
+            command.Parameters.AddWithValue("@financialyear", leaveAllocation.Year);
 
             int rowsAffected = await command.ExecuteNonQueryAsync(); // Execute the query asynchronously
 
@@ -747,7 +745,7 @@ public class LeaveService : ILeaveService
         return status;
     }
 
-    public async Task<bool> UpdateLeaveMaster(LeaveAllocation LeaveAllocation)
+    public async Task<bool> UpdateLeaveMaster(LeaveAllocation leaveAllocation)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
@@ -756,13 +754,13 @@ public class LeaveService : ILeaveService
         {
             string query = "Update leavesallocated set roleid=@roleId,sick=@sick,casual=@casual,paid=@paid,unpaid=@unpaid,financialyear=@financialYear where id =@Id";
             MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@Id", LeaveAllocation.Id);
-            command.Parameters.AddWithValue("@roleId", LeaveAllocation.RoleId);
-            command.Parameters.AddWithValue("@sick", LeaveAllocation.Sick);
-            command.Parameters.AddWithValue("@casual", LeaveAllocation.Casual);
-            command.Parameters.AddWithValue("@paid", LeaveAllocation.Paid);
-            command.Parameters.AddWithValue("@unpaid", LeaveAllocation.Unpaid);
-            command.Parameters.AddWithValue("@financialyear", LeaveAllocation.Year);
+            command.Parameters.AddWithValue("@Id", leaveAllocation.Id);
+            command.Parameters.AddWithValue("@roleId", leaveAllocation.RoleId);
+            command.Parameters.AddWithValue("@sick", leaveAllocation.Sick);
+            command.Parameters.AddWithValue("@casual", leaveAllocation.Casual);
+            command.Parameters.AddWithValue("@paid", leaveAllocation.Paid);
+            command.Parameters.AddWithValue("@unpaid", leaveAllocation.Unpaid);
+            command.Parameters.AddWithValue("@financialyear", leaveAllocation.Year);
             await connection.OpenAsync();
             int rowsAffected = command.ExecuteNonQuery();
             if (rowsAffected > 0)

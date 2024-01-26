@@ -115,7 +115,7 @@ public class LeavesManagementController : ControllerBase
     }
 
  
-    [HttpGet("annualleaves/employee/{employeeId}/year/{year}")]
+    [HttpGet("annualleaves/role/{roleId}/year/{year}")]
     public async Task<LeavesCountResponse> GetAnnualLeaves(int roleId,int year)
     {
         // Employee employee= await _hrService.GetEmployeeById(employeeId);
