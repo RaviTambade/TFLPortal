@@ -29,11 +29,33 @@ public class SprintController : ControllerBase
     }
 
 
- [HttpGet("project/employeeWork/{sprintId}")]
+ [HttpGet("project/tasks/{sprintId}")]
 public async Task<List<ProjectTask>> GetSprintWorks(int sprintId)
 {
     List<ProjectTask> tasks = await _sprintService.GetSprintTasks(sprintId);
     return tasks;
 }
 
+
+
+[HttpPost]
+public async Task<bool> Insert(Sprint theSprint)
+{
+    bool status = await _sprintService.Insert(theSprint);
+    return status;
+}
+
+ [HttpDelete]
+public async Task<bool> Delete(int sprintId)
+{
+    bool status = await _sprintService.Delete(sprintId);
+    return status;
+}
+
+ [HttpPut]
+public async Task<bool> Update(int sprintId,Sprint theSprint)
+{
+    bool status = await _sprintService.Update(sprintId,theSprint);
+    return status;
+}
 }
