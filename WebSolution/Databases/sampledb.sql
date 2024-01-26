@@ -1,4 +1,4 @@
--- Active: 1694968636816@@127.0.0.1@3306@tflportal
+-- Active: 1696576841746@@127.0.0.1@3306@tflportal
 
 -- director
 INSERT INTO employees(userid,hiredate,reportingid) VALUES (1,'2013-01-01',1);
@@ -41,27 +41,27 @@ INSERT INTO employees(userid,hiredate,reportingid) VALUES (29,'2015-04-23',9);
 INSERT INTO employees(userid,hiredate,reportingid) VALUES (30,'2015-05-13',9);
 
 
-Insert Into rolebasedleaves(roleid,sick,casual,paid,unpaid,financialyear) values(1,10,5,12,15,2023);
-Insert Into rolebasedleaves(roleid,sick,casual,paid,unpaid,financialyear) values(2,9,5,12,10,2023);
-Insert Into rolebasedleaves(roleid,sick,casual,paid,unpaid,financialyear) values(3,8,10,10,15,2023);
-Insert Into rolebasedleaves(roleid,sick,casual,paid,unpaid,financialyear) values(4,7,5,11,10,2023);
+Insert Into leavesallocated(roleid,sick,casual,paid,unpaid,financialyear) values(1,10,5,12,15,2023);
+Insert Into leavesallocated(roleid,sick,casual,paid,unpaid,financialyear) values(2,9,5,12,10,2023);
+Insert Into leavesallocated(roleid,sick,casual,paid,unpaid,financialyear) values(3,8,10,10,15,2023);
+Insert Into leavesallocated(roleid,sick,casual,paid,unpaid,financialyear) values(4,7,5,11,10,2023);
 
 
 
 
 
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,leavetype) values(10,'2024-01-13','2024-01-14','2024-01-15',"sanctioned","unpaid");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,leavetype) values(11,'2024-04-01','2024-04-03','2024-04-05',"notsanctioned","casual");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,leavetype) values(12,'2024-04-01','2024-04-03','2024-04-05',"sanctioned","casual");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,leavetype) values(13,'2024-03-01','2024-03-03','2024-03-20',"sanctioned","casual");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,year,leavetype) values(14,'2024-04-01','2024-04-10','2024-04-15',"sanctioned","casual");
+Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,leavetype) values(10,'2024-01-13','2024-01-14','2024-01-15',"sanctioned","unpaid");
+Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,leavetype) values(11,'2024-04-01','2024-04-03','2024-04-05',"notsanctioned","casual");
+Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,leavetype) values(12,'2024-04-01','2024-04-03','2024-04-05',"sanctioned","casual");
+Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,leavetype) values(13,'2024-03-01','2024-03-03','2024-03-20',"sanctioned","casual");
+Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,leavetype) values(14,'2024-04-01','2024-04-10','2024-04-15',"sanctioned","casual");
 
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,leavetype) values(15,'2024-11-01','2024-11-22','2024-11-22',"applied","unpaid");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,leavetype) values(16,'2024-11-05','2024-11-26','2024-11-28',"applied","sick");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,leavetype) values(17,'2024-12-12','2024-12-26','2024-12-27',"applied","paid");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,leavetype) values(18,'2024-12-12','2024-12-15','2024-12-18',"applied","casual");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,leavetype) values(19,'2024-01-15','2024-01-17','2024-01-17',"sanctioned","casual");
-Insert Into employeeleaves(employeeid,applicationdate,fromdate,todate,status,leavetype) values(18,'2024-01-14','2024-01-17','2024-01-17',"sanctioned","casual");
+Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,leavetype) values(15,'2024-11-01','2024-11-22','2024-11-22',"applied","unpaid");
+Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,leavetype) values(16,'2024-11-05','2024-11-26','2024-11-28',"applied","sick");
+Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,leavetype) values(17,'2024-12-12','2024-12-26','2024-12-27',"applied","paid");
+Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,leavetype) values(18,'2024-12-12','2024-12-15','2024-12-18',"applied","casual");
+Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,leavetype) values(19,'2024-01-15','2024-01-17','2024-01-17',"sanctioned","casual");
+Insert Into leaveapplications(employeeid,applicationdate,fromdate,todate,status,leavetype) values(18,'2024-01-14','2024-01-17','2024-01-17',"sanctioned","casual");
 
 
 -- Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(1,30000,3000,200,300,200);
@@ -95,14 +95,14 @@ Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) valu
 
 Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(10,450000,44000,100,4000,6000);
 
-Insert Into salaries(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(11,'2024-01-11',24,600,600,600,20000);
-Insert Into salaries(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(12,'2024-01-11',25,600,600,600,20000);
-Insert Into salaries(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(13,'2024-01-11',24,600,600,600,20000);
-Insert Into salaries(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(14,'2024-01-11',25,600,600,600,20000);
-Insert Into salaries(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(15,'2024-01-11',24,600,600,600,20000);
-Insert Into salaries(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(16,'2024-01-11',25,600,600,600,20000);
-Insert Into salaries(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(17,'2024-01-11',24,600,600,600,20000);
-Insert Into salaries(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(18,'2024-01-11',25,600,600,600,20000);
+Insert Into salaryslips(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(11,'2024-01-11',24,600,600,600,20000);
+Insert Into salaryslips(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(12,'2024-01-11',25,600,600,600,20000);
+Insert Into salaryslips(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(13,'2024-01-11',24,600,600,600,20000);
+Insert Into salaryslips(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(14,'2024-01-11',25,600,600,600,20000);
+Insert Into salaryslips(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(15,'2024-01-11',24,600,600,600,20000);
+Insert Into salaryslips(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(16,'2024-01-11',25,600,600,600,20000);
+Insert Into salaryslips(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(17,'2024-01-11',24,600,600,600,20000);
+Insert Into salaryslips(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(18,'2024-01-11',25,600,600,600,20000);
 
 
 
@@ -119,44 +119,44 @@ INSERT INTO projects(title,startdate,enddate,description,managerid,status)VALUES
 INSERT INTO projects(title,startdate,enddate,description,managerid,status)VALUES('Other','2000-12-19 11:23:17','2099-02-02 ','Other',1,'inprogress');
 
 
-INSERT INTO projectmembership(projectrole,projectassigndate,projectreleasedate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Manager','2017-10-10','2017-10-10','no',6,9);
-INSERT INTO projectmembership(projectrole,projectassigndate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Manager','2016-10-10','yes',1,8);
-INSERT INTO projectmembership(projectrole,projectassigndate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Manager','2016-02-02','yes',3,9);
-INSERT INTO projectmembership(projectrole,projectassigndate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Manager','2017-10-10','yes',4,7);
-INSERT INTO projectmembership(projectrole,projectassigndate,projectreleasedate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Manager','2016-10-10','2017-10-10','no',9,9);
-INSERT INTO projectmembership(projectrole,projectassigndate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Developer','2023-11-02','yes',1,10);
-INSERT INTO projectmembership(projectrole,projectassigndate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Developer','2023-11-03','yes',3,10);
-INSERT INTO projectmembership(projectrole,projectassigndate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Developer','2023-11-02','yes',4,10);
+INSERT INTO projectmembers(title,assignedon,releasedon,status,projectid,employeeid) VALUES ('Manager','2017-10-10','2017-10-10','no',6,9);
+INSERT INTO projectmembers(title,assignedon,status,projectid,employeeid) VALUES ('Manager','2016-10-10','yes',1,8);
+INSERT INTO projectmembers(title,assignedon,status,projectid,employeeid) VALUES ('Manager','2016-02-02','yes',3,9);
+INSERT INTO projectmembers(title,assignedon,status,projectid,employeeid) VALUES ('Manager','2017-10-10','yes',4,7);
+INSERT INTO projectmembers(title,assignedon,releasedon,status,projectid,employeeid) VALUES ('Manager','2016-10-10','2017-10-10','no',9,9);
+INSERT INTO projectmembers(title,assignedon,status,projectid,employeeid) VALUES ('Developer','2023-11-02','yes',1,10);
+INSERT INTO projectmembers(title,assignedon,status,projectid,employeeid) VALUES ('Developer','2023-11-03','yes',3,10);
+INSERT INTO projectmembers(title,assignedon,status,projectid,employeeid) VALUES ('Developer','2023-11-02','yes',4,10);
 
-INSERT INTO projectmembership(projectrole,projectassigndate,projectreleasedate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Developer','2023-11-13','2017-10-10','no',5,12);
-INSERT INTO projectmembership(projectrole,projectassigndate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Tester','2017-02-02','yes',5,13);
-INSERT INTO projectmembership(projectrole,projectassigndate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Developer','2017-10-10','yes',5,14);
-INSERT INTO projectmembership(projectrole,projectassigndate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Developer','2017-10-10','yes',5,15);
-INSERT INTO projectmembership(projectrole,projectassigndate,projectreleasedate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Developer','2016-02-02','2017-10-10','no',7,16);
-INSERT INTO projectmembership(projectrole,projectassigndate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',8,15);
-INSERT INTO projectmembership(projectrole,projectassigndate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',9,15);
+INSERT INTO projectmembers(title,assignedon,releasedon,status,projectid,employeeid) VALUES ('Developer','2023-11-13','2017-10-10','no',5,12);
+INSERT INTO projectmembers(title,assignedon,status,projectid,employeeid) VALUES ('Tester','2017-02-02','yes',5,13);
+INSERT INTO projectmembers(title,assignedon,status,projectid,employeeid) VALUES ('Developer','2017-10-10','yes',5,14);
+INSERT INTO projectmembers(title,assignedon,status,projectid,employeeid) VALUES ('Developer','2017-10-10','yes',5,15);
+INSERT INTO projectmembers(title,assignedon,releasedon,status,projectid,employeeid) VALUES ('Developer','2016-02-02','2017-10-10','no',7,16);
+INSERT INTO projectmembers(title,assignedon,status,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',8,15);
+INSERT INTO projectmembers(title,assignedon,status,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',9,15);
 
-INSERT INTO projectmembership(projectrole,projectassigndate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Developer','2017-10-10','yes',1,15);
-INSERT INTO projectmembership(projectrole,projectassigndate,projectreleasedate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Developer','2016-02-02','2017-10-10','no',2,15);
-INSERT INTO projectmembership(projectrole,projectassigndate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',3,15);
-INSERT INTO projectmembership(projectrole,projectassigndate,currentprojectworkingstatus,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',4,15);
+INSERT INTO projectmembers(title,assignedon,status,projectid,employeeid) VALUES ('Developer','2017-10-10','yes',1,15);
+INSERT INTO projectmembers(title,assignedon,releasedon,status,projectid,employeeid) VALUES ('Developer','2016-02-02','2017-10-10','no',2,15);
+INSERT INTO projectmembers(title,assignedon,status,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',3,15);
+INSERT INTO projectmembers(title,assignedon,status,projectid,employeeid) VALUES ('Developer','2016-10-10','yes',4,15);
 
-INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('inventory sprint 1',"2024-01-01","2024-01-07","Resolve critical and high-priority bugs",4);
-INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('inventory sprint 2',"2024-01-08","2024-01-14","Enhance system performance by optimizing database queries",4);
-INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('inventory sprint 3',"2024-01-15","2024-01-21","Refactor codebase",4);
-INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('inventory sprint 4',"2024-01-22","2024-01-28","Improve project documentation",4);
-INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('inventory sprint 5',"2024-01-29","2024-02-04","Integration Testing",4);
-INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('ekrushi sprint 1',"2024-01-01","2024-01-07","Resolve critical and high-priority bugs",1);
-INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('ekrushi sprint 2',"2024-01-08","2024-01-14","Enhance system performance by optimizing database queries",1);
-INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('ekrushi sprint 3',"2024-01-15","2024-01-21","Refactor codebase",1);
-INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('ekrushi sprint 4',"2024-01-22","2024-01-28","Improve project documentation",1);
-INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('ekrushi sprint 5',"2024-01-29","2024-02-04","Integration Testing",1);
+INSERT INTO sprints(title,startdate,enddate,goal,projectid) VALUES ('inventory sprint 1',"2024-01-01","2024-01-07","Resolve critical and high-priority bugs",4);
+INSERT INTO sprints(title,startdate,enddate,goal,projectid) VALUES ('inventory sprint 2',"2024-01-08","2024-01-14","Enhance system performance by optimizing database queries",4);
+INSERT INTO sprints(title,startdate,enddate,goal,projectid) VALUES ('inventory sprint 3',"2024-01-15","2024-01-21","Refactor codebase",4);
+INSERT INTO sprints(title,startdate,enddate,goal,projectid) VALUES ('inventory sprint 4',"2024-01-22","2024-01-28","Improve project documentation",4);
+INSERT INTO sprints(title,startdate,enddate,goal,projectid) VALUES ('inventory sprint 5',"2024-01-29","2024-02-04","Integration Testing",4);
+INSERT INTO sprints(title,startdate,enddate,goal,projectid) VALUES ('ekrushi sprint 1',"2024-01-01","2024-01-07","Resolve critical and high-priority bugs",1);
+INSERT INTO sprints(title,startdate,enddate,goal,projectid) VALUES ('ekrushi sprint 2',"2024-01-08","2024-01-14","Enhance system performance by optimizing database queries",1);
+INSERT INTO sprints(title,startdate,enddate,goal,projectid) VALUES ('ekrushi sprint 3',"2024-01-15","2024-01-21","Refactor codebase",1);
+INSERT INTO sprints(title,startdate,enddate,goal,projectid) VALUES ('ekrushi sprint 4',"2024-01-22","2024-01-28","Improve project documentation",1);
+INSERT INTO sprints(title,startdate,enddate,goal,projectid) VALUES ('ekrushi sprint 5',"2024-01-29","2024-02-04","Integration Testing",1);
 
-INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('eagro sprint 1',"2024-01-01","2024-01-07","Resolve critical and high-priority bugs",3);
-INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('eagro sprint 2',"2024-01-08","2024-01-14","Enhance system performance by optimizing database queries",3);
-INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('eagro sprint 3',"2024-01-15","2024-01-21","Refactor codebase",3);
-INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('eagro sprint 4',"2024-01-22","2024-01-28","Improve project documentation",3);
-INSERT INTO sprintmaster(title,startdate,enddate,goal,projectid) VALUES ('eagro sprint 5',"2024-01-29","2024-02-04","Integration Testing",3);
+INSERT INTO sprints(title,startdate,enddate,goal,projectid) VALUES ('eagro sprint 1',"2024-01-01","2024-01-07","Resolve critical and high-priority bugs",3);
+INSERT INTO sprints(title,startdate,enddate,goal,projectid) VALUES ('eagro sprint 2',"2024-01-08","2024-01-14","Enhance system performance by optimizing database queries",3);
+INSERT INTO sprints(title,startdate,enddate,goal,projectid) VALUES ('eagro sprint 3',"2024-01-15","2024-01-21","Refactor codebase",3);
+INSERT INTO sprints(title,startdate,enddate,goal,projectid) VALUES ('eagro sprint 4',"2024-01-22","2024-01-28","Improve project documentation",3);
+INSERT INTO sprints(title,startdate,enddate,goal,projectid) VALUES ('eagro sprint 5',"2024-01-29","2024-02-04","Integration Testing",3);
 
 
 
@@ -527,28 +527,28 @@ INSERT INTO tasks (tasktype,description, title, projectid,sprintid,assigneddate,
 VALUES ('userstory','As a farmer, I want to  view a list of payment details so that I can see payments of goodscollection.','farmer payments history',3,15, '2023-11-23', '2023-11-24', '2023-12-01', 10, 9,'inprogress','2023-11-23');
 
 
-INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2024-01-01','Approved',10);
-INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2024-01-02','Approved',10);
-INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2024-01-03','Approved',10);
-INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2024-01-04','Rejected',10);
-INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2024-01-05','Approved',10);
-INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2024-01-06','Approved',10);
-INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES ('2024-01-08','Approved',10);
-INSERT INTO timesheets(timesheetdate,status,employeeid) VALUES
+INSERT INTO timesheets(createdon,status,createdby) VALUES ('2024-01-01','Approved',10);
+INSERT INTO timesheets(createdon,status,createdby) VALUES ('2024-01-02','Approved',10);
+INSERT INTO timesheets(createdon,status,createdby) VALUES ('2024-01-03','Approved',10);
+INSERT INTO timesheets(createdon,status,createdby) VALUES ('2024-01-04','Rejected',10);
+INSERT INTO timesheets(createdon,status,createdby) VALUES ('2024-01-05','Approved',10);
+INSERT INTO timesheets(createdon,status,createdby) VALUES ('2024-01-06','Approved',10);
+INSERT INTO timesheets(createdon,status,createdby) VALUES ('2024-01-08','Approved',10);
+INSERT INTO timesheets(createdon,status,createdby) VALUES
 ('2024-01-09 ','submitted',10),
 ('2024-01-10 ','submitted',10),
 ('2024-01-11 ','inprogress',10),
 ('2024-01-12 ','submitted',10),
 ('2024-01-13 ','inprogress',10);
 
-INSERT INTO timesheetdetails( fromtime, totime, timesheetid,employeeworkid)
+INSERT INTO timesheetentries( fromtime, totime, timesheetid,taskid)
 VALUES
   ( "09:00:00", "10:30:00", 1,1),
   ( "10:30:00", "12:00:00", 1,2),
   ( "12:00:00", "13:00:00", 1,3),
   ( "13:00:00", "14:30:00", 1,4),
   ( "14:30:00", "15:15:00", 1,5);
-INSERT INTO timesheetdetails( fromtime, totime, timesheetid,employeeworkid)
+INSERT INTO timesheetentries( fromtime, totime, timesheetid,taskid)
 VALUES
   ( "09:00:00", "10:30:00", 2,7),
   ( "10:30:00", "11:30:00", 2,8),
@@ -557,7 +557,7 @@ VALUES
   ( "14:30:00", "15:15:00", 2,51),
   ( "15:15:00", "16:45:00", 2,52);
 
-INSERT INTO timesheetdetails( fromtime, totime, timesheetid,employeeworkid)
+INSERT INTO timesheetentries( fromtime, totime, timesheetid,taskid)
 VALUES
   ( "09:00:00", "10:30:00", 3,53),
   ( "10:30:00", "12:00:00", 3,54),
@@ -565,7 +565,7 @@ VALUES
   ( "13:00:00", "14:30:00", 3,55),
   ( "14:30:00", "15:15:00", 3,56);
 
-INSERT INTO timesheetdetails( fromtime, totime, timesheetid,employeeworkid)
+INSERT INTO timesheetentries( fromtime, totime, timesheetid,taskid)
 VALUES
   ( "09:00:00", "10:30:00", 4,57),
   ( "10:30:00", "12:00:00", 4,58),
@@ -575,7 +575,7 @@ VALUES
 
 
 
-INSERT INTO timesheetdetails( fromtime, totime, timesheetid,employeeworkid)
+INSERT INTO timesheetentries( fromtime, totime, timesheetid,taskid)
 VALUES
   ( "09:00:00", "10:30:00", 5,92),
   ( "10:30:00", "12:00:00", 5,93),
@@ -584,7 +584,7 @@ VALUES
   ( "13:00:00", "15:30:00", 5,9);
 
 
-INSERT INTO timesheetdetails( fromtime, totime, timesheetid,employeeworkid)
+INSERT INTO timesheetentries( fromtime, totime, timesheetid,taskid)
 VALUES
   ( "09:00:00", "10:30:00", 6,96),
   ( "10:30:00", "12:00:00", 6,97),
@@ -593,7 +593,7 @@ VALUES
   ( "14:30:00", "16:00:00", 6,57),
   ( "16:00:00", "18:00:00", 6,89);
 
-INSERT INTO timesheetdetails( fromtime, totime, timesheetid,employeeworkid)
+INSERT INTO timesheetentries( fromtime, totime, timesheetid,taskid)
 VALUES
   ( "09:00:00", "10:30:00", 7,11),
   ( "10:30:00", "11:00:00", 7,12),
@@ -602,7 +602,7 @@ VALUES
   ( "16:30:00", "17:15:00", 7,11),
   ( "17:15:00", "18:00:00", 7,15);
 
-INSERT INTO timesheetdetails( fromtime, totime, timesheetid,employeeworkid)
+INSERT INTO timesheetentries( fromtime, totime, timesheetid,taskid)
 VALUES
   ( "09:00:00", "10:30:00", 8,16),
   ( "10:30:00", "12:00:00", 8,17),
@@ -610,7 +610,7 @@ VALUES
   ( "13:00:00", "14:30:00", 8,19),
   ("14:30:00", "15:15:00", 8,20),
   ( "15:15:00", "16:45:00", 8,17);
-INSERT INTO timesheetdetails( fromtime, totime, timesheetid,employeeworkid)
+INSERT INTO timesheetentries( fromtime, totime, timesheetid,taskid)
 VALUES
  ( "09:00:00", "10:30:00", 9,59),
   ( "10:30:00", "11:00:00", 9,60),
@@ -618,7 +618,7 @@ VALUES
   ( "13:00:00", "16:30:00", 9,62),
   ( "16:30:00", "17:15:00", 9,63),
   ( "17:15:00", "18:00:00", 9,64);
-INSERT INTO timesheetdetails( fromtime, totime, timesheetid,employeeworkid)
+INSERT INTO timesheetentries( fromtime, totime, timesheetid,taskid)
 VALUES
  ( "09:00:00", "10:30:00", 10,65),
   ( "10:30:00", "11:00:00", 10,66),
@@ -627,7 +627,7 @@ VALUES
   ( "16:30:00", "17:15:00", 10,101),
   ( "17:15:00", "18:00:00", 10,102);
 
-  INSERT INTO timesheetdetails( fromtime, totime, timesheetid,employeeworkid)
+  INSERT INTO timesheetentries( fromtime, totime, timesheetid,taskid)
 VALUES
  ( "09:00:00", "10:30:00", 11,103),
   ( "10:30:00", "11:00:00", 11,104),
@@ -636,7 +636,7 @@ VALUES
   ( "16:30:00", "17:15:00", 11,107),
   ( "17:15:00", "18:00:00", 11,108);
 
-    INSERT INTO timesheetdetails( fromtime, totime, timesheetid,employeeworkid)
+    INSERT INTO timesheetentries( fromtime, totime, timesheetid,taskid)
 VALUES
  ( "09:00:00", "10:30:00", 12,12),
   ( "10:30:00", "11:00:00", 12,18),
