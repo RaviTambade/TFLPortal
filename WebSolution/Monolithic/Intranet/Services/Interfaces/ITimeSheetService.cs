@@ -14,7 +14,8 @@ public interface ITimesheetService
     );
     Task<Timesheet> GetTimesheet(int employeeId, DateOnly date);
     Task<Timesheet> GetTimesheet(int timesheetId);
-    Task<TimesheetEntry> GetTimesheetDetail(int timesheetDetailId);
+    Task<List<TimesheetEntry>> GetTimesheetEntries(int timesheetId);
+    Task<TimesheetEntry> GetTimesheetEntry(int timesheetEntryId);
     Task<List<MemberUtilizationResponse>> GetActivityWiseHours(
         int employeeId,
         string intervalType,
@@ -27,9 +28,9 @@ public interface ITimesheetService
     );
     Task<int> GetEmployeeWorkingDaysInMonth(int employeeId, int year, int month);
     Task<bool> AddTimesheet(Timesheet timesheet);
-    Task<bool> AddTimesheetDetail(TimesheetEntry timesheetEntry);
+    Task<bool> AddTimesheetEntry(TimesheetEntry timesheetEntry);
     Task<bool> ChangeTimesheetStatus(int timesheetId, Timesheet timesheet);
-    Task<bool> UpdateTimesheetDetail(int timesheetDetailId, TimesheetEntry timesheetEntry);
-    Task<bool> RemoveTimesheetDetail(int timesheetDetailId);
-    Task<bool> RemoveAllTimesheetDetails(int timesheetId);
+    Task<bool> UpdateTimesheetEntry(int timesheetEntryId, TimesheetEntry timesheetEntry);
+    Task<bool> RemoveTimesheetEntry(int timesheetEntryId);
+    Task<bool> RemoveAllTimesheetEntries(int timesheetId);
 }
