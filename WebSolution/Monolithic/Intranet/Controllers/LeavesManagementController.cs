@@ -26,9 +26,9 @@ public class LeavesManagementController : ControllerBase
     }
 
     [HttpGet("rolebasedleaves")]
-    public async Task<List<RoleLeavesCount>> GetRoleLeavesCount()
+    public async Task<List<LeaveAllocation>> GetLeaveAllocation()
     {
-        List<RoleLeavesCount> leaves=await _service.GetRoleLeavesCount();
+        List<LeaveAllocation> leaves=await _service.GetLeaveAllocation();
         return leaves;
     }
 
@@ -48,7 +48,7 @@ public class LeavesManagementController : ControllerBase
 
     [HttpGet]
     [Route ("{roleId}")]
-    public async Task<RoleLeavesCount> GetRoleLeavesDetails(int roleId)
+    public async Task<LeaveAllocation> GetRoleLeavesDetails(int roleId)
     {
         return await _service.GetRoleLeavesDetails(roleId);
     }
@@ -139,15 +139,15 @@ public class LeavesManagementController : ControllerBase
     }
 
     [HttpPost("rolebasedleave")]
-    public async Task<bool> AddNewRoleLeavesCount(RoleLeavesCount roleLeavesCount)
+    public async Task<bool> AddNewLeaveAllocation(LeaveAllocation LeaveAllocation)
     {
-        return await _service.AddNewRoleLeavesCount(roleLeavesCount);
+        return await _service.AddNewLeaveAllocation(LeaveAllocation);
     }
 
     [HttpPut("rolebasedleave")]
-    public async Task<bool> UpdateLeaveMaster(RoleLeavesCount roleLeavesCount)
+    public async Task<bool> UpdateLeaveMaster(LeaveAllocation LeaveAllocation)
     {
-       bool status= await _service.UpdateLeaveMaster(roleLeavesCount);
+       bool status= await _service.UpdateLeaveMaster(LeaveAllocation);
         return status; 
     }
 

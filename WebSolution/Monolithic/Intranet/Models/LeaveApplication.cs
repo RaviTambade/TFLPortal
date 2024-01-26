@@ -8,6 +8,5 @@ public class LeaveApplication
     public DateTime ToDate { get; set; } 
     public string? Status { get; set; }
     public string? LeaveType { get; set; }
-    public int ApplicantId { get; set; }
-    // public Employee Applicant {get;set;}
+    public int EmployeeId { get; set; }
 }
