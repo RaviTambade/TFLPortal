@@ -1,4 +1,4 @@
--- Active: 1696576841746@@127.0.0.1@3306@tflportal
+-- Active: 1694968636816@@127.0.0.1@3306@tflportal
 
 SELECT projectmembership.* from projectmembership 
 INNER JOIN projects on projectmembership.projectid=projects.id
@@ -300,3 +300,12 @@ SELECT employees.userid
                         AND MONTH(salaries.paydate) = 1
                         AND YEAR(salaries.paydate) = 2024
              WHERE salaries.employeeid IS NULL
+
+
+
+
+  INSERT INTO sprints (title, goal, startdate, enddate, projectid) 
+VALUES ("dgh", "xdbzxbfv", '2024-01-01', '2024-01-01', 2);
+
+
+select * from tasks where  projectid =3;

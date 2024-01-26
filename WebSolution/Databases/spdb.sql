@@ -1,4 +1,4 @@
--- Active: 1705924796699@@127.0.0.1@3306@tflportal
+-- Active: 1694968636816@@127.0.0.1@3306@tflportal
 DROP PROCEDURE IF EXISTS getemployeeworkhoursbyactivity;
 CREATE PROCEDURE getemployeeworkhoursbyactivity(IN employee_id INT,IN interval_type VARCHAR (20),IN project_id INT)
 BEGIN
@@ -85,13 +85,13 @@ END;
 CALL getprojectwiseemployeeworkhours(10,'2024-01-01','2024-01-01');
 
 
- 
+ drop Procedure `getActivityCounts`;
 
 CREATE PROCEDURE getActivityCounts(OUT  todo INT,OUT inprogress INT,OUT completed INT)
 BEGIN
-    SELECT COUNT(*) INTO todo FROM activities WHERE status = 'todo';
-    SELECT COUNT(*) INTO inprogress FROM activities WHERE status = 'inprogress';
-    SELECT COUNT(*) INTO completed FROM activities WHERE status = 'completed';
+    SELECT COUNT(*) INTO todo FROM tasks WHERE status = 'todo';
+    SELECT COUNT(*) INTO inprogress FROM tasks WHERE status = 'inprogress';
+    SELECT COUNT(*) INTO completed FROM tasks WHERE status = 'completed';
 END;
 
 
@@ -183,3 +183,4 @@ DELIMITER ;
 
 call calculatesalary(10,1,2024);
 
+show tables;
