@@ -11,5 +11,5 @@ public interface ISprintService
     Task<bool> InsertSprint(Sprint theSprint);
 
     Task<bool> Delete(int sprintId);
-    //Task<bool> Update(int sprintId);
+    Task<bool> Update(int sprintId,Sprint theSprint);
 }   

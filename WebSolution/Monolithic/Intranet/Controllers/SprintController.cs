@@ -51,4 +51,11 @@ public async Task<bool> Delete(int sprintId)
     bool status = await _sprintService.Delete(sprintId);
     return status;
 }
+
+ [HttpPut]
+public async Task<bool> Update(int sprintId,Sprint theSprint)
+{
+    bool status = await _sprintService.Update(sprintId,theSprint);
+    return status;
+}
 }
