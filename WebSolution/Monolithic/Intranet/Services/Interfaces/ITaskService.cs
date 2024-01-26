@@ -1,9 +1,6 @@
-
 using TFLPortal.Responses;
 using ProjectTask = TFLPortal.Models.Task;
-
 namespace TFLPortal.Services.Interfaces;
-
 public interface ITaskService
 {
     Task<List<ProjectTask>> GetAllTasks();

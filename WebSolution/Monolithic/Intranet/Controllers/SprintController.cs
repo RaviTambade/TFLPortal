@@ -29,7 +29,7 @@ public class SprintController : ControllerBase
     }
 
 
- [HttpGet("project/employeeWork/{sprintId}")]
+ [HttpGet("project/tasks/{sprintId}")]
 public async Task<List<ProjectTask>> GetSprintWorks(int sprintId)
 {
     List<ProjectTask> tasks = await _sprintService.GetSprintTasks(sprintId);
@@ -38,10 +38,10 @@ public async Task<List<ProjectTask>> GetSprintWorks(int sprintId)
 
 
 
- [HttpPost]
+[HttpPost]
 public async Task<bool> Insert(Sprint theSprint)
 {
-    bool status = await _sprintService.InsertSprint(theSprint);
+    bool status = await _sprintService.Insert(theSprint);
     return status;
 }
 

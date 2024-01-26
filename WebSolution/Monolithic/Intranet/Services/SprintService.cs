@@ -25,7 +25,8 @@ public class SprintService : ISprintService
         MySqlConnection connection = new MySqlConnection(_connectionString);
         try
         {
-            string query = "SELECT * FROM sprintmaster WHERE projectid=@projectid AND sprintmaster.startdate<=@date AND sprintmaster.enddate>=@date";
+            string query = "SELECT * FROM sprints WHERE projectid=@projectid AND sprints.startdate<=@date AND sprints.enddate>=@date";
+            Console.WriteLine(query);
             MySqlCommand command = new MySqlCommand(query, connection);
             string formattedDate=date.ToString("yyyy-MM-dd");
             command.Parameters.AddWithValue("@projectid", projectId);
@@ -46,10 +47,11 @@ public class SprintService : ISprintService
              
             }
         }
-        catch (Exception)
+        catch (Exception ee)
         {
-            throw;
-        }
+
+        Console.WriteLine(ee.Message);
+       }
         finally
         {
             await connection.CloseAsync();
@@ -63,7 +65,7 @@ public class SprintService : ISprintService
         MySqlConnection connection = new MySqlConnection(_connectionString);
         try
         {
-            string query = "SELECT * FROM sprintmaster where projectid=@projectid";
+            string query = "SELECT * FROM sprints where projectid=@projectid";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectid", projectId);
             await connection.OpenAsync();
@@ -100,9 +102,9 @@ public class SprintService : ISprintService
         try{
 ;
             string query =@"select tasks.* , employees.userid  from tasks 
-                           INNER join sprintmaster on tasks.sprintid=sprintmaster.id
+                           INNER join sprints on tasks.sprintid=sprints.id
                            INNER join employees ON tasks.assignedto=employees.id
-                           WHERE sprintmaster.id=@sprintId;";
+                           WHERE sprints.id=@sprintId;";
             MySqlCommand command = new MySqlCommand(query,connection);
             command.Parameters.AddWithValue("@sprintId",sprintId);
             await connection.OpenAsync();
@@ -140,20 +142,19 @@ public class SprintService : ISprintService
 
         bool status=false;
         MySqlConnection connection =new MySqlConnection();
+      
         connection.ConnectionString=_connectionString;
 
         try{
-
-            string query ="Insert into sprints(title,goal,startdate,enddate,projectid) values (@title,@goal,@startdate,@enddate,@projectId)";
             
+            string query ="Insert into sprints(title,goal,startdate,enddate,projectid) values (@title,@goal,@startdate,@enddate,@projectId)";
             MySqlCommand command = new MySqlCommand(query,connection);
-
+            await connection.OpenAsync();
             command.Parameters.AddWithValue("@title",theSprint.Title);
             command.Parameters.AddWithValue("@goal",theSprint.Goal);
             command.Parameters.AddWithValue("@startdate",theSprint.StartDate);
             command.Parameters.AddWithValue("@enddate",theSprint.EndDate);
             command.Parameters.AddWithValue("@projectId",theSprint.ProjectId);
-            connection.OpenAsync();
             int rowsAffected= await command.ExecuteNonQueryAsync();
 
             if(rowsAffected>0){
@@ -163,6 +164,8 @@ public class SprintService : ISprintService
             
         }
         catch(Exception ee){
+
+            Console.WriteLine(ee.Message);
             throw ee;
         }
         finally{
@@ -186,8 +189,9 @@ public class SprintService : ISprintService
 
             string query ="delete from sprints where id = @sprintId ";
             MySqlCommand command = new MySqlCommand(query,connection);
+            await connection.OpenAsync();
             command.Parameters.AddWithValue("@sprintId",sprintId);
-            connection.OpenAsync();
+      
             int rowsAffected= await command.ExecuteNonQueryAsync();
 
             if(rowsAffected>0){
@@ -215,15 +219,16 @@ public class SprintService : ISprintService
 
         try{
 
-            string query ="Update sprints set title=@title,startdate=@startadte,enddate=@enddate,projectid=@projectid where id = @sprintId ";
+            string query ="Update sprints set title=@title,startdate=@startdate,enddate=@enddate,projectid=@projectid where id = @sprintId ";
             MySqlCommand command = new MySqlCommand(query,connection);
+             await  connection.OpenAsync();
             command.Parameters.AddWithValue("@sprintId",sprintId);
             command.Parameters.AddWithValue("@title",theSprint.Title);
             command.Parameters.AddWithValue("@goal",theSprint.Goal);
             command.Parameters.AddWithValue("@startdate",theSprint.StartDate);
             command.Parameters.AddWithValue("@enddate",theSprint.EndDate);
             command.Parameters.AddWithValue("@projectId",theSprint.ProjectId);
-            connection.OpenAsync();
+          
             int rowsAffected= await command.ExecuteNonQueryAsync();
 
             if(rowsAffected>0){
