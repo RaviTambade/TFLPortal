@@ -32,6 +32,7 @@ public class PayrollService : IPayrollService
             MySqlDataReader reader=command.ExecuteReader();
             while(await reader.ReadAsync()){
                     SalarySlip details=new SalarySlip{
+                     SalaryId=reader.GetInt32("id"),
                     EmployeeId=reader.GetInt32("employeeid"),
                     PayDate=reader.GetDateTime("paydate"),
                     MonthlyWorkingDays=reader.GetInt32("monthlyworkingdays"),
@@ -69,6 +70,7 @@ public class PayrollService : IPayrollService
             MySqlDataReader reader=command.ExecuteReader();
             while(await reader.ReadAsync()){
                     salaryDetails=new SalarySlip{
+                     SalaryId=reader.GetInt32("id"),
                     EmployeeId=reader.GetInt32("employeeid"),
                     PayDate=reader.GetDateTime("paydate"),
                     MonthlyWorkingDays=reader.GetInt32("monthlyworkingdays"),
@@ -106,6 +108,7 @@ public class PayrollService : IPayrollService
             MySqlDataReader reader=command.ExecuteReader();
             while(await reader.ReadAsync()){
                     SalarySlip details=new SalarySlip{
+                    SalaryId=reader.GetInt32("id"),
                     EmployeeId=reader.GetInt32("employeeid"),
                     PayDate=reader.GetDateTime("paydate"),
                     MonthlyWorkingDays=reader.GetInt32("monthlyworkingdays"),
@@ -139,10 +142,10 @@ public class PayrollService : IPayrollService
                 string query =
                    @"SELECT employees.userid
                          FROM employees
-                         LEFT JOIN salaries ON employees.id = salaries.employeeid
-                         AND MONTH(salaries.paydate) = @month
-                         AND YEAR(salaries.paydate) = @year
-                         WHERE salaries.employeeid IS NULL";
+                         LEFT JOIN salaryslips ON employees.id = salaryslips.employeeid
+                         AND MONTH(salaryslips.paydate) = @month
+                         AND YEAR(salaryslips.paydate) = @year
+                         WHERE salaryslips.employeeid IS NULL";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 System.Console.WriteLine(month);
                 System.Console.WriteLine(year);
@@ -190,8 +193,7 @@ public class PayrollService : IPayrollService
                         HRA = reader.GetInt32("hra"),
                         DA = reader.GetInt32("da"),
                         LTA = reader.GetInt32("lta"),
-                        VariablePay = reader.GetInt32("variablepay"),
-                        Deduction = reader.GetInt32("deduction")
+                        VariablePay = reader.GetInt32("variablepay")
                     };
                 }
                 await reader.CloseAsync();
@@ -258,7 +260,7 @@ public class PayrollService : IPayrollService
 
         try
         {
-            string query = "Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay,deduction) values(@employeeId,@basicSalary,@hra,@da,@lta,@variablePay,@deduction)";
+            string query = "Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(@employeeId,@basicSalary,@hra,@da,@lta,@variablePay)";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@employeeId",salaryStructure.EmployeeId);
             cmd.Parameters.AddWithValue("@basicSalary", salaryStructure.BasicSalary);
@@ -266,7 +268,6 @@ public class PayrollService : IPayrollService
             cmd.Parameters.AddWithValue("@da", salaryStructure.DA);
             cmd.Parameters.AddWithValue("@lta", salaryStructure.LTA);
             cmd.Parameters.AddWithValue("@variablePay", salaryStructure.VariablePay);
-            cmd.Parameters.AddWithValue("@deduction", salaryStructure.Deduction);
             await connection.OpenAsync();
             int rowsAffected = cmd.ExecuteNonQuery();
             if (rowsAffected > 0)
@@ -323,9 +324,7 @@ public class PayrollService : IPayrollService
             await connection.CloseAsync();
         }
         return status;
-    }
-
-    
+    }    
 }
 
 

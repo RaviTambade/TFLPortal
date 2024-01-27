@@ -7,7 +7,7 @@
 select * from leaveapplications;
 
 -- get all leavesallocated
-select * from leavesallocated;
+select * from roleleaveallocations;
 
 -- get monthly leave count of employee by leavetype
 SELECT leavetype,coalesce(sum(datediff(todate,fromdate)+1),0) as leavecount From leaveapplications

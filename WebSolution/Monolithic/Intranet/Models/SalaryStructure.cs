@@ -9,6 +9,5 @@ public class SalaryStructure
     public double DA { get; set; }
     public double LTA { get; set; }
     public double VariablePay { get; set; }
-    public double Deduction { get; set; }
  
 }
