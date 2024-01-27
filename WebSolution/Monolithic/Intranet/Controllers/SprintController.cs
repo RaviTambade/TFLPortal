@@ -7,7 +7,7 @@ using ProjectTask=TFLPortal.Models.Task;
 namespace Intranet.Controllers;
 
 [ApiController]
-[Route("/api/workmgmt/sprints")]
+[Route("/api/sprints")]
 public class SprintController : ControllerBase
 {
     private readonly ISprintService _sprintService;
@@ -23,14 +23,14 @@ public class SprintController : ControllerBase
     }
 
     [HttpGet("projects/{projectId}/date/{date}")]
-    public async Task<Sprint> GetOngoingSprints(int projectId, DateOnly date)
+    public async Task<Sprint> GetCurrentSprint(int projectId, DateOnly date)
     {
         return await _sprintService.GetCurrentSprint(projectId, date);
     }
 
 
- [HttpGet("project/tasks/{sprintId}")]
-public async Task<List<ProjectTask>> GetSprintWorks(int sprintId)
+ [HttpGet("{sprintId}/tasks")]
+public async Task<List<ProjectTask>> GetSprintTasks(int sprintId)
 {
     List<ProjectTask> tasks = await _sprintService.GetSprintTasks(sprintId);
     return tasks;

@@ -1,4 +1,4 @@
--- Active: 1696576841746@@127.0.0.1@3306@tflportal
+-- Active: 1694968636816@@127.0.0.1@3306@tflportal
 
 
 -- LeaveManagement
@@ -260,5 +260,86 @@ select tasks.* , employees.userid  from tasks
 INNER join sprintmaster on tasks.sprintid=sprintmaster.id
 INNER join employees ON tasks.assignedto=employees.id
 WHERE sprintmaster.id=2;
+
+SELECT employees.userid
+                         FROM employees 
+                         LEFT JOIN salaries ON employees.id = salaries.employeeid
+                        AND MONTH(salaries.paydate) = 1
+                        AND YEAR(salaries.paydate) = 2024
+             WHERE salaries.employeeid IS NULL
+
+
+
+-- task releted queries
+
+--This query used for get all task.
+select * from tasks;
+
+--This query is used for get all task of particular project.
+select * from tasks where  projectid =@projectId;
+
+--This query is used for get all task of project of particular tasktype.
+select * from tasks where  projectid =@projectId and tasktype=@tasktype;
+
+--This query is used to get all task of project of particular member.
+select * from tasks where  projectid =@projectId and assignedto=@assignedto;
+
+
+--This query is used to get all task of project with particular status and member.
+select * from tasks where  projectid =@projectId and status=@status and assignedto=@assignedto;
+
+--This query is used to get all tasks of sprint with particular status and member.
+select * from tasks where  sprintid =@sprintid and status=@status and assignedto=@assignedto;
+
+--This query is used to get all tasks and members  data .
+select tasks.* ,e1.userid as assignbyuserid,e2.userid as assigntouserid,projects.title as projectname from tasks INNER JOIN employees e1  on tasks.assignedto =e1.id INNER JOIN employees e2   on  tasks.assignedby=e2.id INNER JOIN projects ON tasks.projectid =projects.id WHERE tasks.id=@taskId;
+
+
+--This query is used to get all tasks of members.
+select * from tasks where  assignedto =@memberId;
+
+--This query is used for get all tasks between particular dates.
+select * FROM tasks where assigneddate BETWEEN @from AND @to ORDER BY assigneddate;
+
+
+--This query is used for get all tasks of members between  particular dates.
+select * FROM tasks where assigneddate BETWEEN @fromAssignedDate AND @toAssignedDate And assignedto=@assignedto ORDER BY assigneddate;
+
+
+--This query is used to update task.
+Update  tasks set startdate=@startdate,status=@status where id =@taskId;
+
+
+--this query is used to delete task .
+delete from tasks where id= @taskId;
+
+
+
+
+-- sprint releted query
+
+
+--this query is used for get all sprints of project between particular dates.
+SELECT * FROM sprints WHERE projectid=@projectid AND sprints.startdate<=@date AND sprints.enddate>=@date;
+
+--This query is used for get all sprints of projects.
+SELECT * FROM sprints where projectid=@projectid;
+
+
+--This query is used for all tasks,employess releted data of particular sprint.
+select tasks.* , employees.userid  from tasks 
+                           INNER join sprints on tasks.sprintid=sprints.id
+                           INNER join employees ON tasks.assignedto=employees.id
+                           WHERE sprints.id=@sprintId;
+
+ --This query is used for insert sprint .                          
+Insert into sprints(title,goal,startdate,enddate,projectid) values (@title,@goal,@startdate,@enddate,@projectId);
+
+--This query is used for delete sprint.
+delete from sprints where id = @sprintId;
+
+--This query is used for update sprint.
+Update sprints set title=@title,startdate=@startdate,enddate=@enddate,projectid=@projectid where id = @sprintId ;
+
 
 

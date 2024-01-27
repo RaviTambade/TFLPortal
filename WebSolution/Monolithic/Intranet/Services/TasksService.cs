@@ -136,7 +136,6 @@ public class TaskService : ITaskService
         }
         return tasks;
     }
-
     public async Task<List<ProjectTask>> GetAllTasks(int projectId, string taskType)
     {
 
@@ -198,8 +197,7 @@ public class TaskService : ITaskService
         }
         return tasks;
     }
-
-    public async Task<List<ProjectTask>> GetAllTasks(int projectId, int employeeId)
+    public async Task<List<ProjectTask>> GetAllTasks(int projectId, int memberId)
     {
 
         List<ProjectTask> tasks = new List<ProjectTask>();
@@ -211,7 +209,7 @@ public class TaskService : ITaskService
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);
 
-            command.Parameters.AddWithValue("@assignedto", employeeId);
+            command.Parameters.AddWithValue("@assignedto", memberId);
 
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
@@ -219,7 +217,7 @@ public class TaskService : ITaskService
             {
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
-                string activityType = reader["tasktype"].ToString();
+                string taskType = reader["tasktype"].ToString();
                 string description = reader["description"].ToString();
                  int sprintId = int.Parse(reader["sprintid"].ToString());
                 DateTime createDate = DateTime.Parse(reader["createddate"].ToString());
@@ -234,14 +232,14 @@ public class TaskService : ITaskService
                 {
                     TaskId = id,
                     Title = title,
-                    TaskType = activityType,
+                    TaskType = taskType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
                     AssignDate = assignDate,
                     StartDate = startDate,
                     DueDate = dueDate,
-                    AssignedTo = employeeId,
+                    AssignedTo = memberId,
                     Status = status,
                     AssignedBy = managerId,
 
@@ -260,7 +258,7 @@ public class TaskService : ITaskService
         }
         return tasks;
     }
-    public async Task<List<ProjectTask>> GetAllTasks(int projectId, int employeeId, string status)
+    public async Task<List<ProjectTask>> GetAllTasks(int projectId, int memberId, string status)
     {
 
         List<ProjectTask> tasks = new List<ProjectTask>();
@@ -272,7 +270,7 @@ public class TaskService : ITaskService
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);
             command.Parameters.AddWithValue("@status", status);
-            command.Parameters.AddWithValue("@assignedto", employeeId);
+            command.Parameters.AddWithValue("@assignedto", memberId);
 
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
@@ -287,21 +285,21 @@ public class TaskService : ITaskService
                 DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
-                string projectWorkType = reader["projectworktype"].ToString();
+                string taskType = reader["tasktype"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
                 ProjectTask theTask = new ProjectTask
                 {
                     TaskId = id,
                     Title = title,
-                    TaskType = projectWorkType,
+                    TaskType = taskType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
                     AssignDate = assignDate,
                     StartDate = startDate,
                     DueDate = dueDate,
-                    AssignedTo= employeeId,
+                    AssignedTo= memberId,
                     Status = status,
                     AssignedBy = managerId,
 
@@ -320,9 +318,7 @@ public class TaskService : ITaskService
         }
         return tasks;
     }
-
-    
-    public async Task<List<ProjectTask>> GetAllSprintTasks(int sprintId, int employeeId, string status)
+    public async Task<List<ProjectTask>> GetAllSprintTasks(int sprintId, int memberId, string status)
     {
          List<ProjectTask> tasks = new List<ProjectTask>();
         MySqlConnection connection = new MySqlConnection();
@@ -333,7 +329,7 @@ public class TaskService : ITaskService
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@sprintid", sprintId);
             command.Parameters.AddWithValue("@status", status);
-            command.Parameters.AddWithValue("@assignedto", employeeId);
+            command.Parameters.AddWithValue("@assignedto", memberId);
 
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
@@ -348,21 +344,21 @@ public class TaskService : ITaskService
                 DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
-                string projectWorkType = reader["projectworktype"].ToString();
+                string taskType = reader["tasktype"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
                 ProjectTask theTask = new ProjectTask
                 {
                     TaskId = id,
                     Title = title,
-                    TaskType = projectWorkType,
+                    TaskType = taskType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
                     AssignDate = assignDate,
                     StartDate = startDate,
                     DueDate = dueDate,
-                    AssignedTo = employeeId,
+                    AssignedTo = memberId,
                     Status = status,
                     AssignedBy = managerId,
 
@@ -381,7 +377,6 @@ public class TaskService : ITaskService
         }
         return tasks;
     }
-
     public async Task<ProjectTask> GetTask(int taskId)
     {
        ProjectTask task = null;
@@ -399,7 +394,7 @@ public class TaskService : ITaskService
             {
                 string title = reader["title"].ToString();
                 string description = reader["description"].ToString();
-                string activityType = reader["tasktype"].ToString();
+                string taskType = reader["tasktype"].ToString();
                  int sprintId = int.Parse(reader["sprintid"].ToString());
                 DateTime createDate = DateTime.Parse(reader["createddate"].ToString());
                 DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
@@ -415,7 +410,7 @@ public class TaskService : ITaskService
                 task = new ProjectTask()
                 {
                     TaskId = taskId,
-                    TaskType = activityType,
+                    TaskType = taskType,
                     Title = title,
                     CreatedDate = createDate,
                     Description = description,
@@ -441,7 +436,6 @@ public class TaskService : ITaskService
         }
         return task;
     }
-
     public async Task<bool> AddTask(ProjectTask theTask)
     {
         bool status = false;
@@ -482,23 +476,22 @@ public class TaskService : ITaskService
         }
         return status;
     }
-
-     public async Task<List<ProjectTask>> GetMemberTasks(int employeeId){
+    public async Task<List<ProjectTask>> GetMemberTasks(int memberId){
       List<ProjectTask> tasks = new List<ProjectTask>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select * from tasks where  assignedto =@employeeId";
+            string query = "select * from tasks where  assignedto =@memberId";
             MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@employeeId", employeeId);
+            command.Parameters.AddWithValue("@memberId", memberId);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
-                string activityType = reader["tasktype"].ToString();
+                string taskType = reader["tasktype"].ToString();
                  int sprintId = int.Parse(reader["sprintid"].ToString());
                 string description = reader["description"].ToString();
                 int projectId = int.Parse(reader["projectid"].ToString());
@@ -514,14 +507,14 @@ public class TaskService : ITaskService
                 {
                     TaskId = id,
                     Title = title,
-                    TaskType = activityType,
+                    TaskType = taskType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
                     AssignDate = assignDate,
                     StartDate = startDate,
                     DueDate = dueDate,
-                    AssignedTo = employeeId,
+                    AssignedTo = memberId,
                     Status = status,
                     AssignedBy = managerId,
 
@@ -540,18 +533,17 @@ public class TaskService : ITaskService
         }
         return tasks;
     }
-
-    public async Task<List<ProjectTask>> GetAllTasks(DateTime fromAssignedDate,DateTime toAssignedDate)
+    public async Task<List<ProjectTask>> GetAllTasks(DateTime from,DateTime to)
     {
         List<ProjectTask> tasks = new List<ProjectTask>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select * FROM tasks where assigneddate BETWEEN @fromAssignedDate AND @toAssignedDate ORDER BY assigneddate";
+            string query = "select * FROM tasks where assigneddate BETWEEN @from AND @to ORDER BY assigneddate";
             MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@fromAssignedDate", fromAssignedDate);
-            command.Parameters.AddWithValue("@toAssignedDate", toAssignedDate);
+            command.Parameters.AddWithValue("@from", from);
+            command.Parameters.AddWithValue("@to", to);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
@@ -602,9 +594,7 @@ public class TaskService : ITaskService
         }
         return tasks;
     } 
-
-
-    public async Task<List<ProjectTask>> GetAllTasks(int employeeId,DateTime fromAssignedDate,DateTime toAssignedDate)
+    public async Task<List<ProjectTask>> GetAllTasks(int memberId,DateTime from,DateTime to)
     {
         List<ProjectTask> tasks = new List<ProjectTask>();
         MySqlConnection connection = new MySqlConnection();
@@ -613,16 +603,16 @@ public class TaskService : ITaskService
         {
             string query = "select * FROM tasks where assigneddate BETWEEN @fromAssignedDate AND @toAssignedDate And assignedto=@assignedto ORDER BY assigneddate";
             MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@fromAssignedDate", fromAssignedDate);
-            command.Parameters.AddWithValue("@toAssignedDate", toAssignedDate);
-             command.Parameters.AddWithValue("@assignedto", employeeId);
+            command.Parameters.AddWithValue("@from", from);
+            command.Parameters.AddWithValue("@to", to);
+             command.Parameters.AddWithValue("@assignedto", memberId);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
-                string projectWorkType = reader["tasktype"].ToString();
+                string taskType = reader["tasktype"].ToString();
                  int sprintId = int.Parse(reader["sprintid"].ToString());
                 string description = reader["description"].ToString();
                 int projectId = int.Parse(reader["projectid"].ToString());
@@ -638,14 +628,14 @@ public class TaskService : ITaskService
                 {
                     TaskId = id,
                     Title = title,
-                    TaskType = projectWorkType,
+                    TaskType = taskType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
                     AssignDate = assignDate,
                     StartDate = startDate,
                     DueDate = dueDate,
-                    AssignedTo = employeeId,
+                    AssignedTo = memberId,
                     Status = status,
                     AssignedBy = managerId,
 
@@ -664,9 +654,7 @@ public class TaskService : ITaskService
         }
         return tasks;
     } 
-
-
-    public async Task<bool> UpdateTask(string Status,int taskId)
+    public async Task<bool> UpdateTask(string taskStatus,int taskId)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
@@ -676,7 +664,7 @@ public class TaskService : ITaskService
             string query = "Update  tasks set startdate=@startdate,status=@status where id =@taskId";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@startDate", DateTime.Now);
-            cmd.Parameters.AddWithValue("@status", Status);
+            cmd.Parameters.AddWithValue("@status", taskStatus);
             cmd.Parameters.AddWithValue("@taskId",taskId );
     
             await connection.OpenAsync();
@@ -699,10 +687,9 @@ public class TaskService : ITaskService
         return status;
 
     }
-
-    public async Task<ProjectTaskStatusCountResponse> GetTasksCount()
+    public async Task<AllTaskCountResponse> GetTasksCount()
     {
-    ProjectTaskStatusCountResponse countSp = null;
+    AllTaskCountResponse countSp = null;
     MySqlConnection con = new MySqlConnection();
     con.ConnectionString = _connectionString;
     try
@@ -727,7 +714,7 @@ public class TaskService : ITaskService
         int inprogress = Convert.ToInt32(cmd.Parameters["@inprogress"].Value);
         int completed = Convert.ToInt32(cmd.Parameters["@completed"].Value);
 
-        countSp = new ProjectTaskStatusCountResponse()
+        countSp = new AllTaskCountResponse()
         {
             Todo = todo,
             InProgress = inprogress,
@@ -745,9 +732,7 @@ public class TaskService : ITaskService
 
     return countSp;
 }
-
-
-public async Task<List<ProjectTask>> GetTodaysTasks(int projectId,DateTime date)
+    public async Task<List<ProjectTask>> GetTodaysTasks(int projectId,DateTime date)
     {
         List<ProjectTask> tasks = new List<ProjectTask>();
         MySqlConnection connection = new MySqlConnection();
@@ -764,13 +749,12 @@ public async Task<List<ProjectTask>> GetTodaysTasks(int projectId,DateTime date)
             {
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
-                string projectWorkType = reader["tasktype"].ToString();
+                string taskType = reader["tasktype"].ToString();
                  int sprintId = int.Parse(reader["sprintid"].ToString());
                 string description = reader["description"].ToString();
                 DateTime createdate = DateTime.Parse(reader["createddate"].ToString());
                 int assignedto = int.Parse(reader["assignedto"].ToString());
                 int assignedby = int.Parse(reader["assignedby"].ToString());
-               // DateTime assigndate = DateTime.Parse(reader["assigneddate"].ToString());
                 DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime duedate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
@@ -780,7 +764,7 @@ public async Task<List<ProjectTask>> GetTodaysTasks(int projectId,DateTime date)
                 {
                     TaskId = id,
                     Title = title,
-                    TaskType = projectWorkType,
+                    TaskType = taskType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
@@ -805,7 +789,6 @@ public async Task<List<ProjectTask>> GetTodaysTasks(int projectId,DateTime date)
         }
         return tasks;
     }
-
     public async Task<bool> Delete(int taskId){
         bool status =false;
         MySqlConnection connection = new MySqlConnection();
