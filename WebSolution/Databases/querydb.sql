@@ -1,7 +1,12 @@
 -- Active: 1696576841746@@127.0.0.1@3306@tflportal
 
+
+-- LeaveManagement
+
+-- get all leaveapplications
 select * from leaveapplications;
 
+-- get all leavesallocated
 select * from leavesallocated;
 
 -- get monthly leave count of employee by leavetype
@@ -50,6 +55,44 @@ call getConsumedLeavesOfEmployee(12,4,2023,@SickLeaves,@Casualleaves,@PaidLeaves
 call getAvailableLeavesOfEmployee(12,4,2023,@SickLeaves,@Casualleaves,@PaidLeaves,@UnpaidLeaves);
 
 
+
+-- ProjectMember
+
+-- get all employees on bench
+SELECT * FROM employees
+ WHERE id not in (SELECT employeeid FROM projectmembers GROUP BY employeeid HAVING COUNT(CASE WHEN status = 'yes' THEN 1 END) > 0)
+
+
+-- get members of project
+Select * from projectmembers where projectid=1 and status="yes";
+
+-- PayrollManagement
+
+-- get all salary slips of employee
+select * from salaryslips where employeeid=1;
+
+-- get salary slip details 
+select * from salaryslips where id=1;
+
+-- get userids of unpaid employees in month
+SELECT employees.userid FROM employees LEFT JOIN salaries ON employees.id = salaries.employeeid
+AND MONTH(salaries.paydate) = 4 AND YEAR(salaries.paydate) = 2024 WHERE salaries.employeeid IS NULL
+
+
+-- get salaryslips of paid employees in month
+select * from salaryslips where MONTH(paydate)=4 and YEAR(paydate)=2024;
+
+-- get leavesallocated details of employee
+select * from salarystructures where employeeid=1;
+
+
+-- HRManagement
+
+-- get employeedetails 
+select * from employees where id=1;
+
+-- get details of user
+select * from employees where userid=5;
 
 
 -- get timesheets of employee between dates

@@ -119,10 +119,6 @@
             CONSTRAINT fk_tasks_sprints FOREIGN KEY (sprintid) REFERENCES sprints(id) ON UPDATE CASCADE ON DELETE CASCADE
         );
 
-  
-
-   
-
     CREATE TABLE timesheets(
             id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
             createdon DATETIME ,
@@ -137,8 +133,6 @@
             CONSTRAINT unique_emp_timesheet UNIQUE KEY(createdon,createdby) ,
             CONSTRAINT fk_timesheets_employees FOREIGN KEY(createdby) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
-
-
 
     CREATE TABLE timesheetentries(
         id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
