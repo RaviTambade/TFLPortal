@@ -1,0 +1,40 @@
+<div>
+
+  <label for="projectId"> Select Project :</label>
+    <select id="projectId" name="projectId" [(ngModel)]="projectId" (change)="onClick()">
+      <option *ngFor="let project of projects" [value]="project.id">{{project.title}}</option>
+    </select>
+
+    
+</div>
+<div (click)="showForm()"><button>Create Work</button></div>
+
+
+<form [formGroup]="activityform" (ngSubmit)="onSubmit()" *ngIf="createactivityform">
+  <div>
+      <label for="title">Activity Title:</label>
+      <input type="text" id="title" name="title" formControlName="title">
+    </div>
+  
+    <div>
+      <label for="activitytype">Activity Type:</label>
+      <select id="activitytype" name="activitytype" formControlName="activitytype">
+        <option value="task">Task</option>
+        <option value="userstory">User Story</option>
+      </select>
+    </div>
+    <div>
+      <label for="startdate">Start Date:</label>
+    <input type="date" id="startdate" name="startdate" formControlName="startdate">
+    </div>
+  
+    <div>
+      <label for="duedate">Due Date:</label>
+      <input type="date" id="duedate" name="duedate" formControlName="duedate" placeholder="yy-mm-dd">
+    </div>
+  
+    <div>
+      <button type="submit">Submit</button>
+    </div>
+  
+  </form>

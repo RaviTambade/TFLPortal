@@ -1,0 +1,39 @@
+<div>
+
+    <h2> My {{selectedInterval |titlecase}}ly Timesheets </h2>
+    <div class="mb-2 d-flex">
+
+        <label>Interval</label>
+        <select class="mx-2 form-control-sm" [(ngModel)]="selectedInterval" (change)="onIntervalChange()">
+            <option *ngFor="let interval of intervals" [value]="interval"> {{interval}}</option>
+        </select>
+        <div *ngFor="let status of timesheetStatus">
+            <label>
+                <input type="checkbox" class="mx-2 form-check-input" [(ngModel)]="selectedStatus[status]"
+                    (change)="onStatusChange()">
+                {{status}}
+            </label>
+        </div>
+
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Status</th>
+                <th>hours</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let timesheet of pagedFilterTimesheets">
+            <tr>
+                <td> {{timesheet.timesheetDate | date:'dd-MM-yyy'}}</td>
+                <td> {{timesheet.status}}</td>
+                <td> {{timesheet.hours |hourConvertor}}</td>
+                <td><a [routerLink]="['../details',timesheet.id]"> Details</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<pagination [OriginalArray]="filteredTimesheets" (pagedData)="onReceivePagedData($event)"></pagination>

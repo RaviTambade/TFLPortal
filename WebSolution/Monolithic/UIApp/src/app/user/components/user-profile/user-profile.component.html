@@ -1,0 +1,37 @@
+<h2 class="m-4 ">My Profile </h2>
+<div class="m-4 " *ngIf="user">
+    
+    <div class="d-flex ">
+        <div class="text-center"  *ngIf="!selectedImageUrl">
+        <img style=" border-radius: 250px;" [src]="imageServer +user.imageUrl" width="260" height="260">
+        <br>
+        <button class="btn btn-primary m-1" (click)="fileInput.click()">
+            <input #fileInput type="file" class="d-none" (change)="onFileSelected($event)"> Edit
+        </button>
+    </div>
+        <div class="text-center" *ngIf="selectedImageUrl">
+            <img style="border-radius: 250px;" [src]="selectedImageUrl" alt="Preview Image" width="260" height="260">
+            <br>
+            <button class=" btn btn-primary mx-2" (click)="confirmImage()">Confirm</button>
+            <button class="btn btn-danger" (click)="cancelImage()">Cancel</button>
+        </div>
+
+
+        <div class="mx-4">
+            <h2>{{ user.firstName |titlecase }} {{ user.lastName |titlecase }}</h2>
+            <p><b>Birth Date:</b> {{ user.birthDate | date }}</p>
+            <p><b>Gender:</b> {{ user.gender |titlecase }}</p>
+            <p><b>Email:</b> {{ user.email }}</p>
+            <p><b>Contact Number:</b> {{ user.contactNumber }}</p>
+            <a (click)="onClickUpdateProfile()" style="color: blue;" >Update Profile</a>
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div *ngIf="updateProfileStatus && user" class="col-md-6 ">
+        <update-profile [user]="user"
+            (onUpdateFinished)="closeEditUserComponent($event)"></update-profile>
+    </div>
+
+</div>

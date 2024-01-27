@@ -1,0 +1,43 @@
+<app-activity-list (selectedActivities)="getEvent($event)"></app-activity-list>
+<!-- <div class="card-body" *ngIf="activity">
+    <p class="card-text"><strong>id:</strong> {{ activity.id }}</p>
+    <p class="card-text"><strong>ProjectId:</strong> {{ activity.projectId }}</p>
+    <p class="card-text"><strong>AssignedDate:</strong> {{ activity.assignDate }} </p>
+    <p class="card-text"><strong>AssignedBy:</strong> {{ activity.assignedBy}}</p>
+    <p class="card-text"><strong>StartDate:</strong> {{ activity.startDate | date }}</p>
+    <p class="card-text"><strong>DueDate:</strong> {{ activity.dueDate | date }}</p>
+</div> -->
+
+
+
+<div class="container">
+    <h2> My Activity Details</h2>
+    <div class="card">
+        <table class="table-bordered text-center">
+            <thead>
+                <tr>
+                    
+                    <th>Project Name</th>
+                    <th>ActivityTitle</th>
+                    <th>ActivityType</th>
+                    <th>Description</th>
+                    <th>DueDate:</th>
+                    <th>AssignedBy</th>
+
+                </tr>
+            </thead>
+            <tbody *ngIf="activity" >
+                <tr>
+            
+                    <td><a href="#">{{project.title}}</a></td>
+                    <td>{{activity.title}}</td>
+                    <td>{{activity.projectWorkType}}</td>
+                    <td>{{activity.description}}</td>
+                    <td>{{activity.dueDate|date}}</td>
+                    <td><a href="#">{{employee?.firstName}} {{employee?.lastName}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+

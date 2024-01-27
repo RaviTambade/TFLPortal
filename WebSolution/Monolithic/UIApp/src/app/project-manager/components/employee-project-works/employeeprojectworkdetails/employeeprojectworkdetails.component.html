@@ -1,0 +1,53 @@
+
+
+
+<div class="container">
+    <h2> Project Work Details</h2>
+    
+        <table class="table-bordered text-center">
+            <div *ngIf="employeeWork">
+                <tr>
+                    <th>AssignedDate</th>
+                    
+                    <td> {{employeeWork.assignDate |date}}</td>
+                    </tr>
+                   
+                   
+                    <tr>
+                        <th>Status</th>
+                    <td> {{employeeWork.status}}</td>
+                </tr>
+                 
+                 
+                    <tr>
+                        <th>description</th>
+                    <td> {{employeeWork.description}}</td>
+                </tr>
+                   
+                    
+                    <tr>
+                        <th>projectWorkType</th>
+                    <td> {{employeeWork.projectWorkType}}</td>
+                </tr>
+                    
+                    
+                    <tr>
+                        <th>assignedBy</th>
+                    <td> {{employeeWork.assignedByEmployee}}</td>
+                </tr>
+                   
+                    
+                    <tr>
+                        <th>assignedTo</th>
+                    <td> {{employeeWork.assignedToEmployee}}</td>
+                </tr>
+                   
+                   
+                    <tr>
+                        <th>DueDate</th>
+                    <td> {{employeeWork.dueDate |date}}</td>
+                </tr>
+                   
+                </div>  
+            </table>
+</div>

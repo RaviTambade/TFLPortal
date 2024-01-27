@@ -1,0 +1,15 @@
+table {
+    width: 100%;
+}
+
+table td {
+    line-height: 25px;
+    padding-left: 15px;
+    border: 1px solid black;
+}
+
+table th {
+    background-color: #fbc403;
+    color: black;
+    border: 1px solid black;
+}

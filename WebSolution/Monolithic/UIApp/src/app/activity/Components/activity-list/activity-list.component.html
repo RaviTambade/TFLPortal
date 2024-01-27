@@ -1,0 +1,20 @@
+<div class="container">
+    <h2> My Activities</h2>
+    <div class="card">
+        <table class="table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>AssignedDate</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                   </tr>
+            </thead>
+            <tbody *ngFor="let activity of activities">
+                <tr>
+                    <td> {{activity.assignDate |date}}</td>
+                    <td><a  (click)="sendEvent(activity)">{{activity.title}}</a></td>
+                    <td> {{activity.status}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
