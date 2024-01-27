@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.css";
+/* @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css"; */
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+.highlighted {
+  color: red;
+}
+
+a {
+  text-decoration: none;
+}

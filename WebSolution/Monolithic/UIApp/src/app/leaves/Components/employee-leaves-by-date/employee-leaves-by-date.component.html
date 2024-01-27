@@ -1,0 +1,30 @@
+<label>Date</label>
+<input type="text" name="date" [(ngModel)]="date">
+<button (click)="onSearch(date)">Search</button>
+
+<h3>Leaves Details</h3>
+<div class="container">
+    <div class="card col-6">
+    <table class="table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Application Date</th>
+                    <th>From Date</th>
+                    <th>To Date</th>
+                    <!-- <th>Status</th> -->
+                    <th>LeaveType</th>
+                   </tr>
+            </thead>
+            <tbody *ngFor="let leave of leaveDetails">
+                <tr>
+                    <td>{{leave.fullName}}</td>
+                    <td>{{leave.applicationDate |date}}</td>
+                    <td>{{leave.fromDate |date}}</td>
+                    <td>{{leave.toDate |date}}</td>
+                    <!-- <td>{{leave.status}}</td> -->
+                    <td>{{leave.leaveType}}</td>
+                </tr>
+            </tbody>   
+    </table>  
+</div>

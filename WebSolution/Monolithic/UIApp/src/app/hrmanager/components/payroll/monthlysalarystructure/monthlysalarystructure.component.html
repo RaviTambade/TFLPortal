@@ -1,0 +1,78 @@
+<div *ngIf="salaryStructure">
+
+
+    <div style="border:1px solid black">
+        <div style='margin-bottom: 20px; margin-top: 20px; text-align: center;'>
+            <img src='assets/tfl.jpeg' style='width:100px;height:100px;' />
+            <div height="100px"
+                style="background-color:white;color:black;text-align:center;font-size:24px; font-weight:600;">
+                Transflower Private Limited
+            </div>
+        </div>
+        <table>
+            <tr>
+                <th>Contact NO:</th>
+                <td>{{salaryStructure.contactNumber}}</td>
+                <th>Name :</th>
+                <td>{{salaryStructure.firstName}} {{salaryStructure.lastName}}</td>
+                <th>WorkingDays :</th>
+                <td>{{salaryStructure.workingDays}}</td>
+               
+            </tr>
+            <tr>
+                <th>Bank A/c No :</th>
+                <td>{{salaryStructure.accountNumber}}</td>
+                <th>IFSC :</th>
+                <td>{{salaryStructure.ifsc}}</td>
+                <th>ConsumedPaidLeaves :</th>
+                <td>{{salaryStructure.consumedPaidLeaves}}</td>
+            </tr>
+            <tr>
+                <th>DOB :</th>
+                <td>{{salaryStructure.birthDate|date}}</td>
+            </tr>
+            <app-employee-leaves [employeeId]="employeeId"></app-employee-leaves>
+        </table>
+        <br />
+        <table>
+            <tr>
+                <th>Earnings</th>
+                <th>Amount</th>
+                <th>Deductions</th>
+                <th>Amount</th>
+            </tr>
+            <tr>
+                <td>Basic salary</td>
+                <td>{{salaryStructure.monthlyBasicsalary}}</td>
+                <td>provident fund</td>
+                <td>{{salaryStructure.pf}}</td>
+                
+            </tr>
+            <tr>
+                <td>House Rent Allowance</td>
+                <td>{{salaryStructure.hra}}</td>
+                <td>Tax</td>
+                <td>{{salaryStructure.tax}}</td>
+            </tr>
+            <tr>
+               
+                <td>Leave Travel Allowance</td>
+                <td>{{salaryStructure.lta.toFixed(2)}}</td>
+                <td>Deduction</td>
+                <td>{{salaryStructure.deduction}}</td>
+            </tr>
+            <tr>
+                <td>Variable Pay</td>
+                <td>{{salaryStructure.variablePay}}</td>
+            </tr>
+            <tr>
+                <td>Daily Allowance</td>
+                <td>{{salaryStructure.da}}</td> 
+                 
+            </tr>
+            <tr>
+                <td><strong>NET PAY</strong></td>
+                <td>{{salaryStructure.totalAmount.toFixed(2)}}</td>
+            </tr>
+        </table>
+    </div>

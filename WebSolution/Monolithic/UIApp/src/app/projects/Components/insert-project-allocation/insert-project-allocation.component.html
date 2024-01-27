@@ -1,0 +1,31 @@
+<form #projectForm="ngForm" (ngSubmit)="onSubmit()">
+    <table>
+         <tr>
+           <td><label hidden>projectId:</label></td>
+           <td><input type="number" name="projectId" [(ngModel)]="projectAllocation.projectId" type="hidden" ></td>
+         </tr>
+         <tr>
+           <td><label hidden>EmployeeId:</label></td>
+           <td><input type="number" name="employeeId" [(ngModel)]="projectAllocation.employeeId" type="hidden"></td>
+         </tr>        
+         <tr>
+            <td><label>Role:</label></td>
+           <td><input type="text" name="projectRole" [(ngModel)]="projectAllocation.projectRole"></td>
+         </tr>
+         <tr>
+            <td><label>Assign Date:</label></td>
+            <td><input type="text" name="projectAssignDate" [(ngModel)]="projectAllocation.projectAssignDate"></td>
+          </tr>
+          <!-- <tr>
+            <td> <label>Release Date:</label></td>
+            <td><input type="text" name="releaseDate" [(ngModel)]="projectAllocation.releaseDate"></td>
+          </tr>         -->
+          <tr>
+             <td><label>Status</label></td>
+            <td><input type="text" name="currentProjectWorkingStatus" [(ngModel)]="projectAllocation.currentProjectWorkingStatus"></td>
+          </tr>
+          <tr>
+            <td><button type="submit" >Submit</button></td>
+          </tr>
+     </table>
+   </form>

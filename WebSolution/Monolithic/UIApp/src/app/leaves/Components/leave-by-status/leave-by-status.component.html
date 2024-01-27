@@ -1,0 +1,29 @@
+<h3> Leaves </h3>
+<input type="radio" [(ngModel)]="checkStatus" value="applied" (change)="filterLeaves()"> applied
+<input type="radio" [(ngModel)]="checkStatus" value="sanctioned" (change)="filterLeaves()"> Sanctioned
+<input type="radio" [(ngModel)]="checkStatus" value="notsanctioned" (change)="filterLeaves()"> notsanctioned
+<div>
+    <div class="card col-6">
+    <table class="table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <!-- <th>From Date</th>
+                    <th>To Date</th> -->
+                    <th>Application Date</th>
+                    <th>Status</th>
+                    <th>Action </th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let leave of leaveDetails">
+                <tr>
+                    <td>{{leave.fullName}}</td>
+                    <!-- <td>{{leave.fromDate |date}}</td>
+                    <td>{{leave.toDate |date}}</td> -->
+                    <td>{{leave.applicationDate |date}}</td>
+                    <td>{{leave.status}}</td>
+                    <td style="cursor: pointer; text-decoration: underline ; color:  #0000EE;" [routerLink]="['../detail',leave.id]">details</td>
+                </tr>
+            </tbody>
+    </table>
+</div> 
