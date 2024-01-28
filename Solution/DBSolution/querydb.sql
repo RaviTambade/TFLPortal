@@ -276,42 +276,42 @@ SELECT employees.userid
 select * from tasks;
 
 --This query is used for get all task of particular project.
-select * from tasks where  projectid =@projectId;
+select * from tasks where  projectid =1;
 
 --This query is used for get all task of project of particular tasktype.
-select * from tasks where  projectid =@projectId and tasktype=@tasktype;
+select * from tasks where  projectid =1 and tasktype='task';
 
 --This query is used to get all task of project of particular member.
-select * from tasks where  projectid =@projectId and assignedto=@assignedto;
+select * from tasks where  projectid =1 and assignedto=10;
 
 
 --This query is used to get all task of project with particular status and member.
-select * from tasks where  projectid =@projectId and status=@status and assignedto=@assignedto;
+select * from tasks where  projectid =1 and status="inprogress" and assignedto=10;
 
 --This query is used to get all tasks of sprint with particular status and member.
-select * from tasks where  sprintid =@sprintid and status=@status and assignedto=@assignedto;
+select * from tasks where  sprintid =1 and status='inprogress' and assignedto=10;
 
 --This query is used to get all tasks and members  data .
-select tasks.* ,e1.userid as assignbyuserid,e2.userid as assigntouserid,projects.title as projectname from tasks INNER JOIN employees e1  on tasks.assignedto =e1.id INNER JOIN employees e2   on  tasks.assignedby=e2.id INNER JOIN projects ON tasks.projectid =projects.id WHERE tasks.id=@taskId;
+select tasks.* ,e1.userid as assignbyuserid,e2.userid as assigntouserid,projects.title as projectname from tasks INNER JOIN employees e1  on tasks.assignedto =e1.id INNER JOIN employees e2   on  tasks.assignedby=e2.id INNER JOIN projects ON tasks.projectid =projects.id WHERE tasks.id=1;
 
 
 --This query is used to get all tasks of members.
-select * from tasks where  assignedto =@memberId;
+select * from tasks where  assignedto =10;
 
 --This query is used for get all tasks between particular dates.
-select * FROM tasks where assigneddate BETWEEN @from AND @to ORDER BY assigneddate;
+select * FROM tasks where assigneddate BETWEEN '2023-01-01' AND '2024-01-01' ORDER BY assigneddate;
 
 
 --This query is used for get all tasks of members between  particular dates.
-select * FROM tasks where assigneddate BETWEEN @fromAssignedDate AND @toAssignedDate And assignedto=@assignedto ORDER BY assigneddate;
+select * FROM tasks where assigneddate BETWEEN '2023-01-01' AND '2023-01-01' And assignedto=10 ORDER BY assigneddate;
 
 
 --This query is used to update task.
-Update  tasks set startdate=@startdate,status=@status where id =@taskId;
+Update  tasks set startdate='2023-01-01',status='inprogress' where id =1;
 
 
 --this query is used to delete task .
-delete from tasks where id= @taskId;
+delete from tasks where id= 1;
 
 
 
@@ -320,26 +320,26 @@ delete from tasks where id= @taskId;
 
 
 --this query is used for get all sprints of project between particular dates.
-SELECT * FROM sprints WHERE projectid=@projectid AND sprints.startdate<=@date AND sprints.enddate>=@date;
+SELECT * FROM sprints WHERE projectid=1 AND sprints.startdate<='2023-01-01' AND sprints.enddate>='2023-01-01';
 
 --This query is used for get all sprints of projects.
-SELECT * FROM sprints where projectid=@projectid;
+SELECT * FROM sprints where projectid=1;
 
 
 --This query is used for all tasks,employess releted data of particular sprint.
 select tasks.* , employees.userid  from tasks 
                            INNER join sprints on tasks.sprintid=sprints.id
                            INNER join employees ON tasks.assignedto=employees.id
-                           WHERE sprints.id=@sprintId;
+                           WHERE sprints.id=1;
 
  --This query is used for insert sprint .                          
-Insert into sprints(title,goal,startdate,enddate,projectid) values (@title,@goal,@startdate,@enddate,@projectId);
+Insert into sprints(title,goal,startdate,enddate,projectid) values ('sprint','sprint','2023-01-01','2023-01-01',1);
 
 --This query is used for delete sprint.
-delete from sprints where id = @sprintId;
+delete from sprints where id = 1;
 
 --This query is used for update sprint.
-Update sprints set title=@title,startdate=@startdate,enddate=@enddate,projectid=@projectid where id = @sprintId ;
+Update sprints set title="sprint",startdate='2023-01-01',enddate='2023-01-01',projectid=1 where id = 6 ;
 
 
-
+--project releted queries
