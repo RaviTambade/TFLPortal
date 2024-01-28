@@ -343,3 +343,30 @@ Update sprints set title="sprint",startdate='2023-01-01',enddate='2023-01-01',pr
 
 
 --project releted queries
+
+--This query is used to get all projects.
+select * from projects;
+
+
+--This query is used for gives employees project.
+SELECT * FROM projects WHERE projects.id=9 OR
+                id IN( SELECT DISTINCT projectid FROM projectmembership WHERE projectmembership.employeeid=@employeeid )
+                ;
+
+
+--This query is used to insert project data.
+Insert into projects (title,startdate,enddate,description,managerid,status) values(@title,@startdate,@enddate,@description,@managerid,@status);
+
+
+--This query is used to get particular project data.
+select * from projects where id =@projectId;
+
+
+--This query is used for gives members projects.
+
+select * from projects where managerid=@managerId;
+
+--This query is used to get user id for members of project.
+SELECT DISTINCT(employees.userid) as userid FROM employees INNER JOIN projectmembership ON employees.id = projectmembership.employeeid WHERE projectmembership.projectid = @projectId;
+
+
