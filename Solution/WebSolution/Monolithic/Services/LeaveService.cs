@@ -70,7 +70,7 @@ public class LeaveService : ILeaveService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select * from leavesallocated";
+            string query = "select * from leaveallocations";
             MySqlCommand command = new MySqlCommand(query, connection);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
@@ -299,7 +299,7 @@ public class LeaveService : ILeaveService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select * from leavesallocated where id =@Id";
+            string query = "select * from leaveallocations where id =@Id";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@Id", id);
             await connection.OpenAsync();
@@ -633,7 +633,7 @@ public class LeaveService : ILeaveService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query ="select sick,casual,paid,unpaid from leavesallocated where roleid=@roleId and financialyear=@financialYear";
+            string query ="select sick,casual,paid,unpaid from leaveallocations where roleid=@roleId and financialyear=@financialYear";
     
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@roleId", roleId);
@@ -716,7 +716,7 @@ public class LeaveService : ILeaveService
         {
             MySqlCommand command = new MySqlCommand();
             command.CommandText =
-                "Insert into leavesallocated(roleid,sick,casual,paid,unpaid,financialyear) values(@roleId,@sick,@casual,@paid,@unpaid,@financialyear)";
+                "Insert into leaveallocations(roleid,sick,casual,paid,unpaid,financialyear) values(@roleId,@sick,@casual,@paid,@unpaid,@financialyear)";
             command.Connection = connection;
             await connection.OpenAsync();
             command.Parameters.AddWithValue("@roleId", leaveAllocation.RoleId);
@@ -752,7 +752,7 @@ public class LeaveService : ILeaveService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "Update leavesallocated set roleid=@roleId,sick=@sick,casual=@casual,paid=@paid,unpaid=@unpaid,financialyear=@financialYear where id =@Id";
+            string query = "Update leaveallocations set roleid=@roleId,sick=@sick,casual=@casual,paid=@paid,unpaid=@unpaid,financialyear=@financialYear where id =@Id";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@Id", leaveAllocation.Id);
             command.Parameters.AddWithValue("@roleId", leaveAllocation.RoleId);
@@ -852,7 +852,7 @@ public class LeaveService : ILeaveService
         {
             MySqlCommand command = new MySqlCommand();
             command.CommandText =
-                "Delete from leavesallocated where id=@id";
+                "Delete from leaveallocations where id=@id";
             command.Connection = connection;
             await connection.OpenAsync();
             command.Parameters.AddWithValue("@id",id);
