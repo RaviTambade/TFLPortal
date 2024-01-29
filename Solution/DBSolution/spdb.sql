@@ -115,7 +115,7 @@ select coalesce(sum(datediff(todate,fromdate)+1),0) Into consumedCasualLeaves  f
 select coalesce(sum(datediff(todate,fromdate)+1),0) Into consumedSickLeaves  from leaveapplications where employeeId=employee_Id and leavetype="sick" and status="sanctioned" and year(fromdate)=year;
 select coalesce(sum(datediff(todate,fromdate)+1),0) Into consumedPaidLeaves  from leaveapplications where employeeId=employee_Id and leavetype="paid" and status="sanctioned" and year(fromdate)=year;
 select coalesce(sum(datediff(todate,fromdate)+1),0) Into consumedUnpaidLeaves  from leaveapplications where employeeId=employee_Id and leavetype="unpaid" and status="sanctioned" and year(fromdate)=year;
-select sick,casual,paid,unpaid Into sanctionedSickLeaves,sanctionedCasualLeaves,sanctionedPaidLeaves,sanctionedUnpaidLeaves from leavesallocated where roleid=role_id ;
+select sick,casual,paid,unpaid Into sanctionedSickLeaves,sanctionedCasualLeaves,sanctionedPaidLeaves,sanctionedUnpaidLeaves from leaveallocations where roleid=role_id ;
 set remainingSickLeaves=sanctionedSickLeaves-consumedSickLeaves;
 set remainingcasualLeaves=sanctionedCasualLeaves-consumedCasualLeaves;
 set remainingPaidLeaves=sanctionedPaidLeaves-consumedPaidLeaves;
@@ -168,7 +168,7 @@ Declare tax double default 1000;
 SELECT  COUNT(*) Into workingdays from timesheets
 WHERE employeeid =employee_Id AND MONTH(createdon)=month AND YEAR(createdon)=Year AND status="approved";
 
-SELECT coalesce(sum(datediff(todate,fromdate)+1),0) Into consumedpaidleaves From employeeleaves
+SELECT coalesce(sum(datediff(todate,fromdate)+1),0) Into consumedpaidleaves From leaveapplications
 WHERE employeeid = employee_Id
 AND MONTH(fromdate)=month AND YEAR(fromdate)=Year AND status="sanctioned"
 AND leavetype<>"unpaid" group by employeeid;
@@ -181,7 +181,6 @@ set totalamount = ((dailyallowance*(workingdays+consumedpaidleaves))+monthlybasi
 select totalamount,monthlybasicsalary,variablepayamount,monthlyhra,dailyallowance,leaveTravelallowance,pf,tax,deduction,workingdays,consumedpaidleaves;
 END $$
 DELIMITER ;
-
 
 call calculatesalary(10,1,2024);
 

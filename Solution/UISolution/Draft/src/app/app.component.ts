@@ -1,5 +1,4 @@
 import { Component, OnInit, isDevMode } from '@angular/core';
-import { Project } from './projects/Models/project';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -40,28 +39,5 @@ downloadFile(url:string){
       }
     }
   
-  title = 'PMSNGApp';
-  project: Project | undefined;
-  taskId:number|undefined;
-  timesheetId:number|undefined;
-  employeeId:number=0;
-  visibleSalaryStructure:boolean=false;
-
-  onReceiveProjectId(selectedProjectevent: Project) {
-    this.project = selectedProjectevent;
-  }
-
-  onReceiveTaskId(selectedTaskId: number) {
-    this.taskId = selectedTaskId;
-  }
   
-  onReceiveTimeSheetId(timesheetId:number){
-    this.timesheetId=timesheetId;
-  }
-
-  onReceiveEmployee(employeeId: number) {
-    this.visibleSalaryStructure=true;
-    this.employeeId = employeeId;
-    console.log(this.employeeId);
-  }
 }
