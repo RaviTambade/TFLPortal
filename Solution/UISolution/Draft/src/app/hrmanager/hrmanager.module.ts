@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { AllEmployeesComponent } from './components/payroll/all-employees/all-employees.component';
 import { EmployeeLeavesComponent } from './components/payroll/employee-leaves/employee-leaves.component';
 import { PaidEmployeeDetailsComponent } from './components/payroll/paid-employee-details/paid-employee-details.component';
+import { LeaveDisplayComponent } from './components/leave-display/leave-display.component';
 
 export const hrRoutes: Routes = [
   {
@@ -62,6 +63,7 @@ export const hrRoutes: Routes = [
     AllEmployeesComponent,
     EmployeeLeavesComponent,
     PaidEmployeeDetailsComponent,
+    LeaveDisplayComponent,
   ],
   imports: [CommonModule, RouterModule,FormsModule],
   exports: [EmployeedetailsComponent,SalaryprocessingComponent,AllEmployeesComponent],

@@ -1,0 +1,15 @@
+<h2 >Members</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>FullName</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let employee of employees">
+            <td><a class="link-underline" [routerLink]="['/projectmanager/projects/memberdetails',employee.employeeId,employee.projectId]">{{employee.fullName}}</a></td>
+            <td>{{employee.projectRole}}</td>
+        </tr>
+    </tbody>
+</table>
