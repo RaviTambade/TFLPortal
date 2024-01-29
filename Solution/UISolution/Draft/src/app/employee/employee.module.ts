@@ -11,6 +11,10 @@ import { DashboardComponent } from './components/BI/Dashboard/dashboard.componen
 import { TimesheetDetailsComponent } from './components/timesheet/timesheet-details/timesheet-details.component';
 import { SharedModule } from '../shared/shared.module';
 import { TimesheetListComponent } from './components/timesheet/timesheet-list/timesheet-list.component';
+import { CreateTimesheetComponent } from './components/timesheet/create-timesheet/create-timesheet.component';
+import { TimesheetEmployeeWorkDataComponent } from './components/timesheet/timesheet-employee-work-chart/timesheet-employee-work-data/timesheet-employee-work-data.component';
+import { TimesheetEmployeeWorkChartComponent } from './components/timesheet/timesheet-employee-work-chart/timesheet-employee-work-chart.component';
+// import { AddTimesheetEntryComponent } from './components/timesheet/add-timesheet-entry/add-timesheet-entry.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +26,10 @@ import { TimesheetListComponent } from './components/timesheet/timesheet-list/ti
     PerformenceApprisalComponent,
     TimesheetDetailsComponent,
     TimesheetListComponent,
+    CreateTimesheetComponent,
+    TimesheetEmployeeWorkDataComponent,
+    TimesheetEmployeeWorkChartComponent
+    // AddTimesheetEntryComponent
   ],
   imports: [
     CommonModule,
@@ -30,6 +38,6 @@ import { TimesheetListComponent } from './components/timesheet/timesheet-list/ti
     SharedModule,
     FormsModule,
   ],
-  exports: [TimesheetDetailsComponent,TimesheetListComponent],
+  exports: [TimesheetDetailsComponent,TimesheetListComponent,TimesheetEmployeeWorkChartComponent],
 })
 export class EmployeeModule {}

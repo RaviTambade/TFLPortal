@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
-import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
+import { TimesheetService } from '../../../../shared/services/Timesheet/timesheet.service';
+import { LocalStorageKeys } from '../../../../shared/enums/local-storage-keys';
 
 @Component({
   selector: 'app-create-timesheet',
@@ -12,7 +12,7 @@ export class CreateTimesheetComponent implements OnInit {
   date: string | undefined;
   employeeId: number | undefined;
   constructor(
-    private workmgmtSvc: WorkmgmtService,
+    private timesheetService: TimesheetService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -20,7 +20,7 @@ export class CreateTimesheetComponent implements OnInit {
   ngOnInit(): void {
     this.employeeId = Number(localStorage.getItem(LocalStorageKeys.employeeId));
     this.date = new Date().toISOString().slice(0, 10);
-    this.getTimeSheetId();
+    this.getOrCreateTimesheet();
   }
 
   CreateTimesheet() {
@@ -28,18 +28,18 @@ export class CreateTimesheetComponent implements OnInit {
       timesheetDate: this.date,
       employeeId:this.employeeId,
     };
-    this.workmgmtSvc.addTimeSheet(timesheetInsertModel).subscribe({
+    this.timesheetService.addTimeSheet(timesheetInsertModel).subscribe({
       next: (res) => {
         console.log(res);
       },
-      complete:()=> this.getTimeSheetId()
+      complete:()=> this.getOrCreateTimesheet()
     });
   }
 
 
-  getTimeSheetId() {
+  getOrCreateTimesheet() {
     if (this.employeeId && this.date)
-      this.workmgmtSvc
+      this.timesheetService
         .getTimeSheet(this.employeeId, this.date)
         .subscribe((res) => {
           console.log(res);

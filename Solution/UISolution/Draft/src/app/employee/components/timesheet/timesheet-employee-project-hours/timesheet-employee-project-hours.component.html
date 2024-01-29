@@ -1,0 +1,11 @@
+
+<div>
+    <label>Select Interval</label>
+    <select class="mx-2" [(ngModel)]="selectedInterval" (change)="onIntervalChange()">
+        <option *ngFor="let interval of intervals" [value]="interval"> {{interval}}</option>
+    </select>
+    <label class="mx-2"> StatDate :{{fromDate |date}}</label>
+    <label class="mx-2"> EndDate :{{toDate |date}}</label>  
+<div >
+    <canvas  id="MyPieChart" >{{ chart }}</canvas>
+</div>

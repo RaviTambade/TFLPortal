@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EmployeeWork } from 'src/app/activity/Models/EmployeeWork';
 import { Project } from 'src/app/projects/Models/project';
 import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { ProjectService } from 'src/app/shared/services/project.service';
 import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
 import { Sprint } from 'src/app/time-sheet/models/sprint';
-import { TimeSheetDetailView } from 'src/app/time-sheet/models/timesheet-detail-view';
-import { TimeSheetDetails } from 'src/app/time-sheet/models/timesheetdetails';
 
 @Component({
   selector: 'app-add-timesheet-entry',
@@ -35,7 +32,7 @@ export class AddTimesheetEntryComponent {
   employeeId: number = 0;
   selectedProjectId: number = 0;
   selectedSprintId: number = 0;
-  employeeWorks: EmployeeWork[] = [];
+  tasks: EmployeeWork[] = [];
   timesheetId: number | undefined;
   sprints: Sprint[] = [];
 

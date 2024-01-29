@@ -72,10 +72,10 @@ public class ProjectService : IProjectService
         connection.ConnectionString = _connectionString;
         try
         {
-            // ptojects.id =9 because 10 number is other 
+            // ptojects.id =9 because 9 number is other 
             string query =
                 @"SELECT * FROM projects WHERE projects.id=9 OR
-                id IN( SELECT DISTINCT projectid FROM projectmembership WHERE projectmembership.employeeid=@employeeid )"; 
+                id IN( SELECT DISTINCT projectid FROM projectmembers WHERE projectmembers.employeeid=@employeeid )"; 
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@employeeid", employeeid);
             await connection.OpenAsync();
