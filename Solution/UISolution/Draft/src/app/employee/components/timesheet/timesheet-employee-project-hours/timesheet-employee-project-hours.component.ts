@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
-import { ProjectWorkHour } from '../../models/projectworkhour';
 import { Chart } from 'chart.js';
 import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { HourConvertorPipe } from 'src/app/shared/pipes/hour-convertor.pipe';
+import { TimesheetService } from '../../../../shared/services/Timesheet/timesheet.service';
+import { ProjectWorkHour } from '../../../../shared/models/projectworkhour';
 
 @Component({
   selector: 'timesheet-employee-project-hours',
@@ -55,7 +55,7 @@ export class TimesheetEmployeeProjectHoursComponent implements OnInit {
     });
   }
 
-  constructor(private workmgmtSvc: WorkmgmtService) {}
+  constructor(private timesheetService: TimesheetService) {}
   ngOnInit(): void {
     this.employeeId = Number(localStorage.getItem(LocalStorageKeys.employeeId));
     this.createChart();
@@ -65,15 +65,15 @@ export class TimesheetEmployeeProjectHoursComponent implements OnInit {
   onIntervalChange() {
     switch (this.selectedInterval) {
       case 'week':
-        const week = this.workmgmtSvc.getWeekInfo(new Date());
+        const week = this.timesheetService.getWeekInfo(new Date());
         this.fromDate = week.startDate;
         this.toDate = week.endDate;
         break;
 
       case 'month':
         const currentmonth = new Date().getMonth();
-        this.fromDate = this.workmgmtSvc.firstDayOfMonth(currentmonth);
-        this.toDate = this.workmgmtSvc.lastDayofMonth(currentmonth);
+        this.fromDate = this.timesheetService.firstDayOfMonth(currentmonth);
+        this.toDate = this.timesheetService.lastDayofMonth(currentmonth);
         break;
 
       case 'year':
@@ -87,7 +87,7 @@ export class TimesheetEmployeeProjectHoursComponent implements OnInit {
 
   getChartData() {
     if (this.fromDate && this.toDate)
-      this.workmgmtSvc
+      this.timesheetService
         .getProjectwiseTimeSpent(this.employeeId, this.fromDate, this.toDate)
         .subscribe((res) => {
           this.projectHours = res;
@@ -98,7 +98,7 @@ export class TimesheetEmployeeProjectHoursComponent implements OnInit {
             this.chart.data.labels.push(projectHour.projectName);
             this.chart.data.datasets[0].data.push(projectHour.hours);
             this.chart.data.datasets[0].backgroundColor.push(
-              this.workmgmtSvc.randomColorPicker()
+              this.timesheetService.randomColorPicker()
             );
           });
           console.table(this.projectHours);
