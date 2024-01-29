@@ -19,6 +19,8 @@ import { LeaveDisplayComponent } from './components/leave-display/leave-display.
 import { LeaveallocationsComponent } from './LeaveMgmt/components/leaveallocations/leaveallocations.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { AllEmployeeLeavesComponent } from './LeaveMgmt/components/all-employee-leaves/all-employee-leaves.component';
+
 // export const hrRoutes: Routes = [
 //   {
 //     path: '',
@@ -62,17 +64,20 @@ import { SharedModule } from '../shared/shared.module';
     EmployeeLeavesComponent,
     PaidEmployeeDetailsComponent,
     LeaveDisplayComponent,
+    AllEmployeeLeavesComponent,
     LeaveallocationsComponent
   ],
   imports: 
-    [ CommonModule,
-    RouterModule,
-    ReactiveFormsModule,
-    SharedModule,
-    FormsModule
+    [
+       CommonModule,
+        RouterModule,
+        ReactiveFormsModule,
+        SharedModule,
+        FormsModule
   ],
   exports: [
     EmployeedetailsComponent,
+    AllEmployeeLeavesComponent,
     SalaryprocessingComponent,
     AllEmployeesComponent],
 })

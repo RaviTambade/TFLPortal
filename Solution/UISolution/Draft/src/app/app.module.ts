@@ -8,6 +8,7 @@ import { LocalStorageKeys } from './shared/enums/local-storage-keys';
 import { EmployeeModule } from './employee/employee.module';
 import { HrmanagerModule } from './hrmanager/hrmanager.module';
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -19,10 +20,8 @@ import { HrmanagerModule } from './hrmanager/hrmanager.module';
         tokenGetter: () => localStorage.getItem(LocalStorageKeys.jwt),
       },
     }),
-
     EmployeeModule,
     HrmanagerModule
-
   ],
 
   providers: [],
