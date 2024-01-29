@@ -1,10 +1,10 @@
 export class Sprint {
-    constructor(
-      public id :number,
-      public title: string,  
-      public startdate :string, 
-      public  enddate: string,
-      public  goal: string,
-      public  projectid: number,
-      ) {}
-     }
+  constructor(
+    public id: number,
+    public title: string,
+    public startDate: string,
+    public endDate: string,
+    public goal: string,
+    public projectId: number
+  ) {}
+}

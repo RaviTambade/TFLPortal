@@ -24,7 +24,7 @@ export class TimesheetDetailsComponent {
   timesheetEntries: TimesheetEntry[] = [];
 
   constructor(
-    private timesheetSvc: TimesheetService,
+    private timesheetService: TimesheetService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -33,7 +33,7 @@ export class TimesheetDetailsComponent {
     // this.route.paramMap.subscribe((params) => {
     //   this.timesheetId = Number(params.get('id'));
     this.timesheetId = 3;
-    this.timesheetSvc.getTimeSheetById(this.timesheetId).subscribe((res) => {
+    this.timesheetService.getTimeSheetById(this.timesheetId).subscribe((res) => {
       this.timesheet = res;
     });
     this.fetchTimeSheetEntries(this.timesheetId);
@@ -41,7 +41,7 @@ export class TimesheetDetailsComponent {
   }
 
   onRemovetimesheetEntry(timesheetEntryId: number) {
-    this.timesheetSvc
+    this.timesheetService
       .removeTimeSheetEntry(timesheetEntryId)
       .subscribe((res) => {
         if (res) {
@@ -51,7 +51,7 @@ export class TimesheetDetailsComponent {
   }
 
   onRemoveAllTimeSheetEntries(timesheetId: number) {
-    this.timesheetSvc.removeAllTimsheetEntries(timesheetId).subscribe((res) => {
+    this.timesheetService.removeAllTimsheetEntries(timesheetId).subscribe((res) => {
       // if (res) {
       // }
     });
@@ -68,7 +68,7 @@ export class TimesheetDetailsComponent {
         totalHours: this.timesheet.totalHours,
       };
 
-      this.timesheetSvc
+      this.timesheetService
         .changeTimeSheetStatus(this.timesheet.id, timesheet)
         .subscribe((res) => {
           alert('timesheet added');
@@ -83,7 +83,7 @@ export class TimesheetDetailsComponent {
   }
 
   fetchTimeSheetEntries(timesheetId: number) {
-    this.timesheetSvc.getTimesheetEntries(timesheetId).subscribe((res) => {
+    this.timesheetService.getTimesheetEntries(timesheetId).subscribe((res) => {
       this.timesheetEntries = res;
     });
   }

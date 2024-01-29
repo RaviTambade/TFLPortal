@@ -24,7 +24,7 @@ export class TimesheetListComponent {
   selectedStatus: { [key: string]: boolean } = {};
 
 
-  constructor(private timesheetSvc: TimesheetService) {}
+  constructor(private timesheetService: TimesheetService) {}
 
   ngOnInit(): void {
     this.employeeId=Number(localStorage.getItem(LocalStorageKeys.employeeId))
@@ -35,20 +35,20 @@ export class TimesheetListComponent {
   onIntervalChange() {
     switch (this.selectedInterval) {
       case 'week':
-        const week = this.timesheetSvc.getWeekInfo(new Date());
+        const week = this.timesheetService.getWeekInfo(new Date());
         this.fromDate = week.startDate;
         this.toDate = week.endDate;
         break;
 
       case 'month':
         const currentmonth = new Date().getMonth();
-        this.fromDate = this.timesheetSvc.firstDayOfMonth(currentmonth);
-        this.toDate = this.timesheetSvc.lastDayofMonth(currentmonth);
+        this.fromDate = this.timesheetService.firstDayOfMonth(currentmonth);
+        this.toDate = this.timesheetService.lastDayofMonth(currentmonth);
         break;
 
     }
     if (this.fromDate && this.toDate) {
-      this.timesheetSvc
+      this.timesheetService
         .getAllTimeSheets(this.employeeId,this.fromDate, this.toDate)
         .subscribe((res) => {
           this.timesheets = res;

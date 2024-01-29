@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EmployeeWork } from 'src/app/activity/Models/EmployeeWork';
-import { Project } from 'src/app/projects/Models/project';
-import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
-import { ProjectService } from 'src/app/shared/services/project.service';
-import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
-import { Sprint } from 'src/app/time-sheet/models/sprint';
-import { TimeSheetDetailView } from 'src/app/time-sheet/models/timesheet-detail-view';
-import { TimeSheetDetails } from 'src/app/time-sheet/models/timesheetdetails';
+
+import { TimesheetEntry } from '../../../../shared/models/timesheetEntry';
+import { Project } from '../../../../shared/models/Project';
+import { Task } from '../../../../shared/models/task';
+import { TimesheetService } from '../../../../shared/services/Timesheet/timesheet.service';
+import { ProjectService } from '../../../../shared/services/ProjectMgmt/project.service';
+import { Sprint } from '../../../../shared/models/sprint';
+import { LocalStorageKeys } from '../../../../shared/enums/local-storage-keys';
+import { SprintService } from '../../../../shared/services/ProjectMgmt/sprint.service';
+import { TasksManagementService } from '../../../../shared/services/TaskMgmt/tasks-management.service';
 
 @Component({
   selector: 'app-add-timesheet-entry',
@@ -15,82 +17,83 @@ import { TimeSheetDetails } from 'src/app/time-sheet/models/timesheetdetails';
   styleUrls: ['./add-timesheet-entry.component.css'],
 })
 export class AddTimesheetEntryComponent {
-  timesheetDetail: TimeSheetDetailView = {
+  timesheetEntry: TimesheetEntry = {
     id: 0,
+    taskId: 0,
     fromTime: '',
     toTime: '',
     timesheetId: 0,
-    employeeWorkId: 0,
-    workTitle: '',
-    workType: '',
-    projectId: 0,
-    projectName: '',
-    durationInMinutes: 0,
-    durationInHours: '',
-    sprintName: '',
-    sprintId: 0
+    durationInHours: 0,
   };
 
   projects: Project[] = [];
   employeeId: number = 0;
   selectedProjectId: number = 0;
   selectedSprintId: number = 0;
-  employeeWorks: EmployeeWork[] = [];
+  tasks: Task[] = [];
   timesheetId: number | undefined;
-  sprints: Sprint[] = [];
+  sprint!: Sprint;
 
-  get workDescription(){
-   return this.employeeWorks.filter((work)=> work.id==this.timesheetDetail.employeeWorkId)
-                      .map((work)=> work.description).at(0);
+
+  get taskDescription() {
+    return this.tasks
+      .filter((task) => task.taskId == this.timesheetEntry.taskId)
+      .map((task) => task.description)
+      .at(0);
   }
   constructor(
-    private workmgmtSvc: WorkmgmtService,
-    private projectSvc: ProjectService,
+    private timesheetService: TimesheetService,
+    private projectService: ProjectService,
+    private sprintService: SprintService,
+    private tasksService:TasksManagementService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
-      this.timesheetId = Number(params.get('id'));
-    });
-    this.employeeId = Number(localStorage.getItem(LocalStorageKeys.employeeId));
-    this.projectSvc.getProjectsOfEmployee(this.employeeId).subscribe((res) => {
-      this.projects = res;
-      if (this.projects.length > 0 && this.selectedProjectId==0) {
-        this.selectedProjectId = this.projects[0].id;
-        this.onSprintChange();
-      }
-  })
-}
+    // this.route.paramMap.subscribe((params) => {
+      this.timesheetId =10
+      //  Number(params.get('id'));
+    // });
+    this.employeeId =10
+    //  Number(localStorage.getItem(LocalStorageKeys.employeeId));
+    this.projectService
+      .getProjectsOfMembers(this.employeeId)
+      .subscribe((res) => {
+        this.projects = res;
+        if (this.projects.length > 0 && this.selectedProjectId== 0) {
+          this.selectedProjectId = this.projects[0].projectId;
+
+          this.onSprintChange();
+        }
+      });
+  }
 
   onSprintChange() {
-    this.workmgmtSvc
-      .getOngoingSprints(
+    this.sprintService
+      .getCurrentSprint(
         this.selectedProjectId,
         new Date().toISOString().slice(0, 10)
       )
       .subscribe((res) => {
         console.log(res);
-        this.sprints = res;
-        if (this.sprints.length > 0  ) {
-          this.selectedSprintId = this.sprints[0].id;
-        }
-        this.getWorks();
+        this.sprint = res;
+        this.selectedSprintId = this.sprint.id;
+        this.getTasks();
       });
   }
 
-  getWorks() {
-    this.workmgmtSvc
-      .getEmployeeWorkBySprintAndStatus(
+  getTasks() {
+    this.tasksService
+      .getAllTasksOfSprintAndMember(
         this.selectedSprintId,
         this.employeeId,
         'inprogress'
       )
       .subscribe((res) => {
-        this.employeeWorks = res;
-        if (this.employeeWorks.length > 0)
-          this.timesheetDetail.employeeWorkId = this.employeeWorks[0].id;
+        this.tasks = res;
+        if (this.tasks.length > 0)
+          this.timesheetEntry.taskId = this.tasks[0].taskId;
       });
   }
 
@@ -98,21 +101,24 @@ export class AddTimesheetEntryComponent {
     if (this.timesheetId == undefined) {
       return;
     }
-    let timeSheetDetail: TimeSheetDetails = {
+    let timesheetEntry: TimesheetEntry = {
       id: 0,
-      fromTime: this.timesheetDetail.fromTime + ':00',
-      toTime: this.timesheetDetail.toTime + ':00',
+      fromTime: this.timesheetEntry.fromTime + ':00',
+      toTime: this.timesheetEntry.toTime + ':00',
       timesheetId: this.timesheetId,
-      employeeWorkId: this.timesheetDetail.employeeWorkId,
+      taskId: this.timesheetEntry.taskId,
+      durationInHours: 0
     };
 
-    this.workmgmtSvc.addTimeSheetDetails(timeSheetDetail).subscribe((res) => {
-      if (res) {
-        this.router.navigate(['../../details', this.timesheetId], {
-          relativeTo: this.route,
-        });
-      }
-    });
+    this.timesheetService
+      .addTimeSheetEntry(timesheetEntry)
+      .subscribe((res) => {
+        if (res) {
+          this.router.navigate(['../../details', this.timesheetId], {
+            relativeTo: this.route,
+          });
+        }
+      });
   }
 
   onClickCancel() {
@@ -121,7 +127,7 @@ export class AddTimesheetEntryComponent {
     });
   }
 
-  getDuration(timeSheetDetail: TimeSheetDetailView) {
-    this.timesheetDetail = this.workmgmtSvc.getDurationOfWork(timeSheetDetail);
+  getDuration() {
+    this.timesheetEntry.durationInHours = this.timesheetService.getTimeDifference(this.timesheetEntry.fromTime,this.timesheetEntry.toTime);
   }
 }
