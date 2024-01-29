@@ -3,9 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from 'src/app/user/Models/User';
-import { SalaryStructure } from 'src/app/resource-management/Models/SalaryStructure';
-import { EmployeeDetails } from 'src/app/activity/Models/EmployeeDetails';
-import { Employee } from 'src/app/activity/Models/Employee';
+import { SalaryStructure } from 'src/app/hrmanager/components/payroll/models/SalaryStructure';
+import { EmployeeDetails } from 'src/app/user/components/EmployeeDetails';
+import { Employee } from 'src/app/user/Models/Employee';
 
 @Injectable({
   providedIn: 'root'

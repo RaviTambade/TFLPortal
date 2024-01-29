@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SalaryDetails } from 'src/app/resource-management/Models/SalaryDetails';
-import { PayrollService } from 'src/app/shared/services/payroll.service';
+import { PayrollService } from 'src/app/shared/services/Payroll/payroll.service';
+import { Salary } from '../models/Salary';
 
 @Component({
   selector: 'employees',
@@ -10,7 +10,7 @@ import { PayrollService } from 'src/app/shared/services/payroll.service';
 export class AllEmployeesComponent implements OnInit{
 
   constructor(private service:PayrollService){}
-  salaries:SalaryDetails[]=[];
+  salaries:Salary[]=[];
   month:number=0;
   year:number=0;
 

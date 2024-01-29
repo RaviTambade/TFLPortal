@@ -24,6 +24,11 @@ export class LeavesService {
     return this.http.post<boolean>(url,leave);
   }
 
+  getEmployeeMonthLeaves(employeeId:number,month:number,year:number): Observable<MonthLeave[]> {
+    let url ='http://localhost:5263/api/leaves/employees/'+ employeeId+'/month/'+month+'/year/'+year;
+    return this.http.get<MonthLeave[]>(url);
+  }
+
   getAnnualAvailableLeaves(employeeId:number,year:number):Observable<LeavesCount>{
     let url="http://localhost:5263/api/leaves/annualavailableleaves/employee/"+employeeId+"/year/"+year;
     return this.http.get<LeavesCount>(url);

@@ -1,6 +1,6 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
-import { MonthLeave } from 'src/app/leaves/Models/MonthLeave';
-import { LeavesService } from 'src/app/shared/services/leaves.service';
+import { MonthLeave } from '../models/MonthLeave';
+import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
 
 @Component({
   selector: 'app-employee-leaves',
@@ -18,7 +18,7 @@ export class EmployeeLeavesComponent {
   }
   
   ngOnChanges(changes:SimpleChanges): void {
-    this.leaveService.getEmployeeLeaves(changes["employeeId"].currentValue,this.month,this.year).subscribe((res)=>{
+    this.leaveService.getEmployeeMonthLeaves(changes["employeeId"].currentValue,this.month,this.year).subscribe((res)=>{
     this.monthLeaves=res;
     console.log(res);
     })

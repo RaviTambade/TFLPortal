@@ -4,18 +4,25 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { JWT_OPTIONS, JwtHelperService, JwtModule } from '@auth0/angular-jwt';
-import { SharedModule } from './shared/shared.module';
 import { LocalStorageKeys } from './shared/enums/local-storage-keys';
-import { HrmanagerModule } from './hrmanager/hrmanager.module';
 import { EmployeeModule } from './employee/employee.module';
-import { UserModule } from './user/user.module';
-
-
+import { HrmanagerModule } from './hrmanager/hrmanager.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    HrmanagerModule,
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => localStorage.getItem(LocalStorageKeys.jwt),
+      },
+    }),
+
+    EmployeeModule,
+    HrmanagerModule
+
   ],
 
   providers: [],
