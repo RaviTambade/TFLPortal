@@ -74,7 +74,7 @@ export class TasksManagementService {
   
 
   getTaskDetails(taskId:number):Observable<Task>{
-    let url=this.serviceurl+'/tasks/projects/'+taskId;
+    let url=this.serviceurl+'/tasks/'+taskId;
     return this.http.get<Task>(url);
   }
 

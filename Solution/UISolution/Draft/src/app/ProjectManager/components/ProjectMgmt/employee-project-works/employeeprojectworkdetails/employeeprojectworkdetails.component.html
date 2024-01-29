@@ -5,47 +5,46 @@
     <h2> Project Work Details</h2>
     
         <table class="table-bordered text-center">
-            <div *ngIf="employeeWork">
+            <div *ngIf="task">
                 <tr>
                     <th>AssignedDate</th>
                     
-                    <td> {{employeeWork.assignDate |date}}</td>
+                    <td> {{task.assignDate|date}}</td>
                     </tr>
-                   
                    
                     <tr>
                         <th>Status</th>
-                    <td> {{employeeWork.status}}</td>
+                    <td> {{task.status}}</td>
                 </tr>
                  
                  
                     <tr>
                         <th>description</th>
-                    <td> {{employeeWork.description}}</td>
+                    <td> {{task.description}}</td>
                 </tr>
                    
                     
                     <tr>
                         <th>projectWorkType</th>
-                    <td> {{employeeWork.projectWorkType}}</td>
+                    <td> {{task.taskType}}</td>
                 </tr>
                     
                     
                     <tr>
                         <th>assignedBy</th>
-                    <td> {{employeeWork.assignedByEmployee}}</td>
+                    <td> {{task.assignedBy}}</td>
                 </tr>
                    
                     
                     <tr>
                         <th>assignedTo</th>
-                    <td> {{employeeWork.assignedToEmployee}}</td>
+                    <td> {{task.assignedTo}}</td>
                 </tr>
                    
                    
                     <tr>
                         <th>DueDate</th>
-                    <td> {{employeeWork.dueDate |date}}</td>
+                    <td> {{task.dueDate|date}}</td>
                 </tr>
                    
                 </div>  

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EmployeeWorkDetails } from 'src/app/project-manager/Model/EmployeeWorkDetails';
-import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
+import { Task } from 'src/app/shared/models/task';
+import { TasksManagementService } from 'src/app/shared/services/TaskMgmt/tasks-management.service';
 
 @Component({
   selector: 'app-employeeprojectworkdetails',
@@ -9,18 +9,16 @@ import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
   styleUrls: ['./employeeprojectworkdetails.component.css']
 })
 export class EmployeeprojectworkdetailsComponent implements OnInit {
-  constructor(private router:ActivatedRoute,private workMgmt:WorkmgmtService){}
-  employeeWorkId:number|any;
-  employeeWork:EmployeeWorkDetails|undefined;
+  constructor(private router:ActivatedRoute,private taskService:TasksManagementService){}
+  taskId:number=51;
+  task:Task|undefined;
   ngOnInit(): void {
-    this.router.paramMap.subscribe((param)=>{
-    this.employeeWorkId=param.get('id')
-    console.log(this.employeeWorkId);
-    this.workMgmt.fetchEmployeeWorkDetailsById(this.employeeWorkId).subscribe((res)=>{
-      this.employeeWork=res;
-      console.log(res);
+    
+    console.log(this.taskId);
+    this.taskService.getTaskDetails(this.taskId).subscribe((res)=>{
+      this.task=res;
+       console.log(res);
     })
-  });
   }
 
 }
