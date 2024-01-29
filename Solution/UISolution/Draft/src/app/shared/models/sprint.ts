@@ -3,8 +3,8 @@ export class Sprint {
       public id :number,
       public title: string,  
       public startDate :string, 
-      public  endDate: string,
-      public  goal: string,
-      public  projectId: number,
+      public endDate: string,
+      public goal: string,
+      public projectId: number,
       ) {}
      }

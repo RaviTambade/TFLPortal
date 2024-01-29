@@ -1,13 +1,14 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EmployeeWork } from 'src/app/activity/Models/EmployeeWork';
-import { Project } from 'src/app/projects/Models/project';
-import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
-import { ProjectService } from 'src/app/shared/services/project.service';
-import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
-import { Sprint } from 'src/app/time-sheet/models/sprint';
-import { TimeSheetDetailView } from 'src/app/time-sheet/models/timesheet-detail-view';
-import { TimeSheetDetails } from 'src/app/time-sheet/models/timesheetdetails';
+import { TimesheetEntry } from '../../../../shared/models/timesheetEntry';
+import { Project } from '../../../../shared/models/Project';
+import { Task } from '../../../../shared/models/task';
+import { TimesheetService } from '../../../../shared/services/Timesheet/timesheet.service';
+import { ProjectService } from '../../../../shared/services/ProjectMgmt/project.service';
+import { Sprint } from '../../../../shared/models/sprint';
+import { LocalStorageKeys } from '../../../../shared/enums/local-storage-keys';
+import { SprintService } from '../../../../shared/services/ProjectMgmt/sprint.service';
+import { TasksManagementService } from '../../../../shared/services/TaskMgmt/tasks-management.service';
 
 @Component({
   selector: 'app-update-timesheet-entry',
@@ -19,29 +20,31 @@ export class UpdateTimesheetEntryComponent implements OnInit {
   selectedProjectId: number = 0;
   selectedSprintId: number = 0;
   employeeId: number = 0;
-  employeeWorks: EmployeeWork[] = [];
+  tasks: Task[] = [];
   sprints: Sprint[] = [];
 
 
-  @Input() timesheetDetails!: TimeSheetDetailView;
+  @Input() timesheetEntry!: TimesheetEntry;
 
 
   constructor(
-    private workmgmtSvc: WorkmgmtService,
+    private timesheetService: TimesheetService,
     private route: ActivatedRoute,
     private router: Router,
     private projectSvc: ProjectService
   ) {}
 
-  get workDescription(){
-    return this.employeeWorks.filter((work)=> work.id==this.timesheetDetails.employeeWorkId)
-                       .map((work)=> work.description).at(0);
-   }
+  get taskDescription() {
+    return this.tasks
+      .filter((task) => task.taskId == this.timesheetEntry.taskId)
+      .map((task) => task.description)
+      .at(0);
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       let timesheetDetailId = params.get('id');
-      this.workmgmtSvc
+      this.timesheetService
         .getTimesheetDetail(Number(timesheetDetailId))
         .subscribe((res) => {
           this.timesheetDetails = res;
@@ -63,7 +66,7 @@ export class UpdateTimesheetEntryComponent implements OnInit {
   }
 
   onSprintChange() {
-    this.workmgmtSvc
+    this.timesheetService
       .getOngoingSprints(
         this.selectedProjectId,
         new Date().toISOString().slice(0, 10)
@@ -77,14 +80,14 @@ export class UpdateTimesheetEntryComponent implements OnInit {
 
 
   getWorks() {
-    this.workmgmtSvc
+    this.timesheetService
       .getEmployeeWorkBySprintAndStatus(
         this.selectedSprintId,
         this.employeeId,
         'inprogress'
       )
       .subscribe((res) => {
-        this.employeeWorks = res;
+        this.tasks = res;
       });
   }
 
@@ -97,7 +100,7 @@ export class UpdateTimesheetEntryComponent implements OnInit {
       employeeWorkId: this.timesheetDetails.employeeWorkId,
     };
 
-    this.workmgmtSvc
+    this.timesheetService
       .updateTimeSheetDetails(timesheetDetails.id, timesheetDetails)
       .subscribe((res) => {
         if (res) {
@@ -113,8 +116,8 @@ export class UpdateTimesheetEntryComponent implements OnInit {
 
   }
 
-  getDuration(timeSheetEnrty: TimeSheetDetailView) {
-    this.workmgmtSvc.getDurationOfWork(timeSheetEnrty);
+  getDuration(timesheetEntry: TimeSheetDetailView) {
+    this.timesheetService.getDurationOfWork(timesheetEntry);
   }
 
  

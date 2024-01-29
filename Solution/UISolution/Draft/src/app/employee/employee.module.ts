@@ -14,7 +14,8 @@ import { TimesheetListComponent } from './components/timesheet/timesheet-list/ti
 import { CreateTimesheetComponent } from './components/timesheet/create-timesheet/create-timesheet.component';
 import { TimesheetEmployeeWorkDataComponent } from './components/timesheet/timesheet-employee-work-chart/timesheet-employee-work-data/timesheet-employee-work-data.component';
 import { TimesheetEmployeeWorkChartComponent } from './components/timesheet/timesheet-employee-work-chart/timesheet-employee-work-chart.component';
-// import { AddTimesheetEntryComponent } from './components/timesheet/add-timesheet-entry/add-timesheet-entry.component';
+import { TimesheetEmployeeProjectHoursComponent } from './components/timesheet/timesheet-employee-project-hours/timesheet-employee-project-hours.component';
+import { AddTimesheetEntryComponent } from './components/timesheet/add-timesheet-entry/add-timesheet-entry.component';
 
 @NgModule({
   declarations: [
@@ -28,8 +29,9 @@ import { TimesheetEmployeeWorkChartComponent } from './components/timesheet/time
     TimesheetListComponent,
     CreateTimesheetComponent,
     TimesheetEmployeeWorkDataComponent,
-    TimesheetEmployeeWorkChartComponent
-    // AddTimesheetEntryComponent
+    TimesheetEmployeeWorkChartComponent,
+    TimesheetEmployeeProjectHoursComponent,
+    AddTimesheetEntryComponent
   ],
   imports: [
     CommonModule,
@@ -38,6 +40,12 @@ import { TimesheetEmployeeWorkChartComponent } from './components/timesheet/time
     SharedModule,
     FormsModule,
   ],
-  exports: [TimesheetDetailsComponent,TimesheetListComponent,TimesheetEmployeeWorkChartComponent],
+  exports: [
+    TimesheetDetailsComponent,
+    TimesheetListComponent,
+    TimesheetEmployeeWorkChartComponent,
+    TimesheetEmployeeProjectHoursComponent,
+    AddTimesheetEntryComponent
+  ],
 })
 export class EmployeeModule {}

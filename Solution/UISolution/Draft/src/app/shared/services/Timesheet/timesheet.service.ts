@@ -95,19 +95,19 @@ export class TimesheetService {
   
     //helper functions
   
-    // getDurationOfWork(TimesheetEntry: TimesheetEntry): TimesheetEntry {
-    //   let startTime = TimesheetEntry.fromTime;
-    //   let endTime = TimesheetEntry.toTime;
+    getTimeDifference(fromTime:string,toTime:string): number {
+      let startTime = fromTime;
+      let endTime = toTime;
   
-    //   if (startTime != '' && endTime != '') {
-    //     const startDate = new Date(`1970-01-01T${startTime}`);
-    //     const endDate = new Date(`1970-01-01T${endTime}`);
-    //     const durationMilliseconds = endDate.getTime() - startDate.getTime();
-    //     TimesheetEntry.durationInMinutes = durationMilliseconds / (1000 * 60);
-    //     TimesheetEntry.durationInHours = this.convertMinutesintoHours(TimesheetEntry.durationInMinutes);
-    //   }
-    //   return TimesheetEntry;
-    // }
+      if (startTime != '' && endTime != '') {
+        const startDate = new Date(`1970-01-01T${startTime}`);
+        const endDate = new Date(`1970-01-01T${endTime}`);
+        const durationMilliseconds = endDate.getTime() - startDate.getTime();
+        let durationInHours = durationMilliseconds / (1000 * 60*60);
+        return durationInHours;
+      }
+      return 0;
+    }
   
     convertMinutesintoHours(minutes: number) {
       let str = `${Math.floor(minutes / 60)}h: ${minutes % 60}m`;

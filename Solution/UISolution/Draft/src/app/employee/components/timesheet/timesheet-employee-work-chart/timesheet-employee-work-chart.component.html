@@ -4,7 +4,7 @@
             <label>Project</label>
             <select id="projectSelect" class="form-control  mx-2" [(ngModel)]="selectedProjectId"
                 (change)="onIntervalChange()">
-                <option *ngFor="let project of projects" [value]="project.id">{{project.title | uppercase}}</option>
+                <option *ngFor="let project of projects" [value]="project.projectId">{{project.title | uppercase}}</option>
             </select>
         </div>
 

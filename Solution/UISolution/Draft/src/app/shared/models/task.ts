@@ -1,6 +1,6 @@
 export class Task {
     constructor(
-      public id: number,
+      public taskId: number,
       public title: string,
       public taskType: string,
       public description: string,
@@ -11,8 +11,7 @@ export class Task {
       public createdDate :string ,
       public assignDate :string ,
       public startDate :string,
-      public  dueDate: string,
+      public dueDate: string,
       public status :string
-
     ) {}
   }
