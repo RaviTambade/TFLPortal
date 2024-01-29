@@ -1,5 +1,5 @@
 
--- Active: 1694968636816@@127.0.0.1@3306@tflportal
+-- Active: 1705924796699@@127.0.0.1@3306@tflportal
 
 -- director
 INSERT INTO employees(userid,hiredate,reportingid) VALUES (1,'2013-01-01',1);
@@ -42,10 +42,10 @@ INSERT INTO employees(userid,hiredate,reportingid) VALUES (29,'2015-04-23',9);
 INSERT INTO employees(userid,hiredate,reportingid) VALUES (30,'2015-05-13',9);
 
 
-Insert Into leavesallocated(roleid,sick,casual,paid,unpaid,financialyear) values(1,10,5,12,15,2023);
-Insert Into leavesallocated(roleid,sick,casual,paid,unpaid,financialyear) values(2,9,5,12,10,2023);
-Insert Into leavesallocated(roleid,sick,casual,paid,unpaid,financialyear) values(3,8,10,10,15,2023);
-Insert Into leavesallocated(roleid,sick,casual,paid,unpaid,financialyear) values(4,7,5,11,10,2023);
+Insert Into leaveallocations(roleid,sick,casual,paid,unpaid,financialyear) values(1,10,5,12,15,2023);
+Insert Into leaveallocations(roleid,sick,casual,paid,unpaid,financialyear) values(2,9,5,12,10,2023);
+Insert Into leaveallocations(roleid,sick,casual,paid,unpaid,financialyear) values(3,8,10,10,15,2023);
+Insert Into leaveallocations(roleid,sick,casual,paid,unpaid,financialyear) values(4,7,5,11,10,2023);
 
 
 
