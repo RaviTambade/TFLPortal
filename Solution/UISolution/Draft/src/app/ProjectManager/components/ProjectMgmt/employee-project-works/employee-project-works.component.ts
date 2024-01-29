@@ -1,8 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EmployeeWork } from 'src/app/activity/Models/EmployeeWork';
-import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
-import { EmployeeWorkDetails } from '../../Model/EmployeeWorkDetails';
+import { TasksManagementService } from 'src/app/shared/services/TaskMgmt/tasks-management.service';
+import { Task } from 'src/app/shared/models/task';
 
 @Component({
   selector: 'app-employee-project-works',
@@ -11,14 +10,14 @@ import { EmployeeWorkDetails } from '../../Model/EmployeeWorkDetails';
 })
 export class EmployeeProjectWorksComponent implements OnInit{
 
-  constructor(private router:ActivatedRoute,private workMgmt:WorkmgmtService){}
-  employeeworks:EmployeeWorkDetails[]=[];
+  constructor(private router:ActivatedRoute,private taskService:TasksManagementService){}
+  employeeworks:Task[]=[];
   projectId:number|any;
   ngOnInit(): void {
   this.router.paramMap.subscribe((res)=>{
     this.projectId=res.get('id');
 
-    this.workMgmt.fetchEmployeeWorkByProject(this.projectId).subscribe((res)=>{
+    this.taskService.getAllTasks(this.projectId).subscribe((res)=>{
       this.employeeworks=res;
       console.log(res);
     })

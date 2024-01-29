@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Project } from 'src/app/projects/Models/project';
 import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
-import { ProjectService } from 'src/app/shared/services/project.service';
+import { Project } from 'src/app/shared/models/Project';
+import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
 
 @Component({
   selector: 'app-project-list',
@@ -18,7 +18,7 @@ export class ProjectListComponent implements OnInit{
   }
   ngOnInit(): void {
    
-    this.projectSvc.fetchAllProjectOfProjectManager(this.employeeId).subscribe((res)=>
+    this.projectSvc.getAllProjectsOfManager(this.employeeId).subscribe((res)=>
     {this.projects=res;
       console.log(res);
     });

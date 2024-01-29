@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
-import { Sprint } from 'src/app/time-sheet/models/sprint';
+import { Sprint } from 'src/app/shared/models/sprint';
+import { SprintService } from 'src/app/shared/services/ProjectMgmt/sprint.service';
 
 @Component({
   selector: 'app-sprint-list',
@@ -10,11 +10,11 @@ import { Sprint } from 'src/app/time-sheet/models/sprint';
 export class SprintListComponent {
    todaysDate=new Date().toISOString().slice(0,10);
    @Input() projectId:number=0;
-   sprints:Sprint[]=[];
-     constructor(private workMgmt:WorkmgmtService){}
+   sprints:Sprint|undefined;
+     constructor(private workMgmt:SprintService){}
   ngOnChanges(changes:SimpleChanges): void {
     console.log("ProjectId"+this.projectId)
-    this.workMgmt.getOngoingSprints(changes['projectId'].currentValue,this.todaysDate).subscribe((res)=>{
+    this.workMgmt.getCurrentSprint(changes['projectId'].currentValue,this.todaysDate).subscribe((res)=>{
      this.sprints=res;
     })
   }

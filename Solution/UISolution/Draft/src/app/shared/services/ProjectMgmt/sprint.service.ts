@@ -11,13 +11,13 @@ export class SprintService {
 
   constructor(private httpClient:HttpClient) { }
   private serviceurl: string = environment.apiUrl;
-  getSprintsWork(sprintId:number):Observable<Sprint[]>{
+  getSprintsTasks(sprintId:number):Observable<Sprint[]>{
      let url=this.serviceurl+'/sprints/'+sprintId+'/tasks';
     return this.httpClient.get<Sprint[]>(url);
   }
 
- getOngoingSprints(projectId:number,date:string):Observable<Sprint[]>{
+ getCurrentSprint(projectId:number,date:string):Observable<Sprint>{
     let url=`${this.serviceurl}/sprints/projects/${projectId}/date/${date}`;
-    return this.httpClient.get<Sprint[]>(url);
+    return this.httpClient.get<Sprint>(url);
   }
 }

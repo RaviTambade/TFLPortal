@@ -21,26 +21,26 @@ export class TasksManagementService {
     return this.http.post<boolean>(url, task);
   }
 
-  fetchTasksByProject(projectId: number): Observable<Task[]> {
+  getAllTasks(projectId: number): Observable<Task[]> {
     let url = this.serviceurl + '/tasks/projects/' + projectId;
     console.log(url);
     return this.http.get<Task[]>(url);
   }
 
- fetchTodaysTasks(projectId: number,date:string): Observable<Task[]> {
+ getAllTodaysTasks(projectId: number,date:string): Observable<Task[]> {
     let url = this.serviceurl + '/tasks/projects/' + projectId+'/date/'+date;
     console.log(url);
     return this.http.get<Task[]>(url);
   }
   
-  fetchAllTasks(assignedTo: number): Observable<Task[]> {
+  getAllTasksOfMember(assignedTo: number): Observable<Task[]> {
     let url = this.serviceurl + '/tasks/members/' + assignedTo;
     console.log(url);
     return this.http.get<Task[]>(url);
   }
 
 
-  fetchAllNotStartedTasks(projectId: number, memberId: number): Observable<Task[]> {
+  getAllTasksOfProjectMember(projectId: number, memberId: number): Observable<Task[]> {
     let url = this.serviceurl + '/tasks/projects/' + projectId + '/members/' + memberId;
     return this.http.get<Task[]>(url);
   }
@@ -51,29 +51,29 @@ export class TasksManagementService {
     return this.http.put<boolean>(url, status);
   }
 
-  getTasks(memberId:number,projectId:number,status:string):Observable<Task[]>{
+  getAllTasksOfProject(memberId:number,projectId:number,status:string):Observable<Task[]>{
     let url=`${this.serviceurl}/tasks/projects/${projectId}/members/${memberId}/status/${status}`;
     return this.http.get<Task[]>(url);
   }
 
-  fetchTasks(sprintId:number,memberId:number,status:string):Observable<Task[]>{
+  getAllTasksOfSprintAndMember(sprintId:number,memberId:number,status:string):Observable<Task[]>{
     let url=`${this.serviceurl}/tasks/sprints/${sprintId}/members/${memberId}/status/${status}`;
     return this.http.get<Task[]>(url);
   }
 
 
-  getAllTasks(projectId:number,memberId:number){
+  getProjectTasksOfMember(projectId:number,memberId:number){
   let url =this.serviceurl +'/tasks/projects/'+projectId+'/members/'+memberId;
     return this.http.get<any>(url);
   }
 
-  fetchAllTasksCount(): Observable<any> {
+  getAllTasksCount(): Observable<any> {
     let url =this.serviceurl +'/tasks/Count';
     return this.http.get<any>(url);
   }
   
 
-  fetchTasksDetailsById(taskId:number):Observable<Task>{
+  getTaskDetails(taskId:number):Observable<Task>{
     let url=this.serviceurl+'/tasks/projects/'+taskId;
     return this.http.get<Task>(url);
   }
