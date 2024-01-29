@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Role } from 'src/app/shared/enums/role';
-import { TokenClaims } from 'src/app/shared/enums/tokenclaims';
 import { UrlType } from 'src/app/shared/models/UrlType';
-import { JwtService } from 'src/app/shared/services/jwt.service';
 
 @Component({
   selector: 'app-leaves',
