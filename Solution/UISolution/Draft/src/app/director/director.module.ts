@@ -9,6 +9,11 @@ import { ProjectComponent } from './components/project/project.component';
 import { TimesheetComponent } from './components/timesheet/timesheet.component';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { BarChartComponent } from './components/BI/Chart/bar-chart/bar-chart.component';
+import { LeaveDisplayComponent } from './components/LeaveMgmt/leave-display/leave-display.component';
+import { PayDisplayComponent } from './components/Payroll/pay-display/pay-display.component';
+import { ProjectsDisplayComponent } from './components/ProjectMgmt/projects-display/projects-display.component';
+import { TimesheetDisplayComponent } from './components/timesheet/timesheet-display/timesheet-display.component';
 
 export const directorRoutes: Routes = [
   {
@@ -42,6 +47,11 @@ export const directorRoutes: Routes = [
     PerformenceApprisalComponent,
     TimesheetComponent,
     DashboardComponent,
+    BarChartComponent,
+    LeaveDisplayComponent,
+    PayDisplayComponent,
+    ProjectsDisplayComponent,
+    TimesheetDisplayComponent,
   ],
   imports: [
     CommonModule,RouterModule
