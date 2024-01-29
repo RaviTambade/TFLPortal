@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LeaveApplication } from '../../Models/LeaveApplication';
-import { LeavesService } from '../../Services/leaves.service';
-import { LeaveDetails } from '../../Models/LeaveDetails';
-import { LeaveStatus } from '../../Models/LeaveStatus';
+import { LeaveApplication } from '../../../../../../../Original/src/app/leaves/Models/LeaveApplication';
+import { LeaveStatus } from '../../models/LeaveStatus';
+import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
+
 
 @Component({
   selector: 'app-leave-details',
@@ -17,7 +17,7 @@ export class LeaveDetailsComponent {
     status: ''
   }
   leaveId:number=0;
-  leaveDetails:LeaveDetails |undefined;
+  leaveDetails:LeaveApplication|undefined;
 
   constructor(
     private route: ActivatedRoute,

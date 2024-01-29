@@ -1,0 +1,31 @@
+<h3 class="text-center col-6" >Leave Application Form</h3>
+<form [formGroup]="rolebasedleaveForm" (ngSubmit)="onSubmit()">
+  <div class="form-group col-6">
+  </div>
+      <div class="form-group col-6">
+        <label for="roleId">Role Id:</label>
+        <input type="number" class="form-control" id="roleId"  name="roleId" formControlName="roleId" >
+      </div>
+      <div class="form-group col-6">
+        <label for="sick">Sick:</label>
+        <input type="number" class="form-control" id="sick"  name="sick" formControlName="sick">
+      </div>
+      <div class="form-group col-6">
+        <label for="casual">Casual:</label>
+        <input type="number" class="form-control" id="casual"  name="casual" formControlName="casual">
+      </div>
+      <div class="form-group col-6">
+        <label for="paid">Paid:</label>
+        <input type="number" class="form-control" id="paid"  name="paid" formControlName="paid">
+      </div>
+      <div class="form-group col-6">
+        <label for="unpaid">Unpaid:</label>
+        <input type="number" class="form-control" id="unpaid" name="unpaid" formControlName="unpaid">
+      </div>
+      <div class="form-group col-6">
+        <label for="financialYear">Unpaid:</label>
+        <input type="number" class="form-control" id="financialYear" name="financialYear" formControlName="financialYear">
+      </div>
+      <div>
+        <button type="submit">Add</button>
+      </div>

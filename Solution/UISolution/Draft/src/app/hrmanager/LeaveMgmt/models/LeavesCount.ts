@@ -1,4 +1,4 @@
-export class PendingLeave{
+export class LeavesCount{
     constructor(
         public sick:number,
         public casual:number,

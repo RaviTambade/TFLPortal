@@ -9,43 +9,40 @@ import { PerformenceApprisalComponent } from './components/performence-apprisal/
 import { ProjectComponent } from './components/project/project.component';
 import { TimesheetComponent } from './components/timesheet/timesheet.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { timeSheetRoutes } from '../time-sheet/time-sheet.module';
-
-import { leaveRoutes } from '../leaves/leaves.module';
 import { SalaryprocessingComponent } from './components/payroll/salaryprocessing/salaryprocessing.component';
 import { MonthlysalarystructureComponent } from './components/payroll/monthlysalarystructure/monthlysalarystructure.component';
 import { EmployeedetailsComponent } from './components/payroll/employeedetails/employeedetails.component';
-import { FormsModule } from '@angular/forms';
 import { AllEmployeesComponent } from './components/payroll/all-employees/all-employees.component';
 import { EmployeeLeavesComponent } from './components/payroll/employee-leaves/employee-leaves.component';
 import { PaidEmployeeDetailsComponent } from './components/payroll/paid-employee-details/paid-employee-details.component';
 import { LeaveDisplayComponent } from './components/leave-display/leave-display.component';
+import { LeaveallocationsComponent } from './LeaveMgmt/components/leaveallocations/leaveallocations.component';
 
-export const hrRoutes: Routes = [
-  {
-    path: '',
-    component: HrmanagerLeftSidebarComponent,
-    children: [
-      {path:'dashboard', component:DashboardComponent},
-      {
-        path: 'timesheet',
-        component: TimesheetComponent, children:timeSheetRoutes
-      },
-      { path: 'leave',
-       component: LeavesComponent ,children: leaveRoutes},
-      {
-        path: 'projects',
-        component: ProjectComponent,
-      },
-      { path: 'events', component: EventsComponent },
-      { path: 'payroll', component: PayrollComponent,
-       children:[{ path: 'salary', component:SalaryprocessingComponent},
-                 { path: 'salarydetails', component:AllEmployeesComponent}
-      ]},
-      { path: 'performance', component: PerformenceApprisalComponent },
-    ],
-  },
-];
+// export const hrRoutes: Routes = [
+//   {
+//     path: '',
+//     component: HrmanagerLeftSidebarComponent,
+//     children: [
+//       {path:'dashboard', component:DashboardComponent},
+//       {
+//         path: 'timesheet',
+//         component: TimesheetComponent, children:timeSheetRoutes
+//       },
+//       { path: 'leave',
+//        component: LeavesComponent ,children: leaveRoutes},
+//       {
+//         path: 'projects',
+//         component: ProjectComponent,
+//       },
+//       { path: 'events', component: EventsComponent },
+//       { path: 'payroll', component: PayrollComponent,
+//        children:[{ path: 'salary', component:SalaryprocessingComponent},
+//                  { path: 'salarydetails', component:AllEmployeesComponent}
+//       ]},
+//       { path: 'performance', component: PerformenceApprisalComponent },
+//     ],
+//   },
+// ];
 
 @NgModule({
   declarations: [
@@ -64,8 +61,16 @@ export const hrRoutes: Routes = [
     EmployeeLeavesComponent,
     PaidEmployeeDetailsComponent,
     LeaveDisplayComponent,
+    LeaveallocationsComponent
   ],
-  imports: [CommonModule, RouterModule,FormsModule],
-  exports: [EmployeedetailsComponent,SalaryprocessingComponent,AllEmployeesComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule],
+  exports: [
+    EmployeedetailsComponent,
+    SalaryprocessingComponent,
+    AllEmployeesComponent],
 })
 export class HrmanagerModule {}
