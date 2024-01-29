@@ -6,6 +6,7 @@ import { Timesheet } from '../../models/timesheet';
 import { TimesheetEntry } from '../../models/timesheetEntry';
 import { ProjectWorkHour } from '../../models/projectworkhour';
 import { MemberUtilization } from '../../models/memberutilization';
+import { Week } from '../../models/Week';
 
 @Injectable({
   providedIn: 'root',
@@ -35,6 +36,10 @@ export class TimesheetService {
     getTimeSheetById(timesheetId: number): Observable<Timesheet> {
       let url = `${this.serviceurl}/timesheets/${timesheetId}`;
       return this.http.get<Timesheet>(url);
+    }
+    getTimesheetEntries(timesheetId:number):Observable<TimesheetEntry[]>{
+      let url = `${this.serviceurl}/timesheets/${timesheetId}/timesheetentries`;
+      return this.http.get<TimesheetEntry[]>(url);
     }
     getTimesheetEntry(timesheetEntryId:number):Observable<TimesheetEntry>{
       let url = `${this.serviceurl}/timesheets/timesheetentries/${timesheetEntryId}`;
@@ -77,12 +82,12 @@ export class TimesheetService {
       return this.http.put<boolean>(url, timesheetEntry);
     }
   
-    removeTimeSheetDetails(timesheetEntryId: number): Observable<boolean> {
+    removeTimeSheetEntry(timesheetEntryId: number): Observable<boolean> {
       let url = `${this.serviceurl}/timesheets/timesheetentries/${timesheetEntryId}`;
       return this.http.delete<boolean>(url);
     }
   
-    removeAllTimeSheetDetails(timesheetId: number): Observable<boolean> {
+    removeAllTimsheetEntries(timesheetId: number): Observable<boolean> {
       let url = `${this.serviceurl}/timesheets/${timesheetId}/timesheetentries/removeall`;
       return this.http.delete<boolean>(url);
     }
@@ -131,17 +136,17 @@ export class TimesheetService {
       return this.ConvertDateYYYY_MM_DD(date);
     }
   
-    // getWeekInfo(date: Date): Week {
-    //   const dayOfWeek = date.getUTCDay();
-    //   const startOfWeek = new Date(date);
-    //   startOfWeek.setUTCDate(date.getUTCDate() - dayOfWeek);
-    //   const endOfWeek = new Date(startOfWeek);
-    //   endOfWeek.setUTCDate(startOfWeek.getUTCDate() + 6);
-    //   return {
-    //     startDate: this.ConvertDateYYYY_MM_DD(startOfWeek),
-    //     endDate: this.ConvertDateYYYY_MM_DD(endOfWeek),
-    //   };
-    // }
+    getWeekInfo(date: Date): Week {
+      const dayOfWeek = date.getUTCDay();
+      const startOfWeek = new Date(date);
+      startOfWeek.setUTCDate(date.getUTCDate() - dayOfWeek);
+      const endOfWeek = new Date(startOfWeek);
+      endOfWeek.setUTCDate(startOfWeek.getUTCDate() + 6);
+      return {
+        startDate: this.ConvertDateYYYY_MM_DD(startOfWeek),
+        endDate: this.ConvertDateYYYY_MM_DD(endOfWeek),
+      };
+    }
   
     ConvertDateYYYY_MM_DD(date: Date): string {
       const formattedDate = date
