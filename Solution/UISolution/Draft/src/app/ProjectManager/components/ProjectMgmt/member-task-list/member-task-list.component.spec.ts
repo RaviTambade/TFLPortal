@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddsprintComponent } from './addsprint.component';
+import { MemberTaskListComponent } from './member-task-list.component';
 
-describe('AddsprintComponent', () => {
-  let component: AddsprintComponent;
-  let fixture: ComponentFixture<AddsprintComponent>;
+describe('MemberTaskListComponent', () => {
+  let component: MemberTaskListComponent;
+  let fixture: ComponentFixture<MemberTaskListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddsprintComponent ]
+      declarations: [ MemberTaskListComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AddsprintComponent);
+    fixture = TestBed.createComponent(MemberTaskListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
