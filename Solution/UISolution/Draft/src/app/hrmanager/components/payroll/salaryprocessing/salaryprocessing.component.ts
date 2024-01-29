@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MonthLeave } from 'src/app/leaves/Models/MonthLeave';
-import { Salary } from 'src/app/resource-management/Models/Salary';
-import { HrService } from 'src/app/shared/services/hr.service';
-import { LeavesService } from 'src/app/shared/services/leaves.service';
-import { PayrollService } from 'src/app/shared/services/payroll.service';
+import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
+import { PayrollService } from 'src/app/shared/services/Payroll/payroll.service';
+import { HrService } from 'src/app/shared/services/Staffing/hr.service';
 
 @Component({
   selector: 'app-salaryprocessing',

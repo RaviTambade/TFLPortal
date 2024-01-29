@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { EmployeeDetails } from 'src/app/activity/Models/EmployeeDetails';
-import { HrService } from 'src/app/shared/services/hr.service';
+import { HrService } from 'src/app/shared/services/Staffing/hr.service';
+import { EmployeeDetails } from 'src/app/user/components/EmployeeDetails';
 
 @Component({
   selector: 'app-employeedetails',
