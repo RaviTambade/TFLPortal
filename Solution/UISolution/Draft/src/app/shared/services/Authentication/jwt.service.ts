@@ -11,7 +11,6 @@ export class JwtService {
   constructor( private jwtHelper: JwtHelperService) { }
 
   getClaimFromToken(claim: TokenClaims) {
-
     let token = localStorage.getItem(LocalStorageKeys.jwt);
     if (token) {
       const decodedToken = this.jwtHelper.decodeToken(token);

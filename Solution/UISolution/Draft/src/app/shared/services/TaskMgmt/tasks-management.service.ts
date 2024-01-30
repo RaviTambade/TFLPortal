@@ -77,6 +77,4 @@ export class TasksManagementService {
     let url=this.serviceurl+'/tasks/'+taskId;
     return this.http.get<Task>(url);
   }
-
-
 }

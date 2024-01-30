@@ -9,8 +9,7 @@
             userid INT NOT NULL UNIQUE,
             hiredate DATETIME,
             reportingid INT,    
-            CONSTRAINT fk_employees FOREIGN KEY(reportingid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
-          
+            CONSTRAINT fk_employees FOREIGN KEY(reportingid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE      
     );
 
      CREATE TABLE leaveallocations(

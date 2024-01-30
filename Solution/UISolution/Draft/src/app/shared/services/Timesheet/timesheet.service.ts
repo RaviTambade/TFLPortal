@@ -31,8 +31,7 @@ export class TimesheetService {
       return this.http.get<Timesheet>(url);
     }
   
-  
-  
+   
     getTimeSheetById(timesheetId: number): Observable<Timesheet> {
       let url = `${this.url}/timesheets/${timesheetId}`;
       return this.http.get<Timesheet>(url);
@@ -47,9 +46,7 @@ export class TimesheetService {
       
     }
   
-  
-  
-  
+    
     getActivityWiseHours(employeeId:number,intervalType: string,projectId:number): Observable<MemberUtilization[]> {
       let url = `${this.url}/timesheets/memberutilization/employees/${employeeId}/interval/${intervalType}/projects/${projectId}`;
       return this.http.get<any>(url);
