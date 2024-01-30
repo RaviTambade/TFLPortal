@@ -37,7 +37,7 @@ export class AddTimesheetEntryComponent {
 
   get taskDescription() {
     return this.tasks
-      .filter((task) => task.taskId == this.timesheetEntry.taskId)
+      .filter((task) => task.id == this.timesheetEntry.taskId)
       .map((task) => task.description)
       .at(0);
   }
@@ -62,7 +62,7 @@ export class AddTimesheetEntryComponent {
       .subscribe((res) => {
         this.projects = res;
         if (this.projects.length > 0 && this.selectedProjectId== 0) {
-          this.selectedProjectId = this.projects[0].projectId;
+          this.selectedProjectId = this.projects[0].id;
 
           this.onSprintChange();
         }
@@ -93,7 +93,7 @@ export class AddTimesheetEntryComponent {
       .subscribe((res) => {
         this.tasks = res;
         if (this.tasks.length > 0)
-          this.timesheetEntry.taskId = this.tasks[0].taskId;
+          this.timesheetEntry.taskId = this.tasks[0].id;
       });
   }
 

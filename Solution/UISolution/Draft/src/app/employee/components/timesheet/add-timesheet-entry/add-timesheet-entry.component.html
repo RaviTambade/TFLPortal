@@ -5,7 +5,7 @@
     <label for="project" class="col-sm-2 col-form-label">Project:</label>
     <div class="col-sm-10">
       <select id="project" class="form-control" [(ngModel)]="selectedProjectId" (change)="onSprintChange()">
-        <option *ngFor="let project of projects;" [value]="project.projectId">{{project.title | titlecase}}</option>
+        <option *ngFor="let project of projects;" [value]="project.id">{{project.title | titlecase}}</option>
       </select>
     </div>
   </div>
@@ -25,7 +25,7 @@
     <label for="work" class="col-sm-2 col-form-label">Work:</label>
     <div class="col-sm-10">
       <select id="work" class="form-control" [(ngModel)]="timesheetEntry.taskId">
-        <option *ngFor="let task of tasks" [value]="task.taskId"> {{task.title| titlecase}}</option>
+        <option *ngFor="let task of tasks" [value]="task.id"> {{task.title| titlecase}}</option>
       </select>
     </div>
   </div>

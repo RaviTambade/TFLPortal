@@ -5,7 +5,5 @@ export const environment = {
   leaveAPI:"http://localhost:5263/api/leaves",
   timesheetAPI:"http://localhost:5263/api/timesheets",
   payrollAPI: "http://localhost:5263/api/payroll",
-
-
 };
 

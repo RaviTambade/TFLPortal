@@ -1,6 +1,6 @@
 export class Task {
     constructor(
-      public taskId: number,
+      public id: number,
       public title: string,
       public taskType: string,
       public description: string,
@@ -8,8 +8,8 @@ export class Task {
       public sprintId: number,
       public assignedTo: number,
       public assignedBy: number,
-      public createdDate :string ,
-      public assignDate :string ,
+      public createdOn :string ,
+      public assignedOn :string ,
       public startDate :string,
       public dueDate: string,
       public status :string

@@ -38,7 +38,7 @@ export class UpdateTimesheetEntryComponent implements OnInit {
 
   get taskDescription() {
     return this.tasks
-      .filter((task) => task.taskId == this.timesheetEntry.taskId)
+      .filter((task) => task.id == this.timesheetEntry.taskId)
       .map((task) => task.description)
       .at(0);
   }

@@ -23,7 +23,7 @@ export class TimesheetEmployeeWorkChartComponent {
 
   projects: Project[] = [
     {
-      projectId: 0,
+      id: 0,
       title: 'All',
       startDate: '',
       managerId: 0,
@@ -32,7 +32,7 @@ export class TimesheetEmployeeWorkChartComponent {
       description: '',
     },
   ];
-  selectedProjectId = this.projects[0].projectId;
+  selectedProjectId = this.projects[0].id;
   memberUtilizations: MemberUtilization[] = [];
   chart: any;
 
