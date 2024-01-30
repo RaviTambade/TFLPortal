@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Salary } from 'src/app/Entities/Salary';
 import { PayrollService } from 'src/app/shared/services/Payroll/payroll.service';
-import { Salary } from '../models/Salary';
+
 
 @Component({
   selector: 'employees',
