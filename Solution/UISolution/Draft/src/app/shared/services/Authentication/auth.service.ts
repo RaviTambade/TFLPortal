@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { TokenClaims } from 'src/app/shared/enums/tokenclaims';
@@ -20,7 +20,8 @@ export class AuthService {
 
   signIn(credential: ICredential): Observable<any> {
     let url = `${this.membershipAPIUrl}/auth/signin`;
-    return this.httpClient.post<any>(url, credential);
+    return this.httpClient.post<any>(url, credential).pipe(tap(res=>
+    console.log( "service",res)));
   }
 
   getClaimFromToken(claim: TokenClaims) {

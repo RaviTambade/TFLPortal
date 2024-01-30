@@ -69,6 +69,7 @@ export class LoginComponent {
 
     this.authSvc.signIn(credential).subscribe({
       next: (response) => {
+        console.log(response)
         if (response.token == '' || !response) {
           this.isCredentialInvalid = true;
           setTimeout(() => {
@@ -76,7 +77,6 @@ export class LoginComponent {
           }, 3000);
         }
         if (response.token != '') {
-          localStorage.setItem(LocalStorageKeys.jwt, response.token);
           let role = this.authSvc.getClaimFromToken(TokenClaims.role);
           this.navigateByRole(role);
         }
