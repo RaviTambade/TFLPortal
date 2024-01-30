@@ -71,7 +71,7 @@ public class TasksController : ControllerBase
     }
 
 
-    [HttpGet("projects/{taskId}")]
+    [HttpGet("{taskId}")]
     public async Task<ProjectTask> GetTask(int taskId)
     {
         ProjectTask task = await _service.GetTask(taskId);

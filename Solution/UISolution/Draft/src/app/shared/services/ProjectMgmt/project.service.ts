@@ -2,45 +2,77 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Project } from '../../models/Project';
+import { Member } from 'src/app/Entities/Member';
+import { Sprint } from 'src/app/Entities/sprint';
+import { Project } from 'src/app/Entities/Project';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
-
-  private url :string=environment.apiUrl;
+  projectApi:string=environment.projectAPI;
+  projectAllocation:string=environment.projectAllocation;
+  sprintApi:string=environment.sprintAPI;
   constructor(private httpClient: HttpClient) { }
 
   getProjectDetails(projectId :number):Observable<Project>{
-    let url=this.url+"projects/"+ projectId
+    let url=this.projectApi+"projects/"+ projectId
     return this.httpClient.get<Project>(url);
   }
 
-  getProjectsOfMembers(memberId: number): Observable<Project[]> {
-    let url = this.url+"/projectmgmt/projects/employees/" + memberId
+  getProjectsOfMember(memberId: number): Observable<Project[]> {
+    let url = this.projectApi+"/projects/employees/" + memberId
     return this.httpClient.get<Project[]>(url)
   }
 
   getAllProjects():Observable<Project[]>{
-    let url=this.url+"/projectmgmt/projects";
+    let url=this.projectApi+"/projects";
     return this.httpClient.get<Project[]>(url);
   }
 
   getProject(projectId:number):Observable<any>{
-    let url=this.url+"/projectmgmt/projects"+"/"+projectId;
+    let url=this.projectApi+"/projects/"+projectId;
     console.log(url);
     return this.httpClient.get<any>(url);
   }
 
-  getAllMembers(projectId:number):Observable<any[]>{
-    let url=this.url+"/projectmgmt/projectallocation/employees/"+projectId;
-    return this.httpClient.get<any[]>(url);
-  }
-
 
   getAllProjectsOfManager(managerId:number):Observable<Project[]>{
-    let url=this.url+"/projectmgmt/projects/projectmanager/"+managerId;
+    let url=this.projectApi+"/projects/projectmanager/"+managerId;
     return this.httpClient.get<Project[]>(url);
   }
+
+
+   getAllProjectMembers(projectId:number):Observable<any[]>{
+    let url=this.projectAllocation+"/projects"+projectId;
+    return this.httpClient.get<any[]>(url);
+   }
+
+   getEmployeesOnBench():Observable<any[]>{
+    let url=this.projectAllocation+"/employeesonbench";
+    return this.httpClient.get<any[]>(url);
+   }
+
+
+   assignMember(member:Member):Observable<boolean>{
+    let url=this.projectAllocation;
+    return this.httpClient.post<boolean>(url,member);
+   }
+
+
+   releaseMember(member:Member):Observable<boolean>{
+    let url=this.projectAllocation;
+    return this.httpClient.put<boolean>(url,member);
+   }
+
+
+   getSprintsTasks(sprintId:number):Observable<Sprint[]>{
+    let url=this.sprintApi+'/sprints/'+sprintId+'/tasks';
+   return this.httpClient.get<Sprint[]>(url);
+ }
+
+getCurrentSprint(projectId:number,date:string):Observable<Sprint>{
+   let url=`${this.sprintApi}/sprints/projects/${projectId}/date/${date}`;
+   return this.httpClient.get<Sprint>(url);
+ }
 }

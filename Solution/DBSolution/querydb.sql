@@ -292,7 +292,7 @@ select * from tasks where  projectid =1 and status="inprogress" and assignedto=1
 select * from tasks where  sprintid =1 and status='inprogress' and assignedto=10;
 
 --This query is used to get all tasks and members  data .
-select tasks.* ,e1.userid as assignbyuserid,e2.userid as assigntouserid,projects.title as projectname from tasks INNER JOIN employees e1  on tasks.assignedto =e1.id INNER JOIN employees e2   on  tasks.assignedby=e2.id INNER JOIN projects ON tasks.projectid =projects.id WHERE tasks.id=1;
+select tasks.* ,e1.userid as assignbyuserid,e2.userid as assigntouserid,projects.title as projectname from tasks INNER JOIN employees e1  on tasks.assignedto =e1.id INNER JOIN employees e2   on  tasks.assignedby=e2.id INNER JOIN projects ON tasks.projectid =projects.id WHERE tasks.id=51;
 
 
 --This query is used to get all tasks of members.

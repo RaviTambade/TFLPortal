@@ -141,8 +141,8 @@ public class ProjectMemberService : IProjectMemberService
                     Id = reader.GetInt32("id"),
                     ProjectId = reader.GetInt32("projectid"),
                     EmployeeId = reader.GetInt32("employeeid"),
-                    Title = reader.GetString("projectrole"),
-                    AssignedOn = reader.GetDateTime("projectassigndate"),
+                    Title = reader.GetString("title"),
+                    AssignedOn = reader.GetDateTime("assignedon"),
                 };
                 members.Add(member);
             }
