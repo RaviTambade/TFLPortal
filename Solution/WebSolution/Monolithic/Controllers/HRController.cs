@@ -88,10 +88,17 @@ public class HRController : ControllerBase
         return employee;
     }
 
-    [HttpGet("employeeIds/{employeeIds}")]
-    public async Task<List<Employee>> GetEmployees(string employeeIds)
+    [HttpGet("{id}")]
+    public async Task<Employee> GetEmployeeById(int id)
     {
-        List<Employee> employees = await _service.GetEmployees(employeeIds);
-        return employees;
+        Employee employee = await _service.GetEmployeeById(id);
+        return employee;
     }
+
+    // [HttpGet("employeeIds/{employeeIds}")]
+    // public async Task<List<Employee>> GetEmployees(string employeeIds)
+    // {
+    //     List<Employee> employees = await _service.GetEmployees(employeeIds);
+    //     return employees;
+    // }
 }
