@@ -1,5 +1,5 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
-import { MonthSalary } from '../models/MonthSalary';
+import { MonthSalary } from 'src/app/Entities/MonthSalary';
 import { PayrollService } from 'src/app/shared/services/Payroll/payroll.service';
 
 @Component({
