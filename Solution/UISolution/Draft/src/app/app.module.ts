@@ -22,7 +22,7 @@ import { EmployeeModule } from './employee/employee.module';
     }),
     EmployeeModule,
 
-    HrmanagerModule,
+    // HrmanagerModule,
  
     
   ],

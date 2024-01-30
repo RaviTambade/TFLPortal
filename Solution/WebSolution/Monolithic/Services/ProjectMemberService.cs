@@ -100,9 +100,9 @@ public class ProjectMemberService : IProjectMemberService
             {
                 Employee employee = new Employee
                 {
-                    EmployeeId = reader.GetInt32("id"),
+                    Id = reader.GetInt32("id"),
                     UserId = reader.GetInt32("userid"),
-                    HireDate = reader.GetDateTime("hiredate"),
+                    HiredOn = reader.GetDateTime("hiredate"),
                     ReportingId = reader.GetInt32("reportingid"),
                 };
                 employees.Add(employee);
@@ -141,8 +141,8 @@ public class ProjectMemberService : IProjectMemberService
                     Id = reader.GetInt32("id"),
                     ProjectId = reader.GetInt32("projectid"),
                     EmployeeId = reader.GetInt32("employeeid"),
-                    Title = reader.GetString("projectrole"),
-                    AssignedOn = reader.GetDateTime("projectassigndate"),
+                    Title = reader.GetString("title"),
+                    AssignedOn = reader.GetDateTime("assignedon"),
                 };
                 members.Add(member);
             }

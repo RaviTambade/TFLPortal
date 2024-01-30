@@ -10,4 +10,8 @@ export const environment = {
     leaveAPI:"http://localhost:5263/api/leaves",
     payrollAPI: "http://localhost:5263/api/payroll",
     HrAPI: "http://localhost:5263/api/hr/employees",
+    projectAPI:"http://localhost:5263/api/projectmgmt",
+    projectAllocation:"http://localhost:5263/api/projectallocation",
+    sprintAPI:"http://localhost:5263/api/sprints",
+    timesheetAPI:"http://localhost:5263/api/timesheets",
 };

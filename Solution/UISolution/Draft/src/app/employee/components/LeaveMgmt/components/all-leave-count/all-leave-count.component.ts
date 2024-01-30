@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LeaveApplication } from 'src/app/hrmanager/LeaveMgmt/models/LeaveApplication';
+import { LeaveApplication } from 'src/app/Entities/LeaveApplication';
 import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
 
