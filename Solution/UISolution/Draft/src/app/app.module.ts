@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JWT_OPTIONS, JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { LocalStorageKeys } from './shared/enums/local-storage-keys';
 // import { HrmanagerModule } from './hrmanager/hrmanager.module';
 import { EmployeeModule } from './employee/employee.module';
+import { AuthenticationModule } from './shared/draft/authentication/authentication.module';
 
 
 @NgModule({
@@ -21,13 +22,13 @@ import { EmployeeModule } from './employee/employee.module';
       },
     }),
     EmployeeModule,
-
+    AuthenticationModule
     // HrmanagerModule,
  
     
   ],
 
-  providers: [],
+  providers: [ ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
