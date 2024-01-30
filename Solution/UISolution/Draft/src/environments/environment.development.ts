@@ -9,5 +9,5 @@ export const environment = {
     membershipUrl:"http://localhost:5142/api",
     leaveAPI:"http://localhost:5263/api/leaves",
     timesheetAPI:"http://localhost:5263/api/timesheets",
-
+    payrollAPI: "http://localhost:5263/api/payroll"
 };

@@ -18,12 +18,11 @@ export class LeavesService {
   constructor(private http:HttpClient) { }
 
   addLeave(leave:LeaveApplication):Observable<boolean>{
-    // let url=this.leaveAPI;
     return this.http.post<boolean>(this.leaveAPI,leave);
   }
 
   addRoleBasedLeave(leave:LeaveAllocation):Observable<boolean>{
-    let roleBasedLeaveUrl=`${this.leaveAPI}/rolebasedleave`;
+    let roleBasedLeaveUrl=`${this.leaveAPI}/leaveallocation`;
     return this.http.post<boolean>(roleBasedLeaveUrl,leave);
   }
 
@@ -73,12 +72,11 @@ export class LeavesService {
   }
 
   getAllEmployeeLeaves():Observable<LeaveApplication[]>{
-   
     return this.http.get<LeaveApplication[]>(this.leaveAPI);
   }
 
   getAllRoleBasedLeaves():Observable<LeaveAllocation[]>{
-    let url=`${this.leaveAPI}/rolebasedleaves`;
+    let url=`${this.leaveAPI}/leaveallocations`;
     return this.http.get<LeaveAllocation[]>(url);
   }
 
@@ -102,7 +100,7 @@ export class LeavesService {
   }
 
   updateRoleBasedLeave(roleBasedLeave:LeaveAllocation):Observable<LeaveAllocation>{
-    let url=`${this.leaveAPI}/rolebasedleave`;
+    let url=`${this.leaveAPI}/leaveallocation`;
     return this.http.put<LeaveAllocation>(url,roleBasedLeave);
   }
 

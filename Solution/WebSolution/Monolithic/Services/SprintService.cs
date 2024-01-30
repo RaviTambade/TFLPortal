@@ -121,7 +121,7 @@ public class SprintService : ISprintService
                     AssignedTo = int.Parse(reader["assignedto"].ToString()),
                     AssignedBy= int.Parse(reader["assignedby"].ToString()),
                     AssignedOn = DateTime.Parse(reader["assigneddate"].ToString()),
-                    StartedOn = DateTime.Parse(reader["startdate"].ToString()),
+                    StartDate = DateTime.Parse(reader["startdate"].ToString()),
                     DueDate = DateTime.Parse(reader["duedate"].ToString()),
                     Status = reader["status"].ToString(),
                  };

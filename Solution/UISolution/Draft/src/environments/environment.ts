@@ -4,6 +4,8 @@ export const environment = {
   commonUrl:"https://msxb12x1-5142.inc1.devtunnels.ms/api",
   leaveAPI:"http://localhost:5263/api/leaves",
   timesheetAPI:"http://localhost:5263/api/timesheets",
+  payrollAPI: "http://localhost:5263/api/payroll",
+
 
 };
 
