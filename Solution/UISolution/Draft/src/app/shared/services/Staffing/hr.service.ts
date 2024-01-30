@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from 'src/app/user/Models/User';
-import { SalaryStructure } from 'src/app/hrmanager/components/payroll/models/SalaryStructure';
 import { EmployeeDetails } from 'src/app/user/Models/EmployeeDetails';
 import { Employee } from 'src/app/Entities/Employee';
 

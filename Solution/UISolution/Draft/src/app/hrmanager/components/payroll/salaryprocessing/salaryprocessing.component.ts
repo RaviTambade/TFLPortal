@@ -10,7 +10,7 @@ import { HrService } from 'src/app/shared/services/Staffing/hr.service';
 })
 export class SalaryprocessingComponent {
 
-constructor(private svc :HrService,private service:PayrollService,private leaveService:LeavesService){}
+constructor(private service:PayrollService,private leaveService:LeavesService){}
  
 status:boolean= false;
 employeeId:number=0;
@@ -25,7 +25,7 @@ onSearch(){
 
 paySalary(employeeId: number){
   console.log(employeeId);
-  this.svc.paySalary(this.employeeId,this.month,this.year).subscribe((res)=>{
+  this.service.paySalary(this.employeeId,this.month,this.year).subscribe((res)=>{
     this.status =res;
     console.log(res);
   })

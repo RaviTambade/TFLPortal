@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MonthSalary } from 'src/app/hrmanager/components/payroll/models/MonthSalary';
-import { Salary } from 'src/app/hrmanager/components/payroll/models/Salary';
-import { SalaryStructure } from 'src/app/hrmanager/components/payroll/models/SalaryStructure';
+import { MonthSalary } from 'src/app/Entities/MonthSalary';
+import { Salary } from 'src/app/Entities/Salary';
+import { SalaryStructure } from 'src/app/Entities/SalaryStructure';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
