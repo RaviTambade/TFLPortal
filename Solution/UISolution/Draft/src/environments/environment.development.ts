@@ -11,7 +11,9 @@ export const environment = {
     projectAPI:"http://localhost:5263/api/projectmgmt",
     projectAllocation:"http://localhost:5263/api/projectallocation",
     sprintAPI:"http://localhost:5263/api/sprints",
-
     timesheetAPI:"http://localhost:5263/api/timesheets",
-    payrollAPI: "http://localhost:5263/api/payroll"
+    payrollAPI: "http://localhost:5263/api/payroll",
+    taskAPI:"http://localhost:5263/api/tasks"
+
+
 };

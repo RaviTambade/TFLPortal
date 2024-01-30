@@ -8,5 +8,6 @@ export const environment = {
   sprintAPI:"http://localhost:5263/api/sprints",
   timesheetAPI:"http://localhost:5263/api/timesheets",
   payrollAPI: "http://localhost:5263/api/payroll",
+  taskAPI:"http://localhost:5263/api/tasks"
 };
 

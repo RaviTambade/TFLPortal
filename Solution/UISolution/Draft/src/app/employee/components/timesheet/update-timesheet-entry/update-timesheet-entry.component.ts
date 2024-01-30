@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TimesheetService } from '../../../../shared/services/Timesheet/timesheet.service';
 import { ProjectService } from '../../../../shared/services/ProjectMgmt/project.service';
 import { LocalStorageKeys } from '../../../../shared/enums/local-storage-keys';
-import { SprintService } from '../../../../shared/services/ProjectMgmt/sprint.service';
 import { TasksManagementService } from '../../../../shared/services/TaskMgmt/tasks-management.service';
 import { Project } from 'src/app/Entities/Project';
 import { Task } from 'src/app/Entities/task';
@@ -30,7 +29,6 @@ export class UpdateTimesheetEntryComponent implements OnInit {
   constructor(
     private timesheetService: TimesheetService,
     private route: ActivatedRoute,
-    private sprintService:SprintService,
     private taskService:TasksManagementService,
     private router: Router,
     private projectSvc: ProjectService
@@ -63,13 +61,13 @@ export class UpdateTimesheetEntryComponent implements OnInit {
     });
 
     this.employeeId = Number(localStorage.getItem(LocalStorageKeys.employeeId));
-    this.projectSvc.getProjectsOfMembers(this.employeeId).subscribe((res) => {
+    this.projectSvc.getProjectsOfMember(this.employeeId).subscribe((res) => {
     this.projects = res;
     });
   }
 
   onSprintChange() {
-    this.sprintService
+    this.projectSvc
       .getCurrentSprint(
         this.selectedProjectId,
         new Date().toISOString().slice(0, 10)

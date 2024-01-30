@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TimesheetService } from '../../../../shared/services/Timesheet/timesheet.service';
 import { ProjectService } from '../../../../shared/services/ProjectMgmt/project.service';
 import { LocalStorageKeys } from '../../../../shared/enums/local-storage-keys';
-import { SprintService } from '../../../../shared/services/ProjectMgmt/sprint.service';
 import { TasksManagementService } from '../../../../shared/services/TaskMgmt/tasks-management.service';
 import { TimesheetEntry } from 'src/app/Entities/timesheetEntry';
 import { Sprint } from 'src/app/Entities/sprint';
@@ -44,7 +43,6 @@ export class AddTimesheetEntryComponent {
   constructor(
     private timesheetService: TimesheetService,
     private projectService: ProjectService,
-    private sprintService: SprintService,
     private tasksService:TasksManagementService,
     private router: Router,
     private route: ActivatedRoute
@@ -58,7 +56,7 @@ export class AddTimesheetEntryComponent {
     this.employeeId =10
     //  Number(localStorage.getItem(LocalStorageKeys.employeeId));
     this.projectService
-      .getProjectsOfMembers(this.employeeId)
+      .getProjectsOfMember(this.employeeId)
       .subscribe((res) => {
         this.projects = res;
         if (this.projects.length > 0 && this.selectedProjectId== 0) {
@@ -70,7 +68,7 @@ export class AddTimesheetEntryComponent {
   }
 
   onSprintChange() {
-    this.sprintService
+    this.projectService
       .getCurrentSprint(
         this.selectedProjectId,
         new Date().toISOString().slice(0, 10)

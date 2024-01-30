@@ -106,7 +106,7 @@ export class TimesheetEmployeeWorkChartComponent {
     // Number(localStorage.getItem(LocalStorageKeys.employeeId));
     this.createChart();
     this.onIntervalChange();
-    this.projectService.getProjectsOfMembers(this.employeeId).subscribe((res) => {
+    this.projectService.getProjectsOfMember(this.employeeId).subscribe((res) => {
       console.log(res)
       this.projects = [...this.projects, ...res];
     });
