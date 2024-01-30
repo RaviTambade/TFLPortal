@@ -112,15 +112,15 @@ public class SprintService : ISprintService
             while( await reader.ReadAsync()){
               
                  ProjectTask task=new ProjectTask(){
-                    TaskId = int.Parse(reader["id"].ToString()),
+                    Id = int.Parse(reader["id"].ToString()),
                     Title = reader["title"].ToString(),
                     TaskType = reader["tasktype"].ToString(),
                     SprintId = int.Parse(reader["sprintid"].ToString()),
                     Description = reader["description"].ToString(),
-                    CreatedDate = DateTime.Parse(reader["createddate"].ToString()),
+                    CreatedOn = DateTime.Parse(reader["createddate"].ToString()),
                     AssignedTo = int.Parse(reader["assignedto"].ToString()),
                     AssignedBy= int.Parse(reader["assignedby"].ToString()),
-                    AssignDate = DateTime.Parse(reader["assigneddate"].ToString()),
+                    AssignedOn = DateTime.Parse(reader["assigneddate"].ToString()),
                     StartDate = DateTime.Parse(reader["startdate"].ToString()),
                     DueDate = DateTime.Parse(reader["duedate"].ToString()),
                     Status = reader["status"].ToString(),

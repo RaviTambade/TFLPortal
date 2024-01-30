@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Timesheet } from '../../../../shared/models/timesheet';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TimesheetService } from '../../../../shared/services/Timesheet/timesheet.service';
-import { TimesheetEntry } from '../../../../shared/models/timesheetEntry';
+import { Timesheet } from 'src/app/Entities/timesheet';
+import { TimesheetEntry } from 'src/app/Entities/timesheetEntry';
 
 @Component({
   selector: 'app-timesheet-details',

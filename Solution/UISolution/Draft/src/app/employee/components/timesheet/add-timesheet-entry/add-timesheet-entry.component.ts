@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { TimesheetEntry } from '../../../../shared/models/timesheetEntry';
-import { Project } from '../../../../shared/models/Project';
-import { Task } from '../../../../shared/models/task';
 import { TimesheetService } from '../../../../shared/services/Timesheet/timesheet.service';
 import { ProjectService } from '../../../../shared/services/ProjectMgmt/project.service';
-import { Sprint } from '../../../../shared/models/sprint';
 import { LocalStorageKeys } from '../../../../shared/enums/local-storage-keys';
 import { SprintService } from '../../../../shared/services/ProjectMgmt/sprint.service';
 import { TasksManagementService } from '../../../../shared/services/TaskMgmt/tasks-management.service';
+import { TimesheetEntry } from 'src/app/Entities/timesheetEntry';
+import { Sprint } from 'src/app/Entities/sprint';
+import { Task } from 'src/app/Entities/task';
+import { Project } from 'src/app/Entities/Project';
 
 @Component({
   selector: 'app-add-timesheet-entry',
@@ -37,7 +37,7 @@ export class AddTimesheetEntryComponent {
 
   get taskDescription() {
     return this.tasks
-      .filter((task) => task.taskId == this.timesheetEntry.taskId)
+      .filter((task) => task.id == this.timesheetEntry.taskId)
       .map((task) => task.description)
       .at(0);
   }
@@ -62,7 +62,7 @@ export class AddTimesheetEntryComponent {
       .subscribe((res) => {
         this.projects = res;
         if (this.projects.length > 0 && this.selectedProjectId== 0) {
-          this.selectedProjectId = this.projects[0].projectId;
+          this.selectedProjectId = this.projects[0].id;
 
           this.onSprintChange();
         }
@@ -93,7 +93,7 @@ export class AddTimesheetEntryComponent {
       .subscribe((res) => {
         this.tasks = res;
         if (this.tasks.length > 0)
-          this.timesheetEntry.taskId = this.tasks[0].taskId;
+          this.timesheetEntry.taskId = this.tasks[0].id;
       });
   }
 

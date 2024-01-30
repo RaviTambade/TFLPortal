@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
-
-import { MemberUtilization } from '../../../../shared/models/memberutilization';
 import { TimesheetService } from '../../../../shared/services/Timesheet/timesheet.service';
 import { ProjectService } from '../../../../shared/services/ProjectMgmt/project.service';
-import { Project } from '../../../../shared/models/Project';
 import { HourConvertorPipe } from '../../../../shared/pipes/hour-convertor.pipe';
+import { Project } from 'src/app/Entities/Project';
+import { MemberUtilization } from 'src/app/Entities/memberutilization';
 
 @Component({
   selector: 'timesheet-employee-work-chart',
@@ -14,6 +13,8 @@ import { HourConvertorPipe } from '../../../../shared/pipes/hour-convertor.pipe'
   styleUrls: ['./timesheet-employee-work-chart.component.css'],
 })
 export class TimesheetEmployeeWorkChartComponent {
+
+  
   employeeId: number = 0;
   fromDate: string | undefined;
   toDate: string | undefined;
@@ -22,7 +23,7 @@ export class TimesheetEmployeeWorkChartComponent {
 
   projects: Project[] = [
     {
-      projectId: 0,
+      id: 0,
       title: 'All',
       startDate: '',
       managerId: 0,
@@ -31,7 +32,7 @@ export class TimesheetEmployeeWorkChartComponent {
       description: '',
     },
   ];
-  selectedProjectId = this.projects[0].projectId;
+  selectedProjectId = this.projects[0].id;
   memberUtilizations: MemberUtilization[] = [];
   chart: any;
 

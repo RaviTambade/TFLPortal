@@ -32,7 +32,7 @@ public class PayrollService : IPayrollService
             MySqlDataReader reader=command.ExecuteReader();
             while(await reader.ReadAsync()){
                     SalarySlip details=new SalarySlip{
-                     SalaryId=reader.GetInt32("id"),
+                     Id=reader.GetInt32("id"),
                     EmployeeId=reader.GetInt32("employeeid"),
                     PayDate=reader.GetDateTime("paydate"),
                     MonthlyWorkingDays=reader.GetInt32("monthlyworkingdays"),
@@ -70,7 +70,7 @@ public class PayrollService : IPayrollService
             MySqlDataReader reader=command.ExecuteReader();
             while(await reader.ReadAsync()){
                     salaryDetails=new SalarySlip{
-                     SalaryId=reader.GetInt32("id"),
+                     Id=reader.GetInt32("id"),
                     EmployeeId=reader.GetInt32("employeeid"),
                     PayDate=reader.GetDateTime("paydate"),
                     MonthlyWorkingDays=reader.GetInt32("monthlyworkingdays"),
@@ -108,7 +108,7 @@ public class PayrollService : IPayrollService
             MySqlDataReader reader=command.ExecuteReader();
             while(await reader.ReadAsync()){
                     SalarySlip details=new SalarySlip{
-                    SalaryId=reader.GetInt32("id"),
+                    Id=reader.GetInt32("id"),
                     EmployeeId=reader.GetInt32("employeeid"),
                     PayDate=reader.GetDateTime("paydate"),
                     MonthlyWorkingDays=reader.GetInt32("monthlyworkingdays"),
