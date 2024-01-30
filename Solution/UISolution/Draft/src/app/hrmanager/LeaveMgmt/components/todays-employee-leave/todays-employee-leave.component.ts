@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LeaveApplication } from 'src/app/shared/draft/leaves/Models/LeaveApplication';
+import { LeaveApplication } from 'src/app/Entities/LeaveApplication';
 import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { LeavesCount } from '../../models/LeavesCount';
+import { LeavesCount } from 'src/app/Entities/LeavesCount';
 import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
 
 
@@ -20,6 +20,6 @@ export class EmployeeConsumedLeavesComponent {
       this.service.getAnnualConsumedLeaves(this.employeeId,this.year).subscribe((res)=>{
         this.consumedLeave=res;
         console.log(res);
-      }) 
- }
+    }) 
+  }
 }

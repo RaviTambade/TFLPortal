@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { LeaveApplication } from 'src/app/Entities/LeaveApplication';
 import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
-import { LeaveApplication } from '../../models/LeaveApplication';
+
 
 @Component({
   selector: 'app-update-employee-leave',
@@ -37,7 +38,6 @@ export class UpdateEmployeeLeaveComponent {
   leaveForm=new FormGroup({
     fromDate :new FormControl(),
     toDate :new FormControl(),
-    year :new FormControl(),
     leaveType :new FormControl()
   });
 
@@ -45,10 +45,9 @@ export class UpdateEmployeeLeaveComponent {
     let leaves:LeaveApplication={
       id: this.id,
       employeeId: this.employeeId,
-      applicationDate:new Date().toISOString(),
+      createdOn:new Date().toISOString(),
       fromDate: this.leaveForm.get("fromDate")?.value,
       toDate: this.leaveForm.get("toDate")?.value,
-      year:this.leaveForm.get("year")?.value,
       leaveType: this.leaveForm.get("leaveType")?.value,
       status:" "
     }

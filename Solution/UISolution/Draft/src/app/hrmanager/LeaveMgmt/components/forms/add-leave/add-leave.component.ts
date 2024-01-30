@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { LeaveApplication } from 'src/app/Entities/LeaveApplication';
 import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
-import { LeaveApplication } from '../../models/LeaveApplication';
+
+
 
 @Component({
   selector: 'app-add-leave',
@@ -39,11 +41,10 @@ export class AddLeaveComponent implements OnInit {
     let leaves:LeaveApplication={
       id: 0,
       employeeId: this.employeeId,
-      applicationDate:new Date().toISOString(),
+      createdOn:new Date().toISOString(),
       fromDate: this.leaveForm.get("fromDate")?.value,
       toDate: this.leaveForm.get("toDate")?.value,
       status: "applied",
-      year:new Date().getFullYear(),
       leaveType: this.leaveForm.get("leaveType")?.value
     }
     console.log(leaves);

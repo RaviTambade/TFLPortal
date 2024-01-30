@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { LeaveAllocation } from 'src/app/Entities/LeaveAllocation';
 import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
-import { LeaveAllocation } from '../../models/LeaveAllocation';
+
 
 @Component({
   selector: 'app-add-role-based-leave',

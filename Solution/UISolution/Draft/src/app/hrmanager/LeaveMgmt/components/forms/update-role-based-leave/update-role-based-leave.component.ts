@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { UserRole } from 'src/app/shared/models/UserRole';
-import { LeaveAllocation } from '../../models/LeaveAllocation';
 import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
+import { UserRole } from 'src/app/Entities/UserRole';
+import { LeaveAllocation } from 'src/app/Entities/LeaveAllocation';
 
 
 @Component({
@@ -40,7 +40,7 @@ export class UpdateRoleBasedLeaveComponent implements OnInit{
   }
 
   onSubmit(){
-    let roleBasedLeave:RoleBasedLeave={
+    let roleBasedLeave:LeaveAllocation={
       id: this.id,
       roleId: this.rolebasedleaveForm.get("roleId")?.value,
       sick:this.rolebasedleaveForm.get("sick")?.value,

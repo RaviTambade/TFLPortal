@@ -10,7 +10,8 @@ import { environment } from 'src/environments/environment';
 })
 export class MembershipService {
 
-  membershipUrl:string=environment.commonUrl;
+  membershipUrl:string=environment.membershipUrl;
+  
   constructor(private httpClient: HttpClient) { }
 
   getAllRoles(lob:string):Observable<UserRole[]>{
@@ -34,5 +35,10 @@ export class MembershipService {
   updateUser(id: number, user: User): Observable<any> {
     let url = `${this.membershipUrl}/users/${id}`;
     return this.httpClient.put<any>(url, user);
+  }
+
+  getEmployee(contactNumber:string):Observable<User>{
+    let url=`${this.membershipUrl}/users/contact/${contactNumber}`;
+    return this.httpClient.get<User>(url);
   }
 }

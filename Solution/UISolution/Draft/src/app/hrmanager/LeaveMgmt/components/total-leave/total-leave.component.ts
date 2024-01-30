@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LeavesCount } from '../../models/LeavesCount';
+import { LeavesCount } from 'src/app/Entities/LeavesCount';
 import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
 
 @Component({

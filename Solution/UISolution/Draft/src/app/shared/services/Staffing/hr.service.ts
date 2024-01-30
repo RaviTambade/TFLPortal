@@ -4,8 +4,9 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from 'src/app/user/Models/User';
 import { SalaryStructure } from 'src/app/hrmanager/components/payroll/models/SalaryStructure';
-import { EmployeeDetails } from 'src/app/user/components/EmployeeDetails';
-import { Employee } from 'src/app/user/Models/Employee';
+import { EmployeeDetails } from 'src/app/user/Models/EmployeeDetails';
+import { Employee } from 'src/app/Entities/Employee';
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,42 +15,15 @@ export class HrService {
 
   constructor(private httpClient: HttpClient) {}
 
-  private serviceurl: string = environment.apiUrl;
-  private commonUrl:string =environment.commonUrl;
+  private HrAPI: string = environment.HrAPI;
 
   getEmployeeByUserId(userId:number):Observable<Employee>{
-    let url = this.serviceurl + '/hr/employees/users/'+userId;
-    console.log(url)
+    let url = `${this.HrAPI}/users/${userId}`;
     return this.httpClient.get<Employee>(url);
   }
 
   getEmployeeDetails(employeeId: number): Observable<EmployeeDetails> {
-    let url = this.serviceurl + '/hr/employees/employee' + '/' + employeeId;
+    let url = `${this.HrAPI}/${employeeId}`;
     return this.httpClient.get<EmployeeDetails>(url);
-  }
-
-  getEmployee(contactNumber:string):Observable<User>{
-    let url=this.commonUrl+"/users/contact/"+contactNumber;
-    return this.httpClient.get<User>(url);
-  }
-
-  getEmployeeSalaryStructure(salaryStructure:SalaryStructure):Observable<SalaryStructure>{
-    let url=this.serviceurl+"/hr/employees/employee/salary";
-    return this.httpClient.post<SalaryStructure>(url,salaryStructure); 
-  }
-  
-  getSalaryStructure(employeeId:number):Observable<any>{
-    let url=this.serviceurl+"/payroll/salaries/employees/"+employeeId;
-    return this.httpClient.get<any>(url);
-  }
-
-  getSalaryHistory(employeeId:number):Observable<any>{
-    let url=this.serviceurl+"/payroll/salaries/employee/"+employeeId;
-    return this.httpClient.get<any>(url);
-  }
-
-  paySalary(employeeId: number,month:number,year:number): Observable<any> {
-    let url = this.serviceurl + '/hr/employees/employee/salary/'+ employeeId+'/month/'+month+'/year/'+year;
-    return this.httpClient.post<any>(url,employeeId);
   }
 }
