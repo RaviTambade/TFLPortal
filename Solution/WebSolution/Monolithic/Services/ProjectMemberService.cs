@@ -100,9 +100,9 @@ public class ProjectMemberService : IProjectMemberService
             {
                 Employee employee = new Employee
                 {
-                    EmployeeId = reader.GetInt32("id"),
+                    Id = reader.GetInt32("id"),
                     UserId = reader.GetInt32("userid"),
-                    HireDate = reader.GetDateTime("hiredate"),
+                    HiredOn = reader.GetDateTime("hiredate"),
                     ReportingId = reader.GetInt32("reportingid"),
                 };
                 employees.Add(employee);

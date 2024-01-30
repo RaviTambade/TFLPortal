@@ -3,7 +3,7 @@ import { Chart } from 'chart.js';
 import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { HourConvertorPipe } from 'src/app/shared/pipes/hour-convertor.pipe';
 import { TimesheetService } from '../../../../shared/services/Timesheet/timesheet.service';
-import { ProjectWorkHour } from '../../../../shared/models/projectworkhour';
+import { ProjectWorkHour } from 'src/app/Entities/projectworkhour';
 
 @Component({
   selector: 'timesheet-employee-project-hours',

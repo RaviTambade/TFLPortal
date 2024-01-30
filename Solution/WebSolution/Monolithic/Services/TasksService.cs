@@ -1,10 +1,7 @@
 using MySql.Data.MySqlClient;
-using Microsoft.Extensions.Configuration;
 using TFLPortal.Services.Interfaces;
-using TFLPortal.Models;
 using ProjectTask= TFLPortal.Models.Task;
 using System.Data;
-using Transflower.TFLPortal.Intranet.Controllers;
 using TFLPortal.Responses;
 
 namespace TFLPortal.Services;
@@ -39,24 +36,24 @@ public class TaskService : ITaskService
                 string description = reader["description"].ToString();
                 int projectId = int.Parse(reader["projectid"].ToString());
                 int sprintId = int.Parse(reader["sprintid"].ToString());
-                DateTime createDate = DateTime.Parse(reader["createddate"].ToString());
+                DateTime createdOn = DateTime.Parse(reader["createddate"].ToString());
                 int assignedTo = int.Parse(reader["assignedto"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
-                DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime assignedOn = DateTime.Parse(reader["assigneddate"].ToString());
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
-                ProjectTask theTask = new ProjectTask
+                ProjectTask task = new ProjectTask
                 {
-                    TaskId= id,
+                    Id= id,
                     Title = title,
                     TaskType = activityType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
-                    AssignDate = assignDate,
+                    AssignedOn = assignedOn,
                     StartDate = startDate,
                     DueDate = dueDate,
                     AssignedTo = assignedTo,
@@ -64,7 +61,7 @@ public class TaskService : ITaskService
                     AssignedBy = managerId,
 
                 };
-                tasks.Add(theTask);
+                tasks.Add(task);
             }
             await reader.CloseAsync();
         }
@@ -97,24 +94,24 @@ public class TaskService : ITaskService
                 string activityType = reader["tasktype"].ToString();
                 string description = reader["description"].ToString();
                  int sprintId = int.Parse(reader["sprintid"].ToString());
-                DateTime createDate = DateTime.Parse(reader["createddate"].ToString());
+                DateTime createdOn = DateTime.Parse(reader["createddate"].ToString());
                 int assignedTo = int.Parse(reader["assignedto"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
-                DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime assignedOn = DateTime.Parse(reader["assigneddate"].ToString());
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
-                ProjectTask theTask = new ProjectTask
+                ProjectTask task = new ProjectTask
                 {
-                    TaskId= id,
+                    Id= id,
                     Title = title,
                     TaskType = activityType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
-                    AssignDate = assignDate,
+                    AssignedOn = assignedOn,
                     StartDate = startDate,
                     DueDate = dueDate,
                     AssignedTo = assignedTo,
@@ -122,7 +119,7 @@ public class TaskService : ITaskService
                     AssignedBy = managerId,
 
                 };
-                tasks.Add(theTask);
+                tasks.Add(task);
             }
             await reader.CloseAsync();
         }
@@ -157,24 +154,24 @@ public class TaskService : ITaskService
                 string title = reader["title"].ToString();
                 string description = reader["description"].ToString();
                 int sprintId = int.Parse(reader["sprintid"].ToString());
-                DateTime createDate = DateTime.Parse(reader["createddate"].ToString());
+                DateTime createdOn = DateTime.Parse(reader["createddate"].ToString());
                 int assignedTo = int.Parse(reader["assignedto"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
-                DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime assignedOn = DateTime.Parse(reader["assigneddate"].ToString());
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
-                ProjectTask theTask = new ProjectTask
+                ProjectTask task = new ProjectTask
                 {
-                    TaskId = id,
+                    Id = id,
                     Title = title,
                     TaskType = taskType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
-                    AssignDate = assignDate,
+                    AssignedOn = assignedOn,
                     StartDate = startDate,
                     DueDate = dueDate,
                     AssignedTo = assignedTo,
@@ -183,7 +180,7 @@ public class TaskService : ITaskService
 
                 };
 
-                tasks.Add(theTask);
+                tasks.Add(task);
             }
             await reader.CloseAsync();
         }
@@ -220,9 +217,9 @@ public class TaskService : ITaskService
                 string taskType = reader["tasktype"].ToString();
                 string description = reader["description"].ToString();
                  int sprintId = int.Parse(reader["sprintid"].ToString());
-                DateTime createDate = DateTime.Parse(reader["createddate"].ToString());
+                DateTime createdOn = DateTime.Parse(reader["createddate"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
-                DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime assignedOn = DateTime.Parse(reader["assigneddate"].ToString());
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
@@ -230,13 +227,13 @@ public class TaskService : ITaskService
 
                 ProjectTask act = new ProjectTask
                 {
-                    TaskId = id,
+                    Id = id,
                     Title = title,
                     TaskType = taskType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
-                    AssignDate = assignDate,
+                    AssignedOn = assignedOn,
                     StartDate = startDate,
                     DueDate = dueDate,
                     AssignedTo = memberId,
@@ -280,23 +277,23 @@ public class TaskService : ITaskService
                 string title = reader["title"].ToString();
                 string description = reader["description"].ToString();
                  int sprintId = int.Parse(reader["sprintid"].ToString());
-                DateTime createDate = DateTime.Parse(reader["createddate"].ToString());
+                DateTime createdOn = DateTime.Parse(reader["createddate"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
-                DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime assignedOn = DateTime.Parse(reader["assigneddate"].ToString());
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string taskType = reader["tasktype"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
-                ProjectTask theTask = new ProjectTask
+                ProjectTask task = new ProjectTask
                 {
-                    TaskId = id,
+                    Id = id,
                     Title = title,
                     TaskType = taskType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
-                    AssignDate = assignDate,
+                    AssignedOn = assignedOn,
                     StartDate = startDate,
                     DueDate = dueDate,
                     AssignedTo= memberId,
@@ -304,7 +301,7 @@ public class TaskService : ITaskService
                     AssignedBy = managerId,
 
                 };
-                tasks.Add(theTask);
+                tasks.Add(task);
             }
             await reader.CloseAsync();
         }
@@ -339,23 +336,23 @@ public class TaskService : ITaskService
                 string title = reader["title"].ToString();
                 string description = reader["description"].ToString();
                 int projectId = int.Parse(reader["projectid"].ToString());
-                DateTime createDate = DateTime.Parse(reader["createddate"].ToString());
+                DateTime createdOn = DateTime.Parse(reader["createddate"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
-                DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime assignedOn = DateTime.Parse(reader["assigneddate"].ToString());
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string taskType = reader["tasktype"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
-                ProjectTask theTask = new ProjectTask
+                ProjectTask task = new ProjectTask
                 {
-                    TaskId = id,
+                    Id = id,
                     Title = title,
                     TaskType = taskType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
-                    AssignDate = assignDate,
+                    AssignedOn = assignedOn,
                     StartDate = startDate,
                     DueDate = dueDate,
                     AssignedTo = memberId,
@@ -363,7 +360,7 @@ public class TaskService : ITaskService
                     AssignedBy = managerId,
 
                 };
-                tasks.Add(theTask);
+                tasks.Add(task);
             }
             await reader.CloseAsync();
         }
@@ -396,8 +393,8 @@ public class TaskService : ITaskService
                 string description = reader["description"].ToString();
                 string taskType = reader["tasktype"].ToString();
                  int sprintId = int.Parse(reader["sprintid"].ToString());
-                DateTime createDate = DateTime.Parse(reader["createddate"].ToString());
-                DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime createdOn = DateTime.Parse(reader["createddate"].ToString());
+                DateTime assignedOn = DateTime.Parse(reader["assigneddate"].ToString());
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
@@ -409,14 +406,14 @@ public class TaskService : ITaskService
                 string projectName = reader["projectname"].ToString();
                 task = new ProjectTask()
                 {
-                    TaskId = taskId,
+                    Id = taskId,
                     TaskType = taskType,
                     Title = title,
-                    CreatedDate = createDate,
+                    CreatedOn = createdOn,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
-                    AssignDate = assignDate,
+                    AssignedOn = assignedOn,
                     StartDate = startDate,
                     AssignedTo = memberId,
                     AssignedBy = managerId,
@@ -436,27 +433,27 @@ public class TaskService : ITaskService
         }
         return task;
     }
-    public async Task<bool> AddTask(ProjectTask theTask)
+    public async Task<bool> AddTask(ProjectTask task)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "INSERT INTO tasks(title,tasktype,description,createddate,assigneddate,startdate,duedate,assignedto,projectid,sprintid,status,assignedby) VALUES(@title,@tasktype,@description,@createdDate,@assignDate,@startDate,@dueDate,@assignedTo,@projectId,@sprintId,@status,@assignedBy)";
+            string query = "INSERT INTO tasks(title,tasktype,description,createddate,assigneddate,startdate,duedate,assignedto,projectid,sprintid,status,assignedby) VALUES(@title,@tasktype,@description,@createddate,@assigndate,@startdate,@duedate,@assignedTo,@projectId,@sprintId,@status,@assignedBy)";
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@title", theTask.Title);
-            cmd.Parameters.AddWithValue("@tasktype", theTask.TaskType);
-            cmd.Parameters.AddWithValue("@description", theTask.Description);
-            cmd.Parameters.AddWithValue("@createdDate", theTask.CreatedDate);
-            cmd.Parameters.AddWithValue("@assigndate", theTask.AssignDate);
-            cmd.Parameters.AddWithValue("@startDate", theTask.StartDate);
-            cmd.Parameters.AddWithValue("@dueDate", theTask.DueDate);
-            cmd.Parameters.AddWithValue("@assignedTo", theTask.AssignedTo);
-            cmd.Parameters.AddWithValue("@projectId", theTask.ProjectId);
-            cmd.Parameters.AddWithValue("@sprintId", theTask.SprintId);
-            cmd.Parameters.AddWithValue("@status", theTask.Status);
-            cmd.Parameters.AddWithValue("@assignedBy", theTask.AssignedBy);
+            cmd.Parameters.AddWithValue("@title", task.Title);
+            cmd.Parameters.AddWithValue("@tasktype", task.TaskType);
+            cmd.Parameters.AddWithValue("@description", task.Description);
+            cmd.Parameters.AddWithValue("@createddate", task.CreatedOn);
+            cmd.Parameters.AddWithValue("@assigndate", task.AssignedOn);
+            cmd.Parameters.AddWithValue("@startdate", task.StartDate);
+            cmd.Parameters.AddWithValue("@dueDate", task.DueDate);
+            cmd.Parameters.AddWithValue("@assignedTo", task.AssignedTo);
+            cmd.Parameters.AddWithValue("@projectId", task.ProjectId);
+            cmd.Parameters.AddWithValue("@sprintId", task.SprintId);
+            cmd.Parameters.AddWithValue("@status", task.Status);
+            cmd.Parameters.AddWithValue("@assignedBy", task.AssignedBy);
             await connection.OpenAsync();
             int rowsAffected = cmd.ExecuteNonQuery();
             if (rowsAffected > 0)
@@ -495,23 +492,23 @@ public class TaskService : ITaskService
                  int sprintId = int.Parse(reader["sprintid"].ToString());
                 string description = reader["description"].ToString();
                 int projectId = int.Parse(reader["projectid"].ToString());
-                DateTime createDate = DateTime.Parse(reader["createddate"].ToString());
+                DateTime createdOn = DateTime.Parse(reader["createddate"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
-                DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime assignedOn = DateTime.Parse(reader["assigneddate"].ToString());
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
-                ProjectTask theTask = new ProjectTask
+                ProjectTask task = new ProjectTask
                 {
-                    TaskId = id,
+                    Id = id,
                     Title = title,
                     TaskType = taskType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
-                    AssignDate = assignDate,
+                    AssignedOn = assignedOn,
                     StartDate = startDate,
                     DueDate = dueDate,
                     AssignedTo = memberId,
@@ -519,7 +516,7 @@ public class TaskService : ITaskService
                     AssignedBy = managerId,
 
                 };
-                tasks.Add(theTask);
+                tasks.Add(task);
             }
             await reader.CloseAsync();
         }
@@ -554,9 +551,9 @@ public class TaskService : ITaskService
                 string description = reader["description"].ToString();
                  int sprintId = int.Parse(reader["sprintid"].ToString());
                 int projectId = int.Parse(reader["projectid"].ToString());
-                DateTime createDate = DateTime.Parse(reader["createddate"].ToString());
+                DateTime createdOn = DateTime.Parse(reader["createddate"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
-                DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime assignedOn = DateTime.Parse(reader["assigneddate"].ToString());
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
@@ -564,15 +561,15 @@ public class TaskService : ITaskService
                 int employeeId = int.Parse(reader["assignedto"].ToString());
 
 
-                ProjectTask theTask = new ProjectTask
+                ProjectTask task = new ProjectTask
                 {
-                    TaskId = id,
+                    Id = id,
                     Title = title,
                     TaskType = taskType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
-                    AssignDate = assignDate,
+                    AssignedOn = assignedOn,
                     StartDate = startDate,
                     DueDate = dueDate,
                     AssignedTo = employeeId,
@@ -580,7 +577,7 @@ public class TaskService : ITaskService
                     AssignedBy = managerId,
 
                 };
-                tasks.Add(theTask);
+                tasks.Add(task);
             }
             await reader.CloseAsync();
         }
@@ -616,23 +613,23 @@ public class TaskService : ITaskService
                  int sprintId = int.Parse(reader["sprintid"].ToString());
                 string description = reader["description"].ToString();
                 int projectId = int.Parse(reader["projectid"].ToString());
-                DateTime createDate = DateTime.Parse(reader["createddate"].ToString());
+                DateTime createdOn = DateTime.Parse(reader["createddate"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
-                DateTime assignDate = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime assignedOn = DateTime.Parse(reader["assigneddate"].ToString());
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
             
-                ProjectTask theTask = new ProjectTask
+                ProjectTask task = new ProjectTask
                 {
-                    TaskId = id,
+                    Id = id,
                     Title = title,
                     TaskType = taskType,
                     Description = description,
                     ProjectId = projectId,
                     SprintId=sprintId,
-                    AssignDate = assignDate,
+                    AssignedOn = assignedOn,
                     StartDate = startDate,
                     DueDate = dueDate,
                     AssignedTo = memberId,
@@ -640,7 +637,7 @@ public class TaskService : ITaskService
                     AssignedBy = managerId,
 
                 };
-                tasks.Add(theTask);
+                tasks.Add(task);
             }
             await reader.CloseAsync();
         }
@@ -760,9 +757,9 @@ public class TaskService : ITaskService
                 string status = reader["status"].ToString();
                 int managerId = int.Parse(reader["assignedby"].ToString());
 
-                ProjectTask theTask = new ProjectTask
+                ProjectTask task = new ProjectTask
                 {
-                    TaskId = id,
+                    Id = id,
                     Title = title,
                     TaskType = taskType,
                     Description = description,
@@ -775,7 +772,7 @@ public class TaskService : ITaskService
                   AssignedBy = managerId,
 
                 };
-                tasks.Add(theTask);
+                tasks.Add(task);
             }
             await reader.CloseAsync();
         }

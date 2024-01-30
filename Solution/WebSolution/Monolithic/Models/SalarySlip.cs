@@ -2,7 +2,7 @@ namespace TFLPortal.Models;
 
 public class SalarySlip
 {
-    public int SalaryId { get; set; }
+    public int Id { get; set; }
     public int EmployeeId { get; set; } // EmployeeId
     public DateTime PayDate { get; set; }
     public int MonthlyWorkingDays { get; set; }

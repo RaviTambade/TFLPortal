@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Timesheet } from '../../../../shared/models/timesheet';
-import { TimeSheetStatus } from '../../../../shared/models/timesheetstatus';
 import { TimesheetService } from '../../../../shared/services/Timesheet/timesheet.service';
 import { LocalStorageKeys } from '../../../../shared/enums/local-storage-keys';
+import { TimeSheetStatus } from 'src/app/Entities/timesheetstatus';
+import { Timesheet } from 'src/app/Entities/timesheet';
 
 @Component({
   selector: 'app-timesheet-list',

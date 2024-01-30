@@ -2,11 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Timesheet } from '../../models/timesheet';
-import { TimesheetEntry } from '../../models/timesheetEntry';
-import { ProjectWorkHour } from '../../models/projectworkhour';
-import { MemberUtilization } from '../../models/memberutilization';
-import { Week } from '../../models/Week';
+import { Timesheet } from 'src/app/Entities/timesheet';
+import { TimesheetEntry } from 'src/app/Entities/timesheetEntry';
+import { ProjectWorkHour } from 'src/app/Entities/projectworkhour';
+import { MemberUtilization } from 'src/app/Entities/memberutilization';
+import { Week } from 'src/app/Entities/Week';
 
 @Injectable({
   providedIn: 'root',
@@ -14,78 +14,78 @@ import { Week } from '../../models/Week';
 export class TimesheetService {
     constructor(private http: HttpClient) { }
   
-    private url: string = environment.apiUrl;
+    private timesheetAPIUrl: string = environment.timesheetAPI;
     
     getAllTimeSheets(employeeId: number,fromDate:string,toDate:string): Observable<Timesheet[]> {
-      let url = `${this.url}/timesheets/employees/${employeeId}/from/${fromDate}/to/${toDate}`;
+      let url = `${this.timesheetAPIUrl}/employees/${employeeId}/from/${fromDate}/to/${toDate}`;
       return this.http.get<Timesheet[]>(url);
     }
   
   
     getPendingTimesheets(projectManagerId:number,fromDate:string,toDate:string): Observable<Timesheet[]> {
-      let url = `${this.url}/timesheets/pendingapproval/from/${fromDate}/to/${toDate}/manager/${projectManagerId}`;
+      let url = `${this.timesheetAPIUrl}/pendingapproval/from/${fromDate}/to/${toDate}/manager/${projectManagerId}`;
       return this.http.get<Timesheet[]>(url);
     }
     getTimeSheet(employeeId: number, date: string): Observable<Timesheet> {
-      let url = `${this.url}/timesheets/employees/${employeeId}/date/${date}`;
+      let url = `${this.timesheetAPIUrl}/employees/${employeeId}/date/${date}`;
       return this.http.get<Timesheet>(url);
     }
   
    
     getTimeSheetById(timesheetId: number): Observable<Timesheet> {
-      let url = `${this.url}/timesheets/${timesheetId}`;
+      let url = `${this.timesheetAPIUrl}/${timesheetId}`;
       return this.http.get<Timesheet>(url);
     }
     getTimesheetEntries(timesheetId:number):Observable<TimesheetEntry[]>{
-      let url = `${this.url}/timesheets/${timesheetId}/timesheetentries`;
+      let url = `${this.timesheetAPIUrl}/${timesheetId}/timesheetentries`;
       return this.http.get<TimesheetEntry[]>(url);
     }
     getTimesheetEntry(timesheetEntryId:number):Observable<TimesheetEntry>{
-      let url = `${this.url}/timesheets/timesheetentries/${timesheetEntryId}`;
+      let url = `${this.timesheetAPIUrl}/timesheetentries/${timesheetEntryId}`;
       return this.http.get<TimesheetEntry>(url);
       
     }
   
     
     getActivityWiseHours(employeeId:number,intervalType: string,projectId:number): Observable<MemberUtilization[]> {
-      let url = `${this.url}/timesheets/memberutilization/employees/${employeeId}/interval/${intervalType}/projects/${projectId}`;
+      let url = `${this.timesheetAPIUrl}/memberutilization/employees/${employeeId}/interval/${intervalType}/projects/${projectId}`;
       return this.http.get<any>(url);
     }
      
   
     getProjectwiseTimeSpent(employeeId:number,fromDate:string,toDate:string):Observable<ProjectWorkHour[]>{
-      let url = `${this.url}/timesheets/projects/workinghours/employees/${employeeId}/from/${fromDate}/to/${toDate}`;
+      let url = `${this.timesheetAPIUrl}/projects/workinghours/employees/${employeeId}/from/${fromDate}/to/${toDate}`;
       return this.http.get<ProjectWorkHour[]>(url);
     }
   
   
     addTimeSheet(timesheet: any): Observable<boolean> {
-      let url = `${this.url}/timesheets`;
+      let url = `${this.timesheetAPIUrl}`;
       return this.http.post<boolean>(url, timesheet);
     }
   
     addTimeSheetEntry(timesheetEntry: TimesheetEntry): Observable<any> {
-      let url = `${this.url}/timesheets/timesheetentries`;
+      let url = `${this.timesheetAPIUrl}/timesheetentries`;
       return this.http.post(url, timesheetEntry);
     }
   
     changeTimeSheetStatus(timesheetId: number, timesheet: Timesheet): Observable<boolean> {
-      let url = `${this.url}/timesheets/${timesheetId}`;
+      let url = `${this.timesheetAPIUrl}/${timesheetId}`;
       return this.http.put<boolean>(url, timesheet);
     }
   
     updateTimeSheetEntry(timesheetEntryId: number, timesheetEntry: TimesheetEntry): Observable<boolean> {
-      let url = `${this.url}/timesheets/timesheetentries/${timesheetEntryId}`;
+      let url = `${this.timesheetAPIUrl}/timesheetentries/${timesheetEntryId}`;
       return this.http.put<boolean>(url, timesheetEntry);
     }
   
     removeTimeSheetEntry(timesheetEntryId: number): Observable<boolean> {
-      let url = `${this.url}/timesheets/timesheetentries/${timesheetEntryId}`;
+      let url = `${this.timesheetAPIUrl}/timesheetentries/${timesheetEntryId}`;
       return this.http.delete<boolean>(url);
     }
   
     removeAllTimsheetEntries(timesheetId: number): Observable<boolean> {
-      let url = `${this.url}/timesheets/${timesheetId}/timesheetentries/removeall`;
+      let url = `${this.timesheetAPIUrl}/${timesheetId}/timesheetentries/removeall`;
       return this.http.delete<boolean>(url);
     }
   

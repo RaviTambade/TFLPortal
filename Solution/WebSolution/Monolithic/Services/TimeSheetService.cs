@@ -2,7 +2,6 @@ using MySql.Data.MySqlClient;
 using TFLPortal.Services.Interfaces;
 using TFLPortal.Models;
 using TFLPortal.Responses;
-using System.Data;
 
 namespace Transflower.TFLPortal.TFLSAL.Services;
 

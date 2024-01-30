@@ -7,5 +7,5 @@ public class Sprint
     public string? Goal { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
-    public int ProjectId { get; set; } //ProjectId
+    public int ProjectId { get; set; } 
 }

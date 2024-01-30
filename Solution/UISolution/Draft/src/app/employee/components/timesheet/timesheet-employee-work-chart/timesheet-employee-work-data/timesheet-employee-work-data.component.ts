@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { MemberUtilization } from '../../../../../shared/models/memberutilization';
+import { MemberUtilization } from 'src/app/Entities/memberutilization';
 
 @Component({
   selector: 'app-timesheet-employee-work-data',
