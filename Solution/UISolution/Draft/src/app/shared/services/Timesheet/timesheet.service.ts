@@ -77,7 +77,7 @@ export class TimesheetService {
       return this.http.put<boolean>(url, timesheet);
     }
   
-    updateTimeSheetDetails(timesheetEntryId: number, timesheetEntry: TimesheetEntry): Observable<boolean> {
+    updateTimeSheetEntry(timesheetEntryId: number, timesheetEntry: TimesheetEntry): Observable<boolean> {
       let url = `${this.url}/timesheets/timesheetentries/${timesheetEntryId}`;
       return this.http.put<boolean>(url, timesheetEntry);
     }

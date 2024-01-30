@@ -16,6 +16,7 @@ import { TimesheetEmployeeWorkDataComponent } from './components/timesheet/times
 import { TimesheetEmployeeWorkChartComponent } from './components/timesheet/timesheet-employee-work-chart/timesheet-employee-work-chart.component';
 import { TimesheetEmployeeProjectHoursComponent } from './components/timesheet/timesheet-employee-project-hours/timesheet-employee-project-hours.component';
 import { AddTimesheetEntryComponent } from './components/timesheet/add-timesheet-entry/add-timesheet-entry.component';
+import { UpdateTimesheetEntryComponent } from './components/timesheet/update-timesheet-entry/update-timesheet-entry.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AddTimesheetEntryComponent } from './components/timesheet/add-timesheet
     TimesheetEmployeeWorkDataComponent,
     TimesheetEmployeeWorkChartComponent,
     TimesheetEmployeeProjectHoursComponent,
-    AddTimesheetEntryComponent
+    AddTimesheetEntryComponent,
+    UpdateTimesheetEntryComponent,
   ],
   imports: [
     CommonModule,
@@ -46,6 +48,7 @@ import { AddTimesheetEntryComponent } from './components/timesheet/add-timesheet
     TimesheetEmployeeWorkChartComponent,
     TimesheetEmployeeProjectHoursComponent,
     AddTimesheetEntryComponent,
+    UpdateTimesheetEntryComponent
   ],
 })
 export class EmployeeModule {}

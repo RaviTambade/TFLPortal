@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { JWT_OPTIONS, JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { LocalStorageKeys } from './shared/enums/local-storage-keys';
 import { HrmanagerModule } from './hrmanager/hrmanager.module';
+import { EmployeeModule } from './employee/employee.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { HrmanagerModule } from './hrmanager/hrmanager.module';
         tokenGetter: () => localStorage.getItem(LocalStorageKeys.jwt),
       },
     }),
+    EmployeeModule,
 
     HrmanagerModule,
  

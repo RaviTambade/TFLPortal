@@ -21,7 +21,7 @@ export class UpdateTimesheetEntryComponent implements OnInit {
   selectedSprintId: number = 0;
   employeeId: number = 0;
   tasks: Task[] = [];
-  sprints: Sprint[] = [];
+  sprint!: Sprint ;
 
 
   @Input() timesheetEntry!: TimesheetEntry;
@@ -30,6 +30,8 @@ export class UpdateTimesheetEntryComponent implements OnInit {
   constructor(
     private timesheetService: TimesheetService,
     private route: ActivatedRoute,
+    private sprintService:SprintService,
+    private taskService:TasksManagementService,
     private router: Router,
     private projectSvc: ProjectService
   ) {}
@@ -43,16 +45,17 @@ export class UpdateTimesheetEntryComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      let timesheetDetailId = params.get('id');
+      let timesheetEntryId =15
+      //  params.get('id');
       this.timesheetService
-        .getTimesheetDetail(Number(timesheetDetailId))
+        .getTimesheetEntry(Number(timesheetEntryId))
         .subscribe((res) => {
-          this.timesheetDetails = res;
-          this.timesheetDetails.fromTime = this.timesheetDetails.fromTime.slice(0, 5);
-          this.timesheetDetails.toTime = this.timesheetDetails.toTime.slice(0,5 );
-          this.getDuration(this.timesheetDetails);
-          this.selectedProjectId = this.timesheetDetails.projectId;
-          this.selectedSprintId=this.timesheetDetails.sprintId;
+          this.timesheetEntry = res;
+          this.timesheetEntry.fromTime = this.timesheetEntry.fromTime.slice(0, 5);
+          this.timesheetEntry.toTime = this.timesheetEntry.toTime.slice(0,5 );
+          this.getDuration();
+          // this.selectedProjectId = this.timesheetEntry.projectId;
+          // this.selectedSprintId=this.timesheetEntry.sprintId;
           console.log(res)
          this.onSprintChange();
 
@@ -60,28 +63,28 @@ export class UpdateTimesheetEntryComponent implements OnInit {
     });
 
     this.employeeId = Number(localStorage.getItem(LocalStorageKeys.employeeId));
-    this.projectSvc.getProjectsOfEmployee(this.employeeId).subscribe((res) => {
+    this.projectSvc.getProjectsOfMembers(this.employeeId).subscribe((res) => {
     this.projects = res;
     });
   }
 
   onSprintChange() {
-    this.timesheetService
-      .getOngoingSprints(
+    this.sprintService
+      .getCurrentSprint(
         this.selectedProjectId,
         new Date().toISOString().slice(0, 10)
       )
       .subscribe((res) => {
         console.log(res);
-        this.sprints = res;
-        this.getWorks();
+        this.sprint = res;
+        this.getTasks();
       });
   }
 
 
-  getWorks() {
-    this.timesheetService
-      .getEmployeeWorkBySprintAndStatus(
+  getTasks() {
+    this.taskService
+      .getAllTasksOfSprintAndMember(
         this.selectedSprintId,
         this.employeeId,
         'inprogress'
@@ -92,32 +95,33 @@ export class UpdateTimesheetEntryComponent implements OnInit {
   }
 
   onClick() {
-    let timesheetDetails: TimeSheetDetails = {
-      id: this.timesheetDetails.id,
-      fromTime: this.timesheetDetails.fromTime + ':00',
-      toTime: this.timesheetDetails.toTime + ':00',
-      timesheetId: this.timesheetDetails.timesheetId,
-      employeeWorkId: this.timesheetDetails.employeeWorkId,
+    let timesheetEntry: TimesheetEntry = {
+      id: this.timesheetEntry.id,
+      fromTime: this.timesheetEntry.fromTime + ':00',
+      toTime: this.timesheetEntry.toTime + ':00',
+      timesheetId: this.timesheetEntry.timesheetId,
+      taskId: this.timesheetEntry.taskId,
+      durationInHours: 0
     };
 
     this.timesheetService
-      .updateTimeSheetDetails(timesheetDetails.id, timesheetDetails)
+      .updateTimeSheetEntry(timesheetEntry.id, timesheetEntry)
       .subscribe((res) => {
         if (res) {
-        this.router.navigate(['../../details', this.timesheetDetails.timesheetId] ,{relativeTo:this.route});
+        this.router.navigate(['../../details', this.timesheetEntry.timesheetId] ,{relativeTo:this.route});
 
         }
       });
   }
 
   onCancelClick() {
-    console.log(this.timesheetDetails)
-    this.router.navigate(['../../details', this.timesheetDetails.timesheetId] ,{relativeTo:this.route});
+    console.log(this.timesheetEntry)
+    this.router.navigate(['../../details', this.timesheetEntry.timesheetId] ,{relativeTo:this.route});
 
   }
 
-  getDuration(timesheetEntry: TimeSheetDetailView) {
-    this.timesheetService.getDurationOfWork(timesheetEntry);
+  getDuration() {
+    this.timesheetEntry.durationInHours = this.timesheetService.getTimeDifference(this.timesheetEntry.fromTime,this.timesheetEntry.toTime);
   }
 
  
