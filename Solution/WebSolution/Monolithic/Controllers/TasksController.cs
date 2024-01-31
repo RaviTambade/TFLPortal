@@ -115,9 +115,9 @@ public class TasksController : ControllerBase
 
 
  [HttpGet("Count")]
-    public async Task<AllTaskCountResponse> GetTasksCount()
+    public async Task<AllTaskCount> GetTasksCount()
     {
-        AllTaskCountResponse task = await _service.GetTasksCount();
+        AllTaskCount task = await _service.GetTasksCount();
         return task;
     }
 

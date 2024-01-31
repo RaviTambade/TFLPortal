@@ -16,12 +16,12 @@ public interface ITimesheetService
     Task<Timesheet> GetTimesheet(int timesheetId);
     Task<List<TimesheetEntry>> GetTimesheetEntries(int timesheetId);
     Task<TimesheetEntry> GetTimesheetEntry(int timesheetEntryId);
-    Task<List<MemberUtilizationResponse>> GetActivityWiseHours(
+    Task<List<MemberUtilization>> GetActivityWiseHours(
         int employeeId,
         string intervalType,
         int projectId
     );
-    Task<List<ProjectWorkHoursResponse>> GetProjectWiseTimeSpentByEmployee(
+    Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(
         int employeeId,
         DateOnly fromDate,
         DateOnly toDate

@@ -90,14 +90,14 @@ public class LeavesManagementController : ControllerBase
 
     [HttpGet]
     [Route ("monthlyconsumedleaves/employees/{employeeId}/year/{year}")]
-    public async Task<List<ConsumedLeaveResponse>> GetAnnualLeavesCount(int employeeId,int year)
+    public async Task<List<ConsumedLeave>> GetAnnualLeavesCount(int employeeId,int year)
     {
       return await _service.GetAnnualLeavesCount(employeeId,year);
     }
 
   
     [HttpGet("annualavailableleaves/employee/{employeeId}/year/{year}")]
-    public async Task<LeavesCountResponse> GetAnnualAvailableLeaves(int employeeId,int roleId,int year)
+    public async Task<LeavesCount> GetAnnualAvailableLeaves(int employeeId,int roleId,int year)
     {
         // Employee employee= await _hrService.GetEmployeeById(employeeId);
         // List<Role> roles= await _apiService.GetRoleOfUser(employee.UserId);
@@ -106,7 +106,7 @@ public class LeavesManagementController : ControllerBase
     }
 
     [HttpGet("annualconsumedleaves/employee/{employeeId}/year/{year}")]
-    public async Task<LeavesCountResponse> GetAnnualConsumedLeaves(int employeeId,int roleId,int year)
+    public async Task<LeavesCount> GetAnnualConsumedLeaves(int employeeId,int roleId,int year)
     {
         // Employee employee= await _hrService.GetEmployeeById(employeeId);
         // List<Role> roles= await _apiService.GetRoleOfUser(employee.UserId);
@@ -116,7 +116,7 @@ public class LeavesManagementController : ControllerBase
 
  
     [HttpGet("annualleaves/role/{roleId}/year/{year}")]
-    public async Task<LeavesCountResponse> GetAnnualLeaves(int roleId,int year)
+    public async Task<LeavesCount> GetAnnualLeaves(int roleId,int year)
     {
         // Employee employee= await _hrService.GetEmployeeById(employeeId);
         // List<Role> roles= await _apiService.GetRoleOfUser(employee.UserId);
@@ -126,7 +126,7 @@ public class LeavesManagementController : ControllerBase
  
  
     [HttpGet("employees/{employeeId}/month/{month}/year/{year}")]
-    public async Task<List<ConsumedLeaveResponse>> GetMonthlyLeaveCount(int employeeId,int month,int year)
+    public async Task<List<ConsumedLeave>> GetMonthlyLeaveCount(int employeeId,int month,int year)
     {
         return await _service.GetMonthlyLeaveCount(employeeId,month,year);   
     }

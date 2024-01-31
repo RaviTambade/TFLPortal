@@ -25,8 +25,8 @@ public class TimesheetService : ITimesheetService
         connection.ConnectionString = _connectionString;
         try
         {
-            string from = from.ToString("yyyy-MM-dd");
-            string to = to.ToString("yyyy-MM-dd");
+            string fromDate = from.ToString("yyyy-MM-dd");
+            string toDate = to.ToString("yyyy-MM-dd");
 
             string query =
                 @"  SELECT timesheets.* , COALESCE(SUM(timesheetentries.durationinhours),0) AS time_in_hour from timesheets
@@ -73,8 +73,8 @@ public class TimesheetService : ITimesheetService
         connection.ConnectionString = _connectionString;
         try
         {
-            string from = from.ToString("yyyy-MM-dd");
-            string to = to.ToString("yyyy-MM-dd");
+            string fromDate = from.ToString("yyyy-MM-dd");
+            string toDate = to.ToString("yyyy-MM-dd");
             string query =
                 @"SELECT timesheets.* ,SUM(timesheetentries.durationinhours) AS time_in_hour  FROM timesheets
                 INNER JOIN timesheetentries on timesheetentries.timesheetid=timesheets.id
@@ -280,13 +280,13 @@ public class TimesheetService : ITimesheetService
         return timesheetEntry;
     }
 
-    public async Task<List<MemberUtilizationResponse>> GetActivityWiseHours(
+    public async Task<List<MemberUtilization>> GetActivityWiseHours(
         int employeeId,
         string intervalType,
         int projectId
     )
     {
-        List<MemberUtilizationResponse> memberUtilizations = new();
+        List<MemberUtilization> memberUtilizations = new();
 
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
@@ -303,7 +303,7 @@ public class TimesheetService : ITimesheetService
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
-                MemberUtilizationResponse memberUtilization = new MemberUtilizationResponse()
+                MemberUtilization memberUtilization = new MemberUtilization()
                 {
                     Label = reader.GetString("label"),
                     UserStory = reader.GetDouble("userstory"),
@@ -336,7 +336,7 @@ public class TimesheetService : ITimesheetService
         DateOnly toDate
     )
     {
-        List<ProjectWorkHoursResponse> projectsHoursList = new();
+        List<ProjectWorkHours> projectsHoursList = new();
 
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
@@ -355,7 +355,7 @@ public class TimesheetService : ITimesheetService
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
-                ProjectWorkHoursResponse projectHours = new ProjectWorkHoursResponse()
+                ProjectWorkHours projectHours = new ProjectWorkHours()
                 {
                     ProjectId = reader.GetInt32("projectid"),
                     ProjectName = reader.GetString("projectname"),

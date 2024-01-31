@@ -1,5 +1,5 @@
 
--- Active: 1705924796699@@127.0.0.1@3306@tflportal
+-- Active: 1696576841746@@127.0.0.1@3306@tflportal
 
     DROP DATABASE IF EXISTS TFLPortal;
     CREATE DATABASE TFLPortal;
@@ -7,7 +7,7 @@
     CREATE TABLE employees(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             userid INT NOT NULL UNIQUE,
-            hiredate DATETIME,
+            hiredon DATETIME,
             reportingid INT,    
             CONSTRAINT fk_employees FOREIGN KEY(reportingid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE      
     );
@@ -65,8 +65,6 @@
             startdate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
             enddate DATETIME,
             description TEXT,
-            managerid INT NOT NULL,
-            CONSTRAINT fk_employees_projects FOREIGN KEY(managerid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
             status ENUM(
                 'incomplete',
                 'cancelled',
@@ -77,7 +75,7 @@
 
 
 
-    CREATE TABLE projectmembers(
+    CREATE TABLE projectallocations(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             projectid INT NOT NULL,
             employeeid INT NOT NULL,
@@ -86,7 +84,7 @@
             releasedon DATETIME default null,
             status enum('yes','no') default 'yes' ,
             CONSTRAINT fk_projects_project1 FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
-            CONSTRAINT fk_employee_projectmemberss FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
+            CONSTRAINT fk_employee_projectallocations FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
       CREATE TABLE sprints(
@@ -108,8 +106,8 @@
             sprintid INT NULL,
             assignedto INT NULL, 
             assignedby INT NULL,
-            createddate DATETIME NULL,
-            assigneddate DATETIME NULL,
+            createdon DATETIME NULL,
+            assignedon DATETIME NULL,
             startdate DATETIME NULL,
             duedate DATETIME NULL,
             status ENUM ( 'todo','inprogress','completed') DEFAULT 'todo' , 

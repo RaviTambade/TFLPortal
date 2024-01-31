@@ -38,13 +38,5 @@ public class ProjectMembersController : ControllerBase
         List<Member> members= await _service.GetProjectMembers(projectId);
         return members;
     }
-
-    [HttpGet("employeesonbench")]
-    public async Task<List<Employee>> GetEmployeesOnBench()
-    {
-        List<Employee> projects= await _service.GetEmployeesOnBench();
-        return projects;
-    }
-
     
 }
