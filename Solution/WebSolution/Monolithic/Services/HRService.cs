@@ -18,6 +18,9 @@ public class HRService : IHRService
             ?? throw new ArgumentNullException("connectionString");
     }
 
+    //Services------- tables
+
+    //HR Service-------- emplyoees-----------------
     public async Task<Employee> GetEmployeeById(int employeeId)
         {
             Employee employee = null;
@@ -53,8 +56,7 @@ public class HRService : IHRService
             }
             return employee;
         }
-
-        public async Task<List<Employee>> GetEmployees(string employeeIds)
+    public async Task<List<Employee>> GetEmployees(string employeeIds)
         {
             List<Employee> employees = new List<Employee>();
             MySqlConnection connection = new MySqlConnection();
@@ -124,6 +126,47 @@ public class HRService : IHRService
             }
             return employee;
         }
+    
+    public async Task<List<Employee>> GetEmployeesOnBench()
+    {
+        List<Employee> employees= new List<Employee>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query =@"SELECT * FROM employees
+           WHERE id not in (SELECT employeeid FROM projectmembers GROUP BY employeeid HAVING COUNT(CASE WHEN status = 'yes' THEN 1 END) > 0)";       
+            MySqlCommand command = new MySqlCommand(query, connection);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {
+                Employee employee = new Employee
+                {
+                    Id = reader.GetInt32("id"),
+                    UserId = reader.GetInt32("userid"),
+                    HiredOn = reader.GetDateTime("hiredate"),
+                    ReportingId = reader.GetInt32("reportingid"),
+                };
+                employees.Add(employee);
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return employees;
+    }
+
+
+    //get all employees who are on bench
+
+    
     }
    
    

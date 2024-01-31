@@ -1,6 +1,6 @@
 namespace TFLPortal.Responses;
 
-public class SprintTaskCountResponse
+public class SprintTaskCount
 {
     public required int ProjectId { get; set; }
     public required string ProjectName { get; set; }

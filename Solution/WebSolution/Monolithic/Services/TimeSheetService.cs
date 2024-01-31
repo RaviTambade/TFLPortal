@@ -18,19 +18,15 @@ public class TimesheetService : ITimesheetService
             ?? throw new ArgumentNullException("connectionString");
     }
 
-    public async Task<List<Timesheet>> GetTimesheets(
-        int employeeId,
-        DateOnly fromDate,
-        DateOnly toDate
-    )
+    public async Task<List<Timesheet>> GetTimesheets(int employeeId, DateOnly from, DateOnly to )
     {
         List<Timesheet> timesheets = new List<Timesheet>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string fromdate = fromDate.ToString("yyyy-MM-dd");
-            string todate = toDate.ToString("yyyy-MM-dd");
+            string from = from.ToString("yyyy-MM-dd");
+            string to = to.ToString("yyyy-MM-dd");
 
             string query =
                 @"  SELECT timesheets.* , COALESCE(SUM(timesheetentries.durationinhours),0) AS time_in_hour from timesheets
@@ -40,8 +36,8 @@ public class TimesheetService : ITimesheetService
             MySqlCommand command = new MySqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@employeeId", employeeId);
-            command.Parameters.AddWithValue("@fromdate", fromdate);
-            command.Parameters.AddWithValue("@todate", todate);
+            command.Parameters.AddWithValue("@fromdate", from);
+            command.Parameters.AddWithValue("@todate", to);
             await connection.OpenAsync();
             MySqlDataReader reader = (MySqlDataReader)await command.ExecuteReaderAsync();
             while (await reader.ReadAsync())
@@ -70,19 +66,15 @@ public class TimesheetService : ITimesheetService
         return timesheets;
     }
 
-    public async Task<List<Timesheet>> GetTimeSheetsForApproval(
-        int projectManagerId,
-        DateOnly fromDate,
-        DateOnly toDate
-    )
+    public async Task<List<Timesheet>> GetTimeSheetsForApproval(int projectManagerId,DateOnly from,DateOnly to)
     {
         List<Timesheet> timesheets = new List<Timesheet>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string fromdate = fromDate.ToString("yyyy-MM-dd");
-            string todate = toDate.ToString("yyyy-MM-dd");
+            string from = from.ToString("yyyy-MM-dd");
+            string to = to.ToString("yyyy-MM-dd");
             string query =
                 @"SELECT timesheets.* ,SUM(timesheetentries.durationinhours) AS time_in_hour  FROM timesheets
                 INNER JOIN timesheetentries on timesheetentries.timesheetid=timesheets.id
@@ -95,8 +87,8 @@ public class TimesheetService : ITimesheetService
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectmanagerId", projectManagerId);
             command.Parameters.AddWithValue("@status", "submitted");
-            command.Parameters.AddWithValue("@fromdate", fromdate);
-            command.Parameters.AddWithValue("@todate", todate);
+            command.Parameters.AddWithValue("@fromdate", from);
+            command.Parameters.AddWithValue("@todate", to);
             await connection.OpenAsync();
             MySqlDataReader reader = (MySqlDataReader)await command.ExecuteReaderAsync();
             while (await reader.ReadAsync())
@@ -210,16 +202,15 @@ public class TimesheetService : ITimesheetService
         return timesheet;
     }
 
+
     public async Task<List<TimesheetEntry>> GetTimesheetEntries(int timesheetId)
     {
-        List<TimesheetEntry> timesheetEntries = new();
+        List<TimesheetEntry> timesheetEntries = new List<TimesheetEntry>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query =
-                @"SELECT * FROM timesheetentries
-                 WHERE timesheetentries.timesheetid=@timesheetid";
+            string query =@"SELECT * FROM timesheetentries WHERE timesheetentries.timesheetid=@timesheetid";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@timesheetid", timesheetId);
             await connection.OpenAsync();
@@ -339,7 +330,7 @@ public class TimesheetService : ITimesheetService
         return memberUtilizations;
     }
 
-    public async Task<List<ProjectWorkHoursResponse>> GetProjectWiseTimeSpentByEmployee(
+    public async Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(
         int employeeId,
         DateOnly fromDate,
         DateOnly toDate

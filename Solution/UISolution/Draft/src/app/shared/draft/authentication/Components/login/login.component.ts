@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ICredential } from '../../Models/icredential';
+import { Credential } from '../../Models/credential';
 
 // import { LayoutService } from 'src/app/layout/Services/layout.service';
 import { Role } from 'src/app/shared/enums/role';
@@ -61,7 +61,7 @@ export class LoginComponent {
       return;
     }
 
-    let credential: ICredential = {
+    let credential: Credential = {
       contactNumber: this.contactnumber.value,
       password: this.password.value,
       lob: this.lob,
@@ -69,6 +69,7 @@ export class LoginComponent {
 
     this.authSvc.signIn(credential).subscribe({
       next: (response) => {
+        console.log(response)
         if (response.token == '' || !response) {
           this.isCredentialInvalid = true;
           setTimeout(() => {
@@ -76,7 +77,6 @@ export class LoginComponent {
           }, 3000);
         }
         if (response.token != '') {
-          localStorage.setItem(LocalStorageKeys.jwt, response.token);
           let role = this.authSvc.getClaimFromToken(TokenClaims.role);
           this.navigateByRole(role);
         }
