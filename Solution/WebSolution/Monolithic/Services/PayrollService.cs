@@ -132,44 +132,6 @@ public class PayrollService : IPayrollService
         return salaryDetails;
     }
 
-    public async Task<List<int>> GetUnPaidSalaries(int month, int year)
-    {
-            List<int>? userIds=new();
-            MySqlConnection connection = new MySqlConnection();
-            connection.ConnectionString = _connectionString;
-            try
-            {
-                string query =
-                   @"SELECT employees.userid
-                         FROM employees
-                         LEFT JOIN salaryslips ON employees.id = salaryslips.employeeid
-                         AND MONTH(salaryslips.paydate) = @month
-                         AND YEAR(salaryslips.paydate) = @year
-                         WHERE salaryslips.employeeid IS NULL";
-                MySqlCommand command = new MySqlCommand(query, connection);
-                System.Console.WriteLine(month);
-                System.Console.WriteLine(year);
-                command.Parameters.AddWithValue("@month", month);
-                command.Parameters.AddWithValue("@year", year);
-                await connection.OpenAsync();
-                MySqlDataReader reader = command.ExecuteReader();
-                while(await reader.ReadAsync())
-                {
-                     userIds.Add(reader.GetInt32(reader.GetOrdinal("userid")));
-                }
-                await reader.CloseAsync();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            finally
-            {
-                await connection.CloseAsync();
-            }
-            return userIds;
-    }
-
     public async Task<SalaryStructure> GetSalaryStructure(int employeeId)
         {
             SalaryStructure salary = null;
