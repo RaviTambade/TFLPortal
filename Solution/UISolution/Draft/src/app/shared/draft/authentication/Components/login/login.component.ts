@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ICredential } from '../../Models/icredential';
-import { AuthService } from '../../Services/auth.service';
-import { TokenClaims } from '../../../shared/enums/tokenclaims';
-import { JwtService } from 'src/app/shared/services/jwt.service';
-import { LocalStorageKeys } from '../../../shared/enums/local-storage-keys';
-import { HrService } from 'src/app/shared/services/hr.service';
-import { LayoutService } from 'src/app/layout/Services/layout.service';
+import { Credential } from '../../Models/credential';
+
+// import { LayoutService } from 'src/app/layout/Services/layout.service';
 import { Role } from 'src/app/shared/enums/role';
+import { AuthService } from 'src/app/shared/services/Authentication/auth.service';
+import { HrService } from 'src/app/shared/services/Staffing/hr.service';
+import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
+import { TokenClaims } from 'src/app/shared/enums/tokenclaims';
 
 @Component({
   selector: 'app-login',
@@ -24,10 +24,9 @@ export class LoginComponent {
   role: string = '';
   constructor(
     private authSvc: AuthService,
-    private jwtSvc: JwtService,
     private hrSvc: HrService,
     private router: Router,
-    private layoutSvc: LayoutService
+    // private layoutSvc: LayoutService
   ) {}
 
   ngOnInit(): void {
@@ -62,7 +61,7 @@ export class LoginComponent {
       return;
     }
 
-    let credential: ICredential = {
+    let credential: Credential = {
       contactNumber: this.contactnumber.value,
       password: this.password.value,
       lob: this.lob,
@@ -70,6 +69,7 @@ export class LoginComponent {
 
     this.authSvc.signIn(credential).subscribe({
       next: (response) => {
+        console.log(response)
         if (response.token == '' || !response) {
           this.isCredentialInvalid = true;
           setTimeout(() => {
@@ -77,8 +77,7 @@ export class LoginComponent {
           }, 3000);
         }
         if (response.token != '') {
-          localStorage.setItem(LocalStorageKeys.jwt, response.token);
-          let role = this.jwtSvc.getClaimFromToken(TokenClaims.role);
+          let role = this.authSvc.getClaimFromToken(TokenClaims.role);
           this.navigateByRole(role);
         }
       },
@@ -90,7 +89,7 @@ export class LoginComponent {
   }
 
   navigateByRole(role: string) {
-    let userId = Number(this.jwtSvc.getClaimFromToken(TokenClaims.userId));
+    let userId = Number(this.authSvc.getClaimFromToken(TokenClaims.userId));
     this.hrSvc.getEmployeeByUserId(userId).subscribe((res) => {
       localStorage.setItem(LocalStorageKeys.employeeId, res.id.toString());
       switch (role) {
@@ -107,7 +106,7 @@ export class LoginComponent {
           this.router.navigate(['/projectmanager']);
           break;
       }
-      this.layoutSvc.onSucess();
+      // this.layoutSvc.onSucess();
     });
   }
 }
