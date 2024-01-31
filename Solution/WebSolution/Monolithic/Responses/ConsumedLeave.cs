@@ -1,6 +1,6 @@
 namespace TFLPortal.Responses;
 
-public class ConsumedLeaveResponse
+public class ConsumedLeave
 {
     public int EmployeeId{get;set;}
     public int Month { get; set; }

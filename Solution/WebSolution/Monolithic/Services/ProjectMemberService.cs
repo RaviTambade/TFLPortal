@@ -84,42 +84,7 @@ public class ProjectMemberService : IProjectMemberService
         return status;
     }
 
-    public async Task<List<Employee>> GetEmployeesOnBench()
-    {
-        List<Employee> employees= new List<Employee>();
-        MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _connectionString;
-        try
-        {
-            string query =@"SELECT * FROM employees
-           WHERE id not in (SELECT employeeid FROM projectmembers GROUP BY employeeid HAVING COUNT(CASE WHEN status = 'yes' THEN 1 END) > 0)";       
-            MySqlCommand command = new MySqlCommand(query, connection);
-            await connection.OpenAsync();
-            MySqlDataReader reader = command.ExecuteReader();
-            while (await reader.ReadAsync())
-            {
-                Employee employee = new Employee
-                {
-                    Id = reader.GetInt32("id"),
-                    UserId = reader.GetInt32("userid"),
-                    HiredOn = reader.GetDateTime("hiredate"),
-                    ReportingId = reader.GetInt32("reportingid"),
-                };
-                employees.Add(employee);
-            }
-            await reader.CloseAsync();
-        }
-        catch (Exception)
-        {
-            throw;
-        }
-        finally
-        {
-            await connection.CloseAsync();
-        }
-        return employees;
-    }
-
+ 
     public async Task<List<Member>> GetProjectMembers(int projectId)
     {
         List<Member> members= new List<Member>();
@@ -158,6 +123,9 @@ public class ProjectMemberService : IProjectMemberService
         }
         return members;
     }
+
+       //get all members who are working on project
+
 
 }  
 

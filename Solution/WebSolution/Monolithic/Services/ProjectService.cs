@@ -65,7 +65,7 @@ public class ProjectService : IProjectService
         return projects;
     }
 
-    public async Task<List<Project>> GetProjectsOfEmployee(int employeeid)
+    public async Task<List<Project>> GetAllCurrentProjects(int memberId)
     {
         List<Project> projects = new List<Project>();
         MySqlConnection connection = new MySqlConnection();
@@ -74,10 +74,9 @@ public class ProjectService : IProjectService
         {
             // ptojects.id =9 because 9 number is other 
             string query =
-                @"SELECT * FROM projects WHERE projects.id=9 OR
-                id IN( SELECT DISTINCT projectid FROM projectmembers WHERE projectmembers.employeeid=@employeeid )"; 
+                @"select * from projectmembers where employeeid=@employeeId  AND  projectid <> 9 AND status='yes'"; 
             MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@employeeid", employeeid);
+            command.Parameters.AddWithValue("@employeeId", memberId);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
@@ -114,12 +113,8 @@ public class ProjectService : IProjectService
         }
         return projects;
     }
-
-
-    //Update 
-    //Delete project
     
-  public async Task<bool> AddProject(Project project){
+    public async Task<bool> AddProject(Project project){
         bool status = false;
         MySqlConnection connection =new MySqlConnection();
         connection.ConnectionString=_connectionString;
@@ -154,8 +149,7 @@ public class ProjectService : IProjectService
         return status;
     }
 
-
-    public async Task<Project> GetProjectDetails(int projectId)
+    public async Task<Project> GetProject(int projectId)
     {
         Project project = null;
         MySqlConnection connection = new MySqlConnection();
@@ -202,85 +196,5 @@ public class ProjectService : IProjectService
         }
         return project;
     }
-
-
-
-    public async Task<List<Project>> GetAllProjectsOfProjectManager(int managerId)
-    {
-        List<Project> projects = new List<Project>();
-        MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _connectionString;
-        try
-        {
-            // ptojects.id =9 because 10 number is other 
-            string query = "select * from projects where managerid=@managerId";
-            MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@managerId", managerId);
-            await connection.OpenAsync();
-            MySqlDataReader reader = command.ExecuteReader();
-            while (await reader.ReadAsync())
-            {
-                int id = int.Parse(reader["id"].ToString());
-                string title = reader["title"].ToString();
-                string description = reader["description"].ToString();
-                string status = reader["status"].ToString();
-                DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
-                DateTime enddate = DateTime.Parse(reader["enddate"].ToString());
-
-                Project project = new Project()
-                {
-                    Id = id,
-                    Title = title,
-                    Description = description,
-                    Status = status,
-                    StartDate = startdate,
-                    EndDate = enddate,
-                    ManagerId = managerId
-                };
-                projects.Add(project);
-            }
-            await reader.CloseAsync();
-        }
-        catch (Exception)
-        {
-            throw;
-        }
-        finally
-        {
-            await connection.CloseAsync();
-        }
-        return projects;
-    }
-
-
-    public async Task<List<int>> GetAllEmployees(int projectId)
-{
-    List<int> employeeIds = new List<int>();
-    MySqlConnection connection = new MySqlConnection();
-    connection.ConnectionString = _connectionString;
-    try
-    {
-        string query = "SELECT DISTINCT(employees.userid) as userid FROM employees INNER JOIN projectmembership ON employees.id = projectmembership.employeeid WHERE projectmembership.projectid = @projectId;";
-        MySqlCommand command = new MySqlCommand(query, connection);
-        command.Parameters.AddWithValue("@projectId", projectId);
-        await connection.OpenAsync();
-        MySqlDataReader reader = command.ExecuteReader();
-        while (await reader.ReadAsync())
-        {
-            int id = int.Parse(reader["userid"].ToString());
-            employeeIds.Add(id);
-        }
-        await reader.CloseAsync();
-    }
-    catch (Exception)
-    {
-        throw;
-    }
-    finally
-    {
-        await connection.CloseAsync();
-    }
-    return employeeIds; 
-}
 
 }
