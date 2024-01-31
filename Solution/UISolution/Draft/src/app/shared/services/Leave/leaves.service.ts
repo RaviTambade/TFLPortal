@@ -17,13 +17,43 @@ export class LeavesService {
 
   constructor(private http:HttpClient) { }
 
-  addLeave(leave:LeaveApplication):Observable<boolean>{
-    return this.http.post<boolean>(this.leaveAPI,leave);
+  getAllEmployeeLeaves():Observable<LeaveApplication[]>{
+    return this.http.get<LeaveApplication[]>(this.leaveAPI);
+  }
+  
+  getAllRoleBasedLeaves():Observable<LeaveAllocation[]>{
+    let url=`${this.leaveAPI}/leaveallocations`;
+    return this.http.get<LeaveAllocation[]>(url);
   }
 
-  addRoleBasedLeave(leave:LeaveAllocation):Observable<boolean>{
-    let roleBasedLeaveUrl=`${this.leaveAPI}/leaveallocation`;
-    return this.http.post<boolean>(roleBasedLeaveUrl,leave);
+  getEmployeeLeavesDetails(leaveId:number):Observable<LeaveApplication>{
+    let url=`${this.leaveAPI}/leave/${leaveId}`;
+    return this.http.get<LeaveApplication>(url);
+  }
+
+  getEmployeeLeaves(employeeId:number):Observable<LeaveApplication[]>{
+    let url=`${this.leaveAPI}/employees/${employeeId}`;
+    return this.http.get<LeaveApplication[]>(url);
+  }
+
+  getRoleBasedLeaveDetails(id:number):Observable<LeaveAllocation>{
+    let url=`${this.leaveAPI}/${id}` ;
+    return this.http.get<LeaveAllocation>(url);
+  }
+
+  getLeaveDetailsOfEmployee(employeeId:number,status:string):Observable<LeaveApplication[]>{
+    let url=`${this.leaveAPI}/employees/${employeeId}/status/${status}`;
+    return this.http.get<LeaveApplication[]>(url);
+  }
+
+  getLeaveDetails(leaveStatus:string):Observable<LeaveApplication[]>{
+    let url=`${this.leaveAPI}/status/${leaveStatus}`;
+    return this.http.get<LeaveApplication[]>(url);
+  }
+
+  getLeaveDetailsByDate(date:string):Observable<LeaveApplication[]>{
+    let url=`${this.leaveAPI}/employees/date/${date}`;
+    return this.http.get<LeaveApplication[]>(url);
   }
 
   getEmployeeMonthLeaves(employeeId:number,month:number,year:number): Observable<MonthLeave[]> {
@@ -46,48 +76,18 @@ export class LeavesService {
     return this.http.get<LeavesCount>(url);
   }
 
-  getEmployeeLeaves(employeeId:number):Observable<LeaveApplication[]>{
-    let url=`${this.leaveAPI}/employees/${employeeId}`;
-    return this.http.get<LeaveApplication[]>(url);
-  }
-
-  getRoleBasedLeaveDetails(id:number):Observable<LeaveAllocation>{
-    let url=`${this.leaveAPI}/${id}` ;
-    return this.http.get<LeaveAllocation>(url);
-  }
-
   getTeamLeaveDetails(projectId:number,status:string):Observable<LeaveApplication[]>{
     let url=`${this.leaveAPI}/projects/${projectId}/status/${status}`;
     return this.http.get<LeaveApplication[]>(url);
   }
 
-  getLeaveDetailsOfEmployee(employeeId:number,status:string):Observable<LeaveApplication[]>{
-    let url=`${this.leaveAPI}/employees/${employeeId}/status/${status}`;
-    return this.http.get<LeaveApplication[]>(url);
+  addLeave(leave:LeaveApplication):Observable<boolean>{
+    return this.http.post<boolean>(this.leaveAPI,leave);
   }
 
-  getEmployeeLeavesDetails(leaveId:number):Observable<LeaveApplication>{
-    let url=`${this.leaveAPI}/leave/${leaveId}`;
-    return this.http.get<LeaveApplication>(url);
-  }
-
-  getAllEmployeeLeaves():Observable<LeaveApplication[]>{
-    return this.http.get<LeaveApplication[]>(this.leaveAPI);
-  }
-
-  getAllRoleBasedLeaves():Observable<LeaveAllocation[]>{
-    let url=`${this.leaveAPI}/leaveallocations`;
-    return this.http.get<LeaveAllocation[]>(url);
-  }
-
-  getLeaveDetails(leaveStatus:string):Observable<LeaveApplication[]>{
-    let url=`${this.leaveAPI}/status/${leaveStatus}`;
-    return this.http.get<LeaveApplication[]>(url);
-  }
-
-  getLeaveDetailsByDate(date:string):Observable<LeaveApplication[]>{
-    let url=`${this.leaveAPI}/employees/date/${date}`;
-    return this.http.get<LeaveApplication[]>(url);
+  addRoleBasedLeave(leave:LeaveAllocation):Observable<boolean>{
+    let roleBasedLeaveUrl=`${this.leaveAPI}/leaveallocation`;
+    return this.http.post<boolean>(roleBasedLeaveUrl,leave);
   }
 
   updateEmployeeLeave(leaveApplication:LeaveApplication):Observable<LeaveApplication>{
