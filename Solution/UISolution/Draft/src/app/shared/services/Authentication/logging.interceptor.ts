@@ -17,6 +17,7 @@ export class LoggingInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
+   
     return next.handle(request).pipe(
       tap((res) => {
         if (res instanceof HttpResponse) {

@@ -8,7 +8,7 @@ import { LocalStorageKeys } from './shared/enums/local-storage-keys';
 // import { HrmanagerModule } from './hrmanager/hrmanager.module';
 import { EmployeeModule } from './employee/employee.module';
 import { AuthenticationModule } from './shared/draft/authentication/authentication.module';
-
+import { AddJwtHeaderIntreceptor } from './shared/services/Authentication/add-jwt-header.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,17 +18,21 @@ import { AuthenticationModule } from './shared/draft/authentication/authenticati
     HttpClientModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: () => localStorage.getItem(LocalStorageKeys.jwt),
+        tokenGetter: () => localStorage.getItem(LocalStorageKeys.jwt)
       },
     }),
     EmployeeModule,
-    AuthenticationModule
+    AuthenticationModule,
     // HrmanagerModule,
- 
-    
   ],
 
-  providers: [ ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AddJwtHeaderIntreceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
