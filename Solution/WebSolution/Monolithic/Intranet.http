@@ -1,6 +1,6 @@
-@Intranet_HostAddress = http://localhost:5263
+@Intranet_HostAddress = http://localhost:5263/api
 
-GET {{Intranet_HostAddress}}/weatherforecast/
+GET {{Intranet_HostAddress}}/timesheets/4
 Accept: application/json
 
 ###

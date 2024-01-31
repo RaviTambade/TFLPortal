@@ -1,32 +1,16 @@
 using TFLPortal.Models;
-using TFLPortal.Responses;
 
 namespace TFLPortal.Services.Interfaces;
 
 public interface ITimesheetService
 {
-    Task<List<Timesheet>> GetTimesheets(int employeeId, DateOnly fromDate, DateOnly toDate);
+    Task<List<Timesheet>> GetTimesheets(int employeeId, DateOnly from, DateOnly to);
 
-    Task<List<Timesheet>> GetTimeSheetsForApproval(
-        int projectManagerId,
-        DateOnly fromDate,
-        DateOnly toDate
-    );
+    Task<List<Timesheet>> GetTimeSheetsForApproval(int projectManagerId, DateOnly from, DateOnly to);
     Task<Timesheet> GetTimesheet(int employeeId, DateOnly date);
     Task<Timesheet> GetTimesheet(int timesheetId);
     Task<List<TimesheetEntry>> GetTimesheetEntries(int timesheetId);
     Task<TimesheetEntry> GetTimesheetEntry(int timesheetEntryId);
-    Task<List<MemberUtilization>> GetActivityWiseHours(
-        int employeeId,
-        string intervalType,
-        int projectId
-    );
-    Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(
-        int employeeId,
-        DateOnly fromDate,
-        DateOnly toDate
-    );
-    Task<int> GetEmployeeWorkingDaysInMonth(int employeeId, int year, int month);
     Task<bool> AddTimesheet(Timesheet timesheet);
     Task<bool> AddTimesheetEntry(TimesheetEntry timesheetEntry);
     Task<bool> ChangeTimesheetStatus(int timesheetId, Timesheet timesheet);

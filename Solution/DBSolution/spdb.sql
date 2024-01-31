@@ -1,7 +1,8 @@
 
--- Active: 1694968636816@@127.0.0.1@3306@tflportal
-DROP PROCEDURE IF EXISTS getemployeeworkhoursbyactivity;
-CREATE PROCEDURE getemployeeworkhoursbyactivity(IN employee_id INT,IN interval_type VARCHAR (20),IN project_id INT)
+-- Active: 1696576841746@@127.0.0.1@3306@tflportal
+DROP PROCEDURE IF EXISTS getTaskWorkHoursOfEmployee;
+-- get task type wise work hours of an employee 
+CREATE PROCEDURE getTaskWorkHoursOfEmployee(IN employee_id INT,IN interval_type VARCHAR (20),IN project_id INT)
 BEGIN
   SET project_id = CASE WHEN project_id = 0 THEN NULL ELSE project_id END;
 
@@ -67,11 +68,11 @@ END;
  
 
 
-CALL getemployeeworkhoursbyactivity(10,'month',0);
+CALL getTaskWorkHoursOfEmployee(10,'month',0);
 
-DROP PROCEDURE IF EXISTS getprojectwiseemployeeworkhours;
-
-CREATE procedure getprojectwiseemployeeworkhours(IN employee_id INT,IN from_date VARCHAR (20),IN to_date VARCHAR (20))
+DROP PROCEDURE IF EXISTS getEmployeeProjectWorkHours;
+-- get project wise time spent by an employee
+CREATE procedure getEmployeeProjectWorkHours(IN employee_id INT,IN from_date VARCHAR (20),IN to_date VARCHAR (20))
  BEGIN
     SELECT projects.title AS projectname,projects.id as projectid,
     CAST(((SUM( TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ))/3600)AS DECIMAL(10,2)) AS hours 
@@ -83,10 +84,10 @@ CREATE procedure getprojectwiseemployeeworkhours(IN employee_id INT,IN from_date
     GROUP BY projects.id;
 END;
 
-CALL getprojectwiseemployeeworkhours(10,'2024-01-01','2024-01-12');
+CALL getEmployeeProjectWorkHours(10,'2024-01-01','2024-01-12');
 
 
- drop Procedure `getActivityCounts`;
+ drop Procedure  IF EXISTS getActivityCounts;
 
 CREATE PROCEDURE getActivityCounts(OUT  todo INT,OUT inprogress INT,OUT completed INT)
 BEGIN

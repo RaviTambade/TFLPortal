@@ -13,6 +13,7 @@ builder.Services.AddScoped<IPayrollService, PayrollService>();
 builder.Services.AddScoped<IHRService, HRService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<ITimesheetService, TimesheetService>();
+builder.Services.AddScoped<ITimesheetBIService, TimesheetBIService>();
 builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<ISprintService, SprintService>();
 

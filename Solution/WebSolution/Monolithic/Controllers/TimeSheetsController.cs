@@ -10,20 +10,18 @@ namespace Transflower.TFLPortal.Intranet.Controllers;
 public class TimesheetsController : ControllerBase
 {
     private readonly ITimesheetService _timesheetService;
+    private readonly ITimesheetBIService _biService;
 
-    public TimesheetsController(ITimesheetService service)
+    public TimesheetsController(ITimesheetService service,ITimesheetBIService bIService)
     {
         _timesheetService = service;
+        _biService=bIService;
     }
 
-    [HttpGet("employees/{employeeId}/from/{fromDate}/to/{toDate}")]
-    public async Task<List<Timesheet>> GetTimesheets(
-        int employeeId,
-        DateOnly fromDate,
-        DateOnly toDate
-    )
+    [HttpGet("employees/{employeeId}/from/{from}/to/{to}")]
+    public async Task<List<Timesheet>> GetTimesheets(int employeeId,DateOnly from,DateOnly to)
     {
-        return await _timesheetService.GetTimesheets(employeeId, fromDate, toDate);
+        return await _timesheetService.GetTimesheets(employeeId, from, to);
     }
 
     [HttpGet("employees/{employeeId}/date/{date}")]
@@ -43,18 +41,10 @@ public class TimesheetsController : ControllerBase
         return Ok(timesheet);
     }
 
-    [HttpGet("pendingapproval/from/{fromDate}/to/{toDate}/manager/{projectManagerId}")]
-    public async Task<List<Timesheet>> GetTimeSheetsForApproval(
-        int projectManagerId,
-        DateOnly fromDate,
-        DateOnly toDate
-    )
+    [HttpGet("pendingapproval/from/{from}/to/{to}/manager/{projectManagerId}")]
+    public async Task<List<Timesheet>> GetTimeSheetsForApproval(int projectManagerId,DateOnly from,DateOnly to)
     {
-        List<Timesheet> timesheets = await _timesheetService.GetTimeSheetsForApproval(
-            projectManagerId,
-            fromDate,
-            toDate
-        );
+        List<Timesheet> timesheets = await _timesheetService.GetTimeSheetsForApproval(projectManagerId,from,to);
         return timesheets;
     }
 
@@ -75,36 +65,16 @@ public class TimesheetsController : ControllerBase
         return Ok(entry);
     }
 
-    [HttpGet(
-        "memberutilization/employees/{employeeId}/interval/{intervalType}/projects/{projectId}"
-    )]
-    public async Task<List<MemberUtilization>> GetActivityWiseHours(
-        int employeeId,
-        string intervalType,
-        int projectId
-    )
+    [HttpGet("memberutilization/employees/{employeeId}/interval/{intervalType}/projects/{projectId}")]
+    public async Task<List<MemberUtilization>> GetTaskWorkHoursOfEmployee(int employeeId,string intervalType,int projectId)
     {
-        return await _timesheetService.GetActivityWiseHours(employeeId, intervalType, projectId);
+        return await _biService.GetTaskWorkHoursOfEmployee(employeeId, intervalType, projectId);
     }
 
-    [HttpGet("projects/workinghours/employees/{employeeId}/from/{fromDate}/to/{toDate}")]
-    public async Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(
-        int employeeId,
-        DateOnly fromDate,
-        DateOnly toDate
-    )
+    [HttpGet("projects/workinghours/employees/{employeeId}/from/{from}/to/{to}")]
+    public async Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(int employeeId, DateOnly from, DateOnly to )
     {
-        return await _timesheetService.GetProjectWiseTimeSpentByEmployee(
-            employeeId,
-            fromDate,
-            toDate
-        );
-    }
-
-    [HttpGet("workingdays/employees/{employeeId}/years/{year}/months/{month}")]
-    public async Task<int> GetEmployeeWorkingDaysInMonth(int employeeId, int year, int month)
-    {
-        return await _timesheetService.GetEmployeeWorkingDaysInMonth(employeeId, year, month);
+        return await _biService.GetProjectWiseTimeSpentByEmployee(employeeId,from,to);
     }
 
     [HttpPost]

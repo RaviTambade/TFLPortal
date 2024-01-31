@@ -1,4 +1,4 @@
--- Active: 1694968636816@@127.0.0.1@3306@tflportal
+-- Active: 1696576841746@@127.0.0.1@3306@tflportal
 
 
 -- LeaveManagement
@@ -102,14 +102,14 @@ WHERE  createdby =10  AND createdon BETWEEN '2024-01-01' AND '2024-01-09'
 GROUP BY createdon;
 
 -- get timesheets for approval
-SELECT timesheets.* ,SUM(timesheetentries.durationinhours) AS time_in_hour  FROM timesheets
+SELECT timesheets.* ,COALESCE(SUM(timesheetentries.durationinhours),0) AS totalhours  FROM timesheets
 INNER JOIN timesheetentries on timesheetentries.timesheetid=timesheets.id
-INNER JOIN employees ON timesheets.createdby =employees.id
-WHERE  status ="submitted" AND  createdon BETWEEN '2024-01-01' AND '2024-01-13' AND  timesheets.createdby IN (
-SELECT projectmembers.employeeid from projectmembers
-INNER JOIN projects on projectmembers.projectid=projects.id
-WHERE projects.managerid=7 AND projectmembers.status='yes'
-)GROUP BY createdon;
+WHERE  status ="submitted" AND createdon BETWEEN '2024-01-01' AND '2024-01-13'
+AND  timesheets.createdby IN (
+SELECT projectallocations.employeeid from projectallocations
+WHERE projectallocations.status='yes'  
+AND projectid IN (SELECT projectid from projectallocations WHERE employeeid=7 
+AND title='manager' ))GROUP BY createdon;
 
 
 -- get timesheet of employee by date
