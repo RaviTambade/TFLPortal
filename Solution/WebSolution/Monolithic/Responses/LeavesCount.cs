@@ -1,6 +1,6 @@
 namespace TFLPortal.Responses;
 
-public class LeavesCountResponse
+public class LeavesCount
 {
     public int EmployeeId{get;set;}
     public int Sick { get; set; }

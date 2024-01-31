@@ -124,7 +124,7 @@ public class ProjectMemberService : IProjectMemberService
         return members;
     }
 
-       //get all members who are working on project
+       
 
 
 }  

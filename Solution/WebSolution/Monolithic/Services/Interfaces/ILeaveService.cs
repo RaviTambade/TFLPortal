@@ -14,12 +14,12 @@ public interface ILeaveService
     Task<List<LeaveApplication>> GetTeamLeaveDetails(int projectId, string status);
    
     Task<LeaveApplication> GetLeaveApplication(int id);
-    Task<List<ConsumedLeaveResponse>> GetAnnualLeavesCount(int employeeId,int year);
-    Task<List<ConsumedLeaveResponse>> GetMonthlyLeaveCount(int employeeId,int month,int year);
+    Task<List<ConsumedLeave>> GetAnnualLeavesCount(int employeeId,int year);
+    Task<List<ConsumedLeave>> GetMonthlyLeaveCount(int employeeId,int month,int year);
 
-    Task<LeavesCountResponse> GetAnnualAvailableLeaves(int employeeId, int roleId, int year);
-    Task<LeavesCountResponse> GetAnnualConsumedLeaves(int employeeId, int roleId, int year);
-    Task<LeavesCountResponse> GetAnnualLeaves(int roleId, int year);
+    Task<LeavesCount> GetAnnualAvailableLeaves(int employeeId, int roleId, int year);
+    Task<LeavesCount> GetAnnualConsumedLeaves(int employeeId, int roleId, int year);
+    Task<LeavesCount> GetAnnualLeaves(int roleId, int year);
 
     Task<List<LeaveAllocation>> GetLeaveAllocation();
     Task<LeaveAllocation> GetRoleLeavesDetails(int id);
