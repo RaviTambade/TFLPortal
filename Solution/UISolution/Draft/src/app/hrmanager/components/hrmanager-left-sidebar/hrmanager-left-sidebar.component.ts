@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UrlType } from '../../../shared/models/UrlType';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UrlType } from 'src/app/Entities/UrlType';
 
 @Component({
   selector: 'app-hrmanager-left-sidebar',

@@ -1,5 +1,5 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
-import { MonthLeave } from '../models/MonthLeave';
+import { MonthLeave } from 'src/app/Entities/MonthLeave';
 import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
 
 @Component({
