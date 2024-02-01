@@ -94,45 +94,6 @@ Select * from projectmembers where projectid=1 and status="yes";
 
 
 
--- get timesheets of employee between dates
-SELECT timesheets.* , COALESCE(SUM(timesheetentries.durationinhours),0) AS time_in_hour from timesheets
-LEFT JOIN timesheetentries on timesheetentries.timesheetid=timesheets.id
-WHERE  createdby =10  AND createdon BETWEEN '2024-01-01' AND '2024-01-09' 
-GROUP BY createdon;
-
--- get timesheets for approval
-SELECT timesheets.* ,COALESCE(SUM(timesheetentries.durationinhours),0) AS totalhours  FROM timesheets
-INNER JOIN timesheetentries on timesheetentries.timesheetid=timesheets.id
-WHERE  status ="submitted" AND createdon BETWEEN '2024-01-01' AND '2024-01-13'
-AND  timesheets.createdby IN (
-SELECT projectallocations.employeeid from projectallocations
-WHERE projectallocations.status='yes'  
-AND projectid IN (SELECT projectid from projectallocations WHERE employeeid=7 
-AND title='manager' ))GROUP BY createdon;
-
-
--- get timesheet of employee by date
-SELECT *, COALESCE(SUM(timesheetentries.durationinhours),0) AS time_in_hour
-FROM timesheets
-LEFT JOIN timesheetentries on timesheetentries.timesheetid=timesheets.id    
-WHERE timesheets.createdon = '2024-01-12' AND timesheets.createdby = 10;
-
--- get timesheet of employee by timesheetId
-SELECT timesheets.*, COALESCE(SUM(timesheetentries.durationinhours),0) AS time_in_hour
-FROM timesheets
-INNER JOIN timesheetentries on timesheetentries.timesheetid=timesheets.id    
-WHERE timesheets.id = 5;
-
--- get timesheet entries of a timesheet
-SELECT * FROM timesheetentries
-WHERE timesheetentries.timesheetid=4;
-
--- get timesheet entry by Id
-SELECT * FROM timesheetentries WHERE timesheetentries.id=22;
-
--- get working days of employee of a month
-SELECT COUNT(*) AS WorkingDays FROM timesheets WHERE createdby=10
-AND status='approved' AND MONTH(createdon)=1 AND YEAR(createdon)=2024;
 
 
 
@@ -242,25 +203,20 @@ SELECT leavetype,COALESCE(SUM(DATEDIFF(todate, fromdate) + 1), 0) AS consumedlea
 WHERE employeeId = 12 AND status = "sanctioned" AND YEAR(fromdate) = 2023 GROUP BY leavetype,MONTH(fromdate);
     
 
+--Project  Management Queries
 
+--Get all tasks belong to project=4  and employee 10
 
--- this query gives us employees of project
+SELECT * from projectallocations where projectid=4 and employeeid=10;
+
+-- get all employee ids belong to project 4
 select DISTINCT(employees.userid) from employees INNER JOIN tasks ON employees.id=tasks.assignedto
  INNER JOIN projects ON tasks.projectid=projects.id WHERE projects.id =4;
-
-
-SELECT * from projects where managerid =8;
-
-SELECT * from tasks where projectid =4;
-
-SELECT * from projectmembership where projectid=4 and employeeid=10;
-
 
 SELECT DISTINCT(employees.userid) from employees INNER JOIN  projectmembership on employees.id = projectmembership.employeeid where projectmembership.projectid=4;
 
 -- this query gives tasks of particular sprint
 SELECT * from tasks where sprintid in (SELECT id from sprintmaster where id=3);
-
 
 select tasks.* , employees.userid  from tasks 
 INNER join sprintmaster on tasks.sprintid=sprintmaster.id
@@ -386,3 +342,42 @@ select * from projects where managerid=@managerId;
 SELECT DISTINCT(employees.userid) as userid FROM employees INNER JOIN projectmembership ON employees.id = projectmembership.employeeid WHERE projectmembership.projectid = @projectId;
 
 
+-- get timesheets of employee between dates
+SELECT timesheets.* , COALESCE(SUM(timesheetentries.durationinhours),0) AS time_in_hour from timesheets
+LEFT JOIN timesheetentries on timesheetentries.timesheetid=timesheets.id
+WHERE  createdby =10  AND createdon BETWEEN '2024-01-01' AND '2024-01-09' 
+GROUP BY createdon;
+
+-- get timesheets for approval
+SELECT timesheets.* ,COALESCE(SUM(timesheetentries.durationinhours),0) AS totalhours  FROM timesheets
+INNER JOIN timesheetentries on timesheetentries.timesheetid=timesheets.id
+WHERE  status ="submitted" AND createdon BETWEEN '2024-01-01' AND '2024-01-13'
+AND  timesheets.createdby IN (
+SELECT projectallocations.employeeid from projectallocations
+WHERE projectallocations.status='yes'  
+AND projectid IN (SELECT projectid from projectallocations WHERE employeeid=7 
+AND title='manager' ))GROUP BY createdon;
+
+
+-- get timesheet of employee by date
+SELECT *, COALESCE(SUM(timesheetentries.durationinhours),0) AS time_in_hour
+FROM timesheets
+LEFT JOIN timesheetentries on timesheetentries.timesheetid=timesheets.id    
+WHERE timesheets.createdon = '2024-01-12' AND timesheets.createdby = 10;
+
+-- get timesheet of employee by timesheetId
+SELECT timesheets.*, COALESCE(SUM(timesheetentries.durationinhours),0) AS time_in_hour
+FROM timesheets
+INNER JOIN timesheetentries on timesheetentries.timesheetid=timesheets.id    
+WHERE timesheets.id = 5;
+
+-- get timesheet entries of a timesheet
+SELECT * FROM timesheetentries
+WHERE timesheetentries.timesheetid=4;
+
+-- get timesheet entry by Id
+SELECT * FROM timesheetentries WHERE timesheetentries.id=22;
+
+-- get working days of employee of a month
+SELECT COUNT(*) AS WorkingDays FROM timesheets WHERE createdby=10
+AND status='approved' AND MONTH(createdon)=1 AND YEAR(createdon)=2024;
