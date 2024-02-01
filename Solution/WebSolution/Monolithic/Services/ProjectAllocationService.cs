@@ -5,11 +5,11 @@ using TFLPortal.Services.Interfaces;
 
 namespace TFLPortal.Services;
 
-public class ProjectMemberService : IProjectMemberService
+public class ProjectAllocationService : IProjectAllocationService
 {
     private readonly IConfiguration _configuration;
     private readonly string _connectionString;
-    public ProjectMemberService(IConfiguration configuration)
+    public ProjectAllocationService(IConfiguration configuration)
     {
         _configuration = configuration;
         _connectionString =
@@ -24,7 +24,7 @@ public class ProjectMemberService : IProjectMemberService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "INSERT INTO projectmembers(projectid,employeeid,title,assignedon,status) VALUES(@projectId,@employeeId,@title,@assignedOn,@status)";
+            string query = "INSERT INTO projectallocations(projectid,employeeid,title,assignedon,status) VALUES(@projectId,@employeeId,@title,@assignedOn,@status)";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@projectId", member.ProjectId);
             cmd.Parameters.AddWithValue("@employeeId", member.EmployeeId);
@@ -59,7 +59,7 @@ public class ProjectMemberService : IProjectMemberService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "Update projectmembers set releasedon=@releasedOn,status=@status where id=@Id";
+            string query = "Update projectallocations set releasedon=@releasedOn,status=@status where id=@Id";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@releasedOn", member.ReleasedOn);
             cmd.Parameters.AddWithValue("@status", member.Status);
@@ -92,7 +92,7 @@ public class ProjectMemberService : IProjectMemberService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query =@"Select * from projectmembers where projectid=@projectId and status=@status";
+            string query =@"Select * from projectallocations where projectid=@projectId and status=@status";
                 
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);

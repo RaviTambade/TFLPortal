@@ -9,11 +9,11 @@ namespace Transflower.TFLPortal.Intranet.Controllers;
 
 [ApiController]
 [Route("/api/projectmgmt/projectallocation")]
-public class ProjectMembersController : ControllerBase
+public class ProjectAllocationsController : ControllerBase
 {
-    private readonly IProjectMemberService _service;
+    private readonly IProjectAllocationService _service;
 
-    public ProjectMembersController(IProjectMemberService service)
+    public ProjectAllocationsController(IProjectAllocationService service)
     {
         _service = service;
     }
@@ -38,5 +38,4 @@ public class ProjectMembersController : ControllerBase
         List<Member> members= await _service.GetProjectMembers(projectId);
         return members;
     }
-    
 }

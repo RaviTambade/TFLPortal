@@ -1,7 +1,7 @@
 using TFLPortal.Models;
 namespace TFLPortal.Services.Interfaces;
 
-public interface IProjectMemberService {
+public interface IProjectAllocationService {
     Task<bool> Assign(Member member);
     Task<bool> Release(Member member);
     Task<List<Member>> GetProjectMembers(int projectId);
