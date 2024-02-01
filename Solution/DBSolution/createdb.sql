@@ -64,10 +64,24 @@
         status ENUM ( 'todo','inprogress','completed') DEFAULT 'todo' , 
         CONSTRAINT fk_employees_tasks_assigneby FOREIGN KEY (assignedby) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
         CONSTRAINT fk_employees_tasks_assignedto FOREIGN KEY (assignedto) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
-        CONSTRAINT fk_projects_tasks_projectid FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
-        CONSTRAINT fk_sprints_tasks_sprintid FOREIGN KEY (sprintid) REFERENCES sprints(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
+
+CREATE TABLE tasksAll(
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        title VARCHAR(500),
+        tasktype ENUM("userstory","task","bug","issues","meeting","learning","mentoring","others"),
+        description VARCHAR(400) DEFAULT '',
+        assignedto INT NULL, 
+        assignedby INT NULL,
+        createdon DATETIME NULL,
+        assignedon DATETIME NULL,
+        startdate DATETIME NULL,
+        duedate DATETIME NULL,
+        status ENUM ( 'todo','inprogress','completed') DEFAULT 'todo' , 
+        CONSTRAINT fk_employees_tasks_assigneby FOREIGN KEY (assignedby) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
+        CONSTRAINT fk_employees_tasks_assignedto FOREIGN KEY (assignedto) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
+    );
 
  CREATE TABLE sprinttasks(
         id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
