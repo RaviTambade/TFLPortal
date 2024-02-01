@@ -87,18 +87,7 @@ CALL getHoursWorkedForEachProject(10,'2024-01-01','2024-01-12');
 
 
 
---getTaskCountByStatus for project Id (IN)
---Teamcentered data
 
-drop Procedure  IF EXISTS getTaskCountByStatus;
-CREATE PROCEDURE getTaskCountByStatus(OUT  todo INT,OUT inprogress INT,OUT completed INT)
-BEGIN
-    SELECT COUNT(*) INTO todo FROM tasks WHERE status = 'todo';
-    SELECT COUNT(*) INTO inprogress FROM tasks WHERE status = 'inprogress';
-    SELECT COUNT(*) INTO completed FROM tasks WHERE status = 'completed';
-END;
-
---getTaskCountByStatus for emp Id (IN)
 --Personalized data
 
 
