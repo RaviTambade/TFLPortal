@@ -645,39 +645,32 @@ public class TaskService : ITaskService
         return status;
 
     }
-    public async Task<AllTaskCount> GetTasksCount()
+    public async Task<ProjectTaskCount> GetTasksCount(int projectId)
     {
-    AllTaskCount countSp = null;
-    MySqlConnection con = new MySqlConnection();
-    con.ConnectionString = _connectionString;
+      ProjectTaskCount taskCount=null;
+       MySqlConnection con = new MySqlConnection();
+       con.ConnectionString = _connectionString;
     try
     {
         await con.OpenAsync();
-
-        MySqlCommand cmd = new MySqlCommand("getActivityCounts", con);
-        cmd.CommandType = CommandType.StoredProcedure;
-
-        cmd.Parameters.AddWithValue("@todo", MySqlDbType.Int32);
-        cmd.Parameters["@todo"].Direction = ParameterDirection.Output;
-
-        cmd.Parameters.AddWithValue("@inprogress", MySqlDbType.Int32);
-        cmd.Parameters["@inprogress"].Direction = ParameterDirection.Output;
-
-        cmd.Parameters.AddWithValue("@completed", MySqlDbType.Int32);
-        cmd.Parameters["@completed"].Direction = ParameterDirection.Output;
-
-        await cmd.ExecuteNonQueryAsync();
-
-        int todo = Convert.ToInt32(cmd.Parameters["@todo"].Value);
-        int inprogress = Convert.ToInt32(cmd.Parameters["@inprogress"].Value);
-        int completed = Convert.ToInt32(cmd.Parameters["@completed"].Value);
-
-        countSp = new AllTaskCount()
+        string query="SELECT COUNT(CASE WHEN status = 'todo' THEN 1 END) AS todo,COUNT(CASE WHEN status = 'inprogress' THEN 1 END) AS inprogress,COUNT(CASE WHEN status = 'completed' THEN 1 END) AS completed FROM tasks INNER join sprinttasks on sprinttasks.taskid=tasks.id INNER join sprints on sprints.id=sprinttasks.sprintid WHERE sprints.projectid=@projectId;";
+        MySqlCommand cmd = new MySqlCommand(query, con);
+        cmd.Parameters.AddWithValue("@projectId",projectId);
+         MySqlDataReader reader = cmd.ExecuteReader();
+         if(await reader.ReadAsync()){
+            
+           int todo = int.Parse(reader["todo"].ToString());
+           int inprogress =int.Parse(reader["inprogress"].ToString());
+           int completed = int.Parse(reader["completed"].ToString());
+            taskCount = new ProjectTaskCount()
         {
             Todo = todo,
             InProgress = inprogress,
             Completed = completed
         };
+
+         }
+       
     }
     catch (Exception)
     {
@@ -688,7 +681,48 @@ public class TaskService : ITaskService
         await con.CloseAsync();
     }
 
-    return countSp;
+    return taskCount;
+}
+
+
+  public async Task<ProjectTaskCount> GetTasksCount(int projectId,int memberId)
+    {
+      ProjectTaskCount taskCount=null;
+       MySqlConnection con = new MySqlConnection();
+       con.ConnectionString = _connectionString;
+    try
+    {
+        await con.OpenAsync();
+        string query="SELECT COUNT(CASE WHEN status = 'todo' THEN 1 END) AS todo,COUNT(CASE WHEN status = 'inprogress' THEN 1 END) AS inprogress,COUNT(CASE WHEN status = 'completed' THEN 1 END) AS completed FROM tasks INNER join sprinttasks on sprinttasks.taskid=tasks.id INNER join sprints on sprints.id=sprinttasks.sprintid WHERE sprints.projectid=@projectId  and tasks.assignedto=@memberId";
+        MySqlCommand cmd = new MySqlCommand(query, con);
+        cmd.Parameters.AddWithValue("@projectId",projectId);
+        cmd.Parameters.AddWithValue("@memberId",memberId);
+         MySqlDataReader reader = cmd.ExecuteReader();
+         if(await reader.ReadAsync()){
+            
+           int todo = int.Parse(reader["todo"].ToString());
+           int inprogress =int.Parse(reader["inprogress"].ToString());
+           int completed = int.Parse(reader["completed"].ToString());
+            taskCount = new ProjectTaskCount()
+        {
+            Todo = todo,
+            InProgress = inprogress,
+            Completed = completed
+        };
+
+         }
+       
+    }
+    catch (Exception)
+    {
+        throw;
+    }
+    finally
+    {
+        await con.CloseAsync();
+    }
+
+    return taskCount;
 }
     public async Task<List<ProjectTask>> GetTodaysTasks(int projectId,DateTime date)
     {

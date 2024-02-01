@@ -114,10 +114,17 @@ public class TasksController : ControllerBase
     }
 
 
- [HttpGet("Count")]
-    public async Task<AllTaskCount> GetTasksCount()
+ [HttpGet("Count/{projectId}")]
+    public async Task<ProjectTaskCount> GetTasksCount(int projectId)
     {
-        AllTaskCount task = await _service.GetTasksCount();
+        ProjectTaskCount task = await _service.GetTasksCount(projectId);
+        return task;
+    }
+
+    [HttpGet("Count/{projectId}/{memberId}")]
+    public async Task<ProjectTaskCount> GetTasksCount(int projectId,int memberId)
+    {
+        ProjectTaskCount task = await _service.GetTasksCount(projectId,memberId);
         return task;
     }
 
