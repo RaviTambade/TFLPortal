@@ -34,7 +34,7 @@
         enddate DATETIME NOT NULL,
         goal VARCHAR(200),
         projectid INT NULL,
-        CONSTRAINT fk_sprint_projects FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE
+        CONSTRAINT fk_projects_sprints_projectid FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
     CREATE TABLE projectallocations(
@@ -45,8 +45,8 @@
             assignedon DATETIME,
             releasedon DATETIME default null,
             status enum('yes','no') default 'yes' ,
-            CONSTRAINT fk_projects_project1 FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
-            CONSTRAINT fk_employee_projectallocations FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
+            CONSTRAINT fk_projects_projectallocations_projectid FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
+            CONSTRAINT fk_employee_projectallocations_employeeid FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
     CREATE TABLE tasks(
@@ -66,7 +66,7 @@
         CONSTRAINT fk_employees_tasks_assigneby FOREIGN KEY (assignedby) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
         CONSTRAINT fk_employees_tasks_assignedto FOREIGN KEY (assignedto) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
         CONSTRAINT fk_projects_tasks_projectid FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
-        CONSTRAINT fk_tasks_sprints FOREIGN KEY (sprintid) REFERENCES sprints(id) ON UPDATE CASCADE ON DELETE CASCADE
+        CONSTRAINT fk_sprints_tasks_sprintid FOREIGN KEY (sprintid) REFERENCES sprints(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
      CREATE TABLE timesheets(
@@ -81,7 +81,7 @@
             modifiedon DATETIME DEFAULT  CURRENT_TIMESTAMP,
             createdby INT NOT NULL,
             CONSTRAINT unique_emp_timesheet UNIQUE KEY(createdon,createdby) ,
-            CONSTRAINT fk_timesheets_employees FOREIGN KEY(createdby) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
+            CONSTRAINT fk_employees_timesheets_createdby FOREIGN KEY(createdby) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
     CREATE TABLE timesheetentries(
@@ -91,8 +91,8 @@
         timesheetid INT NOT NULL,
         taskid  INT,
         durationinhours DECIMAL(10,2) as ((( TIME_TO_SEC(TIMEDIFF(totime,fromtime)))/3600)),
-        CONSTRAINT fk_timesheet_projects FOREIGN KEY (taskid) REFERENCES tasks(id) ON UPDATE CASCADE  ON DELETE CASCADE,
-        CONSTRAINT fk_timesheets_timesheetentries FOREIGN KEY(timesheetid) REFERENCES timesheets(id) ON UPDATE CASCADE ON DELETE CASCADE
+        CONSTRAINT fk_tasks_timesheetentries_taskid FOREIGN KEY (taskid) REFERENCES tasks(id) ON UPDATE CASCADE  ON DELETE CASCADE,
+        CONSTRAINT fk_timesheets_timesheetentries_timesheetid FOREIGN KEY(timesheetid) REFERENCES timesheets(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
 
@@ -109,7 +109,7 @@
     CREATE TABLE leaveapplications(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
             employeeid INT NOT NULL,
-            CONSTRAINT fk_projectmembers1 FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
+            CONSTRAINT fk_employees_leaveapplications_employeeid FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
             createdon DateTime,
             fromdate DateTime,
             todate DateTime,
@@ -120,7 +120,7 @@
     CREATE TABLE salarystructures(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             employeeid INT NOT NULL,
-            CONSTRAINT fk_employee_salarystructure FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
+            CONSTRAINT fk_employees_salarystructures_employeeid FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
             basicsalary DOUBLE NOT NULL,
             hra DOUBLE NOT NULL,
             da DOUBLE NOT NULL,
@@ -132,7 +132,7 @@
     CREATE TABLE salaryslips(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             employeeid INT NOT NULL,
-            CONSTRAINT fk_employee_salaryslips FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
+            CONSTRAINT fk_employees_salaryslips_employeeid FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
             paydate DateTime,
             monthlyworkingdays INT NOT NULL,
             deduction DOUBLE NOT NULL,
