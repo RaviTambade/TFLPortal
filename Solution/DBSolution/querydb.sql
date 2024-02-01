@@ -158,6 +158,25 @@ SELECT * FROM tasks where assignedon BETWEEN '2023-01-01' AND '2024-01-01' ORDER
 --This query is used for get all tasks of members between  particular dates.
 SELECT * FROM tasks where assignedon BETWEEN '2023-01-01' AND '2024-01-01' And assignedto=10 ORDER BY assignedon;
 
+--getTaskCountByStatus for project Id (IN)
+
+--BI releted queries
+SELECT 
+        COUNT(CASE WHEN status = 'todo' THEN 1 END) AS todo,
+        COUNT(CASE WHEN status = 'inprogress' THEN 1 END) AS inprogress,
+        COUNT(CASE WHEN status = 'completed' THEN 1 END) AS completed
+    FROM tasks INNER join sprinttasks on sprinttasks.taskid=tasks.id
+    INNER join sprints on sprints.id=sprinttasks.sprintid WHERE sprints.projectid=4;
+
+--getTaskCountByStatus for emp Id (IN)
+
+SELECT 
+        COUNT(CASE WHEN status = 'todo' THEN 1 END) AS todo,
+        COUNT(CASE WHEN status = 'inprogress' THEN 1 END) AS inprogress,
+        COUNT(CASE WHEN status = 'completed' THEN 1 END) AS completed
+    FROM tasks INNER join sprinttasks on sprinttasks.taskid=tasks.id
+    INNER join sprints on sprints.id=sprinttasks.sprintid WHERE sprints.projectid=4 AND tasks.assignedto=15;
+
 
 -- sprint releted query
 
