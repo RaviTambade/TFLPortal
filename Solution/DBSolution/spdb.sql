@@ -1,8 +1,10 @@
 
 -- Active: 1694968636816@@127.0.0.1@3306@tflportal
-DROP PROCEDURE IF EXISTS getTaskWorkHoursOfEmployee;
+DROP PROCEDURE IF EXISTS getWorkUtilization;
 -- get task type wise work hours of an employee 
-CREATE PROCEDURE getTaskWorkHoursOfEmployee(IN employee_id INT,IN interval_type VARCHAR (20),IN project_id INT)
+
+-- from date todate
+CREATE PROCEDURE getWorkUtilization(IN empId INT,IN interval_type VARCHAR (20),IN projectId INT)
 BEGIN
   SET project_id = CASE WHEN project_id = 0 THEN NULL ELSE project_id END;
 
@@ -65,14 +67,11 @@ BEGIN
 END;
 
 
- 
-
-
 CALL getTaskWorkHoursOfEmployee(10,'month',0);
 
-DROP PROCEDURE IF EXISTS getEmployeeProjectWorkHours;
+DROP PROCEDURE IF EXISTS getHoursWorkedForEachProject;
 -- get project wise time spent by an employee
-CREATE procedure getEmployeeProjectWorkHours(IN employee_id INT,IN from_date VARCHAR (20),IN to_date VARCHAR (20))
+CREATE procedure getHoursWorkedForEachProject(IN employee_id INT,IN from_date VARCHAR (20),IN to_date VARCHAR (20))
  BEGIN
     SELECT projects.title AS projectname,projects.id as projectid,
     CAST(((SUM( TIME_TO_SEC(TIMEDIFF(totime,fromtime)) ))/3600)AS DECIMAL(10,2)) AS hours 
@@ -84,39 +83,61 @@ CREATE procedure getEmployeeProjectWorkHours(IN employee_id INT,IN from_date VAR
     GROUP BY projects.id;
 END;
 
-CALL getEmployeeProjectWorkHours(10,'2024-01-01','2024-01-12');
+CALL getHoursWorkedForEachProject(10,'2024-01-01','2024-01-12');
 
 
- drop Procedure  IF EXISTS getActivityCounts;
 
-CREATE PROCEDURE getActivityCounts(OUT  todo INT,OUT inprogress INT,OUT completed INT)
+--getTaskCountByStatus for project Id (IN)
+--Teamcentered data
+
+drop Procedure  IF EXISTS getTaskCountByStatus;
+CREATE PROCEDURE getTaskCountByStatus(OUT  todo INT,OUT inprogress INT,OUT completed INT)
 BEGIN
     SELECT COUNT(*) INTO todo FROM tasks WHERE status = 'todo';
     SELECT COUNT(*) INTO inprogress FROM tasks WHERE status = 'inprogress';
     SELECT COUNT(*) INTO completed FROM tasks WHERE status = 'completed';
 END;
 
+--getTaskCountByStatus for emp Id (IN)
+--Personalized data
+
 
 
 
 -- get available leaves of employee
 DELIMITER $$
-CREATE PROCEDURE getAvailableLeavesOfEmployee
-(In employee_Id int,In role_id int,In year int,out remainingSickLeaves int,out remainingCasualleaves int, out remainingPaidLeaves int,out remainingUnpaidLeaves int)
+CREATE PROCEDURE getLeavesAvailable
+(In pempId int,In proleId int,In pyear int,out psick int,out pcasual int, out ppaid int,out punpaid int)
 BEGIN
-Declare consumedSickLeaves int default 0;
-Declare consumedCasualLeaves int default 0;
-Declare consumedPaidLeaves int default 0;
+Declare usedSick int default 0;
+Declare usedCasual int default 0;
+Declare usedPaidLeaves int default 0;
 Declare consumedUnpaidLeaves int default 0;
 Declare sanctionedSickLeaves int;
 Declare sanctionedCasualLeaves int;
 Declare sanctionedPaidLeaves int;
 Declare sanctionedUnpaidLeaves int ;
-select coalesce(sum(datediff(todate,fromdate)+1),0) Into consumedCasualLeaves  from leaveapplications where employeeId=employee_Id and leavetype="casual" and status="sanctioned" and year(fromdate)=year;
-select coalesce(sum(datediff(todate,fromdate)+1),0) Into consumedSickLeaves  from leaveapplications where employeeId=employee_Id and leavetype="sick" and status="sanctioned" and year(fromdate)=year;
-select coalesce(sum(datediff(todate,fromdate)+1),0) Into consumedPaidLeaves  from leaveapplications where employeeId=employee_Id and leavetype="paid" and status="sanctioned" and year(fromdate)=year;
-select coalesce(sum(datediff(todate,fromdate)+1),0) Into consumedUnpaidLeaves  from leaveapplications where employeeId=employee_Id and leavetype="unpaid" and status="sanctioned" and year(fromdate)=year;
-select sick,casual,paid,unpaid Into sanctionedSickLeaves,sanctionedCasualLeaves,sanctionedPaidLeaves,sanctionedUnpaidLeaves from leaveallocations where roleid=role_id ;
+
+
+SELECT coalesce(sum(datediff(todate,fromdate)+1),0) INTO usedCasual  
+FROM leaveapplications 
+WHERE employeeId=pempId AND leavetype="casual" And status="sanctioned" and year(fromdate)=year;
+
+select coalesce(sum(datediff(todate,fromdate)+1),0) Into consumedSickLeaves  
+from leaveapplications 
+where employeeId=employee_Id and leavetype="sick" and status="sanctioned" and year(fromdate)=year;
+
+select coalesce(sum(datediff(todate,fromdate)+1),0) Into consumedPaidLeaves  
+from leaveapplications 
+where employeeId=employee_Id and leavetype="paid" and status="sanctioned" and year(fromdate)=year;
+
+select coalesce(sum(datediff(todate,fromdate)+1),0) Into consumedUnpaidLeaves  
+from leaveapplications 
+where employeeId=employee_Id and leavetype="unpaid" and status="sanctioned" and year(fromdate)=year;
+select sick,casual,paid,unpaid Into sanctionedSickLeaves,sanctionedCasualLeaves,sanctionedPaidLeaves,sanctionedUnpaidLeaves 
+from leaveallocations 
+where roleid=role_id ;
+
 set remainingSickLeaves=sanctionedSickLeaves-consumedSickLeaves;
 set remainingcasualLeaves=sanctionedCasualLeaves-consumedCasualLeaves;
 set remainingPaidLeaves=sanctionedPaidLeaves-consumedPaidLeaves;
@@ -155,6 +176,7 @@ select @SickLeaves,@Casualleaves,@PaidLeaves,@UnpaidLeaves;
 DELIMITER $$
 create procedure calculatesalary(IN employee_Id INT ,IN month INT,In Year INT)
 BEGIN
+
 Declare workingdays int default 0;
 Declare consumedpaidleaves int default 0;
 Declare monthlybasicsalary double;
@@ -166,6 +188,7 @@ Declare totalamount double;
 Declare deduction double;
 Declare Pf double default 500;
 Declare tax double default 1000;
+
 SELECT  COUNT(*) Into workingdays from timesheets
 WHERE employeeid =employee_Id AND MONTH(createdon)=month AND YEAR(createdon)=Year AND status="approved";
 
