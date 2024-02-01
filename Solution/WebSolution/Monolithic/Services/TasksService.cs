@@ -36,10 +36,10 @@ public class TaskService : ITaskService
                 string description = reader["description"].ToString();
                 int projectId = int.Parse(reader["projectid"].ToString());
                 int sprintId = int.Parse(reader["sprintid"].ToString());
-                DateTime createdOn = DateTime.Parse(reader["createddate"].ToString());
+                DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
                 int assignedTo = int.Parse(reader["assignedto"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
-                DateTime assignedOn = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime assignedOn = DateTime.Parse(reader["assignedon"].ToString());
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
@@ -94,10 +94,10 @@ public class TaskService : ITaskService
                 string activityType = reader["tasktype"].ToString();
                 string description = reader["description"].ToString();
                  int sprintId = int.Parse(reader["sprintid"].ToString());
-                DateTime createdOn = DateTime.Parse(reader["createddate"].ToString());
+                DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
                 int assignedTo = int.Parse(reader["assignedto"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
-                DateTime assignedOn = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime assignedOn = DateTime.Parse(reader["assignedon"].ToString());
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
@@ -154,10 +154,10 @@ public class TaskService : ITaskService
                 string title = reader["title"].ToString();
                 string description = reader["description"].ToString();
                 int sprintId = int.Parse(reader["sprintid"].ToString());
-                DateTime createdOn = DateTime.Parse(reader["createddate"].ToString());
+                DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
                 int assignedTo = int.Parse(reader["assignedto"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
-                DateTime assignedOn = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime assignedOn = DateTime.Parse(reader["assignedon"].ToString());
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
@@ -217,9 +217,9 @@ public class TaskService : ITaskService
                 string taskType = reader["tasktype"].ToString();
                 string description = reader["description"].ToString();
                  int sprintId = int.Parse(reader["sprintid"].ToString());
-                DateTime createdOn = DateTime.Parse(reader["createddate"].ToString());
+                DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
-                DateTime assignedOn = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime assignedOn = DateTime.Parse(reader["assignedon"].ToString());
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
@@ -277,9 +277,9 @@ public class TaskService : ITaskService
                 string title = reader["title"].ToString();
                 string description = reader["description"].ToString();
                  int sprintId = int.Parse(reader["sprintid"].ToString());
-                DateTime createdOn = DateTime.Parse(reader["createddate"].ToString());
+                DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
-                DateTime assignedOn = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime assignedOn = DateTime.Parse(reader["assignedon"].ToString());
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string taskType = reader["tasktype"].ToString();
@@ -336,9 +336,9 @@ public class TaskService : ITaskService
                 string title = reader["title"].ToString();
                 string description = reader["description"].ToString();
                 int projectId = int.Parse(reader["projectid"].ToString());
-                DateTime createdOn = DateTime.Parse(reader["createddate"].ToString());
+                DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
-                DateTime assignedOn = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime assignedOn = DateTime.Parse(reader["assignedon"].ToString());
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string taskType = reader["tasktype"].ToString();
@@ -393,8 +393,8 @@ public class TaskService : ITaskService
                 string description = reader["description"].ToString();
                 string taskType = reader["tasktype"].ToString();
                  int sprintId = int.Parse(reader["sprintid"].ToString());
-                DateTime createdOn = DateTime.Parse(reader["createddate"].ToString());
-                DateTime assignedOn = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
+                DateTime assignedOn = DateTime.Parse(reader["assignedon"].ToString());
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
@@ -440,7 +440,7 @@ public class TaskService : ITaskService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "INSERT INTO tasks(title,tasktype,description,createddate,assigneddate,startdate,duedate,assignedto,projectid,sprintid,status,assignedby) VALUES(@title,@tasktype,@description,@createddate,@assigndate,@startdate,@duedate,@assignedTo,@projectId,@sprintId,@status,@assignedBy)";
+            string query = "INSERT INTO tasks(title,tasktype,description,createdon,assignedon,startdate,duedate,assignedto,projectid,sprintid,status,assignedby) VALUES(@title,@tasktype,@description,@createddate,@assigndate,@startdate,@duedate,@assignedTo,@projectId,@sprintId,@status,@assignedBy)";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@title", task.Title);
             cmd.Parameters.AddWithValue("@tasktype", task.TaskType);
@@ -492,9 +492,9 @@ public class TaskService : ITaskService
                  int sprintId = int.Parse(reader["sprintid"].ToString());
                 string description = reader["description"].ToString();
                 int projectId = int.Parse(reader["projectid"].ToString());
-                DateTime createdOn = DateTime.Parse(reader["createddate"].ToString());
+                DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
-                DateTime assignedOn = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime assignedOn = DateTime.Parse(reader["assignedon"].ToString());
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
@@ -551,9 +551,9 @@ public class TaskService : ITaskService
                 string description = reader["description"].ToString();
                  int sprintId = int.Parse(reader["sprintid"].ToString());
                 int projectId = int.Parse(reader["projectid"].ToString());
-                DateTime createdOn = DateTime.Parse(reader["createddate"].ToString());
+                DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
-                DateTime assignedOn = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime assignedOn = DateTime.Parse(reader["assignedon"].ToString());
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
@@ -613,9 +613,9 @@ public class TaskService : ITaskService
                  int sprintId = int.Parse(reader["sprintid"].ToString());
                 string description = reader["description"].ToString();
                 int projectId = int.Parse(reader["projectid"].ToString());
-                DateTime createdOn = DateTime.Parse(reader["createddate"].ToString());
+                DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
-                DateTime assignedOn = DateTime.Parse(reader["assigneddate"].ToString());
+                DateTime assignedOn = DateTime.Parse(reader["assignedon"].ToString());
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
@@ -736,7 +736,7 @@ public class TaskService : ITaskService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select * from tasks where  projectid =@projectId and assigneddate=@date";
+            string query = "select * from tasks where  projectid =@projectId and assignedon=@date";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);
             command.Parameters.AddWithValue("@date", date);
@@ -749,7 +749,7 @@ public class TaskService : ITaskService
                 string taskType = reader["tasktype"].ToString();
                  int sprintId = int.Parse(reader["sprintid"].ToString());
                 string description = reader["description"].ToString();
-                DateTime createdate = DateTime.Parse(reader["createddate"].ToString());
+                DateTime createdate = DateTime.Parse(reader["createdon"].ToString());
                 int assignedto = int.Parse(reader["assignedto"].ToString());
                 int assignedby = int.Parse(reader["assignedby"].ToString());
                 DateTime startdate = DateTime.Parse(reader["startdate"].ToString());

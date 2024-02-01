@@ -1,5 +1,5 @@
 
--- Active: 1696576841746@@127.0.0.1@3306@tflportal
+-- Active: 1694968636816@@127.0.0.1@3306@tflportal
 DROP PROCEDURE IF EXISTS getTaskWorkHoursOfEmployee;
 -- get task type wise work hours of an employee 
 CREATE PROCEDURE getTaskWorkHoursOfEmployee(IN employee_id INT,IN interval_type VARCHAR (20),IN project_id INT)
