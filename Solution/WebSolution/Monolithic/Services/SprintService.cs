@@ -102,7 +102,7 @@ public class SprintService : ISprintService
         try{
 ;
             string query =@"select * from tasks INNER JOIN sprinttasks on tasks.id=sprinttasks.taskid
-INNER join sprints on sprints.id=sprinttasks.sprintid WHERE sprints.id=sprintId;";
+             INNER join sprints on sprints.id=sprinttasks.sprintid WHERE sprints.id=sprintId;";
             MySqlCommand command = new MySqlCommand(query,connection);
             command.Parameters.AddWithValue("@sprintId",sprintId);
             await connection.OpenAsync();

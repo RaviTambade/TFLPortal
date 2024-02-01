@@ -134,7 +134,7 @@ public class TaskService : ITaskService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select * from tasks where  projectid =@projectId and tasktype=@tasktype";
+            string query = "select * from tasks INNER JOIN sprinttasks on tasks.id=sprinttasks.taskid INNER join sprints on sprints.id=sprinttasks.sprintid WHERE sprints.projectid=@projectId and tasks.tasktype=@tasktype";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);
             command.Parameters.AddWithValue("@tasktype", taskType);
@@ -192,7 +192,7 @@ public class TaskService : ITaskService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select * from tasks INNER JOIN sprinttasks on tasks.id=sprinttasks.taskid INNER join sprints on sprints.id=sprinttasks.sprintid WHERE tasks.assignedto=@assignedtoand sprints.projectid=@projectId";
+            string query = "select * from tasks INNER JOIN sprinttasks on tasks.id=sprinttasks.taskid INNER join sprints on sprints.id=sprinttasks.sprintid WHERE tasks.assignedto = @assignedto and sprints.projectid=@projectId";
 
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);
@@ -506,7 +506,7 @@ public class TaskService : ITaskService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select * FROM tasks where assigneddate BETWEEN @from AND @to ORDER BY assigneddate";
+            string query = "select * FROM tasks where assignedon BETWEEN @from AND @to ORDER BY assignedon";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@from", from);
             command.Parameters.AddWithValue("@to", to);
@@ -563,7 +563,7 @@ public class TaskService : ITaskService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select * FROM tasks where assigneddate BETWEEN @fromAssignedDate AND @toAssignedDate And assignedto=@assignedto ORDER BY assigneddate";
+            string query = "select * FROM tasks where assignedon BETWEEN @from AND @to And assignedto=@assignedto ORDER BY assignedon";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@from", from);
             command.Parameters.AddWithValue("@to", to);
@@ -697,9 +697,11 @@ public class TaskService : ITaskService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select * from tasks where  projectid =@projectId and assignedon=@date";
+            string query = $"select * from tasks INNER JOIN sprinttasks on tasks.id=sprinttasks.taskid INNER join sprints on sprints.id=sprinttasks.sprintid WHERE sprints.projectid=@projectId and tasks.assignedon<=@date and tasks.status=@inprogress OR tasks.status=@todo";
             MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@projectId", projectId);
+            command.Parameters.AddWithValue("@inprogress", "inprogress");
+             command.Parameters.AddWithValue("@todo", "todo");
+              command.Parameters.AddWithValue("@projectId", projectId);
             command.Parameters.AddWithValue("@date", date);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();

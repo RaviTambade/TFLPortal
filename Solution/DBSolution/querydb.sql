@@ -1,4 +1,4 @@
--- Active: 1696576841746@@127.0.0.1@3306@tflportal
+-- Active: 1694968636816@@127.0.0.1@3306@tflportal
 
 
 -- LeaveManagement
@@ -276,23 +276,36 @@ SELECT employees.userid
 select * from tasks;
 
 --This query is used for get all task of particular project.
-select * from tasks where  projectid =1;
+select * from tasks INNER JOIN sprinttasks on tasks.id=sprinttasks.taskid
+INNER join sprints on sprints.id=sprinttasks.sprintid WHERE sprints.projectid=1;
 
 --This query is used for get all task of project of particular tasktype.
-select * from tasks where  projectid =1 and tasktype='task';
+select * from tasks INNER JOIN sprinttasks on tasks.id=sprinttasks.taskid
+INNER join sprints on sprints.id=sprinttasks.sprintid WHERE tasks.tasktype='task'and sprints.projectid=1;
+
 
 --This query is used to get all task of project of particular member.
-select * from tasks where  projectid =1 and assignedto=10;
+select * from tasks INNER JOIN sprinttasks on tasks.id=sprinttasks.taskid
+INNER join sprints on sprints.id=sprinttasks.sprintid WHERE tasks.assignedto=10 and sprints.projectid=1;
 
 
 --This query is used to get all task of project with particular status and member.
-select * from tasks where  projectid =1 and status="inprogress" and assignedto=10;
 
+select * from tasks INNER JOIN sprinttasks on tasks.id=sprinttasks.taskid
+INNER join sprints on sprints.id=sprinttasks.sprintid WHERE tasks.status="inprogress" and sprints.projectid=1 and tasks.assignedto=10;
+
+
+
+select * from tasks INNER JOIN sprinttasks on tasks.id=sprinttasks.taskid
+INNER join sprints on sprints.id=sprinttasks.sprintid WHERE sprints.projectid=4 and tasks.assignedon<='2024-01-06 'and tasks.status="inprogress"OR tasks.status="todo";
+
+
+SELECT * from tasks;
+SELECT * FROM sprints;
 --This query is used to get all tasks of sprint with particular status and member.
-select * from tasks where  sprintid =1 and status='inprogress' and assignedto=10;
 
---This query is used to get all tasks and members  data .
-select tasks.* ,e1.userid as assignbyuserid,e2.userid as assigntouserid,projects.title as projectname from tasks INNER JOIN employees e1  on tasks.assignedto =e1.id INNER JOIN employees e2   on  tasks.assignedby=e2.id INNER JOIN projects ON tasks.projectid =projects.id WHERE tasks.id=51;
+select * from tasks INNER JOIN sprinttasks on tasks.id=sprinttasks.taskid
+INNER join sprints on sprints.id=sprinttasks.sprintid WHERE tasks.status="inprogress" and sprints.id=1 and tasks.assignedto=10;
 
 
 --This query is used to get all tasks of members.
@@ -317,6 +330,8 @@ delete from tasks where id= 1;
 
 
 -- sprint releted query
+select * from tasks INNER JOIN sprinttasks on tasks.id=sprinttasks.taskid
+INNER join sprints on sprints.id=sprinttasks.sprintid WHERE sprints.id=1;
 
 
 --this query is used for get all sprints of project between particular dates.
@@ -326,11 +341,6 @@ SELECT * FROM sprints WHERE projectid=1 AND sprints.startdate<='2023-01-01' AND 
 SELECT * FROM sprints where projectid=1;
 
 
---This query is used for all tasks,employess releted data of particular sprint.
-select tasks.* , employees.userid  from tasks 
-                           INNER join sprints on tasks.sprintid=sprints.id
-                           INNER join employees ON tasks.assignedto=employees.id
-                           WHERE sprints.id=1;
 
  --This query is used for insert sprint .                          
 Insert into sprints(title,goal,startdate,enddate,projectid) values ('sprint','sprint','2023-01-01','2023-01-01',1);
