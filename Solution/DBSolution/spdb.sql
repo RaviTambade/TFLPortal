@@ -170,6 +170,7 @@ DELIMITER ;
 
 
 -- calculate month salary
+-- calculate month salary
 DELIMITER $$
 CREATE PROCEDURE calculatesalary(IN pempId INT ,IN pmonth INT,IN pyear INT)
 BEGIN
@@ -187,7 +188,7 @@ DECLARE Pf DOUBLE DEFAULT 500;
 DECLARE tax DOUBLE DEFAULT 1000;
 
 SELECT  COUNT(*) INTO workingdays FROM timesheets
-WHERE employeeid =pempId AND MONTH(createdon)=pmonth AND YEAR(createdon)=pyear AND status="approved";
+WHERE createdby =pempId AND MONTH(createdon)=pmonth AND YEAR(createdon)=pyear AND status="approved";
 
 SELECT coalesce(sum(datediff(todate,fromdate)+1),0) INTO consumedpaidleaves FROM leaveapplications
 WHERE employeeid = pempId
@@ -202,5 +203,6 @@ SET totalamount = ((dailyallowance*(workingdays+consumedpaidleaves))+monthlybasi
 SELECT totalamount,monthlybasicsalary,variablepayamount,monthlyhra,dailyallowance,leaveTravelallowance,pf,tax,deduction,workingdays,consumedpaidleaves;
 END $$
 DELIMITER ;
+
 
 

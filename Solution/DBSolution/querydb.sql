@@ -201,8 +201,6 @@ SELECT * FROM sprints where projectid=1;
 --This query is used to get particular project data.
 SELECT * from projects where id =1;
 
-
-
 -- timesheet
 
 
