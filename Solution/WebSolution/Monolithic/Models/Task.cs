@@ -13,6 +13,5 @@ public class Task
 
    public int AssignedTo{get;set;}  
    public int AssignedBy{get;set;}  
-   public int ProjectId{get;set;}  
-   public int SprintId{get;set;}
+   
 }

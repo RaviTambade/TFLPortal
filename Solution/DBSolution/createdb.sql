@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 -- Active: 1705924796699@@127.0.0.1@3306@tflportal
+=======
+-- Active: 1694968636816@@127.0.0.1@3306@tflportal
+>>>>>>> a6d94f79eacb8a95ec4ec8487a40921080e70268
     DROP DATABASE IF EXISTS TFLPortal;
     CREATE DATABASE TFLPortal;
     USE TFLPortal;
