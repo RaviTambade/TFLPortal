@@ -1,4 +1,4 @@
--- Active: 1696576841746@@127.0.0.1@3306@tflportal
+-- Active: 1705924796699@@127.0.0.1@3306@tflportal
     DROP DATABASE IF EXISTS TFLPortal;
     CREATE DATABASE TFLPortal;
     USE TFLPortal;
@@ -9,8 +9,6 @@
             reportingid INT,    
             CONSTRAINT fk_self_employees FOREIGN KEY(reportingid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE      
     );
-
-
 
    CREATE TABLE projects(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -48,8 +46,6 @@
         projectid INT NULL,
         CONSTRAINT fk_projects_sprints_projectid FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
-
-
  
     CREATE TABLE tasks(
         id INT PRIMARY KEY AUTO_INCREMENT,
