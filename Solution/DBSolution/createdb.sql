@@ -80,7 +80,7 @@
                 ) DEFAULT 'inprogress', 
             modifiedon DATETIME DEFAULT  CURRENT_TIMESTAMP,
             createdby INT NOT NULL,
-            CONSTRAINT unique_emp_timesheet UNIQUE KEY(createdon,createdby) ,
+            CONSTRAINT unique_employee_timesheets UNIQUE KEY(createdon,createdby) ,
             CONSTRAINT fk_employees_timesheets_createdby FOREIGN KEY(createdby) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
@@ -109,34 +109,34 @@
     CREATE TABLE leaveapplications(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
             employeeid INT NOT NULL,
-            CONSTRAINT fk_employees_leaveapplications_employeeid FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
             createdon DateTime,
             fromdate DateTime,
             todate DateTime,
             status enum("notsanctioned","sanctioned","applied")DEFAULT 'applied',
-            leavetype enum("casual","sick","paid","unpaid")
+            leavetype enum("casual","sick","paid","unpaid"),
+            CONSTRAINT fk_employees_leaveapplications_employeeid FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
     CREATE TABLE salarystructures(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             employeeid INT NOT NULL,
-            CONSTRAINT fk_employees_salarystructures_employeeid FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
             basicsalary DOUBLE NOT NULL,
             hra DOUBLE NOT NULL,
             da DOUBLE NOT NULL,
             lta DOUBLE NOT NULL,
-            variablepay DOUBLE NOT NULL
+            variablepay DOUBLE NOT NULL,
+            CONSTRAINT fk_employees_salarystructures_employeeid FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
 
     CREATE TABLE salaryslips(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             employeeid INT NOT NULL,
-            CONSTRAINT fk_employees_salaryslips_employeeid FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
             paydate DateTime,
             monthlyworkingdays INT NOT NULL,
             deduction DOUBLE NOT NULL,
             tax DOUBLE NOT NULL,
             pf DOUBLE NOT NULL,
-            amount DOUBLE NOT NULL
+            amount DOUBLE NOT NULL,
+            CONSTRAINT fk_employees_salaryslips_employeeid FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
