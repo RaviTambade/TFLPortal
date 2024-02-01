@@ -106,12 +106,12 @@ public class LeavesManagementController : ControllerBase
     }
 
     [HttpGet("annualconsumedleaves/employee/{employeeId}/year/{year}")]
-    public async Task<LeavesCount> GetAnnualConsumedLeaves(int employeeId,int roleId,int year)
+    public async Task<LeavesCount> GetAnnualConsumedLeaves(int employeeId,int year)
     {
         // Employee employee= await _hrService.GetEmployeeById(employeeId);
         // List<Role> roles= await _apiService.GetRoleOfUser(employee.UserId);
         // int roleId=roles.FirstOrDefault().Id;
-       return await _service.GetAnnualConsumedLeaves(employeeId,roleId,year);   
+       return await _service.GetAnnualConsumedLeaves(employeeId,year);   
     }
 
  

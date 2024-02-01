@@ -18,7 +18,7 @@ public interface ILeaveService
     Task<List<ConsumedLeave>> GetMonthlyLeaveCount(int employeeId,int month,int year);
 
     Task<LeavesCount> GetAnnualAvailableLeaves(int employeeId, int roleId, int year);
-    Task<LeavesCount> GetAnnualConsumedLeaves(int employeeId, int roleId, int year);
+    Task<LeavesCount> GetAnnualConsumedLeaves(int employeeId, int year);
     Task<LeavesCount> GetAnnualLeaves(int roleId, int year);
 
     Task<List<LeaveAllocation>> GetLeaveAllocation();
@@ -32,5 +32,4 @@ public interface ILeaveService
     Task<bool> UpdateLeaveApplication(int leaveId,string leaveStatus);
     Task<bool> Delete(int leaveId);
     Task<bool> DeleteLeaveMaster(int id);
-    
 }

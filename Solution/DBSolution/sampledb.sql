@@ -90,7 +90,6 @@ Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) valu
 Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(16,20000,6000,600,500,400);
 Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(17,19000,3200,600,600,600);
 Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(18,19000,3200,600,600,600);
-
 Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(10,450000,44000,100,4000,6000);
 
 Insert Into salaryslips(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(11,'2024-01-11',24,600,600,600,20000);

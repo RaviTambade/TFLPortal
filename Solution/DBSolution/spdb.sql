@@ -96,111 +96,110 @@ CALL getHoursWorkedForEachProject(10,'2024-01-01','2024-01-12');
 -- get available leaves of employee
 DELIMITER $$
 CREATE PROCEDURE getLeavesAvailable
-(In pempId int,In proleId int,In pyear int,out psick int,out pcasual int, out ppaid int,out punpaid int)
+(IN pempId INT,IN proleId INT,IN pyear INT,OUT psick INT,OUT pcasual INT, OUT ppaid INT,OUT punpaid INT)
 BEGIN
 
-Declare usedSick int default 0;
-Declare usedCasual int default 0;
-Declare usedPaid int default 0;
-Declare usedUnpaid int default 0;
-Declare sanctionedSick int;
-Declare sanctionedCasual int;
-Declare sanctionedPaid int;
-Declare sanctionedUnpaid int ;
+DECLARE usedSick INT DEFAULT 0;
+DECLARE usedCasual INT DEFAULT 0;
+DECLARE usedPaid INT DEFAULT 0;
+DECLARE usedUnpaid INT DEFAULT 0;
+DECLARE sanctionedSick INT;
+DECLARE sanctionedCasual INT;
+DECLARE sanctionedPaid INT;
+DECLARE sanctionedUnpaid INT ;
 
-select coalesce(sum(datediff(todate,fromdate)+1),0) Into usedSick  
-from leaveapplications 
-where employeeId=pempId and leavetype="sick" and status="sanctioned" and year(fromdate)=pyear;
+SELECT coalesce(sum(datediff(todate,fromdate)+1),0) INTO usedSick  
+FROM leaveapplications 
+WHERE employeeId=pempId AND leavetype="sick" AND status="sanctioned" AND year(fromdate)=pyear;
 
 SELECT coalesce(sum(datediff(todate,fromdate)+1),0) INTO usedCasual  
 FROM leaveapplications 
 WHERE employeeId=pempId AND leavetype="casual" AND status="sanctioned" AND year(fromdate)=pyear;
 
+SELECT coalesce(sum(datediff(todate,fromdate)+1),0) INTO usedPaid  
+FROM leaveapplications 
+WHERE employeeId=pempId AND leavetype="paid" AND status="sanctioned" AND year(fromdate)=pyear;
 
-select coalesce(sum(datediff(todate,fromdate)+1),0) Into usedPaid  
-from leaveapplications 
-where employeeId=pempId and leavetype="paid" and status="sanctioned" and year(fromdate)=pyear;
+SELECT coalesce(sum(datediff(todate,fromdate)+1),0) INTO usedUnpaid  
+FROM leaveapplications 
+WHERE employeeId=pempId AND leavetype="unpaid" AND status="sanctioned" AND year(fromdate)=pyear;
 
-select coalesce(sum(datediff(todate,fromdate)+1),0) Into usedUnpaid  
-from leaveapplications 
-where employeeId=pempId and leavetype="unpaid" and status="sanctioned" and year(fromdate)=pyear;
+SELECT sick,casual,paid,unpaid INTO sanctionedSick,sanctionedCasual,sanctionedPaid,sanctionedUnpaid 
+FROM leaveallocations 
+WHERE roleid=proleId ;
 
-select sick,casual,paid,unpaid Into sanctionedSick,sanctionedCasual,sanctionedPaid,sanctionedUnpaid 
-from leaveallocations 
-where roleid=proleId ;
-
-set psick=sanctionedSick-usedSick;
-set pcasual=sanctionedCasual-usedCasual;
-set ppaid=sanctionedPaid-usedPaid;
-set punpaid=sanctionedUnpaid-usedUnpaid;
+SET psick=sanctionedSick-usedSick;
+SET pcasual=sanctionedCasual-usedCasual;
+SET ppaid=sanctionedPaid-usedPaid;
+SET punpaid=sanctionedUnpaid-usedUnpaid;
 END $$
 DELIMITER ;
 
 -- get consumed leaves of employee
 DELIMITER $$
 CREATE PROCEDURE getConsumedLeaves
-(In pempId int,In pyear int,out psick int,out pcasual int, out ppaid int,out punpaid int)
+(IN pempId INT,IN pyear INT,OUT psick INT,OUT pcasual INT, OUT ppaid INT,OUT punpaid INT)
 BEGIN
-Declare usedSick int default 0;
-Declare usedCasual int default 0;
-Declare usedPaid int default 0;
-Declare usedUnpaid int default 0;
+DECLARE usedSick INT DEFAULT 0;
+DECLARE usedCasual INT DEFAULT 0;
+DECLARE usedPaid INT DEFAULT 0;
+DECLARE usedUnpaid INT DEFAULT 0;
 
-select coalesce(sum(datediff(todate,fromdate)+1),0) Into usedCasual 
-from leaveapplications
-where employeeId=pempId and leavetype="casual" and status="sanctioned" and year(fromdate)=pyear;
+SELECT coalesce(sum(datediff(todate,fromdate)+1),0) INTO usedCasual 
+FROM leaveapplications
+WHERE employeeId=pempId AND leavetype="casual" AND status="sanctioned" AND year(fromdate)=pyear;
 
-select coalesce(sum(datediff(todate,fromdate)+1),0) Into usedSick  
-from leaveapplications
-where employeeId=pempId and leavetype="sick" and status="sanctioned" and year(fromdate)=pyear;
+SELECT coalesce(sum(datediff(todate,fromdate)+1),0) INTO usedSick  
+FROM leaveapplications
+WHERE employeeId=pempId AND leavetype="sick" AND status="sanctioned" AND year(fromdate)=pyear;
 
-select coalesce(sum(datediff(todate,fromdate)+1),0) Into usedPaid
-from leaveapplications 
-where employeeId=pempId and leavetype="paid" and status="sanctioned" and year(fromdate)=pyear;
+SELECT coalesce(sum(datediff(todate,fromdate)+1),0) INTO usedPaid
+FROM leaveapplications 
+WHERE employeeId=pempId AND leavetype="paid" AND status="sanctioned" AND year(fromdate)=pyear;
 
-select coalesce(sum(datediff(todate,fromdate)+1),0) Into usedUnpaid  
-from leaveapplications 
-where employeeId=pempId and leavetype="unpaid" and status="sanctioned" and year(fromdate)=pyear;
+SELECT coalesce(sum(datediff(todate,fromdate)+1),0) INTO usedUnpaid  
+FROM leaveapplications 
+WHERE employeeId=pempId AND leavetype="unpaid" AND status="sanctioned" AND year(fromdate)=pyear;
 
-set psick=usedSick;
-set pcasual= usedCasual;
-set ppaid=usedPaid;
-set punpaid=usedUnpaid;
+SET psick=usedSick;
+SET pcasual= usedCasual;
+SET ppaid=usedPaid;
+SET punpaid=usedUnpaid;
 END $$
 DELIMITER ;
 
 
 -- calculate month salary
 DELIMITER $$
-create procedure calculatesalary(IN pempId INT ,IN pmonth INT,In pyear INT)
+CREATE PROCEDURE calculatesalary(IN pempId INT ,IN pmonth INT,IN pyear INT)
 BEGIN
 
-Declare workingdays int default 0;
-Declare consumedpaidleaves int default 0;
-Declare monthlybasicsalary double;
-Declare monthlyhra double;
-Declare dailyallowance double;
-Declare variablepayamount double default 0;
-Declare leaveTravelallowance double;
-Declare totalamount double;
-Declare deduction double;
-Declare Pf double default 500;
-Declare tax double default 1000;
+DECLARE workingdays INT DEFAULT 0;
+DECLARE consumedpaidleaves INT DEFAULT 0;
+DECLARE monthlybasicsalary DOUBLE;
+DECLARE monthlyhra DOUBLE;
+DECLARE dailyallowance DOUBLE;
+DECLARE variablepayamount DOUBLE DEFAULT 0;
+DECLARE leaveTravelallowance DOUBLE;
+DECLARE totalamount DOUBLE;
+DECLARE deduction DOUBLE;
+DECLARE Pf DOUBLE DEFAULT 500;
+DECLARE tax DOUBLE DEFAULT 1000;
 
-SELECT  COUNT(*) Into workingdays from timesheets
+SELECT  COUNT(*) INTO workingdays FROM timesheets
 WHERE employeeid =pempId AND MONTH(createdon)=pmonth AND YEAR(createdon)=pyear AND status="approved";
 
-SELECT coalesce(sum(datediff(todate,fromdate)+1),0) Into consumedpaidleaves From leaveapplications
+SELECT coalesce(sum(datediff(todate,fromdate)+1),0) INTO consumedpaidleaves FROM leaveapplications
 WHERE employeeid = pempId
 AND MONTH(fromdate)=pmonth AND YEAR(fromdate)=pyear AND status="sanctioned"
-AND leavetype<>"unpaid" group by employeeid;
+AND leavetype<>"unpaid" GROUP BY employeeid;
 
-SELECT da,lta,variablepay,basicsalary,hra Into dailyallowance,leaveTravelallowance,
+SELECT da,lta,variablepay,basicsalary,hra INTO dailyallowance,leaveTravelallowance,
 variablepayamount,monthlybasicsalary,monthlyhra FROM salarystructures WHERE employeeid=pempId;
 
-set deduction=pf+tax;
-set totalamount = ((dailyallowance*(workingdays+consumedpaidleaves))+monthlybasicsalary+monthlyhra+leaveTravelallowance+variablepayamount)-(deduction);
-select totalamount,monthlybasicsalary,variablepayamount,monthlyhra,dailyallowance,leaveTravelallowance,pf,tax,deduction,workingdays,consumedpaidleaves;
+SET deduction=pf+tax;
+SET totalamount = ((dailyallowance*(workingdays+consumedpaidleaves))+monthlybasicsalary+monthlyhra+leaveTravelallowance+variablepayamount)-(deduction);
+SELECT totalamount,monthlybasicsalary,variablepayamount,monthlyhra,dailyallowance,leaveTravelallowance,pf,tax,deduction,workingdays,consumedpaidleaves;
 END $$
 DELIMITER ;
 

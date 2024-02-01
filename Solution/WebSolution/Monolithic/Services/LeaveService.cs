@@ -530,32 +530,33 @@ public class LeaveService : ILeaveService
         {
             await con.OpenAsync();
 
-            MySqlCommand cmd = new MySqlCommand("getAvailableLeavesOfEmployee", con);
+            MySqlCommand cmd = new MySqlCommand("getLeavesAvailable", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@employee_Id", employeeId);
-            cmd.Parameters.AddWithValue("@role_id", roleId);
-            cmd.Parameters.AddWithValue("@year", year);
-            cmd.Parameters.AddWithValue("@remainingSickLeaves", MySqlDbType.Int32);
-            cmd.Parameters["@remainingSickLeaves"].Direction = ParameterDirection.Output;
+            cmd.Parameters.AddWithValue("@pempId", employeeId);
+            cmd.Parameters.AddWithValue("@proleId", roleId);
+            cmd.Parameters.AddWithValue("@pyear", year);
+            cmd.Parameters.AddWithValue("@psick", MySqlDbType.Int32);
+            cmd.Parameters["@psick"].Direction = ParameterDirection.Output;
 
-            cmd.Parameters.AddWithValue("@remainingCasualLeaves", MySqlDbType.Int32);
-            cmd.Parameters["@remainingCasualleaves"].Direction = ParameterDirection.Output;
+            cmd.Parameters.AddWithValue("@pcasual", MySqlDbType.Int32);
+            cmd.Parameters["@pcasual"].Direction = ParameterDirection.Output;
 
-            cmd.Parameters.AddWithValue("@remainingPaidLeaves", MySqlDbType.Int32);
-            cmd.Parameters["@remainingPaidLeaves"].Direction = ParameterDirection.Output;
+            cmd.Parameters.AddWithValue("@ppaid", MySqlDbType.Int32);
+            cmd.Parameters["@ppaid"].Direction = ParameterDirection.Output;
 
-            cmd.Parameters.AddWithValue("@remainingUnpaidLeaves", MySqlDbType.Int32);
-            cmd.Parameters["@remainingUnpaidLeaves"].Direction = ParameterDirection.Output;
+            cmd.Parameters.AddWithValue("@punpaid", MySqlDbType.Int32);
+            cmd.Parameters["@punpaid"].Direction = ParameterDirection.Output;
 
             await cmd.ExecuteNonQueryAsync();
 
-            int sickLeaves = Convert.ToInt32(cmd.Parameters["@remainingSickLeaves"].Value);
-            int casualLeaves = Convert.ToInt32(cmd.Parameters["@remainingCasualLeaves"].Value);
-            int paidLeaves = Convert.ToInt32(cmd.Parameters["@remainingPaidLeaves"].Value);
-            int unPaidLeaves = Convert.ToInt32(cmd.Parameters["@remainingUnpaidLeaves"].Value);
+            int sickLeaves = Convert.ToInt32(cmd.Parameters["@psick"].Value);
+            int casualLeaves = Convert.ToInt32(cmd.Parameters["@pcasual"].Value);
+            int paidLeaves = Convert.ToInt32(cmd.Parameters["@ppaid"].Value);
+            int unPaidLeaves = Convert.ToInt32(cmd.Parameters["@punpaid"].Value);
 
             leaves = new LeavesCount()
             {
+                EmployeeId=employeeId,
                 Sick = sickLeaves,
                 Casual = casualLeaves,
                 Paid = paidLeaves,
@@ -574,7 +575,7 @@ public class LeaveService : ILeaveService
         return leaves;
     }
 
-    public async Task<LeavesCount> GetAnnualConsumedLeaves(int employeeId, int roleId, int year)
+    public async Task<LeavesCount> GetAnnualConsumedLeaves(int employeeId, int year)
     {
         LeavesCount leaves = null;
         MySqlConnection con = new MySqlConnection();
@@ -582,32 +583,32 @@ public class LeaveService : ILeaveService
         try
         {
             await con.OpenAsync();
-            MySqlCommand cmd = new MySqlCommand("getConsumedLeavesOfEmployee", con);
+            MySqlCommand cmd = new MySqlCommand("getConsumedLeaves", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@employee_Id", employeeId);
-            cmd.Parameters.AddWithValue("@role_id", roleId);
-            cmd.Parameters.AddWithValue("@year", year);
-            cmd.Parameters.AddWithValue("@sickLeaves", MySqlDbType.Int32);
-            cmd.Parameters["@sickLeaves"].Direction = ParameterDirection.Output;
+            cmd.Parameters.AddWithValue("@pempId", employeeId);
+            cmd.Parameters.AddWithValue("@pyear", year);
+            cmd.Parameters.AddWithValue("@psick", MySqlDbType.Int32);
+            cmd.Parameters["@psick"].Direction = ParameterDirection.Output;
 
-            cmd.Parameters.AddWithValue("@casualLeaves", MySqlDbType.Int32);
-            cmd.Parameters["@casualLeaves"].Direction = ParameterDirection.Output;
+            cmd.Parameters.AddWithValue("@pcasual", MySqlDbType.Int32);
+            cmd.Parameters["@pcasual"].Direction = ParameterDirection.Output;
 
-            cmd.Parameters.AddWithValue("@paidLeaves", MySqlDbType.Int32);
-            cmd.Parameters["@paidLeaves"].Direction = ParameterDirection.Output;
+            cmd.Parameters.AddWithValue("@ppaid", MySqlDbType.Int32);
+            cmd.Parameters["@ppaid"].Direction = ParameterDirection.Output;
 
-            cmd.Parameters.AddWithValue("@unpaidLeaves", MySqlDbType.Int32);
-            cmd.Parameters["@unpaidLeaves"].Direction = ParameterDirection.Output;
+            cmd.Parameters.AddWithValue("@punpaid", MySqlDbType.Int32);
+            cmd.Parameters["@punpaid"].Direction = ParameterDirection.Output;
 
             await cmd.ExecuteNonQueryAsync();
 
-            int sickLeaves = Convert.ToInt32(cmd.Parameters["@sickLeaves"].Value);
-            int casualLeaves = Convert.ToInt32(cmd.Parameters["@casualLeaves"].Value);
-            int paidLeaves = Convert.ToInt32(cmd.Parameters["@paidLeaves"].Value);
-            int unPaidLeaves = Convert.ToInt32(cmd.Parameters["@unpaidLeaves"].Value);
+            int sickLeaves = Convert.ToInt32(cmd.Parameters["@psick"].Value);
+            int casualLeaves = Convert.ToInt32(cmd.Parameters["@pcasual"].Value);
+            int paidLeaves = Convert.ToInt32(cmd.Parameters["@ppaid"].Value);
+            int unPaidLeaves = Convert.ToInt32(cmd.Parameters["@punpaid"].Value);
 
             leaves = new LeavesCount()
             {
+                EmployeeId=employeeId,
                 Sick = sickLeaves,
                 Casual = casualLeaves,
                 Paid = paidLeaves,
