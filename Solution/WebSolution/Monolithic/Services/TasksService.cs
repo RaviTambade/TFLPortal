@@ -34,8 +34,6 @@ public class TaskService : ITaskService
                 string title = reader["title"].ToString();
                 string activityType = reader["tasktype"].ToString();
                 string description = reader["description"].ToString();
-                int projectId = int.Parse(reader["projectid"].ToString());
-                int sprintId = int.Parse(reader["sprintid"].ToString());
                 DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
                 int assignedTo = int.Parse(reader["assignedto"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
@@ -51,8 +49,6 @@ public class TaskService : ITaskService
                     Title = title,
                     TaskType = activityType,
                     Description = description,
-                    ProjectId = projectId,
-                    SprintId=sprintId,
                     AssignedOn = assignedOn,
                     StartDate = startDate,
                     DueDate = dueDate,
@@ -82,7 +78,7 @@ public class TaskService : ITaskService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select * from tasks where  projectid =@projectId";
+            string query = "select * from tasks INNER JOIN sprinttasks on tasks.id=sprinttasks.taskid INNER join sprints on sprints.id=sprinttasks.sprintid WHERE sprints.projectid=@projectId";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);
             await connection.OpenAsync();
@@ -93,7 +89,6 @@ public class TaskService : ITaskService
                 string title = reader["title"].ToString();
                 string activityType = reader["tasktype"].ToString();
                 string description = reader["description"].ToString();
-                 int sprintId = int.Parse(reader["sprintid"].ToString());
                 DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
                 int assignedTo = int.Parse(reader["assignedto"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
@@ -109,8 +104,6 @@ public class TaskService : ITaskService
                     Title = title,
                     TaskType = activityType,
                     Description = description,
-                    ProjectId = projectId,
-                    SprintId=sprintId,
                     AssignedOn = assignedOn,
                     StartDate = startDate,
                     DueDate = dueDate,
@@ -153,7 +146,6 @@ public class TaskService : ITaskService
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
                 string description = reader["description"].ToString();
-                int sprintId = int.Parse(reader["sprintid"].ToString());
                 DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
                 int assignedTo = int.Parse(reader["assignedto"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
@@ -169,8 +161,6 @@ public class TaskService : ITaskService
                     Title = title,
                     TaskType = taskType,
                     Description = description,
-                    ProjectId = projectId,
-                    SprintId=sprintId,
                     AssignedOn = assignedOn,
                     StartDate = startDate,
                     DueDate = dueDate,
@@ -202,7 +192,8 @@ public class TaskService : ITaskService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select * from tasks where  projectid =@projectId and assignedto=@assignedto";
+            string query = "select * from tasks INNER JOIN sprinttasks on tasks.id=sprinttasks.taskid INNER join sprints on sprints.id=sprinttasks.sprintid WHERE tasks.assignedto=@assignedtoand sprints.projectid=@projectId";
+
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);
 
@@ -216,7 +207,6 @@ public class TaskService : ITaskService
                 string title = reader["title"].ToString();
                 string taskType = reader["tasktype"].ToString();
                 string description = reader["description"].ToString();
-                 int sprintId = int.Parse(reader["sprintid"].ToString());
                 DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
                 DateTime assignedOn = DateTime.Parse(reader["assignedon"].ToString());
@@ -231,8 +221,6 @@ public class TaskService : ITaskService
                     Title = title,
                     TaskType = taskType,
                     Description = description,
-                    ProjectId = projectId,
-                    SprintId=sprintId,
                     AssignedOn = assignedOn,
                     StartDate = startDate,
                     DueDate = dueDate,
@@ -263,7 +251,7 @@ public class TaskService : ITaskService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select * from tasks where  projectid =@projectId and status=@status and assignedto=@assignedto";
+            string query = "select * from tasks INNER JOIN sprinttasks on tasks.id=sprinttasks.taskid INNER join sprints on sprints.id=sprinttasks.sprintid WHERE tasks.status=@status and sprints.projectid=@projectId and tasks.assignedto=@assignedto";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@projectId", projectId);
             command.Parameters.AddWithValue("@status", status);
@@ -276,7 +264,6 @@ public class TaskService : ITaskService
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
                 string description = reader["description"].ToString();
-                 int sprintId = int.Parse(reader["sprintid"].ToString());
                 DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
                 DateTime assignedOn = DateTime.Parse(reader["assignedon"].ToString());
@@ -291,8 +278,6 @@ public class TaskService : ITaskService
                     Title = title,
                     TaskType = taskType,
                     Description = description,
-                    ProjectId = projectId,
-                    SprintId=sprintId,
                     AssignedOn = assignedOn,
                     StartDate = startDate,
                     DueDate = dueDate,
@@ -322,7 +307,7 @@ public class TaskService : ITaskService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select * from tasks where  sprintid =@sprintid and status=@status and assignedto=@assignedto";
+            string query = "select * from tasks INNER JOIN sprinttasks on tasks.id=sprinttasks.taskid INNER join sprints on sprints.id=sprinttasks.sprintid WHERE tasks.status=@status and sprints.id=@sprintid and tasks.assignedto=@assignedto";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@sprintid", sprintId);
             command.Parameters.AddWithValue("@status", status);
@@ -335,7 +320,6 @@ public class TaskService : ITaskService
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
                 string description = reader["description"].ToString();
-                int projectId = int.Parse(reader["projectid"].ToString());
                 DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
                 DateTime assignedOn = DateTime.Parse(reader["assignedon"].ToString());
@@ -350,8 +334,6 @@ public class TaskService : ITaskService
                     Title = title,
                     TaskType = taskType,
                     Description = description,
-                    ProjectId = projectId,
-                    SprintId=sprintId,
                     AssignedOn = assignedOn,
                     StartDate = startDate,
                     DueDate = dueDate,
@@ -381,7 +363,7 @@ public class TaskService : ITaskService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select tasks.* ,e1.userid as assignbyuserid,e2.userid as assigntouserid,projects.title as projectname from tasks INNER JOIN employees e1  on tasks.assignedto =e1.id INNER JOIN employees e2   on  tasks.assignedby=e2.id INNER JOIN projects ON tasks.projectid =projects.id WHERE tasks.id=@taskId";
+            string query = "select * from tasks where id =@taskId";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@taskId", taskId);
 
@@ -392,18 +374,13 @@ public class TaskService : ITaskService
                 string title = reader["title"].ToString();
                 string description = reader["description"].ToString();
                 string taskType = reader["tasktype"].ToString();
-                 int sprintId = int.Parse(reader["sprintid"].ToString());
                 DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
                 DateTime assignedOn = DateTime.Parse(reader["assignedon"].ToString());
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
-                int projectId = int.Parse(reader["projectid"].ToString());
                 int memberId = int.Parse(reader["assignedto"].ToString());
                 int managerId = int.Parse(reader["assignedby"].ToString());
-                int assignToUserId = int.Parse(reader["assigntouserid"].ToString());
-                int assignByUserId = int.Parse(reader["assignbyuserid"].ToString());
-                string projectName = reader["projectname"].ToString();
                 task = new ProjectTask()
                 {
                     Id = taskId,
@@ -411,8 +388,6 @@ public class TaskService : ITaskService
                     Title = title,
                     CreatedOn = createdOn,
                     Description = description,
-                    ProjectId = projectId,
-                    SprintId=sprintId,
                     AssignedOn = assignedOn,
                     StartDate = startDate,
                     AssignedTo = memberId,
@@ -440,7 +415,7 @@ public class TaskService : ITaskService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "INSERT INTO tasks(title,tasktype,description,createdon,assignedon,startdate,duedate,assignedto,projectid,sprintid,status,assignedby) VALUES(@title,@tasktype,@description,@createddate,@assigndate,@startdate,@duedate,@assignedTo,@projectId,@sprintId,@status,@assignedBy)";
+            string query = "INSERT INTO tasks(title,tasktype,description,createdon,assignedon,startdate,duedate,assignedto,status,assignedby) VALUES(@title,@tasktype,@description,@createddate,@assigndate,@startdate,@duedate,@assignedTo,@status,@assignedBy)";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@title", task.Title);
             cmd.Parameters.AddWithValue("@tasktype", task.TaskType);
@@ -450,8 +425,6 @@ public class TaskService : ITaskService
             cmd.Parameters.AddWithValue("@startdate", task.StartDate);
             cmd.Parameters.AddWithValue("@dueDate", task.DueDate);
             cmd.Parameters.AddWithValue("@assignedTo", task.AssignedTo);
-            cmd.Parameters.AddWithValue("@projectId", task.ProjectId);
-            cmd.Parameters.AddWithValue("@sprintId", task.SprintId);
             cmd.Parameters.AddWithValue("@status", task.Status);
             cmd.Parameters.AddWithValue("@assignedBy", task.AssignedBy);
             await connection.OpenAsync();
@@ -489,9 +462,7 @@ public class TaskService : ITaskService
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
                 string taskType = reader["tasktype"].ToString();
-                 int sprintId = int.Parse(reader["sprintid"].ToString());
                 string description = reader["description"].ToString();
-                int projectId = int.Parse(reader["projectid"].ToString());
                 DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
                 DateTime assignedOn = DateTime.Parse(reader["assignedon"].ToString());
@@ -506,8 +477,6 @@ public class TaskService : ITaskService
                     Title = title,
                     TaskType = taskType,
                     Description = description,
-                    ProjectId = projectId,
-                    SprintId=sprintId,
                     AssignedOn = assignedOn,
                     StartDate = startDate,
                     DueDate = dueDate,
@@ -549,8 +518,6 @@ public class TaskService : ITaskService
                 string title = reader["title"].ToString();
                 string taskType = reader["tasktype"].ToString();
                 string description = reader["description"].ToString();
-                 int sprintId = int.Parse(reader["sprintid"].ToString());
-                int projectId = int.Parse(reader["projectid"].ToString());
                 DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
                 DateTime assignedOn = DateTime.Parse(reader["assignedon"].ToString());
@@ -567,8 +534,6 @@ public class TaskService : ITaskService
                     Title = title,
                     TaskType = taskType,
                     Description = description,
-                    ProjectId = projectId,
-                    SprintId=sprintId,
                     AssignedOn = assignedOn,
                     StartDate = startDate,
                     DueDate = dueDate,
@@ -610,9 +575,7 @@ public class TaskService : ITaskService
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
                 string taskType = reader["tasktype"].ToString();
-                 int sprintId = int.Parse(reader["sprintid"].ToString());
                 string description = reader["description"].ToString();
-                int projectId = int.Parse(reader["projectid"].ToString());
                 DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
                 int assignedBy = int.Parse(reader["assignedby"].ToString());
                 DateTime assignedOn = DateTime.Parse(reader["assignedon"].ToString());
@@ -627,8 +590,6 @@ public class TaskService : ITaskService
                     Title = title,
                     TaskType = taskType,
                     Description = description,
-                    ProjectId = projectId,
-                    SprintId=sprintId,
                     AssignedOn = assignedOn,
                     StartDate = startDate,
                     DueDate = dueDate,
@@ -747,7 +708,6 @@ public class TaskService : ITaskService
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
                 string taskType = reader["tasktype"].ToString();
-                 int sprintId = int.Parse(reader["sprintid"].ToString());
                 string description = reader["description"].ToString();
                 DateTime createdate = DateTime.Parse(reader["createdon"].ToString());
                 int assignedto = int.Parse(reader["assignedto"].ToString());
@@ -763,8 +723,6 @@ public class TaskService : ITaskService
                     Title = title,
                     TaskType = taskType,
                     Description = description,
-                    ProjectId = projectId,
-                    SprintId=sprintId,
                     StartDate = startdate,
                     DueDate = duedate,
                     AssignedTo = assignedto,

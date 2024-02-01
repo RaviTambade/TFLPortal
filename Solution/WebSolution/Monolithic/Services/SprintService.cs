@@ -101,10 +101,8 @@ public class SprintService : ISprintService
         connection.ConnectionString=_connectionString;
         try{
 ;
-            string query =@"select tasks.* , employees.userid  from tasks 
-                           INNER join sprints on tasks.sprintid=sprints.id
-                           INNER join employees ON tasks.assignedto=employees.id
-                           WHERE sprints.id=@sprintId;";
+            string query =@"select * from tasks INNER JOIN sprinttasks on tasks.id=sprinttasks.taskid
+INNER join sprints on sprints.id=sprinttasks.sprintid WHERE sprints.id=sprintId;";
             MySqlCommand command = new MySqlCommand(query,connection);
             command.Parameters.AddWithValue("@sprintId",sprintId);
             await connection.OpenAsync();
@@ -115,7 +113,6 @@ public class SprintService : ISprintService
                     Id = int.Parse(reader["id"].ToString()),
                     Title = reader["title"].ToString(),
                     TaskType = reader["tasktype"].ToString(),
-                    SprintId = int.Parse(reader["sprintid"].ToString()),
                     Description = reader["description"].ToString(),
                     CreatedOn = DateTime.Parse(reader["createddate"].ToString()),
                     AssignedTo = int.Parse(reader["assignedto"].ToString()),
