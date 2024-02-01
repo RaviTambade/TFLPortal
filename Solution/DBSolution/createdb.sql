@@ -1,15 +1,12 @@
-
-
     DROP DATABASE IF EXISTS TFLPortal;
     CREATE DATABASE TFLPortal;
     USE TFLPortal;
    
     CREATE TABLE employees(
-            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-            userid INT NOT NULL UNIQUE,
+            id INT NOT NULL PRIMARY KEY,
             hiredon DATETIME,
             reportingid INT,    
-            CONSTRAINT fk_employees FOREIGN KEY(reportingid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE      
+            CONSTRAINT fk_self_employees FOREIGN KEY(reportingid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE      
     );
 
 
@@ -49,13 +46,15 @@
             CONSTRAINT fk_employee_projectallocations_employeeid FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
+ 
+  
+ 
+ 
     CREATE TABLE tasks(
         id INT PRIMARY KEY AUTO_INCREMENT,
         title VARCHAR(500),
         tasktype ENUM("userstory","task","bug","issues","meeting","learning","mentoring","others"),
         description VARCHAR(400) DEFAULT '',
-        projectid INT NULL,
-        sprintid INT NULL,
         assignedto INT NULL, 
         assignedby INT NULL,
         createdon DATETIME NULL,
@@ -69,6 +68,12 @@
         CONSTRAINT fk_sprints_tasks_sprintid FOREIGN KEY (sprintid) REFERENCES sprints(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
+
+ CREATE TABLE sprinttasks(
+        id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+        sprintid
+        taskid
+ );
      CREATE TABLE timesheets(
             id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
             createdon DATETIME ,

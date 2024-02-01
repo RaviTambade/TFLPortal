@@ -2,53 +2,50 @@
 -- Active: 1694968636816@@127.0.0.1@3306@tflportal
 
 -- director
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (1,'2013-01-01',1);
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (2,'2013-11-03',1);
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (3,'2013-08-11',1);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (1,'2013-01-01',1);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (2,'2013-11-03',1);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (3,'2013-08-11',1);
 -- HR Manager
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (4,'2013-10-06',1);
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (5,'2014-09-07',2);
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (6,'2014-11-01',3);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (4,'2013-10-06',1);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (5,'2014-09-07',2);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (6,'2014-11-01',3);
 
 -- project Manager
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (7,'2013-11-01',4);
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (8,'2013-04-14',5);
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (9,'2015-12-01',6);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (7,'2013-11-01',4);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (8,'2013-04-14',5);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (9,'2015-12-01',6);
 
 -- Team MEMBER 
 
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (10,'2013-03-17',6);
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (11,'2014-02-12',7);
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (12,'2014-05-21',7);
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (13,'2014-05-21',8);
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (14,'2015-11-11',8);
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (15,'2015-09-15',8);
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (16,'2015-07-16',9);
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (17,'2015-04-23',9);
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (18,'2015-05-13',9);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (10,'2013-03-17',6);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (11,'2014-02-12',7);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (12,'2014-05-21',7);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (13,'2014-05-21',8);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (14,'2015-11-11',8);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (15,'2015-09-15',8);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (16,'2015-07-16',9);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (17,'2015-04-23',9);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (18,'2015-05-13',9);
 
 
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (19,'2014-05-21',8);
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (20,'2015-11-11',8);
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (21,'2015-09-15',8);
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (22,'2015-07-16',9);
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (23,'2015-04-23',9);
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (24,'2015-05-13',9);
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (25,'2014-05-21',8);
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (26,'2015-11-11',8);
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (27,'2015-09-15',8);
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (28,'2015-07-16',9);
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (29,'2015-04-23',9);
-INSERT INTO employees(userid,hiredon,reportingid) VALUES (30,'2015-05-13',9);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (19,'2014-05-21',8);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (20,'2015-11-11',8);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (21,'2015-09-15',8);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (22,'2015-07-16',9);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (23,'2015-04-23',9);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (24,'2015-05-13',9);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (25,'2014-05-21',8);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (26,'2015-11-11',8);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (27,'2015-09-15',8);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (28,'2015-07-16',9);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (29,'2015-04-23',9);
+INSERT INTO employees(id,hiredon,reportingid) VALUES (30,'2015-05-13',9);
 
 
 Insert Into leaveallocations(roleid,sick,casual,paid,unpaid,financialyear) values(1,10,5,12,15,2023);
 Insert Into leaveallocations(roleid,sick,casual,paid,unpaid,financialyear) values(2,9,5,12,10,2023);
 Insert Into leaveallocations(roleid,sick,casual,paid,unpaid,financialyear) values(3,8,10,10,15,2023);
 Insert Into leaveallocations(roleid,sick,casual,paid,unpaid,financialyear) values(4,7,5,11,10,2023);
-
-
-
 
 
 Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(10,'2024-01-13','2024-01-14','2024-01-15',"sanctioned","unpaid");
