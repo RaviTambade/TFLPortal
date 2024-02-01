@@ -6,32 +6,37 @@
 -- get all leaveapplications
 select * from leaveapplications;
 
--- get all leavesallocated
-select * from roleleaveallocations;
-
--- get monthly leave count of employee by leavetype
-SELECT leavetype,coalesce(sum(datediff(todate,fromdate)+1),0) as leavecount From leaveapplications
-WHERE employeeid = 10 AND MONTH(fromdate)=4 AND YEAR(fromdate)=@year AND status="sanctioned" group by leavetype;
-
--- get leaves of employee;
-select * from leaveapplications where employeeid =1;
-
--- get all appliedleaves of employee
-select * from leaveapplications where employeeid =1 and status="applied";
-
--- get leave of particular date.
-select * from leaveapplications where status="sanctioned" and fromdate<="2024-01-26" and todate>="2024-04-26";
-
--- get leavesallocated of particular role
-select * from leavesallocated where id =1;
-
 -- get leaveapplication details
 select * from leaveapplications where id=1;
 
 -- get sanctioned leaves
 select * from leaveapplications where status="sanctioned";
 
--- get leaveapplication details of employees of particular project
+-- get leaves of  an employee;
+select * from leaveapplications where employeeid =1;
+
+-- get all leave applications which are applied of employee
+select * from leaveapplications where employeeid =1 and status="applied";
+
+-- get leave application in between .
+select * from leaveapplications where status="sanctioned" and fromdate<="2024-01-26" and todate>="2024-04-26";
+
+
+-- get all leavesallocated
+select * from roleleaveallocations;
+
+-- get leavesallocated of particular role
+select * from leavesallocated where roleid =1;
+
+-- get leaves allocated of role
+select sick,casual,paid,unpaid from leavesallocated where roleid=2 and financialyear=2024;
+
+-- get monthly leave count of an employeeid= 4 , month=4  and year 2023 by leavetype
+
+SELECT leavetype,coalesce(sum(datediff(todate,fromdate)+1),0) as leavecount From leaveapplications
+WHERE employeeid = 10 AND MONTH(fromdate)=4 AND YEAR(fromdate)=2023 AND status="sanctioned" group by leavetype;
+
+-- get sanctioned leaveapplication details of an employee of belong to project 1
 select projectmembers.employeeid,leaveapplications.status,leaveapplications.leavetype,
                 leaveapplications.createdon,leaveapplications.fromdate,leaveapplications.todate from projects
                 inner join projectmembers on projects.id=projectmembers.projectid
@@ -40,31 +45,19 @@ select projectmembers.employeeid,leaveapplications.status,leaveapplications.leav
                 and leaveapplications.status="sanctioned";
 
 
--- get employee leaveapplication of particular month
+-- get employee leaveapplication details for year 2024 group by month
 SELECT leavetype,COALESCE(SUM(DATEDIFF(todate, fromdate) + 1), 0) AS consumedleaves,MONTH(fromdate) AS month FROM leaveapplications
  WHERE employeeId = 10 AND status = "sanctioned" AND YEAR(fromdate) = 2024 GROUP BY leavetype,MONTH(fromdate);
 
 
--- get leaves allocated of role
-select sick,casual,paid,unpaid from leavesallocated where roleid=2 and financialyear=2024;
 
 -- get consumed leaves of employee
 call getConsumedLeavesOfEmployee(12,4,2023,@SickLeaves,@Casualleaves,@PaidLeaves,@UnpaidLeaves);
-
 -- get available leaves of employee
 call getAvailableLeavesOfEmployee(12,4,2023,@SickLeaves,@Casualleaves,@PaidLeaves,@UnpaidLeaves);
 
 
 
--- ProjectMember
-
--- get all employees on bench
-SELECT * FROM employees
- WHERE id not in (SELECT employeeid FROM projectmembers GROUP BY employeeid HAVING COUNT(CASE WHEN status = 'yes' THEN 1 END) > 0)
-
-
--- get members of project
-Select * from projectmembers where projectid=1 and status="yes";
 
 -- PayrollManagement
 
@@ -74,16 +67,17 @@ select * from salaryslips where employeeid=1;
 -- get salary slip details 
 select * from salaryslips where id=1;
 
--- get userids of unpaid employees in month
+-- get employees who have not been paid in month 4 for year 2024
 SELECT employees.userid FROM employees LEFT JOIN salaries ON employees.id = salaries.employeeid
 AND MONTH(salaries.paydate) = 4 AND YEAR(salaries.paydate) = 2024 WHERE salaries.employeeid IS NULL
 
-
--- get salaryslips of paid employees in month
+-- get all salaryslips  which have been processed  in month=4 and year 2024
 select * from salaryslips where MONTH(paydate)=4 and YEAR(paydate)=2024;
 
 -- get leavesallocated details of employee
 select * from salarystructures where employeeid=1;
+
+
 
 
 -- HRManagement
@@ -93,6 +87,11 @@ select * from employees where id=1;
 
 -- get details of user
 select * from employees where userid=5;
+
+
+-- get member details inforamtion about project assigned for particular project
+Select * from projectmembers where projectid=1 and status="yes";
+
 
 
 -- get timesheets of employee between dates
@@ -172,6 +171,13 @@ select * from projectallocations where assigndate BETWEEN "2023-11-03" AND "2023
 -- give me list of empoyees particular project
 select * from projectallocations where projectid=1;
 select * FROM activities;
+
+
+
+-- get all employees which are not assigend to any project
+SELECT * FROM employees
+ WHERE id not in (SELECT employeeid FROM projectmembers GROUP BY employeeid HAVING COUNT(CASE WHEN status = 'yes' THEN 1 END) > 0)
+
 
 select activities.* ,e1.userid as assignbyuserid,e2.userid as assigntouserid,projects.title
 from activities 
