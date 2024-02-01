@@ -13,7 +13,8 @@ public interface ITaskService
     Task<List<ProjectTask>> GetMemberTasks(int memberId);
     Task<List<ProjectTask>> GetAllTasks(DateTime from, DateTime to);
     Task<List<ProjectTask>> GetAllTasks(int employeeId,DateTime from,DateTime to);
-    Task<AllTaskCount> GetTasksCount();
+    Task<ProjectTaskCount> GetTasksCount(int projectId);
+    Task<ProjectTaskCount> GetTasksCount(int projectId,int memberId);
     Task<List<ProjectTask>> GetTodaysTasks(int projectId, DateTime date);
      Task<bool> AddTask(ProjectTask theTask);
     Task<bool> UpdateTask(string taskStatus, int taskId);
