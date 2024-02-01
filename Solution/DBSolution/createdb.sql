@@ -1,3 +1,4 @@
+-- Active: 1696576841746@@127.0.0.1@3306@tflportal
     DROP DATABASE IF EXISTS TFLPortal;
     CREATE DATABASE TFLPortal;
     USE TFLPortal;
@@ -8,6 +9,7 @@
             reportingid INT,    
             CONSTRAINT fk_self_employees FOREIGN KEY(reportingid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE      
     );
+
 
 
    CREATE TABLE projects(
@@ -24,15 +26,6 @@
                 'completed') DEFAULT 'notstarted'
     );
 
-    CREATE TABLE sprints(
-        id INT PRIMARY KEY AUTO_INCREMENT,
-        title VARCHAR(40) NOT NULL,  
-        startdate DATETIME NOT NULL, 
-        enddate DATETIME NOT NULL,
-        goal VARCHAR(200),
-        projectid INT NULL,
-        CONSTRAINT fk_projects_sprints_projectid FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE
-    );
 
     CREATE TABLE projectallocations(
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -46,9 +39,17 @@
             CONSTRAINT fk_employee_projectallocations_employeeid FOREIGN KEY(employeeid) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
- 
-  
- 
+    CREATE TABLE sprints(
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        title VARCHAR(40) NOT NULL,  
+        startdate DATETIME NOT NULL, 
+        enddate DATETIME NOT NULL,
+        goal VARCHAR(200),
+        projectid INT NULL,
+        CONSTRAINT fk_projects_sprints_projectid FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE
+    );
+
+
  
     CREATE TABLE tasks(
         id INT PRIMARY KEY AUTO_INCREMENT,
@@ -63,17 +64,19 @@
         duedate DATETIME NULL,
         status ENUM ( 'todo','inprogress','completed') DEFAULT 'todo' , 
         CONSTRAINT fk_employees_tasks_assigneby FOREIGN KEY (assignedby) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
-        CONSTRAINT fk_employees_tasks_assignedto FOREIGN KEY (assignedto) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE,
-        CONSTRAINT fk_projects_tasks_projectid FOREIGN KEY (projectid) REFERENCES projects(id) ON UPDATE CASCADE ON DELETE CASCADE,
-        CONSTRAINT fk_sprints_tasks_sprintid FOREIGN KEY (sprintid) REFERENCES sprints(id) ON UPDATE CASCADE ON DELETE CASCADE
+        CONSTRAINT fk_employees_tasks_assignedto FOREIGN KEY (assignedto) REFERENCES employees(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
 
  CREATE TABLE sprinttasks(
         id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-        sprintid
-        taskid
+        sprintid INT,
+        taskid INT,
+        CONSTRAINT fk_tasks_sprinttasks_taskid FOREIGN KEY (taskid) REFERENCES tasks(id) ON UPDATE CASCADE ON DELETE CASCADE,
+        CONSTRAINT fk_sprints_sprinttasks_sprintid FOREIGN KEY (sprintid) REFERENCES sprints(id) ON UPDATE CASCADE ON DELETE CASCADE
  );
+
+
      CREATE TABLE timesheets(
             id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
             createdon DATETIME ,
