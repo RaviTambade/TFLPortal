@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using TFLPortal.Helpers;
 using TFLPortal.Models;
 using TFLPortal.Responses;
 using TFLPortal.Services.Interfaces;
@@ -18,6 +19,7 @@ public class TimesheetsController : ControllerBase
         _biService=bIService;
     }
 
+    [Authorize("Employee")]
     [HttpGet("employees/{employeeId}/from/{from}/to/{to}")]
     public async Task<List<Timesheet>> GetTimesheets(int employeeId,DateOnly from,DateOnly to)
     {

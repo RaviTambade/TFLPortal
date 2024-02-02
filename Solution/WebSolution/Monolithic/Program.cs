@@ -1,3 +1,4 @@
+using TFLPortal.Helpers;
 using TFLPortal.Services;
 using TFLPortal.Services.Interfaces;
 using Transflower.TFLPortal.TFLSAL.Services;
@@ -17,6 +18,10 @@ builder.Services.AddScoped<ITimesheetBIService, TimesheetBIService>();
 builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<ISprintService, SprintService>();
 
+builder.Services.AddOptions<JwtSettings>().BindConfiguration("JWT")
+    .ValidateDataAnnotations()
+    .ValidateOnStart();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -32,8 +37,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
-
-app.UseAuthorization();
-
+app.UseMiddleware<JwtMiddleware>();
 app.MapControllers();
 app.Run();
