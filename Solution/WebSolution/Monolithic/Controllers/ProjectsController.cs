@@ -36,7 +36,7 @@ public class ProjectsController : ControllerBase
 
    
     
-    [HttpGet("projectmanager/{memberId}")]
+    [HttpGet("members/{memberId}")]
     public async Task<List<Project>> GetAllCurrentProjects(int memberId)
     {
         List<Project> projects = await _service.GetAllCurrentProjects(memberId);
@@ -47,13 +47,9 @@ public class ProjectsController : ControllerBase
 
     // http://localhost:8989/api/projects
     [HttpPost]
-    [Route ("addproject")]
     public async Task<bool> AddProject(Project project)
     {
         bool status =await _service.AddProject(project);
         return status;
-    }
-
-
-    
+    } 
 }

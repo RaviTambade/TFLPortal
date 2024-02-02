@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TFLPortal.Responses;
 using TFLPortal.Models;
-using TFLPortal.Services;
 using TFLPortal.Services.Interfaces;
 
 namespace Intranet.Controllers;
@@ -55,7 +54,7 @@ public class LeavesManagementController : ControllerBase
     
  
     [HttpGet]
-    [Route ("leave/{leaveId}")]
+    [Route ("{leaveId}")]
     public async Task<LeaveApplication> GetLeaveApplication(int leaveId)
     {
         LeaveApplication leave =await _service.GetLeaveApplication(leaveId);
@@ -64,7 +63,7 @@ public class LeavesManagementController : ControllerBase
 
 
     [HttpGet]
-    [Route ("employees/date/{date}")]
+    [Route ("date/{date}")]
     public async Task<List<LeaveApplication>> GetLeaveApplications(string date)
     {
         List<LeaveApplication> leaves =await _service.GetLeaveApplications(date);
@@ -96,7 +95,7 @@ public class LeavesManagementController : ControllerBase
     }
 
   
-    [HttpGet("annualavailableleaves/employee/{employeeId}/year/{year}")]
+    [HttpGet("annualavailableleaves/employees/{employeeId}/year/{year}")]
     public async Task<LeavesCount> GetAnnualAvailableLeaves(int employeeId,int roleId,int year)
     {
         // Employee employee= await _hrService.GetEmployeeById(employeeId);
@@ -105,7 +104,7 @@ public class LeavesManagementController : ControllerBase
        return await _service.GetAnnualAvailableLeaves(employeeId,roleId,year);   
     }
 
-    [HttpGet("annualconsumedleaves/employee/{employeeId}/year/{year}")]
+    [HttpGet("annualconsumedleaves/employees/{employeeId}/year/{year}")]
     public async Task<LeavesCount> GetAnnualConsumedLeaves(int employeeId,int year)
     {
         // Employee employee= await _hrService.GetEmployeeById(employeeId);
@@ -115,7 +114,7 @@ public class LeavesManagementController : ControllerBase
     }
 
  
-    [HttpGet("annualleaves/role/{roleId}/year/{year}")]
+    [HttpGet("annualleaves/roles/{roleId}/year/{year}")]
     public async Task<LeavesCount> GetAnnualLeaves(int roleId,int year)
     {
         // Employee employee= await _hrService.GetEmployeeById(employeeId);

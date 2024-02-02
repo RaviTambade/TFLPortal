@@ -16,7 +16,7 @@ public interface ITaskService
     Task<ProjectTaskCount> GetTasksCount(int projectId);
     Task<ProjectTaskCount> GetTasksCount(int projectId,int memberId);
     Task<List<ProjectTask>> GetTodaysTasks(int projectId, DateTime date);
-     Task<bool> AddTask(ProjectTask theTask);
-    Task<bool> UpdateTask(string taskStatus, int taskId);
+     Task<bool> AddTask(ProjectTask task);
+    Task<bool> UpdateTask(int taskId,string status);
     Task<bool> Delete(int taskId);
 }

@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using TFLPortal.Responses;
-using TFLPortal.Models;
-using TFLPortal.Services;
 using ProjectTask=TFLPortal.Models.Task;
 using TFLPortal.Services.Interfaces;
 namespace Intranet.Controllers;
@@ -87,10 +85,10 @@ public class TasksController : ControllerBase
 
     }
 
-    [HttpGet("from/{fromDate}/to/{toDate}")]
-    public async Task<List<ProjectTask>> GetAllTasks(DateTime fromDate,DateTime toDate)
+    [HttpGet("from/{from}/to/{to}")]
+    public async Task<List<ProjectTask>> GetAllTasks(DateTime from,DateTime to)
     {
-        List<ProjectTask> tasks = await _service.GetAllTasks(fromDate,toDate);
+        List<ProjectTask> tasks = await _service.GetAllTasks(from,to);
         return tasks;
     }
 
@@ -105,23 +103,21 @@ public class TasksController : ControllerBase
  
 
 
-   [HttpPut("{taskId}/status/{Status}")]
-    public async Task<bool> UpdateTask(string taskStatus,int taskId)
+   [HttpPut("{taskId}/status/{status}")]
+    public async Task<bool> UpdateTask(int taskId,string status)
     {
-        bool status = await _service.UpdateTask(taskStatus, taskId);
-        return status;
-
+        return await _service.UpdateTask(taskId,status);
     }
 
 
- [HttpGet("Count/{projectId}")]
+   [HttpGet("count/{projectId}")]
     public async Task<ProjectTaskCount> GetTasksCount(int projectId)
     {
         ProjectTaskCount task = await _service.GetTasksCount(projectId);
         return task;
     }
 
-    [HttpGet("Count/{projectId}/{memberId}")]
+    [HttpGet("count/{projectId}/members/{memberId}")]
     public async Task<ProjectTaskCount> GetTasksCount(int projectId,int memberId)
     {
         ProjectTaskCount task = await _service.GetTasksCount(projectId,memberId);

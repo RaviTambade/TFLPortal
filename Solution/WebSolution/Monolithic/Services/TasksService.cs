@@ -612,9 +612,9 @@ public class TaskService : ITaskService
         }
         return tasks;
     } 
-    public async Task<bool> UpdateTask(string taskStatus,int taskId)
+    public async Task<bool> UpdateTask(int taskId,string status)
     {
-        bool status = false;
+        bool updateStatus = false;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -622,27 +622,27 @@ public class TaskService : ITaskService
             string query = "Update  tasks set startdate=@startdate,status=@status where id =@taskId";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@startDate", DateTime.Now);
-            cmd.Parameters.AddWithValue("@status", taskStatus);
+            cmd.Parameters.AddWithValue("@status", status);
             cmd.Parameters.AddWithValue("@taskId",taskId );
     
             await connection.OpenAsync();
             int rowsAffected = cmd.ExecuteNonQuery();
             if (rowsAffected > 0)
             {
-                status = true;
+                updateStatus = true;
             }
             await connection.CloseAsync();
 
         }
-        catch (Exception e)
+        catch (Exception )
         {
-            throw e;
+            throw ;
         }
         finally
         {
             await connection.CloseAsync();
         }
-        return status;
+        return updateStatus;
 
     }
     public async Task<ProjectTaskCount> GetTasksCount(int projectId)
