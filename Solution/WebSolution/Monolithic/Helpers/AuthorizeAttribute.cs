@@ -7,7 +7,7 @@ namespace TFLPortal.Helpers;
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
 public class AuthorizeAttribute : Attribute, IAuthorizationFilter
 {
-    public   IList<string>  Roles { get; set; } 
+    public  string[]  Roles { get; set; } 
     public AuthorizeAttribute(params string[] roles)
     {
         Roles = roles ;
@@ -29,14 +29,14 @@ public class AuthorizeAttribute : Attribute, IAuthorizationFilter
         var userRoles = (List<string>?)context.HttpContext.Items["userRoles"];
         
         bool status = false;
-        Console.WriteLine(Roles.Count);
+        Console.WriteLine(Roles.Length);
 
-        if (Roles.Count==0 && userId is not null)
+        if (Roles.Length==0 && userId is not null)
         {
             return;
         }
 
-        if (userRoles is not null && Roles.Count>0)
+        if (userRoles is not null && Roles.Length>0)
         {
             status = Roles.Intersect(userRoles).Any();
         }
