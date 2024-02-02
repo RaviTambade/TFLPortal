@@ -1,4 +1,5 @@
 
+using System.Text;
 using MySql.Data.MySqlClient;
 using TFLPortal.Responses;
 using TFLPortal.Services.Interfaces;
@@ -19,7 +20,8 @@ public class TimesheetBIService : ITimesheetBIService
             ?? throw new ArgumentNullException("connectionString");
     }
    
-    public async Task<List<MemberUtilization>> GetTaskWorkHoursOfEmployee(int employeeId,string intervalType,int projectId)
+  
+    public async Task<List<MemberUtilization>> GetWorkUtilization(int employeeId, DateOnly from, DateOnly to, int projectId)
     {
         List<MemberUtilization> memberUtilizations = new();
 
@@ -27,12 +29,15 @@ public class TimesheetBIService : ITimesheetBIService
         connection.ConnectionString = _connectionString;
 
         string query =
-            "CALL getTaskWorkHoursOfEmployee(@employeeId,@intervalType,@projectId)";
+            "CALL getWorkUtilization(@employeeId,@fromDate,@toDate,@projectId)";
         try
         {
+            string fromDate = from.ToString("yyyy-MM-dd");
+            string toDate = to.ToString("yyyy-MM-dd");
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@employeeId", employeeId);
-            command.Parameters.AddWithValue("@intervalType", intervalType);
+            command.Parameters.AddWithValue("@fromDate", fromDate);
+            command.Parameters.AddWithValue("@toDate", toDate);
             command.Parameters.AddWithValue("@projectId", projectId);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
@@ -40,16 +45,8 @@ public class TimesheetBIService : ITimesheetBIService
             {
                 MemberUtilization memberUtilization = new MemberUtilization()
                 {
-                    Label = reader.GetString("label"),
-                    UserStory = reader.GetDouble("userstory"),
-                    Task = reader.GetDouble("task"),
-                    Bug = reader.GetDouble("bug"),
-                    Issues = reader.GetDouble("issues"),
-                    Meeting = reader.GetDouble("meeting"),
-                    Learning = reader.GetDouble("learning"),
-                    Mentoring = reader.GetDouble("mentoring"),
-                    ClientCall = reader.GetDouble("clientcall"),
-                    Other = reader.GetDouble("other")
+                    TaskType = reader.GetString("tasktype"),
+                    Hours = reader.GetDouble("hours")
                 };
                 memberUtilizations.Add(memberUtilization);
             }
@@ -65,14 +62,14 @@ public class TimesheetBIService : ITimesheetBIService
         return memberUtilizations;
     }
 
-    public async Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(int employeeId,DateOnly from,DateOnly to)
+    public async Task<List<ProjectWorkHours>> GetHoursWorkedForEachProject(int employeeId,DateOnly from,DateOnly to)
     {
         List<ProjectWorkHours> projectsHoursList = new();
 
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
 
-        string query = @"CALL getEmployeeProjectWorkHours(@employeeId,@fromDate,@toDate)";
+        string query = @"CALL getHoursWorkedForEachProject(@employeeId,@fromDate,@toDate)";
         try
         {
             string fromDate = from.ToString("yyyy-MM-dd");
@@ -105,4 +102,5 @@ public class TimesheetBIService : ITimesheetBIService
         }
         return projectsHoursList;
     }
+
 }

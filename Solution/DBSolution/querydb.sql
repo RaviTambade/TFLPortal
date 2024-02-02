@@ -205,13 +205,13 @@ SELECT * from projects where id =1;
 
 
 -- get timesheets of employee between dates
-SELECT timesheets.* , COALESCE(SUM(timesheetentries.durationinhours),0) AS time_in_hour from timesheets
+SELECT timesheets.* , COALESCE(SUM(timesheetentries.hours),0) AS time_in_hour from timesheets
 LEFT JOIN timesheetentries on timesheetentries.timesheetid=timesheets.id
-WHERE  createdby =10  AND createdon BETWEEN '2024-01-01' AND '2024-01-09' 
+WHERE  createdby =11  AND createdon BETWEEN '2024-01-01' AND '2024-01-09' 
 GROUP BY createdon;
 
 -- get timesheets for approval
-SELECT timesheets.* ,COALESCE(SUM(timesheetentries.durationinhours),0) AS totalhours  FROM timesheets
+SELECT timesheets.* ,COALESCE(SUM(timesheetentries.hours),0) AS totalhours  FROM timesheets
 INNER JOIN timesheetentries on timesheetentries.timesheetid=timesheets.id
 WHERE  status ="submitted" AND createdon BETWEEN '2024-01-01' AND '2024-01-13'
 AND  timesheets.createdby IN (
@@ -222,16 +222,18 @@ AND title='manager' ))GROUP BY createdon;
 
 
 -- get timesheet of employee by date
-SELECT *, COALESCE(SUM(timesheetentries.durationinhours),0) AS time_in_hour
+SELECT *, COALESCE(SUM(timesheetentries.hours),0) AS time_in_hour
 FROM timesheets
 LEFT JOIN timesheetentries on timesheetentries.timesheetid=timesheets.id    
-WHERE timesheets.createdon = '2024-01-12' AND timesheets.createdby = 10;
+WHERE timesheets.createdon = '2024-01-12' AND timesheets.createdby = 10
+GROUP BY timesheetid;
 
 -- get timesheet of employee by timesheetId
-SELECT timesheets.*, COALESCE(SUM(timesheetentries.durationinhours),0) AS time_in_hour
+SELECT timesheets.*, COALESCE(SUM(timesheetentries.hours),0) AS time_in_hour
 FROM timesheets
 INNER JOIN timesheetentries on timesheetentries.timesheetid=timesheets.id    
-WHERE timesheets.id = 5;
+WHERE timesheets.id = 15
+GROUP BY timesheetid;
 
 -- get timesheet entries of a timesheet
 SELECT * FROM timesheetentries

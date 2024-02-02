@@ -5,6 +5,6 @@ namespace TFLPortal.Services.Interfaces;
 
 public interface ITimesheetBIService
 {
-    Task<List<MemberUtilization>> GetTaskWorkHoursOfEmployee(int employeeId,string intervalType,int projectId);
-    Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(int employeeId,DateOnly from,DateOnly to );
+    Task<List<MemberUtilization>> GetWorkUtilization(int employeeId,DateOnly from, DateOnly to,int projectId);
+    Task<List<ProjectWorkHours>> GetHoursWorkedForEachProject(int employeeId,DateOnly from,DateOnly to );
 }   

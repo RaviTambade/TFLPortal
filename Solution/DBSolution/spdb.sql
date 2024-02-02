@@ -1,5 +1,5 @@
 
--- Active: 1694968636816@@127.0.0.1@3306@tflportal
+-- Active: 1696576841746@@127.0.0.1@3306@tflportal
 
 DROP PROCEDURE IF EXISTS getWorkUtilization;
 -- get task type wise work hours of an employee 
@@ -8,7 +8,7 @@ CREATE PROCEDURE getWorkUtilization(IN pempId INT,IN pfromDate DATETIME,ptoDate 
 BEGIN
 
    IF pProjectId =0 THEN
-      SELECT   tasks.tasktype , SUM(timesheetentries.durationinhours)
+      SELECT   tasks.tasktype , SUM(timesheetentries.hours) AS hours
       FROM timesheetentries
       INNER JOIN timesheets ON timesheetentries.timesheetid=timesheets.id
       INNER JOIN tasks ON  timesheetentries.taskid=tasks.id
@@ -17,7 +17,7 @@ BEGIN
       GROUP BY tasks.tasktype;
 
    ELSEIF  pProjectId <> 0 THEN
-      SELECT  sprints.projectid,SUM(timesheetentries.durationinhours)
+      SELECT  tasks.tasktype,SUM(timesheetentries.hours) AS hours
       FROM timesheetentries
       INNER JOIN timesheets ON timesheetentries.timesheetid=timesheets.id
       INNER JOIN tasks ON  timesheetentries.taskid=tasks.id
@@ -39,7 +39,7 @@ DROP PROCEDURE IF EXISTS getHoursWorkedForEachProject;
 CREATE procedure getHoursWorkedForEachProject(IN pempId INT,IN pfromDate VARCHAR (20),IN ptoDate VARCHAR (20))
  BEGIN
    SELECT projects.title AS projectname,projects.id as projectid,
-   SUM(timesheetentries.durationinhours) AS hours 
+   SUM(timesheetentries.hours) AS hours 
    FROM timesheetentries
    INNER JOIN timesheets ON timesheetentries.timesheetid=timesheets.id
    INNER JOIN tasks ON  timesheetentries.taskid=tasks.id

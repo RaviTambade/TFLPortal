@@ -26,7 +26,7 @@ public class TimesheetService : ITimesheetService
         try
         {
             string query =
-              @"SELECT timesheets.* , COALESCE(SUM(timesheetentries.durationinhours),0) AS totalhours from timesheets
+              @"SELECT timesheets.* , COALESCE(SUM(timesheetentries.hours),0) AS totalhours from timesheets
                 LEFT JOIN timesheetentries on timesheetentries.timesheetid=timesheets.id
                 WHERE  createdby =@employeeId AND createdon BETWEEN @fromDate AND @toDate 
                 GROUP BY createdon";
@@ -75,7 +75,7 @@ public class TimesheetService : ITimesheetService
             string fromDate = from.ToString("yyyy-MM-dd");
             string toDate = to.ToString("yyyy-MM-dd");
             string query =
-                @"SELECT timesheets.* ,COALESCE(SUM(timesheetentries.durationinhours),0) AS totalhours  FROM timesheets
+                @"SELECT timesheets.* ,COALESCE(SUM(timesheetentries.hours),0) AS totalhours  FROM timesheets
                 INNER JOIN timesheetentries on timesheetentries.timesheetid=timesheets.id
                 WHERE  status ='submitted' AND createdon BETWEEN @fromDate AND @toDate
                 AND  timesheets.createdby IN (
@@ -123,17 +123,18 @@ public class TimesheetService : ITimesheetService
         try
         {
             string query =
-                @"SELECT *, COALESCE(SUM(timesheetentries.durationinhours),0) AS totalhours
+                @"SELECT *, COALESCE(SUM(timesheetentries.hours),0) AS totalhours
                 FROM timesheets
                 LEFT JOIN timesheetentries on timesheetentries.timesheetid=timesheets.id    
-                WHERE timesheets.createdon = @timesheetDate AND timesheets.createdby = @employeeId";
+                WHERE timesheets.createdon = @timesheetDate AND timesheets.createdby = @employeeId
+                GROUP BY timesheetid";
         MySqlCommand command = new MySqlCommand(query, connection);
             string formatedDate = date.ToString("yyyy-MM-dd");
             command.Parameters.AddWithValue("@timesheetDate", formatedDate);
             command.Parameters.AddWithValue("@employeeId", employeeId);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
-            if (await reader.ReadAsync() && reader["id"] != DBNull.Value)
+            if (await reader.ReadAsync() )
             {
                 timesheet = new Timesheet()
                 {
@@ -166,15 +167,15 @@ public class TimesheetService : ITimesheetService
         try
         {
             string query =
-                @"SELECT timesheets.*, COALESCE(SUM(timesheetentries.durationinhours),0) AS totalhours
+                @"SELECT timesheets.*, COALESCE(SUM(timesheetentries.hours),0) AS totalhours
                   FROM timesheets
                   INNER JOIN timesheetentries on timesheetentries.timesheetid=timesheets.id    
-                  WHERE timesheets.id = @timesheetId";
+                  WHERE timesheets.id = @timesheetId GROUP BY timesheetid";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@timesheetId", timesheetId);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
-            if (await reader.ReadAsync() && reader["id"] != DBNull.Value)
+            if (await reader.ReadAsync() )
             {
                 timesheet = new Timesheet()
                 {
@@ -222,7 +223,7 @@ public class TimesheetService : ITimesheetService
                     ToTime = TimeOnly.Parse(reader.GetTimeSpan("totime").ToString()),
                     TaskId = reader.GetInt32("taskid"),
                     TimesheetId = reader.GetInt32("timesheetid"),
-                    DurationInHours = reader.GetDouble("durationinhours")
+                    Hours = reader.GetDouble("hours")
                 };
                 timesheetEntries.Add(timesheetEntry);
             }
@@ -262,7 +263,7 @@ public class TimesheetService : ITimesheetService
                     ToTime = TimeOnly.Parse(reader.GetTimeSpan("totime").ToString()),
                     TaskId = reader.GetInt32("taskid"),
                     TimesheetId = reader.GetInt32("timesheetid"),
-                    DurationInHours = reader.GetDouble("durationinhours")
+                    Hours = reader.GetDouble("hours")
                 };
             }
             await reader.CloseAsync();

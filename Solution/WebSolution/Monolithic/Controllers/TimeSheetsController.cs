@@ -65,16 +65,18 @@ public class TimesheetsController : ControllerBase
         return Ok(entry);
     }
 
-    [HttpGet("memberutilization/employees/{employeeId}/interval/{intervalType}/projects/{projectId}")]
-    public async Task<List<MemberUtilization>> GetTaskWorkHoursOfEmployee(int employeeId,string intervalType,int projectId)
-    {
-        return await _biService.GetTaskWorkHoursOfEmployee(employeeId, intervalType, projectId);
-    }
+ 
+     [HttpGet("memberutilization/employees/{employeeId}/from/{from}/to/{to}/projects/{projectId}")]
+     public async  Task<List<MemberUtilization>> GetWorkUtilization(int employeeId,DateOnly from, DateOnly to,int projectId)
+     {
+        return await _biService.GetWorkUtilization(employeeId, from,to, projectId);
+     }
 
-    [HttpGet("projects/workinghours/employees/{employeeId}/from/{from}/to/{to}")]
-    public async Task<List<ProjectWorkHours>> GetProjectWiseTimeSpentByEmployee(int employeeId, DateOnly from, DateOnly to )
+
+    [HttpGet("workinghours/employees/{employeeId}/from/{from}/to/{to}")]
+    public async Task<List<ProjectWorkHours>> GetHoursWorkedForEachProject(int employeeId, DateOnly from, DateOnly to )
     {
-        return await _biService.GetProjectWiseTimeSpentByEmployee(employeeId,from,to);
+        return await _biService.GetHoursWorkedForEachProject(employeeId,from,to);
     }
 
     [HttpPost]

@@ -1,4 +1,4 @@
--- Active: 1694968636816@@127.0.0.1@3306@tflportal
+-- Active: 1696576841746@@127.0.0.1@3306@tflportal
     DROP DATABASE IF EXISTS TFLPortal;
     CREATE DATABASE TFLPortal;
     USE TFLPortal;
@@ -93,7 +93,7 @@
         totime TIME,
         timesheetid INT NOT NULL,
         taskid  INT,
-        durationinhours DECIMAL(10,2) as ((( TIME_TO_SEC(TIMEDIFF(totime,fromtime)))/3600)),
+        hours DECIMAL(10,2) as ((( TIME_TO_SEC(TIMEDIFF(totime,fromtime)))/3600)),
         CONSTRAINT fk_tasks_timesheetentries_taskid FOREIGN KEY (taskid) REFERENCES tasks(id) ON UPDATE CASCADE  ON DELETE CASCADE,
         CONSTRAINT fk_timesheets_timesheetentries_timesheetid FOREIGN KEY(timesheetid) REFERENCES timesheets(id) ON UPDATE CASCADE ON DELETE CASCADE
     );

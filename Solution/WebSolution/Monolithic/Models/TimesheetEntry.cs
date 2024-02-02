@@ -11,6 +11,6 @@ public class TimesheetEntry
    public int TimesheetId { get; set; }
    public int TaskId { get; set; } 
 
-   public double DurationInHours {get;set;}
+   public double Hours {get;set;}
    
 }
