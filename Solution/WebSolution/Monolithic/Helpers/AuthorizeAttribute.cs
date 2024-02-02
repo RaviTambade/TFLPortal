@@ -7,15 +7,12 @@ namespace TFLPortal.Helpers;
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
 public class AuthorizeAttribute : Attribute, IAuthorizationFilter
 {
-    public string? Roles { get; set; }
-
-    public AuthorizeAttribute(string? roles)
+    public   IList<string>  Roles { get; set; } 
+    public AuthorizeAttribute(params string[] roles)
     {
-        Roles = roles;
+        Roles = roles ;
     }
-
-    public AuthorizeAttribute() { }
-
+    
     public void OnAuthorization(AuthorizationFilterContext context)
     {
         var allowAnonymous = context.ActionDescriptor.EndpointMetadata
@@ -26,22 +23,24 @@ public class AuthorizeAttribute : Attribute, IAuthorizationFilter
         {
             return;
         }
+        
 
         string? userId = (string?)context.HttpContext.Items["userId"];
         var userRoles = (List<string>?)context.HttpContext.Items["userRoles"];
         
         bool status = false;
+        Console.WriteLine(Roles.Count);
 
-        if (Roles is null && userId is not null)
+        if (Roles.Count==0 && userId is not null)
         {
             return;
         }
 
-        if (userRoles is not null && Roles is not null)
+        if (userRoles is not null && Roles.Count>0)
         {
-            List<string> requiredRoles = Roles.Split(',').ToList();
-            status = requiredRoles.Intersect(userRoles).Any();
+            status = Roles.Intersect(userRoles).Any();
         }
+
 
         if (status == false || userId is null)
         {
