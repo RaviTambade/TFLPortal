@@ -63,7 +63,7 @@ public class LeaveService : ILeaveService
         return leaveApplications;
     }
 
-     public async Task<List<LeaveAllocation>> GetLeaveAllocation()
+     public async Task<List<LeaveAllocation>> GetLeaveAllocations()
     {
         List<LeaveAllocation> leaves = new List<LeaveAllocation>();
         MySqlConnection connection = new MySqlConnection();
@@ -746,7 +746,7 @@ public class LeaveService : ILeaveService
         return status;
     }
 
-    public async Task<bool> UpdateLeaveMaster(LeaveAllocation leaveAllocation)
+    public async Task<bool> UpdateLeaveAllocation(LeaveAllocation leaveAllocation)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
@@ -764,35 +764,6 @@ public class LeaveService : ILeaveService
             command.Parameters.AddWithValue("@financialyear", leaveAllocation.Year);
             await connection.OpenAsync();
             int rowsAffected = command.ExecuteNonQuery();
-            if (rowsAffected > 0)
-            {
-                status = true;
-            }
-            await connection.CloseAsync();
-        }
-        catch (Exception e)
-        {
-            throw e;
-        }
-        finally
-        {
-            await connection.CloseAsync();
-        }
-        return status;
-    }
-    public async Task<bool> UpdateLeaveApplication(int leaveId ,string leaveStatus)
-    {
-        bool status = false;
-        MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _connectionString;
-        try
-        {
-            string query = "Update leaveapplications set status=@status where id =@Id";
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@Id", leaveId);
-            cmd.Parameters.AddWithValue("@status",leaveStatus);
-            await connection.OpenAsync();
-            int rowsAffected = cmd.ExecuteNonQuery();
             if (rowsAffected > 0)
             {
                 status = true;

@@ -1,4 +1,3 @@
-
 using TFLPortal.Models;
 using TFLPortal.Responses;
 
@@ -21,15 +20,13 @@ public interface ILeaveService
     Task<LeavesCount> GetAnnualConsumedLeaves(int employeeId, int year);
     Task<LeavesCount> GetAnnualLeaves(int roleId, int year);
 
-    Task<List<LeaveAllocation>> GetLeaveAllocation();
+    Task<List<LeaveAllocation>> GetLeaveAllocations();
     Task<LeaveAllocation> GetRoleLeavesDetails(int id);
 
     Task<bool> AddNewLeaveApplication(LeaveApplication employeeLeave);
     Task<bool> AddNewLeaveAllocation(LeaveAllocation roleLeaveCount);
     Task<bool> Update(LeaveApplication leaveApplication);
-    Task<bool> UpdateLeaveMaster(LeaveAllocation roleLeaveCount);
-
-    Task<bool> UpdateLeaveApplication(int leaveId,string leaveStatus);
+    Task<bool> UpdateLeaveAllocation(LeaveAllocation roleLeaveCount);
     Task<bool> Delete(int leaveId);
     Task<bool> DeleteLeaveMaster(int id);
 }
