@@ -18,6 +18,9 @@ public class ProjectAllocationsController : ControllerBase
         _service = service;
     }
 
+
+
+    [Authorize(RoleTypes.ProjectManager)]
     [HttpPost]
     public async Task<bool> Assign(Member member)
     {
@@ -25,6 +28,8 @@ public class ProjectAllocationsController : ControllerBase
         return status;
     }
 
+
+    [Authorize(RoleTypes.ProjectManager)]
     [HttpPut]
     public async Task<bool> Release(Member member)
     {
@@ -32,6 +37,8 @@ public class ProjectAllocationsController : ControllerBase
         return status;
     }
 
+
+    [Authorize(RoleTypes.ProjectManager)]
     [HttpGet("projects/{projectId}")]
     public async Task<List<Member>> GetProjectMembers(int projectId)
     {

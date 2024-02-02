@@ -17,8 +17,9 @@ public class ProjectsController : ControllerBase
 
 
     
-    //http://localhost:8989/api/projects
+    [Authorize(RoleTypes.ProjectManager)]
     [HttpGet]
+    
     public async Task<List<Project>> GetAllProjects()
     {
         List<Project> projects = await _service.GetAllProjects();
@@ -26,7 +27,7 @@ public class ProjectsController : ControllerBase
     }
 
     
-    //http://localhost:8989/api/projects/project/453
+    [Authorize(RoleTypes.ProjectManager,RoleTypes.Employee)]
     [HttpGet("{projectId}")]
     public async Task<Project> GetProject(int projectId)
     {
@@ -35,7 +36,7 @@ public class ProjectsController : ControllerBase
     }
 
    
-    
+    [Authorize(RoleTypes.ProjectManager,RoleTypes.Employee)]
     [HttpGet("members/{memberId}")]
     public async Task<List<Project>> GetAllCurrentProjects(int memberId)
     {
@@ -45,7 +46,7 @@ public class ProjectsController : ControllerBase
 
 
 
-    // http://localhost:8989/api/projects
+    [Authorize(RoleTypes.ProjectManager)]
     [HttpPost]
     public async Task<bool> AddProject(Project project)
     {
