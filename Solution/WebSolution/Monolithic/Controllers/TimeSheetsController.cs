@@ -19,13 +19,14 @@ public class TimesheetsController : ControllerBase
         _biService=bIService;
     }
 
-    [Authorize("Employee")]
+    [Authorize(RoleTypes.Employee+" "+RoleTypes.Director+" "+RoleTypes.HRManager+" "+RoleTypes.ProjectManager)]
     [HttpGet("employees/{employeeId}/from/{from}/to/{to}")]
     public async Task<List<Timesheet>> GetTimesheets(int employeeId,DateOnly from,DateOnly to)
     {
         return await _timesheetService.GetTimesheets(employeeId, from, to);
     }
 
+    [Authorize(RoleTypes.Employee+" "+RoleTypes.Director+" "+RoleTypes.HRManager+" "+RoleTypes.ProjectManager)]
     [HttpGet("employees/{employeeId}/date/{date}")]
     public async Task<Timesheet> GetTimesheet(int employeeId, DateOnly date)
     {
