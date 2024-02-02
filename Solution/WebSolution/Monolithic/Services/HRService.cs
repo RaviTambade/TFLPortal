@@ -18,9 +18,6 @@ public class HRService : IHRService
             ?? throw new ArgumentNullException("connectionString");
     }
 
-    //Services------- tables
-
-    //HR Service-------- emplyoees-----------------
     public async Task<Employee> GetEmployeeById(int employeeId)
         {
             Employee employee = null;
@@ -29,9 +26,9 @@ public class HRService : IHRService
             try
             {
                 string query =
-                    "select * from employees where id=@employeeId";
+                    "select * from employees where id=@Id";
                 MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@employeeId", employeeId);
+                command.Parameters.AddWithValue("@Id", employeeId);
                 await connection.OpenAsync();
                 MySqlDataReader reader = command.ExecuteReader();
                 if (await reader.ReadAsync())
@@ -39,8 +36,7 @@ public class HRService : IHRService
                     employee = new Employee
                     {
                         Id = reader.GetInt32("id"),
-                        UserId = reader.GetInt32("userid"),
-                        HiredOn = reader.GetDateTime("hiredate"),
+                        HiredOn = reader.GetDateTime("hiredon"),
                         ReportingId = reader.GetInt32("reportingid"),
                     };
                 }
@@ -82,8 +78,7 @@ public class HRService : IHRService
                     Employee employee = new Employee
                     {
                         Id = reader.GetInt32("id"),
-                        UserId = reader.GetInt32("userid"),
-                        HiredOn = reader.GetDateTime("hiredate"),
+                        HiredOn = reader.GetDateTime("hiredon"),
                         ReportingId = reader.GetInt32("reportingid"),
                     };
                 employees.Add(employee);
@@ -117,8 +112,7 @@ public class HRService : IHRService
                     Employee employee = new Employee
                     {
                         Id = reader.GetInt32("id"),
-                        UserId = reader.GetInt32("userid"),
-                        HiredOn = reader.GetDateTime("hiredate"),
+                        HiredOn = reader.GetDateTime("hiredon"),
                         ReportingId = reader.GetInt32("reportingid"),
                     };
                     employees.Add(employee);
@@ -134,41 +128,6 @@ public class HRService : IHRService
                 await connection.CloseAsync();
             }
             return employees;
-        }
-    public async Task<Employee> GetEmployeeByUserId(int userId)
-        {
-            Employee employee = null;
-            MySqlConnection connection = new MySqlConnection();
-            connection.ConnectionString = _connectionString;
-            try
-            {
-                string query =
-                    "select * from employees where userid=@userId";
-                MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@userId", userId);
-                await connection.OpenAsync();
-                MySqlDataReader reader = command.ExecuteReader();
-                if (await reader.ReadAsync())
-                {
-                    employee = new Employee
-                    {
-                        Id = reader.GetInt32("id"),
-                        UserId = reader.GetInt32("userid"),
-                        HiredOn = reader.GetDateTime("hiredate"),
-                        ReportingId = reader.GetInt32("reportingid"),
-                    };
-                }
-                await reader.CloseAsync();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            finally
-            {
-                await connection.CloseAsync();
-            }
-            return employee;
         }
     
     public async Task<List<Employee>> GetEmployeesOnBench()
@@ -188,8 +147,7 @@ public class HRService : IHRService
                 Employee employee = new Employee
                 {
                     Id = reader.GetInt32("id"),
-                    UserId = reader.GetInt32("userid"),
-                    HiredOn = reader.GetDateTime("hiredate"),
+                    HiredOn = reader.GetDateTime("hiredon"),
                     ReportingId = reader.GetInt32("reportingid"),
                 };
                 employees.Add(employee);
@@ -206,12 +164,7 @@ public class HRService : IHRService
         }
         return employees;
     }
-
-
-    //get all employees who are on bench
-
-    
-    }
+}
    
    
    

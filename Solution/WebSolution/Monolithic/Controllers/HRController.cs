@@ -81,12 +81,6 @@ public class HRController : ControllerBase
     //     return transactionId > 0;
     // }
 
-    [HttpGet("users/{userId}")]
-    public async Task<Employee> GetEmployee(int userId)
-    {
-        Employee employee = await _service.GetEmployeeByUserId(userId);
-        return employee;
-    }
 
     [HttpGet("salaries/unpaid/month/{month}/year/{year}")]
     public async Task<List<Employee>> GetUnPaidSalaries(int month,int year)
