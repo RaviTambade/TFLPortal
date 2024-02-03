@@ -9,6 +9,8 @@ using TFLPortal.Services.TimesheetMgmt.Analytics;
 using TFLPortal.Services.TimesheetMgmt.Operations;
 using TFLPortal.Services.LeaveMgmt.Analytics;
 using TFLPortal.Services.LeaveMgmt.Operations;
+using TFLPortal.Services.HRMgmt.Analytics;
+// using TFLPortal.Services.HRMgmt.Operations;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +28,8 @@ builder.Services.AddScoped<IPayrollAnalyticsService, PayrollAnalyticsService>();
 builder.Services.AddScoped<IPayrollOperationsService, PayrollOperationsService>();
 builder.Services.AddScoped<IProjectAnalyticsService,  ProjectAnalyticsService>();
 builder.Services.AddScoped<IProjectOperationsService, ProjectOperationsService>();
+builder.Services.AddScoped<IHRAnalyticsService,  HRAnalyticsService>();
+// builder.Services.AddScoped<IHROperationsService, HROperationsService>();
 
 
 builder.Services.AddOptions<JwtSettings>().BindConfiguration("JWT")

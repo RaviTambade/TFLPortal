@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using TFLPortal.Responses;
 using TFLPortal.Models;
-using TFLPortal.Services;
 using TFLPortal.Helpers;
-
+using TFLPortal.Services.HRMgmt.Analytics;
 
 
 namespace Transflower.TFLPortal.Intranet.Controllers;
@@ -12,13 +11,13 @@ namespace Transflower.TFLPortal.Intranet.Controllers;
 [Route("/api/hr/employees")]
 public class HRController : ControllerBase
 {
-    private readonly IHRService _service;
-    private readonly IPayrollService _payrollService;
+    private readonly IHRAnalyticsService _hrService;
 
-    public HRController(IHRService service,IPayrollService payrollService)
+
+    public HRController(IHRAnalyticsService hrService)
     {
-        _service = service;
-        _payrollService=payrollService;
+        _hrService = hrService;
+
     }
 
 
@@ -26,23 +25,22 @@ public class HRController : ControllerBase
     [HttpGet("salaries/unpaid/month/{month}/year/{year}")]
     public async Task<List<Employee>> GetUnPaidSalaries(int month,int year)
     {
-        List<Employee> employees=await _service.GetUnPaidSalaries(month,year);
+        List<Employee> employees=await _hrService.GetUnPaidSalaries(month,year);
         return employees;
     }
 
     [Authorize(RoleTypes.HRManager)]
     [HttpGet("{id}")]
-    public async Task<Employee> GetEmployeeById(int id)
+    public async Task<Employee> GetEmployee(int id)
     {
-        Employee employee = await _service.GetEmployeeById(id);
+        Employee employee = await _hrService.GetEmployee(id);
         return employee;
     }
 
     [Authorize(RoleTypes.HRManager)]
-   [HttpGet("employeeIds/{employeeIds}")]
-    public async Task<List<Employee>> GetEmployees(string employeeIds)
+    public async Task<List<Employee>> GetEmployeesOnBench()
     {
-        List<Employee> employees = await _service.GetEmployees(employeeIds);
+        List<Employee> employees = await _hrService.GetEmployeesOnBench();
         return employees;
     } 
 }
