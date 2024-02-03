@@ -93,7 +93,6 @@ public class PayrollController : ControllerBase
       }
 
     [Authorize(RoleTypes.HRManager)]
-      //"employees/salary"
     [HttpPost("employees/salarystructure")]
     public async Task<bool> AddSalaryStructure(SalaryStructure salary)
     {

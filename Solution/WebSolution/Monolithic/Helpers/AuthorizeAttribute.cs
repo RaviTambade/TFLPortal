@@ -41,7 +41,6 @@ public class AuthorizeAttribute : Attribute, IAuthorizationFilter
             status = Roles.Intersect(userRoles).Any();
         }
 
-
         if (status == false || userId is null)
         {
             context.Result = new JsonResult(new { message = "Unauthorized" })
