@@ -81,7 +81,7 @@ public class HRController : ControllerBase
     //     return transactionId > 0;
     // }
 
-
+    [Authorize()]
     [HttpGet("salaries/unpaid/month/{month}/year/{year}")]
     public async Task<List<Employee>> GetUnPaidSalaries(int month,int year)
     {
