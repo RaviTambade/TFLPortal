@@ -1,7 +1,11 @@
+using MySql.Data.MySqlClient;
+using TFLPortal.Models;
+using ProjectTask=TFLPortal.Models.Task;
 
-namespace Intranet.Services.ProjectMgmt.Analytics;
 
-public class ProjectAnalyticsService
+namespace TFLPortal.Services.ProjectMgmt.Analytics;
+
+public class ProjectAnalyticsService:IProjectAnalyticsService
 {
 
 
