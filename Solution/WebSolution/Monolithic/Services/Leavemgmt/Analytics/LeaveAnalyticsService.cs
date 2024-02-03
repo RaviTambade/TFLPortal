@@ -1,3 +1,4 @@
+using System.Data;
 using MySql.Data.MySqlClient;
 using TFLPortal.Models;
 using TFLPortal.Responses;
@@ -501,9 +502,16 @@ public class LeaveAnalyticsService : ILeaveAnalyticsService
 
                 MonthlyLeaves leave = new MonthlyLeaves()
                 {
-                    LeaveType=leaveType,
-                    Count = consumedLeaves,
-                    Month = month
+                 Month = month,
+                 Leaves  = new List<LeaveCount>()
+                {
+                    new LeaveCount{
+                        LeaveType=leaveType,
+                        Count=consumedLeaves
+                    }
+                },
+            
+                   
                 };
                 leaves.Add(leave);
             }
@@ -527,9 +535,10 @@ public class LeaveAnalyticsService : ILeaveAnalyticsService
         con.ConnectionString = _connectionString;
         try
         {
-            await con.OpenAsync();
+           
 
-            MySqlCommand cmd = new MySqlCommand(con);
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection=con;
             cmd.CommandText="spgetLeavesAvailable";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@pempId", employeeId);
@@ -546,7 +555,7 @@ public class LeaveAnalyticsService : ILeaveAnalyticsService
 
             cmd.Parameters.AddWithValue("@punpaid", MySqlDbType.Int32);
             cmd.Parameters["@punpaid"].Direction = ParameterDirection.Output;
-
+            await con.OpenAsync();
             await cmd.ExecuteNonQueryAsync();
 
             int sickCount = Convert.ToInt32(cmd.Parameters["@psick"].Value);
@@ -598,7 +607,8 @@ public class LeaveAnalyticsService : ILeaveAnalyticsService
         try
         {
             await con.OpenAsync();
-            MySqlCommand cmd = new MySqlCommand(con);
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection=con;
             cmd.CommandText="spgetConsumedLeaves";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@pempId", employeeId);
@@ -625,7 +635,7 @@ public class LeaveAnalyticsService : ILeaveAnalyticsService
             leaves = new AnnualLeaves()
             {
                 EmployeeId=employeeId,
-                leaves =new List<LeaveCount>()
+                Leaves =new List<LeaveCount>()
                 {
                     new LeaveCount{
                         LeaveType="sick",
@@ -643,8 +653,9 @@ public class LeaveAnalyticsService : ILeaveAnalyticsService
                         LeaveType="unpaid",
                         Count=unPaidCount
                     }
-               };
-            }
+               }
+            };
+        }
         catch (Exception)
         {
             throw;
@@ -654,11 +665,11 @@ public class LeaveAnalyticsService : ILeaveAnalyticsService
             await con.CloseAsync();
         }
         return leaves;
-    }
+        }
 
-    public async Task<AnnualLeaves> GetAnnualLeaves(int roleId, int year)
+    public async Task<List<LeaveCount>> GetAnnualLeaves(int roleId, int year)
     {
-        AnnualLeaves leave = null;
+       List<LeaveCount> leaves = new List<LeaveCount>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -675,18 +686,26 @@ public class LeaveAnalyticsService : ILeaveAnalyticsService
                 int sick = int.Parse(reader["sick"].ToString());
                 int casual = int.Parse(reader["casual"].ToString());
                 int paid = int.Parse(reader["paid"].ToString());
-                int unpaid = int.Parse(reader["unpaid"].ToString());
-
-                leave = new AnnualLeaves()
-                {
-                    Sick = sick,
-                    Casual = casual,
-                    Paid = paid,
-                    Unpaid = unpaid
-                };
-            }
+                int unPaid = int.Parse(reader["unpaid"].ToString());
+              leaves.Add(new LeaveCount(){
+                LeaveType="sick",
+                Count=sick
+              });
+              leaves.Add(new LeaveCount(){
+                LeaveType="casual",
+                Count=casual
+              });
+              leaves.Add(new LeaveCount(){
+                LeaveType="paid",
+                Count=paid
+              });
+              leaves.Add(new LeaveCount(){
+                LeaveType="unpaid",
+                Count=unPaid
+              });
+             };
             await reader.CloseAsync();
-        }
+            }
         catch (Exception)
         {
             throw;
@@ -695,6 +714,6 @@ public class LeaveAnalyticsService : ILeaveAnalyticsService
         {
             await connection.CloseAsync();
         }
-        return leave;
+        return leaves;
     }
 }

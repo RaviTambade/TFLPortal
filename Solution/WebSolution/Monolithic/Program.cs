@@ -1,6 +1,4 @@
 using TFLPortal.Helpers;
-using TFLPortal.Services;
-using TFLPortal.Services.Interfaces;
 using TFLPortal.Services.PayrollMgmt.Analytics;
 using TFLPortal.Services.PayrollMgmt.Operations;
 using TFLPortal.Services.ProjectMgmt.Analytics;
@@ -11,7 +9,6 @@ using TFLPortal.Services.TimesheetMgmt.Analytics;
 using TFLPortal.Services.TimesheetMgmt.Operations;
 using TFLPortal.Services.LeaveMgmt.Analytics;
 using TFLPortal.Services.LeaveMgmt.Operations;
-using Transflower.TFLPortal.TFLSAL.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,18 +16,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddCors();
-builder.Services.AddScoped<IProjectAllocationService, ProjectAllocationService>();
-builder.Services.AddScoped<IPayrollService, PayrollService>();
-builder.Services.AddScoped<ILeaveService, LeaveService>();
-builder.Services.AddScoped<IHRService, HRService>();
 builder.Services.AddScoped<ITaskAnalyticsService, TaskAnalyticsService>();
 builder.Services.AddScoped<ITaskOperationsService, TaskOperationsService>();
 builder.Services.AddScoped<ITimesheetAnalyticsService, TimesheetAnalyticsService>();
 builder.Services.AddScoped<ITimesheetOperationsService, TimesheetOperationsService>();
 builder.Services.AddScoped<ILeaveAnalyticsService, LeaveAnalyticsService>();
 builder.Services.AddScoped<ILeaveOperationsService, LeaveOperationsService>();
-builder.Services.AddScoped<ITaskService, TaskService>();
-builder.Services.AddScoped<ISprintService, SprintService>();
 builder.Services.AddScoped<IPayrollAnalyticsService, PayrollAnalyticsService>();
 builder.Services.AddScoped<IPayrollOperationsService, PayrollOperationsService>();
 builder.Services.AddScoped<IProjectAnalyticsService,  ProjectAnalyticsService>();

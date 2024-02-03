@@ -14,7 +14,7 @@ public class LeavesManagementController : ControllerBase
     private readonly ILeaveAnalyticsService _analyticService;  
     public LeavesManagementController(ILeaveOperationsService _operationService,ILeaveAnalyticsService _analyticService)
     {
-        _operationService = _analyticService;
+        _operationService = _operationService;
         _analyticService=_analyticService;
     }
 
@@ -97,7 +97,7 @@ public class LeavesManagementController : ControllerBase
     [Authorize(RoleTypes.HRManager,RoleTypes.ProjectManager,RoleTypes.Employee,RoleTypes.Director)]
     [HttpGet]
     [Route ("consumed/employees/{employeeId}/year/{year}")]
-    public async Task<MonthlyLeaves> GetAnnualLeavesCount(int employeeId,int year)
+    public async Task<List<MonthlyLeaves>> GetAnnualLeavesCount(int employeeId,int year)
     {
       return await _analyticService.GetAnnualLeavesCount(employeeId,year);
     }
@@ -113,19 +113,15 @@ public class LeavesManagementController : ControllerBase
     [HttpGet("annualconsumedleaves/employees/{employeeId}/year/{year}")]
     public async Task<AnnualLeaves> GetAnnualConsumedLeaves(int employeeId,int year)
     {
-        // Employee employee= await _hrService.GetEmployeeById(employeeId);
-        // List<Role> roles= await _apiService.GetRoleOfUser(employee.UserId);
-        // int roleId=roles.FirstOrDefault().Id;
+        
        return await _analyticService.GetAnnualConsumedLeaves(employeeId,year);   
     }
 
     [Authorize(RoleTypes.HRManager,RoleTypes.ProjectManager,RoleTypes.Employee)]
     [HttpGet("annualleaves/roles/{roleId}/year/{year}")]
-    public async Task<AnnualLeaves> GetAnnualLeaves(int roleId,int year)
+    public async Task<List<LeaveCount>> GetAnnualLeaves(int roleId,int year)
     {
-        // Employee employee= await _hrService.GetEmployeeById(employeeId);
-        // List<Role> roles= await _apiService.GetRoleOfUser(employee.UserId);
-        // int roleId=roles.FirstOrDefault().Id;
+    
        return await _analyticService.GetAnnualLeaves(roleId,year);   
     }
  

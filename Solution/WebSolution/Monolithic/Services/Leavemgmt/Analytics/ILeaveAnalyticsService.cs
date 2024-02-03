@@ -17,7 +17,7 @@ public interface ILeaveAnalyticsService
 
     Task<AnnualLeaves> GetAnnualAvailableLeaves(int employeeId, int roleId, int year);
     Task<AnnualLeaves> GetAnnualConsumedLeaves(int employeeId, int year);
-    Task<AnnualLeaves> GetAnnualLeaves(int roleId, int year);
+    Task<List<LeaveCount>> GetAnnualLeaves(int roleId, int year);
 
     Task<List<LeaveAllocation>> GetLeaveAllocations();
     Task<LeaveAllocation> GetRoleLeavesDetails(int id);
