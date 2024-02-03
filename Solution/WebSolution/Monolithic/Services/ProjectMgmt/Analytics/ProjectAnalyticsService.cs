@@ -34,7 +34,6 @@ public class ProjectAnalyticsService:IProjectAnalyticsService
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
                 string description = reader["description"].ToString();
-                int managerId = int.Parse(reader["managerid"].ToString());
                 string status = reader["status"].ToString();
                 DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime enddate = DateTime.Parse(reader["enddate"].ToString());
@@ -46,8 +45,7 @@ public class ProjectAnalyticsService:IProjectAnalyticsService
                     Description = description,
                     Status = status,
                     StartDate = startdate,
-                    EndDate = enddate,
-                    ManagerId = managerId
+                    EndDate = enddate
                 };
                 projects.Add(project);
             }
@@ -83,7 +81,6 @@ public class ProjectAnalyticsService:IProjectAnalyticsService
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
                 string description = reader["description"].ToString();
-                int managerId = int.Parse(reader["managerid"].ToString());
                 string status = reader["status"].ToString();
                 DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime enddate = DateTime.Parse(reader["enddate"].ToString());
@@ -95,8 +92,7 @@ public class ProjectAnalyticsService:IProjectAnalyticsService
                     Description = description,
                     Status = status,
                     StartDate = startdate,
-                    EndDate = enddate,
-                    ManagerId = managerId
+                    EndDate = enddate
                 };
                 projects.Add(project);
             }
@@ -132,7 +128,6 @@ public class ProjectAnalyticsService:IProjectAnalyticsService
                 int id = int.Parse(reader["id"].ToString());
                 string title = reader["title"].ToString();
                 string description = reader["description"].ToString();
-                int managerId = int.Parse(reader["managerid"].ToString());
                 string status = reader["status"].ToString();
                 DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime enddate = DateTime.Parse(reader["enddate"].ToString());
@@ -144,8 +139,7 @@ public class ProjectAnalyticsService:IProjectAnalyticsService
                     Description = description,
                     Status = status,
                     StartDate = startdate,
-                    EndDate = enddate,
-                    ManagerId = managerId
+                    EndDate = enddate
                 };
                 
             }

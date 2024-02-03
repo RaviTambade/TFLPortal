@@ -32,7 +32,6 @@ public class ProjectOperationsService:IProjectOperationsService
             command.Parameters.AddWithValue("@startdate", project.StartDate);
             command.Parameters.AddWithValue("@enddate", project.EndDate);
             command.Parameters.AddWithValue("@description", project.Description);
-            command.Parameters.AddWithValue("@managerid", project.ManagerId);
             command.Parameters.AddWithValue("@status", project.Status);
 
             int rowsAffected = await command.ExecuteNonQueryAsync(); // Execute the query asynchronously
