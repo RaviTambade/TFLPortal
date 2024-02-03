@@ -17,6 +17,8 @@ builder.Services.AddScoped<IHRService, HRService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<ITimesheetAnalyticsService, TimesheetAnalyticsService>();
 builder.Services.AddScoped<ITimesheetOperationsService, TimesheetOperationsService>();
+builder.Services.AddScoped<IProjectAnalyticsService,  ProjectAnalyticsService>();
+builder.Services.AddScoped<IProjectOperationsService, ProjectOperationsService>();
 builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<ISprintService, SprintService>();
 

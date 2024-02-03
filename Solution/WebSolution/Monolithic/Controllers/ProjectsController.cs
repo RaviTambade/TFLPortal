@@ -8,11 +8,13 @@ namespace Intranet.Controllers;
 [Route("/api/projectmgmt/projects")]
 public class ProjectsController : ControllerBase
 {
-    private readonly IProjectService _service;
+    private readonly IProjectAnalyticsService _analyticsService;
+    private readonly IProjectOperationsService _operationsSerive;
 
-    public ProjectsController(IProjectService service)
+    public ProjectsController(IProjectAnalyticsService analyticsService,IProjectOperationsService operationsService )
     {
-        _service = service;
+        _analyticsService = analyticsService;
+        _operationsService= operationsSerive;
     }
 
 
@@ -22,7 +24,7 @@ public class ProjectsController : ControllerBase
     
     public async Task<List<Project>> GetAllProjects()
     {
-        List<Project> projects = await _service.GetAllProjects();
+        List<Project> projects = await _analyticsService.GetAllProjects();
         return projects;
     }
 
@@ -31,7 +33,7 @@ public class ProjectsController : ControllerBase
     [HttpGet("{projectId}")]
     public async Task<Project> GetProject(int projectId)
     {
-        Project projects = await _service.GetProject(projectId);
+        Project projects = await _analyticsService.GetProject(projectId);
         return projects;
     }
 
@@ -40,7 +42,7 @@ public class ProjectsController : ControllerBase
     [HttpGet("members/{memberId}")]
     public async Task<List<Project>> GetAllCurrentProjects(int memberId)
     {
-        List<Project> projects = await _service.GetAllCurrentProjects(memberId);
+        List<Project> projects = await _analyticsService.GetAllCurrentProjects(memberId);
         return projects;
     }
 
@@ -50,7 +52,84 @@ public class ProjectsController : ControllerBase
     [HttpPost]
     public async Task<bool> AddProject(Project project)
     {
-        bool status =await _service.AddProject(project);
+        bool status =await _operationsSerive.AddProject(project);
         return status;
     } 
+
+
+
+      [Authorize(RoleTypes.ProjectManager)]
+    [HttpGet("projects/{projectId}")]
+    public async Task<List<Sprint>> GetSprints(int projectId)
+    {
+        return await _analyticsService.GetSprints(projectId);
+    }
+
+    [Authorize(RoleTypes.ProjectManager)]
+    [HttpGet("projects/{projectId}/date/{date}")]
+    public async Task<Sprint> GetCurrentSprint(int projectId, DateOnly date)
+    {
+        return await _analyticsService.GetCurrentSprint(projectId, date);
+    }
+
+    [Authorize(RoleTypes.ProjectManager)]
+    [HttpGet("{sprintId}/tasks")]
+    public async Task<List<ProjectTask>> GetSprintTasks(int sprintId)
+    {
+        List<ProjectTask> tasks = await _analyticsService.GetSprintTasks(sprintId);
+        return tasks;
+    }
+
+
+    [Authorize(RoleTypes.ProjectManager)]
+    [HttpPost]
+    public async Task<bool> Insert(Sprint theSprint)
+    {
+        bool status = await _operationsSerive.Insert(theSprint);
+        return status;
+    }
+
+    [Authorize(RoleTypes.ProjectManager)]
+    [HttpDelete]
+    public async Task<bool> Delete(int sprintId)
+    {
+        bool status = await _operationsSerive.Delete(sprintId);
+        return status;
+    }
+
+    [Authorize(RoleTypes.ProjectManager)]
+    [HttpPut]
+    public async Task<bool> Update(int sprintId,Sprint theSprint)
+    {
+        bool status = await _operationsSerive.Update(sprintId,theSprint);
+        return status;
+    }
+
+
+
+       // [Authorize(RoleTypes.ProjectManager)]
+    [HttpPost]
+    public async Task<bool> Assign(Member member)
+    {
+        bool status= await _operationsSerive.Assign(member);
+        return status;
+    }
+
+
+    // [Authorize(RoleTypes.ProjectManager)]
+    [HttpPut]
+    public async Task<bool> Release(Member member)
+    {
+        bool status= await _operationsSerive.Release(member);
+        return status;
+    }
+
+
+    // [Authorize(RoleTypes.ProjectManager)]
+    [HttpGet("projects/{projectId}")]
+    public async Task<List<Member>> GetProjectMembers(int projectId)
+    {
+        List<Member> members= await _analyticsService.GetProjectMembers(projectId);
+        return members;
+    }
 }
