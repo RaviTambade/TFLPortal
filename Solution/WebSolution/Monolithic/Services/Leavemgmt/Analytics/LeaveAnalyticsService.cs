@@ -529,7 +529,8 @@ public class LeaveAnalyticsService : ILeaveAnalyticsService
         {
             await con.OpenAsync();
 
-            MySqlCommand cmd = new MySqlCommand("getLeavesAvailable", con);
+            MySqlCommand cmd = new MySqlCommand(con);
+            cmd.CommandText="spgetLeavesAvailable";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@pempId", employeeId);
             cmd.Parameters.AddWithValue("@proleId", roleId);
@@ -597,7 +598,8 @@ public class LeaveAnalyticsService : ILeaveAnalyticsService
         try
         {
             await con.OpenAsync();
-            MySqlCommand cmd = new MySqlCommand("getConsumedLeaves", con);
+            MySqlCommand cmd = new MySqlCommand(con);
+            cmd.CommandText="spgetConsumedLeaves";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@pempId", employeeId);
             cmd.Parameters.AddWithValue("@pyear", year);
@@ -641,9 +643,8 @@ public class LeaveAnalyticsService : ILeaveAnalyticsService
                         LeaveType="unpaid",
                         Count=unPaidCount
                     }
-                };
+               };
             }
-        };
         catch (Exception)
         {
             throw;
