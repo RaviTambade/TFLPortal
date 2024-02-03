@@ -1,28 +1,28 @@
 using Microsoft.AspNetCore.Mvc;
 using TFLPortal.Responses;
 using TFLPortal.Models;
-using TFLPortal.Services.Interfaces;
 using TFLPortal.Helpers;
-
+using TFLPortal.Services.LeaveMgmt.Operations;
+using TFLPortal.Services.LeaveMgmt.Analytics;
 namespace Intranet.Controllers;
 
 [ApiController]
 [Route("/api/leaves")]
 public class LeavesManagementController : ControllerBase
 {
-    private readonly ILeaveService _service;   
-    private readonly IHRService  _hrService;
-    public LeavesManagementController(ILeaveService service,IHRService hrService)
+    private readonly ILeaveOperationsService _operationService;   
+    private readonly ILeaveAnalyticsService _analyticService;  
+    public LeavesManagementController(ILeaveOperationsService _operationService,ILeaveAnalyticsService _analyticService)
     {
-        _service = service;
-        _hrService=hrService;
+        _operationService = _analyticService;
+        _analyticService=_analyticService;
     }
 
     [Authorize(RoleTypes.HRManager)]
     [HttpGet("applications")]
     public async Task<List<LeaveApplication>> GetLeaveApplications()
     {
-        List<LeaveApplication> leaves= await _service.GetLeaveApplications();
+        List<LeaveApplication> leaves= await _analyticService.GetLeaveApplications();
         return leaves;
     }
 
@@ -30,7 +30,7 @@ public class LeavesManagementController : ControllerBase
     [HttpGet("allocations")]
     public async Task<List<LeaveAllocation>> GetLeaveAllocations()
     {
-        List<LeaveAllocation> leaves=await _service.GetLeaveAllocations();
+        List<LeaveAllocation> leaves=await _analyticService.GetLeaveAllocations();
         return leaves;
     }
 
@@ -39,7 +39,7 @@ public class LeavesManagementController : ControllerBase
     [Route ("applications/employees/{employeeId}")]
     public async Task<List<LeaveApplication>> GetLeaveApplications(int employeeId)
     {
-        return await _service.GetLeaveApplications(employeeId);
+        return await _analyticService.GetLeaveApplications(employeeId);
     }
 
     [Authorize(RoleTypes.HRManager,RoleTypes.ProjectManager,RoleTypes.Employee)]
@@ -47,7 +47,7 @@ public class LeavesManagementController : ControllerBase
     [Route ("applications/employees/{employeeId}/status/{status}")]
     public async Task<List<LeaveApplication>> GetLeaveApplications(int employeeId,string status)
     {
-        return await _service.GetLeaveApplications(employeeId,status);
+        return await _analyticService.GetLeaveApplications(employeeId,status);
     }
 
     [Authorize(RoleTypes.HRManager)]
@@ -55,7 +55,7 @@ public class LeavesManagementController : ControllerBase
     [Route ("allocations/roles/{roleId}")]
     public async Task<LeaveAllocation> GetRoleLeavesDetails(int roleId)
     {
-        return await _service.GetRoleLeavesDetails(roleId);
+        return await _analyticService.GetRoleLeavesDetails(roleId);
     }
     
     [Authorize(RoleTypes.HRManager,RoleTypes.ProjectManager,RoleTypes.Employee)]
@@ -63,7 +63,7 @@ public class LeavesManagementController : ControllerBase
     [Route ("applications/{leaveapplicationId}")]
     public async Task<LeaveApplication> GetLeaveApplication(int leaveapplicationId)
     {
-        LeaveApplication leave =await _service.GetLeaveApplication(leaveapplicationId);
+        LeaveApplication leave =await _analyticService.GetLeaveApplication(leaveapplicationId);
         return leave;
     } 
 
@@ -72,7 +72,7 @@ public class LeavesManagementController : ControllerBase
     [Route ("applications/date/{date}")]
     public async Task<List<LeaveApplication>> GetLeaveApplications(string date)
     {
-        List<LeaveApplication> leaves =await _service.GetLeaveApplications(date);
+        List<LeaveApplication> leaves =await _analyticService.GetLeaveApplications(date);
         return leaves;
     }    
 
@@ -81,7 +81,7 @@ public class LeavesManagementController : ControllerBase
     [Route ("/applications/status/{leaveStatus}")]
     public async Task<List<LeaveApplication>> GetLeaveApplicationDetails(string leaveStatus)
     {
-        List<LeaveApplication> leaves =await _service.GetLeaveApplications(leaveStatus);
+        List<LeaveApplication> leaves =await _analyticService.GetLeaveApplications(leaveStatus);
         return leaves;
     }
 
@@ -90,60 +90,57 @@ public class LeavesManagementController : ControllerBase
     [Route ("applications/projects/{projectId}/status/{status}")]
     public async Task<List<LeaveApplication>> GetTeamLeaveDetails(int projectId,string status)
     {
-        List<LeaveApplication> leaves =await _service.GetTeamLeaveDetails(projectId,status);
+        List<LeaveApplication> leaves =await _analyticService.GetTeamLeaveDetails(projectId,status);
         return leaves;
     }
 
     [Authorize(RoleTypes.HRManager,RoleTypes.ProjectManager,RoleTypes.Employee,RoleTypes.Director)]
     [HttpGet]
     [Route ("consumed/employees/{employeeId}/year/{year}")]
-    public async Task<AnuualConsumedLeaves> GetAnnualLeavesCount(int employeeId,int year)
+    public async Task<MonthlyLeaves> GetAnnualLeavesCount(int employeeId,int year)
     {
-      return await _service.GetAnnualLeavesCount(employeeId,year);
+      return await _analyticService.GetAnnualLeavesCount(employeeId,year);
     }
 
     [Authorize(RoleTypes.HRManager,RoleTypes.ProjectManager,RoleTypes.Employee)]
     [HttpGet("annualavailablel/employees/{employeeId}/year/{year}")]
-    public async Task<LeavesCount> GetAnnualAvailableLeaves(int employeeId,int roleId,int year)
+    public async Task<AnnualLeaves> GetAnnualAvailableLeaves(int employeeId,int roleId,int year)
     {
-        // Employee employee= await _hrService.GetEmployeeById(employeeId);
-        // List<Role> roles= await _apiService.GetRoleOfUser(employee.UserId);
-        // int roleId=roles.FirstOrDefault().Id;
-       return await _service.GetAnnualAvailableLeaves(employeeId,roleId,year);   
+       return await _analyticService.GetAnnualAvailableLeaves(employeeId,roleId,year);   
     }
 
     [Authorize(RoleTypes.HRManager,RoleTypes.ProjectManager,RoleTypes.Employee)]
     [HttpGet("annualconsumedleaves/employees/{employeeId}/year/{year}")]
-    public async Task<LeavesCount> GetAnnualConsumedLeaves(int employeeId,int year)
+    public async Task<AnnualLeaves> GetAnnualConsumedLeaves(int employeeId,int year)
     {
         // Employee employee= await _hrService.GetEmployeeById(employeeId);
         // List<Role> roles= await _apiService.GetRoleOfUser(employee.UserId);
         // int roleId=roles.FirstOrDefault().Id;
-       return await _service.GetAnnualConsumedLeaves(employeeId,year);   
+       return await _analyticService.GetAnnualConsumedLeaves(employeeId,year);   
     }
 
     [Authorize(RoleTypes.HRManager,RoleTypes.ProjectManager,RoleTypes.Employee)]
     [HttpGet("annualleaves/roles/{roleId}/year/{year}")]
-    public async Task<LeavesCount> GetAnnualLeaves(int roleId,int year)
+    public async Task<AnnualLeaves> GetAnnualLeaves(int roleId,int year)
     {
         // Employee employee= await _hrService.GetEmployeeById(employeeId);
         // List<Role> roles= await _apiService.GetRoleOfUser(employee.UserId);
         // int roleId=roles.FirstOrDefault().Id;
-       return await _service.GetAnnualLeaves(roleId,year);   
+       return await _analyticService.GetAnnualLeaves(roleId,year);   
     }
  
     [Authorize(RoleTypes.HRManager,RoleTypes.ProjectManager,RoleTypes.Employee)]
     [HttpGet("employees/{employeeId}/month/{month}/year/{year}")]
-    public async Task<List<ConsumedLeave>> GetMonthlyLeaveCount(int employeeId,int month,int year)
+    public async Task<List<LeaveCount>> GetMonthlyLeaveCount(int employeeId,int month,int year)
     {
-        return await _service.GetMonthlyLeaveCount(employeeId,month,year);   
+        return await _analyticService.GetMonthlyLeaveCount(employeeId,month,year);   
     }
 
     [Authorize(RoleTypes.HRManager,RoleTypes.ProjectManager,RoleTypes.Employee)]
     [HttpPost]
     public async Task<bool> AddNewLeaveApplication(LeaveApplication leaveApplication)
     {
-        return await _service.AddNewLeaveApplication(leaveApplication);
+        return await _operationService.AddNewLeaveApplication(leaveApplication);
        
     }
 
@@ -151,14 +148,14 @@ public class LeavesManagementController : ControllerBase
     [HttpPost("leaveallocation")]
     public async Task<bool> AddNewLeaveAllocation(LeaveAllocation leaveAllocation)
     {
-        return await _service.AddNewLeaveAllocation(leaveAllocation);
+        return await _operationService.AddNewLeaveAllocation(leaveAllocation);
     }
 
     [Authorize(RoleTypes.HRManager)]
     [HttpPut("leaveallocation")]
     public async Task<bool> UpdateLeaveAllocation(LeaveAllocation leaveAllocation)
     {
-       bool status= await _service.UpdateLeaveAllocation(leaveAllocation);
+       bool status= await _operationService.UpdateLeaveAllocation(leaveAllocation);
         return status; 
     }
 
@@ -166,7 +163,7 @@ public class LeavesManagementController : ControllerBase
     [HttpPut("updateleaves")]
     public async Task<bool> Update(LeaveApplication leaveApplication)
     {
-       bool status= await _service.Update(leaveApplication);
+       bool status= await _operationService.Update(leaveApplication);
         return status; 
     }
 
@@ -174,7 +171,7 @@ public class LeavesManagementController : ControllerBase
     [HttpDelete("deleteleaveallocation/{id}")]
     public async Task<bool> DeleteLeaveMaster(int id)
     {
-       bool status= await _service.DeleteLeaveMaster(id);
+       bool status= await _operationService.DeleteLeaveMaster(id);
         return status; 
     }
 
@@ -182,7 +179,7 @@ public class LeavesManagementController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<bool> Delete(int id)
     {
-       bool status= await _service.Delete(id);
+       bool status= await _operationService.Delete(id);
         return status; 
     }
 }
