@@ -19,7 +19,7 @@ public class LeavesManagementController : ControllerBase
     }
 
     [Authorize(RoleTypes.HRManager)]
-    [HttpGet]
+    [HttpGet("applications")]
     public async Task<List<LeaveApplication>> GetLeaveApplications()
     {
         List<LeaveApplication> leaves= await _service.GetLeaveApplications();
@@ -27,7 +27,7 @@ public class LeavesManagementController : ControllerBase
     }
 
     [Authorize(RoleTypes.HRManager)]
-    [HttpGet("leaveallocations")]
+    [HttpGet("allocations")]
     public async Task<List<LeaveAllocation>> GetLeaveAllocations()
     {
         List<LeaveAllocation> leaves=await _service.GetLeaveAllocations();
@@ -36,7 +36,7 @@ public class LeavesManagementController : ControllerBase
 
     [Authorize(RoleTypes.HRManager,RoleTypes.ProjectManager,RoleTypes.Employee)]
     [HttpGet]
-    [Route ("employees/{employeeId}")]
+    [Route ("applications/employees/{employeeId}")]
     public async Task<List<LeaveApplication>> GetLeaveApplications(int employeeId)
     {
         return await _service.GetLeaveApplications(employeeId);
@@ -44,7 +44,7 @@ public class LeavesManagementController : ControllerBase
 
     [Authorize(RoleTypes.HRManager,RoleTypes.ProjectManager,RoleTypes.Employee)]
     [HttpGet]
-    [Route ("employees/{employeeId}/status/{status}")]
+    [Route ("applications/employees/{employeeId}/status/{status}")]
     public async Task<List<LeaveApplication>> GetLeaveApplications(int employeeId,string status)
     {
         return await _service.GetLeaveApplications(employeeId,status);
@@ -52,7 +52,7 @@ public class LeavesManagementController : ControllerBase
 
     [Authorize(RoleTypes.HRManager)]
     [HttpGet]
-    [Route ("{roleId}")]
+    [Route ("allocations/roles/{roleId}")]
     public async Task<LeaveAllocation> GetRoleLeavesDetails(int roleId)
     {
         return await _service.GetRoleLeavesDetails(roleId);
@@ -60,16 +60,16 @@ public class LeavesManagementController : ControllerBase
     
     [Authorize(RoleTypes.HRManager,RoleTypes.ProjectManager,RoleTypes.Employee)]
     [HttpGet]
-    [Route ("{leaveId}")]
-    public async Task<LeaveApplication> GetLeaveApplication(int leaveId)
+    [Route ("applications/{leaveapplicationId}")]
+    public async Task<LeaveApplication> GetLeaveApplication(int leaveapplicationId)
     {
-        LeaveApplication leave =await _service.GetLeaveApplication(leaveId);
+        LeaveApplication leave =await _service.GetLeaveApplication(leaveapplicationId);
         return leave;
     } 
 
     [Authorize(RoleTypes.HRManager)]
     [HttpGet]
-    [Route ("date/{date}")]
+    [Route ("applications/date/{date}")]
     public async Task<List<LeaveApplication>> GetLeaveApplications(string date)
     {
         List<LeaveApplication> leaves =await _service.GetLeaveApplications(date);
@@ -78,7 +78,7 @@ public class LeavesManagementController : ControllerBase
 
     [Authorize(RoleTypes.HRManager)] 
     [HttpGet]
-    [Route ("status/{leaveStatus}")]
+    [Route ("/applications/status/{leaveStatus}")]
     public async Task<List<LeaveApplication>> GetLeaveApplicationDetails(string leaveStatus)
     {
         List<LeaveApplication> leaves =await _service.GetLeaveApplications(leaveStatus);
@@ -87,7 +87,7 @@ public class LeavesManagementController : ControllerBase
 
     [Authorize(RoleTypes.HRManager,RoleTypes.ProjectManager)]
     [HttpGet]
-    [Route ("projects/{projectId}/status/{status}")]
+    [Route ("applications/projects/{projectId}/status/{status}")]
     public async Task<List<LeaveApplication>> GetTeamLeaveDetails(int projectId,string status)
     {
         List<LeaveApplication> leaves =await _service.GetTeamLeaveDetails(projectId,status);
@@ -96,14 +96,14 @@ public class LeavesManagementController : ControllerBase
 
     [Authorize(RoleTypes.HRManager,RoleTypes.ProjectManager,RoleTypes.Employee,RoleTypes.Director)]
     [HttpGet]
-    [Route ("monthlyconsumedleaves/employees/{employeeId}/year/{year}")]
-    public async Task<List<ConsumedLeave>> GetAnnualLeavesCount(int employeeId,int year)
+    [Route ("consumed/employees/{employeeId}/year/{year}")]
+    public async Task<AnuualConsumedLeaves> GetAnnualLeavesCount(int employeeId,int year)
     {
       return await _service.GetAnnualLeavesCount(employeeId,year);
     }
 
     [Authorize(RoleTypes.HRManager,RoleTypes.ProjectManager,RoleTypes.Employee)]
-    [HttpGet("annualavailableleaves/employees/{employeeId}/year/{year}")]
+    [HttpGet("annualavailablel/employees/{employeeId}/year/{year}")]
     public async Task<LeavesCount> GetAnnualAvailableLeaves(int employeeId,int roleId,int year)
     {
         // Employee employee= await _hrService.GetEmployeeById(employeeId);

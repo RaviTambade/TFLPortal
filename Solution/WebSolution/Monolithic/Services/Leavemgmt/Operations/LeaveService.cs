@@ -848,8 +848,6 @@ public class LeaveService : ILeaveService
         return status;
     }
 
-    
-
     public async Task<bool> Delete(int leaveId)
     {
         bool status = false;
@@ -882,6 +880,5 @@ public class LeaveService : ILeaveService
 
         return status;
     }
-
 
 }
