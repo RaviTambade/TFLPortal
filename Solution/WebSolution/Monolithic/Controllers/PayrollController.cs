@@ -4,6 +4,7 @@ using TFLPortal.Models;
 using TFLPortal.Services;
 using TFLPortal.Services.Interfaces;
 using TFLPortal.Responses;
+using TFLPortal.Helpers;
 
 namespace Intranet.Controllers;
 
@@ -60,12 +61,14 @@ public class PayrollController : ControllerBase
     
     
 
+    [Authorize(RoleTypes.HRManager)]
     [HttpGet("employees/{employeeId}/month/{month}/year/{year}")]
     public async Task<MonthSalary> GetSalary(int employeeId,int month,int year){
         MonthSalary salary= await _payrollService.GetSalary(employeeId,month,year);
         return salary;
     }
 
+    [Authorize(RoleTypes.HRManager)]
     [HttpGet("salaries/paid/month/{month}/year/{year}")]
     public async Task<List<SalarySlip>> GetSalaryDetails(int month,int year)
     {
@@ -73,6 +76,7 @@ public class PayrollController : ControllerBase
         return salaries;
     }
 
+    [Authorize(RoleTypes.HRManager,RoleTypes.ProjectManager,RoleTypes.Employee)]
       [HttpGet("salaries/employees/{employeeId}")]
       public async Task<List<SalarySlip>> GetSalaries(int employeeId)
       {
@@ -80,6 +84,7 @@ public class PayrollController : ControllerBase
         return salaries;
       }
 
+      [Authorize(RoleTypes.HRManager,RoleTypes.ProjectManager,RoleTypes.Employee)]
       [HttpGet("employee/salary/{salaryId}")]
       public async Task<SalarySlip> GetSalary(int salaryId)
       {
@@ -87,6 +92,7 @@ public class PayrollController : ControllerBase
         return salary;
       }
 
+    [Authorize(RoleTypes.HRManager)]
       //"employees/salary"
     [HttpPost("employees/salarystructure")]
     public async Task<bool> AddSalaryStructure(SalaryStructure salary)
@@ -94,6 +100,7 @@ public class PayrollController : ControllerBase
         return await _payrollService.AddSalaryStructure(salary);
     }
 
+    [Authorize(RoleTypes.HRManager)]
     [HttpPost("salaries")]
     public async Task<bool> AddSalary(SalarySlip salarySlip)
     {
