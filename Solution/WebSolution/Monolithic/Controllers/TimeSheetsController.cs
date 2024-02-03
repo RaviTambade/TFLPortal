@@ -2,11 +2,10 @@ using Microsoft.AspNetCore.Mvc;
 using TFLPortal.Helpers;
 using TFLPortal.Models;
 using TFLPortal.Responses;
-using TFLPortal.Services.Interfaces;
 using TFLPortal.Services.TimesheetMgmt.Analytics;
 using TFLPortal.Services.TimesheetMgmt.Operations;
 
-namespace Transflower.TFLPortal.Intranet.Controllers;
+namespace TFLPortal.Controllers;
 
 [ApiController]
 [Route("/api/timesheets")]

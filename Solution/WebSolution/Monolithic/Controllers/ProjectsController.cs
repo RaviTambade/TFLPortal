@@ -4,7 +4,7 @@ using TFLPortal.Helpers;
 using TFLPortal.Services.ProjectMgmt.Analytics;
 using TFLPortal.Services.ProjectMgmt.Operations;
 using ProjectTask=TFLPortal.Models.Task;
-namespace Intranet.Controllers;
+namespace TFLPortal.Controllers;
 
 [ApiController]
 [Route("/api/projectmgmt/projects")]

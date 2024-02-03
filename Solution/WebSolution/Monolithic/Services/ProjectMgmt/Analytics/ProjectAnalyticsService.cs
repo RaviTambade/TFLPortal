@@ -244,7 +244,6 @@ public class ProjectAnalyticsService:IProjectAnalyticsService
         MySqlConnection connection =new MySqlConnection();
         connection.ConnectionString=_connectionString;
         try{
-;
             string query =@"select * from tasks INNER JOIN sprinttasks on tasks.id=sprinttasks.taskid
              INNER join sprints on sprints.id=sprinttasks.sprintid WHERE sprints.id=sprintId;";
             MySqlCommand command = new MySqlCommand(query,connection);
