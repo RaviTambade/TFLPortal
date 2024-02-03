@@ -1,6 +1,8 @@
 using TFLPortal.Helpers;
 using TFLPortal.Services;
 using TFLPortal.Services.Interfaces;
+using TFLPortal.Services.TimesheetMgmt.Analytics;
+using TFLPortal.Services.TimesheetMgmt.Operations;
 using Transflower.TFLPortal.TFLSAL.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,8 +15,8 @@ builder.Services.AddScoped<ILeaveService, LeaveService>();
 builder.Services.AddScoped<IPayrollService, PayrollService>();
 builder.Services.AddScoped<IHRService, HRService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
-builder.Services.AddScoped<ITimesheetService, TimesheetService>();
-builder.Services.AddScoped<ITimesheetBIService, TimesheetBIService>();
+builder.Services.AddScoped<ITimesheetAnalyticsService, TimesheetAnalyticsService>();
+builder.Services.AddScoped<ITimesheetOperationsService, TimesheetOperationsService>();
 builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<ISprintService, SprintService>();
 
