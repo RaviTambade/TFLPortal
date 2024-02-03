@@ -3,6 +3,8 @@ using TFLPortal.Responses;
 using TFLPortal.Models;
 using TFLPortal.Services.Interfaces;
 using TFLPortal.Services;
+using TFLPortal.Helpers;
+
 
 
 namespace Transflower.TFLPortal.Intranet.Controllers;
@@ -82,6 +84,8 @@ public class HRController : ControllerBase
     // }
 
     [Authorize()]
+
+    [Authorize(RoleTypes.HRManager)]
     [HttpGet("salaries/unpaid/month/{month}/year/{year}")]
     public async Task<List<Employee>> GetUnPaidSalaries(int month,int year)
     {
@@ -89,6 +93,7 @@ public class HRController : ControllerBase
         return employees;
     }
 
+    [Authorize(RoleTypes.HRManager)]
     [HttpGet("{id}")]
     public async Task<Employee> GetEmployeeById(int id)
     {
