@@ -1,11 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using TFLPortal.Responses;
 using ProjectTask=TFLPortal.Models.Task;
-using TFLPortal.Services.Interfaces;
 using TFLPortal.Helpers;
 using TFLPortal.Services.TaskMgmt.Analytics;
 using TFLPortal.Services.TaskMgmt.Operations;
-namespace Intranet.Controllers;
+namespace TFLPortal.Controllers;
 
 [ApiController]
 [Route("/api/tasks")]

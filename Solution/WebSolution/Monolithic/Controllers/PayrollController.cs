@@ -1,14 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using TFLPortal.Responses;
 using TFLPortal.Models;
-using TFLPortal.Services;
-using TFLPortal.Services.Interfaces;
-using TFLPortal.Responses;
 using TFLPortal.Helpers;
 using TFLPortal.Services.PayrollMgmt.Analytics;
 using TFLPortal.Services.PayrollMgmt.Operations;
 
-namespace Intranet.Controllers;
+namespace TFLPortal.Controllers;
 
 [ApiController]
 [Route("/api/payroll")]
@@ -40,7 +37,7 @@ public class PayrollController : ControllerBase
 
     [Authorize(RoleTypes.HRManager,RoleTypes.ProjectManager,RoleTypes.Employee)]
     [HttpGet("salaries/employees/{employeeId}")]
-    public async Task<List<SalarySlip>> GetSalaries(int employeeId)
+    public async Task<List<SalarySlip>> GetSalaries(int employeeId)   
     {
       List<SalarySlip> salaries=await _analyticsSvc.GetSalaries(employeeId);
       return salaries;
