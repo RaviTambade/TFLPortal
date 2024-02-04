@@ -566,22 +566,10 @@ public class LeaveAnalyticsService : ILeaveAnalyticsService
                 EmployeeId=employeeId,
                 Leaves=new List<LeaveCount>()
                 {
-                    new LeaveCount{
-                        LeaveType="sick",
-                        Count=sickCount
-                    },
-                    new LeaveCount{
-                        LeaveType="casual",
-                        Count=casualCount
-                    },
-                    new LeaveCount{
-                        LeaveType="paid",
-                        Count=paidCount
-                    },
-                    new LeaveCount{
-                        LeaveType="unpaid",
-                        Count=unPaidCount
-                    }
+                    new LeaveCount{LeaveType="sick",Count=sickCount},
+                    new LeaveCount{LeaveType="casual",Count=casualCount},
+                    new LeaveCount{LeaveType="paid",Count=paidCount},
+                    new LeaveCount{LeaveType="unpaid",Count=unPaidCount}
                 }
             };
         }
@@ -635,22 +623,10 @@ public class LeaveAnalyticsService : ILeaveAnalyticsService
                 EmployeeId=employeeId,
                 Leaves =new List<LeaveCount>()
                 {
-                    new LeaveCount{
-                        LeaveType="sick",
-                        Count=sickCount
-                    },
-                    new LeaveCount{
-                        LeaveType="casual",
-                        Count=casualCount
-                    },
-                    new LeaveCount{
-                        LeaveType="paid",
-                        Count=paidCount
-                    },
-                    new LeaveCount{
-                        LeaveType="unpaid",
-                        Count=unPaidCount
-                    }
+                    new LeaveCount{LeaveType="sick",Count=sickCount},
+                    new LeaveCount{LeaveType="casual",Count=casualCount},
+                    new LeaveCount{LeaveType="paid",Count=paidCount},
+                    new LeaveCount{LeaveType="unpaid",Count=unPaidCount}
                }
             };
         }
@@ -685,22 +661,11 @@ public class LeaveAnalyticsService : ILeaveAnalyticsService
                 int casual = int.Parse(reader["casual"].ToString());
                 int paid = int.Parse(reader["paid"].ToString());
                 int unPaid = int.Parse(reader["unpaid"].ToString());
-              leaves.Add(new LeaveCount(){
-                LeaveType="sick",
-                Count=sick
-              });
-              leaves.Add(new LeaveCount(){
-                LeaveType="casual",
-                Count=casual
-              });
-              leaves.Add(new LeaveCount(){
-                LeaveType="paid",
-                Count=paid
-              });
-              leaves.Add(new LeaveCount(){
-                LeaveType="unpaid",
-                Count=unPaid
-              });
+              
+              leaves.Add(new LeaveCount(){LeaveType="sick",Count=sick});
+              leaves.Add(new LeaveCount(){LeaveType="casual",Count=casual});
+              leaves.Add(new LeaveCount(){LeaveType="paid",Count=paid});
+              leaves.Add(new LeaveCount(){LeaveType="unpaid",Count=unPaid});
              };
             await reader.CloseAsync();
             }
