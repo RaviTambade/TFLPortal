@@ -56,8 +56,9 @@ CALL getHoursWorkedForEachProject(10,'2024-01-01','2024-01-24');
 
 
 -- get available leaves of employee
+-- get available leaves of employee
 DELIMITER $$
-CREATE PROCEDURE getLeavesAvailable
+CREATE PROCEDURE spgetLeavesAvailable
 (IN pempId INT,IN proleId INT,IN pyear INT,OUT psick INT,OUT pcasual INT, OUT ppaid INT,OUT punpaid INT)
 BEGIN
 
@@ -88,14 +89,15 @@ WHERE employeeId=pempId AND leavetype="unpaid" AND status="sanctioned" AND year(
 
 SELECT sick,casual,paid,unpaid INTO sanctionedSick,sanctionedCasual,sanctionedPaid,sanctionedUnpaid 
 FROM leaveallocations 
-WHERE roleid=proleId ;
+WHERE roleid=proleId and financialyear=pyear ;
 
 SET psick=sanctionedSick-usedSick;
 SET pcasual=sanctionedCasual-usedCasual;
 SET ppaid=sanctionedPaid-usedPaid;
 SET punpaid=sanctionedUnpaid-usedUnpaid;
 END $$
-DELIMITER ;
+DELIMITER;
+
 
 -- get consumed leaves of employee
 DELIMITER $$

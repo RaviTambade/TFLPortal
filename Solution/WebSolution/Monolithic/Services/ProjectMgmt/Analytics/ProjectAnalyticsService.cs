@@ -272,9 +272,9 @@ public class ProjectAnalyticsService:IProjectAnalyticsService
     }
 
 
-  public async Task<List<Member>> GetProjectMembers(int projectId)
+  public async Task<List<ProjectAllocation>> GetProjectMembers(int projectId)
     {
-        List<Member> members= new List<Member>();
+        List<ProjectAllocation> members= new List<ProjectAllocation>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -288,7 +288,7 @@ public class ProjectAnalyticsService:IProjectAnalyticsService
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
-                Member member = new Member
+                ProjectAllocation member = new ProjectAllocation
                 {
                     Id = reader.GetInt32("id"),
                     ProjectId = reader.GetInt32("projectid"),

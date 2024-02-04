@@ -101,9 +101,6 @@ Insert Into salaryslips(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,a
 Insert Into salaryslips(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(17,'2024-01-11',24,600,600,600,20000);
 Insert Into salaryslips(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(18,'2024-01-11',25,600,600,600,20000);
 
-
-
-
   
 INSERT INTO projects(title,startdate,enddate,description,status)VALUES('EKrushi','2023-11-03','2024-02-02','Krushi Product Management','notstarted');
 INSERT INTO projects(title,startdate,enddate,description,status)VALUES('PMSAPP','2023-11-02','2024-02-02','Project Management System App','notstarted');
@@ -154,7 +151,6 @@ INSERT INTO sprints(title,startdate,enddate,goal,projectid) VALUES ('eagro sprin
 INSERT INTO sprints(title,startdate,enddate,goal,projectid) VALUES ('eagro sprint 3',"2024-01-15","2024-01-21","Refactor codebase",3);
 INSERT INTO sprints(title,startdate,enddate,goal,projectid) VALUES ('eagro sprint 4',"2024-01-22","2024-01-28","Improve project documentation",3);
 INSERT INTO sprints(title,startdate,enddate,goal,projectid) VALUES ('eagro sprint 5',"2024-01-29","2024-02-04","Integration Testing",3);
-
 
 
 INSERT INTO tasks VALUES (1,'reset password','userstory','As a  Store Worker, I want to be able to reset my password in case I forget it.',10,7,'2024-01-06 00:00:00','2024-01-06 00:00:00','2024-01-06 00:00:00','2024-01-06 00:00:00','inprogress');

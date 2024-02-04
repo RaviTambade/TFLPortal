@@ -161,7 +161,7 @@ public class ProjectOperationsService:IProjectOperationsService
         return status;
     }
 
-    public async Task<bool> Assign(Member member)
+    public async Task<bool> Assign(ProjectAllocation projectAllocation)
     {
         {
             bool status = false;
@@ -172,11 +172,11 @@ public class ProjectOperationsService:IProjectOperationsService
                 string query =
                     "INSERT INTO projectallocations(projectid,employeeid,title,assignedon,status) VALUES(@projectId,@employeeId,@title,@assignedOn,@status)";
                 MySqlCommand cmd = new MySqlCommand(query, connection);
-                cmd.Parameters.AddWithValue("@projectId", member.ProjectId);
-                cmd.Parameters.AddWithValue("@employeeId", member.EmployeeId);
-                cmd.Parameters.AddWithValue("@title", member.Title);
-                cmd.Parameters.AddWithValue("@assignedOn", member.AssignedOn);
-                cmd.Parameters.AddWithValue("@status", member.Status);
+                cmd.Parameters.AddWithValue("@projectId", projectAllocation.ProjectId);
+                cmd.Parameters.AddWithValue("@employeeId", projectAllocation.EmployeeId);
+                cmd.Parameters.AddWithValue("@title", projectAllocation.Title);
+                cmd.Parameters.AddWithValue("@assignedOn", projectAllocation.AssignedOn);
+                cmd.Parameters.AddWithValue("@status", projectAllocation.Status);
                 await connection.OpenAsync();
                 int rowsAffected = cmd.ExecuteNonQuery();
                 if (rowsAffected > 0)
@@ -197,7 +197,7 @@ public class ProjectOperationsService:IProjectOperationsService
         }
     }
 
-    public async Task<bool> Release(Member member)
+    public async Task<bool> Release(ProjectAllocation projectAllocation)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
@@ -207,9 +207,9 @@ public class ProjectOperationsService:IProjectOperationsService
             string query =
                 "Update projectallocations set releasedon=@releasedOn,status=@status where id=@Id";
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@releasedOn", member.ReleasedOn);
-            cmd.Parameters.AddWithValue("@status", member.Status);
-            cmd.Parameters.AddWithValue("@Id", member.Id);
+            cmd.Parameters.AddWithValue("@releasedOn", projectAllocation.ReleasedOn);
+            cmd.Parameters.AddWithValue("@status", projectAllocation.Status);
+            cmd.Parameters.AddWithValue("@Id", projectAllocation.Id);
             await connection.OpenAsync();
             int rowsAffected = cmd.ExecuteNonQuery();
             if (rowsAffected > 0)

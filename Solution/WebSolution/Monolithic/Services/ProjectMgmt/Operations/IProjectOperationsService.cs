@@ -8,6 +8,6 @@ public interface IProjectOperationsService
     Task<bool> Insert(Sprint theSprint);
     Task<bool> Delete(int sprintId);
     Task<bool> Update(int sprintId, Sprint theSprint);
-    Task<bool> Assign(Member member);
-    Task<bool> Release(Member member);
+    Task<bool> Assign(ProjectAllocation member);
+    Task<bool> Release(ProjectAllocation member);
 }

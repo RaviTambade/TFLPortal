@@ -110,27 +110,27 @@ public class ProjectsController : ControllerBase
 
        // [Authorize(RoleTypes.ProjectManager)]
     [HttpPost("member/assign")]
-    public async Task<bool> Assign(Member member)
+    public async Task<bool> Assign(ProjectAllocation projectAllocation)
     {
-        bool status= await _operationsSvc.Assign(member);
+        bool status= await _operationsSvc.Assign(projectAllocation);
         return status;
     }
 
 
     // [Authorize(RoleTypes.ProjectManager)]
     [HttpPut("relese/Member")]
-    public async Task<bool> Release(Member member)
+    public async Task<bool> Release(ProjectAllocation projectAllocation)
     {
-        bool status= await _operationsSvc.Release(member);
+        bool status= await _operationsSvc.Release(projectAllocation);
         return status;
     }
 
 
     // [Authorize(RoleTypes.ProjectManager)]
     [HttpGet("{projectId}/members")]
-    public async Task<List<Member>> GetProjectMembers(int projectId)
+    public async Task<List<ProjectAllocation>> GetProjectMembers(int projectId)
     {
-        List<Member> members= await _analyticsSvc.GetProjectMembers(projectId);
+        List<ProjectAllocation> members= await _analyticsSvc.GetProjectMembers(projectId);
         return members;
     }
 }

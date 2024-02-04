@@ -36,6 +36,7 @@ public class HRController : ControllerBase
         return employee;
     }
 
+    [HttpGet("bench")]
     [Authorize(RoleTypes.HRManager)]
     public async Task<List<Employee>> GetEmployeesOnBench()
     {

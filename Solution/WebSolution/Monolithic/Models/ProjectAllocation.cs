@@ -1,5 +1,5 @@
 namespace TFLPortal.Models;
-public class Member
+public class ProjectAllocation
 {
     public int Id { get; set; }
     public int ProjectId { get; set; }

@@ -12,10 +12,10 @@ public class LeavesManagementController : ControllerBase
 {
     private readonly ILeaveOperationsService _operationService;   
     private readonly ILeaveAnalyticsService _analyticService;  
-    public LeavesManagementController(ILeaveOperationsService _operationService,ILeaveAnalyticsService _analyticService)
+    public LeavesManagementController(ILeaveOperationsService operationService,ILeaveAnalyticsService analyticService)
     {
-        _operationService = _operationService;
-        _analyticService=_analyticService;
+        _operationService = operationService;
+        _analyticService=analyticService;
     }
 
     [Authorize(RoleTypes.HRManager)]
@@ -103,7 +103,7 @@ public class LeavesManagementController : ControllerBase
     }
 
     [Authorize(RoleTypes.HRManager,RoleTypes.ProjectManager,RoleTypes.Employee)]
-    [HttpGet("annualavailablel/employees/{employeeId}/year/{year}")]
+    [HttpGet("annualavailable/employees/{employeeId}/roles/{roleId}/year/{year}")]
     public async Task<AnnualLeaves> GetAnnualAvailableLeaves(int employeeId,int roleId,int year)
     {
        return await _analyticService.GetAnnualAvailableLeaves(employeeId,roleId,year);   

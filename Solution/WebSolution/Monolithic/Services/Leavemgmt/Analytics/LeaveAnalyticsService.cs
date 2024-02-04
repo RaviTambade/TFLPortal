@@ -535,8 +535,6 @@ public class LeaveAnalyticsService : ILeaveAnalyticsService
         con.ConnectionString = _connectionString;
         try
         {
-           
-
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection=con;
             cmd.CommandText="spgetLeavesAvailable";
