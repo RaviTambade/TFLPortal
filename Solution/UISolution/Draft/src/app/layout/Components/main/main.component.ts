@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs';
 import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
-import { JwtService } from 'src/app/shared/services/jwt.service';
 import { TokenClaims } from 'src/app/shared/enums/tokenclaims';
 import { LayoutService } from '../../Services/layout.service';
+import { AuthService } from 'src/app/shared/services/Authentication/auth.service';
 
 @Component({
   selector: 'layout-main',
@@ -21,7 +19,7 @@ export class MainComponent implements OnInit {
 
   constructor(
     private layoutSvc: LayoutService,
-    private jwtSvc: JwtService,
+    private authSvc: AuthService,
   ) {}
 
   ngOnInit(): void {
@@ -30,7 +28,7 @@ export class MainComponent implements OnInit {
       this.isLoggedIn = true;
     }
 
-    this.userName = this.jwtSvc.getClaimFromToken(TokenClaims.userName);
+    this.userName = this.authSvc.getClaimFromToken(TokenClaims.userName);
 
     // this.router.events
     //   .pipe(filter((event) => event instanceof NavigationEnd))
@@ -46,7 +44,7 @@ export class MainComponent implements OnInit {
       let jwt = localStorage.getItem(LocalStorageKeys.jwt);
       if (jwt != null) {
         this.isLoggedIn = true;
-        this.userName = this.jwtSvc.getClaimFromToken(TokenClaims.userName);
+        this.userName = this.authSvc.getClaimFromToken(TokenClaims.userName);
       }
     });
   }
