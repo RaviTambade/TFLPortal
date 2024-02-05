@@ -48,4 +48,9 @@ export class MembershipService {
     return this.httpClient.put<any>(url, credential);
   }
 
+  addUser(newUser: any): Observable<boolean> {
+    let url = `http://localhost:5142/api/users`;
+    return this.httpClient.put<any>(url, newUser);
+  }
+
 }
