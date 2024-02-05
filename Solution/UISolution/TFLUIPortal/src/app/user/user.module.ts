@@ -19,6 +19,7 @@ export const userRoutes: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule
-  ]
+  ],
+  exports:[UserProfileComponent]
 })
 export class UserModule { }

@@ -2,12 +2,12 @@ import { HttpEventType } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/user/Models/User';
-import { HrService } from 'src/app/shared/services/hr.service';
-import { MembershipService } from 'src/app/shared/services/membership.service';
+// import { HrService } from 'src/app/shared/services/hr.service';
 import { environment } from 'src/environments/environment';
 import { StateChangeEvent } from '../../Models/stateChangeEvent';
-import { JwtService } from 'src/app/shared/services/jwt.service';
 import { TokenClaims } from 'src/app/shared/enums/tokenclaims';
+import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
+import { AuthService } from 'src/app/shared/services/Authentication/auth.service';
 
 @Component({
   selector: 'user-profile',
@@ -24,10 +24,10 @@ export class UserProfileComponent {
   updateProfileStatus: boolean = false;
 
   constructor(
-    private hrsvc: HrService,
+    // private hrsvc: HrService,
     private membershipsvc: MembershipService,
     private route: ActivatedRoute,
-    private jwtSvc: JwtService
+    private authSvc: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -35,7 +35,7 @@ export class UserProfileComponent {
   }
 
   getUser() {
-    this.userId = Number(this.jwtSvc.getClaimFromToken(TokenClaims.userId));
+    this.userId = Number(this.authSvc.getClaimFromToken(TokenClaims.userId));
     this.membershipsvc.getUser(this.userId).subscribe((res) => {
       this.user = res;
       console.log(res);
