@@ -22,7 +22,7 @@ import { EmployeeModule } from './Employee/employee.module';
     HttpClientModule,
     JwtModule.forRoot({
       config:{
-        tokenGetter:()=>localStorage.getItem(LocalStorageKeys.jwt),
+        tokenGetter:()=>localStorage.getItem( LocalStorageKeys.jwt),
         allowedDomains:["localhost:5142","localhost:5263"]
       }
     }),

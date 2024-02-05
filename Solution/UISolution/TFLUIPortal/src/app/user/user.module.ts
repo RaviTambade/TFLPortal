@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes } from '@angular/router';
 import { NewUserComponent } from './components/new-user/new-user.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 export const userRoutes: Routes = [
   {path: 'profile', component: UserProfileComponent}
@@ -17,7 +18,8 @@ export const userRoutes: Routes = [
     UpdateProfileComponent,
     UserProfileComponent,
     NewUserComponent,
-    UsersListComponent
+    UsersListComponent,
+    ChangePasswordComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,7 @@ export const userRoutes: Routes = [
     ReactiveFormsModule
   ],
   exports:[UserProfileComponent,
-        NewUserComponent        
+        NewUserComponent,ChangePasswordComponent   
   ]
 })
 export class UserModule { }
