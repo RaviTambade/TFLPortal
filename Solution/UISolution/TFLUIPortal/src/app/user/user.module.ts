@@ -27,7 +27,9 @@ export const userRoutes: Routes = [
     ReactiveFormsModule
   ],
   exports:[UserProfileComponent,
-        NewUserComponent,ChangePasswordComponent   
+        NewUserComponent ,
+        UsersListComponent,
+        ChangePasswordComponent   
   ]
 })
 export class UserModule { }
