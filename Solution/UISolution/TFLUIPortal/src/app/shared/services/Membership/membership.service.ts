@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { UpdatePassword } from 'src/app/Entities/UpdatePassword';
 import { UserRole } from 'src/app/Entities/UserRole';
 import { User } from 'src/app/user/Models/User';
 import { environment } from 'src/environments/environment';
@@ -46,4 +47,10 @@ export class MembershipService {
     let url=`${this.membershipUrl}/users/contact/${contactNumber}`;
     return this.httpClient.get<User>(url);
   }
+
+  changePassword(credential: UpdatePassword): Observable<boolean> {
+    let url = `http://localhost:5142/api/auth/updatepassword`;
+    return this.httpClient.put<any>(url, credential);
+  }
+
 }
