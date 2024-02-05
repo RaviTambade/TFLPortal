@@ -6,10 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes } from '@angular/router';
 
 export const userRoutes: Routes = [
-  {
-    path: 'profile',
-    component: UserProfileComponent,
-  }
+  {path: 'profile', component: UserProfileComponent}
 ]
 
 

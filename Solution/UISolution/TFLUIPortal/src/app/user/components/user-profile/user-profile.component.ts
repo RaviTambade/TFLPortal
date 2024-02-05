@@ -10,7 +10,7 @@ import { JwtService } from 'src/app/shared/services/jwt.service';
 import { TokenClaims } from 'src/app/shared/enums/tokenclaims';
 
 @Component({
-  selector: 'app-user-profile',
+  selector: 'user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css'],
 })

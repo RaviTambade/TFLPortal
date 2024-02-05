@@ -1,14 +1,18 @@
 import { Component, OnInit, isDevMode } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { HrService } from './shared/services/Staffing/hr.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
-  constructor(private http: HttpClient, private hrSvc: HrService) {}
+export class AppComponent{
+ 
+}
+
+
+
+/*
+ constructor(private http: HttpClient, private hrSvc: HrService) {}
   getFile() {
     let url = 'http://localhost:5263/Documents/DadabhauNavle18122023130430.pdf';
     this.downloadFile(url);
@@ -36,4 +40,6 @@ export class AppComponent implements OnInit {
       console.log(res);
     });
   }
-}
+
+
+*/
