@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { UpdatePassword } from 'src/app/Entities/UpdatePassword';
 import { UserRole } from 'src/app/Entities/UserRole';
 import { Role } from 'src/app/user/Models/Role';
+import { NewUser } from 'src/app/user/Models/NewUser';
 import { User } from 'src/app/user/Models/User';
 import { environment } from 'src/environments/environment';
 
@@ -58,6 +59,11 @@ export class MembershipService {
   changePassword(credential: UpdatePassword): Observable<boolean> {
     let url = `http://localhost:5142/api/auth/updatepassword`;
     return this.httpClient.put<any>(url, credential);
+  }
+
+  addUser(newUser: NewUser): Observable<boolean> {
+    let url = `http://localhost:5142/api/users`;
+    return this.httpClient.post<boolean>(url, newUser);
   }
 
 }
