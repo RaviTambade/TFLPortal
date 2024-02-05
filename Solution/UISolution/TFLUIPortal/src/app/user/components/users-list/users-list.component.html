@@ -1,1 +1,22 @@
-<p>users-list works!</p>
+<table class="table-bordered text-center">
+    <thead >
+        <tr>
+            <th>Aadhar Id</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Birthdate</th>
+            <th>Gender</th>
+            <th>ContactNumber</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{user.aadharId}}</td>
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastName}}</td>
+            <td>{{user.birthDate}}</td>
+            <td>{{user.gender}}</td>
+            <td>{{user.contactNumber}}</td>
+        </tr>
+    </tbody>
+</table>

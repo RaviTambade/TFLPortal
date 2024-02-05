@@ -14,6 +14,11 @@ export class MembershipService {
   
   constructor(private httpClient: HttpClient) { }
 
+
+  getAllUsers():Observable<User[]>{
+    let url=`${this.membershipUrl}/users`;
+    return this.httpClient.get<User[]>(url);
+  }
   getAllRoles(lob:string):Observable<UserRole[]>{
     let url=`${this.membershipUrl}/roles/lob/${lob}`;
     return this.httpClient.get<UserRole[]>(url);
