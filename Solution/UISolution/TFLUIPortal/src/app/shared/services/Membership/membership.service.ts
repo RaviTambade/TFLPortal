@@ -3,8 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UpdatePassword } from 'src/app/Entities/UpdatePassword';
 import { UserRole } from 'src/app/Entities/UserRole';
+import { Role } from 'src/app/user/Models/Role';
 import { User } from 'src/app/user/Models/User';
 import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +24,11 @@ export class MembershipService {
   }
   getAllRoles(lob:string):Observable<UserRole[]>{
     let url=`${this.membershipUrl}/roles/lob/${lob}`;
+    return this.httpClient.get<UserRole[]>(url);
+  }
+
+  addNewRole(role:Role):Observable<UserRole[]>{
+    let url=`${this.membershipUrl}/roles/role`;
     return this.httpClient.get<UserRole[]>(url);
   }
 

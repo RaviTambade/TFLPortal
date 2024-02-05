@@ -7,11 +7,11 @@ import { Routes } from '@angular/router';
 import { NewUserComponent } from './components/new-user/new-user.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { NewRoleComponent } from './components/new-role/new-role.component';
 
 export const userRoutes: Routes = [
   {path: 'profile', component: UserProfileComponent}
 ]
-
 
 @NgModule({
   declarations: [
@@ -19,7 +19,8 @@ export const userRoutes: Routes = [
     UserProfileComponent,
     NewUserComponent,
     UsersListComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    NewRoleComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +30,8 @@ export const userRoutes: Routes = [
   exports:[UserProfileComponent,
         NewUserComponent ,
         UsersListComponent,
-        ChangePasswordComponent   
+        ChangePasswordComponent,
+        NewRoleComponent  
   ]
 })
 export class UserModule { }
