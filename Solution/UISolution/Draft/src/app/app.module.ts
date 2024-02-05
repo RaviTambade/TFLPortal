@@ -6,9 +6,10 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JWT_OPTIONS, JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { LocalStorageKeys } from './shared/enums/local-storage-keys';
 // import { HrmanagerModule } from './hrmanager/hrmanager.module';
-import { EmployeeModule } from './employee/employee.module';
+//import { EmployeeModule } from './employee/employee.module';
 import { AuthenticationModule } from './shared/draft/authentication/authentication.module';
 import { AddJwtHeaderIntreceptor } from './shared/services/Authentication/add-jwt-header.interceptor';
+import { LayoutModule } from './layout/layout.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,8 +22,9 @@ import { AddJwtHeaderIntreceptor } from './shared/services/Authentication/add-jw
         tokenGetter: () => localStorage.getItem(LocalStorageKeys.jwt)
       },
     }),
-    EmployeeModule,
+    //EmployeeModule,
     AuthenticationModule,
+    LayoutModule
     // HrmanagerModule,
   ],
 

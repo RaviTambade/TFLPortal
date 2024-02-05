@@ -11,6 +11,6 @@ import { SharedModule } from '../shared/shared.module';
     HomeComponent,
   ],
   imports: [CommonModule, RouterModule, SharedModule],
-  exports: [MainComponent],
+  exports: [MainComponent,HomeComponent],
 })
 export class LayoutModule {}

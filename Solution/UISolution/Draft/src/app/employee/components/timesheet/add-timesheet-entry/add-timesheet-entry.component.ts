@@ -56,7 +56,7 @@ export class AddTimesheetEntryComponent {
     this.employeeId =10
     //  Number(localStorage.getItem(LocalStorageKeys.employeeId));
     this.projectService
-      .getProjectsOfMember(this.employeeId)
+      .getProjects(this.employeeId)
       .subscribe((res) => {
         this.projects = res;
         if (this.projects.length > 0 && this.selectedProjectId== 0) {
