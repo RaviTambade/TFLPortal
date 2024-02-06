@@ -29,9 +29,7 @@ export class ChangePasswordComponent {
   showOldPassword: boolean = false;
   showNewPassword: boolean = false;
   showConfirmPassword: boolean = false;
-
   isInvalidCredentails: boolean = false;
-
   changePasswordForm!: FormGroup;
 
   // @Output() onPasswordChange = new EventEmitter<StateChangeEvent>();

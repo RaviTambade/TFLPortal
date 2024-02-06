@@ -9,6 +9,7 @@ import { UsersListComponent } from './components/users-list/users-list.component
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { NewRoleComponent } from './components/new-role/new-role.component';
 import { RolesListComponent } from './components/roles-list/roles-list.component';
+import { UpdateContactNumberComponent } from './components/update-contact-number/update-contact-number.component';
 
 export const userRoutes: Routes = [
   {path: 'profile', component: UserProfileComponent}
@@ -22,7 +23,8 @@ export const userRoutes: Routes = [
     UsersListComponent,
     ChangePasswordComponent,
     NewRoleComponent,
-    RolesListComponent
+    RolesListComponent,
+    UpdateContactNumberComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +36,8 @@ export const userRoutes: Routes = [
         UsersListComponent,
         ChangePasswordComponent,
         NewRoleComponent,
-        RolesListComponent 
+        RolesListComponent,
+        UpdateContactNumberComponent
   ]
 })
 export class UserModule { }

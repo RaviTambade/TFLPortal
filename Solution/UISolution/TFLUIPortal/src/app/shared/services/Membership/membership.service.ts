@@ -7,6 +7,7 @@ import { Role } from 'src/app/user/Models/Role';
 import { NewUser } from 'src/app/user/Models/NewUser';
 import { User } from 'src/app/user/Models/User';
 import { environment } from 'src/environments/environment';
+import { updateContact } from 'src/app/Entities/UpdateContact';
 
 
 @Injectable({
@@ -52,6 +53,10 @@ export class MembershipService {
     return this.httpClient.put<any>(url, user);
   }
 
+  updateContactNumber(credential: updateContact): Observable<boolean> {
+    let url = `${this.membershipUrl}/auth/updatecontactnumber`;
+    return this.httpClient.put<any>(url, credential);
+  }
   getEmployee(contactNumber:string):Observable<User>{
     let url=`${this.membershipUrl}/users/contact/${contactNumber}`;
     return this.httpClient.get<User>(url);
@@ -66,5 +71,4 @@ export class MembershipService {
     let url = `http://localhost:5142/api/users`;
     return this.httpClient.post<boolean>(url, newUser);
   }
-
 }
