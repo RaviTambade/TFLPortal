@@ -23,6 +23,7 @@ export class MembershipService {
     let url=`${this.membershipUrl}/users`;
     return this.httpClient.get<User[]>(url);
   }
+  
   getAllRoles(lob:string):Observable<UserRole[]>{
     let url=`${this.membershipUrl}/roles/lob/${lob}`;
     return this.httpClient.get<UserRole[]>(url);
@@ -30,7 +31,7 @@ export class MembershipService {
 
   addNewRole(role:Role):Observable<UserRole[]>{
     let url=`${this.membershipUrl}/roles/role`;
-    return this.httpClient.get<UserRole[]>(url);
+    return this.httpClient.post<UserRole[]>(url,role);
   }
 
   uploadFile(filename: string, formData: FormData): Observable<any> {

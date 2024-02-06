@@ -8,6 +8,7 @@ import { NewUser } from '../../Models/NewUser';
   templateUrl: './new-user.component.html',
   styleUrls: ['./new-user.component.css']
 })
+
 export class NewUserComponent {
 constructor(private service:MembershipService){}
 newUserForm = new FormGroup({
@@ -42,9 +43,7 @@ newUserForm = new FormGroup({
       createdon: this.newUserForm.get("createdon")?.value,
       modifiedon: this.newUserForm.get("modifiedon")?.value,
     };
-  
     console.log(newUser);
-  
     this.service.addUser(newUser).subscribe((res) => {
       console.log(res);
     });
