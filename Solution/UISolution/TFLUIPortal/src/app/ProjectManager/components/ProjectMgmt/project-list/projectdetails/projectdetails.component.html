@@ -1,16 +1,12 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-12">
             <div class="container">
                 <div class="card" *ngIf="project">
+                    <h2>{{project.title}}</h2>
                     <div class="card-body">
-                       <h2 >Project Details</h2>
                         <table class="table table-bordered">
-                            <tr>
-                                <th>Project Name</th>
-                                <td><a>{{project.title}}</a></td>
-                            </tr>
                             <tr>
                                 <th>Description</th>
                                 <td>{{project.description}}</td>
@@ -21,29 +17,21 @@
                             </tr>
                             <tr>
                                 <th>StartDate</th>
-                                <td>{{project.startDate | date}}</td>
+                                <td>{{project.startDate| date}}</td>
                             </tr>
                             <tr>
                                 <th>EndDate</th>
-                                <td>{{project.endDate | date}}</td>
+                                <td>{{project.endDate| date}}</td>
+                            </tr>
+                            <tr>
+                                
+                                <td><a href="#">More..Details...</a>
+                                </td>
                             </tr>
                         </table>
-                        <app-members-list [projectId]="project.id"></app-members-list>
-                        <app-sprint-list [projectId]="project.id"></app-sprint-list>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6">
-            <app-project-work-chart></app-project-work-chart>
-        </div>
     </div>
 </div>
-
-
-       <div >
-            <a class="link-underline" [routerLink]="['../../../showdetails', project?.id]">Show Employees Work</a>
-        </div>
-    
-    <router-outlet></router-outlet>
-
