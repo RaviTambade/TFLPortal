@@ -5,7 +5,7 @@ import { ProjectComponent } from './components/project/project.component';
 import { EmployeeLeftSidebarComponent } from './components/employee-left-sidebar/employee-left-sidebar.component';
 import { PayrollComponent } from './components/payroll/payroll.component';
 import { PerformenceApprisalComponent } from './components/performence-apprisal/performence-apprisal.component';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './components/BI/Dashboard/dashboard.component';
 import { TimesheetDetailsComponent } from './components/timesheet/timesheet-details/timesheet-details.component';
@@ -18,7 +18,12 @@ import { TimesheetEmployeeProjectHoursComponent } from './components/timesheet/t
 import { AddTimesheetEntryComponent } from './components/timesheet/add-timesheet-entry/add-timesheet-entry.component';
 import { UpdateTimesheetEntryComponent } from './components/timesheet/update-timesheet-entry/update-timesheet-entry.component';
 import { EmployeeComponent } from './components/employee/employee.component';
+import { EmployeenavbarComponent } from './components/employeenavbar/employeenavbar.component';
 
+ export const employeeRoutes:Routes=[
+  {path:'projects', component:ProjectComponent},
+  {path:'timesheet', component:TimesheetComponent}
+]
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -36,6 +41,8 @@ import { EmployeeComponent } from './components/employee/employee.component';
     AddTimesheetEntryComponent,
     UpdateTimesheetEntryComponent,
     EmployeeComponent,
+    EmployeenavbarComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -43,6 +50,7 @@ import { EmployeeComponent } from './components/employee/employee.component';
     ReactiveFormsModule,
     SharedModule,
     FormsModule,
+    RouterModule
   ],
   exports: [
     TimesheetDetailsComponent,
