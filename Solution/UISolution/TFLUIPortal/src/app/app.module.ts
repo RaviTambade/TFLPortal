@@ -10,7 +10,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { LocalStorageKeys } from './shared/enums/local-storage-keys';
 import { AppComponent } from './app.component';
 import { EmployeeModule } from './Employee/employee.module';
-import { HrmanagerModule } from './HRManager/hrmanager.module';
+import { HrmanagerModule, hrRoutes } from './HRManager/hrmanager.module';
 import { DirectorModule } from './Director/director.module';
 import { ProjectManagerModule } from './ProjectManager/project-manager.module';
 import { RouterModule, Routes } from '@angular/router';
@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'employee', component: EmployeeComponent },
   { path: 'projectmanager', component: ProjectmanagerComponent },
-  { path: 'hrmanager', component: HrmanagerComponent },
+  { path: 'hrmanager', component: HrmanagerComponent,children:hrRoutes},
   { path: 'director', component: DirectorComponent },
   { path: 'login', component: LoginComponent },
 ];
