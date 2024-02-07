@@ -1,11 +1,12 @@
 
- <p class="box-decoration-clone bg-gradient-to-r from-indigo-600 to-pink-500 text-white px-2 ...">List Of Project</p>
-<div >
-<div  class="d-flex gap-2">  
+ <div >
+  <h1>My Projects</h1>
+ <div  class="d-flex gap-2">
+  
 <div *ngFor="let project of projects" >
 <ul class="list-group list-group-horizontal" >
-    <li class="list-group-item" [routerLink]="['projectdetails',project.id]">{{project.title}}</li> 
-    <!-- <li class="list-group-item">{{project.title}}</li>   -->
+   
+    <app-projectdetails [projectId]="project.id"></app-projectdetails>
   </ul>
 </div>
 </div>
