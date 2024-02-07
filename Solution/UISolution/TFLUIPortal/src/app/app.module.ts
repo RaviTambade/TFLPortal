@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { EmployeeModule } from './Employee/employee.module';
 import { HrmanagerModule } from './HRManager/hrmanager.module';
 import { DirectorModule } from './Director/director.module';
-import { ProjectManagerModule } from './ProjectManager/project-manager.module';
+import { ProjectManagerModule, hrManagerRoutes } from './ProjectManager/project-manager.module';
 import { RouterModule, Routes } from '@angular/router';
 import { EmployeeComponent } from './Employee/components/employee/employee.component';
 import { ProjectmanagerComponent } from './ProjectManager/components/projectmanager/projectmanager.component';
@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'home',pathMatch:'full' },
   { path: 'home', component: HomeComponent },
   { path: 'employee', component: EmployeeComponent },
-  { path: 'projectmanager', component: ProjectmanagerComponent },
+  { path: 'projectmanager', children:hrManagerRoutes },
   { path: 'hrmanager', component: HrmanagerComponent },
   { path: 'director', component: DirectorComponent },
   { path: 'login', component: LoginComponent },
