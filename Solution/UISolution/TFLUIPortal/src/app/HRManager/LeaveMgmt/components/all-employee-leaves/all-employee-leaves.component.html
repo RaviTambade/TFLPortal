@@ -5,34 +5,21 @@
             <table class="table-bordered text-center">
                 <thead>
                     <tr>
-                        <!-- <th>Name</th> -->
                         <th>Application Date</th>
-                        <!-- <th>From Date</th>
-                        <th>To Date</th> -->
-                         <th>Status</th>
-                        <!--<th>LeaveType</th> -->
-                        <th>Action</th>
+                        <th>LeaveType</th>
                        </tr>
                 </thead>
-                <tbody *ngFor="let leave of employeeLeaves">
+                <tbody *ngFor="let leave of leaveApplications">
                     <tr>
-                        <!-- <td>{{leave.fullName}}</td> -->
                         <td>{{leave.createdOn |date}}</td>
-                        <!-- <td>{{leave.fromDate |date}}</td>
-                        <td>{{leave.toDate |date}}</td> -->
-                        <td>{{leave.status}}</td>
-                        <!-- <td>{{leave.leaveType}}</td> -->
-                        <!-- <td style="cursor: pointer; text-decoration: underline ; color:  #0000EE;" [routerLink]="['../employeedetails',leave.id]">details</td> -->
-                        <!-- <a style="cursor: pointer; text-decoration: underline ; color:  #0000EE;" (click)="onApproved(leaveDetails.id)">Approved</a> -->
+                        <td>{{leave.leaveType}}</td>
                     </tr>
                 </tbody>
         </table>
-        <!-- <a style="cursor: pointer; text-decoration: underline ; color:  #0000EE;" [routerLink]="['/hrmanager/leave/leavebydate']">Employee on leave</a> -->
-        <!-- <a style="cursor: pointer; text-decoration: underline ; color:  #0000EE;" [routerLink]="['../todaysleave']">TodaysLeave</a> -->
-    
         </div>
         <div class="col-md-6">
             <!-- <app-todays-employee-leave></app-todays-employee-leave> -->
+            <leave-details [applicationId]="leave.id"></leave-details>
     </div>
     <div class="row">
         <div class="col-md-6">   

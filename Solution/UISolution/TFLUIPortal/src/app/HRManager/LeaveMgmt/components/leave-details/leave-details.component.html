@@ -4,8 +4,7 @@
         <div class="col-md-6">
             <div >
                 <div *ngIf="leaveDetails">
-                                    <tr><th>Name:</th><td>{{leaveDetails.fullName}}</td></tr>
-                                    <tr><th>Application Date:</th><td>{{leaveDetails.applicationDate |date}}</td></tr>
+                                    <tr><th>Application Date:</th><td>{{leaveDetails.createdOn |date}}</td></tr>
                                     <tr><th>LeaveType:</th><td>{{leaveDetails.leaveType}}</td></tr>
                                     <tr><th>From Date:</th><td>{{leaveDetails.fromDate |date}}</td><th>To Date:</th><td>{{leaveDetails.toDate |date}}</td></tr>   
                                     <tr><th><label>Status:</label></th><td>{{leaveDetails.status}}</td></tr> 
@@ -17,8 +16,8 @@
             </div>
         </div>
         <div class="col-md-6" *ngIf="leaveDetails">
-            <app-employee-consumed-leaves [employeeId]="leaveDetails.employeeId"></app-employee-consumed-leaves>
-            <app-employee-pending-leaves [employeeId]="leaveDetails.employeeId"></app-employee-pending-leaves> 
+            <!-- <app-employee-consumed-leaves [employeeId]="leaveDetails.employeeId"></app-employee-consumed-leaves>
+            <app-employee-pending-leaves [employeeId]="leaveDetails.employeeId"></app-employee-pending-leaves>  -->
         </div>
         <div class="row">
         <div class="col-md-6">
