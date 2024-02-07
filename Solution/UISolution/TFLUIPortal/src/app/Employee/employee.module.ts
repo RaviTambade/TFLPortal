@@ -12,13 +12,14 @@ import { TimesheetDetailsComponent } from './components/timesheet/timesheet-deta
 import { SharedModule } from '../shared/shared.module';
 import { TimesheetListComponent } from './components/timesheet/timesheet-list/timesheet-list.component';
 import { CreateTimesheetComponent } from './components/timesheet/create-timesheet/create-timesheet.component';
-import { TimesheetEmployeeWorkDataComponent } from './components/timesheet/timesheet-employee-work-chart/timesheet-employee-work-data/timesheet-employee-work-data.component';
-import { TimesheetEmployeeWorkChartComponent } from './components/timesheet/timesheet-employee-work-chart/timesheet-employee-work-chart.component';
+// import { TimesheetEmployeeWorkDataComponent } from './components/timesheet/timesheet-employee-work-chart/timesheet-employee-work-data/timesheet-employee-work-data.component';
+// import { TimesheetEmployeeWorkChartComponent } from './components/timesheet/timesheet-employee-work-chart/timesheet-employee-work-chart.component';
 import { TimesheetEmployeeProjectHoursComponent } from './components/timesheet/timesheet-employee-project-hours/timesheet-employee-project-hours.component';
 import { AddTimesheetEntryComponent } from './components/timesheet/add-timesheet-entry/add-timesheet-entry.component';
 import { UpdateTimesheetEntryComponent } from './components/timesheet/update-timesheet-entry/update-timesheet-entry.component';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { EmployeenavbarComponent } from './components/employeenavbar/employeenavbar.component';
+import { MontlyworkutilizationComponent } from './components/montlyworkutilization/montlyworkutilization.component';
 
  export const employeeRoutes:Routes=[
   {path:'projects', component:ProjectComponent},
@@ -35,13 +36,14 @@ import { EmployeenavbarComponent } from './components/employeenavbar/employeenav
     TimesheetDetailsComponent,
     TimesheetListComponent,
     CreateTimesheetComponent,
-    TimesheetEmployeeWorkDataComponent,
-    TimesheetEmployeeWorkChartComponent,
+    // TimesheetEmployeeWorkDataComponent,
+    // TimesheetEmployeeWorkChartComponent,
     TimesheetEmployeeProjectHoursComponent,
     AddTimesheetEntryComponent,
     UpdateTimesheetEntryComponent,
     EmployeeComponent,
     EmployeenavbarComponent,
+    MontlyworkutilizationComponent,
     
   ],
   imports: [
@@ -55,11 +57,12 @@ import { EmployeenavbarComponent } from './components/employeenavbar/employeenav
   exports: [
     TimesheetDetailsComponent,
     TimesheetListComponent,
-    TimesheetEmployeeWorkChartComponent,
+    // TimesheetEmployeeWorkChartComponent,
     TimesheetEmployeeProjectHoursComponent,
     AddTimesheetEntryComponent,
     UpdateTimesheetEntryComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    MontlyworkutilizationComponent
   ],
 })
 export class EmployeeModule {}
