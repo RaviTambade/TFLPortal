@@ -8,10 +8,13 @@ import { EmployeeProjectWorksComponent } from './components/ProjectMgmt/employee
 import { EmployeeprojectworkdetailsComponent } from './components/ProjectMgmt/employee-project-works/employeeprojectworkdetails/employeeprojectworkdetails.component';
 import { ProjectmanagerComponent } from './components/projectmanager/projectmanager.component';
 import { ProjectListComponent } from './components/ProjectMgmt/project-list/project-list.component';
+import { ProjectdetailsComponent } from './components/ProjectMgmt/project-list/projectdetails/projectdetails.component';
 
  export const hrManagerRoutes: Routes = [
   { path: '', component:ProjectmanagerComponent },
-  { path: 'myProject', component: ProjectListComponent },
+  { path: 'myProject', component: ProjectListComponent ,children:
+  [{path:'projectdetails/:id' ,component:ProjectdetailsComponent}]}
+  //{ path: 'projectdetails/:id', component: ProjectdetailsComponent },
   
 ];
 
@@ -24,6 +27,8 @@ import { ProjectListComponent } from './components/ProjectMgmt/project-list/proj
     EmployeeProjectWorksComponent,
     EmployeeprojectworkdetailsComponent,
     ProjectmanagerComponent,
+    ProjectListComponent,
+    ProjectdetailsComponent
   ],
   imports: [CommonModule, RouterModule],
   exports: [EmployeeProjectWorksComponent, EmployeeprojectworkdetailsComponent,ProjectmanagerComponent],

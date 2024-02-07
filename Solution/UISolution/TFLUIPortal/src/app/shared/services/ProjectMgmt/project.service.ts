@@ -30,7 +30,7 @@ export class ProjectService {
 
 
   getProject(projectId :number):Observable<Project>{
-    let url=this.projectApi+"projects/"+ projectId
+    let url=this.projectApi+"/projects/"+ projectId
     return this.httpClient.get<Project>(url);
   }
 

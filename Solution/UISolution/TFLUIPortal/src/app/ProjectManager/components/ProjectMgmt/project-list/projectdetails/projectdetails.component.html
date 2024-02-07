@@ -21,29 +21,29 @@
                             </tr>
                             <tr>
                                 <th>StartDate</th>
-                                <td>{{project.startDate | date}}</td>
+                                <td>{{project.startDate| date}}</td>
                             </tr>
                             <tr>
                                 <th>EndDate</th>
-                                <td>{{project.endDate | date}}</td>
+                                <td>{{project.endDate| date}}</td>
                             </tr>
                         </table>
-                        <app-members-list [projectId]="project.id"></app-members-list>
-                        <app-sprint-list [projectId]="project.id"></app-sprint-list>
+                        <!-- <app-members-list [projectId]="project.id"></app-members-list>
+                        <app-sprint-list [projectId]="project.id"></app-sprint-list> -->
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-sm-6">
-            <app-project-work-chart></app-project-work-chart>
+            <!-- <app-project-work-chart></app-project-work-chart> -->
         </div>
     </div>
 </div>
 
 
-       <div >
+       <!-- <div >
             <a class="link-underline" [routerLink]="['../../../showdetails', project?.id]">Show Employees Work</a>
-        </div>
+        </div> -->
     
-    <router-outlet></router-outlet>
+    <!-- <router-outlet></router-outlet> -->
 
