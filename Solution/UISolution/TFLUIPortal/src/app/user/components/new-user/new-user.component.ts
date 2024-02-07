@@ -31,7 +31,7 @@ newUserForm = new FormGroup({
     
     const newUser: NewUser = {
       id: 0,
-      imageurl: this.newUserForm.get("imageUrl")?.value,
+      imageurl: "image.jpg",
       aadharid: this.newUserForm.get("aadharId")?.value,
       firstname: this.newUserForm.get("firstName")?.value,
       lastname: this.newUserForm.get("lastName")?.value,
@@ -40,8 +40,8 @@ newUserForm = new FormGroup({
       email: this.newUserForm.get("email")?.value,
       contactnumber: this.newUserForm.get("contactNumber")?.value,
       password: this.newUserForm.get("password")?.value,
-      createdon: this.newUserForm.get("createdon")?.value,
-      modifiedon: this.newUserForm.get("modifiedon")?.value,
+      createdon: new Date().toISOString().slice(0,10),
+      modifiedon: new Date().toISOString().slice(0,10),
     };
     console.log(newUser);
     this.service.addUser(newUser).subscribe((res) => {
