@@ -9,7 +9,7 @@ import { UserModule } from './user/user.module';
 import { JwtModule } from '@auth0/angular-jwt';
 import { LocalStorageKeys } from './shared/enums/local-storage-keys';
 import { AppComponent } from './app.component';
-import { EmployeeModule } from './Employee/employee.module';
+import { EmployeeModule, employeeRoutes } from './Employee/employee.module';
 import { HrmanagerModule } from './HRManager/hrmanager.module';
 import { DirectorModule } from './Director/director.module';
 import { ProjectManagerModule } from './ProjectManager/project-manager.module';
@@ -24,7 +24,7 @@ import { HomeComponent } from './layout/Components/home/home.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home',pathMatch:'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'employee', component: EmployeeComponent },
+  { path: 'employee', component: EmployeeComponent, children:employeeRoutes},
   { path: 'projectmanager', component: ProjectmanagerComponent },
   { path: 'hrmanager', component: HrmanagerComponent },
   { path: 'director', component: DirectorComponent },
