@@ -48,6 +48,11 @@ export class MembershipService {
     return this.httpClient.get<User>(url);
   }
 
+  getUserDetails(userIds: number): Observable<User> {
+    let url = `${this.membershipUrl}/users/name/${userIds}`;
+    return this.httpClient.get<User>(url);
+  }
+
   updateUser(id: number, user: User): Observable<any> {
     let url = `${this.membershipUrl}/users/${id}`;
     return this.httpClient.put<any>(url, user);
