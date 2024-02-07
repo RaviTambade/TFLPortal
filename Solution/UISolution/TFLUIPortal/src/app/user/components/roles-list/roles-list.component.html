@@ -1,0 +1,16 @@
+<p> PMS roles-list</p>
+
+<table class="table-bordered text-center">
+    <thead >
+        <tr>
+            <th>Id</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let role of roles">
+            <td>{{role.id}}</td>
+            <td>{{role.name}}</td>
+        </tr>
+    </tbody>
+</table>

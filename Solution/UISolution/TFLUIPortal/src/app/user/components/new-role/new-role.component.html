@@ -1,0 +1,15 @@
+
+<h3 class="text-center col-6" >Add New Role</h3>
+<form [formGroup]="roleForm" (ngSubmit)="onSubmit()">
+      <div class="form-group col-6">
+        <label for="name">Role:</label>
+        <input type="text" class="form-control" id="name"  name="name" formControlName="name">
+      </div>
+      <div class="form-group col-6">
+        <label for="lob">lob:</label>
+        <input type="text" class="form-control" id="lob"  name="lob" formControlName="lob">
+      </div>
+      <div>
+        <button type="submit">Add</button>
+      </div>
+</form>

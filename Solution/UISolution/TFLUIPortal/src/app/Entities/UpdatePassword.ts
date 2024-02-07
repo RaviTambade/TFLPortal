@@ -2,7 +2,7 @@
 export class UpdatePassword {
 
     constructor(
-        public  oldPassword: string,
+        public oldPassword: string,
         public newPassword: string
         ){}
 }

@@ -89,9 +89,6 @@ export class LoginComponent {
   }
 
   navigateByRole(role: string) {
-    let userId = Number(this.authSvc.getClaimFromToken(TokenClaims.userId));
-    this.hrSvc.getEmployeeByUserId(userId).subscribe((res) => {
-      localStorage.setItem(LocalStorageKeys.employeeId, res.id.toString());
       switch (role) {
         case Role.Employee:
           this.router.navigate(['/employee']);
@@ -107,6 +104,6 @@ export class LoginComponent {
           break;
       }
       // this.layoutSvc.onSucess();
-    });
+    // });
   }
 }

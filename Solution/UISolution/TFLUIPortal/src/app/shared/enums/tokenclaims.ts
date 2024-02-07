@@ -1,7 +1,7 @@
 export enum TokenClaims {
-    contactNumber = 'contactNumber',
-    userId = 'nameid',
-    role='role',
-    userName='unique_name'
+      contactNumber = 'contactNumber',
+      userId = 'nameid',
+      role='role',
+      userName='unique_name'
   }
   
