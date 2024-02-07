@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from 'src/app/Entities/Project';
 import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
@@ -11,6 +11,7 @@ import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.serv
 })
 export class ProjectListComponent implements OnInit{
   projects:Project[]|undefined;
+  @Output() projectDetails: EventEmitter<Project> = new EventEmitter();
   employeeId:number=0;
   @Input() projectId:number=0;
   constructor(private projectSvc:ProjectService,private router:Router,private route:ActivatedRoute){
@@ -20,7 +21,7 @@ export class ProjectListComponent implements OnInit{
    
     this.projectSvc.getProjects(this.employeeId).subscribe((res)=>
     {this.projects=res;
-      console.log(res);
+    this.projectDetails.emit(this.projects[0]);
     });
   
   }
