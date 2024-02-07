@@ -21,10 +21,11 @@ import { SharedModule } from '../shared/shared.module';
 import { AllEmployeeLeavesComponent } from './LeaveMgmt/components/all-employee-leaves/all-employee-leaves.component';
 import { HrmanagerComponent } from './components/hrmanager/hrmanager.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { LeaveDetailsComponent } from './LeaveMgmt/components/leave-details/leave-details.component';
 
 export const hrRoutes: Routes = [
       // {path:'', component:HrmanagerComponent},
-      {path:'hrmanager1', component:DashboardComponent},
+      {path:'leaveapplications', component:AllEmployeeLeavesComponent},
       {path:'hrmanager2', component:DashboardComponent},
       {path:'hrmanager3', component:DashboardComponent},
     // {
@@ -53,6 +54,7 @@ export const hrRoutes: Routes = [
 
 @NgModule({
   declarations: [
+    LeaveDetailsComponent,
     HrmanagerLeftSidebarComponent,
     DashboardComponent,
     LeavesComponent,
@@ -85,6 +87,7 @@ export const hrRoutes: Routes = [
     AllEmployeeLeavesComponent,
     SalaryprocessingComponent,
     AllEmployeesComponent,
+    LeaveDetailsComponent,
     HrmanagerComponent],
 })
 export class HrmanagerModule {}

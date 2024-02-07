@@ -47,8 +47,8 @@ export class TimesheetService {
     }
   
     
-    getActivityWiseHours(employeeId:number,intervalType: string,projectId:number): Observable<MemberUtilization[]> {
-      let url = `${this.timesheetAPIUrl}/memberutilization/employees/${employeeId}/interval/${intervalType}/projects/${projectId}`;
+    getEmployeeUtilization(employeeId:number,fromDate: string, toDate:string,projectId:number): Observable<MemberUtilization[]> {
+      let url = `${this.timesheetAPIUrl}/memberutilization/employees/${employeeId}/from/${fromDate}/to/${toDate}/projects/${projectId}`;
       return this.http.get<any>(url);
     }
      

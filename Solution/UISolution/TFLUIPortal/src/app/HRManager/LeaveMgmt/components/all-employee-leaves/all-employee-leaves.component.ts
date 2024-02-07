@@ -9,14 +9,15 @@ import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
 })
 export class AllEmployeeLeavesComponent implements OnInit{
 
-  employeeLeaves:LeaveApplication[]=[];
-  leaveStatus:string="applied";
+  leaveApplications:LeaveApplication[]=[];
+  appliedLeaves:LeaveApplication[]=[];
 
   constructor(private leaveService:LeavesService){}
 
   ngOnInit(): void {
-   this.leaveService.getLeaveDetails(this.leaveStatus).subscribe((res)=>{
-    this.employeeLeaves=res;
+   this.leaveService.getAllLeaveApplications().subscribe((res)=>{
+    this.leaveApplications=res;
+    this.appliedLeaves=this.leaveApplications.filter(u=>u.status=="applied");
     console.log(res);
    });
   }

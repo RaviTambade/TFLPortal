@@ -17,8 +17,9 @@ export class LeavesService {
 
   constructor(private http:HttpClient) { }
 
-  getAllEmployeeLeaves():Observable<LeaveApplication[]>{
-    return this.http.get<LeaveApplication[]>(this.leaveAPI);
+  getAllLeaveApplications():Observable<LeaveApplication[]>{
+    let url=`${this.leaveAPI}/applications`;
+    return this.http.get<LeaveApplication[]>(url);
   }
   
   getAllRoleBasedLeaves():Observable<LeaveAllocation[]>{
@@ -27,7 +28,7 @@ export class LeavesService {
   }
 
   getEmployeeLeavesDetails(leaveId:number):Observable<LeaveApplication>{
-    let url=`${this.leaveAPI}/leave/${leaveId}`;
+    let url=`${this.leaveAPI}/applications/${leaveId}`;
     return this.http.get<LeaveApplication>(url);
   }
 

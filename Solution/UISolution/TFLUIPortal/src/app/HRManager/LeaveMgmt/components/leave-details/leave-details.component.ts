@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
 import { LeaveStatus } from 'src/app/Entities/LeaveStatus';
@@ -6,17 +6,18 @@ import { LeaveApplication } from 'src/app/Entities/LeaveApplication';
 
 
 @Component({
-  selector: 'app-leave-details',
+  selector: 'leave-details',
   templateUrl: './leave-details.component.html',
   styleUrls: ['./leave-details.component.css']
 })
 export class LeaveDetailsComponent {
+@Input() applicationId:any;
 
   updateStatus:LeaveStatus={
     id: 0,
     status: ''
   }
-  leaveId:number=0;
+
   leaveDetails:LeaveApplication|undefined;
 
   constructor(
@@ -26,28 +27,28 @@ export class LeaveDetailsComponent {
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params)=>{
-      this.leaveId=Number(params.get('id'));
-        console.log(this.leaveId);
-    this.leaveService.getEmployeeLeavesDetails(this.leaveId).subscribe((res)=>{
+    // this.route.paramMap.subscribe((params)=>{
+    //   this.leaveId=Number(params.get('id'));
+        console.log(this.applicationId);
+    this.leaveService.getEmployeeLeavesDetails(this.applicationId).subscribe((res)=>{
       console.log(res);
       this.leaveDetails=res;
        })
-      }
-    );
+    //   }
+    // );
   }
 
   onApproved(id:number){
-    this.updateStatus.status="sanctioned";
-    this.leaveService.updateLeaveApplication(id,this.updateStatus.status).subscribe((res)=>{
-      console.log(res);
-    });
+    // this.updateStatus.status="sanctioned";
+    // this.leaveService.updateLeaveApplication(id,this.updateStatus.status).subscribe((res)=>{
+    //   console.log(res);
+    // });
   }
 
   onReject(id:number){
-    this.updateStatus.status="notsanctioned";
-    this.leaveService.updateLeaveApplication(id,this.updateStatus.status).subscribe((res)=>{
-      console.log(res);
-    });
+    // this.updateStatus.status="notsanctioned";
+    // this.leaveService.updateLeaveApplication(id,this.updateStatus.status).subscribe((res)=>{
+    //   console.log(res);
+    // });
   }
 }
