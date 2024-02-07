@@ -20,6 +20,7 @@ import { LeaveallocationsComponent } from './LeaveMgmt/components/leaveallocatio
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { AllEmployeeLeavesComponent } from './LeaveMgmt/components/all-employee-leaves/all-employee-leaves.component';
+import { HrmanagerComponent } from './components/hrmanager/hrmanager.component';
 
 // export const hrRoutes: Routes = [
 //   {
@@ -65,7 +66,8 @@ import { AllEmployeeLeavesComponent } from './LeaveMgmt/components/all-employee-
     PaidEmployeeDetailsComponent,
     LeaveDisplayComponent,
     AllEmployeeLeavesComponent,
-    LeaveallocationsComponent
+    LeaveallocationsComponent,
+    HrmanagerComponent
   ],
   imports: 
     [
@@ -79,6 +81,7 @@ import { AllEmployeeLeavesComponent } from './LeaveMgmt/components/all-employee-
     EmployeedetailsComponent,
     AllEmployeeLeavesComponent,
     SalaryprocessingComponent,
-    AllEmployeesComponent],
+    AllEmployeesComponent,
+    HrmanagerComponent],
 })
 export class HrmanagerModule {}

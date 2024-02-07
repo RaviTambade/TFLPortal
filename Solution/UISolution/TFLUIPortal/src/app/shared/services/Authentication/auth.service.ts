@@ -39,8 +39,9 @@ export class AuthService {
 
   getClaimFromToken(claim: TokenClaims) {
     let token = localStorage.getItem(LocalStorageKeys.jwt);
-    if (token && !this.jwtHelper.isTokenExpired(token)) {
+    if (token !=null && !this.jwtHelper.isTokenExpired(token)) {
       const decodedToken = this.jwtHelper.decodeToken(token);
+      console.log(decodedToken);
       return decodedToken[claim];
     }
     return null;
