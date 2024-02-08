@@ -113,7 +113,6 @@ public class LeavesManagementController : ControllerBase
     [HttpGet("annualconsumedleaves/employees/{employeeId}/year/{year}")]
     public async Task<AnnualLeaves> GetAnnualConsumedLeaves(int employeeId,int year)
     {
-        
        return await _analyticService.GetAnnualConsumedLeaves(employeeId,year);   
     }
 

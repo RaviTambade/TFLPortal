@@ -21,15 +21,15 @@ import { LayoutModule } from './layout/layout.module';
 import { HrmanagerComponent } from './UserRoles/Manager/HRManager/components/hrmanager/hrmanager.component';
 import { UserProfileModule } from './UserProfile/user-profile.module';
 
-const routes: Routes = [
-  { path: '', redirectTo: 'home',pathMatch:'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'employee', component: EmployeeComponent, children:employeeRoutes},
-   { path: 'projectmanager', component: ProjectmanagerComponent, children:projectManagerRoutes},
-  { path: 'hrmanager', component: HrmanagerComponent,children:hrRoutes},
-  { path: 'director', component: DirectorComponent },
-  { path: 'login', component: LoginComponent },
-];
+// const routes: Routes = [
+//   { path: '', redirectTo: 'home',pathMatch:'full' },
+//   { path: 'home', component: HomeComponent },
+//   { path: 'employee', component: EmployeeComponent, children:employeeRoutes},
+//    { path: 'projectmanager', component: ProjectmanagerComponent, children:projectManagerRoutes},
+//   { path: 'hrmanager', component: HrmanagerComponent,children:hrRoutes},
+//   { path: 'director', component: DirectorComponent },
+//   { path: 'login', component: LoginComponent },
+// ];
 
 @NgModule({
   declarations: [AppComponent],
@@ -52,7 +52,7 @@ const routes: Routes = [
     DirectorModule,
     ProjectManagerModule,
     UserProfileModule,
-    RouterModule.forRoot(routes),
+    // RouterModule.forRoot(routes),
   ],
 
   providers: [

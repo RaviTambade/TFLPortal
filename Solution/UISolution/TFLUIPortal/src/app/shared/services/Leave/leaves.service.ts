@@ -6,6 +6,7 @@ import { LeaveApplication } from '../../Entities/Leavemgmt/LeaveApplication';
 import { RoleLeaveAllocation } from '../../Entities/Leavemgmt/LeaveAllocation';
 import { MonthLeave } from '../../Entities/Leavemgmt/MonthLeave';
 import { LeavesCount } from '../../Entities/Leavemgmt/LeavesCount';
+import { AnnualLeaves } from '../../Entities/Leavemgmt/AnnualLeaves';
 
 @Injectable({
   providedIn: 'root'
@@ -61,9 +62,9 @@ export class LeavesService {
     return this.http.get<LeavesCount>(url);
   }
 
-  getAnnualConsumedLeaves(employeeId:number,year:number):Observable<LeavesCount>{
+  getAnnualConsumedLeaves(employeeId:number,year:number):Observable<AnnualLeaves>{
     let url=`${this.leaveAPI}/annualconsumedleaves/employees/${employeeId}/year/${year}`;
-    return this.http.get<LeavesCount>(url);
+    return this.http.get<AnnualLeaves>(url);
   }
 
   getAnnualLeaves(employeeId:number,roleId:number,year:number):Observable<LeavesCount>{

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AnnualLeaves } from 'src/app/shared/Entities/Leavemgmt/AnnualLeaves';
+import { LeavesCount } from 'src/app/shared/Entities/Leavemgmt/LeavesCount';
  
 import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
 
@@ -10,7 +12,7 @@ import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
 export class ConsumedLeaveComponent {
 
   employeeId:number=12;
-  consumedLeave:LeavesCount |undefined;
+  consumedLeave:AnnualLeaves |undefined;
   year:number=2023;
 
 

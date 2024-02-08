@@ -19,6 +19,7 @@ import { MontlyworkutilizationComponent } from './components/montlyworkutilizati
 import { ProjectListComponent } from './components/project/project-list/project-list.component';
 import { ProjectdetailsComponent } from './components/project/project-list/projectdetails/projectdetails.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ConsumedLeaveComponent } from './components/LeaveMgmt/components/consumed-leave/consumed-leave.component';
 
  export const employeeRoutes:Routes=[
   {path:'projects', component:ProjectComponent},
@@ -42,8 +43,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     MontlyworkutilizationComponent,
     ProjectListComponent,
     ProjectdetailsComponent,
-    
-    
+    ConsumedLeaveComponent
   ],
   imports: [
     CommonModule,
@@ -61,7 +61,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     UpdateTimesheetEntryComponent,
     EmployeeComponent,
     MontlyworkutilizationComponent,
-    ProjectComponent
+    ProjectComponent,
+    ConsumedLeaveComponent
   ],
 })
 export class EmployeeModule {}
