@@ -1,13 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HrmanagerLeftSidebarComponent } from './components/hrmanager-left-sidebar/hrmanager-left-sidebar.component';
 import { RouterModule, Routes } from '@angular/router';
 import { EventsComponent } from './components/events/events.component';
-import { LeavesComponent } from './components/leaves/leaves.component';
 import { PayrollComponent } from './components/payroll/payroll.component';
 import { PerformenceApprisalComponent } from './components/performence-apprisal/performence-apprisal.component';
 import { ProjectComponent } from './components/project/project.component';
-import { TimesheetComponent } from './components/timesheet/timesheet.component';
 import { SalaryprocessingComponent } from './components/payroll/salaryprocessing/salaryprocessing.component';
 import { MonthlysalarystructureComponent } from './components/payroll/monthlysalarystructure/monthlysalarystructure.component';
 import { EmployeedetailsComponent } from './components/payroll/employeedetails/employeedetails.component';
@@ -55,14 +52,11 @@ export const hrRoutes: Routes = [
 @NgModule({
   declarations: [
     LeaveDetailsComponent,
-    HrmanagerLeftSidebarComponent,
     DashboardComponent,
-    LeavesComponent,
     ProjectComponent,
     PayrollComponent,
     EventsComponent,
     PerformenceApprisalComponent,
-    TimesheetComponent,
     SalaryprocessingComponent,
     MonthlysalarystructureComponent,
     EmployeedetailsComponent,

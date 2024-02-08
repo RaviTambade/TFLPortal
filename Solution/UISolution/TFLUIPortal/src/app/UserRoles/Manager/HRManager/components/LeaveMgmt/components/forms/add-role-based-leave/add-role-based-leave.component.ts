@@ -26,7 +26,7 @@ export class AddRoleBasedLeaveComponent {
 onSubmit(){
   let roleBasedLeave:RoleLeaveAllocation={
         id: 0,
-        : this.rolebasedleaveForm.get("roleId")?.value,
+        roleId: this.rolebasedleaveForm.get("roleId")?.value,
         sick:this.rolebasedleaveForm.get("sick")?.value,
         casual: this.rolebasedleaveForm.get("casual")?.value,
         paid: this.rolebasedleaveForm.get("paid")?.value,
