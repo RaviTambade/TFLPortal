@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Project } from 'src/app/Entities/Project';
+import { Project } from 'src/app/shared/Entities/Project';
 import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
 @Component({
   selector: 'app-projectdetails',
