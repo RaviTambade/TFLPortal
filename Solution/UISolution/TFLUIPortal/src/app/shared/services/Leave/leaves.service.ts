@@ -110,10 +110,11 @@ export class LeavesService {
     return this.http.put<any>(url,{});
   }
 
-  updateRoleBasedLeave(roleBasedLeave:LeaveAllocation):Observable<LeaveAllocation>{
-    let url=`${this.leaveAPI}/leaveallocation`;
-    return this.http.put<LeaveAllocation>(url,roleBasedLeave);
-  }
+  // updateRoleBasedLeave(roleBasedLeave:LeaveAllocation):Observable<LeaveAllocation>{
+  //   let url=`${this.leaveAPI}/leaveallocation`;
+  //   return this.http.put<LeaveAllocation>(url,roleBasedLeave);
+  // }
+  
 
   deleteEmployeeLeave(leaveId:number):Observable<LeaveApplication>{
     let url=`${this.leaveAPI}/${leaveId}`;

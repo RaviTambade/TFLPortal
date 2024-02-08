@@ -1,13 +1,12 @@
 import { HttpEventType } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { User } from 'src/app/user/Models/User';
-// import { HrService } from 'src/app/shared/services/hr.service';
 import { environment } from 'src/environments/environment';
-import { StateChangeEvent } from '../../Models/stateChangeEvent';
 import { TokenClaims } from 'src/app/shared/enums/tokenclaims';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
 import { AuthService } from 'src/app/shared/services/Authentication/auth.service';
+import { User } from 'src/app/shared/Entities/User';
+import { StateChangeEvent } from 'src/app/shared/Entities/stateChangeEvent';
 
 @Component({
   selector: 'user-profile',

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
+import { Project } from 'src/app/shared/Entities/Project';
+import { MemberUtilization } from 'src/app/shared/Entities/memberutilization';
 Chart.register(...registerables);
-import { Project } from 'src/app/Entities/Project';
-import { MemberUtilization } from 'src/app/Entities/memberutilization';
+
 import { HourConvertorPipe } from 'src/app/shared/pipes/hour-convertor.pipe';
 import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
 import { TimesheetService } from 'src/app/shared/services/Timesheet/timesheet.service';

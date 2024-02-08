@@ -1,4 +1,4 @@
 export class UserRole {
-    constructor(public id: number, public name: string,private lob:string) {}
+    constructor(public id: number, public name: string,public lob:string) {}
   }
   

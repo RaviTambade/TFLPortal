@@ -7,10 +7,9 @@ import {
   ValidationErrors,
   ValidatorFn,
 } from '@angular/forms';
+import { UpdatePassword } from 'src/app/shared/Entities/UpdatePassword';
 
-import { UpdatePassword } from 'src/app/Entities/UpdatePassword';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
-import { StateChangeEvent } from '../../Models/stateChangeEvent';
 
 export function confirmPasswordValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {

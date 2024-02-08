@@ -10,7 +10,7 @@ import { ProjectListComponent } from './components/ProjectMgmt/project-list/proj
 import { ProjectdetailsComponent } from './components/ProjectMgmt/project-list/projectdetails/projectdetails.component';
 import { MembersListComponent } from './components/ProjectMgmt/members-list/members-list.component';
 
- export const hrManagerRoutes: Routes = [
+ export const projectManagerRoutes: Routes = [
   { path: '', component:ProjectmanagerComponent },
   { path: 'myProject', component: ProjectListComponent },
   { path: 'members/:id', component: MembersListComponent},

@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TimesheetService } from '../../../../shared/services/Timesheet/timesheet.service';
-import { ProjectService } from '../../../../shared/services/ProjectMgmt/project.service';
-import { LocalStorageKeys } from '../../../../shared/enums/local-storage-keys';
-import { TasksManagementService } from '../../../../shared/services/TaskMgmt/tasks-management.service';
-import { Project } from 'src/app/Entities/Project';
-import { Task } from 'src/app/Entities/task';
-import { Sprint } from 'src/app/Entities/sprint';
-import { TimesheetEntry } from 'src/app/Entities/timesheetEntry';
+import { Project } from 'src/app/shared/Entities/Project';
+import { Sprint } from 'src/app/shared/Entities/sprint';
+import { Task } from 'src/app/shared/Entities/task';
+import { TimesheetEntry } from 'src/app/shared/Entities/timesheetEntry';
+import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
+import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
+import { TasksManagementService } from 'src/app/shared/services/TaskMgmt/tasks-management.service';
+import { TimesheetService } from 'src/app/shared/services/Timesheet/timesheet.service';
 
 @Component({
   selector: 'app-update-timesheet-entry',

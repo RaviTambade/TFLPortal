@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Credential } from '../../../Entities/credential';
+import { Credential } from 'src/app/shared/Entities/credential';
 
 // import { LayoutService } from 'src/app/layout/Services/layout.service';
 import { Role } from 'src/app/shared/enums/role';

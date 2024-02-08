@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
+import { ProjectWorkHour } from 'src/app/shared/Entities/projectworkhour';
 import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { HourConvertorPipe } from 'src/app/shared/pipes/hour-convertor.pipe';
-import { TimesheetService } from '../../../../shared/services/Timesheet/timesheet.service';
-import { ProjectWorkHour } from 'src/app/Entities/projectworkhour';
+import { TimesheetService } from 'src/app/shared/services/Timesheet/timesheet.service';
 
 @Component({
   selector: 'timesheet-employee-project-hours',
