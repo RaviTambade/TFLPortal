@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserRole } from 'src/app/shared/Entities/Projectmgmt/UserRole';
+import { Role } from 'src/app/shared/Entities/UserMgmt/Role';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
 
 @Component({
@@ -10,7 +10,7 @@ export class RolesListComponent implements OnInit{
 
   constructor(private service:MembershipService){}
   lob:string="PMS";
-  roles:UserRole[]=[];
+  roles:Role[]=[];
 
   ngOnInit(): void {
     this.service.getAllRoles(this.lob).subscribe((res)=>{

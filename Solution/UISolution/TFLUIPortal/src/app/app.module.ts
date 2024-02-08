@@ -19,6 +19,7 @@ import { EmployeeModule, employeeRoutes } from './UserRoles/Employee/employee.mo
 import { DirectorComponent } from './UserRoles/Director/components/director/director.component';
 import { LayoutModule } from './layout/layout.module';
 import { HrmanagerComponent } from './UserRoles/Manager/HRManager/components/hrmanager/hrmanager.component';
+import { UserProfileModule } from './UserProfile/user-profile.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home',pathMatch:'full' },
@@ -50,6 +51,7 @@ const routes: Routes = [
     HrmanagerModule,
     DirectorModule,
     ProjectManagerModule,
+    UserProfileModule,
     RouterModule.forRoot(routes),
   ],
 

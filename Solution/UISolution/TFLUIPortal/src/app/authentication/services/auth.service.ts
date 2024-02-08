@@ -5,9 +5,10 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { TokenClaims } from 'src/app/shared/enums/tokenclaims';
 import { environment } from 'src/environments/environment';
-import { updateContact } from '../../Entities/UserMgmt/UpdateContact';
-import { Credential } from '../../Entities/UserMgmt/credential';
-import { UpdatePassword } from '../../Entities/UserMgmt/UpdatePassword';
+import { updateContact } from 'src/app/shared/Entities/UserMgmt/UpdateContact';
+import { Credential } from 'src/app/shared/Entities/UserMgmt/credential';
+import { UpdatePassword } from 'src/app/shared/Entities/UserMgmt/UpdatePassword';
+import { NewUser } from 'src/app/shared/Entities/UserMgmt/NewUser';
 
 
 @Injectable({
@@ -38,13 +39,4 @@ export class AuthService {
     return this.httpClient.put<boolean>(url, credential);
   }
 
-  getClaimFromToken(claim: TokenClaims) {
-    let token = localStorage.getItem(LocalStorageKeys.jwt);
-    if (token !=null && !this.jwtHelper.isTokenExpired(token)) {
-      const decodedToken = this.jwtHelper.decodeToken(token);
-      console.log(decodedToken);
-      return decodedToken[claim];
-    }
-    return null;
-  }
 }

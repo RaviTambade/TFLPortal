@@ -10,6 +10,7 @@ import {
 import { UpdatePassword } from 'src/app/shared/Entities/UserMgmt/UpdatePassword';
 
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
+import { AuthService } from '../../services/auth.service';
 
 export function confirmPasswordValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -31,7 +32,7 @@ export class ChangePasswordComponent {
   changePasswordForm!: FormGroup;
 
   // @Output() onPasswordChange = new EventEmitter<StateChangeEvent>();
-  constructor(private membershipSvc: MembershipService) {}
+  constructor(private authSvc: AuthService) {}
 
   ngOnInit(): void {
     this.changePasswordForm = new FormGroup(
@@ -83,7 +84,7 @@ export class ChangePasswordComponent {
       newPassword: this.newPassword.value,
     };
 
-    this.membershipSvc.changePassword(credential).subscribe((response) => {
+    this.authSvc.changePassword(credential).subscribe((response) => {
       if (response) {
         alert('Password changed');
         // this.onPasswordChange.emit({ isStateUpdated: true });

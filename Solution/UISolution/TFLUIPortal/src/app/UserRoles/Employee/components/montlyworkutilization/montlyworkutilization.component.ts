@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { Project } from 'src/app/shared/Entities/Projectmgmt/Project';
-import { MemberUtilization } from 'src/app/shared/Entities/Timesheetmgmt/work';
+import { MemberPerformance } from 'src/app/shared/Entities/Timesheetmgmt/performance';
 Chart.register(...registerables);
 
 import { HourConvertorPipe } from 'src/app/shared/pipes/hour-convertor.pipe';
@@ -25,14 +25,13 @@ export class MontlyworkutilizationComponent {
       id: 0,
       title: 'All',
       startDate: '',
-      managerId: 0,
       status: '',
       endDate: '',
       description: '',
     },
   ];
   selectedProjectId = this.projects[0].id;
-  memberUtilizations: MemberUtilization[] = [];
+  memberUtilizations: MemberPerformance|undefined;
   chart: any;
 
   createChart() {
@@ -151,10 +150,10 @@ export class MontlyworkutilizationComponent {
         this.chart.data.datasets[0].data=[]
         this.chart.data.datasets[0].backgroundColor=[]
         this.chart.data.labels=[]
-        this.memberUtilizations.forEach((m) => {
+        this.memberUtilizations.works.forEach((m) => {
           let cl = this.timesheetService.randomColorPicker();
-          this.chart.data.labels.push(m.taskType)
-          this.chart.data.datasets[0].data.push(m.hours);
+          this.chart.data.labels.push(m.activity)
+          this.chart.data.datasets[0].data.push(m.duration);
           this.chart.data.datasets[0].backgroundColor.push(cl);
         });
         this.chart.update();

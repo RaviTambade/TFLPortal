@@ -7,7 +7,6 @@ import { PerformenceApprisalComponent } from './components/performence-apprisal/
 import { ProjectComponent } from './components/project/project.component';
 import { SalaryprocessingComponent } from './components/payroll/salaryprocessing/salaryprocessing.component';
 import { MonthlysalarystructureComponent } from './components/payroll/monthlysalarystructure/monthlysalarystructure.component';
-import { EmployeedetailsComponent } from './components/payroll/employeedetails/employeedetails.component';
 import { AllEmployeesComponent } from './components/payroll/all-employees/all-employees.component';
 import { EmployeeLeavesComponent } from './components/payroll/employee-leaves/employee-leaves.component';
 import { PaidEmployeeDetailsComponent } from './components/payroll/paid-employee-details/paid-employee-details.component';
@@ -59,7 +58,6 @@ export const hrRoutes: Routes = [
     PerformenceApprisalComponent,
     SalaryprocessingComponent,
     MonthlysalarystructureComponent,
-    EmployeedetailsComponent,
     AllEmployeesComponent,
     EmployeeLeavesComponent,
     PaidEmployeeDetailsComponent,
@@ -77,7 +75,6 @@ export const hrRoutes: Routes = [
         FormsModule
   ],
   exports: [
-    EmployeedetailsComponent,
     AllEmployeeLeavesComponent,
     SalaryprocessingComponent,
     AllEmployeesComponent,

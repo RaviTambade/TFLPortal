@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, concatMap, map, switchMap, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { MembershipService } from '../Membership/membership.service';
-import { EmployeeDetails } from '../../Entities/ResourcePool/EmployeeDetails';
 import { Employee } from '../../Entities/ResourcePool/Employee';
 
 
@@ -23,29 +22,8 @@ export class HrService {
     return this.httpClient.get<Employee>(url);
   }
 
-  getEmployeeDetails(employeeId: number): Observable<EmployeeDetails> {
+  getEmployeeDetails(employeeId: number): Observable<Employee> {
     let url = `${this.HrAPI}/${employeeId}`;
-    return this.httpClient.get<any>(url).pipe(
-      switchMap((employeeResponse) => {
-        console.log(employeeResponse);
-        return this.membershipSvc.getUser(employeeResponse.userId).pipe(
-          map((userResponse) => {
-            return new EmployeeDetails(
-              employeeResponse.id,
-              employeeResponse.userId,
-              userResponse.aadharId,
-              employeeResponse.hiredOn,
-              userResponse.firstName,
-              userResponse.lastName,
-              userResponse.email,
-              userResponse.gender,
-              userResponse.imageUrl,
-              userResponse.birthDate,
-              userResponse.contactNumber
-            );
-          })
-        );
-      })
-    );
+    return this.httpClient.get<any>(url);
   }
 }
