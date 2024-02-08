@@ -12,7 +12,7 @@ import { LeaveApplication } from 'src/app/Entities/LeaveApplication';
 })
 export class LeaveDetailsComponent {
 @Input() applicationId:any;
-
+@Input() name:any;
   updateStatus:LeaveStatus={
     id: 0,
     status: ''
