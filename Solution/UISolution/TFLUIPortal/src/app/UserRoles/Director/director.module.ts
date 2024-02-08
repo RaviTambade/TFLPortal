@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DirectorLeftSidebarComponent } from './components/director-left-sidebar/director-left-sidebar.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LeaveDisplayComponent } from './components/LeaveMgmt/leave-display/leave-display.component';
 import { PayDisplayComponent } from './components/Payroll/pay-display/pay-display.component';
@@ -32,7 +31,6 @@ import { DirectorComponent } from './components/director/director.component';
 
 @NgModule({
   declarations: [
-    DirectorLeftSidebarComponent,
     LeaveDisplayComponent,
     PayDisplayComponent,
     ProjectsDisplayComponent,
