@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProjectEmployees } from 'src/app/ProjectManager/Model/ProjectEmployes';
 import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
+import { ProjectEmployees } from '../../../Model/ProjectEmployes';
 
 @Component({
   selector: 'app-members-list',

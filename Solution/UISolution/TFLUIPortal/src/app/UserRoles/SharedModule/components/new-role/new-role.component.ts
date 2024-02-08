@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Role } from 'src/app/shared/Entities/Role';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
-import { Role } from '../../Models/Role';
 
 @Component({
   selector: 'new-role',

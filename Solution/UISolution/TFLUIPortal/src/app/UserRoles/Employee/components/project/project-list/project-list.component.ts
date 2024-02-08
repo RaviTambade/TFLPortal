@@ -1,7 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Project } from 'src/app/Entities/Project';
-import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
+import { Component, OnInit } from '@angular/core';
+import { Project } from 'src/app/shared/Entities/Project';
 import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
 
 @Component({

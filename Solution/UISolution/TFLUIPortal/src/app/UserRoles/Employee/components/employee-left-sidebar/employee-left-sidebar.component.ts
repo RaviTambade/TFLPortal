@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UrlType } from 'src/app/Entities/UrlType';
+import { UrlType } from 'src/app/shared/Entities/UrlType';
 
 @Component({
   selector: 'app-employee-left-sidebar',

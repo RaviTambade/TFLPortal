@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { User } from 'src/app/user/Models/User';
-import { StateChangeEvent } from '../../Models/stateChangeEvent';
+import { User } from 'src/app/shared/Entities/User';
+import { StateChangeEvent } from 'src/app/shared/Entities/stateChangeEvent';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
 
 @Component({

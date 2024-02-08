@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { NewUser } from 'src/app/shared/Entities/NewUser';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
-import { NewUser } from '../../Models/NewUser';
 
 @Component({
   selector: 'new-user',
