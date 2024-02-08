@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LeaveAllocation } from 'src/app/Entities/LeaveAllocation';
+import { RoleLeaveAllocation } from 'src/app/Entities/LeaveAllocation';
 import { LeaveApplication } from 'src/app/Entities/LeaveApplication';
 import { LeavesCount } from 'src/app/Entities/LeavesCount';
 import { MonthLeave } from 'src/app/Entities/MonthLeave';
@@ -22,30 +22,43 @@ export class LeavesService {
     return this.http.get<LeaveApplication[]>(url);
   }
   
-  getAllRoleBasedLeaves():Observable<LeaveAllocation[]>{
-    let url=`${this.leaveAPI}/leaveallocations`;
-    return this.http.get<LeaveAllocation[]>(url);
-  }
-
+  //getLeaveApplication
   getEmployeeLeavesDetails(leaveId:number):Observable<LeaveApplication>{
     let url=`${this.leaveAPI}/applications/${leaveId}`;
     return this.http.get<LeaveApplication>(url);
   }
 
+
+  getAllRoleBasedLeaves():Observable<RoleLeaveAllocation[]>{
+    let url=`${this.leaveAPI}/leaveallocations`;
+    return this.http.get<RoleLeaveAllocation[]>(url);
+  }
+  
   getEmployeeLeaves(employeeId:number):Observable<LeaveApplication[]>{
     let url=`${this.leaveAPI}/employees/${employeeId}`;
     return this.http.get<LeaveApplication[]>(url);
   }
 
-  getRoleBasedLeaveDetails(id:number):Observable<LeaveAllocation>{
-    let url=`${this.leaveAPI}/${id}` ;
-    return this.http.get<LeaveAllocation>(url);
+
+  addRoleBasedLeave(leave:RoleLeaveAllocation):Observable<boolean>{
+    let roleBasedLeaveUrl=`${this.leaveAPI}/leaveallocation`;
+    return this.http.post<boolean>(roleBasedLeaveUrl,leave);
   }
 
+
+
+
+  
   getLeaveDetailsOfEmployee(employeeId:number,status:string):Observable<LeaveApplication[]>{
     let url=`${this.leaveAPI}/employees/${employeeId}/status/${status}`;
     return this.http.get<LeaveApplication[]>(url);
   }
+
+  getRoleBasedLeaveDetails(roleId:number):Observable<RoleLeaveAllocation>{
+    let url=`${this.leaveAPI}/roles/${roleId}` ;
+    return this.http.get<RoleLeaveAllocation>(url);
+  }
+
 
   getLeaveDetails(leaveStatus:string):Observable<LeaveApplication[]>{
     let url=`${this.leaveAPI}/status/${leaveStatus}`;
@@ -86,10 +99,7 @@ export class LeavesService {
     return this.http.post<boolean>(this.leaveAPI,leave);
   }
 
-  addRoleBasedLeave(leave:LeaveAllocation):Observable<boolean>{
-    let roleBasedLeaveUrl=`${this.leaveAPI}/leaveallocation`;
-    return this.http.post<boolean>(roleBasedLeaveUrl,leave);
-  }
+
 
   updateEmployeeLeave(leaveApplication:LeaveApplication):Observable<LeaveApplication>{
     return this.http.put<LeaveApplication>(this.leaveAPI,leaveApplication);

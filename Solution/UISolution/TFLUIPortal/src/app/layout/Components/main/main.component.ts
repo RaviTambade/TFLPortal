@@ -7,7 +7,6 @@ import { AuthService } from 'src/app/shared/services/Authentication/auth.service
 @Component({
   selector: 'layout-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css'],
 })
 export class MainComponent implements OnInit {
   

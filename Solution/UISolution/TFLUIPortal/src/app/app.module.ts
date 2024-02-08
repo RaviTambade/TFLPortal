@@ -5,21 +5,23 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AddJwtHeaderIntreceptor } from './shared/services/Authentication/add-jwt-header.interceptor';
 import { LayoutModule } from './layout/layout.module';
 import { AuthenticationModule } from './authentication/authentication.module';
-import { UserModule } from './user/user.module';
+ 
 import { JwtModule } from '@auth0/angular-jwt';
 import { LocalStorageKeys } from './shared/enums/local-storage-keys';
 import { AppComponent } from './app.component';
-import { HrmanagerModule, hrRoutes } from './HRManager/hrmanager.module';
-import { EmployeeModule, employeeRoutes } from './Employee/employee.module';
-import { DirectorModule } from './Director/director.module';
-import { ProjectManagerModule, hrManagerRoutes } from './ProjectManager/project-manager.module';
+import { HrmanagerModule, hrRoutes } from './UserRoles/Manager/HRManager/hrmanager.module';
+import { EmployeeModule, employeeRoutes } from './UserRoles/Employee/employee.module';
+ 
+import { ProjectManagerModule, hrManagerRoutes } from './UserRoles/Manager/ProjectManager/project-manager.module';
 import { RouterModule, Routes } from '@angular/router';
-import { EmployeeComponent } from './Employee/components/employee/employee.component';
-import { ProjectmanagerComponent } from './ProjectManager/components/projectmanager/projectmanager.component';
-import { HrmanagerComponent } from './HRManager/components/hrmanager/hrmanager.component';
-import { DirectorComponent } from './Director/components/director/director.component';
+  import { HomeComponent } from './layout/Components/home/home.component';
+import { UserModule } from './UserRoles/SharedModule/user.module';
+import { DirectorModule } from './UserRoles/Director/director.module';
+import { EmployeeComponent } from './UserRoles/Employee/components/employee/employee.component';
+import { ProjectmanagerComponent } from './UserRoles/Manager/ProjectManager/components/projectmanager/projectmanager.component';
+import { HrmanagerComponent } from './UserRoles/Manager/HRManager/components/hrmanager/hrmanager.component';
+import { DirectorComponent } from './UserRoles/Director/components/director/director.component';
 import { LoginComponent } from './authentication/Components/login/login.component';
-import { HomeComponent } from './layout/Components/home/home.component';
 
 const routes: Routes = [
   // { path: '', redirectTo: 'home',pathMatch:'full' },
