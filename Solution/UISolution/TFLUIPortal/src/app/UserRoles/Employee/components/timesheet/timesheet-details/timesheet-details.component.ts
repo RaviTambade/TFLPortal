@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Timesheet } from 'src/app/shared/Entities/timesheet';
-import { TimesheetEntry } from 'src/app/shared/Entities/timesheetEntry';
+import { Timesheet } from 'src/app/shared/Entities/Timesheetmgmt/timesheet';
+import { TimesheetEntry } from 'src/app/shared/Entities/Timesheetmgmt/timesheetEntry';
 import { TimesheetService } from 'src/app/shared/services/Timesheet/timesheet.service';
 
 @Component({

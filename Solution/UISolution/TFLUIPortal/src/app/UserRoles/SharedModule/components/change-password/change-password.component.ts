@@ -7,7 +7,7 @@ import {
   ValidationErrors,
   ValidatorFn,
 } from '@angular/forms';
-import { UpdatePassword } from 'src/app/shared/Entities/UpdatePassword';
+import { UpdatePassword } from 'src/app/shared/Entities/UserMgmt/UpdatePassword';
 
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
 

@@ -7,7 +7,7 @@ import { NewUser } from '../../Entities/UserMgmt/NewUser';
 import { updateContact } from '../../Entities/UserMgmt/UpdateContact';
 import { UpdatePassword } from '../../Entities/UserMgmt/UpdatePassword';
 import { User } from '../../Entities/UserMgmt/User';
-import { Role } from '../../enums/role';
+import { Role } from '../../Entities/Projectmgmt/Role';
 
 
 

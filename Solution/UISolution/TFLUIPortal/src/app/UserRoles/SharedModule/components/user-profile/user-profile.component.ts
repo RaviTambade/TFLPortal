@@ -5,8 +5,7 @@ import { environment } from 'src/environments/environment';
 import { TokenClaims } from 'src/app/shared/enums/tokenclaims';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
 import { AuthService } from 'src/app/shared/services/Authentication/auth.service';
-import { User } from 'src/app/shared/Entities/User';
-import { StateChangeEvent } from 'src/app/shared/Entities/stateChangeEvent';
+import { User } from 'src/app/shared/Entities/UserMgmt/User';
 
 @Component({
   selector: 'user-profile',
@@ -94,10 +93,4 @@ export class UserProfileComponent {
     this.updateProfileStatus = true;
   }
 
-  closeEditUserComponent(event: StateChangeEvent) {
-    this.updateProfileStatus = false;
-    if (event.isStateUpdated) {
-      this.getUser();
-    }
   }
-}

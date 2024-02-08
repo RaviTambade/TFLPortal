@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { updateContact } from 'src/app/shared/Entities/UpdateContact';
+import { updateContact } from 'src/app/shared/Entities/UserMgmt/UpdateContact';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
 
 export function confirmContactNumberValidator(): ValidatorFn {

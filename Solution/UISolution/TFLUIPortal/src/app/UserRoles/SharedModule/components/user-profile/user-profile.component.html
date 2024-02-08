@@ -28,10 +28,3 @@
     </div>
 </div>
 
-<div class="row justify-content-center">
-    <div *ngIf="updateProfileStatus && user" class="col-md-6 ">
-        <update-profile [user]="user"
-            (onUpdateFinished)="closeEditUserComponent($event)"></update-profile>
-    </div>
-
-</div>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { NewUser } from 'src/app/shared/Entities/NewUser';
+import { NewUser } from 'src/app/shared/Entities/UserMgmt/NewUser';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/shared/Entities/User';
+import { User } from 'src/app/shared/Entities/UserMgmt/User';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
 
 

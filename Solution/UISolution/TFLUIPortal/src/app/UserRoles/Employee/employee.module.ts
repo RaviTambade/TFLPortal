@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TimesheetComponent } from './components/timesheet/timesheet.component';
 import { ProjectComponent } from './components/project/project.component';
-import { EmployeeLeftSidebarComponent } from './components/employee-left-sidebar/employee-left-sidebar.component';
 import { PayrollComponent } from './components/payroll/payroll.component';
 import { PerformenceApprisalComponent } from './components/performence-apprisal/performence-apprisal.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -32,7 +31,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
     DashboardComponent,
     TimesheetComponent,
     ProjectComponent,
-    EmployeeLeftSidebarComponent,
     PayrollComponent,
     PerformenceApprisalComponent,
     TimesheetDetailsComponent,

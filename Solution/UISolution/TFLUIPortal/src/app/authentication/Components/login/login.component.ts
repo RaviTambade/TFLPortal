@@ -1,14 +1,10 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import {Credential} from  'src/app/shared/entities/usermgmt/credential';
-
-
+import { Credential } from 'src/app/shared/Entities/UserMgmt/credential';
 // import { LayoutService } from 'src/app/layout/Services/layout.service';
 import { Role } from 'src/app/shared/enums/role';
 import { AuthService } from 'src/app/shared/services/Authentication/auth.service';
-import { HrService } from 'src/app/shared/services/Staffing/hr.service';
-import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { TokenClaims } from 'src/app/shared/enums/tokenclaims';
 
 @Component({
@@ -24,7 +20,6 @@ export class LoginComponent {
   role: string = '';
   constructor(
     private authSvc: AuthService,
-    private hrSvc: HrService,
     private router: Router,
     // private layoutSvc: LayoutService
   ) {}

@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from 'src/app/shared/Entities/Projectmgmt/Project';
-import { Sprint } from 'src/app/shared/Entities/sprint';
-import { Task } from 'src/app/shared/Entities/task';
-import { TimesheetEntry } from 'src/app/shared/Entities/timesheetEntry';
+import { Sprint } from 'src/app/shared/Entities/Projectmgmt/sprint';
+import { Task } from 'src/app/shared/Entities/Projectmgmt/task';
+import { TimesheetEntry } from 'src/app/shared/Entities/Timesheetmgmt/timesheetEntry';
 import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
 import { TasksManagementService } from 'src/app/shared/services/TaskMgmt/tasks-management.service';

@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { User } from 'src/app/shared/Entities/User';
-import { StateChangeEvent } from 'src/app/shared/Entities/stateChangeEvent';
+import { User } from 'src/app/shared/Entities/UserMgmt/User';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
 
 @Component({
@@ -21,7 +20,6 @@ export class UpdateProfileComponent {
     id: 0
   };
 
-  @Output() onUpdateFinished = new EventEmitter<StateChangeEvent>();
 
   userForm: FormGroup;
 
@@ -107,12 +105,9 @@ export class UpdateProfileComponent {
         }
       console.log(this.user);
       this.svc.updateUser(user.id, user).subscribe((response) => {
-        this.onUpdateFinished.emit({ isStateUpdated: true });
       });
     }
   }
 
-  cancelupdateUser() {
-    this.onUpdateFinished.emit({ isStateUpdated: false });
-  }
+ 
 }
