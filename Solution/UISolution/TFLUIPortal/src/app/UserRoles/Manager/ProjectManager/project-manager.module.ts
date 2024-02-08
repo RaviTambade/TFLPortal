@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProjectManagerLeftSidebarComponent } from './components/project-manager-left-sidebar/project-manager-left-sidebar.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MemberTaskListComponent } from './components/ProjectMgmt/member-task-list/member-task-list.component';
 import { EmployeeProjectWorksComponent } from './components/ProjectMgmt/employee-project-works/employee-project-works.component';
@@ -19,7 +18,6 @@ import { MembersListComponent } from './components/ProjectMgmt/members-list/memb
 
 @NgModule({
   declarations: [
-    ProjectManagerLeftSidebarComponent,
     // TimesheetComponent,
     MemberTaskListComponent,
     EmployeeProjectWorksComponent,
