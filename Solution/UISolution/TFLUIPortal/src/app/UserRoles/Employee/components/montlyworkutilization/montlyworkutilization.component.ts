@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { Project } from 'src/app/shared/Entities/Projectmgmt/Project';
-import { MemberUtilization } from 'src/app/shared/Entities/Timesheetmgmt/memberutilization';
+import { MemberUtilization } from 'src/app/shared/Entities/Timesheetmgmt/work';
 Chart.register(...registerables);
 
 import { HourConvertorPipe } from 'src/app/shared/pipes/hour-convertor.pipe';
