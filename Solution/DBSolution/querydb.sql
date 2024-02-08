@@ -1,8 +1,11 @@
--- Active: 1707123530557@@127.0.0.1@3306@tflportal
+-- Active: 1694968636816@@127.0.0.1@3306@tflportal
 
 
 -- LeaveManagement
+show TABLES;
 
+DESC projectallocations;
+select * from projectallocations;
 -- get all leaveapplications
 SELECT * from leaveapplications;
 
@@ -104,8 +107,10 @@ where projectallocations.projectid=4  and projectallocations.status="yes";
 Select * from projectallocations where projectid=1 and status="yes";
 
 --  give me  projects of particular empoloyee.
-SELECT * from projectallocations where employeeid=15;
-
+SELECT projects.id,projects.title ,projects.description,projects.startdate,projects.enddate,projects.status
+FROM projects 
+INNER JOIN projectallocations ON projectallocations.projectid = projects.id 
+WHERE projectallocations.employeeid = 15;
 -- give me list of empoyees particular project
 SELECT * from projectallocations where projectid=1;
 
