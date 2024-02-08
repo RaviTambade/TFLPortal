@@ -69,12 +69,10 @@ public class ProjectAnalyticsService:IProjectAnalyticsService
         connection.ConnectionString = _connectionString;
         try
         {
-            // ptojects.id =9 because 9 number is other 
             string query =
-                @"SELECT projects.id,projects.title ,projects.description,projects.startdate,projects.enddate,projects.status
-                 FROM projects 
-                 INNER JOIN projectallocations ON projectallocations.projectid = projects.id 
-                 WHERE projectallocations.employeeid =@employeeId;"; 
+                @"select * from projects
+                inner join projectallocations on projects.id=projectallocations.projectid
+                where employeeid=@employeeId   AND projectallocations.status='yes'"; 
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@employeeId", memberId);
             await connection.OpenAsync();
