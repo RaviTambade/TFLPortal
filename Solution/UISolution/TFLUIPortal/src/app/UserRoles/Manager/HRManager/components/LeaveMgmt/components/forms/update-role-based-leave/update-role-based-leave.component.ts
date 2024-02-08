@@ -3,8 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
 import { RoleLeaveAllocation } from 'src/app/shared/Entities/Leavemgmt/LeaveAllocation';
-import { UserRole } from 'src/app/shared/Entities/Projectmgmt/UserRole';
-
+import { Role } from 'src/app/shared/Entities/UserMgmt/Role';
 
 
 @Component({
@@ -16,7 +15,7 @@ export class UpdateRoleBasedLeaveComponent implements OnInit{
   roleBasedLeave:RoleLeaveAllocation |any;
   id:number=1;
   lob:string="PMS";
-  roles:UserRole[]=[];
+  roles:Role[]=[];
 
   constructor(private service:LeavesService,private membershipService:MembershipService){}
 
