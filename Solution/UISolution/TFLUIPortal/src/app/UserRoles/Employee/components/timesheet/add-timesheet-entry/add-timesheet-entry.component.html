@@ -57,7 +57,7 @@
   <br>
 
 
-  <p>Duration: {{timesheetEntry.durationInHours |hourConvertor}}</p>
+  <p>Duration: {{timesheetEntry.hours |hourConvertor}}</p>
 
   <button class="btn btn-success mx-2" type="submit" (click)="onClickAdd()">Add</button>
   <button class="btn btn-danger" (click)="onClickCancel()">Cancel</button>

@@ -98,7 +98,7 @@ export class UpdateTimesheetEntryComponent implements OnInit {
       toTime: this.timesheetEntry.toTime + ':00',
       timesheetId: this.timesheetEntry.timesheetId,
       taskId: this.timesheetEntry.taskId,
-      durationInHours: 0
+      hours: 0
     };
 
     this.timesheetService
@@ -118,7 +118,7 @@ export class UpdateTimesheetEntryComponent implements OnInit {
   }
 
   getDuration() {
-    this.timesheetEntry.durationInHours = this.timesheetService.getTimeDifference(this.timesheetEntry.fromTime,this.timesheetEntry.toTime);
+    this.timesheetEntry.hours = this.timesheetService.getTimeDifference(this.timesheetEntry.fromTime,this.timesheetEntry.toTime);
   }
 
  

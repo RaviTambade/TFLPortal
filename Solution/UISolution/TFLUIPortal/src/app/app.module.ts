@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import {  HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { LocalStorageKeys } from './shared/enums/local-storage-keys';
 import { AppComponent } from './app.component';
@@ -56,7 +56,6 @@ import { UserProfileModule } from './UserProfile/user-profile.module';
   ],
 
   providers: [
-    // { provide: HTTP_INTERCEPTORS, useClass: AddJwtHeaderIntreceptor,  multi: true },
   ],
 
   bootstrap: [AppComponent],

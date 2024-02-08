@@ -67,7 +67,7 @@ public class ProjectsController : ControllerBase
     }
 
     [Authorize(RoleTypes.ProjectManager)]
-    [HttpGet("projects/{projectId}/date/{date}")]
+    [HttpGet("{projectId}/sprints/date/{date}")]
     public async Task<Sprint> GetCurrentSprint(int projectId, DateOnly date)
     {
         return await _analyticsSvc.GetCurrentSprint(projectId, date);

@@ -47,7 +47,7 @@ public class TimesheetsController : ControllerBase
     }
 
     [Authorize(RoleTypes.ProjectManager)]
-    [HttpGet("pendingapproval/from/{from}/to/{to}/manager/{projectManagerId}")]
+    [HttpGet("pending/manager/{projectManagerId}/from/{from}/to/{to}")]
     public async Task<List<Timesheet>> GetTimeSheetsForApproval(int projectManagerId,DateOnly from,DateOnly to)
     {
         List<Timesheet> timesheets = await _analyticsSvc.GetTimeSheetsForApproval(projectManagerId,from,to);
@@ -55,14 +55,14 @@ public class TimesheetsController : ControllerBase
     }
 
     [Authorize(RoleTypes.Employee,RoleTypes.Director,RoleTypes.HRManager,RoleTypes.ProjectManager)]
-    [HttpGet("{timesheetId}/timesheetentries")]
+    [HttpGet("{timesheetId}/entries")]
     public async Task<List<TimesheetEntry>> GetTimesheetEntries(int timesheetId)
     {
         return await _analyticsSvc.GetTimesheetEntries(timesheetId);
     }
 
     [Authorize(RoleTypes.Employee,RoleTypes.Director,RoleTypes.HRManager,RoleTypes.ProjectManager)]
-    [HttpGet("timesheetentries/{timesheetEntryId}")]
+    [HttpGet("entries/{timesheetEntryId}")]
     public async Task<IActionResult> GetTimesheetEntry(int timesheetEntryId)
     {
         TimesheetEntry entry = await _analyticsSvc.GetTimesheetEntry(timesheetEntryId);
@@ -74,14 +74,14 @@ public class TimesheetsController : ControllerBase
     }
 
     [Authorize(RoleTypes.Employee,RoleTypes.Director,RoleTypes.HRManager,RoleTypes.ProjectManager)]
-     [HttpGet("memberutilization/employees/{employeeId}/from/{from}/to/{to}/projects/{projectId}")]
-     public async  Task<List<MemberUtilization>> GetWorkUtilization(int employeeId,DateOnly from, DateOnly to,int projectId)
+     [HttpGet("employees/{employeeId}/utilization/from/{from}/to/{to}/projects/{projectId}")]
+     public async  Task<MemberPerformence> GetWorkUtilization(int employeeId,DateOnly from, DateOnly to,int projectId)
      {
         return await _analyticsSvc.GetWorkUtilization(employeeId, from,to, projectId);
      }
 
     [Authorize(RoleTypes.Employee,RoleTypes.Director,RoleTypes.HRManager,RoleTypes.ProjectManager)]
-    [HttpGet("workinghours/employees/{employeeId}/from/{from}/to/{to}")]
+    [HttpGet("employees/{employeeId}/utilization/from/{from}/to/{to}")]
     public async Task<List<ProjectWorkHours>> GetHoursWorkedForEachProject(int employeeId, DateOnly from, DateOnly to )
     {
         return await _analyticsSvc.GetHoursWorkedForEachProject(employeeId,from,to);

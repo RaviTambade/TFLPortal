@@ -63,7 +63,7 @@ export class ProjectService {
   }
 
   getCurrentSprint(projectId:number,date:string):Observable<Sprint>{
-   let url=`${this.sprintApi}/sprints/projects/${projectId}/date/${date}`;
+   let url=`${this.sprintApi}/projects/${projectId}/date/${date}`;
    return this.httpClient.get<Sprint>(url);
  }
 }

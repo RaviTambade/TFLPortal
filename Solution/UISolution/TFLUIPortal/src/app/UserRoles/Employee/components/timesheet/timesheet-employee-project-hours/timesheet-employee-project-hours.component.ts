@@ -56,7 +56,8 @@ export class TimesheetEmployeeProjectHoursComponent implements OnInit {
 
   constructor(private timesheetService: TimesheetService) {}
   ngOnInit(): void {
-    this.employeeId = Number(localStorage.getItem(LocalStorageKeys.employeeId));
+    this.employeeId = 10;
+    // Number(localStorage.getItem(LocalStorageKeys.employeeId));
     this.createChart();
     this.onIntervalChange();
   }

@@ -279,10 +279,10 @@ public class TimesheetAnalyticsService:ITimesheetAnalyticsService
         return timesheetEntry;
     }
 
-    public async Task<List<MemberUtilization>> GetWorkUtilization(int employeeId, DateOnly from, DateOnly to, int projectId)
+    public async Task<MemberPerformence> GetWorkUtilization(int employeeId, DateOnly from, DateOnly to, int projectId)
     {
-        List<MemberUtilization> memberUtilizations = new();
-
+        MemberPerformence memberPerformence=new MemberPerformence();
+        memberPerformence.Works=new List<Work>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
 
@@ -301,12 +301,12 @@ public class TimesheetAnalyticsService:ITimesheetAnalyticsService
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
-                MemberUtilization memberUtilization = new MemberUtilization()
+                Work work = new Work()
                 {
-                    TaskType = reader.GetString("tasktype"),
-                    Hours = reader.GetDouble("hours")
+                    Activity = reader.GetString("tasktype"),
+                    Duration = reader.GetDouble("hours")
                 };
-                memberUtilizations.Add(memberUtilization);
+                memberPerformence.Works.Add(work);
             }
         }
         catch (Exception)
@@ -317,7 +317,7 @@ public class TimesheetAnalyticsService:ITimesheetAnalyticsService
         {
             await connection.CloseAsync();
         }
-        return memberUtilizations;
+        return memberPerformence;
     }
 
     public async Task<List<ProjectWorkHours>> GetHoursWorkedForEachProject(int employeeId,DateOnly from,DateOnly to)

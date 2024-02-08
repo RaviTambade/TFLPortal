@@ -27,7 +27,7 @@
                     <!-- <td>{{timesheetEntry.projectName}}</td> -->
                     <!-- <td>{{timesheetEntry.workType}}</td> -->
                     <td>{{timesheetEntry.taskId}}</td>
-                    <td>{{timesheetEntry.durationInHours |hourConvertor}}</td>
+                    <td>{{timesheetEntry.hours |hourConvertor}}</td>
                     <td>
                         <button class="btn btn-warning mx-2 my-2 " [routerLink]="['../../update', timesheetEntry.id]">Edit</button>
                         <button class="btn btn-danger" (click)="onRemovetimesheetEntry(timesheetEntry.id)">Delete</button>
