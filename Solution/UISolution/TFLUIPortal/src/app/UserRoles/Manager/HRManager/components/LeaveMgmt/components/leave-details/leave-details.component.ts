@@ -29,7 +29,7 @@ export class LeaveDetailsComponent {
     // this.route.paramMap.subscribe((params)=>{
     //   this.leaveId=Number(params.get('id'));
         console.log(this.applicationId);
-    this.leaveService.getEmployeeLeavesDetails(this.applicationId).subscribe((res)=>{
+    this.leaveService.getLeaveApplication(this.applicationId).subscribe((res)=>{
       console.log(res);
       this.leaveDetails=res;
        })

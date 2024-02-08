@@ -117,6 +117,8 @@ public class LeavesManagementController : ControllerBase
        return await _analyticService.GetAnnualConsumedLeaves(employeeId,year);   
     }
 
+
+//employeeId
     [Authorize(RoleTypes.HRManager,RoleTypes.ProjectManager,RoleTypes.Employee)]
     [HttpGet("annualleaves/roles/{roleId}/year/{year}")]
     public async Task<List<LeaveCount>> GetAnnualLeaves(int roleId,int year)
@@ -156,7 +158,7 @@ public class LeavesManagementController : ControllerBase
     }
 
     [Authorize(RoleTypes.HRManager,RoleTypes.ProjectManager,RoleTypes.Employee)]
-    [HttpPut("updateleaves")]
+    [HttpPut]
     public async Task<bool> Update(LeaveApplication leaveApplication)
     {
        bool status= await _operationService.Update(leaveApplication);

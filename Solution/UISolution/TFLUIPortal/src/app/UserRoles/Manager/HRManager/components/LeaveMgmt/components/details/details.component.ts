@@ -18,7 +18,7 @@ export class DetailsComponent implements OnInit {
   ngOnInit(): void {
     // this.route.paramMap.subscribe((res)=>{
     //   this.leaveId=Number(res.get('id'))
-      this.service.getEmployeeLeavesDetails(this.leaveId).subscribe((res)=>{
+      this.service.getLeaveApplication(this.leaveId).subscribe((res)=>{
         this.leave=res;
       })
     // })
