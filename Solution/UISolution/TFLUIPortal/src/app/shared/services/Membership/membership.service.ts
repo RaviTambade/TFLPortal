@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { updateContact } from '../../Entities/UpdateContact';
-import { UpdatePassword } from '../../Entities/UpdatePassword';
-import { UserRole } from '../../Entities/UserRole';
-import { Role } from '../../Entities/Projectmgmt/Role';
-import { NewUser } from '../../Entities/NewUser';
-import { User } from '../../Entities/User';
+import { UserRole } from '../../Entities/Projectmgmt/UserRole';
+import { NewUser } from '../../Entities/UserMgmt/NewUser';
+import { updateContact } from '../../Entities/UserMgmt/UpdateContact';
+import { UpdatePassword } from '../../Entities/UserMgmt/UpdatePassword';
+import { User } from '../../Entities/UserMgmt/User';
+import { Role } from '../../enums/role';
+
 
 
 

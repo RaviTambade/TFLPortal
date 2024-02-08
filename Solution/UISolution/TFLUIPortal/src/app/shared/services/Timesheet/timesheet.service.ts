@@ -2,11 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Timesheet } from '../../Entities/timesheet';
-import { Week } from '../../Entities/Week';
-import { MemberUtilization } from '../../Entities/memberutilization';
-import { ProjectWorkHour } from '../../Entities/projectworkhour';
-import { TimesheetEntry } from '../../Entities/timesheetEntry';
+import { Week } from '../../Entities/Timesheetmgmt/Week';
+import { MemberUtilization } from '../../Entities/Timesheetmgmt/memberutilization';
+import { ProjectWorkHour } from '../../Entities/Timesheetmgmt/projectworkhour';
+import { Timesheet } from '../../Entities/Timesheetmgmt/timesheet';
+import { TimesheetEntry } from '../../Entities/Timesheetmgmt/timesheetEntry';
 
 @Injectable({
   providedIn: 'root',

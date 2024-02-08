@@ -2,9 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Member } from '../../Entities/Member';
+import { Member } from '../../Entities/Projectmgmt/Member';
 import { Project } from '../../Entities/Projectmgmt/Project';
-import { Sprint } from '../../Entities/sprint';
+import { Sprint } from '../../Entities/Projectmgmt/sprint';
+
 
 
 @Injectable({

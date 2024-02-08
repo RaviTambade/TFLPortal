@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { MonthSalary } from '../../Entities/Leavemgmt/MonthSalary';
-import { Salary } from '../../Entities/Salary';
-import { SalaryStructure } from '../../Entities/SalaryStructure';
+import { Salary } from '../../Entities/Payroll/Salary';
+import { SalaryStructure } from '../../Entities/Payroll/SalaryStructure';
 
 @Injectable({
   providedIn: 'root'

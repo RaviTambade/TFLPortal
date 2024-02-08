@@ -5,30 +5,30 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { LocalStorageKeys } from './shared/enums/local-storage-keys';
 import { AppComponent } from './app.component';
-import { HrmanagerModule, hrRoutes } from './UserRoles/Manager/HRManager/hrmanager.module';
-import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './layout/Components/home/home.component';
-import { UserModule } from './UserRoles/SharedModule/user.module';
-import { DirectorModule } from './UserRoles/Director/director.module';
-import { EmployeeComponent } from './UserRoles/Employee/components/employee/employee.component';
-import { ProjectManagerModule, projectManagerRoutes } from './UserRoles/Manager/ProjectManager/project-manager.module';
-import { LoginComponent } from './authentication/Components/login/login.component';
-import { AuthenticationModule } from './authentication/authentication.module';
-import { ProjectmanagerComponent } from './UserRoles/Manager/ProjectManager/components/projectmanager/projectmanager.component';
+// import { HrmanagerModule, hrRoutes } from './UserRoles/Manager/HRManager/hrmanager.module';
+// import { RouterModule, Routes } from '@angular/router';
+// import { HomeComponent } from './layout/Components/home/home.component';
+// import { UserModule } from './UserRoles/SharedModule/user.module';
+// import { DirectorModule } from './UserRoles/Director/director.module';
+// import { EmployeeComponent } from './UserRoles/Employee/components/employee/employee.component';
+// import { ProjectManagerModule, projectManagerRoutes } from './UserRoles/Manager/ProjectManager/project-manager.module';
+// import { LoginComponent } from './authentication/Components/login/login.component';
+// import { AuthenticationModule } from './authentication/authentication.module';
+// import { ProjectmanagerComponent } from './UserRoles/Manager/ProjectManager/components/projectmanager/projectmanager.component';
 import { EmployeeModule, employeeRoutes } from './UserRoles/Employee/employee.module';
-import { DirectorComponent } from './UserRoles/Director/components/director/director.component';
-import { LayoutModule } from './layout/layout.module';
-import { HrmanagerComponent } from './UserRoles/Manager/HRManager/components/hrmanager/hrmanager.component';
+// import { DirectorComponent } from './UserRoles/Director/components/director/director.component';
+// import { LayoutModule } from './layout/layout.module';
+// import { HrmanagerComponent } from './UserRoles/Manager/HRManager/components/hrmanager/hrmanager.component';
 
-const routes: Routes = [
-  { path: '', redirectTo: 'home',pathMatch:'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'employee', component: EmployeeComponent, children:employeeRoutes},
-   { path: 'projectmanager', component: ProjectmanagerComponent, children:projectManagerRoutes},
-  { path: 'hrmanager', component: HrmanagerComponent,children:hrRoutes},
-  { path: 'director', component: DirectorComponent },
-  { path: 'login', component: LoginComponent },
-];
+// const routes: Routes = [
+//   { path: '', redirectTo: 'home',pathMatch:'full' },
+//   { path: 'home', component: HomeComponent },
+//   { path: 'employee', component: EmployeeComponent, children:employeeRoutes},
+//    { path: 'projectmanager', component: ProjectmanagerComponent, children:projectManagerRoutes},
+//   { path: 'hrmanager', component: HrmanagerComponent,children:hrRoutes},
+//   { path: 'director', component: DirectorComponent },
+//   { path: 'login', component: LoginComponent },
+// ];
 
 @NgModule({
   declarations: [AppComponent],
@@ -44,13 +44,13 @@ const routes: Routes = [
       },
     }),
     EmployeeModule,
-    AuthenticationModule,
-    LayoutModule,
-    UserModule,
-    HrmanagerModule,
-     DirectorModule,
-     ProjectManagerModule,
-    RouterModule.forRoot(routes),
+    // AuthenticationModule,
+    // LayoutModule,
+    // UserModule,
+    // HrmanagerModule,
+    //  DirectorModule,
+    //  ProjectManagerModule,
+    // RouterModule.forRoot(routes),
   ],
 
   providers: [

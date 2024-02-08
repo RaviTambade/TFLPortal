@@ -3,8 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, concatMap, map, switchMap, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { MembershipService } from '../Membership/membership.service';
-import { Employee } from '../../Entities/Employee';
-import { EmployeeDetails } from '../../Entities/EmployeeDetails';
+import { EmployeeDetails } from '../../Entities/ResourcePool/EmployeeDetails';
+import { Employee } from '../../Entities/ResourcePool/Employee';
+
 
 @Injectable({
   providedIn: 'root',
