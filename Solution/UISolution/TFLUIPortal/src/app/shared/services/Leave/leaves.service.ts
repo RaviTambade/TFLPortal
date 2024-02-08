@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { RoleLeaveAllocation } from 'src/app/Entities/LeaveAllocation';
-import { LeaveApplication } from 'src/app/Entities/LeaveApplication';
-import { LeavesCount } from 'src/app/Entities/LeavesCount';
-import { MonthLeave } from 'src/app/Entities/MonthLeave';
 import { environment } from 'src/environments/environment';
+import { RoleLeaveAllocation } from '../../Entities/LeaveAllocation';
+import { LeaveApplication } from '../../Entities/LeaveApplication';
+import { LeavesCount } from '../../Entities/LeavesCount';
+import { MonthLeave } from '../../Entities/MonthLeave';
 
 
 @Injectable({

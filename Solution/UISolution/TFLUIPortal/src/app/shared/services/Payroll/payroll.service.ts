@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MonthSalary } from 'src/app/Entities/MonthSalary';
-import { Salary } from 'src/app/Entities/Salary';
-import { SalaryStructure } from 'src/app/Entities/SalaryStructure';
 import { environment } from 'src/environments/environment';
+import { MonthSalary } from '../../Entities/MonthSalary';
+import { Salary } from '../../Entities/Salary';
+import { SalaryStructure } from '../../Entities/SalaryStructure';
 
 @Injectable({
   providedIn: 'root'

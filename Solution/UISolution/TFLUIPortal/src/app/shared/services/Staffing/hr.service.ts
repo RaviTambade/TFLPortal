@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, concatMap, map, switchMap, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Employee } from 'src/app/Entities/Employee';
 import { MembershipService } from '../Membership/membership.service';
-import { EmployeeDetails } from 'src/app/Entities/EmployeeDetails';
+import { Employee } from '../../Entities/Employee';
+import { EmployeeDetails } from '../../Entities/EmployeeDetails';
 
 @Injectable({
   providedIn: 'root',

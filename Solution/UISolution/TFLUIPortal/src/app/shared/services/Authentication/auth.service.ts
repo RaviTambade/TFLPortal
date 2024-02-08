@@ -5,9 +5,9 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { TokenClaims } from 'src/app/shared/enums/tokenclaims';
 import { environment } from 'src/environments/environment';
-import { UpdatePassword } from 'src/app/Entities/UpdatePassword';
-import { updateContact } from 'src/app/Entities/UpdateContact';
-import { Credential } from 'src/app/Entities/credential';
+import { updateContact } from '../../Entities/UpdateContact';
+import { UpdatePassword } from '../../Entities/UpdatePassword';
+
 
 @Injectable({
   providedIn: 'root',

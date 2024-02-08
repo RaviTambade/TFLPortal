@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { UpdatePassword } from 'src/app/Entities/UpdatePassword';
-import { UserRole } from 'src/app/Entities/UserRole';
-import { Role } from 'src/app/user/Models/Role';
-import { NewUser } from 'src/app/user/Models/NewUser';
-import { User } from 'src/app/user/Models/User';
+import { NewUser } from 'src/app/UserRoles/SharedModule/Models/NewUser';
+import { User } from 'src/app/UserRoles/SharedModule/Models/User';
 import { environment } from 'src/environments/environment';
-import { updateContact } from 'src/app/Entities/UpdateContact';
+import { updateContact } from '../../Entities/UpdateContact';
+import { UpdatePassword } from '../../Entities/UpdatePassword';
+import { UserRole } from '../../Entities/UserRole';
+import { Role } from '../../enums/role';
+
 
 
 @Injectable({

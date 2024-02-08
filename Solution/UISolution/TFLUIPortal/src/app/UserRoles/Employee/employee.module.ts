@@ -9,7 +9,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './components/BI/Dashboard/dashboard.component';
 import { TimesheetDetailsComponent } from './components/timesheet/timesheet-details/timesheet-details.component';
-import { SharedModule } from '../shared/shared.module';
 import { TimesheetListComponent } from './components/timesheet/timesheet-list/timesheet-list.component';
 import { CreateTimesheetComponent } from './components/timesheet/create-timesheet/create-timesheet.component';
 // import { TimesheetEmployeeWorkDataComponent } from './components/timesheet/timesheet-employee-work-chart/timesheet-employee-work-data/timesheet-employee-work-data.component';
@@ -22,6 +21,7 @@ import { EmployeenavbarComponent } from './components/employeenavbar/employeenav
 import { MontlyworkutilizationComponent } from './components/montlyworkutilization/montlyworkutilization.component';
 import { ProjectListComponent } from './components/project/project-list/project-list.component';
 import { ProjectdetailsComponent } from './components/project/project-list/projectdetails/projectdetails.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
  export const employeeRoutes:Routes=[
   {path:'projects', component:ProjectComponent},

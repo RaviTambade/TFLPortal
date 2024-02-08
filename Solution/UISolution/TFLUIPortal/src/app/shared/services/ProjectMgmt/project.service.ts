@@ -2,9 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Member } from 'src/app/Entities/Member';
-import { Sprint } from 'src/app/Entities/sprint';
-import { Project } from 'src/app/Entities/Project';
+import { Member } from '../../Entities/Member';
+import { Project } from '../../Entities/Project';
+import { Sprint } from '../../Entities/sprint';
+
 
 @Injectable({
   providedIn: 'root'

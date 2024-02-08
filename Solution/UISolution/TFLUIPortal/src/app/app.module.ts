@@ -12,11 +12,11 @@ import { AppComponent } from './app.component';
 import { HrmanagerModule, hrRoutes } from './UserRoles/Manager/HRManager/hrmanager.module';
 import { EmployeeModule, employeeRoutes } from './UserRoles/Employee/employee.module';
  
-import { ProjectManagerModule, hrManagerRoutes } from './UserRoles/Manager/ProjectManager/project-manager.module';
-import { RouterModule, Routes } from '@angular/router';
-  import { HomeComponent } from './layout/Components/home/home.component';
-import { UserModule } from './UserRoles/SharedModule/user.module';
-import { DirectorModule } from './UserRoles/Director/director.module';
+// import { ProjectManagerModule, hrManagerRoutes } from './UserRoles/Manager/ProjectManager/project-manager.module';
+// import { RouterModule, Routes } from '@angular/router';
+//   import { HomeComponent } from './layout/Components/home/home.component';
+// import { UserModule } from './UserRoles/SharedModule/user.module';
+// import { DirectorModule } from './UserRoles/Director/director.module';
 import { EmployeeComponent } from './UserRoles/Employee/components/employee/employee.component';
 import { ProjectmanagerComponent } from './UserRoles/Manager/ProjectManager/components/projectmanager/projectmanager.component';
 import { HrmanagerComponent } from './UserRoles/Manager/HRManager/components/hrmanager/hrmanager.component';
@@ -26,13 +26,13 @@ import { LoginComponent } from './authentication/Components/login/login.componen
 const routes: Routes = [
   // { path: '', redirectTo: 'home',pathMatch:'full' },
   // { path: 'home', component: HomeComponent },
-  { path: 'employee', component: EmployeeComponent },
-  { path: 'projectmanager', children:hrManagerRoutes },
-  { path: 'employee', component: EmployeeComponent, children:employeeRoutes},
-  { path: 'projectmanager', component: ProjectmanagerComponent },
-  { path: 'hrmanager', component: HrmanagerComponent,children:hrRoutes},
-  { path: 'director', component: DirectorComponent },
-  { path: 'login', component: LoginComponent },
+  // { path: 'employee', component: EmployeeComponent },
+  // { path: 'projectmanager', children:hrManagerRoutes },
+  // { path: 'employee', component: EmployeeComponent, children:employeeRoutes},
+  // { path: 'projectmanager', component: ProjectmanagerComponent },
+  // { path: 'hrmanager', component: HrmanagerComponent,children:hrRoutes},
+  // { path: 'director', component: DirectorComponent },
+  // { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
@@ -49,13 +49,13 @@ const routes: Routes = [
       },
     }),
     EmployeeModule,
-    AuthenticationModule,
-    LayoutModule,
-    UserModule,
-    HrmanagerModule,
-    DirectorModule,
-    ProjectManagerModule,
-    RouterModule.forRoot(routes),
+    // AuthenticationModule,
+    // LayoutModule,
+    // UserModule,
+    // HrmanagerModule,
+    // DirectorModule,
+    // ProjectManagerModule,
+    // RouterModule.forRoot(routes),
   ],
 
   providers: [
