@@ -7,8 +7,6 @@ import { RoleLeaveAllocation } from '../../Entities/Leavemgmt/LeaveAllocation';
 import { MonthLeave } from '../../Entities/Leavemgmt/MonthLeave';
 import { LeavesCount } from '../../Entities/Leavemgmt/LeavesCount';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -23,100 +21,85 @@ export class LeavesService {
     return this.http.get<LeaveApplication[]>(url);
   }
   
-  //getLeaveApplication
-  getEmployeeLeavesDetails(leaveId:number):Observable<LeaveApplication>{
+  getLeaveApplication(leaveId:number):Observable<LeaveApplication>{
     let url=`${this.leaveAPI}/applications/${leaveId}`;
     return this.http.get<LeaveApplication>(url);
   }
-
-
-  getAllRoleBasedLeaves():Observable<RoleLeaveAllocation[]>{
-    let url=`${this.leaveAPI}/leaveallocations`;
-    return this.http.get<RoleLeaveAllocation[]>(url);
-  }
   
-  getEmployeeLeaves(employeeId:number):Observable<LeaveApplication[]>{
-    let url=`${this.leaveAPI}/employees/${employeeId}`;
+  getEmployeeLeaveApplications(employeeId:number):Observable<LeaveApplication[]>{
+    let url=`${this.leaveAPI}/applications/employees/${employeeId}`;
     return this.http.get<LeaveApplication[]>(url);
   }
 
-
-  addRoleBasedLeave(leave:RoleLeaveAllocation):Observable<boolean>{
-    let roleBasedLeaveUrl=`${this.leaveAPI}/leaveallocation`;
-    return this.http.post<boolean>(roleBasedLeaveUrl,leave);
-  }
-
-
-
-
-  
-  getLeaveDetailsOfEmployee(employeeId:number,status:string):Observable<LeaveApplication[]>{
-    let url=`${this.leaveAPI}/employees/${employeeId}/status/${status}`;
+  getLeaveApplicationsOfEmployee(employeeId:number,status:string):Observable<LeaveApplication[]>{
+    let url=`${this.leaveAPI}/applications/employees/${employeeId}/status/${status}`;
     return this.http.get<LeaveApplication[]>(url);
   }
 
-  getRoleBasedLeaveDetails(roleId:number):Observable<RoleLeaveAllocation>{
-    let url=`${this.leaveAPI}/roles/${roleId}` ;
-    return this.http.get<RoleLeaveAllocation>(url);
-  }
-
-
-  getLeaveDetails(leaveStatus:string):Observable<LeaveApplication[]>{
-    let url=`${this.leaveAPI}/status/${leaveStatus}`;
+  getLeaveApplications(leaveStatus:string):Observable<LeaveApplication[]>{
+    let url=`${this.leaveAPI}/applications/status/${leaveStatus}`;
     return this.http.get<LeaveApplication[]>(url);
   }
 
-  getLeaveDetailsByDate(date:string):Observable<LeaveApplication[]>{
-    let url=`${this.leaveAPI}/employees/date/${date}`;
+  getLeaveApplicationsByDate(date:string):Observable<LeaveApplication[]>{
+    let url=`${this.leaveAPI}/applications/date/${date}`;
     return this.http.get<LeaveApplication[]>(url);
   }
 
-  getEmployeeMonthLeaves(employeeId:number,month:number,year:number): Observable<MonthLeave[]> {
+  getTeamLeaveDetails(projectId:number,status:string):Observable<LeaveApplication[]>{
+    let url=`${this.leaveAPI}/applications/projects/${projectId}/status/${status}`;
+    return this.http.get<LeaveApplication[]>(url);
+  }
+
+  getAnnualLeaveCount(employeeId:number,month:number,year:number): Observable<MonthLeave[]> {
     let url =`${this.leaveAPI}/employees/${employeeId}/month/${month}/year/${year}`;
     return this.http.get<MonthLeave[]>(url);
   }
 
-  getAnnualAvailableLeaves(employeeId:number,year:number):Observable<LeavesCount>{
-    let url=`${this.leaveAPI}/annualavailableleaves/employee/${employeeId}/year/${year}`;
+  getAnnualAvailableLeaves(employeeId:number,roleId:number,year:number):Observable<LeavesCount>{
+    let url=`${this.leaveAPI}/annualavailable/employees/${employeeId}/roles/${roleId}/year/${year}`;
     return this.http.get<LeavesCount>(url);
   }
 
   getAnnualConsumedLeaves(employeeId:number,year:number):Observable<LeavesCount>{
-    let url=`${this.leaveAPI}/annualconsumedleaves/employee/${employeeId}/year/${year}`;
+    let url=`${this.leaveAPI}/annualconsumedleaves/employees/${employeeId}/year/${year}`;
     return this.http.get<LeavesCount>(url);
   }
 
-  getAnnualLeaves(employeeId:number,year:number):Observable<LeavesCount>{
-    let url=`${this.leaveAPI}/annualleaves/employee/${employeeId}/year/${year}`;
+  getAnnualLeaves(employeeId:number,roleId:number,year:number):Observable<LeavesCount>{
+    let url=`${this.leaveAPI}/annualleaves/employees/${employeeId}/roles/${roleId}/year/${year}`;
     return this.http.get<LeavesCount>(url);
   }
 
-  getTeamLeaveDetails(projectId:number,status:string):Observable<LeaveApplication[]>{
-    let url=`${this.leaveAPI}/projects/${projectId}/status/${status}`;
-    return this.http.get<LeaveApplication[]>(url);
+  getAllRoleLeaveAllocations():Observable<RoleLeaveAllocation[]>{
+    let url=`${this.leaveAPI}/allocations`;
+    return this.http.get<RoleLeaveAllocation[]>(url);
   }
 
-  addLeave(leave:LeaveApplication):Observable<boolean>{
+  getRoleLeaveAllocation(roleId:number):Observable<RoleLeaveAllocation>{
+    let url=`${this.leaveAPI}/allocations/roles/${roleId}` ;
+    return this.http.get<RoleLeaveAllocation>(url);
+  }
+
+  addLeaveApplication(leave:LeaveApplication):Observable<boolean>{
     return this.http.post<boolean>(this.leaveAPI,leave);
   }
 
+  addRoleLeaveAllocation(leave:RoleLeaveAllocation):Observable<boolean>{
+    let roleBasedLeaveUrl=`${this.leaveAPI}/leaveallocation`;
+    return this.http.post<boolean>(roleBasedLeaveUrl,leave);
+  }
 
-
-  updateEmployeeLeave(leaveApplication:LeaveApplication):Observable<LeaveApplication>{
+  updateLeaveApplication(leaveApplication:LeaveApplication):Observable<LeaveApplication>{
     return this.http.put<LeaveApplication>(this.leaveAPI,leaveApplication);
   }
 
-  updateLeaveApplication(leaveId:number,status:string):Observable<any>{
-    let url=`${this.leaveAPI}/${leaveId}/updatestatus/${status}`;
-    return this.http.put<any>(url,{});
-  }
-
-  updateRoleBasedLeave(roleBasedLeave:RoleLeaveAllocation):Observable<RoleLeaveAllocation>{
+  updateLeaveAllocation(roleBasedLeave:RoleLeaveAllocation):Observable<RoleLeaveAllocation>{
     let url=`${this.leaveAPI}/leaveallocation`;
     return this.http.put<RoleLeaveAllocation>(url,roleBasedLeave);
   }
 
-  deleteEmployeeLeave(leaveId:number):Observable<LeaveApplication>{
+  deleteLeaveApplication(leaveId:number):Observable<LeaveApplication>{
     let url=`${this.leaveAPI}/${leaveId}`;
     return this.http.delete<LeaveApplication>(url);
   }

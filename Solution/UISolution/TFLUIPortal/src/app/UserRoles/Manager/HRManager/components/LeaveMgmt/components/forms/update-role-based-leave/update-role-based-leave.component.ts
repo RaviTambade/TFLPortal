@@ -34,7 +34,7 @@ export class UpdateRoleBasedLeaveComponent implements OnInit{
     this.membershipService.getAllRoles(this.lob).subscribe((res)=>{
       this.roles=res;
     })
-    this.service.getRoleBasedLeaveDetails(this.id).subscribe((res)=>{
+    this.service.getRoleLeaveAllocation(this.id).subscribe((res)=>{
       this.roleBasedLeave=res;
     }) 
   }
@@ -50,7 +50,7 @@ export class UpdateRoleBasedLeaveComponent implements OnInit{
       financialYear:this.rolebasedleaveForm.get("financialYear")?.value,
     }
     console.log(roleBasedLeave);
-    this.service.updateRoleBasedLeave(roleBasedLeave).subscribe((res)=>{
+    this.service.updateLeaveAllocation(roleBasedLeave).subscribe((res)=>{
     console.log(res);    
   });
   }

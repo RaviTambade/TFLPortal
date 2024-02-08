@@ -13,7 +13,7 @@ export class LeaveallocationsComponent {
   constructor(private service:LeavesService){}
 
   ngOnInit(): void {
-    this.service.getAllRoleBasedLeaves().subscribe((res)=>{
+    this.service.getAllRoleLeaveAllocations().subscribe((res)=>{
       this.roleBasedLeaves=res;
     })
   }

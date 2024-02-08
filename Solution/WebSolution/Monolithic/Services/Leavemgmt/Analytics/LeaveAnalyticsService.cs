@@ -292,21 +292,20 @@ public class LeaveAnalyticsService : ILeaveAnalyticsService
         }
         return employeeLeaves;
     }
-    public async Task<LeaveAllocation> GetRoleLeavesDetails(int id)
+    public async Task<LeaveAllocation> GetRoleLeavesDetails(int roleId)
     {
         LeaveAllocation roleLeave = null;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select * from leaveallocations where id =@Id";
+            string query = "select * from leaveallocations where roleid =@Id";
             MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@Id", id);
+            command.Parameters.AddWithValue("@Id", roleId);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
             if(await reader.ReadAsync())
             {
-                int roleId = int.Parse(reader["roleid"].ToString());
                 int sick = int.Parse(reader["sick"].ToString());
                 int casual = int.Parse(reader["casual"].ToString());
                 int paid = int.Parse(reader["paid"].ToString());
@@ -315,7 +314,6 @@ public class LeaveAnalyticsService : ILeaveAnalyticsService
                 
                 roleLeave = new LeaveAllocation()
                 {
-                    Id = id,
                     RoleId = roleId,
                     Sick=sick,
                     Casual = casual,

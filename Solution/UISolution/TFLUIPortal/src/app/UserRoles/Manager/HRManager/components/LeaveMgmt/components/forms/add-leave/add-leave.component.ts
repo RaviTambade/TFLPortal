@@ -47,7 +47,7 @@ export class AddLeaveComponent implements OnInit {
       leaveType: this.leaveForm.get("leaveType")?.value
     }
     console.log(leaves);
-    this.service.addLeave(leaves).subscribe((res)=>{
+    this.service.addLeaveApplication(leaves).subscribe((res)=>{
     console.log(res);    
   });
  console.log(this.leaveForm.value)
