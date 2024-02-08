@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Week } from '../../Entities/Timesheetmgmt/Week';
-import { MemberUtilization } from '../../Entities/Timesheetmgmt/work';
 import { ProjectWorkHour } from '../../Entities/Timesheetmgmt/projectworkhour';
 import { Timesheet } from '../../Entities/Timesheetmgmt/timesheet';
 import { TimesheetEntry } from '../../Entities/Timesheetmgmt/timesheetEntry';
@@ -39,7 +38,7 @@ export class TimesheetService {
   
    
     getPendingTimesheets(id:number,fromDate:string,toDate:string): Observable<Timesheet[]> {
-      let url = `${this.timesheetAPIUrl}/pending/manager/${id}/from/${fromDate}/to/${toDate}``;
+      let url = `${this.timesheetAPIUrl}/pending/manager/${id}/from/${fromDate}/to/${toDate}`;
       return this.http.get<Timesheet[]>(url);
     }
 
@@ -56,8 +55,8 @@ export class TimesheetService {
       let url = `${this.timesheetAPIUrl}/${id}/entries`;
       return this.http.get<TimesheetEntry[]>(url);
     }
-    getEntryOfTimesheet(timesheetId:number, entryId:number):Observable<TimesheetEntry>{
-      let url = `${this.timesheetAPIUrl}/${timesheetId}/entries/${entryId}`;
+    getEntryOfTimesheet(entryId:number):Observable<TimesheetEntry>{
+      let url = `${this.timesheetAPIUrl}/entries/${entryId}`;
       return this.http.get<TimesheetEntry>(url);
     }
   

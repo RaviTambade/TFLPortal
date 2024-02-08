@@ -140,11 +140,11 @@ export class MontlyworkutilizationComponent {
 
   getChartData() {
     this.timesheetService
-      .getEmployeeUtilization(
+      .getEmployeeUtilizationByProject(
         this.employeeId,
+        this.selectedProjectId,
         this.fromDate,
-        this.toDate,
-        this.selectedProjectId
+        this.toDate
       )
       .subscribe((res) => {
         this.memberUtilizations = res;

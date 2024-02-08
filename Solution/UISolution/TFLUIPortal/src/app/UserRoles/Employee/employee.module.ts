@@ -12,12 +12,12 @@ import { TimesheetListComponent } from './components/timesheet/timesheet-list/ti
 import { CreateTimesheetComponent } from './components/timesheet/create-timesheet/create-timesheet.component';
 // import { TimesheetEmployeeWorkDataComponent } from './components/timesheet/timesheet-employee-work-chart/timesheet-employee-work-data/timesheet-employee-work-data.component';
 // import { TimesheetEmployeeWorkChartComponent } from './components/timesheet/timesheet-employee-work-chart/timesheet-employee-work-chart.component';
-import { TimesheetEmployeeProjectHoursComponent } from './components/timesheet/timesheet-employee-project-hours/timesheet-employee-project-hours.component';
+// import { TimesheetEmployeeProjectHoursComponent } from './components/timesheet/timesheet-employee-project-hours/timesheet-employee-project-hours.component';
 import { AddTimesheetEntryComponent } from './components/timesheet/add-timesheet-entry/add-timesheet-entry.component';
 import { UpdateTimesheetEntryComponent } from './components/timesheet/update-timesheet-entry/update-timesheet-entry.component';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { EmployeenavbarComponent } from './components/employeenavbar/employeenavbar.component';
-import { MontlyworkutilizationComponent } from './components/montlyworkutilization/montlyworkutilization.component';
+// import { MontlyworkutilizationComponent } from './components/montlyworkutilization/montlyworkutilization.component';
 import { ProjectListComponent } from './components/project/project-list/project-list.component';
 import { ProjectdetailsComponent } from './components/project/project-list/projectdetails/projectdetails.component';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -38,12 +38,12 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CreateTimesheetComponent,
     // TimesheetEmployeeWorkDataComponent,
     // TimesheetEmployeeWorkChartComponent,
-    TimesheetEmployeeProjectHoursComponent,
+    // TimesheetEmployeeProjectHoursComponent,
     AddTimesheetEntryComponent,
     UpdateTimesheetEntryComponent,
     EmployeeComponent,
     EmployeenavbarComponent,
-    MontlyworkutilizationComponent,
+    // MontlyworkutilizationComponent,
     ProjectListComponent,
     ProjectdetailsComponent,
     
@@ -61,11 +61,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
     TimesheetDetailsComponent,
     TimesheetListComponent,
     // TimesheetEmployeeWorkChartComponent,
-    TimesheetEmployeeProjectHoursComponent,
+    // TimesheetEmployeeProjectHoursComponent,
     AddTimesheetEntryComponent,
     UpdateTimesheetEntryComponent,
     EmployeeComponent,
-    MontlyworkutilizationComponent,
+    // MontlyworkutilizationComponent,
     ProjectComponent
   ],
 })

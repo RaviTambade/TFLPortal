@@ -49,7 +49,7 @@ export class TimesheetListComponent {
     }
     if (this.fromDate && this.toDate) {
       this.timesheetService
-        .getAllTimeSheets(this.employeeId,this.fromDate, this.toDate)
+        .getAllTimeSheetsOfEmployee(this.employeeId,this.fromDate, this.toDate)
         .subscribe((res) => {
           this.timesheets = res;
           this.filteredTimesheets=res;

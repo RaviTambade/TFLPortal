@@ -45,7 +45,7 @@ export class UpdateTimesheetEntryComponent implements OnInit {
       let timesheetEntryId =15
       //  params.get('id');
       this.timesheetService
-        .getTimesheetEntry(Number(timesheetEntryId))
+        .getEntryOfTimesheet(Number(timesheetEntryId))
         .subscribe((res) => {
           this.timesheetEntry = res;
           this.timesheetEntry.fromTime = this.timesheetEntry.fromTime.slice(0, 5);

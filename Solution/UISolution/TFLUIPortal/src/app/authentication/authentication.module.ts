@@ -3,8 +3,11 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './Components/login/login.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LoggingInterceptor } from '../shared/services/Authentication/logging.interceptor';
+import { UpdateContactNumberComponent } from './Components/update-contact-number/update-contact-number.component';
+import { ChangePasswordComponent } from './Components/change-password/change-password.component';
+import { UsersListComponent } from './Components/users-list/users-list.component';
+import { NewUserComponent } from './Components/new-user/new-user.component';
+
 
  export const authRoutes:Routes=[
   { path: 'login', component: LoginComponent },
@@ -12,7 +15,11 @@ import { LoggingInterceptor } from '../shared/services/Authentication/logging.in
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    UpdateContactNumberComponent,
+    ChangePasswordComponent,
+    UsersListComponent,
+    NewUserComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +28,6 @@ import { LoggingInterceptor } from '../shared/services/Authentication/logging.in
   exports:[LoginComponent],
   
   providers:[
-    { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true }
   ]
 })
 export class AuthenticationModule { }

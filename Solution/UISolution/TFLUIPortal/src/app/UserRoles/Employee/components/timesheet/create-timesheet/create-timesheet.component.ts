@@ -40,7 +40,7 @@ export class CreateTimesheetComponent implements OnInit {
   getOrCreateTimesheet() {
     if (this.employeeId && this.date)
       this.timesheetService
-        .getTimeSheet(this.employeeId, this.date)
+        .getTimeSheetOfEmployee(this.employeeId, this.date)
         .subscribe((res) => {
           console.log(res);
           if ( res && res.id!= 0) {

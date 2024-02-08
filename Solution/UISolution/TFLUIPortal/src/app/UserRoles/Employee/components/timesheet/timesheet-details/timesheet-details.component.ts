@@ -82,7 +82,7 @@ export class TimesheetDetailsComponent {
   }
 
   fetchTimeSheetEntries(timesheetId: number) {
-    this.timesheetService.getTimesheetEntries(timesheetId).subscribe((res) => {
+    this.timesheetService.getEntriesOfTimesheet(timesheetId).subscribe((res) => {
       this.timesheetEntries = res;
     });
   }
