@@ -6,6 +6,7 @@ export class LeaveApplication{
         public fromDate:string,
         public toDate:string,
         public status:string,
-        public leaveType:string
+        public leaveType:string,
+        public name:string,
         ){}
 }
