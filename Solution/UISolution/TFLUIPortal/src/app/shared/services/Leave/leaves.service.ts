@@ -2,10 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { RoleLeaveAllocation } from '../../Entities/LeaveAllocation';
 import { LeaveApplication } from '../../Entities/LeaveApplication';
-import { LeavesCount } from '../../Entities/LeavesCount';
+import { RoleLeaveAllocation } from '../../Entities/LeaveAllocation';
 import { MonthLeave } from '../../Entities/MonthLeave';
+import { LeavesCount } from '../../Entities/LeavesCount';
+
 
 
 @Injectable({
@@ -110,9 +111,9 @@ export class LeavesService {
     return this.http.put<any>(url,{});
   }
 
-  updateRoleBasedLeave(roleBasedLeave:LeaveAllocation):Observable<LeaveAllocation>{
+  updateRoleBasedLeave(roleBasedLeave:RoleLeaveAllocation):Observable<RoleLeaveAllocation>{
     let url=`${this.leaveAPI}/leaveallocation`;
-    return this.http.put<LeaveAllocation>(url,roleBasedLeave);
+    return this.http.put<RoleLeaveAllocation>(url,roleBasedLeave);
   }
 
   deleteEmployeeLeave(leaveId:number):Observable<LeaveApplication>{

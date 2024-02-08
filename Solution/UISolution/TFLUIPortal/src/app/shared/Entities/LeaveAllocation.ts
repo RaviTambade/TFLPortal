@@ -2,6 +2,7 @@ export class RoleLeaveAllocation{
     
     constructor(
         public id:number,
+        public roleId:number,
         public sick:number,
         public casual:number,
         public paid:number,

@@ -15,13 +15,13 @@ import { AllEmployeesComponent } from './components/payroll/all-employees/all-em
 import { EmployeeLeavesComponent } from './components/payroll/employee-leaves/employee-leaves.component';
 import { PaidEmployeeDetailsComponent } from './components/payroll/paid-employee-details/paid-employee-details.component';
 import { LeaveDisplayComponent } from './components/leave-display/leave-display.component';
-import { LeaveallocationsComponent } from './LeaveMgmt/components/leaveallocations/leaveallocations.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from '../shared/shared.module';
-import { AllEmployeeLeavesComponent } from './LeaveMgmt/components/all-employee-leaves/all-employee-leaves.component';
 import { HrmanagerComponent } from './components/hrmanager/hrmanager.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { LeaveDetailsComponent } from './LeaveMgmt/components/leave-details/leave-details.component';
+import { AllEmployeeLeavesComponent } from './components/LeaveMgmt/components/all-employee-leaves/all-employee-leaves.component';
+import { LeaveDetailsComponent } from './components/LeaveMgmt/components/leave-details/leave-details.component';
+import { LeaveallocationsComponent } from './components/LeaveMgmt/components/leaveallocations/leaveallocations.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 export const hrRoutes: Routes = [
       // {path:'', component:HrmanagerComponent},

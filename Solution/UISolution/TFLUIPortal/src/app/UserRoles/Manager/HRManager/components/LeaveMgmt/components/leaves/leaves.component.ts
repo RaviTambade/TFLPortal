@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UrlType } from 'src/app/shared/Entities/UrlType';
 
 
-
 @Component({
   selector: 'app-leaves',
   templateUrl: './leaves.component.html',

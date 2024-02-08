@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { EmployeeDetails } from 'src/app/Entities/EmployeeDetails';
+import { EmployeeDetails } from 'src/app/shared/Entities/EmployeeDetails';
+
 import { HrService } from 'src/app/shared/services/Staffing/hr.service';
 
 
