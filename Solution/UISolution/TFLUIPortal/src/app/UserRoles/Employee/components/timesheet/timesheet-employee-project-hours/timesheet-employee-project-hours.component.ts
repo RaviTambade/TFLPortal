@@ -87,7 +87,7 @@ export class TimesheetEmployeeProjectHoursComponent implements OnInit {
   getChartData() {
     if (this.fromDate && this.toDate)
       this.timesheetService
-        .getProjectwiseTimeSpent(this.employeeId, this.fromDate, this.toDate)
+        .getEmployeeUtilizationOfAllProjects(this.employeeId, this.fromDate, this.toDate)
         .subscribe((res) => {
           this.projectHours = res;
           this.chart.data.labels = [];

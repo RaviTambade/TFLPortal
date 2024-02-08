@@ -2,7 +2,6 @@
 <input type="number" name="employeeId" [(ngModel)]="searchString" >
 <button (click)="onSearch()" >Search</button>
 
-<app-employeedetails [employeeId]="employeeId"></app-employeedetails>
 <app-monthlysalarystructure [employeeId]="employeeId"></app-monthlysalarystructure>
 <br>
 <div *ngIf="employeeId">

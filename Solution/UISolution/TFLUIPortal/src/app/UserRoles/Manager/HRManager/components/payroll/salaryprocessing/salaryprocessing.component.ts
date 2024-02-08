@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
 import { PayrollService } from 'src/app/shared/services/Payroll/payroll.service';
-import { HrService } from 'src/app/shared/services/Staffing/hr.service';
 
 @Component({
   selector: 'app-salaryprocessing',

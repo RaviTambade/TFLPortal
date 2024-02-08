@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { updateContact } from 'src/app/shared/Entities/UserMgmt/UpdateContact';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
+import { AuthService } from '../../services/auth.service';
 
 export function confirmContactNumberValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -26,7 +27,7 @@ export class UpdateContactNumberComponent {
   changeContactNumberForm!: FormGroup;
 
   // @Output() onPasswordChange = new EventEmitter<StateChangeEvent>();
-  constructor(private membershipSvc: MembershipService) {}
+  constructor(private authSvc: AuthService) {}
 
   ngOnInit(): void {
     this.changeContactNumberForm = new FormGroup(
@@ -78,7 +79,7 @@ export class UpdateContactNumberComponent {
       password: this.password.value,
     };
 
-    this.membershipSvc.updateContactNumber(credential).subscribe((response) => {
+    this.authSvc.updateContactNumber(credential).subscribe((response) => {
       if (response) {
         alert('ContactNumber changed');
         // this.onPasswordChange.emit({ isStateUpdated: true });

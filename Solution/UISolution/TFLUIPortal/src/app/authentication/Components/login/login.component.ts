@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Credential } from 'src/app/shared/Entities/UserMgmt/credential';
 // import { LayoutService } from 'src/app/layout/Services/layout.service';
 import { Role } from 'src/app/shared/enums/role';
-import { AuthService } from 'src/app/shared/services/Authentication/auth.service';
-import { TokenClaims } from 'src/app/shared/enums/tokenclaims';
+import { TokenClaims } from 'src/app/shared/enums/tokenclaims'
+import { Credential } from 'src/app/shared/Entities/UserMgmt/credential';
+import { AuthService } from '../../services/auth.service';
+import { JwtService } from 'src/app/shared/services/JwtHelperService/jwt.service';
+;
 
 @Component({
   selector: 'app-login',
@@ -21,6 +23,8 @@ export class LoginComponent {
   constructor(
     private authSvc: AuthService,
     private router: Router,
+    private jwtSvc: JwtService,
+
     // private layoutSvc: LayoutService
   ) {}
 
@@ -72,7 +76,7 @@ export class LoginComponent {
           }, 3000);
         }
         if (response.token != '') {
-          let role = this.authSvc.getClaimFromToken(TokenClaims.role);
+          let role = this.jwtSvc.getClaimFromToken(TokenClaims.role);
           this.navigateByRole(role);
         }
       },

@@ -4,8 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { TokenClaims } from 'src/app/shared/enums/tokenclaims';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
-import { AuthService } from 'src/app/shared/services/Authentication/auth.service';
 import { User } from 'src/app/shared/Entities/UserMgmt/User';
+import { JwtService } from 'src/app/shared/services/JwtHelperService/jwt.service';
 
 @Component({
   selector: 'user-profile',
@@ -23,8 +23,7 @@ export class UserProfileComponent {
   constructor(
     // private hrsvc: HrService,
     private membershipsvc: MembershipService,
-    private route: ActivatedRoute,
-    private authSvc: AuthService
+    private jwtSvc:JwtService
   ) {}
 
   ngOnInit(): void {
@@ -32,7 +31,7 @@ export class UserProfileComponent {
   }
 
   getUser() {
-    this.userId = Number(this.authSvc.getClaimFromToken(TokenClaims.userId));
+    this.userId = Number(this.jwtSvc.getClaimFromToken(TokenClaims.userId));
     this.membershipsvc.getUser(this.userId).subscribe((res) => {
       this.user = res;
       console.log(res);
