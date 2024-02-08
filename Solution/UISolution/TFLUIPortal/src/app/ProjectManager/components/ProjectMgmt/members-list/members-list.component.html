@@ -1,16 +1,24 @@
 <h2 >Members</h2>
+<div>
 <table class="table table-bordered">
     <thead>
         <tr>
             <th>FullName</th>
             <th>Role</th>
+            <th>Assigned Date</th>
+            <th>Project</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let employee of employees">
-            <!-- <td><a class="link-underline" [routerLink]="['/projectmanager/projects/memberdetails',employee.employeeId,employee.projectId]">{{employee.fullName}}</a></td> -->
-            <td><a class="link-underline">{{employee.employeeId}}</a></td>
-            <td>{{employee.title}}</td>
-        </tr>
+        <tr *ngFor="let employees of employees">
+            <td>{{employees.employeeId}}</td>
+            <td>{{employees.title}}</td>
+            <td>{{employees.assignedOn|date :('yyyy-MM-dd')}}</td>
+            <td>{{employees.projectId}}</td>
+          </tr>
     </tbody>
 </table>
+
+<app-employee-project-works></app-employee-project-works>
+
+</div>

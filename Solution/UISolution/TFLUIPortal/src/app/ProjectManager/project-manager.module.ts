@@ -14,9 +14,7 @@ import { MembersListComponent } from './components/ProjectMgmt/members-list/memb
   { path: '', component:ProjectmanagerComponent },
   { path: 'myProject', component: ProjectListComponent },
   { path: 'members/:id', component: MembersListComponent},
-  
-  
-];
+  ];
 
 
 @NgModule({

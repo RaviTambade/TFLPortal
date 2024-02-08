@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MemberDetails } from 'src/app/ProjectManager/Model/MemberDetails';
+import { ProjectallocationService } from 'src/app/shared/services/projectallocation.service';
+import { MemberDetails } from '../../Model/MemberDetails';
 import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class MembersdetailsComponent  implements OnInit{
     this.projectId=Number(param.get('projectId'));
     //this.employeeId=Number(param.get('employeeId'));
 
-    this.projectMembership.getAllProjectMembers(this.projectId).subscribe((res)=>{
+    this.projectMembership.getMemberDetails(this.projectId,this.employeeId).subscribe((res)=>{
     this.employee=res;
     console.log(res);
     })
