@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Project } from 'src/app/shared/Entities/Project';
+import { Project } from 'src/app/shared/Entities/Projectmgmt/Project';
 import { Sprint } from 'src/app/shared/Entities/sprint';
 import { Task } from 'src/app/shared/Entities/task';
 import { TimesheetEntry } from 'src/app/shared/Entities/timesheetEntry';

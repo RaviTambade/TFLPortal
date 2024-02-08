@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
-import { Project } from 'src/app/shared/Entities/Project';
+import { Project } from 'src/app/shared/Entities/Projectmgmt/Project';
 import { MemberUtilization } from 'src/app/shared/Entities/memberutilization';
 Chart.register(...registerables);
 

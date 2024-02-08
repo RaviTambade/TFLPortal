@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { LeavesCount } from 'src/app/shared/Entities/LeavesCount';
+import { LeavesCount } from 'src/app/shared/Entities/Leavemgmt/LeavesCount';
 import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
 
 

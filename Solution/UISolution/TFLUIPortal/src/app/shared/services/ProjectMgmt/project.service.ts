@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Member } from '../../Entities/Member';
-import { Project } from '../../Entities/Project';
+import { Project } from '../../Entities/Projectmgmt/Project';
 import { Sprint } from '../../Entities/sprint';
 
 

@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
-import { LeaveStatus } from 'src/app/shared/Entities/LeaveStatus';
-import { LeaveApplication } from 'src/app/shared/Entities/LeaveApplication';
+import { LeaveStatus } from 'src/app/shared/Entities/Leavemgmt/LeaveStatus';
+import { LeaveApplication } from 'src/app/shared/Entities/Leavemgmt/LeaveApplication';
 
 
 @Component({

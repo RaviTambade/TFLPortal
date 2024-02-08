@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LeaveApplication } from 'src/app/shared/Entities/LeaveApplication';
+import { LeaveApplication } from 'src/app/shared/Entities/Leavemgmt/LeaveApplication';
 import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
 

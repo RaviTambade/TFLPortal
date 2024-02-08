@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import { updateContact } from '../../Entities/UpdateContact';
 import { UpdatePassword } from '../../Entities/UpdatePassword';
 import { UserRole } from '../../Entities/UserRole';
-import { Role } from '../../Entities/Role';
+import { Role } from '../../Entities/Projectmgmt/Role';
 import { NewUser } from '../../Entities/NewUser';
 import { User } from '../../Entities/User';
 
