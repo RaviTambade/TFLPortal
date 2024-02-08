@@ -41,11 +41,17 @@ export class MontlyworkutilizationComponent {
 
       data: {
         // values on X-Axis
-        labels: [],
+        labels: [
+          // 'A','B','C','D','E'
+        ],
         datasets: [{
           label:'',
-          data:[],
-          backgroundColor:[],
+          data:[
+            // 10,10,30,40,50
+          ],
+          backgroundColor:[
+            // 'red','green','yellow','blue','violet'
+          ],
 
         }],
       },
@@ -142,7 +148,6 @@ export class MontlyworkutilizationComponent {
       )
       .subscribe((res) => {
         this.memberUtilizations = res;
-        // this.chart.data.datasets = [];
         this.chart.data.datasets[0].data=[]
         this.chart.data.datasets[0].backgroundColor=[]
         this.chart.data.labels=[]
@@ -156,29 +161,5 @@ export class MontlyworkutilizationComponent {
       });
   }
 
-  getLabelName(orignalLabel: string) {
-    let label: any = '';
-    switch (this.selectedInterval) {
-      case 'week':
-        label = new Date(
-          orignalLabel.slice(0, 10).split('-').reverse().join('-')
-        )
-          .toDateString()
-          .slice(0, 10);
-        break;
-
-      case 'month':
-        label = new Date(
-          orignalLabel.slice(0, 10).split('-').reverse().join('-')
-        )
-          .toDateString()
-          .slice(0, 10);
-        break;
-
-      case 'year':
-        label = orignalLabel;
-        break;
-    }
-    return label;
-  }
+ 
 }

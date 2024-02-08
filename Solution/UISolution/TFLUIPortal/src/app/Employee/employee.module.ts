@@ -20,6 +20,8 @@ import { UpdateTimesheetEntryComponent } from './components/timesheet/update-tim
 import { EmployeeComponent } from './components/employee/employee.component';
 import { EmployeenavbarComponent } from './components/employeenavbar/employeenavbar.component';
 import { MontlyworkutilizationComponent } from './components/montlyworkutilization/montlyworkutilization.component';
+import { ProjectListComponent } from './components/project/project-list/project-list.component';
+import { ProjectdetailsComponent } from './components/project/project-list/projectdetails/projectdetails.component';
 
  export const employeeRoutes:Routes=[
   {path:'projects', component:ProjectComponent},
@@ -44,6 +46,9 @@ import { MontlyworkutilizationComponent } from './components/montlyworkutilizati
     EmployeeComponent,
     EmployeenavbarComponent,
     MontlyworkutilizationComponent,
+    ProjectListComponent,
+    ProjectdetailsComponent,
+    
     
   ],
   imports: [
@@ -62,7 +67,8 @@ import { MontlyworkutilizationComponent } from './components/montlyworkutilizati
     AddTimesheetEntryComponent,
     UpdateTimesheetEntryComponent,
     EmployeeComponent,
-    MontlyworkutilizationComponent
+    MontlyworkutilizationComponent,
+    ProjectComponent
   ],
 })
 export class EmployeeModule {}

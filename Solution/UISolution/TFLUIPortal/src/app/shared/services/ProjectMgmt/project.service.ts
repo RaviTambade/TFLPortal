@@ -12,7 +12,6 @@ import { Project } from 'src/app/Entities/Project';
 export class ProjectService {
 
   projectApi:string=environment.projectAPI;
-  projectAllocation:string=environment.projectAllocation;
   sprintApi:string=environment.sprintAPI;
   
   constructor(private httpClient: HttpClient) { }
@@ -36,22 +35,22 @@ export class ProjectService {
 
 
   getAllProjectMembers(projectId:number):Observable<any[]>{
-    let url=this.projectAllocation+"/projects"+projectId;
+    let url=this.projectApi+"/projects/"+projectId+"/members";
     return this.httpClient.get<any[]>(url);
   }
 
   getEmployeesOnBench():Observable<any[]>{
-    let url=this.projectAllocation+"/employeesonbench";
+    let url=this.projectApi+"/employeesonbench";
     return this.httpClient.get<any[]>(url);
   }
 
   assignMember(member:Member):Observable<boolean>{
-    let url=this.projectAllocation;
+    let url=this.projectApi;
     return this.httpClient.post<boolean>(url,member);
   }
 
   releaseMember(member:Member):Observable<boolean>{
-    let url=this.projectAllocation;
+    let url=this.projectApi;
     return this.httpClient.put<boolean>(url,member);
   }
 

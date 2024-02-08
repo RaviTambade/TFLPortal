@@ -21,7 +21,7 @@ public class ProjectsController : ControllerBase
 
 
     
-   // [Authorize(RoleTypes.ProjectManager)]
+    [Authorize(RoleTypes.ProjectManager)]
     [HttpGet]
     public async Task<List<Project>> GetAllProjects()
     {
@@ -30,7 +30,7 @@ public class ProjectsController : ControllerBase
     }
 
     
-  //  [Authorize(RoleTypes.ProjectManager,RoleTypes.Employee)]
+    [Authorize(RoleTypes.ProjectManager,RoleTypes.Employee)]
     [HttpGet("{projectId}")]
     public async Task<Project> GetProject(int projectId)
     {
@@ -39,7 +39,7 @@ public class ProjectsController : ControllerBase
     }
 
    
-   // [Authorize(RoleTypes.ProjectManager,RoleTypes.Employee)]
+    [Authorize(RoleTypes.ProjectManager,RoleTypes.Employee)]
     [HttpGet("members/{memberId}")]
     public async Task<List<Project>> GetAllCurrentProjects(int memberId)
     {
@@ -49,7 +49,7 @@ public class ProjectsController : ControllerBase
 
 
 
-   // [Authorize(RoleTypes.ProjectManager)]
+    [Authorize(RoleTypes.ProjectManager)]
     [HttpPost]
     public async Task<bool> AddProject(Project project)
     {
@@ -59,21 +59,21 @@ public class ProjectsController : ControllerBase
 
 
 
-    //  [Authorize(RoleTypes.ProjectManager)]
+      [Authorize(RoleTypes.ProjectManager)]
     [HttpGet("{projectId}/sprints")]
     public async Task<List<Sprint>> GetSprints(int projectId)
     {
         return await _analyticsSvc.GetSprints(projectId);
     }
 
-  //  [Authorize(RoleTypes.ProjectManager)]
+    [Authorize(RoleTypes.ProjectManager)]
     [HttpGet("projects/{projectId}/date/{date}")]
     public async Task<Sprint> GetCurrentSprint(int projectId, DateOnly date)
     {
         return await _analyticsSvc.GetCurrentSprint(projectId, date);
     }
 
-   // [Authorize(RoleTypes.ProjectManager)]
+    [Authorize(RoleTypes.ProjectManager)]
     [HttpGet("{sprintId}/tasks")]
     public async Task<List<ProjectTask>> GetSprintTasks(int sprintId)
     {
@@ -82,7 +82,7 @@ public class ProjectsController : ControllerBase
     }
 
 
-   // [Authorize(RoleTypes.ProjectManager)]
+    [Authorize(RoleTypes.ProjectManager)]
     [HttpPost("addsprint")]
     public async Task<bool> Insert(Sprint theSprint)
     {
@@ -90,7 +90,7 @@ public class ProjectsController : ControllerBase
         return status;
     }
 
-   // [Authorize(RoleTypes.ProjectManager)]
+    [Authorize(RoleTypes.ProjectManager)]
     [HttpDelete("deleteSprint")]
     public async Task<bool> Delete(int sprintId)
     {
@@ -98,7 +98,7 @@ public class ProjectsController : ControllerBase
         return status;
     }
 
-   // [Authorize(RoleTypes.ProjectManager)]
+    [Authorize(RoleTypes.ProjectManager)]
     [HttpPut("updateSprint")]
     public async Task<bool> Update(int sprintId,Sprint theSprint)
     {
@@ -108,7 +108,7 @@ public class ProjectsController : ControllerBase
 
 
 
-       // [Authorize(RoleTypes.ProjectManager)]
+        [Authorize(RoleTypes.ProjectManager)]
     [HttpPost("member/assign")]
     public async Task<bool> Assign(ProjectAllocation projectAllocation)
     {
@@ -117,7 +117,7 @@ public class ProjectsController : ControllerBase
     }
 
 
-    // [Authorize(RoleTypes.ProjectManager)]
+     [Authorize(RoleTypes.ProjectManager)]
     [HttpPut("relese/Member")]
     public async Task<bool> Release(ProjectAllocation projectAllocation)
     {
@@ -126,7 +126,7 @@ public class ProjectsController : ControllerBase
     }
 
 
-    // [Authorize(RoleTypes.ProjectManager)]
+     [Authorize(RoleTypes.ProjectManager)]
     [HttpGet("{projectId}/members")]
     public async Task<List<ProjectAllocation>> GetProjectMembers(int projectId)
     {

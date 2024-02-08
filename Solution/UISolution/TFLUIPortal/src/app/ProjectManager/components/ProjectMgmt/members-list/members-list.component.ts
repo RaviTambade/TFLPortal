@@ -1,23 +1,37 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { ProjectallocationService } from 'src/app/shared/services/projectallocation.service';
-import { WorkmgmtService } from 'src/app/shared/services/workmgmt.service';
-import { ProjectEmployees } from '../../Model/ProjectEmployes';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ProjectEmployees } from 'src/app/ProjectManager/Model/ProjectEmployes';
+import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
 
 @Component({
   selector: 'app-members-list',
   templateUrl: './members-list.component.html',
   styleUrls: ['./members-list.component.css']
 })
-export class MembersListComponent{
+export class MembersListComponent implements OnInit{
 
-  constructor(private projectAllocSvc:ProjectallocationService){}
-  @Input()projectId:number=0;
+  constructor(private projectAllocSvc:ProjectService,private route:Router,private router:ActivatedRoute){}
+ 
+  projectId:number=0;
    status:string='yes';
   employees:ProjectEmployees[]=[];
-ngOnChanges(change:SimpleChanges): void {
-   this.projectAllocSvc.getEmployeesOfProject(change['projectId'].currentValue,this.status).subscribe((res)=>{
-    this.employees=res;
-   }) 
+  //  ngOnChanges(change:SimpleChanges): void {
+  //   console.log(change['projectId'].currentValue);
+  //  this.projectAllocSvc.getAllProjectMembers(change['projectId'].currentValue).subscribe((res)=>{
+  //   this.employees=res;
+  //   console.log(this.employees);
+  //  }) 
+  // }
+
+  ngOnInit(): void {
+    this.router.paramMap.subscribe((res)=>{
+     this.projectId=Number(res.get('id'));
+     this.projectAllocSvc.getAllProjectMembers(this.projectId).subscribe((res)=>{
+        this.employees=res;
+        console.log(this.employees);
+       }) 
+    })
   }
 
+  
 }

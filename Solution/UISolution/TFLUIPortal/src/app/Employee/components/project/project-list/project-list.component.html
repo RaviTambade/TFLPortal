@@ -1,0 +1,13 @@
+<div>
+  <h1>My Projects</h1>
+  <div class="d-flex gap-4 flex-wrap">
+
+    <div *ngFor="let project of projects">
+      <!-- <ul class="list-group list-group-horizontal"> -->
+
+        <app-projectdetails [project]="project"></app-projectdetails>
+      <!-- </ul> -->
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

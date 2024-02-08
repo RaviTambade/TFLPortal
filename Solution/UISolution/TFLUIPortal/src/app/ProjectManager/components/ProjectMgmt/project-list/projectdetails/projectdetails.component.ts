@@ -21,4 +21,6 @@ export class ProjectdetailsComponent implements OnInit{
     }
 
 
+    
+
 }

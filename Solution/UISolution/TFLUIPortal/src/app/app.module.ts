@@ -22,8 +22,8 @@ import { LoginComponent } from './authentication/Components/login/login.componen
 import { HomeComponent } from './layout/Components/home/home.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home',pathMatch:'full' },
-  { path: 'home', component: HomeComponent },
+  // { path: '', redirectTo: 'home',pathMatch:'full' },
+  // { path: 'home', component: HomeComponent },
   { path: 'employee', component: EmployeeComponent },
   { path: 'projectmanager', children:hrManagerRoutes },
   { path: 'employee', component: EmployeeComponent, children:employeeRoutes},

@@ -1,12 +1,12 @@
 
  <div >
   <h1>My Projects</h1>
- <div  class="d-flex gap-2">
+ <div  class="d-flex gap-4">
   
 <div *ngFor="let project of projects" >
 <ul class="list-group list-group-horizontal" >
    
-    <app-projectdetails [projectId]="project.id"></app-projectdetails>
+    <app-projectdetails [projectId]="project.id"  ></app-projectdetails>
   </ul>
 </div>
 </div>

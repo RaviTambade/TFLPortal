@@ -5,7 +5,7 @@ export const environment = {
   authenticationAPI:"http://localhost:5142/api/auth",
   leaveAPI:"http://localhost:5263/api/leaves",
   projectAPI:"http://localhost:5263/api/projectmgmt",
-  projectAllocation:"http://localhost:5263/api/projectmgmt/projectallocation",
+  //projectAllocation:"http://localhost:5263/api/projectmgmt",
   sprintAPI:"http://localhost:5263/api/sprints",
   timesheetAPI:"http://localhost:5263/api/timesheets",
   payrollAPI: "http://localhost:5263/api/payroll",
