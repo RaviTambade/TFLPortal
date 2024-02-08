@@ -7,6 +7,7 @@ import { UpdateContactNumberComponent } from './Components/update-contact-number
 import { ChangePasswordComponent } from './Components/change-password/change-password.component';
 import { UsersListComponent } from './Components/users-list/users-list.component';
 import { NewUserComponent } from './Components/new-user/new-user.component';
+import { AuthService } from './services/auth.service';
 
 
  export const authRoutes:Routes=[
@@ -28,6 +29,7 @@ import { NewUserComponent } from './Components/new-user/new-user.component';
   exports:[LoginComponent],
   
   providers:[
+    AuthService
   ]
 })
 export class AuthenticationModule { }

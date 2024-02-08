@@ -1,9 +1,9 @@
-import { Injectable, inject } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Route, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivate,  Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Role } from 'src/app/shared/enums/role';
 import { TokenClaims } from 'src/app/shared/enums/tokenclaims';
-import { JwtService } from 'src/app/shared/services/jwt.service';
+import { JwtService } from '../services/JwtHelperService/jwt.service';
 
 @Injectable({
   providedIn: 'root'

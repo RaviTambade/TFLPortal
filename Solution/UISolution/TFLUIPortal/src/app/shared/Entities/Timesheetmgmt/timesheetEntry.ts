@@ -5,6 +5,6 @@ export class TimesheetEntry {
     public fromTime: string,
     public toTime: string,
     public timesheetId: number,
-    public durationInHours: number
+    public hours: number
   ) {}
 }

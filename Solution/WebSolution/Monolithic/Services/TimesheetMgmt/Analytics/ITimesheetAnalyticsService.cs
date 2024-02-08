@@ -11,6 +11,6 @@ public interface ITimesheetAnalyticsService
     Task<Timesheet> GetTimesheet(int timesheetId);
     Task<List<TimesheetEntry>> GetTimesheetEntries(int timesheetId);
     Task<TimesheetEntry> GetTimesheetEntry(int timesheetEntryId);
-    Task<List<MemberUtilization>> GetWorkUtilization(int employeeId,DateOnly from, DateOnly to,int projectId);
+    Task<MemberPerformence> GetWorkUtilization(int employeeId,DateOnly from, DateOnly to,int projectId);
     Task<List<ProjectWorkHours>> GetHoursWorkedForEachProject(int employeeId,DateOnly from,DateOnly to );
 }

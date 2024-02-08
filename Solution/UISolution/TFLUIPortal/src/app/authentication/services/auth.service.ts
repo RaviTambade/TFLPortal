@@ -11,9 +11,7 @@ import { UpdatePassword } from 'src/app/shared/Entities/UserMgmt/UpdatePassword'
 import { NewUser } from 'src/app/shared/Entities/UserMgmt/NewUser';
 
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class AuthService {
   authAPIUrl = environment.authenticationAPI;
 
