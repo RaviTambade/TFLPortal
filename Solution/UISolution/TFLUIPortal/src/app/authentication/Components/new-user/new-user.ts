@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { NewUser } from 'src/app/shared/Entities/UserMgmt/NewUser';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { MembershipService } from 'src/app/shared/services/Membership/membership
   templateUrl: './new-user.html',
 })
 
-export class NewUser {
+export class NewUserComponent {
 constructor(private service:MembershipService){}
 newUserForm = new FormGroup({
   imageUrl: new FormControl(),

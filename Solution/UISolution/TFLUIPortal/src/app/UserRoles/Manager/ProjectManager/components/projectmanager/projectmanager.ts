@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-projectmanager',
+  selector: 'approjectmanager',
   templateUrl: './projectmanager.html',
 })
-export class ProjectmanagerComponent {
+export class Projectmanager {
 
 }

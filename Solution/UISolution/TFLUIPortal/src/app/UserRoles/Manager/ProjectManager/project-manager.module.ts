@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { Projectmanager } from './components/projectmanager/projectmanager';
-import { ProjectList } from './components/ProjectMgmt/project-list/project-list';
-import { MembersList } from './components/ProjectMgmt/members-list/members-list';
+ 
+ 
 import { ProjectItem } from '../../Employee/components/project-item/projectitem';
-import { Employeeprojectworkdetails } from './components/ProjectMgmt/employee-project-works/employeeprojectworkdetails/employeeprojectworkdetails.component';
-import { EmployeeProjectWorks } from './components/ProjectMgmt/employee-project-works/employee-project-works';
+ 
+import { Projectmanager } from './components/projectmanager/projectmanager';
+import { ProjectList } from './components/project-list/project-list';
 
  export const projectManagerRoutes: Routes = [
   { path: '', component:Projectmanager },
