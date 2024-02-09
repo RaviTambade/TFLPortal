@@ -5,7 +5,7 @@ import { ProjectEmployees } from '../../../Model/ProjectEmployes';
 
 @Component({
   selector: 'app-members-list',
-  templateUrl: './members-list.component.html',
+  templateUrl: './members-list.html',
 })
 export class MembersListComponent implements OnInit{
 

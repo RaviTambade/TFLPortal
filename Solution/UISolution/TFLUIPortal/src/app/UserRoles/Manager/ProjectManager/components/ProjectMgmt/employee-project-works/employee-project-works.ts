@@ -5,7 +5,7 @@ import { TasksManagementService } from 'src/app/shared/services/TaskMgmt/tasks-m
 
 @Component({
   selector: 'app-employee-project-works',
-  templateUrl: './employee-project-works.component.html',
+  templateUrl: './employee-project-works.html',
 })
 export class EmployeeProjectWorksComponent implements OnInit{
 

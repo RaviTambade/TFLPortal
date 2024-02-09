@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Sprint } from 'src/app/shared/models/sprint';
-import { SprintService } from 'src/app/shared/services/ProjectMgmt/sprint.service';
+import { Sprint } from 'src/app/shared/Entities/Projectmgmt/sprint';
+import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
 @Component({
   selector: 'app-sprint-details',
-  templateUrl: './sprint-details.component.html',
+  templateUrl: './sprint-details.html',
 })
-export class SprintDetailsComponent implements OnInit{
+export class SprintDetails implements OnInit{
 
   todaysDate=new Date().toISOString().slice(0,10);
   projectId:number=0;
   sprints:Sprint|undefined;
-  constructor(private workMgmt:SprintService,private router:ActivatedRoute){}
+  constructor(private workMgmt:ProjectService,private router:ActivatedRoute){}
 ngOnInit(): void {
  this.router.paramMap.subscribe((param)=>{
   this.projectId=Number(param.get('id'));

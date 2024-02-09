@@ -4,9 +4,9 @@ import { TasksManagementService } from 'src/app/shared/services/TaskMgmt/tasks-m
 
 @Component({
   selector: 'app-member-task-list',
-  templateUrl: './member-task-list.component.html',
+  templateUrl: './member-task-list.html',
 })
-export class MemberTaskListComponent {
+export class MemberTaskList{
   constructor(private taskService:TasksManagementService){}
   employeeworks:Task[]=[];
   projectId:number|any;

@@ -3,23 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Project } from 'src/app/shared/Entities/Projectmgmt/Project';
 import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
 @Component({
-  selector: 'app-projectdetails',
-  templateUrl: './projectdetails.component.html',
+  selector: 'project-item',
+  templateUrl: './project-item.html',
 })
-export class ProjectdetailsComponent{
+export class Projectdetails{
   constructor(private projectSvc:ProjectService,private router:ActivatedRoute){}
   @Input() project:Project|undefined;
-  //project:Project|undefined;
-  // status:string='yes';
-  // employees:any[]=[];
-  // ngOnInit(): void {
-  
-  //   this.projectSvc.getProject(this.projectId).subscribe((res)=>{
-  //     this.project=res;
-  //   })
-  //   }
-
-
-
-
 }

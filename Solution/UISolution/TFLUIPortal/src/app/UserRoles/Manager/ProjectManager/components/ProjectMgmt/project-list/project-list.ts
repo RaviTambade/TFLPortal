@@ -6,9 +6,9 @@ import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.serv
 
 @Component({
   selector: 'app-project-list',
-  templateUrl: './project-list.component.html',
+  templateUrl: './project-list.html',
 })
-export class ProjectListComponent implements OnInit{
+export class ProjectList implements OnInit{
   projects:Project[]|undefined;
   @Output() projectDetails: EventEmitter<Project> = new EventEmitter();
   employeeId:number=0;
