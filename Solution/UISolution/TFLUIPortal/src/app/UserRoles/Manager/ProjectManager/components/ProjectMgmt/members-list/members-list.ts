@@ -7,7 +7,7 @@ import { ProjectEmployees } from '../../../Model/ProjectEmployes';
   selector: 'app-members-list',
   templateUrl: './members-list.html',
 })
-export class MembersListComponent implements OnInit{
+export class MembersList implements OnInit{
 
   constructor(private projectAllocSvc:ProjectService,private route:Router,private router:ActivatedRoute){}
  

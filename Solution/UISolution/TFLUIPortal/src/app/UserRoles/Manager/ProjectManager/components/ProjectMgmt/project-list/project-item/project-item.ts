@@ -6,7 +6,7 @@ import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.serv
   selector: 'project-item',
   templateUrl: './project-item.html',
 })
-export class Projectdetails{
+export class ProjectItem {
   constructor(private projectSvc:ProjectService,private router:ActivatedRoute){}
   @Input() project:Project|undefined;
 }

@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { Projectmanager } from './components/projectmanager/projectmanager';
 import { ProjectList } from './components/ProjectMgmt/project-list/project-list';
 import { MembersList } from './components/ProjectMgmt/members-list/members-list';
-import { ProjectItem } from '../../Employee/components/project-item/projectitem';
 import { Employeeprojectworkdetails } from './components/ProjectMgmt/employee-project-works/employeeprojectworkdetails/employeeprojectworkdetails.component';
 import { EmployeeProjectWorks } from './components/ProjectMgmt/employee-project-works/employee-project-works';
+import { ProjectItem } from './components/ProjectMgmt/project-list/project-item/project-item';
+import { Projectmanager } from './components/projectmanager/projectmanager';
+import { MemberTaskList } from './components/ProjectMgmt/member-task-list/member-task-list';
+import { MemberDetails } from './Model/MemberDetails';
 
  export const projectManagerRoutes: Routes = [
   { path: '', component:Projectmanager },
@@ -18,14 +20,17 @@ import { EmployeeProjectWorks } from './components/ProjectMgmt/employee-project-
 @NgModule({
   declarations: [
     // TimesheetComponent,
+    Projectmanager,
     EmployeeProjectWorks,
     Employeeprojectworkdetails,
-    Projectmanager,
     ProjectList,
-   ProjectItem,
+    ProjectItem,
     MembersList,
+    EmployeeProjectWorks,
+    MemberTaskList,
+    MembersList
   ],
   imports: [CommonModule, RouterModule],
-  exports: [EmployeeProjectWorks, Employeeprojectworkdetails,Projectmanager],
+  exports: [EmployeeProjectWorks, Employeeprojectworkdetails],
 })
 export class ProjectManagerModule {}

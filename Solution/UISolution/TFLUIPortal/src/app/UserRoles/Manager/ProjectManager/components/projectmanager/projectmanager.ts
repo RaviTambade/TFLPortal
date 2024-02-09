@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-projectmanager',
   templateUrl: './projectmanager.html',
 })
-export class ProjectmanagerComponent {
+export class Projectmanager {
 
 }

@@ -7,7 +7,7 @@ import { TasksManagementService } from 'src/app/shared/services/TaskMgmt/tasks-m
   selector: 'app-employeeprojectworkdetails',
   templateUrl: './employeeprojectworkdetails.component.html',
 })
-export class EmployeeprojectworkdetailsComponent implements OnInit {
+export class Employeeprojectworkdetails implements OnInit {
   constructor(private router:ActivatedRoute,private taskService:TasksManagementService){}
   taskId:number=51;
   task:Task|undefined;
