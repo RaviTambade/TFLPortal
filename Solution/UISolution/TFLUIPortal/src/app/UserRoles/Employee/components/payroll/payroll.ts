@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'payroll',
-  templateUrl: './payroll.component.html',
+  templateUrl: './payroll.html',
 })
-export class PayrollComponent {
+export class Payroll {
 
 }

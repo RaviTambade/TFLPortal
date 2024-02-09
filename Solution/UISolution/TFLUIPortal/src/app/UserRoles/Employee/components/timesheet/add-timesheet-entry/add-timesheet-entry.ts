@@ -12,10 +12,10 @@ import { TimesheetService } from 'src/app/shared/services/Timesheet/timesheet.se
 
 
 @Component({
-  selector: 'app-add-timesheet-entry',
-  templateUrl: './add-timesheet-entry.component.html',
+  selector: 'add-timesheet-entry',
+  templateUrl: './add-timesheet-entry.html',
 })
-export class AddTimesheetEntryComponent {
+export class AddTimesheetEntry {
   timesheetEntry: TimesheetEntry = {
     id: 0,
     taskId: 0,

@@ -5,10 +5,10 @@ import { TimesheetEntry } from 'src/app/shared/Entities/Timesheetmgmt/timesheetE
 import { TimesheetService } from 'src/app/shared/services/Timesheet/timesheet.service';
 
 @Component({
-  selector: 'app-timesheet-details',
-  templateUrl: './timesheet-details.component.html',
+  selector: 'timesheet-details',
+  templateUrl: './timesheet-details.html',
 })
-export class TimesheetDetailsComponent {
+export class TimesheetDetails {
   totalminutes: any = 0;
   timesheet: Timesheet={
     id: 0,

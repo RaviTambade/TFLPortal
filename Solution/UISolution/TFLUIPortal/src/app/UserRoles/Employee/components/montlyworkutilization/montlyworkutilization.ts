@@ -9,10 +9,10 @@ import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.serv
 import { TimesheetService } from 'src/app/shared/services/Timesheet/timesheet.service';
 
 @Component({
-  selector: 'app-montlyworkutilization',
-  templateUrl: './montlyworkutilization.component.html',
+  selector: 'montlyworkutilization',
+  templateUrl: './montlyworkutilization.html',
 })
-export class MontlyworkutilizationComponent {
+export class Montlyworkutilization {
 
   employeeId: number = 0;
   fromDate: string ='';

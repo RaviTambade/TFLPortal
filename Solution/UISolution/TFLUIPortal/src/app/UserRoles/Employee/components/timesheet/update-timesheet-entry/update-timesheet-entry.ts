@@ -10,10 +10,10 @@ import { TasksManagementService } from 'src/app/shared/services/TaskMgmt/tasks-m
 import { TimesheetService } from 'src/app/shared/services/Timesheet/timesheet.service';
 
 @Component({
-  selector: 'app-update-timesheet-entry',
-  templateUrl: './update-timesheet-entry.component.html',
+  selector: 'update-timesheet-entry',
+  templateUrl: './update-timesheet-entry.html',
 })
-export class UpdateTimesheetEntryComponent implements OnInit {
+export class UpdateTimesheetEntry implements OnInit {
   projects: Project[] = [];
   selectedProjectId: number = 0;
   selectedSprintId: number = 0;

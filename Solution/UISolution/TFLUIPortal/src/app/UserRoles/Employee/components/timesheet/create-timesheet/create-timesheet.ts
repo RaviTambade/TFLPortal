@@ -6,9 +6,9 @@ import { TimesheetService } from 'src/app/shared/services/Timesheet/timesheet.se
 
 @Component({
   selector: 'app-create-timesheet',
-  templateUrl: './create-timesheet.component.html',
+  templateUrl: './create-timesheet.html',
 })
-export class CreateTimesheetComponent implements OnInit {
+export class CreateTimesheet implements OnInit {
   date: string | undefined;
   employeeId: number | undefined;
   constructor(
