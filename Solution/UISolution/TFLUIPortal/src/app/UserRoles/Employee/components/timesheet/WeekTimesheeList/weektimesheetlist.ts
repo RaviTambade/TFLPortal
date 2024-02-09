@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { TimesheetService } from 'src/app/shared/services/Timesheet/timesheet.service';
 import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
@@ -12,9 +12,9 @@ import { TimeSheetStatus } from 'src/app/shared/Entities/Timesheetmgmt/timesheet
 export class WeekTimesheetList {
   
   weekTimesheets: Timesheet[] = [];
-  employeeId=10;
-  fromDate: string | undefined;
-  toDate: string | undefined;
+ @Input() employeeId:number=0;
+ @Input() fromDate: string ='';
+ @Input() toDate: string ='';
    
  
   timesheetStatus: string[] = [TimeSheetStatus.inprogress,TimeSheetStatus.submitted,TimeSheetStatus.rejected ,TimeSheetStatus.approved];
@@ -22,8 +22,6 @@ export class WeekTimesheetList {
   constructor(private timesheetSvc: TimesheetService) {}
 
   ngOnInit(): void {
-       this.fromDate = "2024-01-01";
-       this.toDate = "2024-01-10";
        this.timesheetSvc.getAllTimeSheetsOfEmployee(this.employeeId,this.fromDate, 
                                                     this.toDate)
        .subscribe((res) => {
