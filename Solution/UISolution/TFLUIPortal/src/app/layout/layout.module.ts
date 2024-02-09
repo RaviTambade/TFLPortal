@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MainComponent } from './Components/main/main.component';
+import { Main} from './Components/main/main';
 import { RouterModule } from '@angular/router';
-import { HomeComponent } from './Components/home/home.component';
+import { Home } from './Components/home/home';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
-    MainComponent,
-    HomeComponent,
+    Main,
+    Home,
   ],
   imports: [CommonModule, RouterModule, SharedModule],
-  exports: [MainComponent,HomeComponent],
+  exports: [Main,Home],
 })
 export class LayoutModule {}

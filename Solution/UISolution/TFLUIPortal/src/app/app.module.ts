@@ -21,7 +21,7 @@ import { AppComponent } from './app.component';
 // import { UserProfileModule } from './UserProfile/user-profile.module';
 import { HrmanagerModule, hrRoutes } from './UserRoles/Manager/HRManager/hrmanager.module';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './layout/Components/home/home.component';
+import { Home } from './layout/Components/home/home';
 // import { UserModule } from './UserRoles/SharedModule/user.module';
 //  import { DirectorModule } from './UserRoles/Director/director.module';
 // import { EmployeeComponent } from './UserRoles/Employee/components/employee/employee.component';
@@ -32,12 +32,12 @@ import { AuthenticationModule } from './authentication/authentication.module';
 // import { EmployeeModule, employeeRoutes } from './UserRoles/Employee/employee.module';
 import { UserModule } from './UserRoles/SharedModule/user.module';
  import { DirectorModule } from './UserRoles/Director/director.module';
-import { ProjectManagerModule, projectManagerRoutes } from './UserRoles/Manager/ProjectManager/project-manager.module';
-import { EmployeeModule } from './UserRoles/Employee/employee.module';
-import { DirectorComponent } from './UserRoles/Director/components/director/director.component';
-import { LayoutModule } from './layout/layout.module';
+// import { ProjectManagerModule, projectManagerRoutes } from './UserRoles/Manager/ProjectManager/project-manager.module';
+// import { EmployeeModule } from './UserRoles/Employee/employee.module';
+// import { DirectorComponent } from './UserRoles/Director/components/director/director.component';
+// import { LayoutModule } from './layout/layout.module';
 import { Hrmanager } from './UserRoles/Manager/HRManager/components/hrmanager/hrmanager';
-import { UserProfileModule } from './UserProfile/user-profile.module';
+// import { UserProfileModule } from './UserProfile/user-profile.module';
 
 // const routes: Routes = [
 //   { path: '', redirectTo: 'home',pathMatch:'full' },
@@ -75,7 +75,7 @@ import { UserProfileModule } from './UserProfile/user-profile.module';
     // UserModule,
     // HrmanagerModule,
     // DirectorModule,
-    ProjectManagerModule,
+    // ProjectManagerModule,
     //UserProfileModule,
     // RouterModule.forRoot(routes),
   ],
