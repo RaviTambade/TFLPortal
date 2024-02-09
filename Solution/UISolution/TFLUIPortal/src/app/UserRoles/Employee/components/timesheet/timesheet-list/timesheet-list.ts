@@ -6,10 +6,10 @@ import { Timesheet } from 'src/app/shared/Entities/Timesheetmgmt/timesheet';
 import { TimeSheetStatus } from 'src/app/shared/Entities/Timesheetmgmt/timesheetstatus';
 
 @Component({
-  selector: 'app-timesheet-list',
-  templateUrl: './timesheet-list.component.html',
+  selector: 'timesheet-list',
+  templateUrl: './timesheet-list.html',
 })
-export class TimesheetListComponent {
+export class TimesheetList {
   employeeId: number = 0;
   timesheets: Timesheet[] = [];
   filteredTimesheets: Timesheet[] = [];

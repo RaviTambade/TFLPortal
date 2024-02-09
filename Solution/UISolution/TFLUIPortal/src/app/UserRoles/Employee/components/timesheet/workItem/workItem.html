@@ -1,0 +1,8 @@
+<div class="container-fluid">
+    <div class="row" *ngIf="timesheetEntry">
+        <div class="col">{{timesheetEntry.fromTime}}</div>
+        <div class="col">{{timesheetEntry.toTime}}</div>
+        <div class="col">{{timesheetEntry.taskId}}</div>
+        <div class="col">{{timesheetEntry.hours | hourConvertor}}</div>
+    </div>
+</div>

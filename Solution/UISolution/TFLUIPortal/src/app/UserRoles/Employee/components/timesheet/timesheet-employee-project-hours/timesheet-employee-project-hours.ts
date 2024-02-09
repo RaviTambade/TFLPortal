@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
 import { ProjectWorkHour } from 'src/app/shared/Entities/Timesheetmgmt/projectworkhour';
-import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { HourConvertorPipe } from 'src/app/shared/pipes/hour-convertor.pipe';
 import { TimesheetService } from 'src/app/shared/services/Timesheet/timesheet.service';
 
 @Component({
-  selector: 'timesheet-employee-project-hours',
-  templateUrl: './timesheet-employee-project-hours.component.html',
+  selector: 'employee-project-hours',
+  templateUrl: './timesheet-employee-project-hours.html',
 })
-export class TimesheetEmployeeProjectHoursComponent implements OnInit {
+export class TimesheetEmployeeProjectHours implements OnInit {
   projectHours: ProjectWorkHour[] = [];
   intervals: string[] = ['week', 'month', 'year'];
   selectedInterval: string = this.intervals[0];
