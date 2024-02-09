@@ -5,6 +5,20 @@ import {  HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { LocalStorageKeys } from './shared/enums/local-storage-keys';
 import { AppComponent } from './app.component';
+//import { HrmanagerModule, hrRoutes } from './UserRoles/Manager/HRManager/hrmanager.module';
+// import { RouterModule, Routes } from '@angular/router';
+// import { HomeComponent } from './layout/Components/home/home.component';
+// import { UserModule } from './UserRoles/SharedModule/user.module';
+//  import { DirectorModule } from './UserRoles/Director/director.module';
+// import { EmployeeComponent } from './UserRoles/Employee/components/employee/employee.component';
+// import { LoginComponent } from './authentication/Components/login/login.component';
+// import { AuthenticationModule } from './authentication/authentication.module';
+// import { ProjectmanagerComponent } from './UserRoles/Manager/ProjectManager/components/projectmanager/projectmanager.component';
+// import { EmployeeModule, employeeRoutes } from './UserRoles/Employee/employee.module';
+// import { DirectorComponent } from './UserRoles/Director/components/director/director.component';
+// import { LayoutModule } from './layout/layout.module';
+// import { HrmanagerComponent } from './UserRoles/Manager/HRManager/components/hrmanager/hrmanager.component';
+// import { UserProfileModule } from './UserProfile/user-profile.module';
 import { HrmanagerModule, hrRoutes } from './UserRoles/Manager/HRManager/hrmanager.module';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './layout/Components/home/home.component';
@@ -16,6 +30,10 @@ import { Login } from './authentication/Components/login/login';
 import { AuthenticationModule } from './authentication/authentication.module';
 // import { ProjectmanagerComponent } from './UserRoles/Manager/ProjectManager/components/projectmanager/projectmanager.component';
 // import { EmployeeModule, employeeRoutes } from './UserRoles/Employee/employee.module';
+import { UserModule } from './UserRoles/SharedModule/user.module';
+ import { DirectorModule } from './UserRoles/Director/director.module';
+import { ProjectManagerModule, projectManagerRoutes } from './UserRoles/Manager/ProjectManager/project-manager.module';
+import { EmployeeModule } from './UserRoles/Employee/employee.module';
 import { DirectorComponent } from './UserRoles/Director/components/director/director.component';
 import { LayoutModule } from './layout/layout.module';
 import { Hrmanager } from './UserRoles/Manager/HRManager/components/hrmanager/hrmanager';
@@ -52,6 +70,13 @@ import { UserProfileModule } from './UserProfile/user-profile.module';
     // DirectorModule,
     // ProjectManagerModule,
     // UserProfileModule,
+    // AuthenticationModule,
+    // LayoutModule,
+    // UserModule,
+    // HrmanagerModule,
+    // DirectorModule,
+    ProjectManagerModule,
+    //UserProfileModule,
     // RouterModule.forRoot(routes),
   ],
 
