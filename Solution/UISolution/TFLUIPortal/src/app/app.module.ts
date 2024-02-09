@@ -6,66 +6,39 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { LocalStorageKeys } from './shared/enums/local-storage-keys';
 import { AppComponent } from './app.component';
 
-import { HrmanagerModule, hrRoutes } from './UserRoles/Manager/HRManager/hrmanager.module';
 import { RouterModule, Routes } from '@angular/router';
 
-import { Home } from './layout/Components/home/home';
-// import { UserModule } from './UserRoles/SharedModule/user.module';
-//  import { DirectorModule } from './UserRoles/Director/director.module';
-// import { EmployeeComponent } from './UserRoles/Employee/components/employee/employee.component';
-// import { LoginComponent } from './authentication/Components/login/login.component';
-// import { AuthenticationModule } from './authentication/authentication.module';
-// import { ProjectmanagerComponent } from './UserRoles/Manager/ProjectManager/components/projectmanager/projectmanager.component';
-// import { EmployeeModule, employeeRoutes } from './UserRoles/Employee/employee.module';
-// import { DirectorComponent } from './UserRoles/Director/components/director/director.component';
-// import { LayoutModule } from './layout/layout.module';
-// import { HrmanagerComponent } from './UserRoles/Manager/HRManager/components/hrmanager/hrmanager.component';
-// import { UserProfileModule } from './UserProfile/user-profile.module';
-// import { HrmanagerModule, hrRoutes } from './UserRoles/Manager/HRManager/hrmanager.module';
-// import { RouterModule, Routes } from '@angular/router';
-// import { HomeComponent } from './layout/Components/home/home.component';
-// import { UserModule } from './UserRoles/SharedModule/user.module';
-//  import { DirectorModule } from './UserRoles/Director/director.module';
-// import { ProjectManagerModule, projectManagerRoutes } from './UserRoles/Manager/ProjectManager/project-manager.module';
-import { Projectmanager } from './UserRoles/Manager/ProjectManager/components/projectmanager/projectmanager';
-// import { LoginComponent } from './authentication/Components/login/login.component';
-// import { AuthenticationModule } from './authentication/authentication.module';
-// import { EmployeeModule } from './UserRoles/Employee/employee.module';
-// import { DirectorComponent } from './UserRoles/Director/components/director/director.component';
-// import { LayoutModule } from './layout/layout.module';
-// import { HrmanagerComponent } from './UserRoles/Manager/HRManager/components/hrmanager/hrmanager.component';
-// import { UserProfileModule } from './UserProfile/user-profile.module';
 
-const routes: Routes = [
-//   { path: '', redirectTo: 'home',pathMatch:'full' },
-//   { path: 'home', component: HomeComponent },
-//   { path: 'employee', component: EmployeeComponent, children:employeeRoutes},
-  { path: 'projectmanager', component: Projectmanager, children:projectManagerRoutes},
-//   { path: 'hrmanager', component: HrmanagerComponent,children:hrRoutes},
-//   { path: 'director', component: DirectorComponent },
-//   { path: 'login', component: LoginComponent },
- ];
-// import { ProjectManagerModule, projectManagerRoutes } from './UserRoles/Manager/ProjectManager/project-manager.module';
 import { Login } from './authentication/Components/login/login';
 import { AuthenticationModule } from './authentication/authentication.module';
 
- import { DirectorModule } from './UserRoles/Director/director.module';
-import { ProjectManagerModule, projectManagerRoutes } from './UserRoles/Manager/ProjectManager/project-manager.module';
-// import { ProjectManagerModule, projectManagerRoutes } from './UserRoles/Manager/ProjectManager/project-manager.module';
-// import { EmployeeModule } from './UserRoles/Employee/employee.module';
-// import { DirectorComponent } from './UserRoles/Director/components/director/director.component';
-// import { LayoutModule } from './layout/layout.module';
-// import { Hrmanager } from './UserRoles/Manager/HRManager/components/hrmanager/hrmanager';
-// import { UserProfileModule } from './UserProfile/user-profile.module';
+
+import { Director } from './UserRoles/Director/components/director/director';
+import { EmployeeModule } from './UserRoles/Employee/employee.module';
+
+import { ProjectManagerModule, projectManagerRoutes } from './UserRoles/ProjectManager/project-manager.module';
+import { HrmanagerModule, hrRoutes } from './UserRoles/HRManager/hrmanager.module';
+import { Hrmanager } from './UserRoles/HRManager/components/hrmanager/hrmanager';
+import { Projectmanager } from './UserRoles/ProjectManager/components/projectmanager/projectmanager';
+
+
+ 
+const routes: Routes = [
+  { path: 'projectmanager', component: Projectmanager, children:projectManagerRoutes},
+  { path: 'hrmanager', component: Hrmanager,children:hrRoutes},
+   { path: 'director', component: Director },
+  { path: 'login', component: Login },
+ ];
+
 
 
 @NgModule({
   declarations: [AppComponent],
-
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    RouterModule.forRoot(routes),
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem(LocalStorageKeys.jwt),
@@ -74,21 +47,9 @@ import { ProjectManagerModule, projectManagerRoutes } from './UserRoles/Manager/
     }),
 
     AuthenticationModule,
-
     HrmanagerModule,
-
     ProjectManagerModule,
-    // DirectorModule,
-    // ProjectManagerModule,
-    // UserProfileModule,
-    // AuthenticationModule,
-    // LayoutModule,
-    // UserModule,
-    // HrmanagerModule,
-    // DirectorModule,
-    // ProjectManagerModule,
-    //UserProfileModule,
-    // RouterModule.forRoot(routes),
+    EmployeeModule
   ],
 
   providers: [

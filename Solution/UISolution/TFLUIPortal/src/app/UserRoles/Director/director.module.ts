@@ -5,7 +5,7 @@ import { LeaveDisplayComponent } from './components/LeaveMgmt/leave-display/leav
 import { PayDisplayComponent } from './components/Payroll/pay-display/pay-display.component';
 import { ProjectsDisplayComponent } from './components/ProjectMgmt/projects-display/projects-display.component';
 import { TimesheetDisplayComponent } from './components/timesheet/timesheet-display/timesheet-display.component';
-import { DirectorComponent } from './components/director/director.component';
+import { DirectorComponent } from './components/director/director';
 
 // export const directorRoutes: Routes = [
 //   {
