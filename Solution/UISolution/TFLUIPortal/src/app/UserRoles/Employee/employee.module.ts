@@ -21,8 +21,8 @@ import { AddTimesheetEntry } from './components/timesheet/add-timesheet-entry/ad
 import { UpdateTimesheetEntry } from './components/timesheet/update-timesheet-entry/update-timesheet-entry';
 import { WorkList } from './components/timesheet/workList/workList';
 import { WorkItem } from './components/timesheet/workItem/workItem';
-import { MyTimesheet } from './components/timesheet/MyTimesheet/mytimesheet';
-
+import { MyTimesheet } from './components/timesheet/DayTimesheet/mytimesheet';
+import { WeekTimesheetList } from './components/timesheet/WeekTimesheeList/weektimesheetlist';
 import { ProjectItem } from './components/project-item/projectitem';
 import { ProjectList } from './components/project-list/projectlist';
 import { ProjectContainer } from './components/projectcontainer/projectcontainer';
@@ -48,7 +48,8 @@ import { ProjectContainer } from './components/projectcontainer/projectcontainer
     ProjectItem,
     WorkList,
     WorkItem,
-    MyTimesheet
+    MyTimesheet,
+    WeekTimesheetList
   ],
   imports: [
     CommonModule,
@@ -66,7 +67,8 @@ import { ProjectContainer } from './components/projectcontainer/projectcontainer
     UpdateTimesheetEntry,
     Employee,
     Montlyworkutilization,
-    MyTimesheet
+    MyTimesheet,
+    WeekTimesheetList
   ],
 })
 export class EmployeeModule {}
