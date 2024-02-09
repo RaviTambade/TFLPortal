@@ -8,17 +8,17 @@ import { AppComponent } from './app.component';
 import { HrmanagerModule, hrRoutes } from './UserRoles/Manager/HRManager/hrmanager.module';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './layout/Components/home/home.component';
-import { UserModule } from './UserRoles/SharedModule/user.module';
- import { DirectorModule } from './UserRoles/Director/director.module';
-import { EmployeeComponent } from './UserRoles/Employee/components/employee/employee.component';
-import { ProjectManagerModule, projectManagerRoutes } from './UserRoles/Manager/ProjectManager/project-manager.module';
-import { LoginComponent } from './authentication/Components/login/login.component';
+// import { UserModule } from './UserRoles/SharedModule/user.module';
+//  import { DirectorModule } from './UserRoles/Director/director.module';
+// import { EmployeeComponent } from './UserRoles/Employee/components/employee/employee.component';
+// import { ProjectManagerModule, projectManagerRoutes } from './UserRoles/Manager/ProjectManager/project-manager.module';
+import { Login } from './authentication/Components/login/login';
 import { AuthenticationModule } from './authentication/authentication.module';
-import { ProjectmanagerComponent } from './UserRoles/Manager/ProjectManager/components/projectmanager/projectmanager.component';
-import { EmployeeModule, employeeRoutes } from './UserRoles/Employee/employee.module';
+// import { ProjectmanagerComponent } from './UserRoles/Manager/ProjectManager/components/projectmanager/projectmanager.component';
+// import { EmployeeModule, employeeRoutes } from './UserRoles/Employee/employee.module';
 import { DirectorComponent } from './UserRoles/Director/components/director/director.component';
 import { LayoutModule } from './layout/layout.module';
-import { HrmanagerComponent } from './UserRoles/Manager/HRManager/components/hrmanager/hrmanager.component';
+import { Hrmanager } from './UserRoles/Manager/HRManager/components/hrmanager/hrmanager';
 import { UserProfileModule } from './UserProfile/user-profile.module';
 
 // const routes: Routes = [
@@ -44,14 +44,14 @@ import { UserProfileModule } from './UserProfile/user-profile.module';
         allowedDomains: ['localhost:5142', 'localhost:5263'],
       },
     }),
-    EmployeeModule,
+    // EmployeeModule,
     AuthenticationModule,
-    LayoutModule,
-    UserModule,
+    // LayoutModule,
+    // UserModule,
     HrmanagerModule,
-    DirectorModule,
-    ProjectManagerModule,
-    UserProfileModule,
+    // DirectorModule,
+    // ProjectManagerModule,
+    // UserProfileModule,
     // RouterModule.forRoot(routes),
   ],
 
