@@ -8,15 +8,11 @@ import { AppComponent } from './app.component';
 
 import { HrmanagerModule, hrRoutes } from './UserRoles/Manager/HRManager/hrmanager.module';
 import { RouterModule, Routes } from '@angular/router';
-<<<<<<< HEAD
-import { HomeComponent } from './layout/Components/home/home.component';
 
-=======
 import { Home } from './layout/Components/home/home';
 // import { UserModule } from './UserRoles/SharedModule/user.module';
 //  import { DirectorModule } from './UserRoles/Director/director.module';
 // import { EmployeeComponent } from './UserRoles/Employee/components/employee/employee.component';
-<<<<<<< HEAD
 // import { LoginComponent } from './authentication/Components/login/login.component';
 // import { AuthenticationModule } from './authentication/authentication.module';
 // import { ProjectmanagerComponent } from './UserRoles/Manager/ProjectManager/components/projectmanager/projectmanager.component';
@@ -30,9 +26,8 @@ import { Home } from './layout/Components/home/home';
 // import { HomeComponent } from './layout/Components/home/home.component';
 // import { UserModule } from './UserRoles/SharedModule/user.module';
 //  import { DirectorModule } from './UserRoles/Director/director.module';
-import { ProjectManagerModule, projectManagerRoutes } from './UserRoles/Manager/ProjectManager/project-manager.module';
+// import { ProjectManagerModule, projectManagerRoutes } from './UserRoles/Manager/ProjectManager/project-manager.module';
 import { Projectmanager } from './UserRoles/Manager/ProjectManager/components/projectmanager/projectmanager';
-import { Routes } from '@angular/router';
 // import { LoginComponent } from './authentication/Components/login/login.component';
 // import { AuthenticationModule } from './authentication/authentication.module';
 // import { EmployeeModule } from './UserRoles/Employee/employee.module';
@@ -50,22 +45,19 @@ const routes: Routes = [
 //   { path: 'director', component: DirectorComponent },
 //   { path: 'login', component: LoginComponent },
  ];
-=======
 // import { ProjectManagerModule, projectManagerRoutes } from './UserRoles/Manager/ProjectManager/project-manager.module';
->>>>>>> 2a9a70241ebd505998bdc28e70218475141e8b2d
 import { Login } from './authentication/Components/login/login';
 import { AuthenticationModule } from './authentication/authentication.module';
 
-import { UserModule } from './UserRoles/SharedModule/user.module';
  import { DirectorModule } from './UserRoles/Director/director.module';
+import { ProjectManagerModule, projectManagerRoutes } from './UserRoles/Manager/ProjectManager/project-manager.module';
 // import { ProjectManagerModule, projectManagerRoutes } from './UserRoles/Manager/ProjectManager/project-manager.module';
 // import { EmployeeModule } from './UserRoles/Employee/employee.module';
 // import { DirectorComponent } from './UserRoles/Director/components/director/director.component';
 // import { LayoutModule } from './layout/layout.module';
-import { Hrmanager } from './UserRoles/Manager/HRManager/components/hrmanager/hrmanager';
+// import { Hrmanager } from './UserRoles/Manager/HRManager/components/hrmanager/hrmanager';
 // import { UserProfileModule } from './UserProfile/user-profile.module';
 
->>>>>>> b0329dc23500c30b6d4a19ccf90cd82bccd5e1bf
 
 @NgModule({
   declarations: [AppComponent],
@@ -84,10 +76,8 @@ import { Hrmanager } from './UserRoles/Manager/HRManager/components/hrmanager/hr
     AuthenticationModule,
 
     HrmanagerModule,
-<<<<<<< HEAD
 
     ProjectManagerModule,
-=======
     // DirectorModule,
     // ProjectManagerModule,
     // UserProfileModule,
@@ -97,7 +87,6 @@ import { Hrmanager } from './UserRoles/Manager/HRManager/components/hrmanager/hr
     // HrmanagerModule,
     // DirectorModule,
     // ProjectManagerModule,
->>>>>>> 2a9a70241ebd505998bdc28e70218475141e8b2d
     //UserProfileModule,
     // RouterModule.forRoot(routes),
   ],

@@ -1,20 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { ProjectList } from './components/ProjectMgmt/project-list/project-list';
-import { MembersList } from './components/ProjectMgmt/members-list/members-list';
-import { Employeeprojectworkdetails } from './components/ProjectMgmt/employee-project-works/employeeprojectworkdetails/employeeprojectworkdetails.component';
-import { EmployeeProjectWorks } from './components/ProjectMgmt/employee-project-works/employee-project-works';
-import { ProjectItem } from './components/ProjectMgmt/project-list/project-item/project-item';
-import { Projectmanager } from './components/projectmanager/projectmanager';
-import { MemberTaskList } from './components/ProjectMgmt/member-task-list/member-task-list';
-import { MemberDetails } from './Model/MemberDetails';
  
  
 import { ProjectItem } from '../../Employee/components/project-item/projectitem';
  
 import { Projectmanager } from './components/projectmanager/projectmanager';
 import { ProjectList } from './components/project-list/project-list';
+import { MembersList } from './components/members-list/members-list';
+import { Employeeprojectworkdetails } from './components/employeeprojectworkdetails/employeeprojectworkdetails';
+import { EmployeeProjectWorks } from './components/employee-project-works/employee-project-works';
+import { MemberTaskList } from './components/member-task-list/member-task-list';
 
  export const projectManagerRoutes: Routes = [
   { path: '', component:Projectmanager },
