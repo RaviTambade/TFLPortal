@@ -7,9 +7,9 @@ import { JwtService } from 'src/app/shared/services/JwtHelperService/jwt.service
 
 @Component({
   selector: 'layout-main',
-  templateUrl: './main.component.html',
+  templateUrl: './main.html',
 })
-export class MainComponent implements OnInit {
+export class Main implements OnInit {
   
   isLogInClicked: boolean = false;
   userName: string = '';

@@ -6,7 +6,7 @@ import { Login } from './Components/login/login';
 import { UpdateContactNumber } from './Components/update-contact-number/update-contact-number';
 import { ChangePassword } from './Components/change-password/change-password';
 import { UsersList } from './Components/users-list/users-list';
-import { NewUser } from './Components/new-user/new-user';
+import { NewUserComponent } from './Components/new-user/new-user';
 import { AuthService } from './services/auth.service';
 
 
@@ -20,7 +20,7 @@ import { AuthService } from './services/auth.service';
     UpdateContactNumber,
     ChangePassword,
     UsersList,
-    NewUser
+    NewUserComponent
   ],
   imports: [
     CommonModule,
@@ -32,4 +32,5 @@ import { AuthService } from './services/auth.service';
     AuthService
   ]
 })
+
 export class AuthenticationModule { }

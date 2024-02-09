@@ -8,19 +8,27 @@ import { AppComponent } from './app.component';
 
 import { HrmanagerModule, hrRoutes } from './UserRoles/Manager/HRManager/hrmanager.module';
 import { RouterModule, Routes } from '@angular/router';
+<<<<<<< HEAD
 import { HomeComponent } from './layout/Components/home/home.component';
 
+=======
+import { Home } from './layout/Components/home/home';
+// import { UserModule } from './UserRoles/SharedModule/user.module';
+//  import { DirectorModule } from './UserRoles/Director/director.module';
+// import { EmployeeComponent } from './UserRoles/Employee/components/employee/employee.component';
+// import { ProjectManagerModule, projectManagerRoutes } from './UserRoles/Manager/ProjectManager/project-manager.module';
+>>>>>>> 2a9a70241ebd505998bdc28e70218475141e8b2d
 import { Login } from './authentication/Components/login/login';
 import { AuthenticationModule } from './authentication/authentication.module';
 
 import { UserModule } from './UserRoles/SharedModule/user.module';
  import { DirectorModule } from './UserRoles/Director/director.module';
-import { ProjectManagerModule, projectManagerRoutes } from './UserRoles/Manager/ProjectManager/project-manager.module';
-import { EmployeeModule } from './UserRoles/Employee/employee.module';
-import { DirectorComponent } from './UserRoles/Director/components/director/director.component';
-import { LayoutModule } from './layout/layout.module';
+// import { ProjectManagerModule, projectManagerRoutes } from './UserRoles/Manager/ProjectManager/project-manager.module';
+// import { EmployeeModule } from './UserRoles/Employee/employee.module';
+// import { DirectorComponent } from './UserRoles/Director/components/director/director.component';
+// import { LayoutModule } from './layout/layout.module';
 import { Hrmanager } from './UserRoles/Manager/HRManager/components/hrmanager/hrmanager';
-import { UserProfileModule } from './UserProfile/user-profile.module';
+// import { UserProfileModule } from './UserProfile/user-profile.module';
 
 
 @NgModule({
@@ -40,8 +48,20 @@ import { UserProfileModule } from './UserProfile/user-profile.module';
     AuthenticationModule,
 
     HrmanagerModule,
+<<<<<<< HEAD
 
     ProjectManagerModule,
+=======
+    // DirectorModule,
+    // ProjectManagerModule,
+    // UserProfileModule,
+    // AuthenticationModule,
+    // LayoutModule,
+    // UserModule,
+    // HrmanagerModule,
+    // DirectorModule,
+    // ProjectManagerModule,
+>>>>>>> 2a9a70241ebd505998bdc28e70218475141e8b2d
     //UserProfileModule,
     // RouterModule.forRoot(routes),
   ],
