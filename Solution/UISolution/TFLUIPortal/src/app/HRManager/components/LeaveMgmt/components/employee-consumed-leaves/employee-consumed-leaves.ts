@@ -13,11 +13,12 @@ export class EmployeeConsumedLeaves {
   @Input() employeeId:number=0;
   consumedLeave:AnnualLeaves |undefined;
   year:number=2024;
+  roleId:number=2;
   constructor(private service:LeavesService){
   }
 
   ngOnInit(): void {
-      this.service.getAnnualConsumedLeaves(this.employeeId,this.year).subscribe((res)=>{
+      this.service.getAnnualConsumedLeaves(this.roleId,this.year).subscribe((res)=>{
         this.consumedLeave=res;
         console.log(res);
     }) 

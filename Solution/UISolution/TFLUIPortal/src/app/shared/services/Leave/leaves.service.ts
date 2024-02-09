@@ -67,8 +67,8 @@ export class LeavesService {
     return this.http.get<AnnualLeaves>(url);
   }
 
-  getAnnualLeaves(employeeId:number,roleId:number,year:number):Observable<LeavesCount>{
-    let url=`${this.leaveAPI}/annualleaves/employees/${employeeId}/roles/${roleId}/year/${year}`;
+  getAnnualLeaves(roleId:number,year:number):Observable<LeavesCount>{
+    let url=`${this.leaveAPI}/annualleaves/roles/${roleId}/year/${year}`;
     return this.http.get<LeavesCount>(url);
   }
 
