@@ -26,7 +26,7 @@ import { ProjectContainer } from './components/projectcontainer/projectcontainer
 import { NewDayTimesheet } from './components/timesheet/new-day-timesheet/new-day-timesheet';
 import { UpdateTimesheetEntry } from './components/timesheet/update-timesheet-entry/update-timesheet-entry';
 import { WorkItem } from './components/timesheet/workItem/WorkItem';
-
+import { ConsumedLeaves } from './components/leave/consumed-leaves/consumed-leaves';
 
 
 @NgModule({
@@ -49,7 +49,8 @@ import { WorkItem } from './components/timesheet/workItem/WorkItem';
     WorkList,
     WorkItem,
     MyTimesheet,
-    WeekTimesheetList
+    WeekTimesheetList,
+    ConsumedLeaves
   ],
   imports: [
     CommonModule,
@@ -68,7 +69,8 @@ import { WorkItem } from './components/timesheet/workItem/WorkItem';
     Montlyworkutilization,
     MyTimesheet,
     WeekTimesheetList,
-    NewDayTimesheet
+    NewDayTimesheet,
+    ConsumedLeaves
   ],
 })
 export class EmployeeModule {}
