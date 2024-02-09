@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NewRoleComponent } from './components/new-role/new-role.component';
-import { RolesListComponent } from './components/roles-list/roles-list.component';
+import { NewRole } from './components/new-role/new-role';
+import { RolesList } from './components/roles-list/roles-list';
 
 
 @NgModule({
   declarations: [
-    NewRoleComponent,
-    RolesListComponent,
+    NewRole,
+    RolesList,
   ],
   imports: [
     CommonModule,
@@ -16,8 +16,8 @@ import { RolesListComponent } from './components/roles-list/roles-list.component
     ReactiveFormsModule
   ],
   exports:[
-        NewRoleComponent,
-        RolesListComponent,
+        NewRole,
+        RolesList,
   ]
 })
 export class UserModule { }

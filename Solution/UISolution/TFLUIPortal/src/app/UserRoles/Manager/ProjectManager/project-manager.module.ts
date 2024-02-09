@@ -9,6 +9,12 @@ import { ProjectItem } from './components/ProjectMgmt/project-list/project-item/
 import { Projectmanager } from './components/projectmanager/projectmanager';
 import { MemberTaskList } from './components/ProjectMgmt/member-task-list/member-task-list';
 import { MemberDetails } from './Model/MemberDetails';
+ 
+ 
+import { ProjectItem } from '../../Employee/components/project-item/projectitem';
+ 
+import { Projectmanager } from './components/projectmanager/projectmanager';
+import { ProjectList } from './components/project-list/project-list';
 
  export const projectManagerRoutes: Routes = [
   { path: '', component:Projectmanager },
