@@ -13,9 +13,9 @@ import { TimesheetService } from 'src/app/shared/services/Timesheet/timesheet.se
 
 @Component({
   selector: 'add-timesheet-entry',
-  templateUrl: './add-timesheet-entry.html',
+  templateUrl: './new-day-timehseet.html',
 })
-export class AddTimesheetEntry {
+export class NewDayTimesheet {
   timesheetEntry: TimesheetEntry = {
     id: 0,
     taskId: 0,

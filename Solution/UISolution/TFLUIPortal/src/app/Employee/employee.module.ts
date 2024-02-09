@@ -17,7 +17,7 @@ import { TimesheetDetails } from './components/timesheet/EmployeeTimesheet/times
 import { TimesheetList } from './components/timesheet/timesheet-list/timesheet-list';
 import { CreateTimesheet } from './components/timesheet/create-timesheet/create-timesheet';
 import { TimesheetEmployeeProjectHours } from './components/timesheet/timesheet-employee-project-hours/timesheet-employee-project-hours';
-import { AddTimesheetEntry } from './components/timesheet/add-timesheet-entry/add-timesheet-entry';
+import { AddTimesheetEntry } from './components/timesheet/add-timesheet-entry/new-day-timesheet';
 import { UpdateTimesheetEntry } from './components/timesheet/update-timesheet-entry/update-timesheet-entry';
 import { WorkList } from './components/timesheet/workList/workList';
 import { WorkItem } from './components/timesheet/workItem/workItem';
