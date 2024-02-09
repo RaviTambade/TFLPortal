@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import {
-  FormGroup,
+import { FormGroup, 
   FormControl,
   Validators,
   AbstractControl,

@@ -4,7 +4,7 @@ import { Task } from 'src/app/shared/Entities/Projectmgmt/task';
 import { TasksManagementService } from 'src/app/shared/services/TaskMgmt/tasks-management.service';
 
 @Component({
-  selector: 'app-employeeprojectworkdetails',
+  selector: 'employeeprojectworkdetails',
   templateUrl: './employeeprojectworkdetails.component.html',
 })
 export class EmployeeprojectworkdetailsComponent implements OnInit {
