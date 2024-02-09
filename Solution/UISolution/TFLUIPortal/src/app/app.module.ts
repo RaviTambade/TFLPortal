@@ -11,15 +11,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { Login } from './authentication/Components/login/login';
 import { AuthenticationModule } from './authentication/authentication.module';
+import { Director } from './Director/components/director/director';
+import { EmployeeModule } from './Employee/employee.module';
+import { Hrmanager } from './HRManager/components/hrmanager/hrmanager';
+import { hrRoutes, HrmanagerModule } from './HRManager/hrmanager.module';
+import { Projectmanager } from './ProjectManager/components/projectmanager/projectmanager';
+import { projectManagerRoutes, ProjectManagerModule } from './ProjectManager/project-manager.module';
 
-
-import { Director } from './UserRoles/Director/components/director/director';
-import { EmployeeModule } from './UserRoles/Employee/employee.module';
-
-import { ProjectManagerModule, projectManagerRoutes } from './UserRoles/ProjectManager/project-manager.module';
-import { HrmanagerModule, hrRoutes } from './UserRoles/HRManager/hrmanager.module';
-import { Hrmanager } from './UserRoles/HRManager/components/hrmanager/hrmanager';
-import { Projectmanager } from './UserRoles/ProjectManager/components/projectmanager/projectmanager';
 
 
  
