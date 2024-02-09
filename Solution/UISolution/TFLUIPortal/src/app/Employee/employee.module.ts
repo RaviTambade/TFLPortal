@@ -17,15 +17,15 @@ import { TimesheetDetails } from './components/timesheet/EmployeeTimesheet/times
 import { TimesheetList } from './components/timesheet/timesheet-list/timesheet-list';
 import { CreateTimesheet } from './components/timesheet/create-timesheet/create-timesheet';
 import { TimesheetEmployeeProjectHours } from './components/timesheet/timesheet-employee-project-hours/timesheet-employee-project-hours';
-import { AddTimesheetEntry } from './components/timesheet/add-timesheet-entry/add-timesheet-entry';
-import { UpdateTimesheetEntry } from './components/timesheet/update-timesheet-entry/update-timesheet-entry';
 import { WorkList } from './components/timesheet/workList/workList';
-import { WorkItem } from './components/timesheet/workItem/workItem';
 import { MyTimesheet } from './components/timesheet/DayTimesheet/mytimesheet';
 import { WeekTimesheetList } from './components/timesheet/WeekTimesheeList/weektimesheetlist';
 import { ProjectItem } from './components/project-item/projectitem';
 import { ProjectList } from './components/project-list/projectlist';
 import { ProjectContainer } from './components/projectcontainer/projectcontainer';
+import { NewDayTimesheet } from './components/timesheet/new-day-timesheet/new-day-timesheet';
+import { UpdateTimesheetEntry } from './components/timesheet/update-timesheet-entry/update-timesheet-entry';
+import { WorkItem } from './components/timesheet/workItem/WorkItem';
 
 
 
@@ -38,7 +38,7 @@ import { ProjectContainer } from './components/projectcontainer/projectcontainer
     TimesheetList,
     CreateTimesheet,
     TimesheetEmployeeProjectHours,
-    AddTimesheetEntry,
+    NewDayTimesheet,
     UpdateTimesheetEntry,
     Employee,
     Employeenavbar,
@@ -63,12 +63,12 @@ import { ProjectContainer } from './components/projectcontainer/projectcontainer
     TimesheetDetails,
     TimesheetList,
     TimesheetEmployeeProjectHours,
-    AddTimesheetEntry,
     UpdateTimesheetEntry,
     Employee,
     Montlyworkutilization,
     MyTimesheet,
-    WeekTimesheetList
+    WeekTimesheetList,
+    NewDayTimesheet
   ],
 })
 export class EmployeeModule {}

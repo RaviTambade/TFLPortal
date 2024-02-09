@@ -12,10 +12,10 @@ import { TimesheetService } from 'src/app/shared/services/Timesheet/timesheet.se
 
 
 @Component({
-  selector: 'add-timesheet-entry',
-  templateUrl: './add-timesheet-entry.html',
+  selector: 'new-day-timesheet',
+  templateUrl: './new-day-timesheet.html',
 })
-export class AddTimesheetEntry {
+export class NewDayTimesheet {
   timesheetEntry: TimesheetEntry = {
     id: 0,
     taskId: 0,
@@ -49,12 +49,9 @@ export class AddTimesheetEntry {
   ) {}
 
   ngOnInit(): void {
-    // this.route.paramMap.subscribe((params) => {
       this.timesheetId =10
-      //  Number(params.get('id'));
-    // });
+     
     this.employeeId =10
-    //  Number(localStorage.getItem(LocalStorageKeys.employeeId));
     this.projectService
       .getProjects(this.employeeId)
       .subscribe((res) => {
@@ -71,7 +68,7 @@ export class AddTimesheetEntry {
     this.projectService
       .getCurrentSprint(
         this.selectedProjectId,
-        new Date().toISOString().slice(0, 10)
+       "2024-01-04"
       )
       .subscribe((res) => {
         console.log(res);
