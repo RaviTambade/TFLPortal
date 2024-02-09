@@ -252,10 +252,10 @@ public class ProjectAnalyticsService:IProjectAnalyticsService
                     Title = reader["title"].ToString(),
                     TaskType = reader["tasktype"].ToString(),
                     Description = reader["description"].ToString(),
-                    CreatedOn = DateTime.Parse(reader["createddate"].ToString()),
+                    CreatedOn = DateTime.Parse(reader["createdon"].ToString()),
                     AssignedTo = int.Parse(reader["assignedto"].ToString()),
                     AssignedBy= int.Parse(reader["assignedby"].ToString()),
-                    AssignedOn = DateTime.Parse(reader["assigneddate"].ToString()),
+                    AssignedOn = DateTime.Parse(reader["assignedon"].ToString()),
                     StartDate = DateTime.Parse(reader["startdate"].ToString()),
                     DueDate = DateTime.Parse(reader["duedate"].ToString()),
                     Status = reader["status"].ToString(),
@@ -296,6 +296,7 @@ public class ProjectAnalyticsService:IProjectAnalyticsService
                     EmployeeId = reader.GetInt32("employeeid"),
                     Title = reader.GetString("title"),
                     AssignedOn = reader.GetDateTime("assignedon"),
+                    Status=reader.GetString("status")
                 };
                 members.Add(member);
             }

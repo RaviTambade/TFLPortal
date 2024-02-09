@@ -40,34 +40,35 @@ export class TasksManagementService {
 
 
   updateTask(taskId: number,status: string): Observable<boolean> {
-    let url =`${this.taskAPIUrl}/tasks/${taskId}/status/${status}` ;
+    let url =`${this.taskAPIUrl}/${taskId}/status/${status}` ;
     return this.http.put<boolean>(url, status);
   }
 
   getAllTasksOfProject(memberId:number,projectId:number,status:string):Observable<Task[]>{
-    let url=`${this.taskAPIUrl}/tasks/projects/${projectId}/members/${memberId}/status/${status}`;
+    let url=`${this.taskAPIUrl}/projects/${projectId}/members/${memberId}/status/${status}`;
     return this.http.get<Task[]>(url);
   }
 
   getAllTasksOfSprintAndMember(sprintId:number,memberId:number,status:string):Observable<Task[]>{
-    let url=`${this.taskAPIUrl}/tasks/sprints/${sprintId}/members/${memberId}/status/${status}`;
+    let url=`${this.taskAPIUrl}/sprints/${sprintId}/members/${memberId}/status/${status}`;
     return this.http.get<Task[]>(url);
   }
 
+  //http://localhost:5263/api/tasks/sprints/1/members/10/status/inprogress
 
   getProjectTasksOfMember(projectId:number,memberId:number){
-  let url =`${this.taskAPIUrl}/tasks/projects/${projectId}/members/${memberId}`;
+  let url =`${this.taskAPIUrl}/projects/${projectId}/members/${memberId}`;
     return this.http.get<any>(url);
   }
 
   getAllTasksCount(): Observable<any> {
-    let url =`${this.taskAPIUrl}/tasks/Count`;
+    let url =`${this.taskAPIUrl}/Count`;
     return this.http.get<any>(url);
   }
   
 
   getTaskDetails(taskId:number):Observable<Task>{
-    let url=`${this.taskAPIUrl}/tasks/${taskId}`;
+    let url=`${this.taskAPIUrl}/${taskId}`;
     return this.http.get<Task>(url);
   }
 }

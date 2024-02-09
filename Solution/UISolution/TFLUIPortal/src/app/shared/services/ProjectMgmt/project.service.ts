@@ -58,12 +58,12 @@ export class ProjectService {
 
 
   getSprintsTasks(sprintId:number):Observable<Sprint[]>{
-    let url=this.sprintApi+'/sprints/'+sprintId+'/tasks';
+    let url=this.projectApi+'/sprints/'+sprintId+'/tasks';
    return this.httpClient.get<Sprint[]>(url);
   }
 
   getCurrentSprint(projectId:number,date:string):Observable<Sprint>{
-   let url=`${this.sprintApi}/projects/${projectId}/date/${date}`;
+   let url=`${this.projectApi}/projects/${projectId}/sprints/date/${date}`;
    return this.httpClient.get<Sprint>(url);
  }
 }
