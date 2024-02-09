@@ -1,0 +1,44 @@
+<!-- <div class="container"> -->
+    <h3> My Timesheet </h3>
+    <label class="d-block mb-2">Date: {{timesheet.createdOn| date}}</label>
+    <label class="d-block mb-2">Status: {{timesheet.status | titlecase}}</label>
+    
+    <p class="mb-2"> <b>Total Hours: {{timesheet.totalHours |hourConvertor}} </b></p>
+    <button  class="btn btn-primary mb-2" (click)="onClickAddTimeSheetEntry()">Add Entry</button>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>From Time</th>
+                <th>To Time</th>
+                <!-- <th>Project Name</th>
+                <th>Category</th> -->
+                <th>Work</th>
+                <th>Duration</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <ng-container *ngIf="timesheet ">
+            <tbody *ngFor="let timesheetEntry of timesheetEntries ">
+                <tr>
+                    <td>{{timesheetEntry.fromTime}}</td>
+                    <td>{{timesheetEntry.toTime}}</td>
+                    <!-- <td>{{timesheetEntry.projectName}}</td> -->
+                    <!-- <td>{{timesheetEntry.workType}}</td> -->
+                    <td>{{timesheetEntry.taskId}}</td>
+                    <td>{{timesheetEntry.hours |hourConvertor}}</td>
+                    <td>
+                        <button class="btn btn-warning mx-2 my-2 " [routerLink]="['../../update', timesheetEntry.id]">Edit</button>
+                        <button class="btn btn-danger" (click)="onRemovetimesheetEntry(timesheetEntry.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </ng-container>
+    </table>
+
+
+    <ng-container *ngIf="timesheet && timesheetEntries.length > 0 ">
+        <button class="btn btn-success" type="submit" (click)="onSubmit()">Submit</button>
+        <button class="btn btn-danger mx-1" (click)="onRemoveAllTimeSheetEntries(timesheet.id)">Clear All</button>
+    </ng-container>
+<!-- </div> -->

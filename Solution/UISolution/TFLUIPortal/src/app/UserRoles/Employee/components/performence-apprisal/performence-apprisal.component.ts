@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-performence-apprisal',
   templateUrl: './performence-apprisal.component.html',
 })
-export class PerformenceApprisalComponent {
+export class PerformenceApprisal {
 
 }

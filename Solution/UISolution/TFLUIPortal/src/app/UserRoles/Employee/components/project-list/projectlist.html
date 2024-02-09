@@ -1,0 +1,9 @@
+<div>
+  <h1>My Projects</h1>
+  <div class="d-flex gap-4 flex-wrap">
+
+    <div *ngFor="let project of projects">
+          <project-item [project]="project"></project-item>
+    </div>
+  </div>
+</div>

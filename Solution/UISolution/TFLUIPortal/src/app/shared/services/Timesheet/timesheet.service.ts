@@ -51,6 +51,7 @@ export class TimesheetService {
       let url = `${this.timesheetAPIUrl}/${id}`;
       return this.http.get<Timesheet>(url);
     }
+    
     getEntriesOfTimesheet(id:number):Observable<TimesheetEntry[]>{
       let url = `${this.timesheetAPIUrl}/${id}/entries`;
       return this.http.get<TimesheetEntry[]>(url);

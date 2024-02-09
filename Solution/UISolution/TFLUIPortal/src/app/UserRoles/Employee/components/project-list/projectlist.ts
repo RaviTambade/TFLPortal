@@ -3,10 +3,10 @@ import { Project } from 'src/app/shared/Entities/Projectmgmt/Project';
 import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
 
 @Component({
-  selector: 'app-project-list',
-  templateUrl: './project-list.component.html',
+  selector: 'project-list',
+  templateUrl: './projectlist.html',
 })
-export class ProjectListComponent implements OnInit {
+export class ProjectList implements OnInit {
   projects: Project[] | undefined;
   employeeId: number = 0;
   constructor(private projectSvc: ProjectService) {}
