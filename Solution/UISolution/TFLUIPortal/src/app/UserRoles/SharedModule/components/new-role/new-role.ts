@@ -5,9 +5,9 @@ import { MembershipService } from 'src/app/shared/services/Membership/membership
 
 @Component({
   selector: 'new-role',
-  templateUrl: './new-role.component.html',
+  templateUrl: './new-role.html',
 })
-export class NewRoleComponent {
+export class NewRole {
 
   constructor(private service :MembershipService){}
 

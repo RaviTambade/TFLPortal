@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
-import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
+import { UserProfile } from './components/user-profile/user-profile';
+import { UpdateProfile } from './components/update-profile/update-profile.';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [UserProfileComponent, UpdateProfileComponent],
+  declarations: [UserProfile, UpdateProfile],
   imports: [CommonModule, ReactiveFormsModule],
 })
 export class UserProfileModule {}

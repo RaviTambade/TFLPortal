@@ -4,9 +4,9 @@ import { MembershipService } from 'src/app/shared/services/Membership/membership
 
 @Component({
   selector: 'roles-list',
-  templateUrl: './roles-list.component.html',
+  templateUrl: './roles-list.html',
 })
-export class RolesListComponent implements OnInit{
+export class RolesList implements OnInit{
 
   constructor(private service:MembershipService){}
   lob:string="PMS";

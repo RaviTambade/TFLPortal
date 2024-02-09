@@ -1,6 +1,5 @@
 import { HttpEventType } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { TokenClaims } from 'src/app/shared/enums/tokenclaims';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
@@ -9,9 +8,9 @@ import { JwtService } from 'src/app/shared/services/JwtHelperService/jwt.service
 
 @Component({
   selector: 'user-profile',
-  templateUrl: './user-profile.component.html',
+  templateUrl: './user-profile.html',
 })
-export class UserProfileComponent {
+export class UserProfile {
   user: User | undefined;
   userId: number | undefined;
   imageServer = environment.imagerServerUrl;

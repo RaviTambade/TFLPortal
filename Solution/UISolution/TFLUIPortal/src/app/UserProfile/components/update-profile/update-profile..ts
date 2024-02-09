@@ -5,9 +5,9 @@ import { MembershipService } from 'src/app/shared/services/Membership/membership
 
 @Component({
   selector: 'update-profile',
-  templateUrl: './update-profile.component.html',
+  templateUrl: './update-profile.html',
 })
-export class UpdateProfileComponent {
+export class UpdateProfile {
   @Input() user: User = {
     aadharId: '',
     firstName: '',
