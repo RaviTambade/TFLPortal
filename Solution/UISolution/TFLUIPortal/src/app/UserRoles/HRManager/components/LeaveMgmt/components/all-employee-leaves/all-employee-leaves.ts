@@ -15,22 +15,11 @@ export class AllEmployeeLeaves implements OnInit{
 
   constructor(private leaveService:LeavesService,private svc:MembershipService){}
 
+  leaveStatus:string="applied"
   ngOnInit(): void {
-   this.leaveService.getAllLeaveApplications().subscribe((res)=>{
+   this.leaveService.getLeaveApplications(this.leaveStatus).subscribe((res)=>{
     this.leaveApplications=res;
-    this.appliedLeaves=this.leaveApplications.filter(u=>u.status=="applied");
-    console.log(this.appliedLeaves);
-        // this.employeeIds = this.appliedLeaves.map(item => item.employeeId).filter((value, index, self) => self.indexOf(value) === index); // Filter duplicates
-        // let Ids = this.employeeIds.join(","); 
-        //                   this.svc.getUserDetails(Ids).subscribe(data => {
-        //                                                                   for (const responseItem of data) {
-        //                                                                     const users = this.data.filter(u => u.employeeId === responseItem.id);
-        //                                                                     console.log(users);
-        //                                                                     for (const user of users) {
-        //                                                                       user.name = responseItem.name;
-        //                                                                     }
-        //                                                                   }
-        // });
+    console.log(res);
    });
   }
 }

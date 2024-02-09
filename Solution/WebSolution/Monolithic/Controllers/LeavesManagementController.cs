@@ -78,7 +78,7 @@ public class LeavesManagementController : ControllerBase
 
     [Authorize(RoleTypes.HRManager)] 
     [HttpGet]
-    [Route ("/applications/status/{leaveStatus}")]
+    [Route ("applications/status/{leaveStatus}")]
     public async Task<List<LeaveApplication>> GetLeaveApplicationDetails(string leaveStatus)
     {
         List<LeaveApplication> leaves =await _analyticService.GetLeaveApplications(leaveStatus);

@@ -8,7 +8,7 @@
     </div>
     </div>
 
-<div *ngFor="let leave of appliedLeaves">
-    <leave-details [applicationId]="leave.id" ></leave-details>
+<div *ngFor="let leave of leaveApplications">
+    <leave-details [appliedLeaves]="leave" ></leave-details>
 </div>
   

@@ -1,15 +1,11 @@
 <div class="card">
-                <div *ngIf="leaveDetails">
+                <div *ngIf="appliedLeaves">
                 <div class="container-fluid">
                     <div class="row">
-                    <div class="col-xl ">{{leaveDetails.employeeId }}</div>
-                    <div class="col-xl ">{{leaveDetails.leaveType}}</div>
-                    <div class="col-xl ">{{leaveDetails.fromDate|date: 'MM/dd/yyyy'}}-{{leaveDetails.toDate|date: 'MM/dd/yyyy' }}</div>
+                    <div class="col-xl ">{{appliedLeaves.employeeId }}</div>
+                    <div class="col-xl ">{{appliedLeaves.leaveType}}</div>
+                    <div class="col-xl ">{{appliedLeaves.fromDate|date: 'MM/dd/yyyy'}}-{{appliedLeaves.toDate|date: 'MM/dd/yyyy' }}</div>
                     </div>
                     </div>
                     </div>    
     </div>
-        <!-- <div class="col-md-6" *ngIf="leaveDetails"> -->
-            <!-- <app-employee-consumed-leaves [employeeId]="leaveDetails.employeeId"></app-employee-consumed-leaves>
-            <app-employee-pending-leaves [employeeId]="leaveDetails.employeeId"></app-employee-pending-leaves>
-    </div> -->

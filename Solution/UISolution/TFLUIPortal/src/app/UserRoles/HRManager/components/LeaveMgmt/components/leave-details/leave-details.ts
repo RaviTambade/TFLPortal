@@ -10,7 +10,7 @@ import { LeaveApplication } from 'src/app/shared/Entities/Leavemgmt/LeaveApplica
   templateUrl: './leave-details.html',
 })
 export class LeaveDetails {
-@Input() applicationId:any;
+@Input() appliedLeaves:LeaveApplication | undefined;
 
   updateStatus:LeaveStatus={
     id: 0,
@@ -19,23 +19,9 @@ export class LeaveDetails {
 
   leaveDetails:LeaveApplication|undefined;
 
-  constructor(
-    private route: ActivatedRoute,
-    private router:Router,
-    private leaveService:LeavesService
-  ) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    // this.route.paramMap.subscribe((params)=>{
-    //   this.leaveId=Number(params.get('id'));
-        console.log(this.applicationId);
-    this.leaveService.getLeaveApplication(this.applicationId).subscribe((res)=>{
-      console.log(res);
-      this.leaveDetails=res;
-       })
-    //   }
-    // );
-  }
+  
 
   onApproved(id:number){
     // this.updateStatus.status="sanctioned";
