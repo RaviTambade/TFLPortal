@@ -9,7 +9,7 @@ import { LeaveAllocation } from '../../Entities/Leavemgmt/LeaveAllocation';
 @Injectable({
   providedIn: 'root'
 })
-export class LeaveConsumptionSerivce {
+export class LeaveConsumptionService {
 
   leaveAPI:string=environment.leaveAPI;
 

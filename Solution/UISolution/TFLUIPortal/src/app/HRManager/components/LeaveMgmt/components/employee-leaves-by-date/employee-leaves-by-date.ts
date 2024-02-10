@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LeaveApplication } from 'src/app/shared/Entities/Leavemgmt/LeaveApplication';
-import { LeavesService } from 'src/app/shared/services/Leave/leavemgmt.service';
+import { LeaveAnalyticsService } from 'src/app/shared/services/Leave/leaveanalytics.service';
 
 @Component({
   selector: 'app-employee-leaves-by-date',
@@ -10,14 +10,14 @@ export class EmployeeLeavesByDate implements OnInit {
 
   date:string="";
   leaveDetails:LeaveApplication[]=[];
-  constructor(private leaveService:LeavesService){}
+  constructor(private leaveService:LeaveAnalyticsService){}
   
   ngOnInit(): void {  
   }
 
   onSearch(date:string){
     console.log(date);
-    this.leaveService.getLeaveApplicationsByDate(date).subscribe((res)=>{
+    this.leaveService.getLeaveApplicationsOfDate(date).subscribe((res)=>{
       this.leaveDetails=res;
     });
   }
