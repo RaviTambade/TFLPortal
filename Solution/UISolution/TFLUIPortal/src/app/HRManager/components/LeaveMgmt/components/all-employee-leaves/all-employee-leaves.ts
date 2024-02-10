@@ -19,7 +19,7 @@ export class AllEmployeeLeaves implements OnInit{
   ngOnInit(): void {
    this.leaveService.getLeaveApplications(this.leaveStatus).subscribe((res)=>{
     this.leaveApplications=res;
-    console.log(res);
+      console.log(res);
    });
   }
 }

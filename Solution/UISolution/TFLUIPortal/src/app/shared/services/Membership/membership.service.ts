@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { NewUser } from '../../Entities/UserMgmt/NewUser';
 import { User } from '../../Entities/UserMgmt/User';
 import { Role } from '../../Entities/UserMgmt/Role';
+import { UserDetails } from '../../Entities/UserMgmt/UserDetails';
 
 
 
@@ -61,5 +62,10 @@ export class MembershipService {
   addUser(newUser: NewUser): Observable<boolean> {
     let url = `${this.membershipUrl}/users`;
     return this.httpClient.post<boolean>(url, newUser);
+  }
+
+  getDetails(userIds: number): Observable<UserDetails> {
+    let url = `${this.membershipUrl}/users/details/ids/${userIds}`;
+    return this.httpClient.get<UserDetails>(url);
   }
 }

@@ -2,8 +2,7 @@
 <h3>My Consumed Leave</h3>
 <div *ngIf="consumedLeave" class="d-flex justify-content-start gap-3">
    <p><label>EmployeeId :</label>{{consumedLeave.employeeId}}</p> 
-   <div *ngFor="let leave of leaves">
+   <div *ngFor="let leave of consumedLeave.leaves">
    <p><label>{{leave.leaveType}} :</label>{{leave.count}}</p>
    </div>
-   
 </div>

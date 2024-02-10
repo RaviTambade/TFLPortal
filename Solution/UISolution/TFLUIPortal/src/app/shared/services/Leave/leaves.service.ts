@@ -12,7 +12,7 @@ import { AnnualLeaves } from '../../Entities/Leavemgmt/AnnualLeaves';
   providedIn: 'root'
 })
 export class LeavesService {
-
+  dateDifference: number|any; 
   leaveAPI:string=environment.leaveAPI;
 
   constructor(private http:HttpClient) { }
@@ -103,5 +103,18 @@ export class LeavesService {
   deleteLeaveApplication(leaveId:number):Observable<LeaveApplication>{
     let url=`${this.leaveAPI}/${leaveId}`;
     return this.http.delete<LeaveApplication>(url);
+  }
+
+  calculateDays(fromDate:string,toDate:string) {     
+    if (fromDate && toDate) {     
+        const diffInMilliseconds = (new Date(toDate)).getTime() - (new Date(fromDate)).getTime(); 
+        console.log(diffInMilliseconds);  
+        const dateInMilliseconds=diffInMilliseconds+86400000;
+            const dateDifference = dateInMilliseconds / (1000 * 60 * 60 * 24); 
+            return dateDifference;
+          } 
+          else {       
+          return 0; 
+    }
   }
 }
