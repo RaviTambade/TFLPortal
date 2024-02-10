@@ -59,7 +59,7 @@ public class ProjectsController : ControllerBase
 
 
 
-      [Authorize(RoleTypes.ProjectManager)]
+    [Authorize(RoleTypes.ProjectManager)]
     [HttpGet("{projectId}/sprints")]
     public async Task<List<Sprint>> GetSprints(int projectId)
     {
@@ -81,12 +81,19 @@ public class ProjectsController : ControllerBase
         return tasks;
     }
 
+   [HttpGet("sprints/tasks/{taskId}")]
+   public async Task<SprintTask> GetSprintOfTask(int taskId)
+   {
+    return await _analyticsSvc.GetSprintOfTask(taskId);
+   }
+
+
 
     [Authorize(RoleTypes.ProjectManager)]
     [HttpPost("addsprint")]
-    public async Task<bool> Insert(Sprint theSprint)
+    public async Task<bool> Insert(Sprint sprint)
     {
-        bool status = await _operationsSvc.Insert(theSprint);
+        bool status = await _operationsSvc.Insert(sprint);
         return status;
     }
 
@@ -100,9 +107,9 @@ public class ProjectsController : ControllerBase
 
     [Authorize(RoleTypes.ProjectManager)]
     [HttpPut("updateSprint")]
-    public async Task<bool> Update(int sprintId,Sprint theSprint)
+    public async Task<bool> Update(int sprintId,Sprint sprint)
     {
-        bool status = await _operationsSvc.Update(sprintId,theSprint);
+        bool status = await _operationsSvc.Update(sprintId,sprint);
         return status;
     }
 

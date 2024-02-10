@@ -41,7 +41,6 @@ public class TaskAnalyticsService:ITaskAnalyticsService
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
-                int managerId = int.Parse(reader["assignedby"].ToString());
 
                 ProjectTask task = new ProjectTask
                 {
@@ -54,7 +53,7 @@ public class TaskAnalyticsService:ITaskAnalyticsService
                     DueDate = dueDate,
                     AssignedTo = assignedTo,
                     Status = status,
-                    AssignedBy = managerId,
+                    AssignedBy = assignedBy,
 
                 };
                 tasks.Add(task);
@@ -96,7 +95,6 @@ public class TaskAnalyticsService:ITaskAnalyticsService
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
-                int managerId = int.Parse(reader["assignedby"].ToString());
 
                 ProjectTask task = new ProjectTask
                 {
@@ -109,7 +107,7 @@ public class TaskAnalyticsService:ITaskAnalyticsService
                     DueDate = dueDate,
                     AssignedTo = assignedTo,
                     Status = status,
-                    AssignedBy = managerId,
+                    AssignedBy = assignedBy,
 
                 };
                 tasks.Add(task);
@@ -153,7 +151,6 @@ public class TaskAnalyticsService:ITaskAnalyticsService
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
-                int managerId = int.Parse(reader["assignedby"].ToString());
 
                 ProjectTask task = new ProjectTask
                 {
@@ -166,7 +163,7 @@ public class TaskAnalyticsService:ITaskAnalyticsService
                     DueDate = dueDate,
                     AssignedTo = assignedTo,
                     Status = status,
-                    AssignedBy = managerId,
+                    AssignedBy = assignedBy,
 
                 };
 
@@ -213,7 +210,6 @@ public class TaskAnalyticsService:ITaskAnalyticsService
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
-                int managerId = int.Parse(reader["assignedby"].ToString());
 
                 ProjectTask act = new ProjectTask
                 {
@@ -226,7 +222,7 @@ public class TaskAnalyticsService:ITaskAnalyticsService
                     DueDate = dueDate,
                     AssignedTo = memberId,
                     Status = status,
-                    AssignedBy = managerId,
+                    AssignedBy = assignedBy,
 
                 };
                 tasks.Add(act);
@@ -270,7 +266,6 @@ public class TaskAnalyticsService:ITaskAnalyticsService
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string taskType = reader["tasktype"].ToString();
-                int managerId = int.Parse(reader["assignedby"].ToString());
 
                 ProjectTask task = new ProjectTask
                 {
@@ -283,7 +278,7 @@ public class TaskAnalyticsService:ITaskAnalyticsService
                     DueDate = dueDate,
                     AssignedTo= memberId,
                     Status = status,
-                    AssignedBy = managerId,
+                    AssignedBy = assignedBy,
 
                 };
                 tasks.Add(task);
@@ -302,7 +297,7 @@ public class TaskAnalyticsService:ITaskAnalyticsService
     }
     public async Task<List<ProjectTask>> GetAllSprintTasks(int sprintId, int memberId, string status)
     {
-         List<ProjectTask> tasks = new List<ProjectTask>();
+        List<ProjectTask> tasks = new List<ProjectTask>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
@@ -326,7 +321,6 @@ public class TaskAnalyticsService:ITaskAnalyticsService
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string taskType = reader["tasktype"].ToString();
-                int managerId = int.Parse(reader["assignedby"].ToString());
 
                 ProjectTask task = new ProjectTask
                 {
@@ -339,7 +333,66 @@ public class TaskAnalyticsService:ITaskAnalyticsService
                     DueDate = dueDate,
                     AssignedTo = memberId,
                     Status = status,
-                    AssignedBy = managerId,
+                    AssignedBy = assignedBy,
+
+                };
+                tasks.Add(task);
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return tasks;
+    }
+     public async Task<List<ProjectTask>> GetAllSprintTasks(int sprintId, int memberId, string status, string taskType)
+    {
+        List<ProjectTask> tasks = new List<ProjectTask>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query = 
+            @"select * from tasks INNER JOIN sprinttasks on tasks.id=sprinttasks.taskid
+             INNER join sprints on sprints.id=sprinttasks.sprintid 
+             WHERE tasks.status=@status and sprints.id=@sprintid and tasks.assignedto=@assignedto and tasks.tasktype=@tasktype";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@sprintid", sprintId);
+            command.Parameters.AddWithValue("@status", status);
+            command.Parameters.AddWithValue("@assignedto", memberId);
+            command.Parameters.AddWithValue("@tasktype", taskType);
+
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {
+                int id = int.Parse(reader["id"].ToString());
+                string title = reader["title"].ToString();
+                string description = reader["description"].ToString();
+                DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
+                int assignedBy = int.Parse(reader["assignedby"].ToString());
+                DateTime assignedOn = DateTime.Parse(reader["assignedon"].ToString());
+                DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
+                DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
+                string type = reader["tasktype"].ToString();
+
+                ProjectTask task = new ProjectTask
+                {
+                    Id = id,
+                    Title = title,
+                    TaskType = type,
+                    Description = description,
+                    AssignedOn = assignedOn,
+                    StartDate = startDate,
+                    DueDate = dueDate,
+                    AssignedTo = memberId,
+                    Status = status,
+                    AssignedBy = assignedBy,
 
                 };
                 tasks.Add(task);
@@ -380,7 +433,7 @@ public class TaskAnalyticsService:ITaskAnalyticsService
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
                 int memberId = int.Parse(reader["assignedto"].ToString());
-                int managerId = int.Parse(reader["assignedby"].ToString());
+                int assignedBy = int.Parse(reader["assignedby"].ToString());
                 task = new ProjectTask()
                 {
                     Id = taskId,
@@ -391,7 +444,7 @@ public class TaskAnalyticsService:ITaskAnalyticsService
                     AssignedOn = assignedOn,
                     StartDate = startDate,
                     AssignedTo = memberId,
-                    AssignedBy = managerId,
+                    AssignedBy = assignedBy,
                     DueDate = dueDate,
                     Status = status,
                 };
@@ -431,7 +484,6 @@ public class TaskAnalyticsService:ITaskAnalyticsService
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
-                int managerId = int.Parse(reader["assignedby"].ToString());
 
                 ProjectTask task = new ProjectTask
                 {
@@ -444,7 +496,7 @@ public class TaskAnalyticsService:ITaskAnalyticsService
                     DueDate = dueDate,
                     AssignedTo = memberId,
                     Status = status,
-                    AssignedBy = managerId,
+                    AssignedBy = assignedBy,
 
                 };
                 tasks.Add(task);
@@ -486,7 +538,6 @@ public class TaskAnalyticsService:ITaskAnalyticsService
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
-                int managerId = int.Parse(reader["assignedby"].ToString());
                 int employeeId = int.Parse(reader["assignedto"].ToString());
 
 
@@ -501,7 +552,7 @@ public class TaskAnalyticsService:ITaskAnalyticsService
                     DueDate = dueDate,
                     AssignedTo = employeeId,
                     Status = status,
-                    AssignedBy = managerId,
+                    AssignedBy = assignedBy,
 
                 };
                 tasks.Add(task);
@@ -544,7 +595,6 @@ public class TaskAnalyticsService:ITaskAnalyticsService
                 DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
-                int managerId = int.Parse(reader["assignedby"].ToString());
             
                 ProjectTask task = new ProjectTask
                 {
@@ -557,7 +607,7 @@ public class TaskAnalyticsService:ITaskAnalyticsService
                     DueDate = dueDate,
                     AssignedTo = memberId,
                     Status = status,
-                    AssignedBy = managerId,
+                    AssignedBy = assignedBy,
 
                 };
                 tasks.Add(task);
@@ -681,7 +731,7 @@ public class TaskAnalyticsService:ITaskAnalyticsService
                 DateTime startdate = DateTime.Parse(reader["startdate"].ToString());
                 DateTime duedate = DateTime.Parse(reader["duedate"].ToString());
                 string status = reader["status"].ToString();
-                int managerId = int.Parse(reader["assignedby"].ToString());
+                int assignedBy = int.Parse(reader["assignedby"].ToString());
 
                 ProjectTask task = new ProjectTask
                 {
@@ -693,7 +743,7 @@ public class TaskAnalyticsService:ITaskAnalyticsService
                     DueDate = duedate,
                     AssignedTo = assignedto,
                     Status = status,
-                  AssignedBy = managerId,
+                  AssignedBy = assignedBy,
 
                 };
                 tasks.Add(task);
@@ -710,4 +760,6 @@ public class TaskAnalyticsService:ITaskAnalyticsService
         }
         return tasks;
     }
+
+   
 }

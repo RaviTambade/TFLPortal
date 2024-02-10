@@ -9,14 +9,14 @@ import { PerformenceApprisal } from './components/performence-apprisal/performen
 
 import { Dashboard } from './components/BI/Dashboard/dashboard';
 import { Employeenavbar } from './components/employeenavbar/employeenavbar';
-import { Montlyworkutilization } from './components/montlyworkutilization/montlyworkutilization';
+import { TaskWorkUtilization } from './components/BI/task-work-utilization/task-work-utilization';
 
 import { Employee } from './components/employee/employee';
 
 import { TimesheetDetails } from './components/timesheet/EmployeeTimesheet/timesheet-details';
 import { TimesheetList } from './components/timesheet/timesheet-list/timesheet-list';
 import { CreateTimesheet } from './components/timesheet/create-timesheet/create-timesheet';
-import { TimesheetEmployeeProjectHours } from './components/timesheet/timesheet-employee-project-hours/timesheet-employee-project-hours';
+import { TimesheetEmployeeProjectHours } from './components/BI/timesheet-employee-project-hours/timesheet-employee-project-hours';
 import { WorkList } from './components/timesheet/workList/workList';
 import { MyTimesheet } from './components/timesheet/DayTimesheet/mytimesheet';
 import { WeekTimesheetList } from './components/timesheet/WeekTimesheeList/weektimesheetlist';
@@ -27,6 +27,7 @@ import { NewDayTimesheet } from './components/timesheet/new-day-timesheet/new-da
 import { UpdateTimesheetEntry } from './components/timesheet/update-timesheet-entry/update-timesheet-entry';
 import { WorkItem } from './components/timesheet/workItem/WorkItem';
 import { ConsumedLeaves } from './components/leave/consumed-leaves/consumed-leaves';
+import { TimesheetEntryDetail } from './components/timesheet/timesheet-entry-detail/timesheet-entry-detail';
 
 
 @NgModule({
@@ -42,7 +43,6 @@ import { ConsumedLeaves } from './components/leave/consumed-leaves/consumed-leav
     UpdateTimesheetEntry,
     Employee,
     Employeenavbar,
-    Montlyworkutilization,
     ProjectContainer,
     ProjectList,
     ProjectItem,
@@ -50,7 +50,9 @@ import { ConsumedLeaves } from './components/leave/consumed-leaves/consumed-leav
     WorkItem,
     MyTimesheet,
     WeekTimesheetList,
-    ConsumedLeaves
+    ConsumedLeaves,
+    TaskWorkUtilization,
+    TimesheetEntryDetail
   ],
   imports: [
     CommonModule,
@@ -66,11 +68,13 @@ import { ConsumedLeaves } from './components/leave/consumed-leaves/consumed-leav
     TimesheetEmployeeProjectHours,
     UpdateTimesheetEntry,
     Employee,
-    Montlyworkutilization,
+    TaskWorkUtilization,
     MyTimesheet,
     WeekTimesheetList,
     NewDayTimesheet,
-    ConsumedLeaves
+    ConsumedLeaves,
+    ProjectContainer,
+    TimesheetEntryDetail
   ],
 })
 export class EmployeeModule {}

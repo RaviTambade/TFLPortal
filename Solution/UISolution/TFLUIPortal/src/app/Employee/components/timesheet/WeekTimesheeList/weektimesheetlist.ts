@@ -10,22 +10,19 @@ import { TimeSheetStatus } from 'src/app/shared/Entities/Timesheetmgmt/timesheet
   templateUrl: './weektimesheetlist.html',
 })
 export class WeekTimesheetList {
-  
   weekTimesheets: Timesheet[] = [];
- @Input() employeeId:number=0;
- @Input() fromDate: string ='';
- @Input() toDate: string ='';
-   
- 
-  timesheetStatus: string[] = [TimeSheetStatus.inprogress,TimeSheetStatus.submitted,TimeSheetStatus.rejected ,TimeSheetStatus.approved];
- 
+  @Input() employeeId: number = 0;
+  @Input() fromDate: string = '';
+  @Input() toDate: string = '';
+
+
   constructor(private timesheetSvc: TimesheetService) {}
 
   ngOnInit(): void {
-       this.timesheetSvc.getAllTimeSheetsOfEmployee(this.employeeId,this.fromDate, 
-                                                    this.toDate)
-       .subscribe((res) => {
-                              this.weekTimesheets = res;
-                            });
+    this.timesheetSvc
+      .getAllTimeSheetsOfEmployee(this.employeeId, this.fromDate, this.toDate)
+      .subscribe((res) => {
+        this.weekTimesheets = res;
+      });
   }
 }

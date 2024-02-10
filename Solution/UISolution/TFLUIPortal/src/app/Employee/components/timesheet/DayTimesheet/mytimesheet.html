@@ -4,7 +4,6 @@
 <label class="d-block mb-2">Status: {{timesheet.status | titlecase}}</label>
 
 <p class="mb-2"> <b>Total Hours: {{timesheet.totalHours |hourConvertor}} </b></p>
-<button class="btn btn-primary mb-2" (click)="onClickAddTimeSheetEntry()">Add Entry</button>
 
 <work-list [timesheetEntries]="timesheetEntries"></work-list>
 

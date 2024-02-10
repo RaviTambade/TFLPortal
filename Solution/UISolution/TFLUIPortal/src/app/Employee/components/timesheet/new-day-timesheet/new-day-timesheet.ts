@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from 'src/app/shared/Entities/Projectmgmt/Project';
 import { Sprint } from 'src/app/shared/Entities/Projectmgmt/sprint';
 import { Task } from 'src/app/shared/Entities/Projectmgmt/task';
@@ -8,8 +7,6 @@ import { TimesheetEntry } from 'src/app/shared/Entities/Timesheetmgmt/timesheetE
 import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
 import { TasksManagementService } from 'src/app/shared/services/TaskMgmt/tasks-management.service';
 import { TimesheetService } from 'src/app/shared/services/Timesheet/timesheet.service';
-
-
 
 @Component({
   selector: 'new-day-timesheet',
@@ -29,10 +26,11 @@ export class NewDayTimesheet {
   employeeId: number = 0;
   selectedProjectId: number = 0;
   selectedSprintId: number = 0;
+  taskTypes:string[]=["userstory","task","bug","issues","meeting","learning","mentoring","others"]
+  selectedTasktype: string = this.taskTypes[0];
   tasks: Task[] = [];
   timesheetId: number | undefined;
   sprint!: Sprint;
-
 
   get taskDescription() {
     return this.tasks
@@ -43,33 +41,25 @@ export class NewDayTimesheet {
   constructor(
     private timesheetService: TimesheetService,
     private projectService: ProjectService,
-    private tasksService:TasksManagementService,
-    private router: Router,
-    private route: ActivatedRoute
+    private tasksService: TasksManagementService
   ) {}
 
   ngOnInit(): void {
-      this.timesheetId =10
-     
-    this.employeeId =10
-    this.projectService
-      .getProjects(this.employeeId)
-      .subscribe((res) => {
-        this.projects = res;
-        if (this.projects.length > 0 && this.selectedProjectId== 0) {
-          this.selectedProjectId = this.projects[0].id;
+    this.timesheetId = 10;
+    this.employeeId = 10;
 
-          this.onSprintChange();
-        }
-      });
+    this.projectService.getProjects(this.employeeId).subscribe((res) => {
+      this.projects = res;
+      if (this.projects.length > 0 && this.selectedProjectId == 0) {
+        this.selectedProjectId = this.projects[0].id;
+        this.onSprintChange();
+      }
+    });
   }
 
   onSprintChange() {
     this.projectService
-      .getCurrentSprint(
-        this.selectedProjectId,
-       "2024-01-04"
-      )
+      .getCurrentSprint(this.selectedProjectId, '2024-01-12')
       .subscribe((res) => {
         console.log(res);
         this.sprint = res;
@@ -80,13 +70,15 @@ export class NewDayTimesheet {
 
   getTasks() {
     this.tasksService
-      .getAllTasksOfSprintAndMember(
+      .getAllTasksOfSprint(
         this.selectedSprintId,
         this.employeeId,
-        'inprogress'
+        'inprogress',
+        this.selectedTasktype
       )
       .subscribe((res) => {
         this.tasks = res;
+        console.log("🚀 ~ .subscribe ~ tasks:", this.tasks);
         if (this.tasks.length > 0)
           this.timesheetEntry.taskId = this.tasks[0].id;
       });
@@ -102,27 +94,22 @@ export class NewDayTimesheet {
       toTime: this.timesheetEntry.toTime + ':00',
       timesheetId: this.timesheetId,
       taskId: this.timesheetEntry.taskId,
-      hours: 0
+      hours: 0,
     };
 
-    this.timesheetService
-      .addTimeSheetEntry(timesheetEntry)
-      .subscribe((res) => {
-        if (res) {
-          this.router.navigate(['../../details', this.timesheetId], {
-            relativeTo: this.route,
-          });
-        }
-      });
-  }
-
-  onClickCancel() {
-    this.router.navigate(['../../details', this.timesheetId], {
-      relativeTo: this.route,
+    this.timesheetService.addTimeSheetEntry(timesheetEntry).subscribe((res) => {
+      if (res) {
+        alert('entry added');
+      }
     });
   }
 
+  onClickCancel() {}
+
   getDuration() {
-    this.timesheetEntry.hours = this.timesheetService.getTimeDifference(this.timesheetEntry.fromTime,this.timesheetEntry.toTime);
+    this.timesheetEntry.hours = this.timesheetService.getTimeDifference(
+      this.timesheetEntry.fromTime,
+      this.timesheetEntry.toTime
+    );
   }
 }

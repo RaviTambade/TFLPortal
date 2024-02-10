@@ -183,8 +183,8 @@ public class ProjectAnalyticsService:IProjectAnalyticsService
                     StartDate = reader.GetDateTime("startdate"),
                     EndDate = reader.GetDateTime("enddate"),
                 };
-             
             }
+             await reader.CloseAsync();
         }
         catch (Exception ee)
         {
@@ -222,6 +222,7 @@ public class ProjectAnalyticsService:IProjectAnalyticsService
                 };
                 sprints.Add(sprint);
             }
+             await reader.CloseAsync();
         }
         catch (Exception)
         {
@@ -252,22 +253,23 @@ public class ProjectAnalyticsService:IProjectAnalyticsService
                     Title = reader["title"].ToString(),
                     TaskType = reader["tasktype"].ToString(),
                     Description = reader["description"].ToString(),
-                    CreatedOn = DateTime.Parse(reader["createddate"].ToString()),
+                    CreatedOn = DateTime.Parse(reader["createdon"].ToString()),
                     AssignedTo = int.Parse(reader["assignedto"].ToString()),
                     AssignedBy= int.Parse(reader["assignedby"].ToString()),
-                    AssignedOn = DateTime.Parse(reader["assigneddate"].ToString()),
+                    AssignedOn = DateTime.Parse(reader["assignedon"].ToString()),
                     StartDate = DateTime.Parse(reader["startdate"].ToString()),
                     DueDate = DateTime.Parse(reader["duedate"].ToString()),
                     Status = reader["status"].ToString(),
                  };
                tasks.Add(task);  
             }
+             await reader.CloseAsync(); 
         }
         catch(Exception ee){
             throw ee;
         }
         finally{
-            connection.CloseAsync();
+          await connection.CloseAsync();
         }
         return tasks;
     }
@@ -296,6 +298,7 @@ public class ProjectAnalyticsService:IProjectAnalyticsService
                     EmployeeId = reader.GetInt32("employeeid"),
                     Title = reader.GetString("title"),
                     AssignedOn = reader.GetDateTime("assignedon"),
+                    Status=reader.GetString("status")
                 };
                 members.Add(member);
             }
@@ -312,5 +315,35 @@ public class ProjectAnalyticsService:IProjectAnalyticsService
         return members;
     }
 
-       
+    public async Task<SprintTask> GetSprintOfTask(int taskId)
+    {
+        SprintTask task =null;
+        MySqlConnection connection =new MySqlConnection();
+        connection.ConnectionString=_connectionString;
+        try{
+            string query =@"select * from sprinttasks INNER JOIN tasks on tasks.id=sprinttasks.taskid
+                            WHERE tasks.id=@taskId;";
+            MySqlCommand command = new MySqlCommand(query,connection);
+            command.Parameters.AddWithValue("@taskId",taskId);
+            await connection.OpenAsync();
+            MySqlDataReader reader = (MySqlDataReader) await command.ExecuteReaderAsync();
+            if( await reader.ReadAsync()){
+              
+                task=new SprintTask()
+              {
+                Id = reader.GetInt32("id"),
+                SprintId=reader.GetInt32("sprintid"),
+                TaskId=reader.GetInt32("taskid")
+              };
+            }
+             await reader.CloseAsync();
+        }
+        catch(Exception ){
+            throw ;
+        }
+        finally{
+            await connection.CloseAsync();
+        }
+        return task;
+    }
 }
