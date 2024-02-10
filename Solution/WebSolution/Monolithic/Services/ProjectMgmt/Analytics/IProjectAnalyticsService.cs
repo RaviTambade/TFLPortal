@@ -1,5 +1,6 @@
 using TFLPortal.Models;
-using ProjectTask=TFLPortal.Models.Task;
+using ProjectTask = TFLPortal.Models.Task;
+
 namespace TFLPortal.Services.ProjectMgmt.Analytics;
 
 public interface IProjectAnalyticsService
@@ -10,5 +11,7 @@ public interface IProjectAnalyticsService
     Task<List<Sprint>> GetSprints(int projectId);
     Task<Sprint> GetCurrentSprint(int projectId, DateOnly date);
     Task<List<ProjectTask>> GetSprintTasks(int sprintId);
+
+    Task<SprintTask> GetSprintOfTask(int taskId);
     Task<List<ProjectAllocation>> GetProjectMembers(int projectId);
 }

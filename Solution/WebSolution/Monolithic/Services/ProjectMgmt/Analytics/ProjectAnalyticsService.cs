@@ -183,8 +183,8 @@ public class ProjectAnalyticsService:IProjectAnalyticsService
                     StartDate = reader.GetDateTime("startdate"),
                     EndDate = reader.GetDateTime("enddate"),
                 };
-             
             }
+             await reader.CloseAsync();
         }
         catch (Exception ee)
         {
@@ -222,6 +222,7 @@ public class ProjectAnalyticsService:IProjectAnalyticsService
                 };
                 sprints.Add(sprint);
             }
+             await reader.CloseAsync();
         }
         catch (Exception)
         {
@@ -262,12 +263,13 @@ public class ProjectAnalyticsService:IProjectAnalyticsService
                  };
                tasks.Add(task);  
             }
+             await reader.CloseAsync(); 
         }
         catch(Exception ee){
             throw ee;
         }
         finally{
-            connection.CloseAsync();
+          await connection.CloseAsync();
         }
         return tasks;
     }
@@ -313,5 +315,35 @@ public class ProjectAnalyticsService:IProjectAnalyticsService
         return members;
     }
 
-       
+    public async Task<SprintTask> GetSprintOfTask(int taskId)
+    {
+        SprintTask task =null;
+        MySqlConnection connection =new MySqlConnection();
+        connection.ConnectionString=_connectionString;
+        try{
+            string query =@"select * from sprinttasks INNER JOIN tasks on tasks.id=sprinttasks.taskid
+                            WHERE tasks.id=@taskId;";
+            MySqlCommand command = new MySqlCommand(query,connection);
+            command.Parameters.AddWithValue("@taskId",taskId);
+            await connection.OpenAsync();
+            MySqlDataReader reader = (MySqlDataReader) await command.ExecuteReaderAsync();
+            if( await reader.ReadAsync()){
+              
+                task=new SprintTask()
+              {
+                Id = reader.GetInt32("id"),
+                SprintId=reader.GetInt32("sprintid"),
+                TaskId=reader.GetInt32("taskid")
+              };
+            }
+             await reader.CloseAsync();
+        }
+        catch(Exception ){
+            throw ;
+        }
+        finally{
+            await connection.CloseAsync();
+        }
+        return task;
+    }
 }
