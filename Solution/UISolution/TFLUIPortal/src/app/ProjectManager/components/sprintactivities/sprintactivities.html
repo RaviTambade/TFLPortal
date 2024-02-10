@@ -11,13 +11,15 @@
                                     <th>Title</th>
                                     <th>Status</th>
                                     <th>Assigned To</th>
+                                    <th>Assigne By</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let employeework of empployeeWorks">
                                     <td>{{employeework.title}}</td>
                                     <td>{{employeework.status}}</td>
-                                    <td>{{employeework.assignedTo}}</td>
+                                    <td>{{employeework.assignee}}</td>
+                                    <td>{{employeework.assignor}}</td>
                                 </tr>
                             </tbody>
                         </table>
