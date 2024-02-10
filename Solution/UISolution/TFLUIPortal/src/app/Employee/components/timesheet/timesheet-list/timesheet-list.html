@@ -29,7 +29,7 @@
         <tbody *ngFor="let timesheet of pagedFilterTimesheets">
             <tr>
                 <td> {{timesheet.createdOn | date:'dd-MM-yyy'}}</td>
-                <td> {{timesheet.status}}</td>
+                <td> {{timesheet.status }}</td>
                 <td> {{timesheet.totalHours |hourConvertor}}</td>
                 <td><a [routerLink]="['../details',timesheet.id]"> Details</a></td>
             </tr>
