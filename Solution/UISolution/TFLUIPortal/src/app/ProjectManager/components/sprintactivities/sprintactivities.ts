@@ -17,18 +17,20 @@ export class Sprintactivities implements OnInit{
       this.sprintSvc.getSprintsTasks(this.sprintId).subscribe((res)=>{
         this.empployeeWorks=res;
 
-        let employeeIds:number[]=this.empployeeWorks.map(a=>a.assignedTo);
+        let assignedToIds:number[]=this.empployeeWorks.map(a=>a.assignedTo);
+        let assignedByIds:number[]=this.empployeeWorks.map(a=>a.assignedBy);
+        let employeeIds:number[]=[...assignedToIds,...assignedByIds]
+        console.log(employeeIds);
          let employeeIdsString:string =employeeIds.join(",");
-         console.log(employeeIdsString)
          this.membershipSvc.getUserDetails(employeeIdsString).subscribe(users=>{
           
           this.empployeeWorks.forEach(employee=>{
-            let foundUser=users.find(user=>user.id==employee.assignedTo);
-            if(foundUser!=undefined){
-              employee.assignee=foundUser.fullName;
-              
+            let assignedTo=users.find(user=>user.id==employee.assignedTo);
+            let assignedBy=users.find(user=>user.id==employee.assignedBy);
+            if(assignedTo!=undefined && assignedBy!=undefined){
+              employee.assignee=assignedTo.fullName;
+              employee.assignor=assignedBy?.fullName;
             }
-           
           })
          })
 
