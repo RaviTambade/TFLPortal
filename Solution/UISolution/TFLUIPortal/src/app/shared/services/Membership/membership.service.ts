@@ -48,10 +48,6 @@ export class MembershipService {
     return this.httpClient.get<User>(url);
   }
 
-  getUserDetails(userIds: number): Observable<User> {
-    let url = `${this.membershipUrl}/users/name/${userIds}`;
-    return this.httpClient.get<User>(url);
-  }
 
   updateUser(id: number, user: User): Observable<any> {
     let url = `${this.membershipUrl}/users/${id}`;
@@ -64,8 +60,8 @@ export class MembershipService {
     return this.httpClient.post<boolean>(url, newUser);
   }
 
-  getDetails(userIds: number): Observable<UserDetails> {
+  getUserDetails(userIds: string): Observable<UserDetails[]> {
     let url = `${this.membershipUrl}/users/details/ids/${userIds}`;
-    return this.httpClient.get<UserDetails>(url);
+    return this.httpClient.get<UserDetails[]>(url);
   }
 }

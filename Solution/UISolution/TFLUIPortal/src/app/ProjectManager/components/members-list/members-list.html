@@ -9,14 +9,13 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let employees of employees">
-            <td>{{employees.employeeId}}</td>
-            <td>{{employees.title}}</td>
-            <td>{{employees.assignedOn|date :('yyyy-MM-dd')}}</td>
+        <tr *ngFor="let employee of employees">
+            <td>{{employee.fullName}}</td>
+            <td>{{employee.title}}</td>
+            <td>{{employee.assignedOn|date :('yyyy-MM-dd')}}</td>
           </tr>
     </tbody>
 </table>
 
-<!-- <app-employee-project-works></app-employee-project-works> -->
 
 </div>
