@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
-import { SprintDetails } from '../sprint-details/sprint-details';
-import { SprintModel } from '../../Model/SprintModel';
+import { TaskModel } from 'src/app/shared/Models/Projectmgmt/taskModel';
 
 @Component({
   selector: 'app-sprintactivities',
@@ -11,7 +10,7 @@ import { SprintModel } from '../../Model/SprintModel';
 export class Sprintactivities implements OnInit{
   constructor(private router:ActivatedRoute,private sprintSvc:ProjectService){}
   sprintId:number=10;
-  empployeeWorks:SprintModel[]=[];
+  empployeeWorks:TaskModel[]=[];
   ngOnInit(): void {
     
       // this.sprintSvc.getSprintsTasks(this.sprintId).subscribe((res)=>{

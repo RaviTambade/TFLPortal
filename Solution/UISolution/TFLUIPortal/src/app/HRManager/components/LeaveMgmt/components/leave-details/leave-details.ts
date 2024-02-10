@@ -21,7 +21,7 @@ constructor(private leaveSvc:LeaveAnalyticsService,private membershipSvc:Members
     if(this.leaveApplication){
     this.leaveDay=this.leaveSvc.calculateDays(this.leaveApplication.fromDate,this.leaveApplication.toDate);
     this.employeeId=this.leaveApplication.employeeId;
-    this.membershipSvc.getDetails(this.employeeId).subscribe((res)=>{
+    this.membershipSvc.getUserDetails(this.employeeId.toString()).subscribe((res)=>{
       this.employees=res;
       this.name=this.employees[0].fullName;
     })

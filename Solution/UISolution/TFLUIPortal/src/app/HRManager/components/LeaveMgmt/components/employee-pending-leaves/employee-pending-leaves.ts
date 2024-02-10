@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { LeavesCount } from 'src/app/shared/Entities/Leavemgmt/LeavesCount';
-import { LeavesService } from 'src/app/shared/services/Leave/leavemgmt.service';
+import { LeaveAnalyticsService } from 'src/app/shared/services/Leave/leaveanalytics.service';
 
 @Component({
   selector: 'app-employee-pending-leaves',
@@ -13,11 +13,11 @@ export class EmployeePendingLeaves {
   year:number=2024;
   roleId:number=2;
  
-  constructor(private service:LeavesService){
+  constructor(private service:LeaveAnalyticsService){
   }
 
   ngOnInit(): void {
-    this.service.getAnnualAvailableLeaves(this.employeeId,this.roleId,this.year).subscribe((res)=>{
+    this.service.getAnnualAvailableLeavesOfEmployee(this.employeeId,this.roleId,this.year).subscribe((res)=>{
       this.pendingLeave=res;
       console.log(res);
     }) 
