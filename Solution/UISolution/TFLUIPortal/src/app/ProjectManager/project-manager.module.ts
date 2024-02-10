@@ -34,6 +34,6 @@ import { Sprintactivities } from './components/sprintactivities/sprintactivities
     Sprintactivities
   ],
   imports: [CommonModule, RouterModule],
-  exports: [EmployeeProjectWorks, Employeeprojectworkdetails,CurrentSprint,Sprintactivities],
+  exports: [EmployeeProjectWorks, Employeeprojectworkdetails,CurrentSprint,Sprintactivities,MembersList],
 })
 export class ProjectManagerModule {}

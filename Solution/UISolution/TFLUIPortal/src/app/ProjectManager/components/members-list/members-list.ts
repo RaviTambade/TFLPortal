@@ -10,27 +10,24 @@ import { ProjectEmployees } from '../../Model/ProjectEmployes';
 })
 export class MembersList implements OnInit{
 
-  constructor(private projectAllocSvc:ProjectService,private route:Router,private router:ActivatedRoute){}
+  constructor(private projectAllocSvc:ProjectService){}
  
-  projectId:number=0;
+  projectId:number=4;
    status:string='yes';
+   num:any[]=[];
   employees:ProjectEmployees[]=[];
-  //  ngOnChanges(change:SimpleChanges): void {
-  //   console.log(change['projectId'].currentValue);
-  //  this.projectAllocSvc.getAllProjectMembers(change['projectId'].currentValue).subscribe((res)=>{
-  //   this.employees=res;
-  //   console.log(this.employees);
-  //  }) 
-  // }
-
   ngOnInit(): void {
-    this.router.paramMap.subscribe((res)=>{
-     this.projectId=Number(res.get('id'));
-     this.projectAllocSvc.getAllProjectMembers(this.projectId).subscribe((res)=>{
+
+    this.projectAllocSvc.getAllProjectMembers(this.projectId).subscribe((res)=>{
         this.employees=res;
         console.log(this.employees);
+        let employeeIds:number[] = this.employees.map(o => o.employeeId);
+        let employeeIdString= employeeIds.join(",");
+        console.log(employeeIdString);
+
+        
+
        }) 
-    })
   }
 
   

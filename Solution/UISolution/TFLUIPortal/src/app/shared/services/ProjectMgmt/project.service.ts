@@ -5,10 +5,10 @@ import { environment } from 'src/environments/environment';
 import { Member } from '../../Entities/Projectmgmt/Member';
 import { Project } from '../../Entities/Projectmgmt/Project';
 import { Sprint } from '../../Entities/Projectmgmt/sprint';
-import { SprintModel } from 'src/app/ProjectManager/Model/SprintModel';
 
 
 import { SprintTask } from '../../Entities/Projectmgmt/sprintTask';
+import { TaskModel } from '../../Models/Projectmgmt/taskModel';
 
 @Injectable({
   providedIn: 'root',
@@ -54,9 +54,9 @@ export class ProjectService {
     return this.httpClient.put<boolean>(url, member);
   }
 
-  getSprintsTasks(sprintId: number): Observable<Sprint[]> {
-    let url = this.projectApi + '/sprints/' + sprintId + '/tasks';
-    return this.httpClient.get<Sprint[]>(url);
+  getSprintsTasks(sprintId: number): Observable<TaskModel[]> {
+    let url = this.projectApi + '/projects/' + sprintId + '/tasks';
+    return this.httpClient.get<TaskModel[]>(url);
   }
 
   getCurrentSprint(projectId: number, date: string): Observable<Sprint> {
