@@ -3,7 +3,7 @@ import { LeaveApplication } from 'src/app/shared/Entities/Leavemgmt/LeaveApplica
 import { LeaveAnalyticsService } from 'src/app/shared/services/Leave/leaveanalytics.service';
 
 @Component({
-  selector: 'app-employee-leaves-by-date',
+  selector: 'employee-leaves-by-date',
   templateUrl: './employee-leaves-by-date.html',
 })
 export class EmployeeLeavesByDate implements OnInit {

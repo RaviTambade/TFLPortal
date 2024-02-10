@@ -5,7 +5,7 @@ import { LeaveAnalyticsService } from 'src/app/shared/services/Leave/leaveanalyt
 
 
 @Component({
-  selector: 'app-details',
+  selector: 'details',
   templateUrl: './details.html',
 })
 

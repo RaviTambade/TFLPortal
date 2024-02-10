@@ -7,7 +7,7 @@ import { LeaveConsumptionService } from 'src/app/shared/services/Leave/leavecons
 
 
 @Component({
-  selector: 'app-update-employee-leave',
+  selector: 'update-employee-leave',
   templateUrl: './update-employee-leave.html',
 })
 export class UpdateEmployeeLeave {

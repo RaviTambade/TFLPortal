@@ -16,12 +16,12 @@ employeeId:number=0;
 employees:any;
 name:string='';
 
-constructor(private leaveSvc:LeaveAnalyticsService,private userSvc:MembershipService ){}
+constructor(private leaveSvc:LeaveAnalyticsService,private membershipSvc:MembershipService ){}
   ngOnInit(): void {
     if(this.leaveApplication){
     this.leaveDay=this.leaveSvc.calculateDays(this.leaveApplication.fromDate,this.leaveApplication.toDate);
     this.employeeId=this.leaveApplication.employeeId;
-    this.userSvc.getUserDetails(this.employeeId.toString()).subscribe((res)=>{
+    this.membershipSvc.getUserDetails(this.employeeId.toString()).subscribe((res)=>{
       this.employees=res;
       this.name=this.employees[0].fullName;
     })

@@ -2,7 +2,7 @@ import { Component} from '@angular/core';
 import { PayrollService } from 'src/app/shared/services/Payroll/payroll.service';
 
 @Component({
-  selector: 'app-salaryprocessing',
+  selector: 'salaryprocessing',
   templateUrl: './salaryprocessing.html',
 })
 export class Salaryprocessing {

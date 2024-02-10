@@ -5,7 +5,7 @@ import { LeaveStatus } from 'src/app/shared/Entities/Leavemgmt/LeaveStatus';
 
 
 @Component({
-  selector: 'app-update-status',
+  selector: 'update-status',
   templateUrl: './update-status.html',
 })
 export class UpdateStatus{

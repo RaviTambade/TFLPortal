@@ -9,7 +9,7 @@ import { LeaveAllocationService } from 'src/app/shared/services/Leave/leavealloc
 
 
 @Component({
-  selector: 'app-update-role-based-leave',
+  selector: 'update-role-based-leave',
   templateUrl: './update-role-based-leave.html',
 })
 export class UpdateRoleBasedLeave implements OnInit{

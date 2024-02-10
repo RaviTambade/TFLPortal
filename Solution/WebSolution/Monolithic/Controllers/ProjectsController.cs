@@ -66,6 +66,13 @@ public class ProjectsController : ControllerBase
         return await _analyticsSvc.GetSprints(projectId);
     }
 
+    [HttpGet("sprints/{sprintId}")]
+    public async Task<Sprint> GetSprint(int sprintId)
+    {
+        return await _analyticsSvc.GetSprint(sprintId);
+    }
+
+
     [Authorize(RoleTypes.ProjectManager)]
     [HttpGet("{projectId}/sprints/date/{date}")]
     public async Task<Sprint> GetCurrentSprint(int projectId, DateOnly date)
@@ -115,7 +122,7 @@ public class ProjectsController : ControllerBase
 
 
 
-        [Authorize(RoleTypes.ProjectManager)]
+    [Authorize(RoleTypes.ProjectManager)]
     [HttpPost("member/assign")]
     public async Task<bool> Assign(ProjectAllocation projectAllocation)
     {

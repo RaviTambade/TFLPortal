@@ -64,8 +64,15 @@ export class ProjectService {
     return this.httpClient.get<Sprint>(url);
   }
 
+  getSprint(sprintId:number): Observable<Sprint> {
+    let url = `${this.projectApi}/projects/sprints/${sprintId}`;
+    return this.httpClient.get<Sprint>(url);
+  }
+
   getSprintTask(taskId: number): Observable<SprintTask> {
     let url = `${this.projectApi}/projects/sprints/tasks/${taskId}`;
     return this.httpClient.get<SprintTask>(url);
   }
+
+
 }

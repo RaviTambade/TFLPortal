@@ -346,4 +346,38 @@ public class ProjectAnalyticsService:IProjectAnalyticsService
         }
         return task;
     }
+
+    public async Task<Sprint> GetSprint(int sprintId)
+    {
+        Sprint sprint =null;
+        MySqlConnection connection =new MySqlConnection();
+        connection.ConnectionString=_connectionString;
+        try{
+            string query =@"select * from sprints where id=@sprintId";
+            MySqlCommand command = new MySqlCommand(query,connection);
+            command.Parameters.AddWithValue("@sprintId",sprintId);
+            await connection.OpenAsync();
+            MySqlDataReader reader = (MySqlDataReader) await command.ExecuteReaderAsync();
+            if( await reader.ReadAsync()){
+              
+                sprint=new Sprint()
+              {
+                Id = reader.GetInt32("id"),
+                ProjectId = reader.GetInt32("projectid"),
+                Title = reader.GetString("title"),
+                Goal = reader.GetString("title"),
+                StartDate = reader.GetDateTime("startdate"),
+                EndDate = reader.GetDateTime("enddate"),
+              };
+            }
+             await reader.CloseAsync();
+        }
+        catch(Exception ){
+            throw ;
+        }
+        finally{
+            await connection.CloseAsync();
+        }
+        return sprint;
+    }
 }

@@ -3,7 +3,7 @@ import { LeaveAllocation } from 'src/app/shared/Entities/Leavemgmt/LeaveAllocati
 import { LeaveAllocationService } from 'src/app/shared/services/Leave/leaveallocation.service';
 
 @Component({
-  selector: 'app-leaveallocations',
+  selector: 'leaveallocations',
   templateUrl: './leaveallocations.html',
 })
 export class Leaveallocations {
