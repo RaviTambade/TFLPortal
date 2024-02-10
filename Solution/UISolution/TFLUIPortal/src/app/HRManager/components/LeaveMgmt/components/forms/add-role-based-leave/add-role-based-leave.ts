@@ -5,7 +5,7 @@ import { LeaveAllocationService } from 'src/app/shared/services/Leave/leavealloc
 
 
 @Component({
-  selector: 'app-add-role-based-leave',
+  selector: 'add-role-based-leave',
   templateUrl: './add-role-based-leave.html',
 })
 export class AddRoleBasedLeave {

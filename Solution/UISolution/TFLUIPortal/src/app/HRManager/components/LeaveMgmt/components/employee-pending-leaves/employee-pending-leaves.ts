@@ -3,7 +3,7 @@ import { LeavesCount } from 'src/app/shared/Entities/Leavemgmt/LeavesCount';
 import { LeaveAnalyticsService } from 'src/app/shared/services/Leave/leaveanalytics.service';
 
 @Component({
-  selector: 'app-employee-pending-leaves',
+  selector: 'employee-pending-leaves',
   templateUrl: './employee-pending-leaves.html',
 })
 export class EmployeePendingLeaves {

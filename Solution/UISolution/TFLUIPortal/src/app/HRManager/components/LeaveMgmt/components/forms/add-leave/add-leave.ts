@@ -7,7 +7,7 @@ import { LeaveConsumptionService } from 'src/app/shared/services/Leave/leavecons
 
 
 @Component({
-  selector: 'app-add-leave',
+  selector: 'add-leave',
   templateUrl: './add-leave.html',
 })
 export class AddLeave implements OnInit {

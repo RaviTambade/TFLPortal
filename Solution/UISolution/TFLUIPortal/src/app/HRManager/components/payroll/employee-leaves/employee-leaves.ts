@@ -4,7 +4,7 @@ import { LeaveAnalyticsService } from 'src/app/shared/services/Leave/leaveanalyt
 
 
 @Component({
-  selector: 'app-employee-leaves',
+  selector: 'employee-leaves',
   templateUrl: './employee-leaves.html',
 })
 export class EmployeeLeaves{

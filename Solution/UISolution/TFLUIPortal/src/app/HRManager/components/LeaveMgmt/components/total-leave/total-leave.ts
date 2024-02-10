@@ -3,7 +3,7 @@ import { AnnualLeaves } from 'src/app/shared/Entities/Leavemgmt/AnnualLeaves';
 import { LeaveAnalyticsService } from 'src/app/shared/services/Leave/leaveanalytics.service';
 
 @Component({
-  selector: 'app-total-leave',
+  selector: 'total-leave',
   templateUrl: './total-leave.html',
 })
 export class TotalLeave{

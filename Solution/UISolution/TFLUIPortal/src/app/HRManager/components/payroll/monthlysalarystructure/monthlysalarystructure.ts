@@ -3,7 +3,7 @@ import { MonthSalary } from 'src/app/shared/Entities/Payroll/MonthSalary';
 import { PayrollService } from 'src/app/shared/services/Payroll/payroll.service';
 
 @Component({
-  selector: 'app-monthlysalarystructure',
+  selector: 'monthlysalarystructure',
   templateUrl: './monthlysalarystructure.html',
 })
 export class Monthlysalarystructure {

@@ -3,7 +3,7 @@ import { LeaveApplication } from 'src/app/shared/Entities/Leavemgmt/LeaveApplica
 import { LeaveAnalyticsService } from 'src/app/shared/services/Leave/leaveanalytics.service';
 
 @Component({
-  selector: 'app-todays-employee-leave',
+  selector: 'todays-employee-leave',
   templateUrl: './todays-employee-leave.html',
 })
 export class TodaysEmployeeLeave {
