@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-leave-display',
-  templateUrl: './leave-display.component.html',
+  templateUrl: './leave-display.html',
 })
-export class LeaveDisplayComponent {
+export class LeaveDisplay
+ {
 
 }

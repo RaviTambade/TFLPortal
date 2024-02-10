@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { LeaveDisplayComponent } from './components/LeaveMgmt/leave-display/leave-display.component';
-import { PayDisplayComponent } from './components/Payroll/pay-display/pay-display.component';
-import { ProjectsDisplayComponent } from './components/ProjectMgmt/projects-display/projects-display.component';
-import { TimesheetDisplayComponent } from './components/timesheet/timesheet-display/timesheet-display.component';
-import { DirectorComponent } from './components/director/director';
+import { LeaveDisplay } from './components/LeaveMgmt/leave-display/leave-display';
+import { PayDisplay } from './components/Payroll/pay-display/pay-display';
+import { ProjectsDisplay } from './components/ProjectMgmt/projects-display/projects-display';
+import { TimesheetDisplay } from './components/timesheet/timesheet-display/timesheet-display';
+import { Director } from './components/director/director';
 
 // export const directorRoutes: Routes = [
 //   {
@@ -31,15 +31,15 @@ import { DirectorComponent } from './components/director/director';
 
 @NgModule({
   declarations: [
-    LeaveDisplayComponent,
-    PayDisplayComponent,
-    ProjectsDisplayComponent,
-    TimesheetDisplayComponent,
-    DirectorComponent,
+    LeaveDisplay,
+    PayDisplay,
+    ProjectsDisplay,
+    TimesheetDisplay,
+    Director,
   ],
   imports: [
     CommonModule,RouterModule
   ],
-  exports:[DirectorComponent]
+  exports:[Director]
 })
 export class DirectorModule { }
