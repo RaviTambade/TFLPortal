@@ -1,46 +1,12 @@
-<div class="col-4 overflow-hidden" >
+<div class="col-4 overflow-hidden">
   <h2>Add Timesheet Entry</h2>
 
-  <div class="form-group row mb-1">
-    <label for="project" class="col-sm-2 col-form-label">Project:</label>
-    <div class="col-sm-10">
-      <select id="project" class="form-control" [(ngModel)]="selectedProjectId" (change)="onSprintChange()">
-        <option *ngFor="let project of projects;" [value]="project.id">{{project.title | titlecase}}</option>
-      </select>
-    </div>
-  </div>
 
-  <div class="form-group row mb-1">
-    <label for="work" class="col-sm-2 col-form-label">Sprint:</label>
-    <div class="col-sm-10">
-      <!-- <select id="work" class="form-control" [(ngModel)]="selectedSprintId" (change)="onSprintChange()"> -->
-        <label *ngIf="sprint"> {{sprint.startDate|date:"dd-MM"}} | {{sprint.title|
-          titlecase}}
-          </label>
-      <!-- </select> -->
-    </div>
-  </div>
-
-  <div class="form-group row mb-1">
-    <label for="work" class="col-sm-2 col-form-label">Work:</label>
-    <div class="col-sm-10">
-      <select id="work" class="form-control" [(ngModel)]="timesheetEntry.taskId">
-        <option *ngFor="let task of tasks" [value]="task.id"> {{task.title| titlecase}}</option>
-      </select>
-    </div>
-  </div>
-
-   <div class="form-group row mb-1">
-     <label for="description" class="col-sm-2 col-form-label">Description:</label>
-     <div class="col-sm-10">
-     <textarea id="description" class=" form-control" disabled>{{taskDescription}}</textarea>
-  </div>
-</div>
 
   <div class="row">
     <div class="col">
       <div class="row">
-        <label for="fromTime" class="form-label col-sm-5">From:</label>
+        <label for="fromTime" class="col-3">From:</label>
         <input id="fromTime" type="time" class="form-control col" name="fromTime" [(ngModel)]="timesheetEntry.fromTime"
           (change)="getDuration()">
       </div>
@@ -48,13 +14,59 @@
     <div class="col-sm-1"></div>
     <div class="col">
       <div class="row">
-        <label for="toTime" class="form-label  col-sm-3">To:</label>
+        <label for="toTime" class="form-label  col-3">To:</label>
         <input id="toTime" type="time" class="form-control col" name="toTime" [(ngModel)]="timesheetEntry.toTime"
           (change)="getDuration()">
       </div>
     </div>
   </div>
   <br>
+  <div class="row">
+    <div class="col">
+      <div class="form-group row  mb-1">
+        <label for="project" class="col-3">Project:</label>
+        <div class="col-9">
+          <select id="project" class="form-control" [(ngModel)]="selectedProjectId" (change)="onSprintChange()">
+            <option *ngFor="let project of projects;" [value]="project.id">{{project.title | titlecase}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group row mb-1">
+        <label for="sprint" class="col-3">Sprint:</label>
+        <div class="col-9">
+          <label *ngIf="sprint"> {{sprint.startDate|date:"dd-MM"}} | {{sprint.title|
+            titlecase}}
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group d-flex  flex-wrap gap-2 mb-1">
+    <ng-container *ngFor="let type of taskTypes" >
+      <input type="radio" [value]="type" [(ngModel)]="selectedTasktype" (change)="getTasks()">
+      {{ type }}
+    </ng-container>
+  </div>
+
+  <div class="form-group row mb-1">
+    <label for="work" class="col-3">Work:</label>
+    <div class="col-9">
+      <select id="work" class="form-control" [(ngModel)]="timesheetEntry.taskId">
+        <option *ngFor="let task of tasks" [value]="task.id"> {{task.title| titlecase}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row mb-1">
+    <label for="description" class="col-3">Description:</label>
+    <div class="col-9">
+      <textarea id="description" class=" form-control" disabled>{{taskDescription}}</textarea>
+    </div>
+  </div>
+
 
 
   <p>Duration: {{timesheetEntry.hours |hourConvertor}}</p>

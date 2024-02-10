@@ -11,6 +11,7 @@ public interface ITaskAnalyticsService
     Task<List<ProjectTask>> GetAllTasks(int projectId, int memberId);
     Task<List<ProjectTask>> GetAllTasks(int projectId, int memberId, string status);
     Task<List<ProjectTask>> GetAllSprintTasks(int sprintId, int memberId, string status);
+    Task<List<ProjectTask>> GetAllSprintTasks(int sprintId, int memberId, string status,string taskType);
     Task<ProjectTask> GetTask(int taskId);
     Task<List<ProjectTask>> GetMemberTasks(int memberId);
     Task<List<ProjectTask>> GetAllTasks(DateTime from, DateTime to);

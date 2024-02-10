@@ -66,12 +66,19 @@ public class TasksController : ControllerBase
         List<ProjectTask> tasks = await _analyticsSvc.GetAllTasks(projectId,memberId,status);
         return tasks;
     }
-
+    
     [Authorize(RoleTypes.ProjectManager,RoleTypes.Employee)]
     [HttpGet("sprints/{sprintId}/members/{memberId}/status/{status}")]
     public async Task<List<ProjectTask>> GetAllSprintTasks(int sprintId, int memberId, string status)
     {
         return await _analyticsSvc.GetAllSprintTasks(sprintId,memberId,status);
+    }
+
+    [Authorize(RoleTypes.ProjectManager,RoleTypes.Employee)]
+    [HttpGet("sprints/{sprintId}/members/{memberId}/status/{status}/tasktype/{taskType}")]
+    public async Task<List<ProjectTask>> GetAllSprintTasks(int sprintId, int memberId, string status,string taskType)
+    {
+        return await _analyticsSvc.GetAllSprintTasks(sprintId,memberId,status,taskType);
     }
 
     [Authorize(RoleTypes.ProjectManager,RoleTypes.Employee)]

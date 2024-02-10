@@ -54,6 +54,10 @@ export class TasksManagementService {
     return this.http.get<Task[]>(url);
   }
 
+  getAllTasksOfSprint(sprintId:number,memberId:number,status:string,tasktype:string):Observable<Task[]>{
+    let url=`${this.taskAPIUrl}/sprints/${sprintId}/members/${memberId}/status/${status}/tasktype/${tasktype}`;
+    return this.http.get<Task[]>(url);
+  }
   //http://localhost:5263/api/tasks/sprints/1/members/10/status/inprogress
 
   getProjectTasksOfMember(projectId:number,memberId:number){

@@ -84,9 +84,9 @@ public class ProjectsController : ControllerBase
 
     [Authorize(RoleTypes.ProjectManager)]
     [HttpPost("addsprint")]
-    public async Task<bool> Insert(Sprint theSprint)
+    public async Task<bool> Insert(Sprint sprint)
     {
-        bool status = await _operationsSvc.Insert(theSprint);
+        bool status = await _operationsSvc.Insert(sprint);
         return status;
     }
 
@@ -100,9 +100,9 @@ public class ProjectsController : ControllerBase
 
     [Authorize(RoleTypes.ProjectManager)]
     [HttpPut("updateSprint")]
-    public async Task<bool> Update(int sprintId,Sprint theSprint)
+    public async Task<bool> Update(int sprintId,Sprint sprint)
     {
-        bool status = await _operationsSvc.Update(sprintId,theSprint);
+        bool status = await _operationsSvc.Update(sprintId,sprint);
         return status;
     }
 

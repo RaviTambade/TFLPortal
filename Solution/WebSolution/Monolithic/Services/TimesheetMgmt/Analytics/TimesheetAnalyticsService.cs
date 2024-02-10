@@ -287,7 +287,7 @@ public class TimesheetAnalyticsService:ITimesheetAnalyticsService
         connection.ConnectionString = _connectionString;
 
         string query =
-            "CALL getWorkUtilization(@employeeId,@fromDate,@toDate,@projectId)";
+            "CALL spGetWorkUtilization(@employeeId,@fromDate,@toDate,@projectId)";
         try
         {
             string fromDate = from.ToString("yyyy-MM-dd");
@@ -327,7 +327,7 @@ public class TimesheetAnalyticsService:ITimesheetAnalyticsService
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
 
-        string query = @"CALL getHoursWorkedForEachProject(@employeeId,@fromDate,@toDate)";
+        string query = @"CALL spGetHoursWorkedForEachProject(@employeeId,@fromDate,@toDate)";
         try
         {
             string fromDate = from.ToString("yyyy-MM-dd");
