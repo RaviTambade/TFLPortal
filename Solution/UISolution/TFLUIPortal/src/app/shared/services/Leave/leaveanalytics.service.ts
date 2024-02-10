@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LeaveApplication } from '../../Entities/Leavemgmt/LeaveApplication';
-import { RoleLeaveAllocation } from '../../Entities/Leavemgmt/LeaveAllocation';
 import { MonthLeave } from '../../Entities/Leavemgmt/MonthLeave';
 import { LeavesCount } from '../../Entities/Leavemgmt/LeavesCount';
 import { AnnualLeaves } from '../../Entities/Leavemgmt/AnnualLeaves';
@@ -70,16 +69,6 @@ export class LeaveAnalyticsService {
     return this.http.get<LeavesCount>(url);
   }
 
-  getLeaveAllocationsByRole():Observable<RoleLeaveAllocation[]>{
-    let url=`${this.leaveAPI}/allocations`;
-    return this.http.get<RoleLeaveAllocation[]>(url);
-  }
-
-  getLeaveAllocationOfRole(id:number):Observable<RoleLeaveAllocation>{
-    let url=`${this.leaveAPI}/allocations/roles/${id}` ;
-    return this.http.get<RoleLeaveAllocation>(url);
-  }
- 
 
   calculateDays(from:string,to:string): number {    
     let days:number=0;

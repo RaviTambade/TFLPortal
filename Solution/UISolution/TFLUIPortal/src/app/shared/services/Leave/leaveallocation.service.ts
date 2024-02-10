@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
  
-import { RoleLeaveAllocation } from '../../Entities/Leavemgmt/LeaveAllocation';
+import { LeaveAllocation } from '../../Entities/Leavemgmt/LeaveAllocation';
  
 
 @Injectable({
@@ -16,26 +16,25 @@ export class LeaveAllocationService {
 
   constructor(private http:HttpClient) { }
     
-  getLeaveAllocationsByRole():Observable<RoleLeaveAllocation[]>{
+  getAllLeaveAllocations():Observable<LeaveAllocation[]>{
     let url=`${this.leaveAPI}/allocations`;
-    return this.http.get<RoleLeaveAllocation[]>(url);
+    return this.http.get<LeaveAllocation[]>(url);
   }
 
-  getLeaveAllocationOfRole(id:number):Observable<RoleLeaveAllocation>{
+  getLeaveAllocationOfRole(id:number):Observable<LeaveAllocation>{
     let url=`${this.leaveAPI}/allocations/roles/${id}` ;
-    return this.http.get<RoleLeaveAllocation>(url);
+    return this.http.get<LeaveAllocation>(url);
   }
   
 
-  addNewLeaveAllocationForRole(leave:RoleLeaveAllocation):Observable<boolean>{
+  addNewLeaveAllocationForRole(leave:LeaveAllocation):Observable<boolean>{
     let url=`${this.leaveAPI}/leaveallocation`;
     return this.http.post<boolean>(url,leave);
   }
-
    
-  updateLeaveAllocation(appln:RoleLeaveAllocation):Observable<RoleLeaveAllocation>{
+  updateLeaveAllocation(appln:LeaveAllocation):Observable<LeaveAllocation>{
     let url=`${this.leaveAPI}/leaveallocation`;
-    return this.http.put<RoleLeaveAllocation>(url,appln);
+    return this.http.put<LeaveAllocation>(url,appln);
   }
 
    

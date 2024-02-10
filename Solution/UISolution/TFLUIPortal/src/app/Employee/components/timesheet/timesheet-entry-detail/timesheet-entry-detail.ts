@@ -45,7 +45,6 @@ export class TimesheetEntryDetail implements OnInit {
        this.timesheetEntry.sprintId=task.sprintId;
        console.log(this.timesheetEntry);
       });
-
     })
   }
 

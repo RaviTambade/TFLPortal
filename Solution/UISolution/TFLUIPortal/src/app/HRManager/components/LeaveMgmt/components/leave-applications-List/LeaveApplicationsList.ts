@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LeaveApplication } from 'src/app/shared/Entities/Leavemgmt/LeaveApplication';
-import { LeaveManagementService } from 'src/app/shared/services/Leave/leavemgmt.service';
+import { LeaveAnalyticsService } from 'src/app/shared/services/Leave/leaveanalytics.service';
 
 @Component({
   selector: 'leave-applications',
@@ -10,13 +10,13 @@ export class LeaveApplicationsList implements OnInit{
 
   leaveApplns:LeaveApplication[]=[];
 
-  constructor(private leaveSvc:LeaveManagementService){}
+  constructor(private leaveSvc:LeaveAnalyticsService){}
 
   leaveStatus:string="applied";
 
   ngOnInit(): void {
   
-    this.leaveSvc.getLeaveApplications(this.leaveStatus).subscribe((res)=>{
+    this.leaveSvc.getAllLeaveApplicationOfStatus(this.leaveStatus).subscribe((res)=>{
     this.leaveApplns=res;
    });
   }

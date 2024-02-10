@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { RoleLeaveAllocation } from 'src/app/shared/Entities/Leavemgmt/LeaveAllocation';
-import { LeavesService } from 'src/app/shared/services/Leave/leavemgmt.service';
+import { LeaveAllocation } from 'src/app/shared/Entities/Leavemgmt/LeaveAllocation';
+import { LeaveAllocationService } from 'src/app/shared/services/Leave/leaveallocation.service';
 
 @Component({
   selector: 'app-leaveallocations',
@@ -8,12 +8,12 @@ import { LeavesService } from 'src/app/shared/services/Leave/leavemgmt.service';
 })
 export class Leaveallocations {
 
-  roleBasedLeaves:RoleLeaveAllocation[]=[];
+  roleBasedLeaves:LeaveAllocation[]=[];
 
-  constructor(private service:LeavesService){}
+  constructor(private leaveAllocationSvc:LeaveAllocationService){}
 
   ngOnInit(): void {
-    this.service.getAllRoleLeaveAllocations().subscribe((res)=>{
+    this.leaveAllocationSvc.getAllLeaveAllocations().subscribe((res)=>{
       this.roleBasedLeaves=res;
     })
   }
