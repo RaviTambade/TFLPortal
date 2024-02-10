@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
-import { MemberDetails } from '../../../Model/MemberDetails';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
 
 @Component({

@@ -8,8 +8,9 @@ import { ProjectList } from './components/project-list/project-list';
 import { MembersList } from './components/members-list/members-list';
 import { Employeeprojectworkdetails } from './components/employeeprojectworkdetails/employeeprojectworkdetails';
 import { EmployeeProjectWorks } from './components/employee-project-works/employee-project-works';
-import { MemberTaskList } from './components/member-task-list/member-task-list';
 import { ProjectItem } from './components/project-item/project-item';
+import { CurrentSprint } from './components/current-sprint/current-sprint';
+import { Sprintactivities } from './components/sprintactivities/sprintactivities';
 
  export const projectManagerRoutes: Routes = [
   { path: '', component:Projectmanager },
@@ -28,10 +29,11 @@ import { ProjectItem } from './components/project-item/project-item';
     ProjectItem,
     MembersList,
     EmployeeProjectWorks,
-    MemberTaskList,
-    MembersList
+    MembersList,
+    CurrentSprint,
+    Sprintactivities
   ],
   imports: [CommonModule, RouterModule],
-  exports: [EmployeeProjectWorks, Employeeprojectworkdetails],
+  exports: [EmployeeProjectWorks, Employeeprojectworkdetails,CurrentSprint,Sprintactivities],
 })
 export class ProjectManagerModule {}

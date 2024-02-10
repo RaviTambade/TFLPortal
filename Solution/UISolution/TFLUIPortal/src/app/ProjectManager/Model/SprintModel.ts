@@ -1,4 +1,4 @@
-export class SprintDetails{
+export class SprintModel{
     constructor(public id:number,
        public  title:string,
        public  description:string,

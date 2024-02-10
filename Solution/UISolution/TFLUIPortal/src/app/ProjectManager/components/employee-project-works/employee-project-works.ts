@@ -11,14 +11,13 @@ export class EmployeeProjectWorks implements OnInit{
 
   constructor(private router:ActivatedRoute,private taskService:TasksManagementService){}
   employeeworks:Task[]=[];
-  projectId:number|any;
+  projectId:number=4;
+  empId:number=10;
   ngOnInit(): void {
-  this.router.paramMap.subscribe((res)=>{this.projectId=Number(res.get('id'))
-    this.taskService.getAllTasks(this.projectId).subscribe((res)=>{
+    this.taskService.getAllTasksOfProjectMember(this.projectId,this.empId).subscribe((res)=>{
       this.employeeworks=res;
       console.log(res);
     })
-  })
   }
 
 

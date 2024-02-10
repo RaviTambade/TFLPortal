@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Member } from '../../Entities/Projectmgmt/Member';
 import { Project } from '../../Entities/Projectmgmt/Project';
 import { Sprint } from '../../Entities/Projectmgmt/sprint';
+import { SprintModel } from 'src/app/ProjectManager/Model/SprintModel';
 
 
 
@@ -57,9 +58,9 @@ export class ProjectService {
   }
 
 
-  getSprintsTasks(sprintId:number):Observable<Sprint[]>{
+  getSprintsTasks(sprintId:number):Observable<SprintModel[]>{
     let url=this.projectApi+'/sprints/'+sprintId+'/tasks';
-   return this.httpClient.get<Sprint[]>(url);
+   return this.httpClient.get<SprintModel[]>(url);
   }
 
   getCurrentSprint(projectId:number,date:string):Observable<Sprint>{
