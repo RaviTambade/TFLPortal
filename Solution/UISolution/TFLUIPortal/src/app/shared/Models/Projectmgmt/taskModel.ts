@@ -13,8 +13,10 @@ export class TaskModel {
     public startDate: string,
     public dueDate: string,
     public status: string,
+
     public assignee: string,
     public assignor: string,
+    
     public projectTitle: string,
     public sprintTitle: string
   ) {}

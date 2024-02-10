@@ -1,39 +1,32 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
 import { LeaveStatus } from 'src/app/shared/Entities/Leavemgmt/LeaveStatus';
 import { LeaveApplication } from 'src/app/shared/Entities/Leavemgmt/LeaveApplication';
+import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
 
 
 @Component({
   selector: 'leave-details',
   templateUrl: './leave-details.html',
 })
-export class LeaveDetails {
-@Input() appliedLeaves:LeaveApplication | undefined;
+export class LeaveDetails implements OnInit{
+@Input() leaveApplication:LeaveApplication | undefined;
 
-  updateStatus:LeaveStatus={
-    id: 0,
-    status: ''
+leaveDay:number |undefined;
+employeeId:number=0;
+employees:any;
+name:string='';
+
+constructor(private leaveSvc:LeavesService,private userSvc:MembershipService ){}
+  ngOnInit(): void {
+   if(this.leaveApplication){
+   this.leaveDay=this.leaveSvc.calculateDays(this.leaveApplication.fromDate,this.leaveApplication.toDate);
+   this.employeeId=this.leaveApplication.employeeId;
+   this.userSvc.getDetails(this.employeeId).subscribe((res)=>{
+    this.employees=res;
+    this.name=this.employees[0].fullName;
+   })
   }
-
-  leaveDetails:LeaveApplication|undefined;
-
-  constructor() {}
-
-  
-
-  onApproved(id:number){
-    // this.updateStatus.status="sanctioned";
-    // this.leaveService.updateLeaveApplication(id,this.updateStatus.status).subscribe((res)=>{
-    //   console.log(res);
-    // });
-  }
-
-  onReject(id:number){
-    // this.updateStatus.status="notsanctioned";
-    // this.leaveService.updateLeaveApplication(id,this.updateStatus.status).subscribe((res)=>{
-    //   console.log(res);
-    // });
-  }
+ }
 }

@@ -27,6 +27,7 @@ import { NewDayTimesheet } from './components/timesheet/new-day-timesheet/new-da
 import { UpdateTimesheetEntry } from './components/timesheet/update-timesheet-entry/update-timesheet-entry';
 import { WorkItem } from './components/timesheet/workItem/WorkItem';
 import { ConsumedLeaves } from './components/leave/consumed-leaves/consumed-leaves';
+import { TimesheetEntryDetail } from './components/timesheet/timesheet-entry-detail/timesheet-entry-detail';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { ConsumedLeaves } from './components/leave/consumed-leaves/consumed-leav
     MyTimesheet,
     WeekTimesheetList,
     ConsumedLeaves,
-    TaskWorkUtilization
+    TaskWorkUtilization,
+    TimesheetEntryDetail
   ],
   imports: [
     CommonModule,
@@ -71,7 +73,8 @@ import { ConsumedLeaves } from './components/leave/consumed-leaves/consumed-leav
     WeekTimesheetList,
     NewDayTimesheet,
     ConsumedLeaves,
-    ProjectContainer
+    ProjectContainer,
+    TimesheetEntryDetail
   ],
 })
 export class EmployeeModule {}

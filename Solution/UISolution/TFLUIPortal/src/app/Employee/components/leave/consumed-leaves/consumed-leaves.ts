@@ -6,15 +6,13 @@ import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
 @Component({
   selector: 'consumed-leaves',
   templateUrl: './consumed-leaves.html',
-
 })
+
 export class ConsumedLeaves {
 
   employeeId:number=12;
   consumedLeave:AnnualLeaves |undefined;
   year:number=2024;
-  leaves:LeaveCount[]=[] ;
-
 
   constructor(private service:LeavesService){
     //  this.employeeId=localStorage.getItem(LocalStorageKeys.employeeId);
@@ -23,7 +21,6 @@ export class ConsumedLeaves {
   ngOnInit(): void {
     this.service.getAnnualConsumedLeaves(this.employeeId,this.year).subscribe((res)=>{
       this.consumedLeave=res;
-      this.leaves=res.leaves
       console.log(res);
     }) 
   }

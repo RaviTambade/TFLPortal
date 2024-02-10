@@ -59,7 +59,7 @@ public class ProjectsController : ControllerBase
 
 
 
-      [Authorize(RoleTypes.ProjectManager)]
+    [Authorize(RoleTypes.ProjectManager)]
     [HttpGet("{projectId}/sprints")]
     public async Task<List<Sprint>> GetSprints(int projectId)
     {
@@ -80,6 +80,13 @@ public class ProjectsController : ControllerBase
         List<ProjectTask> tasks = await _analyticsSvc.GetSprintTasks(sprintId);
         return tasks;
     }
+
+   [HttpGet("sprints/tasks/{taskId}")]
+   public async Task<SprintTask> GetSprintOfTask(int taskId)
+   {
+    return await _analyticsSvc.GetSprintOfTask(taskId);
+   }
+
 
 
     [Authorize(RoleTypes.ProjectManager)]
