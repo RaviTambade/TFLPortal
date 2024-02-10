@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AnnualLeaves } from 'src/app/shared/Entities/Leavemgmt/AnnualLeaves';
-import { LeaveCount } from 'src/app/shared/Entities/Leavemgmt/LeaveCount';
-import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
+import { LeaveAnalyticsService } from 'src/app/shared/services/Leave/leaveanalytics.service';
 
 @Component({
   selector: 'consumed-leaves',
@@ -14,12 +13,10 @@ export class ConsumedLeaves {
   consumedLeave:AnnualLeaves |undefined;
   year:number=2024;
 
-  constructor(private service:LeavesService){
-    //  this.employeeId=localStorage.getItem(LocalStorageKeys.employeeId);
-  }
+  constructor(private leaveSvc:LeaveAnalyticsService){ }
 
   ngOnInit(): void {
-    this.service.getAnnualConsumedLeaves(this.employeeId,this.year).subscribe((res)=>{
+    this.leaveSvc.getAnnualConsumedLeavesOfEmployee(this.employeeId,this.year).subscribe((res)=>{
       this.consumedLeave=res;
       console.log(res);
     }) 

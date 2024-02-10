@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { AnnualLeaves } from 'src/app/shared/Entities/Leavemgmt/AnnualLeaves';
 import { LeavesCount } from 'src/app/shared/Entities/Leavemgmt/LeavesCount';
-import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
+import { LeaveAnalyticsService } from 'src/app/shared/services/Leave/leaveanalytics.service';
 
 
 @Component({
@@ -14,11 +14,11 @@ export class EmployeeConsumedLeaves {
   consumedLeave:AnnualLeaves |undefined;
   year:number=2024;
   roleId:number=2;
-  constructor(private service:LeavesService){
+  constructor(private service:LeaveAnalyticsService){
   }
 
   ngOnInit(): void {
-      this.service.getAnnualConsumedLeaves(this.roleId,this.year).subscribe((res)=>{
+      this.service.getAnnualConsumedLeavesOfEmployee(this.roleId,this.year).subscribe((res)=>{
         this.consumedLeave=res;
         console.log(res);
     }) 

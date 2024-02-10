@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
+
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
-import { RoleLeaveAllocation } from 'src/app/shared/Entities/Leavemgmt/LeaveAllocation';
+
 import { Role } from 'src/app/shared/Entities/UserMgmt/Role';
+import { LeaveAllocation } from 'src/app/shared/Entities/Leavemgmt/LeaveAllocation';
+import { LeaveAllocationService } from 'src/app/shared/services/Leave/leaveallocation.service';
 
 
 @Component({
@@ -12,12 +14,12 @@ import { Role } from 'src/app/shared/Entities/UserMgmt/Role';
 })
 export class UpdateRoleBasedLeave implements OnInit{
   
-  roleBasedLeave:RoleLeaveAllocation |any;
+  roleBasedLeave:LeaveAllocation |any;
   id:number=1;
   lob:string="PMS";
   roles:Role[]=[];
 
-  constructor(private service:LeavesService,private membershipService:MembershipService){}
+  constructor(private service:LeaveAllocationService,private membershipService:MembershipService){}
 
   rolebasedleaveForm=new FormGroup({
     roleId :new FormControl(),
@@ -33,13 +35,13 @@ export class UpdateRoleBasedLeave implements OnInit{
     this.membershipService.getAllRoles(this.lob).subscribe((res)=>{
       this.roles=res;
     })
-    this.service.getRoleLeaveAllocation(this.id).subscribe((res)=>{
+    this.service.getLeaveAllocationOfRole(this.id).subscribe((res)=>{
       this.roleBasedLeave=res;
     }) 
   }
 
   onSubmit(){
-    let roleBasedLeave:RoleLeaveAllocation={
+    let roleBasedLeave:LeaveAllocation={
       id: this.id,
       roleId: this.rolebasedleaveForm.get("roleId")?.value,
       sick:this.rolebasedleaveForm.get("sick")?.value,

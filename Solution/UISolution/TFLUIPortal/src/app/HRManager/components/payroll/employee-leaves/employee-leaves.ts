@@ -1,7 +1,7 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { MonthLeave } from 'src/app/shared/Entities/Leavemgmt/MonthLeave';
+import { LeaveAnalyticsService } from 'src/app/shared/services/Leave/leaveanalytics.service';
 
-import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
 
 @Component({
   selector: 'app-employee-leaves',
@@ -14,11 +14,11 @@ export class EmployeeLeaves{
   month:number=1;
   year:number=2024;
 
-  constructor(private leaveService:LeavesService){
+  constructor(private leaveSvc:LeaveAnalyticsService){
   }
   
   ngOnChanges(changes:SimpleChanges): void {
-    this.leaveService.getAnnualLeaveCount(changes["employeeId"].currentValue,this.month,this.year).subscribe((res)=>{
+    this.leaveSvc.getAnnualLeaveCountOfEmployee(changes["employeeId"].currentValue,this.month,this.year).subscribe((res)=>{
     this.monthLeaves=res;
     console.log(res);
     })

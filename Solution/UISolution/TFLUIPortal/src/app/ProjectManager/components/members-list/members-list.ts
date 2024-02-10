@@ -2,6 +2,7 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
 import { ProjectEmployees } from '../../Model/ProjectEmployes';
+import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
 
 
 @Component({
@@ -10,11 +11,9 @@ import { ProjectEmployees } from '../../Model/ProjectEmployes';
 })
 export class MembersList implements OnInit{
 
-  constructor(private projectAllocSvc:ProjectService){}
+  constructor(private projectAllocSvc:ProjectService,private membershipSvc:MembershipService){}
  
   projectId:number=4;
-   status:string='yes';
-   num:any[]=[];
   employees:ProjectEmployees[]=[];
   ngOnInit(): void {
 
@@ -22,10 +21,17 @@ export class MembersList implements OnInit{
         this.employees=res;
         console.log(this.employees);
         let employeeIds:number[] = this.employees.map(o => o.employeeId);
-        let employeeIdString= employeeIds.join(",");
+        let employeeIdString:string= employeeIds.join(",");
         console.log(employeeIdString);
 
-        
+        this.membershipSvc.getUserDetails(employeeIdString).subscribe((users)=>{
+          console.log(users);
+          this.employees.forEach(employee => {
+            let foundUser = users.find(user => user.id === employee.employeeId);
+            if (foundUser != undefined)
+              employee.fullName = foundUser.fullName;
+          });
+        })
 
        }) 
   }

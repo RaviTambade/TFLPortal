@@ -1,4 +1,4 @@
-export class RoleLeaveAllocation{
+export class LeaveAllocation{
     
     constructor(
         public id:number,

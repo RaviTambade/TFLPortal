@@ -13,9 +13,9 @@ export class Sprintactivities implements OnInit{
   empployeeWorks:TaskModel[]=[];
   ngOnInit(): void {
     
-      this.sprintSvc.getSprintsTasks(this.sprintId).subscribe((res)=>{
-        this.empployeeWorks=res;
-      })
+      // this.sprintSvc.getSprintsTasks(this.sprintId).subscribe((res)=>{
+      //   this.empployeeWorks=res;
+      // })
   }
 
 }

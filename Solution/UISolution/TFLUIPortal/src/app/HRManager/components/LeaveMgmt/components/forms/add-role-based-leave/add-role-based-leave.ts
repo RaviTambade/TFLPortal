@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { RoleLeaveAllocation } from 'src/app/shared/Entities/Leavemgmt/LeaveAllocation';
-
-import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
+import { LeaveAllocation } from 'src/app/shared/Entities/Leavemgmt/LeaveAllocation';
+import { LeaveAllocationService } from 'src/app/shared/services/Leave/leaveallocation.service';
 
 
 @Component({
@@ -12,7 +11,7 @@ import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
 export class AddRoleBasedLeave {
 
 
- constructor(private service:LeavesService){}
+ constructor(private service:LeaveAllocationService){}
 
   rolebasedleaveForm=new FormGroup({
   roleId :new FormControl(),
@@ -24,7 +23,7 @@ export class AddRoleBasedLeave {
 });
 
 onSubmit(){
-  let roleBasedLeave:RoleLeaveAllocation={
+  let roleBasedLeave:LeaveAllocation={
         id: 0,
         roleId: this.rolebasedleaveForm.get("roleId")?.value,
         sick:this.rolebasedleaveForm.get("sick")?.value,
@@ -34,7 +33,7 @@ onSubmit(){
         financialYear:this.rolebasedleaveForm.get("financialYear")?.value,
       }
       console.log(roleBasedLeave);
-      this.service.addRoleLeaveAllocation(roleBasedLeave).subscribe((res)=>{
+      this.service.addNewLeaveAllocationForRole(roleBasedLeave).subscribe((res)=>{
       console.log(res);    
     });
   }

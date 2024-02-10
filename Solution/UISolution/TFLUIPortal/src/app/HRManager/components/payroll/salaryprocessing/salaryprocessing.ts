@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
+import { Component} from '@angular/core';
 import { PayrollService } from 'src/app/shared/services/Payroll/payroll.service';
 
 @Component({
@@ -8,7 +7,7 @@ import { PayrollService } from 'src/app/shared/services/Payroll/payroll.service'
 })
 export class Salaryprocessing {
 
-constructor(private service:PayrollService,private leaveService:LeavesService){}
+constructor(private service:PayrollService){}
  
 status:boolean= false;
 employeeId:number=0;
