@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
+import { LeavesService } from 'src/app/shared/services/Leave/leavemgmt.service';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
 import { RoleLeaveAllocation } from 'src/app/shared/Entities/Leavemgmt/LeaveAllocation';
 import { Role } from 'src/app/shared/Entities/UserMgmt/Role';

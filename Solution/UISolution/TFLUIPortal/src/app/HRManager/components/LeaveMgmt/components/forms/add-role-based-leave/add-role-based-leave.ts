@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { RoleLeaveAllocation } from 'src/app/shared/Entities/Leavemgmt/LeaveAllocation';
 
-import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
+import { LeavesService } from 'src/app/shared/services/Leave/leavemgmt.service';
 
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { MonthLeave } from 'src/app/shared/Entities/Leavemgmt/MonthLeave';
 
-import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
+import { LeavesService } from 'src/app/shared/services/Leave/leavemgmt.service';
 
 @Component({
   selector: 'app-employee-leaves',

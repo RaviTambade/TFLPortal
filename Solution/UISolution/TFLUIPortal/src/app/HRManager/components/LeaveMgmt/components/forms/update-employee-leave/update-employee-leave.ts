@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { LeaveApplication } from 'src/app/shared/Entities/Leavemgmt/LeaveApplication';
 import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
-import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
+import { LeavesService } from 'src/app/shared/services/Leave/leavemgmt.service';
 
 
 @Component({

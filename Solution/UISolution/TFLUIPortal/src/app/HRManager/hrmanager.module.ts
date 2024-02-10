@@ -14,38 +14,16 @@ import { LeaveDisplay } from './components/leave-display/leave-display';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Hrmanager } from './components/hrmanager/hrmanager';
 import { Dashboard } from './components/dashboard/dashboard';
-import { AllEmployeeLeaves } from './components/LeaveMgmt/components/all-employee-leaves/all-employee-leaves';
+import { LeaveApplicationsList } from './components/LeaveMgmt/components/leave-applications-List/LeaveApplicationsList';
 import { LeaveDetails} from './components/LeaveMgmt/components/leave-details/leave-details';
 import { Leaveallocations } from './components/LeaveMgmt/components/leaveallocations/leaveallocations';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 export const hrRoutes: Routes = [
-      // {path:'', component:HrmanagerComponent},
-      {path:'leaveapplications', component:AllEmployeeLeaves},
+      {path:'leaveapplications', component:LeaveApplicationsList},
       {path:'hrmanager2', component:Dashboard},
-      {path:'hrmanager3', component:Dashboard},
-    // {
-    // path: '',
-    // component: HrmanagerLeftSidebarComponent,
-    // children: [
-      // {
-      //   path: 'timesheet',
-      //   component: TimesheetComponent, children:timeSheetRoutes
-      // },
-      // { path: 'leave',
-      //  component: LeavesComponent ,children: leaveRoutes},
-      // {
-      //   path: 'projects',
-      //   component: ProjectComponent,
-      // },
-      // { path: 'events', component: EventsComponent },
-      // { path: 'payroll', component: PayrollComponent,
-      //  children:[{ path: 'salary', component:SalaryprocessingComponent},
-      //            { path: 'salarydetails', component:AllEmployeesComponent}
-      // ]},
-      // { path: 'performance', component: PerformenceApprisalComponent },
-  //   ],
-  // },
+      {path:'hrmanager3', component:Dashboard}
+     
 ];
 
 @NgModule({
@@ -62,7 +40,7 @@ export const hrRoutes: Routes = [
     EmployeeLeaves,
     PaidEmployeeDetails,
     LeaveDisplay,
-    AllEmployeeLeaves,
+    LeaveApplicationsList,
     Leaveallocations,
     Hrmanager
   ],
@@ -75,7 +53,7 @@ export const hrRoutes: Routes = [
         FormsModule
   ],
   exports: [
-    AllEmployeeLeaves,
+    LeaveApplicationsList,
     Salaryprocessing,
     AllEmployees,
     LeaveDetails,

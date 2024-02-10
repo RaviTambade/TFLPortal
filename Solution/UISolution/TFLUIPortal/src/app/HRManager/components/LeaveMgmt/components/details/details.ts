@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LeaveApplication } from 'src/app/shared/Entities/Leavemgmt/LeaveApplication';
 
-import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
+import { LeavesService } from 'src/app/shared/services/Leave/leavemgmt.service';
 
 @Component({
   selector: 'app-details',

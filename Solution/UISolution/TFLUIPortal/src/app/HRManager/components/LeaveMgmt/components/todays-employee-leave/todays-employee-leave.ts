@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { LeaveApplication } from 'src/app/shared/Entities/Leavemgmt/LeaveApplication';
 
-import { LeavesService } from 'src/app/shared/services/Leave/leaves.service';
+import { LeavesService } from 'src/app/shared/services/Leave/leavemgmt.service';
 
 @Component({
   selector: 'app-todays-employee-leave',
