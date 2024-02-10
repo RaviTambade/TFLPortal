@@ -10,23 +10,38 @@ import { TimesheetService } from 'src/app/shared/services/Timesheet/timesheet.se
 })
 export class TimesheetEntryDetail implements OnInit {
 
-  timesheetEntry:TimesheetEntryModel={
-    id: 2,
-    taskId: 3,
-    fromTime: "10:20",
-    toTime: "11:20",
-    timesheetId: 1,
-    hours: 1,
-    taskTitle: "Login User",
-    taskType: 'Userstory',
-    Description: 'Add Login component',
-    projectId: 1,
-    sprintId: 1,
-    sprintTitle: 'Ekruhi sprint 1',
-    projectTitle: 'EKrushi'
-  };
+  // timesheetEntry:TimesheetEntryModel={
+  //   id: 2,
+  //   taskId: 3,
+  //   fromTime: "10:20",
+  //   toTime: "11:20",
+  //   timesheetId: 1,
+  //   hours: 1,
+  //   taskTitle: "Login User",
+  //   taskType: 'Userstory',
+  //   Description: 'Add Login component',
+  //   projectId: 1,
+  //   sprintId: 1,
+  //   sprintTitle: 'Ekruhi sprint 1',
+  //   projectTitle: 'EKrushi'
+  // };
 
-  timesheetEntryId:number=11;
+  timesheetEntry:TimesheetEntryModel={
+    id: 0,
+    taskId: 0,
+    fromTime: '',
+    toTime: '',
+    timesheetId: 0,
+    hours: 0,
+    taskTitle: '',
+    taskType: '',
+    Description: '',
+    projectId: 0,
+    sprintId: 0,
+    sprintTitle: '',
+    projectTitle: ''
+  }
+  timesheetEntryId:number=53;
 
   constructor (private timesheetSvc:TimesheetService,
               private taskSvc:TasksManagementService,
@@ -41,11 +56,25 @@ export class TimesheetEntryDetail implements OnInit {
       this.timesheetEntry.timesheetId=entry.timesheetId;
       this.timesheetEntry.taskId=entry.taskId;
 
-      this.projectSvc.getSprintTask(this.timesheetEntry.taskId).subscribe((task)=>{
-       this.timesheetEntry.sprintId=task.sprintId;
-       console.log(this.timesheetEntry);
+      this.taskSvc.getTaskDetails(this.timesheetEntry.taskId).subscribe((task)=>{
+        this.timesheetEntry.taskTitle=task.title;
+        this.timesheetEntry.taskType=task.taskType;
+        this.timesheetEntry.Description=task.description;
       });
-    })
+
+      this.projectSvc.getSprintTask(this.timesheetEntry.taskId).subscribe((sprintask)=>{
+       this.timesheetEntry.sprintId=sprintask.sprintId;
+ 
+       this.projectSvc.getSprint(this.timesheetEntry.sprintId).subscribe((sprint)=>{
+        this.timesheetEntry.sprintTitle=sprint.title;
+        this.timesheetEntry.projectId=sprint.projectId;
+
+        this.projectSvc.getProject(this.timesheetEntry.projectId).subscribe((project)=>{
+          this.timesheetEntry.projectTitle=project.title;
+        });
+       });
+      });
+    });
   }
 
 }
