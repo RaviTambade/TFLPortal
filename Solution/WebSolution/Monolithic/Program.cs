@@ -10,7 +10,8 @@ using TFLPortal.Services.TimesheetMgmt.Operations;
 using TFLPortal.Services.LeaveMgmt.Analytics;
 using TFLPortal.Services.LeaveMgmt.Operations;
 using TFLPortal.Services.HRMgmt.Analytics;
-// using TFLPortal.Services.HRMgmt.Operations;
+using TFLPortal.Services.SprintMgmt.Analytics;
+using TFLPortal.Services.SprintMgmt.Operations;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,6 +30,10 @@ builder.Services.AddScoped<IPayrollOperationsService, PayrollOperationsService>(
 builder.Services.AddScoped<IProjectAnalyticsService,  ProjectAnalyticsService>();
 builder.Services.AddScoped<IProjectOperationsService, ProjectOperationsService>();
 builder.Services.AddScoped<IHRAnalyticsService,  HRAnalyticsService>();
+builder.Services.AddScoped<ISprintOperationsService, SprintOperationsService>();
+builder.Services.AddScoped<ISprintAnalyticsService,  SprintAnalyticsService>();
+
+
 // builder.Services.AddScoped<IHROperationsService, HROperationsService>();
 
 
