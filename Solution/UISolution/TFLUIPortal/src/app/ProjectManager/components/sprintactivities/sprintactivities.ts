@@ -37,4 +37,18 @@ export class Sprintactivities implements OnInit{
       })
   }
 
+  // helper function to get idstring from an array
+  getEmployeeIdStringFromArray(arr: any[], propertyNames: string[]):string {
+    let ids = arr.flatMap((element) => propertyNames.map((property) => element[property]));
+    let distinctids=  Array.from(new Set(ids)) //converted to set to remove duplicates;
+    let idString=distinctids.join(',');
+    console.log('🚀 ~ GetEmployeeIdFromArray ~ ids:', ids);
+    console.log("🚀 ~ GetEmployeeIdFromArray ~ distinctids:", distinctids);
+    console.log("🚀 ~ GetEmployeeIdFromArray ~ idString:", idString);
+    return idString;
+    // this.getEmployeeIdStringFromArray(this.empployeeWorks, ['assignedTo',"assignedBy"]);
+  }
+
 }
+
+
