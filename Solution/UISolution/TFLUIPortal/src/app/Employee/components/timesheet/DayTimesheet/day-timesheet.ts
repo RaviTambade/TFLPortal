@@ -6,8 +6,8 @@ import { TasksManagementService } from 'src/app/shared/services/TaskMgmt/tasks-m
 import { TimesheetService } from 'src/app/shared/services/Timesheet/timesheet.service';
 
 @Component({
-  selector: 'mytimesheet',
-  templateUrl: './mytimesheet.html',
+  selector: 'day-timesheet',
+  templateUrl: './day-timesheet.html',
 })
 export class MyTimesheet {
   timesheet: Timesheet = {

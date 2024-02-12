@@ -6,10 +6,10 @@ import { MembershipService } from 'src/app/shared/services/Membership/membership
 import { SprintService } from 'src/app/shared/services/ProjectMgmt/sprint.service';
 
 @Component({
-  selector: 'app-sprintactivities',
-  templateUrl: './sprintactivities.html',
+  selector: 'sprint-activity-list',
+  templateUrl: './activitylist.html',
 })
-export class Sprintactivities implements OnInit{
+export class ActivityList implements OnInit{
   constructor(private router:ActivatedRoute,private sprintSvc:SprintService,private membershipSvc:MembershipService){}
   sprintId:number=10;
   empployeeWorks:TaskModel[]=[];

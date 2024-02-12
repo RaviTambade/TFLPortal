@@ -10,7 +10,7 @@ import { Employeeprojectworkdetails } from './components/employeeprojectworkdeta
 import { EmployeeProjectWorks } from './components/employee-project-works/employee-project-works';
 import { ProjectItem } from './components/project-item/project-item';
 import { CurrentSprint } from './components/current-sprint/current-sprint';
-import { Sprintactivities } from './components/sprintactivities/sprintactivities';
+import { Sprintactivities } from './components/sprintactivities/activitylist';
 
  export const projectManagerRoutes: Routes = [
   { path: '', component:Projectmanager },
