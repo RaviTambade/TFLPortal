@@ -54,9 +54,9 @@ export class LeaveAnalyticsService {
     return this.http.get<MonthLeave[]>(url);
   }
 
-  getAnnualAvailableLeavesOfEmployee(id:number,roleId:number,year:number):Observable<LeavesCount>{
+  getAnnualAvailableLeavesOfEmployee(id:number,roleId:number,year:number):Observable<AnnualLeaves>{
     let url=`${this.leaveAPI}/annualavailable/employees/${id}/roles/${roleId}/year/${year}`;
-    return this.http.get<LeavesCount>(url);
+    return this.http.get<AnnualLeaves>(url);
   }
 
   getAnnualConsumedLeavesOfEmployee(id:number,year:number):Observable<AnnualLeaves>{

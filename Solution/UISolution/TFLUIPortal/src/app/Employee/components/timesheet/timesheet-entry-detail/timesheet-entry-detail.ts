@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TimesheetEntryModel } from 'src/app/shared/Models/Timesheetmgmt/TimesheetEntryModel';
+import { TimesheetEntryDetailsModel } from 'src/app/shared/Models/Timesheetmgmt/timesheetEntryDetailsModel';
 import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
 import { SprintService } from 'src/app/shared/services/ProjectMgmt/sprint.service';
 import { TasksManagementService } from 'src/app/shared/services/TaskMgmt/tasks-management.service';
@@ -11,23 +11,8 @@ import { TimesheetService } from 'src/app/shared/services/Timesheet/timesheet.se
 })
 export class TimesheetEntryDetail implements OnInit {
 
-  // timesheetEntry:TimesheetEntryModel={
-  //   id: 2,
-  //   taskId: 3,
-  //   fromTime: "10:20",
-  //   toTime: "11:20",
-  //   timesheetId: 1,
-  //   hours: 1,
-  //   taskTitle: "Login User",
-  //   taskType: 'Userstory',
-  //   Description: 'Add Login component',
-  //   projectId: 1,
-  //   sprintId: 1,
-  //   sprintTitle: 'Ekruhi sprint 1',
-  //   projectTitle: 'EKrushi'
-  // };
 
-  timesheetEntry:TimesheetEntryModel={
+  timesheetEntry:TimesheetEntryDetailsModel={
     id: 0,
     taskId: 0,
     fromTime: '',

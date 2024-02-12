@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { AnnualLeaves } from 'src/app/shared/Entities/Leavemgmt/AnnualLeaves';
-import { LeavesCount } from 'src/app/shared/Entities/Leavemgmt/LeavesCount';
 import { LeaveAnalyticsService } from 'src/app/shared/services/Leave/leaveanalytics.service';
 
 

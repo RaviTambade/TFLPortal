@@ -18,6 +18,7 @@ import { LeaveApplicationsList } from './components/LeaveMgmt/components/leave-a
 import { LeaveDetails} from './components/LeaveMgmt/components/leave-details/leave-details';
 import { Leaveallocations } from './components/LeaveMgmt/components/leaveallocations/leaveallocations';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { EmployeeAvailableLeaves } from './components/LeaveMgmt/components/employee-available-leaves/employee-available-leaves';
 
 export const hrRoutes: Routes = [
       {path:'leaveapplications', component:LeaveApplicationsList},
@@ -42,7 +43,8 @@ export const hrRoutes: Routes = [
     LeaveDisplay,
     LeaveApplicationsList,
     Leaveallocations,
-    Hrmanager
+    Hrmanager,
+    EmployeeAvailableLeaves
   ],
   imports: 
     [
@@ -56,7 +58,8 @@ export const hrRoutes: Routes = [
     LeaveApplicationsList,
     Salaryprocessing,
     AllEmployees,
-    LeaveDetails,
-    Hrmanager],
+    Hrmanager,
+    EmployeeAvailableLeaves
+  ],
 })
 export class HrmanagerModule {}

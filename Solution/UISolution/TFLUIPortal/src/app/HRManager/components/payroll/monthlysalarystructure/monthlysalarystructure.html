@@ -1,6 +1,4 @@
 <div *ngIf="salaryStructure">
-
-
     <div style="border:1px solid black">
         <div style='margin-bottom: 20px; margin-top: 20px; text-align: center;'>
             <img src='assets/tfl.jpeg' style='width:100px;height:100px;' />
@@ -31,7 +29,7 @@
                 <th>DOB :</th>
                 <td>{{salaryStructure.birthDate|date}}</td>
             </tr>
-            <employee-leaves [employeeId]="employeeId"></employee-leaves>
+            <!-- <employee-leaves [employeeId]="employeeId"></employee-leaves> -->
         </table>
         <br />
         <table>

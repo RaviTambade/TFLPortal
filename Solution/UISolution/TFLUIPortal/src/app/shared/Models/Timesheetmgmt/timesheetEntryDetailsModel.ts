@@ -1,7 +1,5 @@
 
-
-
-export class TimesheetEntryModel {
+export class TimesheetEntryDetailsModel {
 
     constructor(
         public id: number,
@@ -12,5 +10,11 @@ export class TimesheetEntryModel {
         public hours: number,
 
         public taskTitle:string,
+        public taskType:string,
+        public Description:string,
+        public projectId:number,
+        public sprintId:number,
+        public sprintTitle:string,
+        public projectTitle:string,
     ){}
 }
