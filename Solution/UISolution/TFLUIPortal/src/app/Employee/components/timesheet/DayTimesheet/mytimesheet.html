@@ -3,9 +3,9 @@
 <label class="d-block mb-2">Date: {{timesheet.createdOn| date}}</label>
 <label class="d-block mb-2">Status: {{timesheet.status | titlecase}}</label>
 
-<p class="mb-2"> <b>Total Hours: {{timesheet.totalHours |hourConvertor}} </b></p>
 
 <work-list [timesheetEntries]="timesheetEntries"></work-list>
+<p class="mb-2"> <b>Total Hours: {{timesheet.totalHours |hourConvertor}} </b></p>
 
 <!-- <ng-container *ngIf="timesheet && timesheetEntries.length > 0 ">
     <button class="btn btn-success" type="submit" (click)="onSubmit()">Submit</button>
