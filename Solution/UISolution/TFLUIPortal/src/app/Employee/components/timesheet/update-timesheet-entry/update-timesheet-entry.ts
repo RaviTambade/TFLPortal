@@ -6,6 +6,7 @@ import { Task } from 'src/app/shared/Entities/Projectmgmt/task';
 import { TimesheetEntry } from 'src/app/shared/Entities/Timesheetmgmt/timesheetEntry';
 import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
+import { SprintService } from 'src/app/shared/services/ProjectMgmt/sprint.service';
 import { TasksManagementService } from 'src/app/shared/services/TaskMgmt/tasks-management.service';
 import { TimesheetService } from 'src/app/shared/services/Timesheet/timesheet.service';
 
@@ -30,7 +31,8 @@ export class UpdateTimesheetEntry implements OnInit {
     private route: ActivatedRoute,
     private taskService:TasksManagementService,
     private router: Router,
-    private projectSvc: ProjectService
+    private projectSvc: ProjectService,
+    private sprintSvc: SprintService
   ) {}
 
   get taskDescription() {
@@ -66,7 +68,7 @@ export class UpdateTimesheetEntry implements OnInit {
   }
 
   onSprintChange() {
-    this.projectSvc
+    this.sprintSvc
       .getCurrentSprint(
         this.selectedProjectId,
         new Date().toISOString().slice(0, 10)

@@ -3,13 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
 import { TaskModel } from 'src/app/shared/Models/Projectmgmt/taskModel';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
+import { SprintService } from 'src/app/shared/services/ProjectMgmt/sprint.service';
 
 @Component({
   selector: 'app-sprintactivities',
   templateUrl: './sprintactivities.html',
 })
 export class Sprintactivities implements OnInit{
-  constructor(private router:ActivatedRoute,private sprintSvc:ProjectService,private membershipSvc:MembershipService){}
+  constructor(private router:ActivatedRoute,private sprintSvc:SprintService,private membershipSvc:MembershipService){}
   sprintId:number=10;
   empployeeWorks:TaskModel[]=[];
   ngOnInit(): void {

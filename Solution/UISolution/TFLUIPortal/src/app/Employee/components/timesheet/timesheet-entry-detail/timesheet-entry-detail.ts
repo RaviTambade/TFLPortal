@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TimesheetEntryModel } from 'src/app/shared/Models/Timesheetmgmt/TimesheetEntryModel';
 import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
+import { SprintService } from 'src/app/shared/services/ProjectMgmt/sprint.service';
 import { TasksManagementService } from 'src/app/shared/services/TaskMgmt/tasks-management.service';
 import { TimesheetService } from 'src/app/shared/services/Timesheet/timesheet.service';
 
@@ -45,7 +46,10 @@ export class TimesheetEntryDetail implements OnInit {
 
   constructor (private timesheetSvc:TimesheetService,
               private taskSvc:TasksManagementService,
-              private projectSvc:ProjectService){}
+              private projectSvc:ProjectService,
+              private SprintSvc:SprintService,
+
+              ){}
 
   ngOnInit(): void {
     this.timesheetSvc.getEntryOfTimesheet(this.timesheetEntryId).subscribe((entry)=>{
@@ -62,10 +66,10 @@ export class TimesheetEntryDetail implements OnInit {
         this.timesheetEntry.Description=task.description;
       });
 
-      this.projectSvc.getSprintTask(this.timesheetEntry.taskId).subscribe((sprintask)=>{
+      this.SprintSvc.getSprintTask(this.timesheetEntry.taskId).subscribe((sprintask)=>{
        this.timesheetEntry.sprintId=sprintask.sprintId;
  
-       this.projectSvc.getSprint(this.timesheetEntry.sprintId).subscribe((sprint)=>{
+       this.SprintSvc.getSprint(this.timesheetEntry.sprintId).subscribe((sprint)=>{
         this.timesheetEntry.sprintTitle=sprint.title;
         this.timesheetEntry.projectId=sprint.projectId;
 

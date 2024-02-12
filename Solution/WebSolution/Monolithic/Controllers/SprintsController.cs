@@ -7,7 +7,7 @@ using ProjectTask=TFLPortal.Models.Task;
 namespace TFLPortal.Controllers;
 
 [ApiController]
-[Route("/api/sprintmgmt")]
+[Route("/api/sprintsmgmt")]
 public class SprintsController : ControllerBase
 {
     private readonly ISprintAnalyticsService _analyticsSvc;

@@ -15,7 +15,6 @@ import { TaskModel } from '../../Models/Projectmgmt/taskModel';
 })
 export class ProjectService {
   projectApi: string = environment.projectAPI;
-  sprintApi: string = environment.sprintAPI;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -54,25 +53,5 @@ export class ProjectService {
     return this.httpClient.put<boolean>(url, member);
   }
 
-  getSprintsTasks(sprintId: number): Observable<TaskModel[]> {
-    let url = this.projectApi + '/projects/' + sprintId + '/tasks';
-    return this.httpClient.get<TaskModel[]>(url);
-  }
-
-  getCurrentSprint(projectId: number, date: string): Observable<Sprint> {
-    let url = `${this.projectApi}/projects/${projectId}/sprints/date/${date}`;
-    return this.httpClient.get<Sprint>(url);
-  }
-
-  getSprint(sprintId:number): Observable<Sprint> {
-    let url = `${this.projectApi}/projects/sprints/${sprintId}`;
-    return this.httpClient.get<Sprint>(url);
-  }
-
-  getSprintTask(taskId: number): Observable<SprintTask> {
-    let url = `${this.projectApi}/projects/sprints/tasks/${taskId}`;
-    return this.httpClient.get<SprintTask>(url);
-  }
-
-
+  
 }

@@ -1,0 +1,40 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { TaskModel } from '../../Models/Projectmgmt/taskModel';
+import { Observable } from 'rxjs';
+import { Sprint } from '../../Entities/Projectmgmt/sprint';
+import { SprintTask } from '../../Entities/Projectmgmt/sprintTask';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class SprintService {
+
+  constructor(private httpClient:HttpClient) { }
+
+  sprintApi: string = environment.sprintAPI;
+
+  getSprintsTasks(sprintId: number): Observable<TaskModel[]> {
+    let url = this.sprintApi + '/sprints/' + sprintId + '/tasks';
+    return this.httpClient.get<TaskModel[]>(url);
+  }
+
+  getCurrentSprint(projectId: number, date: string): Observable<Sprint> {
+    let url = this.sprintApi+'/project/'+projectId+'/sprints/date/'+date;
+    return this.httpClient.get<Sprint>(url);
+  }
+
+  getSprint(sprintId:number): Observable<Sprint> {
+    let url = `${this.sprintApi}/sprints/${sprintId}`;
+    return this.httpClient.get<Sprint>(url);
+  }
+
+  getSprintTask(taskId: number): Observable<SprintTask> {
+    let url = `${this.sprintApi}/sprints/tasks/${taskId}`;
+    return this.httpClient.get<SprintTask>(url);
+  }
+
+
+
+}

@@ -5,6 +5,7 @@ import { Task } from 'src/app/shared/Entities/Projectmgmt/task';
 import { TimesheetEntry } from 'src/app/shared/Entities/Timesheetmgmt/timesheetEntry';
 
 import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
+import { SprintService } from 'src/app/shared/services/ProjectMgmt/sprint.service';
 import { TasksManagementService } from 'src/app/shared/services/TaskMgmt/tasks-management.service';
 import { TimesheetService } from 'src/app/shared/services/Timesheet/timesheet.service';
 
@@ -41,7 +42,8 @@ export class NewDayTimesheet {
   constructor(
     private timesheetService: TimesheetService,
     private projectService: ProjectService,
-    private tasksService: TasksManagementService
+    private tasksService: TasksManagementService,
+    private SprintSvc:SprintService
   ) {}
 
   ngOnInit(): void {
@@ -58,7 +60,7 @@ export class NewDayTimesheet {
   }
 
   onSprintChange() {
-    this.projectService
+    this.SprintSvc
       .getCurrentSprint(this.selectedProjectId, '2024-01-12')
       .subscribe((res) => {
         console.log(res);
