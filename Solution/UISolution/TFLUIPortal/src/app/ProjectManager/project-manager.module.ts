@@ -10,7 +10,8 @@ import { Employeeprojectworkdetails } from './components/employeeprojectworkdeta
 import { EmployeeProjectWorks } from './components/employee-project-works/employee-project-works';
 import { ProjectItem } from './components/project-item/project-item';
 import { CurrentSprint } from './components/current-sprint/current-sprint';
-import { Sprintactivities } from './components/sprintactivities/activitylist';
+import { SprintDetails } from './components/sprint-details/sprint-details';
+import { ActivityList } from './components/sprintactivities/activitylist';
 
  export const projectManagerRoutes: Routes = [
   { path: '', component:Projectmanager },
@@ -31,9 +32,14 @@ import { Sprintactivities } from './components/sprintactivities/activitylist';
     EmployeeProjectWorks,
     MembersList,
     CurrentSprint,
-    Sprintactivities
+    ActivityList,
+    SprintDetails,
+
   ],
   imports: [CommonModule, RouterModule],
-  exports: [EmployeeProjectWorks, Employeeprojectworkdetails,CurrentSprint,Sprintactivities,MembersList],
+  exports: [EmployeeProjectWorks, Employeeprojectworkdetails,
+            CurrentSprint,ActivityList,
+            SprintDetails,
+            MembersList],
 })
 export class ProjectManagerModule {}

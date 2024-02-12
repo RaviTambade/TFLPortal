@@ -1,29 +1,10 @@
-<h2>Current Ongoing Sprints Details</h2>
-<div class="container" *ngFor="let sprint of sprints" >
-  <table class="table table-bordered">
-    <div >
-    <tr>
-        <th>SprintName :</th>
-        <td>{{sprint.title}}</td>
-    </tr>
-    <tr>
-        <th>SprintGoal :</th>
-        <td>{{sprint.goal}}</td>
-    </tr><tr>
-    <th>SprintStartdate :</th>
-    <td>{{sprint.startDate}}</td>
-   </tr>
-    <tr>
-        <th>SprintEndDate :</th>
-        <td>{{sprint.endDate}}</td>
-    </tr>
-   </div>
-   
-  </table>
+<h2>Current Sprint</h2>
+ <p>SprintName :{{sprint.title}}</p>
+ <p>SprintGoal :{{sprint.goal}}</p> 
+ <p>SprintStartdate :{{sprint.startDate}}</p> 
+ <p>SprintEndDate :{{sprint.endDate}}</p>
 
-  <!-- <div>
-    <button class="button button1" [routerLink]="['/projectmanager/projects/sprintActivities',sprint.id]">Show Sprint Activities</button>
-</div> -->
-</div>
+ 
+
 
 
