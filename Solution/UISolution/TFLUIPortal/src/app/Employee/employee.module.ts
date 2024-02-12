@@ -34,9 +34,9 @@ import { WorkList } from './components/timesheet/workList/workList';
 import { WorkItem } from './components/timesheet/workItem/WorkItem';
 
 
-import { ConsumedLeaves } from './components/leave/consumed-leaves/consumed-leaves';
 import { MemberList } from './components/member-list/member-list';
 import { MemberItem } from './components/member-item/member-item';
+import { ConsumedLeaves } from './components/leavemgmt/components/consumed-leaves/consumed-leaves';
 
 
 export const employeeRoutes: Routes = [

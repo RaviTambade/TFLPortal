@@ -10,6 +10,7 @@ export class EmployeeLeavesByDate implements OnInit {
 
   date:string="";
   leaveDetails:LeaveApplication[]=[];
+  
   constructor(private leaveService:LeaveAnalyticsService){}
   
   ngOnInit(): void {  

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AnnualLeaves } from 'src/app/shared/Entities/Leavemgmt/AnnualLeaves';
+import { LeaveCount } from 'src/app/shared/Entities/Leavemgmt/LeaveCount';
 import { LeaveAnalyticsService } from 'src/app/shared/services/Leave/leaveanalytics.service';
 
 @Component({
@@ -8,8 +8,7 @@ import { LeaveAnalyticsService } from 'src/app/shared/services/Leave/leaveanalyt
 })
 export class TotalLeave{
 
-  employeeId:number=12;
-  pendingLeave:AnnualLeaves |undefined;
+  annualLeaves:LeaveCount[]=[];
   year:number=2023;
   roleId:number=2;
 
@@ -17,8 +16,8 @@ export class TotalLeave{
   }
 
   ngOnInit(): void {
-    this.service.getAnnualConsumedLeavesOfEmployee(this.employeeId,this.year).subscribe((res)=>{
-      this.pendingLeave=res;
+    this.service.getAnnualLeavesOfRole(this.roleId,this.year).subscribe((res)=>{
+      this.annualLeaves=res;
       console.log(res);
     }) 
   }
