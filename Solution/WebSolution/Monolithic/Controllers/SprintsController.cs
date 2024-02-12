@@ -7,7 +7,7 @@ using ProjectTask=TFLPortal.Models.Task;
 namespace TFLPortal.Controllers;
 
 [ApiController]
-[Route("/api/sprintsmgmt")]
+[Route("/api/sprints")]
 public class SprintsController : ControllerBase
 {
     private readonly ISprintAnalyticsService _analyticsSvc;
@@ -28,7 +28,7 @@ public class SprintsController : ControllerBase
         return await _analyticsSvc.GetSprints(projectId);
     }
 
-    [HttpGet("sprints/{sprintId}")]
+    [HttpGet("{sprintId}")]
     public async Task<Sprint> GetSprint(int sprintId)
     {
         return await _analyticsSvc.GetSprint(sprintId);
@@ -43,14 +43,14 @@ public class SprintsController : ControllerBase
     }
 
     [Authorize(RoleTypes.ProjectManager)]
-    [HttpGet("sprints/{sprintId}/tasks")]
+    [HttpGet("{sprintId}/tasks")]
     public async Task<List<ProjectTask>> GetSprintTasks(int sprintId)
     {
         List<ProjectTask> tasks = await _analyticsSvc.GetSprintTasks(sprintId);
         return tasks;
     }
 
-   [HttpGet("sprints/tasks/{taskId}")]
+   [HttpGet("tasks/{taskId}")]
    public async Task<SprintTask> GetSprintOfTask(int taskId)
    {
     return await _analyticsSvc.GetSprintOfTask(taskId);

@@ -16,7 +16,7 @@ export class SprintService {
   sprintApi: string = environment.sprintAPI;
 
   getSprintsTasks(sprintId: number): Observable<TaskModel[]> {
-    let url = this.sprintApi + '/sprints/' + sprintId + '/tasks';
+    let url = this.sprintApi +"/"+ sprintId + '/tasks';
     return this.httpClient.get<TaskModel[]>(url);
   }
 
@@ -26,12 +26,12 @@ export class SprintService {
   }
 
   getSprint(sprintId:number): Observable<Sprint> {
-    let url = `${this.sprintApi}/sprints/${sprintId}`;
+    let url = `${this.sprintApi}/${sprintId}`;
     return this.httpClient.get<Sprint>(url);
   }
 
   getSprintTask(taskId: number): Observable<SprintTask> {
-    let url = `${this.sprintApi}/sprints/tasks/${taskId}`;
+    let url = `${this.sprintApi}/tasks/${taskId}`;
     return this.httpClient.get<SprintTask>(url);
   }
 
