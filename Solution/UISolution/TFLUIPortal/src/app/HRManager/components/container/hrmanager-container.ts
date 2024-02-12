@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'hrmanager',
-  templateUrl: './hrmanager.html',
+  templateUrl: './hrmanager-container.html',
 })
-export class Hrmanager {
+export class HRManagerContainer {
 
 }

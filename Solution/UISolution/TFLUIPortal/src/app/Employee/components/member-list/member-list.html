@@ -1,4 +1,4 @@
-<h2 >Members</h2>
+<h2 >Project Members</h2>
 <div>
 <table class="table table-bordered">
     <thead>
@@ -9,13 +9,11 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let employee of employees">
-            <td>{{employee.fullName}}</td>
-            <td>{{employee.title}}</td>
-            <td>{{employee.assignedOn|date :('yyyy-MM-dd')}}</td>
+        <tr *ngFor="let member of members">
+            <td>{{member.fullName}}</td>
+            <td>{{member.title}}</td>
+            <td>{{member.assignedOn|date :('yyyy-MM-dd')}}</td>
           </tr>
     </tbody>
 </table>
-
-
 </div>

@@ -3,43 +3,42 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
  
  
-import { Projectmanager } from './components/projectmanager/projectmanager';
+import { ProjectManagerContainer } from './components/container/projectmanager-container';
 import { ProjectList } from './components/project-list/project-list';
-import { MembersList } from './components/members-list/members-list';
-import { Employeeprojectworkdetails } from './components/employeeprojectworkdetails/employeeprojectworkdetails';
-import { EmployeeProjectWorks } from './components/employee-project-works/employee-project-works';
+import { MemberList } from './components/member-list/member-list';
+import {ProjectworkItem } from './components/project-work-Item/project-work-item';
+import { ProjectWorkList } from './components/project-work-list/project-work-list';
 import { ProjectItem } from './components/project-item/project-item';
 import { CurrentSprint } from './components/current-sprint/current-sprint';
 import { SprintDetails } from './components/sprint-details/sprint-details';
 import { ActivityList } from './components/sprintactivities/activitylist';
+import { MemberItem } from './components/member-item/member-item';
 
  export const projectManagerRoutes: Routes = [
-  { path: '', component:Projectmanager },
-  { path: 'myProject', component: ProjectList },
-  { path: 'members/:id', component:MembersList}
+  { path: '', component:ProjectManagerContainer },
+  { path: 'projects', component: ProjectList },
+  { path: 'projects/:id', component: ProjectItem },
+  { path: 'members/:id', component:MemberItem}
   ];
 
 
 @NgModule({
   declarations: [
-    // TimesheetComponent,
-    Projectmanager,
-    EmployeeProjectWorks,
-    Employeeprojectworkdetails,
+    ProjectManagerContainer,
     ProjectList,
     ProjectItem,
-    MembersList,
-    EmployeeProjectWorks,
-    MembersList,
+    MemberList,
+    MemberItem,
+    ProjectWorkList,
+    ProjectworkItem,
     CurrentSprint,
-    ActivityList,
     SprintDetails,
-
+    ActivityList,
   ],
   imports: [CommonModule, RouterModule],
-  exports: [EmployeeProjectWorks, Employeeprojectworkdetails,
+  exports: [ProjectWorkList, ProjectworkItem,
             CurrentSprint,ActivityList,
             SprintDetails,
-            MembersList],
+            MemberList,MemberItem],
 })
 export class ProjectManagerModule {}

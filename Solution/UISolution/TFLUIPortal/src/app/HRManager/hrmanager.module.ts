@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { Events } from './components/events/events';
+ 
 import { PayrollComponent } from './components/payroll/payroll';
 import { PerformenceApprisal } from './components/performence-apprisal/performence-apprisal';
 import { Project } from './components/project/project';
@@ -12,7 +12,7 @@ import { EmployeeLeaves} from './components/payroll/employee-leaves/employee-lea
 import { PaidEmployeeDetails } from './components/payroll/paid-employee-details/paid-employee-details';
 import { LeaveDisplay } from './components/leave-display/leave-display';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Hrmanager } from './components/hrmanager/hrmanager';
+import { HRManagerContainer } from './components/container/hrmanager-container';
 import { Dashboard } from './components/dashboard/dashboard';
 import { LeaveApplicationsList } from './components/LeaveMgmt/components/leave-applications-List/LeaveApplicationsList';
 import { LeaveDetails} from './components/LeaveMgmt/components/leave-details/leave-details';
@@ -29,37 +29,36 @@ export const hrRoutes: Routes = [
 
 @NgModule({
   declarations: [
-    LeaveDetails,
+    HRManagerContainer,
     Dashboard,
+    AllEmployees,
     Project,
-    PayrollComponent,
-    Events,
     PerformenceApprisal,
+    PayrollComponent,
     Salaryprocessing,
     Monthlysalarystructure,
-    AllEmployees,
     EmployeeLeaves,
     PaidEmployeeDetails,
+    LeaveDetails,
     LeaveDisplay,
     LeaveApplicationsList,
     Leaveallocations,
-    Hrmanager,
     EmployeeAvailableLeaves
   ],
   imports: 
     [
-       CommonModule,
+        CommonModule,
         RouterModule,
+        FormsModule,
         ReactiveFormsModule,
-        SharedModule,
-        FormsModule
+        SharedModule
   ],
   exports: [
-    LeaveApplicationsList,
+    HRManagerContainer,
     Salaryprocessing,
     AllEmployees,
-    Hrmanager,
-    EmployeeAvailableLeaves
+    EmployeeAvailableLeaves,
+    LeaveApplicationsList,   
   ],
 })
-export class HrmanagerModule {}
+export class HRManagerModule {}

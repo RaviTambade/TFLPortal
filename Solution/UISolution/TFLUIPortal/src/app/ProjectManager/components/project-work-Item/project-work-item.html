@@ -1,0 +1,13 @@
+<div class="container">
+    <h2> Project Work</h2>
+        <div *ngIf="task">
+            
+                <p>AssignedDate: {{task.assignedOn|date}}</p>
+                <p>Status: {{task.status}} </p>
+                <p>Description</p>
+                <p>ProjectWorkType : {{task.taskType}}</p>
+                <p>AssignedBy :{{task.assignedBy}}</p>
+                <p>assignedTo: {{task.assignedTo}}</p>
+                <p>DueDate : {{task.dueDate|date}}</p>
+            </div>  
+</div>

@@ -4,20 +4,21 @@ import { Task } from 'src/app/shared/Entities/Projectmgmt/task';
 import { TasksManagementService } from 'src/app/shared/services/TaskMgmt/tasks-management.service';
 
 @Component({
-  selector: 'employeeprojectworkdetails',
-  templateUrl: './employeeprojectworkdetails.html',
+  selector: 'project-work-item',
+  templateUrl: './project-work-item.html',
 })
-export class Employeeprojectworkdetails implements OnInit {
-  constructor(private router:ActivatedRoute,private taskService:TasksManagementService){}
-  taskId:number=51;
+export class ProjectworkItem implements OnInit {
+   taskId:number=51;
   task:Task|undefined;
+  
+  constructor(private router:ActivatedRoute,private taskService:TasksManagementService){}
+ 
+
   ngOnInit(): void {
-    
     console.log(this.taskId);
     this.taskService.getTaskDetails(this.taskId).subscribe((res)=>{
       this.task=res;
        console.log(res);
     })
   }
-
 }

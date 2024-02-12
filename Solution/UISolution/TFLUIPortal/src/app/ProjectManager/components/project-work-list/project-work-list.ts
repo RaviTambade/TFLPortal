@@ -4,10 +4,10 @@ import { Task } from 'src/app/shared/Entities/Projectmgmt/task';
 import { TasksManagementService } from 'src/app/shared/services/TaskMgmt/tasks-management.service';
 
 @Component({
-  selector: 'employee-project-works',
-  templateUrl: './employee-project-works.html',
+  selector: 'project-work-list',
+  templateUrl: './project-work-list.html',
 })
-export class EmployeeProjectWorks implements OnInit{
+export class ProjectWorkList implements OnInit{
 
   constructor(private router:ActivatedRoute,private taskService:TasksManagementService){}
   employeeworks:Task[]=[];

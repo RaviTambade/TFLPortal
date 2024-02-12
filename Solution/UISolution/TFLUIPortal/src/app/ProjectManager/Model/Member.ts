@@ -1,4 +1,4 @@
-export class ProjectEmployees{
+export class Member{
     constructor(
        public   fullName:string,
        public   title:string,

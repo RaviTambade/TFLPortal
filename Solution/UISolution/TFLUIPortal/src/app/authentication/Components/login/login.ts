@@ -88,18 +88,19 @@ export class Login {
   }
 
   navigateByRole(role: string) {
+
       switch (role) {
         case Role.Employee:
-          this.router.navigate(['/employee']);
-          break;
-        case Role.HRManager:
-          this.router.navigate(['/hrmanager']);
+          this.router.navigate(['/employees']);
           break;
         case Role.Director:
-          this.router.navigate(['/director']);
+          this.router.navigate(['/directors']);
+          break;
+        case Role.HRManager:
+          this.router.navigate(['/hrmanagers']);
           break;
         case Role.ProjectManager:
-          this.router.navigate(['/projectmanager']);
+          this.router.navigate(['/prjmanagers']);
           break;
       }
       // this.layoutSvc.onSucess();
