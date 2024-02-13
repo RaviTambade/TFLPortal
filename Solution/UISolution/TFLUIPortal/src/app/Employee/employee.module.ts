@@ -39,7 +39,7 @@ import { MemberItem } from './components/member-item/member-item';
 import { ConsumedLeaves } from './components/leavemgmt/components/consumed-leaves/consumed-leaves';
 
 
-export const employeeRoutes: Routes = [
+const employeeRoutes: Routes = [
   { path: '', component:EmployeeContainer },
   { path: 'members', component: MemberList },
   { path: 'members/:id', component:MemberItem}
@@ -78,7 +78,7 @@ export const employeeRoutes: Routes = [
     ReactiveFormsModule,
     SharedModule,
     FormsModule,
-    RouterModule
+    RouterModule.forChild(employeeRoutes)
   ],
   exports: [
     TimesheetDetails,

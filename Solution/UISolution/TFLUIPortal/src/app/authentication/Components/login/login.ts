@@ -7,6 +7,7 @@ import { TokenClaims } from 'src/app/shared/enums/tokenclaims'
 import { Credential } from 'src/app/shared/Entities/UserMgmt/credential';
 import { AuthService } from '../../services/auth.service';
 import { JwtService } from 'src/app/shared/services/JwtHelperService/jwt.service';
+import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 ;
 
 @Component({
@@ -76,6 +77,7 @@ export class Login {
           }, 3000);
         }
         if (response.token != '') {
+          localStorage.setItem(LocalStorageKeys.jwt,response.token );
           let role = this.jwtSvc.getClaimFromToken(TokenClaims.role);
           this.navigateByRole(role);
         }

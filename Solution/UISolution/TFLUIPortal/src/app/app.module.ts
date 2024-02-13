@@ -5,12 +5,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthenticationModule } from './authentication/authentication.module';
-import { EmployeeModule, employeeRoutes } from './Employee/employee.module';
-import { HRManagerModule } from './HRManager/hrmanager.module';
-import { ProjectManagerModule } from './ProjectManager/project-manager.module';
+// import { EmployeeModule} from './Employee/employee.module';
 
 import { AppComponent } from './app.component';
-import { SPAModule } from './SPA/spa.module';
+import { SPAModule } from './spa/spa.module';
+import { HRManagerModule } from './HRManager/hrmanager.module';
+import { ProjectManagerModule } from './ProjectManager/project-manager.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +27,7 @@ import { SPAModule } from './SPA/spa.module';
     AuthenticationModule,
     HRManagerModule,
     ProjectManagerModule,
-    EmployeeModule
+    // EmployeeModule
   ],
 
   providers: [ ],
