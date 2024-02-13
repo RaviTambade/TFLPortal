@@ -21,7 +21,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { EmployeeAvailableLeaves } from './components/LeaveMgmt/components/employee-available-leaves/employee-available-leaves';
 import { TotalLeave } from './components/LeaveMgmt/components/total-leave/total-leave';
 
-export const hrRoutes: Routes = [
+ const hrRoutes: Routes = [
       {path:'leaveapplications', component:LeaveApplicationsList},
       {path:'hrmanager2', component:Dashboard},
       {path:'hrmanager3', component:Dashboard}

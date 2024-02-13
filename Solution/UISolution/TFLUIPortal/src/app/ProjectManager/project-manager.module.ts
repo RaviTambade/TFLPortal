@@ -13,7 +13,7 @@ import { ActivityList } from './components/sprintactivities/activitylist';
  
 
 
- export const projectManagerRoutes: Routes = [
+  const projectManagerRoutes: Routes = [
   { path: '', component:ProjectManagerContainer },
   { path: 'projects', component: ProjectList },
   { path: 'projects/:id', component: ProjectItem },
@@ -31,7 +31,10 @@ import { ActivityList } from './components/sprintactivities/activitylist';
     CurrentSprint,
     ActivityList,
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [
+           CommonModule, 
+           RouterModule.forChild(projectManagerRoutes)
+          ],
   exports: [ProjectWorkList, ProjectworkItem,
             CurrentSprint,ActivityList,
             MemberList],

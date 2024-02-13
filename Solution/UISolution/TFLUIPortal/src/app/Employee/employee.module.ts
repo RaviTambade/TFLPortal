@@ -69,6 +69,7 @@ const employeeRoutes: Routes = [
     TaskWorkUtilization,
     TimesheetEntryDetail
   ],
+
   imports: [
     CommonModule,
     RouterModule,
@@ -77,6 +78,7 @@ const employeeRoutes: Routes = [
     FormsModule,
     RouterModule.forChild(employeeRoutes)
   ],
+  
   exports: [
     TimesheetDetails,
     TimesheetList,
@@ -92,4 +94,5 @@ const employeeRoutes: Routes = [
     TimesheetEntryDetail
   ],
 })
+
 export class EmployeeModule {}

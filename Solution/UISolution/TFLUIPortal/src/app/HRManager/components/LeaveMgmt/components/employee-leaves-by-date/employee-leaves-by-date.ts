@@ -6,6 +6,7 @@ import { LeaveAnalyticsService } from 'src/app/shared/services/Leave/leaveanalyt
   selector: 'employee-leaves-by-date',
   templateUrl: './employee-leaves-by-date.html',
 })
+
 export class EmployeeLeavesByDate implements OnInit {
 
   date:string="";

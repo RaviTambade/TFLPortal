@@ -9,8 +9,8 @@ import { AuthenticationModule } from './authentication/authentication.module';
 
 import { AppComponent } from './app.component';
 import { SPAModule } from './spa/spa.module';
-import { HRManagerModule } from './HRManager/hrmanager.module';
-import { ProjectManagerModule } from './ProjectManager/project-manager.module';
+import { HRManagerModule } from './hrmanager/hrmanager.module';
+import { ProjectManagerModule } from './projectmanager/project-manager.module';
 
 @NgModule({
   declarations: [AppComponent],
