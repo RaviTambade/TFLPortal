@@ -10,7 +10,8 @@ const routes: Routes = [
   { path:'directors', loadChildren : () => import('../director/director.module').then(m=>m.DirectorModule)},
   { path: 'employees', loadChildren : () => import('../employee/employee.module').then(m=>m.EmployeeModule)},
   { path: 'auth', loadChildren: () => import('../authentication/authentication.module').then(m=>m.AuthenticationModule)},
-  {path:'',component:Home}
+  {path:'',component:Home},
+  {path:'home',component:Home}
  ];
  
 @NgModule({

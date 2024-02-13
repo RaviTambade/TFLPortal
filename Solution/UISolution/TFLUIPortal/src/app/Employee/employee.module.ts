@@ -36,6 +36,8 @@ import { WorkItem } from './components/timesheet/workItem/WorkItem';
 
 import { ConsumedLeaves } from './components/leavemgmt/components/consumed-leaves/consumed-leaves';
 import { MemberList } from './components/member-list/member-list';
+import { VerticalBar } from './components/verticalbar/verticalbar';
+import { HorizontalBar } from './components/horizontalbar/horizontalbar';
 
 
 const employeeRoutes: Routes = [
@@ -46,6 +48,8 @@ const employeeRoutes: Routes = [
 
 @NgModule({
   declarations: [
+    HorizontalBar,
+    VerticalBar,
     Dashboard,
     Payroll,
     PerformenceApprisal,
