@@ -22,9 +22,7 @@ import { EmployeeAvailableLeaves } from './components/LeaveMgmt/components/emplo
 import { TotalLeave } from './components/LeaveMgmt/components/total-leave/total-leave';
 
  const hrRoutes: Routes = [
-      {path:'leaveapplications', component:LeaveApplicationsList},
-      {path:'hrmanager2', component:Dashboard},
-      {path:'hrmanager3', component:Dashboard}
+      {path:'', component:HRManagerContainer},
      
 ];
 
