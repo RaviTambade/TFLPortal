@@ -8,4 +8,4 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [UserProfile, UpdateProfile],
   imports: [CommonModule, ReactiveFormsModule],
 })
-export class UserProfileModule {}
+export class PersonaliztionModule {}
