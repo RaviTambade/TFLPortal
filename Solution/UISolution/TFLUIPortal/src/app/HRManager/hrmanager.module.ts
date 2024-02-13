@@ -50,7 +50,7 @@ export const hrRoutes: Routes = [
   imports: 
     [
         CommonModule,
-        RouterModule,
+        RouterModule.forChild(hrRoutes),
         FormsModule,
         ReactiveFormsModule,
         SharedModule
