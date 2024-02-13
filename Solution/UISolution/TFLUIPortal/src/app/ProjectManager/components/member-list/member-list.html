@@ -1,19 +1,9 @@
+
+
+
 <h2 >Project Members</h2>
-<div>
-        <table class="table table-bordered">
-            <thead><tr>
-                        <th>FullName</th>
-                        <th>Role</th>
-                    <!-- <th>Assigned Date</th> -->
-                    </tr>
-            </thead>
-            
-            <tbody>
-                <tr *ngFor="let member of members">
-                    <td>{{member.fullName}}</td>
-                    <td>{{member.title}}</td>
-                    <td>{{member.assignedOn|date :('yyyy-MM-dd')}}</td>
-                </tr>
-            </tbody>
-        </table>
+<div *ngFor="let member of members">
+    <p>FullName : {{member.fullName}}</p>
+    <p>Role: {{member.title}}</p>
+    <p>AssignDate: {{member.assignedOn|date :('yyyy-MM-dd')}}</p>
 </div>
