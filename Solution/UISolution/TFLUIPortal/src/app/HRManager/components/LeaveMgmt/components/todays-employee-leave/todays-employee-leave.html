@@ -1,15 +1,13 @@
 <h3>Todays employees on Leave </h3>
-<div *ngFor="let leave of leaves">
-    <!-- <p>Name:</p> -->
+<!-- <div *ngFor="let leave of leaves">
     <P style="cursor: pointer; text-decoration: underline ; color:  #0000EE;" [routerLink]="['/hrmanager/leave/applied/detail',leave.id]">{{leave.fullName}}</P>
 </div>
-<router-outlet></router-outlet>
-<!-- <div>
+<router-outlet></router-outlet> -->
+<div>
     <div class="card col-6">
     <table class="table-bordered text-center">
             <thead>
                 <tr>
-                    <th>Name</th>
                     <th>Application Date</th>
                     <th>From Date</th>
                     <th>To Date</th> 
@@ -19,8 +17,7 @@
             </thead>
             <tbody >
                 <tr *ngFor="let leave of leaves">
-                    <td>{{leave.fullName}}</td>
-                    <td>{{leave.applicationDate|date }}</td>
+                    <td>{{leave.createdOn|date }}</td>
                     <td>{{leave.fromDate|date }}</td>
                     <td>{{leave.toDate|date }}</td> 
                     <td>{{leave.status}}</td> 
@@ -29,4 +26,4 @@
             </tbody>   
     </table>  
     </div>
-</div> -->
+</div>

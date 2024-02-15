@@ -70,7 +70,7 @@ public class LeavesManagementController : ControllerBase
     [Authorize(RoleTypes.HRManager)]
     [HttpGet]
     [Route ("applications/date/{date}")]
-    public async Task<List<LeaveApplication>> GetLeaveApplications(string date)
+    public async Task<List<LeaveApplication>> GetLeaveApplications(DateOnly date)
     {
         List<LeaveApplication> leaves =await _analyticService.GetLeaveApplications(date);
         return leaves;

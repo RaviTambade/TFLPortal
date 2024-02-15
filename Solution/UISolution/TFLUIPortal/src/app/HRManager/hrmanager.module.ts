@@ -20,6 +20,7 @@ import { Leaveallocations } from './components/LeaveMgmt/components/leaveallocat
 import { SharedModule } from 'src/app/shared/shared.module';
 import { EmployeeAvailableLeaves } from './components/LeaveMgmt/components/employee-available-leaves/employee-available-leaves';
 import { TotalLeave } from './components/LeaveMgmt/components/total-leave/total-leave';
+import { TodaysEmployeeLeave } from './components/LeaveMgmt/components/todays-employee-leave/todays-employee-leave';
 
  const hrRoutes: Routes = [
       {path:'', component:HRManagerContainer},
@@ -43,7 +44,8 @@ import { TotalLeave } from './components/LeaveMgmt/components/total-leave/total-
     LeaveApplicationsList,
     Leaveallocations,
     EmployeeAvailableLeaves,
-    TotalLeave
+    TotalLeave,
+    TodaysEmployeeLeave
   ],
   imports: 
     [
@@ -59,7 +61,8 @@ import { TotalLeave } from './components/LeaveMgmt/components/total-leave/total-
     AllEmployees,
     EmployeeAvailableLeaves,
     LeaveApplicationsList,  
-    TotalLeave 
+    TotalLeave,
+    TodaysEmployeeLeave
   ],
 })
 export class HRManagerModule {}

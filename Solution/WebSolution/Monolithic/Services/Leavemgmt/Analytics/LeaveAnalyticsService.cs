@@ -3,7 +3,6 @@ using MySql.Data.MySqlClient;
 using TFLPortal.Models;
 using TFLPortal.Responses;
 
-
 namespace TFLPortal.Services.LeaveMgmt.Analytics;
 
 public class LeaveAnalyticsService : ILeaveAnalyticsService
@@ -254,7 +253,7 @@ public class LeaveAnalyticsService : ILeaveAnalyticsService
             string query = "select * from leaveapplications where status=@status and fromdate<=@formateddate and todate>=@formateddate";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@status", "sanctioned");
-            command.Parameters.AddWithValue("@date", formateddate);
+            command.Parameters.AddWithValue("@formateddate", formateddate);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())

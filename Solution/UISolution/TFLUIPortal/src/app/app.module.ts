@@ -8,6 +8,7 @@ import { AuthenticationModule } from './authentication/authentication.module';
 
 import { AppComponent } from './app.component';
 import { SPAModule } from './spa/spa.module';
+import { HRManagerModule } from './hrmanager/hrmanager.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +23,7 @@ import { SPAModule } from './spa/spa.module';
       },
     }),
     AuthenticationModule,
+    HRManagerModule
   ],
 
   providers: [ ],

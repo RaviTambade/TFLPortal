@@ -1,5 +1,5 @@
 
--- Active: 1694968636816@@127.0.0.1@3306@tflportal
+-- Active: 1705924796699@@127.0.0.1@3306@tflportal
 
 -- director
 INSERT INTO employees(id,hiredon,reportingid) VALUES (1,'2013-01-01',1);
@@ -60,6 +60,7 @@ Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavet
 Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(18,'2024-12-12','2024-12-15','2024-12-18',"applied","casual");
 Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(19,'2024-01-15','2024-01-17','2024-01-17',"sanctioned","casual");
 Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(18,'2024-01-14','2024-01-17','2024-01-17',"sanctioned","casual");
+Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(18,'2024-02-14','2024-02-15','2024-02-15',"sanctioned","casual");
 
 
 -- Insert Into salarystructures(employeeid,basicsalary,hra,da,lta,variablepay) values(1,30000,3000,200,300,200);
