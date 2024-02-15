@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-// import { LayoutService } from 'src/app/layout/Services/layout.service';
+import { LayoutService } from 'src/app/layout/Services/layout.service';
 import { Role } from 'src/app/shared/enums/role';
 import { TokenClaims } from 'src/app/shared/enums/tokenclaims'
 import { Credential } from 'src/app/shared/Entities/UserMgmt/credential';
@@ -25,8 +25,7 @@ export class Login {
     private authSvc: AuthService,
     private router: Router,
     private jwtSvc: JwtService,
-
-    // private layoutSvc: LayoutService
+    private layoutSvc: LayoutService
   ) {}
 
   ngOnInit(): void {
@@ -105,7 +104,7 @@ export class Login {
           this.router.navigate(['/prjmanagers']);
           break;
       }
-      // this.layoutSvc.onSucess();
+      this.layoutSvc.onSucess();
     // });
   }
 }

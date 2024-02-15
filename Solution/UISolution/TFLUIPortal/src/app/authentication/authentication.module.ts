@@ -10,7 +10,7 @@ import { NewUserComponent } from './Components/new-user/new-user';
 import { AuthService } from './services/auth.service';
 
 
- export const authRoutes:Routes=[
+ const authRoutes:Routes=[
   { path: 'login', component: Login },
 ]
 
@@ -24,7 +24,7 @@ import { AuthService } from './services/auth.service';
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,RouterModule.forChild(authRoutes)
   ],
   exports:[Login],
   

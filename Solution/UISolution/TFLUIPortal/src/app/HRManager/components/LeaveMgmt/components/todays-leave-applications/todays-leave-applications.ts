@@ -3,10 +3,10 @@ import { LeaveApplication } from 'src/app/shared/Entities/Leavemgmt/LeaveApplica
 import { LeaveAnalyticsService } from 'src/app/shared/services/Leave/leaveanalytics.service';
 
 @Component({
-  selector: 'todays-employee-leave',
-  templateUrl: './todays-employee-leave.html',
+  selector: 'todays-leave-applications',
+  templateUrl: './todays-leave-applications.html',
 })
-export class TodaysEmployeeLeave {
+export class TodaysLeaveApplications {
 
   date:string=new Date().toISOString().slice(0,10);
   leaves:LeaveApplication[]=[];

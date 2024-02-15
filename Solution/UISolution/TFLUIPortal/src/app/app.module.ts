@@ -8,6 +8,7 @@ import { AuthenticationModule } from './authentication/authentication.module';
 
 import { AppComponent } from './app.component';
 import { SPAModule } from './spa/spa.module';
+import { LayoutModule } from './layout/layout.module';
 import { HRManagerModule } from './hrmanager/hrmanager.module';
 
 @NgModule({
@@ -23,7 +24,8 @@ import { HRManagerModule } from './hrmanager/hrmanager.module';
       },
     }),
     AuthenticationModule,
-    HRManagerModule
+    HRManagerModule,
+    LayoutModule
   ],
 
   providers: [ ],
