@@ -2,6 +2,7 @@ using MySql.Data.MySqlClient;
 using TFLPortal.Models;
 using Microsoft.Extensions.Configuration;
 using System.Text.Json;
+using TFLPortal.Helpers;
 
 namespace TFLPortal.Services.HRMgmt.Analytics;
 
@@ -132,9 +133,20 @@ public class HRAnalyticsService : IHRAnalyticsService
         return employees;
     }
 
-    public List<InOutTimeRecord> GetTimeRecords(int employeeId)
+    public List<InOutTimeRecord> GetTimeRecords()
     {
-        List<InOutTimeRecord> timeRecords = JsonSerializer.Deserialize<List<InOutTimeRecord>>(jsonFile, new JsonSerializerOptions{IncludeFields=true});
+        JsonRepositoryManager manager =new JsonRepositoryManager();
+        List<InOutTimeRecord> timeRecords= manager.DeSerialize<List<InOutTimeRecord>>(jsonFile);
+        CsvRepositoryManager csvRepositoryManager=new CsvRepositoryManager();
+        csvRepositoryManager.GenerateCSVFile(timeRecords,"mycsv");
+        return timeRecords;
+    }
+
+     public List<InOutTimeRecord> GetTimeRecords(int employeeId)
+    {
+        JsonRepositoryManager manager =new JsonRepositoryManager();
+        var timeRecords= manager.DeSerialize<List<InOutTimeRecord>>(jsonFile);
+
         return timeRecords.Where(t => t.EmployeeId == employeeId).ToList();
     }
 }

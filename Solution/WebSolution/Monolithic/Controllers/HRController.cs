@@ -51,7 +51,13 @@ public class HRController : ControllerBase
         _operationsSvc.AddEntry(timeRecord);
     }
 
-    [HttpGet("timeentries")]
+    [HttpGet("timerecords")]
+     public List<InOutTimeRecord> GetTimeRecords()
+    {
+        return _hrService.GetTimeRecords();
+    }
+
+    [HttpGet("{employeeId}/timerecords")]
      public List<InOutTimeRecord> GetTimeRecords(int employeeId)
     {
         return _hrService.GetTimeRecords(employeeId);

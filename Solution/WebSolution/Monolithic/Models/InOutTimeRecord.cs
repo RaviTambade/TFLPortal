@@ -1,6 +1,6 @@
 
 namespace TFLPortal.Models;
-
+[Serializable]
 public class InOutTimeRecord
 {
     public DateTime WorkingDate { get; set; }
