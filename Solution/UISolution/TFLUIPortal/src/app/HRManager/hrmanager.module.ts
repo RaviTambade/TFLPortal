@@ -45,7 +45,7 @@ import { TodaysLeaveApplications } from './components/LeaveMgmt/components/today
     Leaveallocations,
     EmployeeAvailableLeaves,
     TotalLeave,
-    TodaysLeaveApplications
+    TodaysLeaveApplications,
   ],
   imports: 
     [
@@ -62,7 +62,7 @@ import { TodaysLeaveApplications } from './components/LeaveMgmt/components/today
     EmployeeAvailableLeaves,
     LeaveApplicationsList,  
     TotalLeave,
-    TodaysLeaveApplications
+    TodaysLeaveApplications,
   ],
 })
 export class HRManagerModule {}
