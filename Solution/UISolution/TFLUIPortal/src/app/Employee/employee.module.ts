@@ -39,6 +39,7 @@ import { MemberList } from './components/member-list/member-list';
 import { VerticalBar } from './components/verticalbar/verticalbar';
 import { HorizontalBar } from './components/horizontalbar/horizontalbar';
 import { InOutTimeRecorder } from './components/in-out-time-recorder/in-out-time-recorder';
+import { WorkRecord } from './components/work-record/work-record';
 
 
 const employeeRoutes: Routes = [
@@ -73,7 +74,8 @@ const employeeRoutes: Routes = [
     ConsumedLeaves,
     TaskWorkUtilization,
     TimesheetEntryDetail,
-    InOutTimeRecorder
+    InOutTimeRecorder,
+    WorkRecord
   ],
 
   imports: [
@@ -98,7 +100,8 @@ const employeeRoutes: Routes = [
     ConsumedLeaves,
     ProjectContainer,
     TimesheetEntryDetail,
-    InOutTimeRecorder
+    InOutTimeRecorder,
+    WorkRecord
   ],
 })
 

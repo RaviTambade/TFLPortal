@@ -31,4 +31,9 @@ export class HrService {
     let url = `${this.HrAPI}/addentry`;
     return this.httpClient.post<any>(url,InOutTime);
   }
+
+  workRecords(employeeId:number ): Observable<any> {
+    let url = `${this.HrAPI}/${employeeId}/timerecords`;
+    return this.httpClient.get<any>(url);
+  }
 }
