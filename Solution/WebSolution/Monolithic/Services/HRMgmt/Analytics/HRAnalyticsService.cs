@@ -146,7 +146,9 @@ public class HRAnalyticsService : IHRAnalyticsService
     {
         JsonRepositoryManager manager =new JsonRepositoryManager();
         var timeRecords= manager.DeSerialize<List<InOutTimeRecord>>(jsonFile);
+        List<InOutTimeRecord> records= (from record in timeRecords where record.EmployeeId==employeeId select record).ToList();
+        // return timeRecords.Where(t => t.EmployeeId == employeeId).ToList();
 
-        return timeRecords.Where(t => t.EmployeeId == employeeId).ToList();
-    }
+       return records;
+      }
 }
