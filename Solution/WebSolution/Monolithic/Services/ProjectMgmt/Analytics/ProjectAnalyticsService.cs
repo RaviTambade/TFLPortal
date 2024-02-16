@@ -29,6 +29,7 @@ public class ProjectAnalyticsService:IProjectAnalyticsService
             MySqlCommand command = new MySqlCommand(query, connection);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
+      
             while (await reader.ReadAsync())
             {
                 int id = int.Parse(reader["id"].ToString());
