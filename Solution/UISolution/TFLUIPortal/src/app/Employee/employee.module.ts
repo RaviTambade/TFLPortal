@@ -38,6 +38,7 @@ import { ConsumedLeaves } from './components/leavemgmt/components/consumed-leave
 import { MemberList } from './components/member-list/member-list';
 import { VerticalBar } from './components/verticalbar/verticalbar';
 import { HorizontalBar } from './components/horizontalbar/horizontalbar';
+import { InOutTimeRecorder } from './components/in-out-time-recorder/in-out-time-recorder';
 
 
 const employeeRoutes: Routes = [
@@ -71,7 +72,8 @@ const employeeRoutes: Routes = [
     WeekTimesheetList,
     ConsumedLeaves,
     TaskWorkUtilization,
-    TimesheetEntryDetail
+    TimesheetEntryDetail,
+    InOutTimeRecorder
   ],
 
   imports: [
@@ -95,7 +97,8 @@ const employeeRoutes: Routes = [
     NewDayTimesheet,
     ConsumedLeaves,
     ProjectContainer,
-    TimesheetEntryDetail
+    TimesheetEntryDetail,
+    InOutTimeRecorder
   ],
 })
 

@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { SPAModule } from './spa/spa.module';
 import { LayoutModule } from './layout/layout.module';
 import { HRManagerModule } from './hrmanager/hrmanager.module';
+import { EmployeeModule } from './employee/employee.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +26,8 @@ import { HRManagerModule } from './hrmanager/hrmanager.module';
     }),
     AuthenticationModule,
     HRManagerModule,
-    LayoutModule
+    LayoutModule,
+    EmployeeModule
   ],
 
   providers: [ ],

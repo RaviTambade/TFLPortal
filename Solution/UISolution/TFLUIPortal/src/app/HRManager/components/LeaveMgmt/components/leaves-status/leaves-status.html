@@ -7,22 +7,19 @@
     <table class="table-bordered text-center">
             <thead>
                 <tr>
-                    <th>Name</th>
+                    
                     <!-- <th>From Date</th>
                     <th>To Date</th> -->
                     <th>Application Date</th>
                     <th>Status</th>
-                    <th>Action </th>
+                    <!-- <th>Action </th> -->
                 </tr>
             </thead>
-            <tbody *ngFor="let leave of leaveDetails">
+            <tbody *ngFor="let leave of leaves">
                 <tr>
-                    <td>{{leave.fullName}}</td>
-                    <!-- <td>{{leave.fromDate |date}}</td>
-                    <td>{{leave.toDate |date}}</td> -->
-                    <td>{{leave.applicationDate |date}}</td>
+                    <td>{{leave.createdOn |date}}</td>
                     <td>{{leave.status}}</td>
-                    <td style="cursor: pointer; text-decoration: underline ; color:  #0000EE;" [routerLink]="['../detail',leave.id]">details</td>
+                    <!-- <td style="cursor: pointer; text-decoration: underline ; color:  #0000EE;" [routerLink]="['../detail',leave.id]">details</td> -->
                 </tr>
             </tbody>
     </table>
