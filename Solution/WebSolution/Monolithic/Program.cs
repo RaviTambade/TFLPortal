@@ -58,6 +58,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
-app.UseMiddleware<JwtMiddleware>();
+// app.UseMiddleware<JwtMiddleware>();
 app.MapControllers();
 app.Run();

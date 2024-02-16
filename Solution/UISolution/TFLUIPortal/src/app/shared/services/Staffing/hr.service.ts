@@ -28,7 +28,7 @@ export class HrService {
   }
 
   addInOutTime(InOutTime:any ): Observable<any> {
-    let url = `${this.HrAPI}/inouttime`;
+    let url = `${this.HrAPI}/addentry`;
     return this.httpClient.post<any>(url,InOutTime);
   }
 }

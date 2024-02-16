@@ -13,7 +13,7 @@ export class InOutTimeRecorder {
 
   InOutTimeRecorder:TimeRecorder={
     employeeId:0,
-    workDate:'',
+    workingDate:'',
     inTime:'',
     outTime:''
   }
