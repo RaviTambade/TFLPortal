@@ -3,79 +3,81 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
+import { EmployeeContainer } from './Components/container/employee-container';
+import { MemberList } from './Components/member-list/member-list';
+import { HorizontalBar } from './Components/bars/horizontalbar/horizontalbar';
+import { VerticalBar } from './Components/bars/verticalbar/verticalbar';
+import { EmployeeNavBar } from './Components/bars/employeenavbar/employeenavbar';
+import { Dashboard } from './Components/bi/Dashboard/dashboard';
  
-import { EmployeeContainer } from './components/container/employee-container';
-import { Dashboard } from './components/BI/Dashboard/dashboard';
-import { Employeenavbar } from './components/employeenavbar/employeenavbar';
-
-import { TimesheetEmployeeProjectHours } from './components/BI/timesheet-employee-project-hours/timesheet-employee-project-hours';
-import { TaskWorkUtilization } from './components/BI/task-work-utilization/task-work-utilization';
-
-
-import { Payroll } from './components/payroll/payroll';
-import { PerformenceApprisal } from './components/performence-apprisal/performence-apprisal';
-
-import { ProjectContainer } from './components/projectcontainer/projectcontainer';
-import { ProjectList } from './components/project-list/projectlist';
-import { ProjectItem } from './components/project-item/projectitem';
-
-
-
-import { TimesheetList } from './components/timesheet/timesheet-list/timesheet-list';
-import { TimesheetDetails } from './components/timesheet/EmployeeTimesheet/timesheet-details';
-import { TimesheetEntryDetail } from './components/timesheet/timesheet-entry-detail/timesheet-entry-detail';
-
-import { MyTimesheet } from './components/timesheet/DayTimesheet/day-timesheet';
-import { NewDayTimesheet } from './components/timesheet/new-day-timesheet/new-day-timesheet';
-import { CreateTimesheet } from './components/timesheet/create-timesheet/create-timesheet';
-import { UpdateTimesheetEntry } from './components/timesheet/update-timesheet-entry/update-timesheet-entry';
-import { WeekTimesheetList } from './components/timesheet/WeekTimesheeList/weektimesheetlist';
-import { WorkList } from './components/timesheet/workList/workList';
-import { WorkItem } from './components/timesheet/workItem/WorkItem';
-
-
-import { ConsumedLeaves } from './components/leavemgmt/components/consumed-leaves/consumed-leaves';
-import { MemberList } from './components/member-list/member-list';
-import { VerticalBar } from './components/verticalbar/verticalbar';
-import { HorizontalBar } from './components/horizontalbar/horizontalbar';
-import { InOutTimeRecorder } from './components/in-out-time-recorder/in-out-time-recorder';
-import { WorkRecord } from './components/work-record/work-record';
-
-
+import { TaskWorkUtilization } from './Components/bi/task-work-utilization/task-work-utilization';
+ 
+import { InOutTimeRecorder } from './Components/inout/in-out-time-recorder/in-out-time-recorder';
+import { WorkRecord } from './Components/inout/work-record/work-record';
+import { TimesheetDetails } from './Components/Timesheet/employee-timesheet/timesheet-details';
+import { TimesheetList } from './Components/Timesheet/timesheet-list/timesheet-list';
+import { TimesheetEntryDetail } from './Components/Timesheet/timesheet-entry-detail/timesheet-entry-detail';
+import { CreateTimesheet } from './Components/Timesheet/create-timesheet/create-timesheet';
+import { TaskUtiization } from './Components/Timesheet/task-utiization-chart/TaskUtiization';
+import { NewDayTimesheet } from './Components/Timesheet/new-day-timesheet/new-day-timesheet';
+import { UpdateTimesheetEntry } from './Components/Timesheet/update-timesheet-entry/update-timesheet-entry';
+import { WeekTimesheetList } from './Components/Timesheet/week-Ttmeshee-list/weektimesheetlist';
+import { MyTimesheet } from './Components/Timesheet/day-timesheet/day-timesheet';
+import { ProjectContainer } from './Components/projects/projectcontainer/projectcontainer';
+import { ProjectList } from './Components/projects/project-list/projectlist';
+import { ProjectItem } from './Components/projects/project-item/projectitem';
+import { WorkList } from './Components/Timesheet/work-list/workList';
+import { WorkItem } from './Components/Timesheet/work-item/WorkItem';
+ 
 const employeeRoutes: Routes = [
   { path: '', component:EmployeeContainer },
   { path: 'members', component: MemberList },
-  ];
+];
 
 
 @NgModule({
   declarations: [
+
+    EmployeeContainer,
+
     HorizontalBar,
     VerticalBar,
+    EmployeeNavBar,
+
     Dashboard,
-    Payroll,
-    PerformenceApprisal,
+    
+ 
+    TaskWorkUtilization,
+ 
+    
+     
+    InOutTimeRecorder,
+    WorkRecord,
+
     TimesheetDetails,
     TimesheetList,
+    TimesheetEntryDetail,
     CreateTimesheet,
-    TimesheetEmployeeProjectHours,
+    TaskUtiization, 
     NewDayTimesheet,
     UpdateTimesheetEntry,
-    EmployeeContainer,
-    Employeenavbar,
+    WeekTimesheetList,
+    MyTimesheet,
+    
     ProjectContainer,
     ProjectList,
     ProjectItem,
     MemberList,
     WorkList,
     WorkItem,
-    MyTimesheet,
-    WeekTimesheetList,
-    ConsumedLeaves,
-    TaskWorkUtilization,
-    TimesheetEntryDetail,
-    InOutTimeRecorder,
-    WorkRecord
+
+
+    //Leave management 
+    //New Leave application
+    //Update existing leave application
+    //my leave applications list
+    //my leave balance
+ 
   ],
 
   imports: [
@@ -90,18 +92,22 @@ const employeeRoutes: Routes = [
   exports: [
     TimesheetDetails,
     TimesheetList,
-    TimesheetEmployeeProjectHours,
+    TaskUtiization,
     UpdateTimesheetEntry,
     EmployeeContainer,
     TaskWorkUtilization,
     MyTimesheet,
     WeekTimesheetList,
     NewDayTimesheet,
-    ConsumedLeaves,
+ 
     ProjectContainer,
     TimesheetEntryDetail,
     InOutTimeRecorder,
-    WorkRecord
+    WorkRecord,
+
+    HorizontalBar,
+    VerticalBar,
+    EmployeeNavBar,
   ],
 })
 

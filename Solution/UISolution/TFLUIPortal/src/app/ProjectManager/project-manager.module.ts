@@ -1,33 +1,36 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+
 import { ProjectManagerContainer } from './components/container/projectmanager-container';
 import { CurrentSprint } from './components/current-sprint/current-sprint';
-import { MemberList } from './components/member-list/member-list';
-import { ProjectItem } from './components/project-item/project-item';
-import { ProjectList } from './components/project-list/project-list';
-import { ProjectworkItem } from './components/project-work-Item/project-work-item';
-import { ProjectWorkList } from './components/project-work-list/project-work-list';
+
 import { ActivityList } from './components/sprintactivities/activitylist';
+
+import { MgrProjectList} from './components/mgr-project-list/mgr-project-list';
+import { MgrProjectItem } from './components/mgr-project-item/mgr-project-item';
+import { MgrProjectWorkList } from './components/mgr-project-work-list/mgr-project-work-list';
+import { MgrProjectworkItem } from './components/mgr-project-work-Item/mgr-project-work-item';
+import { MgrMemberList } from './components/mgr-member-list/mgr-member-list';
  
  
 
 
   const projectManagerRoutes: Routes = [
   { path: '', component:ProjectManagerContainer },
-  { path: 'projects', component: ProjectList },
-  { path: 'projects/:id', component: ProjectItem },
+  { path: 'projects', component: MgrProjectList },
+  { path: 'projects/:id', component: MgrProjectItem },
   ];
 
 
 @NgModule({
   declarations: [
     ProjectManagerContainer,
-    ProjectList,
-    ProjectItem,
-    MemberList,
-    ProjectWorkList,
-    ProjectworkItem,
+    MgrProjectList,
+    MgrProjectItem,
+    MgrMemberList,
+    MgrProjectWorkList,
+    MgrProjectworkItem,
     CurrentSprint,
     ActivityList,
   ],
@@ -35,8 +38,8 @@ import { ActivityList } from './components/sprintactivities/activitylist';
            CommonModule, 
            RouterModule.forChild(projectManagerRoutes)
           ],
-  exports: [ProjectWorkList, ProjectworkItem,
+  exports: [MgrProjectWorkList, MgrProjectworkItem,
             CurrentSprint,ActivityList,
-            MemberList],
+            MgrMemberList],
 })
 export class ProjectManagerModule {}

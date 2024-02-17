@@ -1,0 +1,11 @@
+
+<h3>Employee In-Out Time</h3>
+
+<p>Emloyee Id: {{employeeId}}</p>
+
+<hr/>
+<div *ngFor="let workRecord of workRecords">
+    <p>Today :{{workRecord.workingDate|date}}</p>
+    
+    <p>InTime :{{workRecord.in}} am OutTime :{{workRecord.out}} pm   Hours Worked: 6:50 </p>
+</div>

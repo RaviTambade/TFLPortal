@@ -1,3 +1,4 @@
+<h3>Acitvity Details</h3>
 <div class=" container">
     <div class=" d-flex gap-3">
         <label> From : {{timesheetEntry.fromTime}}</label>
@@ -12,4 +13,30 @@
     <p> Description :{{timesheetEntry.Description}}</p>
     <p>Duration :{{timesheetEntry.hours |hourConvertor}}</p>
 
+</div>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-3">From</dt>
+        <dd class="col-sm-9">{{timesheetEntry.fromTime}}</dd>
+      
+        <dt class="col-sm-3">To </dt>
+        <dd class="col-sm-9">
+            {{timesheetEntry.toTime}}
+        </dd>
+      
+        <dt class="col-sm-3">Project</dt>
+        <dd class="col-sm-9"> {{timesheetEntry.projectTitle}}</dd>
+      
+        <dt class="col-sm-3 text-truncate">Sprint</dt>
+        <dd class="col-sm-9">{{timesheetEntry.sprintTitle}}</dd>
+      
+        <dt class="col-sm-3">Nesting</dt>
+        <dd class="col-sm-9">
+          <dl class="row">
+            <dt class="col-sm-4">Nested definition list</dt>
+            <dd class="col-sm-8">Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc.</dd>
+          </dl>
+        </dd>
+      </dl>
 </div>

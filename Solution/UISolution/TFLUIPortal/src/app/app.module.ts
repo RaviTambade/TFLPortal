@@ -27,7 +27,7 @@ import { EmployeeModule } from './employee/employee.module';
     AuthenticationModule,
     HRManagerModule,
     LayoutModule,
-    EmployeeModule
+
   ],
 
   providers: [ ],
