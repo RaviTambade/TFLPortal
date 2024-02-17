@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { TaskModel } from '../../Models/Projectmgmt/taskModel';
 import { Observable } from 'rxjs';
-import { Sprint } from '../../Entities/Projectmgmt/sprint';
-import { SprintTask } from '../../Entities/Projectmgmt/sprintTask';
+import { TaskModel } from '../Models/taskModel';
+import { Sprint } from '../Models/sprint';
+import { SprintTask } from '../Models/sprintTask';
 
 @Injectable({
   providedIn: 'root'

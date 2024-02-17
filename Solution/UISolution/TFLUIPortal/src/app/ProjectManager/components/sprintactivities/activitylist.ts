@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
-import { TaskModel } from 'src/app/shared/Models/Projectmgmt/taskModel';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
-import { SprintService } from 'src/app/shared/services/ProjectMgmt/sprint.service';
+import { SprintService } from '../../Services/sprint.service';
+import { TaskModel } from '../../Models/taskModel';
 
 @Component({
   selector: 'sprint-activity-list',

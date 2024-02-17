@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Project } from 'src/app/shared/Entities/Projectmgmt/Project';
-import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
+import { ProjectService } from '../../Services/project.service';
+import { Project } from '../../Models/Project';
 @Component({
   selector: 'project-item',
   templateUrl: './mgr-project-item.html',

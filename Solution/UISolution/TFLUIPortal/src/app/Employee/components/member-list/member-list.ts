@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
 
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
 import { Member } from '../../../shared/Models/ResourcePool/Member';
+import { ProjectService } from 'src/app/projectmanager/Services/project.service';
 
 @Component({
   selector: 'member-list',

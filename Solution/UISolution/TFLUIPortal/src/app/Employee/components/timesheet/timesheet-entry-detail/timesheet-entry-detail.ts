@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectService } from 'src/app/projectmanager/Services/project.service';
+import { SprintService } from 'src/app/projectmanager/Services/sprint.service';
 import { TimesheetEntryDetailsModel } from 'src/app/shared/Models/Timesheetmgmt/timesheetEntryDetailsModel';
-import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
-import { SprintService } from 'src/app/shared/services/ProjectMgmt/sprint.service';
 import { TasksManagementService } from 'src/app/shared/services/TaskMgmt/tasks-management.service';
 import { TimesheetService } from 'src/app/shared/services/Timesheet/timesheet.service';
 
