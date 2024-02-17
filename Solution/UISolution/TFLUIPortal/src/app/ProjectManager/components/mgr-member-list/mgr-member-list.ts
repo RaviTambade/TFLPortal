@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
 import { Member } from '../../../shared/Models/ResourcePool/Member';
+import { ProjectService } from '../../Services/project.service';
 
 @Component({
   selector: 'mgr-member-list',

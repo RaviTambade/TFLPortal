@@ -26,20 +26,18 @@ import { MgrMemberList } from './components/mgr-member-list/mgr-member-list';
 @NgModule({
   declarations: [
     ProjectManagerContainer,
-    MgrProjectList,
-    MgrProjectItem,
-    MgrMemberList,
     MgrProjectWorkList,
     MgrProjectworkItem,
     CurrentSprint,
-    ActivityList,
+    MgrProjectList,
+    MgrProjectItem
+    
   ],
   imports: [
            CommonModule, 
            RouterModule.forChild(projectManagerRoutes)
           ],
   exports: [MgrProjectWorkList, MgrProjectworkItem,
-            CurrentSprint,ActivityList,
-            MgrMemberList],
+            CurrentSprint],
 })
 export class ProjectManagerModule {}

@@ -1,5 +1,5 @@
 import { Component, Input} from '@angular/core';
-import { Project } from 'src/app/shared/Entities/Projectmgmt/Project';
+import { Project } from 'src/app/projectmanager/Models/Project';
 @Component({
   selector: 'project-item',
   templateUrl: './projectitem.html',

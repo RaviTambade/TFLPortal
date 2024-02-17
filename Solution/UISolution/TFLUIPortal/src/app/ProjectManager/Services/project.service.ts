@@ -2,13 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Member } from '../../Entities/Projectmgmt/Member';
-import { Project } from '../../Entities/Projectmgmt/Project';
-import { Sprint } from '../../Entities/Projectmgmt/sprint';
+import { Member } from '../Models/Member';
+import { Project } from '../Models/Project';
 
 
-import { SprintTask } from '../../Entities/Projectmgmt/sprintTask';
-import { TaskModel } from '../../Models/Projectmgmt/taskModel';
 
 @Injectable({
   providedIn: 'root',

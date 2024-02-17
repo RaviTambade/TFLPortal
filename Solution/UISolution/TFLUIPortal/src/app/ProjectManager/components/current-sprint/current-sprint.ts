@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { Sprint } from 'src/app/shared/Entities/Projectmgmt/sprint';
-import { SprintService } from 'src/app/shared/services/ProjectMgmt/sprint.service';
+import { SprintService } from '../../Services/sprint.service';
+import { Sprint } from '../../Models/sprint';
 @Component({
   selector: 'app-sprint-list',
   templateUrl: './current-sprint.html',

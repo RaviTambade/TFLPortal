@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Project } from 'src/app/shared/Entities/Projectmgmt/Project';
 import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
-import { ProjectService } from 'src/app/shared/services/ProjectMgmt/project.service';
+import { Project } from '../../Models/Project';
+import { ProjectService } from '../../Services/project.service';
 
 @Component({
   selector: 'mgr-project-list',
