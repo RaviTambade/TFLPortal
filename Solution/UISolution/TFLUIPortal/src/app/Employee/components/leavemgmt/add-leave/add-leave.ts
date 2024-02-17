@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { LeaveService } from 'src/app/employee/Services/leave.service';
 import { LeaveApplication } from 'src/app/shared/Entities/Leavemgmt/LeaveApplication';
 import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
-import { LeaveConsumptionService } from 'src/app/shared/services/Leave/leaveconsumption.service';
-
 
 
 @Component({
@@ -20,7 +19,7 @@ export class AddLeave implements OnInit {
   toDate: Date |any;  
   dateDifference: number|any; 
   dateInMilliseconds: number|any; 
-  constructor(private service:LeaveConsumptionService){
+  constructor(private service:LeaveService){
     this.employeeId=localStorage.getItem(LocalStorageKeys.employeeId)
   }
   ngOnInit(): void {

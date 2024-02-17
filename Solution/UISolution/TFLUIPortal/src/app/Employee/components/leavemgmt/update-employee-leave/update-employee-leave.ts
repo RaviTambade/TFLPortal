@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { LeaveService } from 'src/app/employee/Services/leave.service';
 import { LeaveApplication } from 'src/app/shared/Entities/Leavemgmt/LeaveApplication';
 import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
-import { LeaveConsumptionService } from 'src/app/shared/services/Leave/leaveconsumption.service';
 
 
 @Component({
@@ -21,7 +21,7 @@ export class UpdateEmployeeLeave {
   toDate: Date |any;  
   dateDifference: number|any; 
   dateInMilliseconds: number|any; 
-  constructor(private service:LeaveConsumptionService,private route:ActivatedRoute){
+  constructor(private service:LeaveService,private route:ActivatedRoute){
     this.employeeId=localStorage.getItem(LocalStorageKeys.employeeId)
   }
   ngOnInit(): void {
