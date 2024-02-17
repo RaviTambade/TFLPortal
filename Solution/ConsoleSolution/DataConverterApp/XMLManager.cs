@@ -1,11 +1,9 @@
-
 using System.Linq;
 using System.Text;
 using System.Xml;
 using TFL.Data.Entities;
 namespace TFL.Data.Managers;
 public class XMLManager{
-
    public static void ReadXMLFileUsingXMLDocument()
     {
         XmlDocument xmlDcoument = new XmlDocument();
@@ -16,18 +14,17 @@ public class XMLManager{
         Console.WriteLine("Output using XMLDocument");
         foreach (XmlNode xmlNode in xmlNodeList)
         {
-           Console.WriteLine("Id of the Employee is : " + xmlNode.SelectSingleNode("Id").InnerText);
+            Console.WriteLine("Id of the Employee is : " + xmlNode.SelectSingleNode("Id").InnerText);
             Console.WriteLine("Name of the Employee is : " + xmlNode.SelectSingleNode("Name").InnerText);
             Console.WriteLine();
         }
     }
 
-
     public static void WriteXMLFileUsingXMLDocument(List<Employee> employees)
     {
        
         XmlDocument xmlDoc = new XmlDocument();  
-     
+
         XmlNode docNode = xmlDoc.CreateXmlDeclaration("1.0", "UTF-8", null);
         xmlDoc.AppendChild(docNode);
 
@@ -49,6 +46,3 @@ public class XMLManager{
         xmlDoc.Save(@"D:\employees_save.xml");
     }
 }
-
-
-
