@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import { PayrollService } from 'src/app/shared/services/Payroll/payroll.service';
+import { PayrollService } from 'src/app/hrmanager/Services/payroll.service';
 
 @Component({
   selector: 'salaryprocessing',

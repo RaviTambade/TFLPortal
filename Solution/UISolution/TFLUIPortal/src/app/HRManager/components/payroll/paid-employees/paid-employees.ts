@@ -6,10 +6,10 @@ import { PayrollService } from 'src/app/shared/services/Payroll/payroll.service'
 
 
 @Component({
-  selector: 'employees',
-  templateUrl: './all-employees.html',
+  selector: 'paid-employees',
+  templateUrl: './paid-employees.html',
 })
-export class AllEmployees implements OnInit{
+export class PaidEmployees implements OnInit{
 
   constructor(private service:PayrollService){}
   salaries:Salary[]=[];

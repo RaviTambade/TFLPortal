@@ -7,9 +7,7 @@ import { PerformenceApprisal } from './components/performence-apprisal/performen
 import { Project } from './components/project/project';
 import { Salaryprocessing } from './components/payroll/salaryprocessing/salaryprocessing';
 import { Monthlysalarystructure } from './components/payroll/monthlysalarystructure/monthlysalarystructure';
-import { AllEmployees} from './components/payroll/all-employees/all-employees';
 import { EmployeeLeaves} from './components/payroll/employee-leaves/employee-leaves';
-import { PaidEmployeeDetails } from './components/payroll/paid-employee-details/paid-employee-details';
 import { LeaveDisplay } from './components/leave-display/leave-display';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HRManagerContainer } from './components/container/hrmanager-container';
@@ -21,6 +19,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { EmployeeAvailableLeaves } from './components/LeaveMgmt/employee-available-leaves/employee-available-leaves';
 import { TotalLeave } from './components/LeaveMgmt/total-leave/total-leave';
 import { TodaysLeaveApplications } from './components/LeaveMgmt/todays-leave-applications/todays-leave-applications';
+import { PaidEmployees } from './components/payroll/paid-employees/paid-employees';
 
  const hrRoutes: Routes = [
       {path:'', component:HRManagerContainer},
@@ -31,14 +30,13 @@ import { TodaysLeaveApplications } from './components/LeaveMgmt/todays-leave-app
   declarations: [
     HRManagerContainer,
     Dashboard,
-    AllEmployees,
+    PaidEmployees,
     Project,
     PerformenceApprisal,
     PayrollComponent,
     Salaryprocessing,
     Monthlysalarystructure,
     EmployeeLeaves,
-    PaidEmployeeDetails,
     LeaveDetails,
     LeaveDisplay,
     LeaveApplicationsList,
@@ -58,7 +56,7 @@ import { TodaysLeaveApplications } from './components/LeaveMgmt/todays-leave-app
   exports: [
     HRManagerContainer,
     Salaryprocessing,
-    AllEmployees,
+    PaidEmployees,
     EmployeeAvailableLeaves,
     LeaveApplicationsList,  
     TotalLeave,

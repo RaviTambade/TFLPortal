@@ -1,6 +1,7 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
-import { MonthSalary } from 'src/app/shared/Entities/Payroll/MonthSalary';
-import { PayrollService } from 'src/app/shared/services/Payroll/payroll.service';
+import { MonthSalary } from 'src/app/hrmanager/Models/Payroll/MonthSalary';
+import { PayrollService } from 'src/app/hrmanager/Services/payroll.service';
+
 
 @Component({
   selector: 'monthlysalarystructure',
