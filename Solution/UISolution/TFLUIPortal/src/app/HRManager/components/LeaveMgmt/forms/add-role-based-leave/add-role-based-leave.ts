@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { LeaveAllocation } from 'src/app/shared/Entities/Leavemgmt/LeaveAllocation';
-import { LeaveAllocationService } from 'src/app/shared/services/Leave/leaveallocation.service';
+import { LeaveAllocation } from 'src/app/hrmanager/Models/LeaveMgmt/LeaveAllocation';
+import { LeaveService } from 'src/app/hrmanager/Services/leave.service';
 
 
 @Component({
@@ -11,7 +11,7 @@ import { LeaveAllocationService } from 'src/app/shared/services/Leave/leavealloc
 export class AddRoleBasedLeave {
 
 
- constructor(private service:LeaveAllocationService){}
+ constructor(private service:LeaveService){}
 
   rolebasedleaveForm=new FormGroup({
   roleId :new FormControl(),

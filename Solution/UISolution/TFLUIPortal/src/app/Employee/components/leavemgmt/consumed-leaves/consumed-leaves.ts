@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
+import { AnnualLeaves } from 'src/app/employee/Models/LeaveMgmt/AnnualLeaves';
 import { LeaveService } from 'src/app/employee/Services/leave.service';
-import { AnnualLeaves } from 'src/app/shared/Entities/Leavemgmt/AnnualLeaves';
-import { LeaveAnalyticsService } from 'src/app/shared/services/Leave/leaveanalytics.service';
 
 @Component({
   selector: 'consumed-leaves',
