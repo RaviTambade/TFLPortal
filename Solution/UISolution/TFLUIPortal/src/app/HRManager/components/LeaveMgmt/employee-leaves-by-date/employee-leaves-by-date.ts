@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LeaveApplication } from 'src/app/shared/Entities/Leavemgmt/LeaveApplication';
-import { LeaveAnalyticsService } from 'src/app/shared/services/Leave/leaveanalytics.service';
+import { LeaveApplication } from 'src/app/hrmanager/Models/LeaveMgmt/LeaveApplication';
+import { LeaveService } from 'src/app/hrmanager/Services/leave.service';
 
 @Component({
   selector: 'employee-leaves-by-date',
@@ -12,7 +12,7 @@ export class EmployeeLeavesByDate implements OnInit {
   date:string="";
   leaveDetails:LeaveApplication[]=[];
   
-  constructor(private leaveService:LeaveAnalyticsService){}
+  constructor(private leaveService:LeaveService){}
   
   ngOnInit(): void {  
   }

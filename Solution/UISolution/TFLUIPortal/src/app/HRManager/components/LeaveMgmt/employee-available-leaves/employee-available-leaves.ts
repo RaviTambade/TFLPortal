@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { AnnualLeaves } from 'src/app/shared/Entities/Leavemgmt/AnnualLeaves';
-import { LeaveAnalyticsService } from 'src/app/shared/services/Leave/leaveanalytics.service';
+import { AnnualLeaves } from 'src/app/hrmanager/Models/LeaveMgmt/AnnualLeaves';
+import { LeaveService } from 'src/app/hrmanager/Services/leave.service';
 
 @Component({
   selector: 'employee-available-leaves',
@@ -15,7 +15,7 @@ export class EmployeeAvailableLeaves {
   year:number=2023;
   roleId:number=2;
  
-  constructor(private service:LeaveAnalyticsService){
+  constructor(private service:LeaveService){
   }
 
   ngOnInit(): void {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LeaveApplication } from 'src/app/shared/Entities/Leavemgmt/LeaveApplication';
-import { LeaveAnalyticsService } from 'src/app/shared/services/Leave/leaveanalytics.service';
+import { LeaveApplication } from 'src/app/hrmanager/Models/LeaveMgmt/LeaveApplication';
+import { LeaveService } from 'src/app/hrmanager/Services/leave.service';
 
 @Component({
   selector: 'leave-applications',
@@ -10,7 +10,7 @@ export class LeaveApplicationsList implements OnInit{
 
   leaveApplns:LeaveApplication[]=[];
 
-  constructor(private leaveSvc:LeaveAnalyticsService){}
+  constructor(private leaveSvc:LeaveService){}
 
   leaveStatus:string="applied";
 

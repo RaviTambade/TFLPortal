@@ -14,13 +14,13 @@ import { LeaveDisplay } from './components/leave-display/leave-display';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HRManagerContainer } from './components/container/hrmanager-container';
 import { Dashboard } from './components/dashboard/dashboard';
-import { LeaveApplicationsList } from './components/LeaveMgmt/components/leave-applications-List/LeaveApplicationsList';
-import { LeaveDetails} from './components/LeaveMgmt/components/leave-details/leave-details';
-import { Leaveallocations } from './components/LeaveMgmt/components/leaveallocations/leaveallocations';
+import { LeaveApplicationsList } from './components/LeaveMgmt/leave-applications-List/LeaveApplicationsList';
+import { LeaveDetails} from './components/LeaveMgmt/leave-details/leave-details';
+import { Leaveallocations } from './components/LeaveMgmt/leaveallocations/leaveallocations';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { EmployeeAvailableLeaves } from './components/LeaveMgmt/components/employee-available-leaves/employee-available-leaves';
-import { TotalLeave } from './components/LeaveMgmt/components/total-leave/total-leave';
-import { TodaysLeaveApplications } from './components/LeaveMgmt/components/todays-leave-applications/todays-leave-applications';
+import { EmployeeAvailableLeaves } from './components/LeaveMgmt/employee-available-leaves/employee-available-leaves';
+import { TotalLeave } from './components/LeaveMgmt/total-leave/total-leave';
+import { TodaysLeaveApplications } from './components/LeaveMgmt/todays-leave-applications/todays-leave-applications';
 
  const hrRoutes: Routes = [
       {path:'', component:HRManagerContainer},
