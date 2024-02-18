@@ -28,6 +28,10 @@ import { ProjectList } from './Components/projects/project-list/projectlist';
 import { ProjectItem } from './Components/projects/project-item/projectitem';
 import { WorkList } from './Components/Timesheet/work-list/workList';
 import { WorkItem } from './Components/Timesheet/work-item/WorkItem';
+import { ConsumedLeaves } from './Components/leavemgmt/consumed-leaves/consumed-leaves';
+import { BarChart } from './Components/bi/charts/bar-chart/bar-chart';
+import { PieChart } from './Components/bi/charts/pie-chart/pie-chart';
+import { LineChart } from './Components/bi/charts/line-chart/line-chart';
  
 const employeeRoutes: Routes = [
   { path: '', component:EmployeeContainer },
@@ -45,6 +49,9 @@ const employeeRoutes: Routes = [
     EmployeeNavBar,
 
     Dashboard,
+    BarChart,
+    PieChart,
+    LineChart,
     
  
     TaskWorkUtilization,
@@ -70,7 +77,7 @@ const employeeRoutes: Routes = [
     MemberList,
     WorkList,
     WorkItem,
-
+    ConsumedLeaves,
 
     //Leave management 
     //New Leave application
