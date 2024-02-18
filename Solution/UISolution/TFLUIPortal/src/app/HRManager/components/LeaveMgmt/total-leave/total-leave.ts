@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { LeaveCount } from 'src/app/shared/Entities/Leavemgmt/LeaveCount';
-import { LeaveAnalyticsService } from 'src/app/shared/services/Leave/leaveanalytics.service';
+import { LeaveCount } from 'src/app/hrmanager/Models/LeaveMgmt/LeaveCount';
+import { LeaveService } from 'src/app/hrmanager/Services/leave.service';
 
 @Component({
   selector: 'total-leave',
@@ -12,7 +12,7 @@ export class TotalLeave{
   year:number=2023;
   roleId:number=2;
 
-  constructor(private service:LeaveAnalyticsService){
+  constructor(private service:LeaveService){
   }
 
   ngOnInit(): void {

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core' 
-import { LeaveApplication } from 'src/app/shared/Entities/Leavemgmt/LeaveApplication';
+import { LeaveApplication } from 'src/app/hrmanager/Models/LeaveMgmt/LeaveApplication';
+import { LeaveService } from 'src/app/hrmanager/Services/leave.service';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
-import { LeaveAnalyticsService } from 'src/app/shared/services/Leave/leaveanalytics.service';
 
 
 @Component({
@@ -16,7 +16,7 @@ employeeId:number=0;
 employees:any;
 name:string='';
 
-constructor(private leaveSvc:LeaveAnalyticsService,private membershipSvc:MembershipService ){}
+constructor(private leaveSvc:LeaveService,private membershipSvc:MembershipService ){}
   ngOnInit(): void {
     if(this.leaveApplication){
     this.leaveDay=this.leaveSvc.calculateDays(this.leaveApplication.fromDate,this.leaveApplication.toDate);

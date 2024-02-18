@@ -78,6 +78,11 @@ export class LeaveService {
     return this.http.get<LeaveAllocation>(url);
   }
 
+  getAllLeaveAllocations():Observable<LeaveAllocation[]>{
+    let url=`${this.leaveAPI}/allocations`;
+    return this.http.get<LeaveAllocation[]>(url);
+  }
+
   calculateDays(from:string,to:string): number {    
     let days:number=0;
     if (from && to) { 

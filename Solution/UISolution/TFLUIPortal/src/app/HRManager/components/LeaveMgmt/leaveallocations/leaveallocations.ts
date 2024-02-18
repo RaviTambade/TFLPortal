@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { LeaveAllocation } from 'src/app/shared/Entities/Leavemgmt/LeaveAllocation';
-import { LeaveAllocationService } from 'src/app/shared/services/Leave/leaveallocation.service';
+import { LeaveAllocation } from 'src/app/hrmanager/Models/LeaveMgmt/LeaveAllocation';
+import { LeaveService } from 'src/app/hrmanager/Services/leave.service';
 
 @Component({
   selector: 'leaveallocations',
@@ -10,7 +10,7 @@ export class Leaveallocations {
 
   roleBasedLeaves:LeaveAllocation[]=[];
 
-  constructor(private leaveAllocationSvc:LeaveAllocationService){}
+  constructor(private leaveAllocationSvc:LeaveService){}
 
   ngOnInit(): void {
     this.leaveAllocationSvc.getAllLeaveAllocations().subscribe((res)=>{
