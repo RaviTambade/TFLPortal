@@ -28,6 +28,7 @@ import { ProjectList } from './Components/projects/project-list/projectlist';
 import { ProjectItem } from './Components/projects/project-item/projectitem';
 import { WorkList } from './Components/Timesheet/work-list/workList';
 import { WorkItem } from './Components/Timesheet/work-item/WorkItem';
+import { ConsumedLeaves } from './Components/leavemgmt/consumed-leaves/consumed-leaves';
  
 const employeeRoutes: Routes = [
   { path: '', component:EmployeeContainer },
@@ -70,7 +71,7 @@ const employeeRoutes: Routes = [
     MemberList,
     WorkList,
     WorkItem,
-
+    ConsumedLeaves,
 
     //Leave management 
     //New Leave application
