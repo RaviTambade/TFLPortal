@@ -1,27 +1,41 @@
-<h3 class="text-center col-6" >Leave Application Form</h3>
+<h4 class="text-center col-6" >Enter Leave Required </h4>
 <form [formGroup]="leaveForm" (ngSubmit)="onSubmit()">
-  <div class="form-group col-6">
-    <label for="leaveType">Leave Type:</label>
-  <select name="leaveType" class="form-control" id="leaveType" formControlName="leaveType" >
-    <option *ngFor="let leave of leaveType">{{leave}}</option>
-  </select>
-  </div>
-      <div class="form-group col-6">
-        <label for="fromDate">From Date:</label>
-        <input type="date" class="form-control" id="fromDate" [(ngModel)]="fromDate"   name="fromDate" formControlName="fromDate" (change)="calculateDays()">
+
+    <div class="form-group col-md-2">
+        <label for="leaveType">Leave Type:</label>
+        <select name="leaveType" class="form-control" id="leaveType" formControlName="leaveType" >
+          <option *ngFor="let leave of leaveType">{{leave}}</option>
+        </select>
       </div>
-      <div class="form-group col-6">
-        <label for="toDate">To Date:</label>
-        <input type="date" class="form-control" id="toDate" [(ngModel)]="toDate" name="toDate" formControlName="toDate" (change)="calculateDays()">
-      </div>
-      <div *ngIf="dateDifference !== null">
-        <p>Leave: {{ dateDifference }} days</p>
+ 
+   
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label for="fromDate"> Date:</label>
+          <input type="date" class="form-control" id="fromDate" [(ngModel)]="fromDate"   name="fromDate" formControlName="fromDate" (change)="calculateDays()">
         </div>
-      <div>
-        <button type="submit">Apply</button>
       </div>
+  
+      <div class="col-6">
+        <div class="form-group">
+          <label for="toDate">To:</label>
+          <input type="date" class="form-control" id="toDate" [(ngModel)]="toDate" name="toDate" formControlName="toDate" (change)="calculateDays()">
+      </div>
+    </div>
+   
+      
+    <div  class ="col-6" *ngIf="dateDifference !== null">
+      <div class="form-group">
+        <p > <b>Leave: {{ dateDifference }} days </b></p>
+      </div>
+    </div>
 
+    <div>
+        <button type="submit">Apply for leave</button>
+    </div>
 
+    </div>
 
 
 

@@ -1,10 +1,10 @@
 
--- Active: 1707123530557@@127.0.0.1@3306@tflportal
+-- Active: 1694968636816@@127.0.0.1@3306@tflportal
 
-DROP PROCEDURE IF EXISTS getWorkUtilization;
+DROP PROCEDURE IF EXISTS spgetWorkUtilization;
 -- get task type wise work hours of an employee 
 
-CREATE PROCEDURE getWorkUtilization(IN pempId INT,IN pfromDate DATETIME,ptoDate DATETIME,IN pProjectId INT)
+CREATE PROCEDURE spgetWorkUtilization(IN pempId INT,IN pfromDate DATETIME,ptoDate DATETIME,IN pProjectId INT)
 BEGIN
 
    IF pProjectId =0 THEN
@@ -31,12 +31,12 @@ BEGIN
 END;
 
 
-CALL getWorkUtilization(10,'2024-01-01',"2024-02-21",0);
+CALL spgetWorkUtilization(10,'2024-01-01',"2024-02-21",0);
 
 
-DROP PROCEDURE IF EXISTS getHoursWorkedForEachProject;
+DROP PROCEDURE IF EXISTS spgetHoursWorkedForEachProject;
 -- get project wise time spent by an employee
-CREATE procedure getHoursWorkedForEachProject(IN pempId INT,IN pfromDate VARCHAR (20),IN ptoDate VARCHAR (20))
+CREATE procedure spgetHoursWorkedForEachProject(IN pempId INT,IN pfromDate VARCHAR (20),IN ptoDate VARCHAR (20))
  BEGIN
    SELECT projects.title AS projectname,projects.id as projectid,
    SUM(timesheetentries.hours) AS hours 
@@ -51,7 +51,7 @@ CREATE procedure getHoursWorkedForEachProject(IN pempId INT,IN pfromDate VARCHAR
    GROUP BY projects.id;
 END;
 
-CALL getHoursWorkedForEachProject(10,'2024-01-01','2024-01-24');
+CALL spgetHoursWorkedForEachProject(10,'2024-01-01','2024-01-24');
 
 
 
@@ -101,7 +101,7 @@ DELIMITER;
 
 -- get consumed leaves of employee
 DELIMITER $$
-CREATE PROCEDURE getConsumedLeaves
+CREATE PROCEDURE spgetConsumedLeaves
 (IN pempId INT,IN pyear INT,OUT psick INT,OUT pcasual INT, OUT ppaid INT,OUT punpaid INT)
 BEGIN
 DECLARE usedSick INT DEFAULT 0;
@@ -136,7 +136,7 @@ DELIMITER ;
 
 -- calculate month salary
 DELIMITER $$
-CREATE PROCEDURE calculatesalary(IN pempId INT ,IN pmonth INT,IN pyear INT)
+CREATE PROCEDURE spcalculatesalary(IN pempId INT ,IN pmonth INT,IN pyear INT)
 BEGIN
 
 DECLARE workingdays INT DEFAULT 0;

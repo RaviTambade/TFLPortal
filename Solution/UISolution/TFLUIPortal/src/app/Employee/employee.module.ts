@@ -33,6 +33,7 @@ import { AvailableLeaves } from './Components/leavemgmt/available-leaves/availab
 import { BarChart } from './Components/bi/charts/bar-chart/bar-chart';
 import { PieChart } from './Components/bi/charts/pie-chart/pie-chart';
 import { LineChart } from './Components/bi/charts/line-chart/line-chart';
+import { AddLeave } from './Components/leavemgmt/add-leave/add-leave';
  
 const employeeRoutes: Routes = [
   { path: '', component:EmployeeContainer },
@@ -79,7 +80,8 @@ const employeeRoutes: Routes = [
     WorkList,
     WorkItem,
     ConsumedLeaves,
-    AvailableLeaves
+    AvailableLeaves,
+    AddLeave,
 
     //Leave management 
     //New Leave application
