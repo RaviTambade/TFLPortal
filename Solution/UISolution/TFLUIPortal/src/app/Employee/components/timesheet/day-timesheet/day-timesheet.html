@@ -1,11 +1,23 @@
-<h3> My Timesheet </h3>
+<h3> Time Sheet  : {{timesheet.createdOn| date}}</h3>
+<h5> Approval Status  : {{timesheet.status}}</h5>
+<div class="row">
+    <div class="col-sm-3">
+        <label class="d-block mb-2">Time In: 9:00 am</label>
+    </div>
+    <div class="col-sm-3">
+        <label class="d-block mb-2">Time In: 6:00 pm</label>
+    </div>
+</div>
+<hr/>
 
-<label class="d-block mb-2">Date: {{timesheet.createdOn| date}}</label>
-<label class="d-block mb-2">Status: {{timesheet.status | titlecase}}</label>
+<div class="row">
 
+    <p class="mb-2"> <b>Total Hours: {{timesheet.totalHours |hourConvertor}} </b></p>
 
-<work-list [timesheetEntries]="timesheetEntries"></work-list>
-<p class="mb-2"> <b>Total Hours: {{timesheet.totalHours |hourConvertor}} </b></p>
+</div>
+ <div class="row">
+    <task-list [tasks]="tasks"></task-list>
+ </div>
 
 <!-- <ng-container *ngIf="timesheet && timesheetEntries.length > 0 ">
     <button class="btn btn-success" type="submit" (click)="onSubmit()">Submit</button>

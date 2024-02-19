@@ -1,0 +1,12 @@
+<div class="container-fluid">
+    <div class="row" >
+        <div class="col"><p> <b>From</b></p></div>
+        <div class="col"><p> <b>To</b></p></div>
+        <div class="col"><p> <b></b></p></div>
+        <div class="col"><p> <b>To</b></p></div>
+    </div>
+</div>
+
+<div *ngFor="let task of tasks ">
+   <work-item [timesheetEntry]="task"></work-item>
+</div>

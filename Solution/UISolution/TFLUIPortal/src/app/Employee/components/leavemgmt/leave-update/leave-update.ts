@@ -9,7 +9,7 @@ import { LeaveService } from 'src/app/employee/Services/leave.service';
 })
 export class LeaveUpdate {
 
-  employeeId:any=12;
+  employeeId:any=16;
   leaveId:number=1;
 
   dateDifference: number|any; 
@@ -42,7 +42,12 @@ export class LeaveUpdate {
     this.leaveSvc.updateLeaveApplication(this.leave).subscribe((res)=>{
     console.log(res);    
   });
- }
+
+    //Remove existing leave from leave applications submitted
+    // this.leaveSvc.deleteLeaveApplication(this.leaveId).subscribe((res)=>{
+    //   console.log(res);    
+    // });
+}
 
   calculateDays() {     
     this.leaveSvc.calculateDays(this.leave.fromDate,this.leave.toDate);

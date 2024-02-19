@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import { LeaveApplication } from '../Models/LeaveMgmt/LeaveApplication';
 import { AnnualLeaves } from '../Models/LeaveMgmt/AnnualLeaves';
 import { LeaveCount } from '../Models/LeaveMgmt/LeaveCount';
-import { LeaveAllocation } from '../Models/LeaveMgmt/LeaveAllocation';
+ 
 
 @Injectable({
   providedIn: 'root'
@@ -63,7 +63,7 @@ export class LeaveService {
     return this.http.get<LeaveCount[]>(url);
   }
 
-  addNewLeaveAllocationForRole(leave:LeaveAllocation):Observable<boolean>{
+  /*addNewLeaveAllocationForRole(leave:LeaveAllocation):Observable<boolean>{
     let url=`${this.leaveAPI}/leaveallocation`;
     return this.http.post<boolean>(url,leave);
   }
@@ -73,8 +73,8 @@ export class LeaveService {
     return this.http.put<LeaveAllocation>(url,appln);
   }
 
-  getLeaveAllocationOfRole(id:number):Observable<LeaveAllocation>{
-    let url=`${this.leaveAPI}/allocations/roles/${id}` ;
+  getLeaveAllocationOfRole(roleId:number):Observable<LeaveAllocation>{
+    let url=`${this.leaveAPI}/allocations/roles/${roleId}` ;
     return this.http.get<LeaveAllocation>(url);
   }
 
@@ -82,6 +82,9 @@ export class LeaveService {
     let url=`${this.leaveAPI}/allocations`;
     return this.http.get<LeaveAllocation[]>(url);
   }
+
+  */
+
 
   calculateDays(from:string,to:string): number {    
     let days:number=0;

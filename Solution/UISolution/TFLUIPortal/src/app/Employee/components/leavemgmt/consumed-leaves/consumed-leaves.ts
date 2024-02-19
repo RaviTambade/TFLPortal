@@ -13,10 +13,10 @@ export class ConsumedLeaves {
   consumedLeave:AnnualLeaves |undefined;
   year:number=2024;
 
-  constructor(private leaveSvc:LeaveService){ }
+  constructor(private svc:LeaveService){ }
 
   ngOnInit(): void {
-    this.leaveSvc.getAnnualConsumedLeavesOfEmployee(this.employeeId,this.year).subscribe((res)=>{
+    this.svc.getAnnualConsumedLeavesOfEmployee(this.employeeId,this.year).subscribe((res)=>{
       this.consumedLeave=res;
       console.log(res);
     }) 

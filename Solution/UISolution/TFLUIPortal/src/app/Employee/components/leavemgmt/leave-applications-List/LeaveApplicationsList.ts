@@ -17,7 +17,7 @@ export class LeaveApplicationList implements OnInit{
 
   ngOnInit(): void {
   
-    this.leaveSvc.getAllLeaveApplications(12).subscribe((res)=>{
+    this.leaveSvc.getAllLeaveApplications(16).subscribe((res)=>{
     this.leaveApplns=res;
    });
   }

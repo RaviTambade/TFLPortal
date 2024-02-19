@@ -22,7 +22,7 @@ export class MyTimesheet
   };
   timesheetId: number = 0;
 
-  timesheetEntries: TimesheetEntryModel[] = [];
+  tasks: TimesheetEntryModel[] = [];
 
   constructor(private timesheetService: TimesheetService,  private taskSvc: TasksManagementService) {}
 
@@ -40,9 +40,9 @@ export class MyTimesheet
                                                                                                 hours: entry.hours,
                                                                                                 taskTitle: '',
                                                                                               };
-                                                    this.timesheetEntries.push(timesheetEntry);
+                                                    this.tasks.push(timesheetEntry);
                                                   });
-        this.timesheetEntries.forEach((entry) =>this.taskSvc.getTaskDetails(entry.taskId).subscribe((task) => {entry.taskTitle = task.title;}
+        this.tasks.forEach((entry) =>this.taskSvc.getTaskDetails(entry.taskId).subscribe((task) => {entry.taskTitle = task.title;}
                                                                                                     ));
                                       });
   }

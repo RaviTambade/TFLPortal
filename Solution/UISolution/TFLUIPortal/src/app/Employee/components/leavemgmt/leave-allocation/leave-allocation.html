@@ -1,7 +1,7 @@
-<h3>Leave Allocations</h3>
+<h3>Leave Allocations For Role {{leave.roleId}}</h3>
 <div class="container">
     <div class="card col-6">
-    <!-- <table class="table-bordered text-center">
+    <table class="text-center">
             <thead>
                 <tr>
                     <th>Role</th>
@@ -9,18 +9,19 @@
                     <th>Casual</th>
                     <th>Paid</th>
                     <th>Unpaid</th>
-                    <th>Financial Year</th>
+                  
                    </tr>
             </thead>
-            <tbody *ngFor="let leave of roleBasedLeaves">
+            <tbody>
                 <tr>
                     <td>{{leave.roleId}}</td>
                     <td>{{leave.sick}}</td>
                     <td>{{leave.casual}}</td>
                     <td>{{leave.paid}}</td>
                     <td>{{leave.unpaid}}</td>
-                    <td>{{leave.financialYear}}</td>
                 </tr>
             </tbody>
-    </table> -->
-</div>
+    </table>
+</div> 
+
+

@@ -26,18 +26,25 @@ import { MyTimesheet } from './Components/Timesheet/day-timesheet/day-timesheet'
 import { ProjectContainer } from './Components/projects/projectcontainer/projectcontainer';
 import { ProjectList } from './Components/projects/project-list/projectlist';
 import { ProjectItem } from './Components/projects/project-item/projectitem';
-import { WorkList } from './Components/Timesheet/work-list/workList';
+ 
 import { WorkItem } from './Components/Timesheet/work-item/WorkItem';
-import { ConsumedLeaves } from './Components/leavemgmt/consumed-leaves/consumed-leaves';
-import { AvailableLeaves } from './Components/leavemgmt/available-leaves/available-leaves';
+
 import { BarChart } from './Components/bi/charts/bar-chart/bar-chart';
 import { PieChart } from './Components/bi/charts/pie-chart/pie-chart';
 import { LineChart } from './Components/bi/charts/line-chart/line-chart';
+
+
 import { AddLeave } from './Components/leavemgmt/add-leave/add-leave';
 import { LeaveApplicationList } from './Components/leavemgmt/leave-applications-List/LeaveApplicationsList';
 import { LeaveApplicationDetails } from './Components/leavemgmt/leave-details/leave-details';
 import { LeaveUpdate } from './Components/leavemgmt/leave-update/leave-update';
- 
+import { LeaveAllocation } from './Components/leavemgmt/leave-allocation/leave-allocation';
+import { ConsumedLeaves } from './Components/leavemgmt/consumed-leaves/consumed-leaves';
+import { AvailableLeaves } from './Components/leavemgmt/available-leaves/available-leaves';
+import { TaskList } from './Components/Timesheet/task-list/taskList';
+
+
+
 const employeeRoutes: Routes = [
   { path: '', component:EmployeeContainer },
   { path: 'members', component: MemberList },
@@ -80,7 +87,7 @@ const employeeRoutes: Routes = [
     ProjectList,
     ProjectItem,
     MemberList,
-    WorkList,
+    TaskList,
     WorkItem,
     ConsumedLeaves,
     AvailableLeaves,
@@ -88,6 +95,7 @@ const employeeRoutes: Routes = [
     LeaveApplicationList,
     LeaveApplicationDetails,
     LeaveUpdate,
+    LeaveAllocation
 
     //Leave management 
     //New Leave application
@@ -129,6 +137,7 @@ const employeeRoutes: Routes = [
     LeaveApplicationList,
     LeaveApplicationDetails,
     LeaveUpdate,
+
 
   ],
 })

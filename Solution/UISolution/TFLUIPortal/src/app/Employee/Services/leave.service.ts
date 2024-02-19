@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { AnnualLeaves } from 'src/app/shared/Entities/Leavemgmt/AnnualLeaves';
 import { LeaveApplication } from 'src/app/shared/Entities/Leavemgmt/LeaveApplication';
 import { environment } from 'src/environments/environment';
+import { RoleLeaveAllocation } from '../Models/LeaveMgmt/LeaveAllocation';
+ 
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,12 @@ export class LeaveService {
 
   constructor(private http:HttpClient) { }
 
-    
+  
+  getLeaveAllocationByRole(roleId:number):Observable<RoleLeaveAllocation>{
+    let url=`${this.leaveAPI}/allocations/roles/${roleId}` ;
+    return this.http.get<RoleLeaveAllocation>(url);
+  }
+
  
   getAllLeaveApplications(leaveId:number):Observable<LeaveApplication[]>{
     let url=`${this.leaveAPI}/applications/employees/${leaveId}`;
@@ -40,8 +47,8 @@ export class LeaveService {
     return this.http.put<LeaveApplication>(this.leaveAPI,leave);
   }
   
-  deleteLeaveApplication(id:number):Observable<LeaveApplication>{
-    let url=`${this.leaveAPI}/${id}`;
+  deleteLeaveApplication(leaveId:number):Observable<LeaveApplication>{
+    let url=`${this.leaveAPI}/${leaveId}`;
     return this.http.delete<LeaveApplication>(url);
   }
   
