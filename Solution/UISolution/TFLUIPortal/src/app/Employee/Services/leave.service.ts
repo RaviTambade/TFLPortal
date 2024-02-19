@@ -49,4 +49,21 @@ export class LeaveService {
     let url=`${this.leaveAPI}/annualconsumedleaves/employees/${id}/year/${year}`;
     return this.http.get<AnnualLeaves>(url);
   }
+
+  calculateDays(from:string,to:string): number {    
+    let days:number=0;
+    if (from && to) { 
+            let dateFrom=new Date(from);
+            let dateTo=new Date(to);
+            const diff_MiliSecnds =dateTo.getTime() - dateFrom.getTime(); 
+            let day_MiliSecnds=86400000;
+            const dateInMilliseconds=diff_MiliSecnds+day_MiliSecnds;
+            let hours=24;
+            let minutes=60;
+            let seconds=60;
+           days = dateInMilliseconds / (1000 * seconds * minutes * hours); 
+    }
+    return days; 
+  }
+
 }
