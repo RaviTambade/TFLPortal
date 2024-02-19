@@ -5,7 +5,7 @@ import { TimesheetService } from 'src/app/shared/services/Timesheet/timesheet.se
 
 
 @Component({
-  selector: 'app-create-timesheet',
+  selector: 'create-timesheet',
   templateUrl: './create-timesheet.html',
 })
 export class CreateTimesheet implements OnInit {
@@ -20,10 +20,9 @@ export class CreateTimesheet implements OnInit {
   ngOnInit(): void {
     this.employeeId = Number(localStorage.getItem(LocalStorageKeys.employeeId));
     this.date = new Date().toISOString().slice(0, 10);
-    this.getOrCreateTimesheet();
   }
 
-  CreateTimesheet() {
+  onClickAdd() {
     const timesheetInsertModel = {
       timesheetDate: this.date,
       employeeId:this.employeeId,
@@ -32,24 +31,12 @@ export class CreateTimesheet implements OnInit {
       next: (res) => {
         console.log(res);
       },
-      complete:()=> this.getOrCreateTimesheet()
     });
   }
 
+  onClickCancel(){
 
-  getOrCreateTimesheet() {
-    if (this.employeeId && this.date)
-      this.timesheetService
-        .getTimeSheetOfEmployee(this.employeeId, this.date)
-        .subscribe((res) => {
-          console.log(res);
-          if ( res && res.id!= 0) {
-            this.router.navigate(['../details', res], {
-              relativeTo: this.route,
-            });
-          } else {
-            this.CreateTimesheet();
-          }
-        });
   }
+
+  
 }

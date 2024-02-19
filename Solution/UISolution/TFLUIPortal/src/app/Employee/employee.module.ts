@@ -27,7 +27,6 @@ import { ProjectContainer } from './Components/projects/projectcontainer/project
 import { ProjectList } from './Components/projects/project-list/projectlist';
 import { ProjectItem } from './Components/projects/project-item/projectitem';
  
-import { WorkItem } from './Components/Timesheet/work-item/WorkItem';
 
 import { BarChart } from './Components/bi/charts/bar-chart/bar-chart';
 import { PieChart } from './Components/bi/charts/pie-chart/pie-chart';
@@ -42,6 +41,7 @@ import { LeaveAllocation } from './Components/leavemgmt/leave-allocation/leave-a
 import { ConsumedLeaves } from './Components/leavemgmt/consumed-leaves/consumed-leaves';
 import { AvailableLeaves } from './Components/leavemgmt/available-leaves/available-leaves';
 import { TaskList } from './Components/Timesheet/task-list/taskList';
+import { TaskItem } from './Components/Timesheet/task-item/taskItem';
 
 
 
@@ -82,13 +82,14 @@ const employeeRoutes: Routes = [
     UpdateTimesheetEntry,
     WeekTimesheetList,
     MyTimesheet,
+    CreateTimesheet,
     
     ProjectContainer,
     ProjectList,
     ProjectItem,
     MemberList,
     TaskList,
-    WorkItem,
+    TaskItem,
     ConsumedLeaves,
     AvailableLeaves,
     AddLeave,
