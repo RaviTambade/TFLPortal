@@ -29,6 +29,7 @@ import { ProjectItem } from './Components/projects/project-item/projectitem';
 import { WorkList } from './Components/Timesheet/work-list/workList';
 import { WorkItem } from './Components/Timesheet/work-item/WorkItem';
 import { ConsumedLeaves } from './Components/leavemgmt/consumed-leaves/consumed-leaves';
+import { AvailableLeaves } from './Components/leavemgmt/available-leaves/available-leaves';
 import { BarChart } from './Components/bi/charts/bar-chart/bar-chart';
 import { PieChart } from './Components/bi/charts/pie-chart/pie-chart';
 import { LineChart } from './Components/bi/charts/line-chart/line-chart';
@@ -78,6 +79,7 @@ const employeeRoutes: Routes = [
     WorkList,
     WorkItem,
     ConsumedLeaves,
+    AvailableLeaves
 
     //Leave management 
     //New Leave application
@@ -115,6 +117,8 @@ const employeeRoutes: Routes = [
     HorizontalBar,
     VerticalBar,
     EmployeeNavBar,
+    AvailableLeaves
+
   ],
 })
 
