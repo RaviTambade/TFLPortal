@@ -7,13 +7,13 @@ import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 
 
 @Component({
-  selector: 'update-employee-leave',
-  templateUrl: './update-employee-leave.html',
+  selector: 'leave-update',
+  templateUrl: './leave-update.html',
 })
-export class UpdateEmployeeLeave {
+export class LeaveUpdate {
 
-  employeeId:any;
-  id:number=0;
+  employeeId:any=12;
+  leaveId:number=20;
   totalDays:number |undefined;
   DifferenceInDays:number |undefined;
 
@@ -25,10 +25,15 @@ export class UpdateEmployeeLeave {
     this.employeeId=localStorage.getItem(LocalStorageKeys.employeeId)
   }
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params)=>{
-      this.id=Number(params.get('id'));
-        console.log(this.id);
-    });
+
+   /* this.route.paramMap.subscribe((params)=>{
+      this.leaveId=Number(params.get('id'));
+        console.log(this.leaveId);
+
+    });*/
+    //get leave details of leave id =20
+    //bind with existing update compoent.
+    
   }
 
   selectedLeaveType:string='';
@@ -41,17 +46,17 @@ export class UpdateEmployeeLeave {
   });
 
   onSubmit(){
-    let leaves:LeaveApplication={
-      id: this.id,
+    let leave:LeaveApplication={
+      id: this.leaveId,
       employeeId: this.employeeId,
       createdOn:new Date().toISOString(),
       fromDate: this.leaveForm.get("fromDate")?.value,
       toDate: this.leaveForm.get("toDate")?.value,
       leaveType: this.leaveForm.get("leaveType")?.value,
-      status:" "
+      status:"applied"
     }
-    console.log(leaves);
-    this.service.updateLeaveApplication(leaves).subscribe((res)=>{
+    console.log(leave);
+    this.service.updateLeaveApplication(leave).subscribe((res)=>{
     console.log(res);    
   });
  console.log(this.leaveForm.value)

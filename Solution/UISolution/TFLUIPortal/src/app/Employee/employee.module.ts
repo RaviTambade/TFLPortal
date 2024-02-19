@@ -34,6 +34,9 @@ import { BarChart } from './Components/bi/charts/bar-chart/bar-chart';
 import { PieChart } from './Components/bi/charts/pie-chart/pie-chart';
 import { LineChart } from './Components/bi/charts/line-chart/line-chart';
 import { AddLeave } from './Components/leavemgmt/add-leave/add-leave';
+import { LeaveApplicationList } from './Components/leavemgmt/leave-applications-List/LeaveApplicationsList';
+import { LeaveApplicationDetails } from './Components/leavemgmt/leave-details/leave-details';
+import { LeaveUpdate } from './Components/leavemgmt/leave-update/leave-update';
  
 const employeeRoutes: Routes = [
   { path: '', component:EmployeeContainer },
@@ -82,6 +85,9 @@ const employeeRoutes: Routes = [
     ConsumedLeaves,
     AvailableLeaves,
     AddLeave,
+    LeaveApplicationList,
+    LeaveApplicationDetails,
+    LeaveUpdate,
 
     //Leave management 
     //New Leave application
@@ -119,7 +125,10 @@ const employeeRoutes: Routes = [
     HorizontalBar,
     VerticalBar,
     EmployeeNavBar,
-    AvailableLeaves
+    AvailableLeaves,
+    LeaveApplicationList,
+    LeaveApplicationDetails,
+    LeaveUpdate,
 
   ],
 })

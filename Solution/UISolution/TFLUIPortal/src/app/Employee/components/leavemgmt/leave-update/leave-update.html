@@ -1,4 +1,4 @@
-<h3 class="text-center col-6" >Leave Application Form</h3>
+<h3 class="text-center col-6" >Edit Existing Leave Application</h3>
 <form [formGroup]="leaveForm" (ngSubmit)="onSubmit()">
   <div class="form-group col-6">
     <label for="leaveType">Leave Type:</label>
@@ -6,10 +6,7 @@
     <option *ngFor="let leave of leaveType">{{leave}}</option>
   </select>
   </div>
-  <div class="form-group col-6">
-    <label for="year">Year:</label>
-    <input type="number" class="form-control" id="year" formControlName="year">
-  </div> 
+  
       <div class="form-group col-6">
         <label for="fromDate">From Date:</label>
         <input type="date" class="form-control" id="fromDate" name="fromDate" formControlName="fromDate" (change)="calculateDays()">

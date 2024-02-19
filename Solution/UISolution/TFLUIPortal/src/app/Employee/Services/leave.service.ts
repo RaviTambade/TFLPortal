@@ -13,13 +13,26 @@ export class LeaveService {
   leaveAPI:string=environment.leaveAPI;
 
   constructor(private http:HttpClient) { }
+
+    
+ 
+  getAllLeaveApplications(leaveId:number):Observable<LeaveApplication[]>{
+    let url=`${this.leaveAPI}/applications/employees/${leaveId}`;
+    return this.http.get<LeaveApplication[]>(url);
+  }
+
+  getLeaveApplications(id:number,status:string):Observable<LeaveApplication[]>{
+    let url=`${this.leaveAPI}/applications/employees/${id}/status/${status}`;
+    return this.http.get<LeaveApplication[]>(url);
+  }
+
      
   addNewLeaveApplication(leave:LeaveApplication):Observable<boolean>{
     return this.http.post<boolean>(this.leaveAPI,leave);
   }
 
-  updateLeaveApplication(appln:LeaveApplication):Observable<LeaveApplication>{
-    return this.http.put<LeaveApplication>(this.leaveAPI,appln);
+  updateLeaveApplication(leave:LeaveApplication):Observable<LeaveApplication>{
+    return this.http.put<LeaveApplication>(this.leaveAPI,leave);
   }
   
   deleteLeaveApplication(id:number):Observable<LeaveApplication>{

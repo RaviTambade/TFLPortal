@@ -1,0 +1,15 @@
+<h3>Leave Applications</h3>
+
+  <div class="container-fluid">
+    <div class="row">   
+    <div class="col-xl ">From-To</div>
+    <div class="col-xl ">Leave Days</div>
+    <div class="col-xl ">Leave Type</div>
+    <div class="col-xl ">Status</div>
+    </div>
+    </div>
+
+<div *ngFor="let leave of leaveApplns">
+    <leave-details [leaveApplication]="leave" ></leave-details>
+</div>
+  

@@ -1,4 +1,4 @@
--- Active: 1694968636816@@127.0.0.1@3306@tflportal
+-- Active: 1707123530557@@127.0.0.1@3306@tflportal
 
 
 -- LeaveManagement
@@ -16,7 +16,7 @@ SELECT * from leaveapplications where id=10;
 SELECT * from leaveapplications where status="sanctioned";
 
 -- get leaves of  an employee;
-SELECT * from leaveapplications where employeeid =10;
+SELECT * from leaveapplications where employeeid =12;
 
 -- get all leave applications which are applied of employee
 SELECT * from leaveapplications where employeeid =15 and status="applied";

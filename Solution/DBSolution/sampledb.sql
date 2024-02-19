@@ -1,5 +1,5 @@
 
--- Active: 1694968636816@@127.0.0.1@3306@tflportal
+-- Active: 1707123530557@@127.0.0.1@3306@tflportal
 
 -- director
 INSERT INTO employees(id,hiredon,reportingid) VALUES (1,'2013-01-01',1);
@@ -20,6 +20,8 @@ INSERT INTO employees(id,hiredon,reportingid) VALUES (9,'2015-12-01',6);
 INSERT INTO employees(id,hiredon,reportingid) VALUES (10,'2013-03-17',6);
 INSERT INTO employees(id,hiredon,reportingid) VALUES (11,'2014-02-12',7);
 INSERT INTO employees(id,hiredon,reportingid) VALUES (12,'2014-05-21',7);
+
+
 INSERT INTO employees(id,hiredon,reportingid) VALUES (13,'2014-05-21',8);
 INSERT INTO employees(id,hiredon,reportingid) VALUES (14,'2015-11-11',8);
 INSERT INTO employees(id,hiredon,reportingid) VALUES (15,'2015-09-15',8);
@@ -51,11 +53,31 @@ Insert Into leaveallocations(roleid,sick,casual,paid,unpaid,financialyear) value
 Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(10,'2024-01-13','2024-01-14','2024-01-15',"sanctioned","unpaid");
 Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(11,'2024-04-01','2024-04-03','2024-04-05',"notsanctioned","casual");
 Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(12,'2024-04-01','2024-04-03','2024-04-05',"sanctioned","casual");
+
+Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(12,'2023-12-12','2024-12-26','2023-12-27',"applied","paid");
+Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(12,'2023-12-12','2024-12-15','2023-12-18',"applied","casual");
+Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(12,'2023-01-15','2024-01-17','2023-01-17',"sanctioned","sick");
+Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(12,'2023-01-14','2024-01-17','2023-01-17',"sanctioned","paid");
+Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(12,'2023-02-14','2024-02-15','2023-02-15',"sanctioned","casual");
+
+
+
+
 Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(13,'2024-03-01','2024-03-03','2024-03-20',"sanctioned","casual");
 Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(14,'2024-04-01','2024-04-10','2024-04-15',"sanctioned","casual");
 
 Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(15,'2024-11-01','2024-11-22','2024-11-22',"applied","unpaid");
 Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(16,'2024-11-05','2024-11-26','2024-11-28',"applied","sick");
+
+Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(16,'2023-01-05','2024-11-26','2023-05-28',"applied","sick");
+Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(16,'2023-02-05','2024-11-26','2023-05-28',"applied","sick");
+Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(16,'2023-03-05','2024-11-26','2023-05-28',"applied","sick");
+Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(16,'2023-04-05','2024-11-26','2023-05-28',"applied","sick");
+Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(16,'2023-05-05','2024-11-26','2023-05-28',"applied","sick");
+Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(16,'2023-06-05','2024-11-26','2023-05-28',"applied","sick");
+
+
+
 Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(17,'2024-12-12','2024-12-26','2024-12-27',"applied","paid");
 Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(18,'2024-12-12','2024-12-15','2024-12-18',"applied","casual");
 Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(19,'2024-01-15','2024-01-17','2024-01-17',"sanctioned","casual");
