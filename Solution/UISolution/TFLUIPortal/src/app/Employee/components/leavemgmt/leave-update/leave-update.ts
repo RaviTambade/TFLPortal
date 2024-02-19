@@ -9,10 +9,8 @@ import { LeaveService } from 'src/app/employee/Services/leave.service';
 })
 export class LeaveUpdate {
 
-  employeeId:any=12;
   leaveId:number=1;
-
-  dateDifference: number|any; 
+  leaveTypes:string[]=["casual","sick","paid","unpaid"];
   leave:LeaveApplication ={
     id: 0,
     employeeId: 0,
@@ -22,7 +20,8 @@ export class LeaveUpdate {
     status: '',
     leaveType: ''
   }; 
-  leaveTypes:string[]=["casual","sick","paid","unpaid"];
+  dateDifference: number|string=''; 
+
 
   constructor(private leaveSvc:LeaveService){}
   ngOnInit(): void {
@@ -45,6 +44,6 @@ export class LeaveUpdate {
  }
 
   calculateDays() {     
-    this.leaveSvc.calculateDays(this.leave.fromDate,this.leave.toDate);
+   this.dateDifference= this.leaveSvc.calculateDays(this.leave.fromDate,this.leave.toDate);
   }
 }

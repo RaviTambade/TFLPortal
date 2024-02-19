@@ -20,9 +20,10 @@ export class AddLeave implements OnInit {
   dateDifference: number|any; 
   dateInMilliseconds: number|any; 
   constructor(private service:LeaveService){
-    this.employeeId=localStorage.getItem(LocalStorageKeys.employeeId)
   }
   ngOnInit(): void {
+    this.employeeId=localStorage.getItem(LocalStorageKeys.employeeId)
+
     // this.calculateDays();
   }
   selectedLeaveType:string='';
