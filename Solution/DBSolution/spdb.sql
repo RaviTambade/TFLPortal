@@ -1,10 +1,10 @@
 
--- Active: 1707123530557@@127.0.0.1@3306@tflportal
+-- Active: 1696576841746@@127.0.0.1@3306@tflportal
 
-DROP PROCEDURE IF EXISTS spgetWorkUtilization;
+DROP PROCEDURE IF EXISTS spGetWorkUtilization;
 -- get task type wise work hours of an employee 
 
-CREATE PROCEDURE spgetWorkUtilization(IN pempId INT,IN pfromDate DATETIME,ptoDate DATETIME,IN pProjectId INT)
+CREATE PROCEDURE spGetWorkUtilization(IN pempId INT,IN pfromDate DATETIME,ptoDate DATETIME,IN pProjectId INT)
 BEGIN
 
    IF pProjectId =0 THEN
@@ -31,12 +31,12 @@ BEGIN
 END;
 
 
-CALL spgetWorkUtilization(10,'2024-01-01',"2024-02-21",0);
+CALL spGetWorkUtilization(10,'2024-01-01',"2024-02-21",0);
 
 
-DROP PROCEDURE IF EXISTS spgetHoursWorkedForEachProject;
+DROP PROCEDURE IF EXISTS spGetHoursWorkedForEachProject;
 -- get project wise time spent by an employee
-CREATE procedure spgetHoursWorkedForEachProject(IN pempId INT,IN pfromDate VARCHAR (20),IN ptoDate VARCHAR (20))
+CREATE procedure spGetHoursWorkedForEachProject(IN pempId INT,IN pfromDate VARCHAR (20),IN ptoDate VARCHAR (20))
  BEGIN
    SELECT projects.title AS projectname,projects.id as projectid,
    SUM(timesheetentries.hours) AS hours 
@@ -51,7 +51,7 @@ CREATE procedure spgetHoursWorkedForEachProject(IN pempId INT,IN pfromDate VARCH
    GROUP BY projects.id;
 END;
 
-CALL spgetHoursWorkedForEachProject(10,'2024-01-01','2024-01-24');
+CALL spGetHoursWorkedForEachProject(10,'2024-01-01','2024-01-24');
 
 
 
