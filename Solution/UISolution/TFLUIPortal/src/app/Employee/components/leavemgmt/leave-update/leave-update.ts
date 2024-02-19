@@ -13,18 +13,24 @@ import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 export class LeaveUpdate {
 
   employeeId:any=12;
-  leaveId:number=20;
+  leaveId:number=14;
   totalDays:number |undefined;
   DifferenceInDays:number |undefined;
-
+  
   fromDate: Date|any; 
   toDate: Date |any;  
   dateDifference: number|any; 
-  dateInMilliseconds: number|any; 
+  dateInMilliseconds: number|any;
+  leave:LeaveApplication |any; 
   constructor(private service:LeaveService,private route:ActivatedRoute){
-    this.employeeId=localStorage.getItem(LocalStorageKeys.employeeId)
+    // this.employeeId=localStorage.getItem(LocalStorageKeys.employeeId)
   }
   ngOnInit(): void {
+
+    this.service.getLeaveApplication(this.leaveId).subscribe((res)=>{
+      this.leave=res;
+      console.log(this.leave);
+    })
 
    /* this.route.paramMap.subscribe((params)=>{
       this.leaveId=Number(params.get('id'));

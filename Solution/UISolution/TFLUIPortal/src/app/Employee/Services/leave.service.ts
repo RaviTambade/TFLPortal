@@ -21,6 +21,11 @@ export class LeaveService {
     return this.http.get<LeaveApplication[]>(url);
   }
 
+  getLeaveApplication(leaveId:number):Observable<LeaveApplication>{
+    let url=`${this.leaveAPI}/applications/${leaveId}`;
+    return this.http.get<LeaveApplication>(url);
+  }
+
   getLeaveApplications(id:number,status:string):Observable<LeaveApplication[]>{
     let url=`${this.leaveAPI}/applications/employees/${id}/status/${status}`;
     return this.http.get<LeaveApplication[]>(url);

@@ -2,18 +2,18 @@
 <form [formGroup]="leaveForm" (ngSubmit)="onSubmit()">
   <div class="form-group col-6">
     <label for="leaveType">Leave Type:</label>
-  <select name="leaveType" class="form-control" id="leaveType" formControlName="leaveType" >
+  <select name="leaveType" class="form-control" id="leaveType"  [(ngModel)]="leave.leaveType" formControlName="leaveType" >
     <option *ngFor="let leave of leaveType">{{leave}}</option>
   </select>
   </div>
   
       <div class="form-group col-6">
         <label for="fromDate">From Date:</label>
-        <input type="date" class="form-control" id="fromDate" name="fromDate" formControlName="fromDate" (change)="calculateDays()">
+        <input type="date" class="form-control" id="fromDate" name="fromDate" [(ngModel)]="leave.fromDate"  formControlName="fromDate" (change)="calculateDays()">
       </div>
       <div class="form-group col-6">
         <label for="toDate">To Date:</label>
-        <input type="date" class="form-control" id="toDate" name="toDate" formControlName="toDate" (change)="calculateDays()">
+        <input type="date" class="form-control" id="toDate" name="toDate" [(ngModel)]="leave.toDate"  formControlName="toDate" (change)="calculateDays()">
       </div>
       <div *ngIf="dateDifference !== null">
         <p>Leave: {{ dateDifference }} days</p>
