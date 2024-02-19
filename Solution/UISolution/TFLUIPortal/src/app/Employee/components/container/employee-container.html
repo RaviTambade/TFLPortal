@@ -1,149 +1,352 @@
-<!-- <p>employee works!</p> -->
+<nav class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Transflower</a>
+</nav>
 
-<dashboard></dashboard>
-<!-- <div class="container">
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">
+              <span data-feather="home"></span>
+              Dashboard <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file"></span>
+              Orders
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="shopping-cart"></span>
+              Products
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="users"></span>
+              Customers
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="bar-chart-2"></span>
+              Reports
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="layers"></span>
+              Integrations
+            </a>
+          </li>
+        </ul>
 
-    <h1>Bootstrap grid examples</h1>
-    <p class="lead">Basic grid layouts to get you familiar with building within the Bootstrap grid system.</p>
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Saved reports</span>
+          <a class="d-flex align-items-center text-muted" href="#">
+            <span data-feather="plus-circle"></span>
+          </a>
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Current month
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Last quarter
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Social engagement
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Year-end sale
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-    <h3>Five grid tiers</h3>
-    <p>There are five tiers to the Bootstrap grid system, one for each range of devices we support. Each tier starts at a minimum viewport size and automatically applies to the larger devices unless overridden.</p>
-
-    <div class="row" class="border">
-      <div class="col-4">.col-4</div>
-      <div class="col-4">.col-4</div>
-      <div class="col-4">.col-4</div>
-    </div>
-
-    <div class="row" class="border">
-      <div class="col-sm-4">.col-sm-4</div>
-      <div class="col-sm-4">.col-sm-4</div>
-      <div class="col-sm-4">.col-sm-4</div>
-    </div>
-
-    <div class="row" class="border">
-      <div class="col-md-4">.col-md-4</div>
-      <div class="col-md-4">.col-md-4</div>
-      <div class="col-md-4">.col-md-4</div>
-    </div>
-
-    <div class="row" class="border">
-      <div class="col-lg-4">.col-lg-4</div>
-      <div class="col-lg-4">.col-lg-4</div>
-      <div class="col-lg-4">.col-lg-4</div>
-    </div>
-
-    <div class="row">
-      <div class="col-xl-4">.col-xl-4</div>
-      <div class="col-xl-4">.col-xl-4</div>
-      <div class="col-xl-4">.col-xl-4</div>
-    </div>
-
-    <h3>Three equal columns</h3>
-    <p>Get three equal-width columns <strong>starting at desktops and scaling to large desktops</strong>. On mobile devices, tablets and below, the columns will automatically stack.</p>
-    <div class="row" class="border">
-      <div class="col-md-4">.col-md-4</div>
-      <div class="col-md-4">.col-md-4</div>
-      <div class="col-md-4">.col-md-4</div>
-    </div>
-
-    <h3>Three unequal columns</h3>
-    <p>Get three columns <strong>starting at desktops and scaling to large desktops</strong> of various widths. Remember, grid columns should add up to twelve for a single horizontal block. More than that, and columns start stacking no matter the viewport.</p>
-    <div class="row" class="border">
-      <div class="col-md-3">.col-md-3</div>
-      <div class="col-md-6">.col-md-6</div>
-      <div class="col-md-3">.col-md-3</div>
-    </div>
-
-    <h3>Two columns</h3>
-    <p>Get two columns <strong>starting at desktops and scaling to large desktops</strong>.</p>
-    <div class="row" class="border">
-      <div class="col-md-8">.col-md-8</div>
-      <div class="col-md-4">.col-md-4</div>
-    </div>
-
-    <h3>Full width, single column</h3>
-    <p class="text-warning">No grid classes are necessary for full-width elements.</p>
-
-    <hr>
-
-    <h3>Two columns with two nested columns</h3>
-    <p>Per the documentation, nesting is easy—just put a row of columns within an existing column. This gives you two columns <strong>starting at desktops and scaling to large desktops</strong>, with another two (equal widths) within the larger column.</p>
-    <p>At mobile device sizes, tablets and down, these columns and their nested columns will stack.</p>
-    <div class="row">
-      <div class="col-md-8" class="border">
-        .col-md-8
-        <div class="row">
-          <div class="col-md-6">.col-md-6</div>
-          <div class="col-md-6">.col-md-6</div>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dashboard</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group mr-2">
+            <button class="btn btn-sm btn-outline-secondary">Share</button>
+            <button class="btn btn-sm btn-outline-secondary">Export</button>
+            <button class="btn btn-sm btn-outline-secondary">Share</button>
+            <button class="btn btn-sm btn-outline-secondary">Export</button>
+          </div>
+          <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar"></span>
+            This week
+          </button>
         </div>
       </div>
-      <div class="col-md-4">.col-md-4</div>
-    </div>
 
-    <hr>
-
-    <h3>Mixed: mobile and desktop</h3>
-    <p>The Bootstrap v4 grid system has five tiers of classes: xs (extra small), sm (small), md (medium), lg (large), and xl (extra large). You can use nearly any combination of these classes to create more dynamic and flexible layouts.</p>
-    <p>Each tier of classes scales up, meaning if you plan on setting the same widths for xs and sm, you only need to specify xs.</p>
-    <div class="row" class="border">
-      <div class="col-12 col-md-8">.col-12 .col-md-8</div>
-      <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+      
+  <!-- <div class="row">
+    <div class="col-sm-3">
+      <bar-chart></bar-chart>
     </div>
-    <div class="row">
-      <div class="col-6 col-md-4">.col-6 .col-md-4</div>
-      <div class="col-6 col-md-4">.col-6 .col-md-4</div>
-      <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+    <div  class="col-sm-6">
+      <form action="/action_page.php">
+        <div class="mb-3 mt-3">
+          <label for="email" class="form-label">Email:</label>
+          <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+        </div>
+        <div class="mb-6">
+          <label for="pwd" class="form-label">Password:</label>
+          <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+        </div>
+        <div class="form-check mb-3">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" name="remember"> Remember me
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
     </div>
-    <div class="row">
-      <div class="col-6">.col-6</div>
-      <div class="col-6">.col-6</div>
+     
+          
+    <div class="col-sm-3">
+      <bar-chart></bar-chart>
     </div>
+  </div>
 
-    <hr>
-
-    <h3>Mixed: mobile, tablet, and desktop</h3>
-    <p></p>
-    <div class="row" class="border">
-      <div class="col-12 col-sm-6 col-lg-8">.col-12 .col-sm-6 .col-lg-8</div>
-      <div class="col-6 col-lg-4">.col-6 .col-lg-4</div>
+     <div class="row">
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Header</th>
+              <th>Header</th>
+              <th>Header</th>
+              <th>Header</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1,001</td>
+              <td>Lorem</td>
+              <td>ipsum</td>
+              <td>dolor</td>
+              <td>sit</td>
+            </tr>
+            <tr>
+              <td>1,002</td>
+              <td>amet</td>
+              <td>consectetur</td>
+              <td>adipiscing</td>
+              <td>elit</td>
+            </tr>
+            <tr>
+              <td>1,003</td>
+              <td>Integer</td>
+              <td>nec</td>
+              <td>odio</td>
+              <td>Praesent</td>
+            </tr>
+            <tr>
+              <td>1,003</td>
+              <td>libero</td>
+              <td>Sed</td>
+              <td>cursus</td>
+              <td>ante</td>
+            </tr>
+            <tr>
+              <td>1,004</td>
+              <td>dapibus</td>
+              <td>diam</td>
+              <td>Sed</td>
+              <td>nisi</td>
+            </tr>
+            <tr>
+              <td>1,005</td>
+              <td>Nulla</td>
+              <td>quis</td>
+              <td>sem</td>
+              <td>at</td>
+            </tr>
+            <tr>
+              <td>1,006</td>
+              <td>nibh</td>
+              <td>elementum</td>
+              <td>imperdiet</td>
+              <td>Duis</td>
+            </tr>
+            <tr>
+              <td>1,007</td>
+              <td>sagittis</td>
+              <td>ipsum</td>
+              <td>Praesent</td>
+              <td>mauris</td>
+            </tr>
+            <tr>
+              <td>1,008</td>
+              <td>Fusce</td>
+              <td>nec</td>
+              <td>tellus</td>
+              <td>sed</td>
+            </tr>
+            <tr>
+              <td>1,009</td>
+              <td>augue</td>
+              <td>semper</td>
+              <td>porta</td>
+              <td>Mauris</td>
+            </tr>
+            <tr>
+              <td>1,010</td>
+              <td>massa</td>
+              <td>Vestibulum</td>
+              <td>lacinia</td>
+              <td>arcu</td>
+            </tr>
+            <tr>
+              <td>1,011</td>
+              <td>eget</td>
+              <td>nulla</td>
+              <td>Class</td>
+              <td>aptent</td>
+            </tr>
+            <tr>
+              <td>1,012</td>
+              <td>taciti</td>
+              <td>sociosqu</td>
+              <td>ad</td>
+              <td>litora</td>
+            </tr>
+            <tr>
+              <td>1,013</td>
+              <td>torquent</td>
+              <td>per</td>
+              <td>conubia</td>
+              <td>nostra</td>
+            </tr>
+            <tr>
+              <td>1,014</td>
+              <td>per</td>
+              <td>inceptos</td>
+              <td>himenaeos</td>
+              <td>Curabitur</td>
+            </tr>
+            <tr>
+              <td>1,015</td>
+              <td>sodales</td>
+              <td>ligula</td>
+              <td>in</td>
+              <td>libero</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div class="row">
-      <div class="col-6 col-sm-4">.col-6 .col-sm-4</div>
-      <div class="col-6 col-sm-4">.col-6 .col-sm-4</div>
-      <div class="col-6 col-sm-4">.col-6 .col-sm-4</div>
-    </div>
+      -->
+      <!-- 1: 3-->
+      <!-- <div class="row">
+        <div class="col-sm-3">
+          <h3>Add new Timesheet entry</h3>
+          <p>Time entries: A timesheet records the time worked by the employee. This includes the date, start and end times for each work period, and the total hours worked for that day.</p>
+        </div>
+        <div class="col-sm-9">
+          <bar-chart></bar-chart>
+         
+        </div>
+      </div> -->
 
-  </div> <!-- /container -->
+   
+      <!-- <div class="row">
+        <div class="col-sm-6">
+          <form action="/action_page.php">
+                <div class="mb-3 mt-3">
+                  <label for="email" class="form-label">Email:</label>
+                  <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                </div>
+                <div class="mb-3">
+                  <label for="pwd" class="form-label">Password:</label>
+                  <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+                </div>
+                <div class="form-check mb-3">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" name="remember"> Remember me
+                  </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+          </form> 
+        </div>
+        <div class="col-sm-6">
+          <bar-chart></bar-chart> 
+        </div>
+      </div>  
+  
+      <!-- <div class="row">
+        <div class="col-sm-3">
+          <form action="/action_page.php">
+                <div class="mb-3 mt-3">
+                  <label for="email" class="form-label">Email:</label>
+                  <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                </div>
+                <div class="mb-3">
+                  <label for="pwd" class="form-label">Password:</label>
+                  <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+                </div>
+                <div class="form-check mb-3">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" name="remember"> Remember me
+                  </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+          </form>  
+        </div>
+        
+        <div class="col-sm-9">
+        
+          <div class="row">
+            <form action="/action_page.php">
+              <div class="mb-3 mt-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+              </div>
+              <div class="mb-3">
+                <label for="pwd" class="form-label">Password:</label>
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+              </div>
+              <div class="form-check mb-3">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" name="remember"> Remember me
+                </label>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>  
+         </div>
+         
+         <div class="row">
+          <div>
+            <bar-chart></bar-chart>
+          </div>
+         </div>
+        </div>
+      </div>   -->
 
- -->
-
-
-<!--<horizontal-bar class="mb-2"></horizontal-bar>
-<div class="row">
-    <div class="col-1">
-        <vertical-bar></vertical-bar>
-    </div>
-    <div class="col-11">
-         <in-out-time-recorder></in-out-time-recorder>  
-       <day-timesheet></day-timesheet> 
-        <task-utiization-chart></task-utiization-chart>  
-         <timesheet-list></timesheet-list> 
-         <project-list></project-list> 
-        <add-leave></add-leave> 
-       <consumed-leaves></consumed-leaves> 
-       <member-list></member-list>
-    </div>
+      <!-- <in-out-time-recorder></in-out-time-recorder> -->
+        <!-- <add-leave></add-leave> -->
+        <consumed-leaves></consumed-leaves>
+    </main>
+  </div>
 </div>
-
--->
- <!-- <timesheet-entry-detail></timesheet-entry-detail > -->
-<!-- <week-timesheet-list [employeeId]="10" [fromDate]="'2024-01-04'" [toDate]="'2024-01-10'"></week-timesheet-list>  -->
-<!-- <new-day-timesheet></new-day-timesheet> -->
-<!-- <employee-project></employee-project> -->
-<!-- <employee-project-works></employee-project-works> -->
-<!-- <project-work-list></project-work-list>
-<project-work-item></project-work-item> -->
-<!-- <task-work-utilization></task-work-utilization> -->
-
-<!-- <router-outlet></router-outlet> -->
+  
