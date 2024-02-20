@@ -31,5 +31,8 @@ export class ProjectService {
     return this.httpClient.get<any[]>(url);
   }
 
-  
+  getAllProjectMember(projectId: number,memberId:number): Observable<Member> {
+    let url = this.projectApi + '/projects/' + projectId + '/member/' +memberId;
+    return this.httpClient.get<Member>(url);
+  }
 }

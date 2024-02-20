@@ -28,6 +28,7 @@ import { ProjectManagerModule } from './projectmanager/project-manager.module';
     AuthenticationModule,
     HRManagerModule,
     LayoutModule,
+    EmployeeModule,
     ProjectManagerModule
 
   ],

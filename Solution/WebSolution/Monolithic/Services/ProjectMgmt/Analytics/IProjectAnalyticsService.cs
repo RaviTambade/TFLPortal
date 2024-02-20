@@ -7,6 +7,7 @@ public interface IProjectAnalyticsService
 {
     Task<List<Project>> GetAllProjects();
     Task<Project> GetProject(int projectId);
+    Task<ProjectAllocation> GetProjectMember(int projectId,int memberId);
     Task<List<Project>> GetAllCurrentProjects(int memberId);
     Task<List<Sprint>> GetSprints(int projectId);
     Task<Sprint> GetCurrentSprint(int projectId, DateOnly date);

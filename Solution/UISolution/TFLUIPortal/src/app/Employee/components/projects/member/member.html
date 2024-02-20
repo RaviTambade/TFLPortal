@@ -4,17 +4,18 @@
 <table class="table">
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Member</th>
+        <th scope="col">Name</th>
+        <th scope="col">Contact Number</th>
+        <th scope="col">Email</th>
         <th scope="col">Role</th>
-        <th scope="col">Joined</th>
       </tr>
     </thead>
     <tbody>
-            <tr *ngFor="let member of members">
-                <th scope="row">1</th>
-                <td><a href="" >{{member.fullName}}</a></td>
-                <td>{{member.title}}</td>
+            <tr *ngIf="user">
+                <td>{{user.firstName}} {{user.lastName}}</td>
+                <td>{{user.contactNumber}}</td>
+                <td>{{user.email}}</td>   
+                <td *ngIf="member">{{member.title}}</td>
             </tr>
     </tbody>
   </table>

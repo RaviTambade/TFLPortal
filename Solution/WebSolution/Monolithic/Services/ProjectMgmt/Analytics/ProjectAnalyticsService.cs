@@ -316,6 +316,47 @@ public class ProjectAnalyticsService:IProjectAnalyticsService
         return members;
     }
 
+
+    public async Task<ProjectAllocation> GetProjectMember(int projectId,int memberId)
+    {
+        ProjectAllocation member= null;
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query =@"Select * from projectallocations where projectid=@projectId and employeeId=@memberId";
+                
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@projectId", projectId);
+            command.Parameters.AddWithValue("@memberId", memberId);
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            if (await reader.ReadAsync())
+            {
+                member = new ProjectAllocation
+                {
+                    Id = reader.GetInt32("id"),
+                    ProjectId = reader.GetInt32("projectid"),
+                    EmployeeId = memberId,
+                    Title = reader.GetString("title"),
+                    AssignedOn = reader.GetDateTime("assignedon"),
+                    Status=reader.GetString("status")
+                };
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return member;
+    }
+
+
     public async Task<SprintTask> GetSprintOfTask(int taskId)
     {
         SprintTask task =null;

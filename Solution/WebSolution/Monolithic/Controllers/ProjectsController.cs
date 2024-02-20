@@ -147,4 +147,14 @@ public class ProjectsController : ControllerBase
         List<ProjectAllocation> members= await _analyticsSvc.GetProjectMembers(projectId);
         return members;
     }
+
+    [Authorize(RoleTypes.ProjectManager)]
+    [HttpGet("{projectId}/member/{memberId}")]
+    public async Task<ProjectAllocation> GetProjectMember(int projectId,int memberId)
+    {
+        ProjectAllocation member = await _analyticsSvc.GetProjectMember(projectId,memberId);
+        return member;
+    }
+
+
 }

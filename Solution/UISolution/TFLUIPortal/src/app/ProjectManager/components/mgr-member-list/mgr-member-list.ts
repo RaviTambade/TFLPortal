@@ -14,7 +14,6 @@ export class MgrMemberList implements OnInit{
 
   constructor(private projectSvc:ProjectService,
               private membershipSvc:MembershipService){     }
- 
 
   ngOnInit(): void {
     
