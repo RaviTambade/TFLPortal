@@ -1,36 +1,27 @@
-<!-- <div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="container">
-                <div class="card" *ngIf="project">
-                    <h2>{{project.title}}</h2>
-                    <div class="card-body">
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>Description</th>
-                                <td>{{project.description}}</td>
-                            </tr>
-                            <tr>
-                                <th>Status:</th>
-                                <td>{{project.status}}</td>
-                            </tr>
-                            <tr>
-                                <th>StartDate</th>
-                                <td>{{project.startDate| date}}</td>
-                            </tr>
-                            <tr>
-                                <th>EndDate</th>
-                                <td>{{project.endDate| date}}</td>
-                            </tr>
-                            <tr>
 
-                                <td><a [routerLink]="['../members',project.id]">More..Details...</a>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
+<!-- <div class="container">
+    <h2>Project Backlog</h2>
+    <div class="row">
+        <div class="col">ToDo</div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="d-flex" *ngFor="let task of todotasks">
+                <label  class="mx-2">{{task.title}}</label>
+                <a href="">detalis</a>
             </div>
         </div>
     </div>
 </div> -->
+
+
+
+
+<p>pagination works!</p>
+<div class="container">
+<div *ngFor="let n of tasks">
+    {{n.title}}
+</div>
+<button (click)="onClickPrevious()" [disabled]="priviousStatus">previous</button>
+<button  (click)="onClickNext()" [disabled]="nextStatus">Next</button>
+</div>

@@ -10,6 +10,8 @@ public interface ITaskAnalyticsService
     Task<List<ProjectTask>> GetAllTasks(int projectId, string TaskType);
     Task<List<ProjectTask>> GetAllTasks(int projectId, int memberId);
     Task<List<ProjectTask>> GetAllTasks(int projectId, int memberId, string status);
+    Task<List<ProjectTask>> GetAllTasksByStatus(int projectId, string status);
+
     Task<List<ProjectTask>> GetAllSprintTasks(int sprintId, int memberId, string status);
     Task<List<ProjectTask>> GetAllSprintTasks(int sprintId, int memberId, string status,string taskType);
     Task<ProjectTask> GetTask(int taskId);

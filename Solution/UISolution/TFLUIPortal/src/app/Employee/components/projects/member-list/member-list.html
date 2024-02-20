@@ -1,20 +1,25 @@
 
+<div class="container">
 <h3>Project:Timesheet Management</h3>
 <p>Project Manager:Ravi Tambade</p>
+<h4>Members</h4>
 <table class="table">
     <thead>
       <tr>
         <th scope="col">Name</th>
+        <th scope="col">Role</th>
         <th scope="col">Joined</th>
       </tr>
     </thead>
     <tbody>
             <tr *ngFor="let member of members">
                 <td><a href="" >{{member.fullName}}</a></td>
+                <td>{{member.title}}</td>
                 <td>{{member.assignedOn |date: 'MM/dd/yyyy'}}</td>
             </tr>
     </tbody>
   </table>
+</div>
 
 
 

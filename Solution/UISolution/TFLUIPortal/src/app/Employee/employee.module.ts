@@ -44,6 +44,10 @@ import { TaskList } from './Components/Timesheet/task-list/taskList';
 import { TaskItem } from './Components/Timesheet/task-item/taskItem';
 import { ProjectBacklog } from './Components/projects/project-backlog/project-backlog';
 import { ProjectMember } from './Components/projects/member/member';
+import { SprintList } from './components/projects/sprint-list/sprint-list';
+import { ActivityList } from './components/projects/sprintactivities/activitylist';
+import { ProjectBoardComponent } from './components/projects/project-board/project-board.component';
+import { PaginationComponent } from './components/projects/pagination/pagination.component';
 
 
 
@@ -92,6 +96,8 @@ const employeeRoutes: Routes = [
     ProjectBacklog,
     ProjectMemberList,
     ProjectMember,
+    SprintList,
+    ActivityList,
     TaskList,
     TaskItem,
     ConsumedLeaves,
@@ -100,7 +106,9 @@ const employeeRoutes: Routes = [
     LeaveApplicationList,
     LeaveApplicationDetails,
     LeaveUpdate,
-    LeaveAllocation
+    LeaveAllocation,
+    ProjectBoardComponent,
+    PaginationComponent
 
     //Leave management 
     //New Leave application
@@ -144,8 +152,10 @@ const employeeRoutes: Routes = [
     LeaveUpdate,
 
     ProjectMemberList,
-    ProjectMember
-
+    ProjectMember,
+    ProjectBoardComponent,
+    ProjectBacklog,
+    PaginationComponent
 
   ],
 })

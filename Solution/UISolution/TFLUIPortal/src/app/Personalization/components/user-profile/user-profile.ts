@@ -5,6 +5,8 @@ import { TokenClaims } from 'src/app/shared/enums/tokenclaims';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
 import { User } from 'src/app/shared/Entities/UserMgmt/User';
 import { JwtService } from 'src/app/shared/services/JwtHelperService/jwt.service';
+import { ProjectService } from 'src/app/employee/Services/project.service';
+import { Member } from 'src/app/employee/Models/ProjectMgmt/Member';
 
 @Component({
   selector: 'user-profile',
@@ -18,11 +20,14 @@ export class UserProfile {
   selectedImageUrl: string | undefined;
   defaultImage: string = 'AkshayTanpure.jpg';
   updateProfileStatus: boolean = false;
-
+  projectId :number=4;
+  memberId:number=7;
+  member :Member|undefined;
   constructor(
     // private hrsvc: HrService,
     private membershipsvc: MembershipService,
-    private jwtSvc:JwtService
+    private jwtSvc:JwtService,
+    private projectSvc :ProjectService
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +39,10 @@ export class UserProfile {
     this.membershipsvc.getUser(this.userId).subscribe((res) => {
       this.user = res;
       console.log(res);
+      this.projectSvc.getAllProjectMember(this.projectId,this.memberId).subscribe((res)=>{
+        this.member=res;
+        console.log(res);
+      })
     });
   }
   onFileSelected(event: any) {

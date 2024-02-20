@@ -76,4 +76,10 @@ export class TasksManagementService {
     let url=`${this.taskAPIUrl}/${taskId}`;
     return this.http.get<Task>(url);
   }
+
+
+  getAllTasksByStatus(projectId: number, status: string): Observable<Task[]> {
+    let url = `${this.taskAPIUrl}/projects/${projectId}/tasks/${status}`;
+    return this.http.get<Task[]>(url);
+  }
 }

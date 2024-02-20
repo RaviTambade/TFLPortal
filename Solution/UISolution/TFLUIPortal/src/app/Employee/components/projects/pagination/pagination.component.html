@@ -1,0 +1,8 @@
+<p>pagination works!</p>
+<div class="container">
+<div *ngFor="let n of num1">
+    {{n}}
+</div>
+<button (click)="onClickPrevious()" [disabled]="pageNumber<=1">previous</button>
+<button  (click)="onClickNext()" [disabled]="pageNumber>=maxpages">Next</button>
+</div>

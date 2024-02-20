@@ -181,6 +181,9 @@ public class TaskAnalyticsService:ITaskAnalyticsService
         }
         return tasks;
     }
+
+
+    
     public async Task<List<ProjectTask>> GetAllTasks(int projectId, int memberId)
     {
 
@@ -277,6 +280,64 @@ public class TaskAnalyticsService:ITaskAnalyticsService
                     StartDate = startDate,
                     DueDate = dueDate,
                     AssignedTo= memberId,
+                    Status = status,
+                    AssignedBy = assignedBy,
+
+                };
+                tasks.Add(task);
+            }
+            await reader.CloseAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        finally
+        {
+            await connection.CloseAsync();
+        }
+        return tasks;
+    }
+
+
+     public async Task<List<ProjectTask>> GetAllTasksByStatus(int projectId, string status)
+    {
+
+        List<ProjectTask> tasks = new List<ProjectTask>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.ConnectionString = _connectionString;
+        try
+        {
+            string query = "select * from tasks INNER JOIN sprinttasks on tasks.id=sprinttasks.taskid INNER join sprints on sprints.id=sprinttasks.sprintid WHERE tasks.status=@status and sprints.projectid=@projectId";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@projectId", projectId);
+            command.Parameters.AddWithValue("@status", status);
+
+            await connection.OpenAsync();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+            {
+                int id = int.Parse(reader["id"].ToString());
+                string title = reader["title"].ToString();
+                string description = reader["description"].ToString();
+                DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
+                int assignedBy = int.Parse(reader["assignedby"].ToString());
+                int assignedTo=int.Parse(reader["assignedto"].ToString());
+                DateTime assignedOn = DateTime.Parse(reader["assignedon"].ToString());
+                DateTime startDate = DateTime.Parse(reader["startdate"].ToString());
+                DateTime dueDate = DateTime.Parse(reader["duedate"].ToString());
+                string taskType = reader["tasktype"].ToString();
+
+                ProjectTask task = new ProjectTask
+                {
+                    Id = id,
+                    Title = title,
+                    TaskType = taskType,
+                    Description = description,
+                    AssignedOn = assignedOn,
+                    StartDate = startDate,
+                    DueDate = dueDate,
+                    AssignedTo= assignedTo,
                     Status = status,
                     AssignedBy = assignedBy,
 

@@ -12,6 +12,7 @@ import { LayoutModule } from './layout/layout.module';
 import { HRManagerModule } from './hrmanager/hrmanager.module';
 import { EmployeeModule } from './employee/employee.module';
 import { ProjectManagerModule } from './projectmanager/project-manager.module';
+import { PersonaliztionModule } from './personalization/personaliztion.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,7 +30,8 @@ import { ProjectManagerModule } from './projectmanager/project-manager.module';
     HRManagerModule,
     LayoutModule,
     EmployeeModule,
-    ProjectManagerModule
+    ProjectManagerModule,
+    PersonaliztionModule
 
   ],
 

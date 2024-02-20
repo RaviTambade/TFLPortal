@@ -51,6 +51,20 @@ public class TasksController : ControllerBase
         return tasks;
     }
 
+
+
+[Authorize(RoleTypes.ProjectManager)]
+    [HttpGet("projects/{projectId}/tasks/{status}")]
+    public async Task<List<ProjectTask>>GetAllTasksByStatus(int projectId, string status)
+    {
+        List<ProjectTask> tasks = await _analyticsSvc.GetAllTasksByStatus(projectId,status);
+        return tasks;
+    }
+    
+
+
+    
+
     [Authorize(RoleTypes.ProjectManager,RoleTypes.Employee)]
     [HttpGet("projects/{projectId}/members/{memberId}")]
     public async Task<List<ProjectTask>> GetAllTasks(int projectId,int memberId)

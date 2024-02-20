@@ -7,5 +7,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [UserProfile, UpdateProfile],
   imports: [CommonModule, ReactiveFormsModule],
+  exports: [UserProfile],
 })
 export class PersonaliztionModule {}

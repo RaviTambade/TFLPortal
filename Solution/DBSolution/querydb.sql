@@ -1,9 +1,10 @@
--- Active: 1707123530557@@127.0.0.1@3306@tflportal
+-- Active: 1695204043273@@127.0.0.1@3306@tflportal
 
 
 -- LeaveManagement
 show TABLES;
 
+SELECT * FROM tasks ;
 DESC projectallocations;
 select * from projectallocations;
 -- get all leaveapplications
@@ -250,3 +251,12 @@ SELECT * FROM timesheetentries WHERE timesheetentries.id=22;
 -- get working days of employee of a month
 SELECT COUNT(*) AS WorkingDays FROM timesheets WHERE createdby=10
 AND status='approved' AND MONTH(createdon)=1 AND YEAR(createdon)=2024;
+
+
+
+select * from tasks 
+INNER JOIN sprinttasks on tasks.id=sprinttasks.taskid 
+INNER join sprints on sprints.id=sprinttasks.sprintid 
+WHERE sprints.projectid=4 and tasks.status="inprogress";
+
+SELECT * from tasks;
