@@ -1,0 +1,19 @@
+
+
+<div class="container-fluid">
+    <h4>Sprint  List</h4>
+    <div class="row" >
+        <div class="col"><p> <b>Duration</b></p></div>
+        <div class="col"><p> <b>Title</b></p></div>
+        <div class="col"></div>
+   
+    </div>
+    <div class="row"  *ngFor="let sprint of sprints" >
+        <div class="col"><p> {{sprint.startDate|date}} -{{sprint.endDate |date}}</p></div>
+        <div class="col"><p> {{sprint.title}}</p></div>
+        <div class="col"><a href="#"> details</a></div>
+
+      
+    </div>
+</div>
+

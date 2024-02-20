@@ -1,9 +1,17 @@
-<div class="container">
-    <span>Sprint activity List</span>
-    <div class="row" *ngFor="let employeework of empployeeWorks">
-       <p>Title : {{employeework.title}}</p>
-       <p>Status: {{employeework.status}}</p>
-       <p>Assigned To: {{employeework.assignee}}</p>
-       <p>Assigne By: {{employeework.assignor}}</p>
+
+<div class="container-fluid">
+    <h4>Sprint Activity List</h4>
+    <div class="row" >
+        <div class="col"><p> <b>Title</b></p></div>
+        <div class="col"><p> <b>Status</b></p></div>
+        <div class="col"><p> <b>Assigned To</b></p></div>
+        <div class="col"><p> <b>Assign By</b></p></div>
+    </div>
+    <div class="row"  *ngFor="let employeework of empployeeWorks" >
+        <div class="col"><p> {{employeework.title}}</p></div>
+        <div class="col"><p> {{employeework.status}}</p></div>
+        <div class="col"><p> {{employeework.assignee}}</p></div>
+        <div class="col"><p> {{employeework.assignor}}</p></div>
     </div>
 </div>
+

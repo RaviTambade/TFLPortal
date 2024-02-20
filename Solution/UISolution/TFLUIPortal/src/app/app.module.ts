@@ -11,6 +11,7 @@ import { SPAModule } from './spa/spa.module';
 import { LayoutModule } from './layout/layout.module';
 import { HRManagerModule } from './hrmanager/hrmanager.module';
 import { EmployeeModule } from './employee/employee.module';
+import { ProjectManagerModule } from './projectmanager/project-manager.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,6 +28,7 @@ import { EmployeeModule } from './employee/employee.module';
     AuthenticationModule,
     HRManagerModule,
     LayoutModule,
+    ProjectManagerModule
 
   ],
 

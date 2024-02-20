@@ -36,5 +36,10 @@ export class SprintService {
   }
 
 
+  getSprints(projectId:number): Observable<Sprint[]> {
+    let url = `${this.sprintApi}/project/${projectId}/sprints`;
+    return this.httpClient.get<Sprint[]>(url);
+  }
+
 
 }

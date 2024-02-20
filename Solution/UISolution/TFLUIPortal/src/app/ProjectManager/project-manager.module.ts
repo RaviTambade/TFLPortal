@@ -12,6 +12,7 @@ import { MgrProjectItem } from './components/mgr-project-item/mgr-project-item';
 import { MgrProjectWorkList } from './components/mgr-project-work-list/mgr-project-work-list';
 import { MgrProjectworkItem } from './components/mgr-project-work-Item/mgr-project-work-item';
 import { MgrMemberList } from './components/mgr-member-list/mgr-member-list';
+import { SprintList } from './components/sprint-list/sprint-list';
  
  
 
@@ -30,7 +31,9 @@ import { MgrMemberList } from './components/mgr-member-list/mgr-member-list';
     MgrProjectworkItem,
     CurrentSprint,
     MgrProjectList,
-    MgrProjectItem
+    MgrProjectItem,
+    ActivityList,
+    SprintList,
     
   ],
   imports: [
@@ -38,6 +41,6 @@ import { MgrMemberList } from './components/mgr-member-list/mgr-member-list';
            RouterModule.forChild(projectManagerRoutes)
           ],
   exports: [MgrProjectWorkList, MgrProjectworkItem,
-            CurrentSprint],
+            CurrentSprint,ActivityList,SprintList],
 })
 export class ProjectManagerModule {}
