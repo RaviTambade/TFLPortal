@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
 import { EmployeeContainer } from './Components/container/employee-container';
-import { MemberList } from './Components/member-list/member-list';
+import { MemberList, ProjectMemberList } from './Components/projects/member-list/member-list';
 import { HorizontalBar } from './Components/bars/horizontalbar/horizontalbar';
 import { VerticalBar } from './Components/bars/verticalbar/verticalbar';
 import { EmployeeNavBar } from './Components/bars/employeenavbar/employeenavbar';
@@ -42,6 +42,8 @@ import { ConsumedLeaves } from './Components/leavemgmt/consumed-leaves/consumed-
 import { AvailableLeaves } from './Components/leavemgmt/available-leaves/available-leaves';
 import { TaskList } from './Components/Timesheet/task-list/taskList';
 import { TaskItem } from './Components/Timesheet/task-item/taskItem';
+import { ProjectBacklog } from './Components/projects/project-backlog/project-backlog';
+import { ProjectMember } from './Components/projects/member/member';
 
 
 
@@ -87,7 +89,9 @@ const employeeRoutes: Routes = [
     ProjectContainer,
     ProjectList,
     ProjectItem,
-    MemberList,
+    ProjectBacklog,
+    ProjectMemberList,
+    ProjectMember,
     TaskList,
     TaskItem,
     ConsumedLeaves,

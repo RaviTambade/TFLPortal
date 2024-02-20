@@ -1,0 +1,21 @@
+
+<h3>Project:Timesheet Management</h3>
+<p>Project Manager:Ravi Tambade</p>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Member</th>
+        <th scope="col">Role</th>
+        <th scope="col">Joined</th>
+      </tr>
+    </thead>
+    <tbody>
+            <tr *ngFor="let member of members">
+                <th scope="row">1</th>
+                <td><a href="" >{{member.fullName}}</a></td>
+                <td>{{member.title}}</td>
+            </tr>
+    </tbody>
+  </table>
+
