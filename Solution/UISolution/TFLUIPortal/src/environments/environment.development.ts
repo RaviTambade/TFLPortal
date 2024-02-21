@@ -11,4 +11,6 @@ export const environment = {
     timesheetAPI:"http://localhost:5263/api/timesheets",
     taskAPI:"http://localhost:5263/api/tasks",
     authenticationAPI:"http://localhost:5142/api/auth",
+    bankAPI:"http://localhost:5053/api"
+
 };

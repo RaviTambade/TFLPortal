@@ -11,7 +11,7 @@ export class PaySlip {
       public bankDetails:BankDetails,
       
       public workingDays:number,
-      public consumedPaidLeaves:number,
+      public consumedPaidLeaves:string,
       public month:number,
       public year:number,
    

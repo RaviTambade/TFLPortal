@@ -10,6 +10,7 @@ export const environment = {
   timesheetAPI:"http://localhost:5263/api/timesheets",
   payrollAPI: "http://localhost:5263/api/payroll",
   HrAPI: "http://localhost:5263/api/hr/employees",
-  taskAPI:"http://localhost:5263/api/tasks"
+  taskAPI:"http://localhost:5263/api/tasks",
+  bankAPI:"http://localhost:5053/api"
 };
 
