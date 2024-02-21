@@ -1,24 +1,22 @@
+import { BankDetails } from './BankDetails';
+import {PersonalDetails} from './PersonalDetails';
+import { SalaryDetails } from './SalaryDetails';
+import { TaxDetails } from './TaxDetails';
+
+
 export class PaySlip {
     constructor(
       public employeeId: number,
+      public  personDetails:PersonalDetails,
+      public bankDetails:BankDetails,
+      
+      public workingDays:number,
+      public consumedPaidLeaves:number,
       public month:number,
       public year:number,
-      public monthlyBasicSalary: number,
-      public hra: number,
-      public da: number,
-      public lta: number,
-      public variablePay: number,
-      public deduction: number,
-      public consumedPaidLeaves:number,
-      public workingDays:number,
-      public pf:number,
-      public tax:number,
+   
+      public salaryDetails:SalaryDetails,
+      public taxDetails:TaxDetails,
       public totalAmount:number,
-      public ifsc :string,
-      public firstName:string,
-      public lastName:string,
-      public contactNumber:string,
-      public birthDate:string,
-      public accountNumber:string
-    ) {}
+      ) {}
   }

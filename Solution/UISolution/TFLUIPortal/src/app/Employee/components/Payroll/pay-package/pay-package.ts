@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PaySlip } from 'src/app/employee/Models/Payroll/PaySlip';
+import { SalaryDetails } from 'src/app/employee/Models/Payroll/SalaryDetails';
 import { PayrollService } from 'src/app/employee/Services/pay-roll.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { PayrollService } from 'src/app/employee/Services/pay-roll.service';
 
 export class PayPackage implements OnInit {
 
-  salary: PaySlip | undefined;
+  pay: PaySlip | undefined;
   employeeId: number = 10;
   month:number=1;
   year:number=2024;
@@ -19,8 +20,10 @@ export class PayPackage implements OnInit {
   
   ngOnInit(): void {
     this.payrollSvc.getEmployeeSalary(this.employeeId,this.month,this.year).subscribe((res) => {
-      this.salary = res;
-      console.log(this.salary);
+     
+      console.log(res);
+      console.log(this.pay)
+      this.pay=new PaySlip()
     });
   }
 }

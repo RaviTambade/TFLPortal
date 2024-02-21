@@ -1,19 +1,22 @@
-<h3>Pay package</h3>
+<h3>Salary Details</h3>
+<hr/>
   <div class="container-fluid">  
-    <div *ngIf="salary">
-        <div><b>Pay Date:</b>{{date}}</div>
-    <div ><b>Month:</b>{{salary.month}}</div>
-    <div ><b>Year:</b>{{salary.year}}</div>
-    <div ><b>MonthlyWorkingDays:</b>{{salary.workingDays}}</div>
-    <div ><b>Deduction:</b>{{salary.deduction}}</div>
-    <div ><b>Tax:</b>{{salary.tax}}</div>
-    <div ><b>PF:</b>{{salary.pf}}</div>
-    <div ><b>Total Amount:</b>{{salary.totalAmount}}</div>
-    <div ><b>ConsumedPaidLeaves:</b>{{salary.consumedPaidLeaves}}</div>
-    <div ><b>MonthlyBasicSalary:</b>{{salary.monthlyBasicSalary}}</div>
-    <div ><b>hra:</b>{{salary.hra}}</div>
-    <div ><b>da:</b>{{salary.da}}</div>
-    <div ><b>lta:</b>{{salary.lta}}</div>
-    <div ><b>variablePay:</b>{{salary.variablePay}}</div>
+    <div *ngIf="pay">
+        <div><b>Salary  Date:</b>{{date}}</div>
+        <div><b>Salary  Date:</b>{{date|date:'MMM'}}</div>
+        
+    <div ><b>Month:</b>{{pay.month}}</div>
+    <div ><b>Year:</b>{{pay.year}}</div>
+    <div ><b>MonthlyWorkingDays:</b>{{pay.workingDays}}</div>
+    <div ><b>Deduction:</b>{{pay.taxDetails.deductions}}</div>
+    <div ><b>Tax:</b>{{pay.taxDetails.tax}}</div>
+    <div ><b>PF:</b>{{pay.taxDetails.pf}}</div>
+    <div ><b>Total Amount:</b>{{pay.totalAmount}}</div>
+    <div ><b>ConsumedPaidLeaves:</b>{{pay.consumedPaidLeaves}}</div>
+    <div ><b>MonthlyBasicSalary:</b>{{pay.salaryDetails.monthlyBasicSalary}}</div>
+    <div ><b>hra:</b>{{pay.salaryDetails.hra}}</div>
+    <div ><b>da:</b>{{pay.salaryDetails.da}}</div>
+    <div ><b>lta:</b>{{pay.salaryDetails.lta}}</div>
+    <div ><b>variablePay:</b>{{pay.salaryDetails.variablePay}}</div>
    </div>
 </div>

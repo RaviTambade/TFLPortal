@@ -2,6 +2,23 @@ namespace TFLPortal.Responses;
 
 public class MonthSalary
 {
+
+
+      public employeeId: number,
+      public  personDetails:PersonalDetails,
+      public bankDetails:BankDetails,
+      
+      public workingDays:number,
+      public consumedPaidLeaves:number,
+      public month:number,
+      public year:number,
+   
+      public salaryDetails:SalaryDetails,
+      public taxDetails:TaxDetails,
+      public totalAmount:number,
+      
+
+
     public int EmployeeId{get;set;}
     public int Month{get;set;}
     public int Year{get; set;}

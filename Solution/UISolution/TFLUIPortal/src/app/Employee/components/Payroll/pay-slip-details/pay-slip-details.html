@@ -1,14 +1,14 @@
-<h3>Pay Slip details</h3>
-
-
-  <div class="container-fluid">  
+<div class="container-fluid">  
     <div *ngIf="salary">
-    <div><b>PayDate:</b>{{salary.payDate |date: 'MM/dd/yyyy'}}</div>
-    <div ><b>MonthlyWorkingDays:</b>{{salary.monthlyWorkingDays}}</div>
-    <div ><b>Deduction:</b>{{salary.deduction}}</div>
-    <div ><b>Tax:</b>{{salary.tax}}</div>
-    <div ><b>PF:</b>{{salary.pf}}</div>
+      <h3>Pay Slip {{salary.payDate |date: 'MMM yyyy'}}</h3>
+      <hr/>
+    <div><b>Salary Date:</b>{{salary.payDate |date: 'MM/dd/yyyy'}}</div>
+    <hr/>
+    <div ><b>Working Days:</b>{{salary.monthlyWorkingDays}}</div>
     <div ><b>Amount:</b>{{salary.amount}}</div>
+    <div ><b>Provident Fund:</b>{{salary.pf}}</div>
+    <div ><b>Other Deductions:</b>{{salary.deduction}}</div>
+    <div ><b>Other Tax:</b>{{salary.tax}}</div>
    </div>
 </div>
 
