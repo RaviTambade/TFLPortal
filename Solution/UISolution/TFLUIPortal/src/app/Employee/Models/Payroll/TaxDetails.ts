@@ -1,7 +1,7 @@
 
 export class TaxDetails {
     constructor(  public pf:number,
-        public deductions:number,
+        public deduction:number,
         public tax:number,
     ){}
 }  

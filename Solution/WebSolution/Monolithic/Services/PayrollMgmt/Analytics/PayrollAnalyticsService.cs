@@ -195,20 +195,30 @@ public class PayrollAnalyticsService : IPayrollAnalyticsService
             {
                 salary = new MonthSalary()
                 {
-                    EmployeeId=employeeId,
-                    Month=month,
-                    Year=year,
+                    EmployeeId = employeeId,
+                    Month = month,
+                    Year = year,
                     TotalAmount = reader.GetDouble("totalamount"),
-                    MonthlyBasicSalary = reader.GetDouble("monthlybasicsalary"),
-                    HRA = reader.GetDouble("monthlyhra"),
-                    DA = reader.GetDouble("dailyallowance"),
-                    LTA = reader.GetDouble("leaveTravelallowance"),
-                    VariablePay = reader.GetDouble("variablepayamount"),
-                    Deduction = reader.GetDouble("deduction"),
-                    Pf = reader.GetDouble("Pf"),
-                    Tax = reader.GetDouble("tax"),
                     ConsumedPaidLeaves = reader.GetInt32("consumedpaidleaves"),
                     WorkingDays = reader.GetInt32("workingdays"),
+
+                    SalaryDetails = new SalaryDetails
+                    {
+                        MonthlyBasicSalary = reader.GetDouble("monthlybasicsalary"),
+                        HRA = reader.GetDouble("monthlyhra"),
+                        DA = reader.GetDouble("dailyallowance"),
+                        LTA = reader.GetDouble("leaveTravelallowance"),
+                        VariablePay = reader.GetDouble("variablepayamount"),
+                    },
+                    TaxDetails = new TaxDetails
+                    {
+                        Pf = reader.GetDouble("Pf"),
+                        Tax = reader.GetDouble("tax"),
+                        Deduction = reader.GetDouble("deduction"),
+
+                    }
+
+
 
                 };
             }

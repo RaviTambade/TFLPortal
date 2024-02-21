@@ -20,10 +20,8 @@ export class PayPackage implements OnInit {
   
   ngOnInit(): void {
     this.payrollSvc.getEmployeeSalary(this.employeeId,this.month,this.year).subscribe((res) => {
-     
+     this.pay=res;
       console.log(res);
-      console.log(this.pay)
-      this.pay=new PaySlip()
     });
   }
 }
