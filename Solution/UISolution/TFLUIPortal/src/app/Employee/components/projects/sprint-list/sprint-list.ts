@@ -7,14 +7,17 @@ import { SprintService } from 'src/app/employee/Services/sprint.service';
   templateUrl: './sprint-list.html',
 })
 export class SprintList implements OnInit{
-projectId:number=4;
-sprints:Sprint[]=[];
+
+  projectId:number=4;
+  sprints:Sprint[]=[];
+
   constructor(private sprintSvc:SprintService){}
+
   ngOnInit(): void {
-   this.sprintSvc.getSprints(this.projectId).subscribe((res)=>{
-  console.log(res);
-  this.sprints=res;
-   })
+  
+    this.sprintSvc.getSprints(this.projectId).subscribe((res)=>{
+    this.sprints=res;
+  })
   }
 
 }

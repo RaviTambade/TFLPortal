@@ -16,10 +16,23 @@ export class PayrollService {
 
   constructor(private httpClient:HttpClient) { }
 
+  
+  getSalaryDetails(salaryId:number):Observable<Salary[]>{
+    let url=`${this.payrollAPI}/employee/salary/${salaryId}`;
+    return this.httpClient.get<Salary[]>(url);
+  }
+
+
   getEmployeeSalary(employeeId:number,month:number,year:number):Observable<MonthSalary>{
     let url=`${this.payrollAPI}/salaries/employee/${employeeId}/month/${month}/year/${year}`;
     return this.httpClient.get<MonthSalary>(url);
   }
+
+  getSalaryHistory(employeeId:number):Observable<any>{
+    let url=`${this.payrollAPI}/salaries/employees/${employeeId}`;
+    return this.httpClient.get<any>(url);
+  }
+
 
   AddSalary(salary:Salary):Observable<Salary>{
     let url=`${this.payrollAPI}/salaries`;
@@ -35,21 +48,12 @@ export class PayrollService {
     let url=`${this.payrollAPI}/salaries/unpaid/month/${month}/year/${year}`;
     return this.httpClient.get<Salary[]>(url);
   }
-
-  getSalaryDetails(salaryId:number):Observable<Salary[]>{
-    let url=`${this.payrollAPI}/employee/salary/${salaryId}`;
-    return this.httpClient.get<Salary[]>(url);
-  }
-
+ 
   addSalaryStructure(salaryStructure:SalaryStructure):Observable<SalaryStructure>{
     let url=`${this.payrollAPI}/employees/salarystructure`;
     return this.httpClient.post<SalaryStructure>(url,salaryStructure); 
   }
   
-  getSalaryHistory(employeeId:number):Observable<any>{
-    let url=`${this.payrollAPI}/salaries/employees/${employeeId}`;
-    return this.httpClient.get<any>(url);
-  }
 
   paySalary(employeeId: number,month:number,year:number): Observable<any> {
     let url = `${this.payrollAPI}/hr/employees/employee/salary/${employeeId}/month/${month}/year/${year}`;
