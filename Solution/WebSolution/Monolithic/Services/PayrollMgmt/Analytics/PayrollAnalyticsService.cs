@@ -182,7 +182,7 @@ public class PayrollAnalyticsService : IPayrollAnalyticsService
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
 
-        string query = "CALL calculatesalary(@employee_Id,@month,@year)";
+        string query = "CALL spcalculatesalary(@employee_Id,@month,@year)";
         try
         {
             MySqlCommand command = new MySqlCommand(query, connection);
@@ -195,8 +195,11 @@ public class PayrollAnalyticsService : IPayrollAnalyticsService
             {
                 salary = new MonthSalary()
                 {
+                    EmployeeId=employeeId,
+                    Month=month,
+                    Year=year,
                     TotalAmount = reader.GetDouble("totalamount"),
-                    MonthlyBasicsalary = reader.GetDouble("monthlybasicsalary"),
+                    MonthlyBasicSalary = reader.GetDouble("monthlybasicsalary"),
                     HRA = reader.GetDouble("monthlyhra"),
                     DA = reader.GetDouble("dailyallowance"),
                     LTA = reader.GetDouble("leaveTravelallowance"),
@@ -206,6 +209,7 @@ public class PayrollAnalyticsService : IPayrollAnalyticsService
                     Tax = reader.GetDouble("tax"),
                     ConsumedPaidLeaves = reader.GetInt32("consumedpaidleaves"),
                     WorkingDays = reader.GetInt32("workingdays"),
+
                 };
             }
         }

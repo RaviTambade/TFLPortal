@@ -1,5 +1,5 @@
 
--- Active: 1694968636816@@127.0.0.1@3306@tflportal
+-- Active: 1705924796699@@127.0.0.1@3306@tflportal
 
 -- director
 INSERT INTO employees(id,hiredon,reportingid) VALUES (1,'2013-01-01',1);
@@ -51,6 +51,7 @@ Insert Into leaveallocations(roleid,sick,casual,paid,unpaid,financialyear) value
 
 
 Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(10,'2024-01-13','2024-01-14','2024-01-15',"sanctioned","unpaid");
+Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(10,'2024-01-13','2024-01-14','2024-01-15',"sanctioned","paid");
 Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(11,'2024-04-01','2024-04-03','2024-04-05',"notsanctioned","casual");
 Insert Into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(12,'2024-04-01','2024-04-03','2024-04-05',"sanctioned","casual");
 
@@ -124,7 +125,15 @@ Insert Into salaryslips(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,a
 Insert Into salaryslips(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(17,'2024-01-11',24,600,600,600,20000);
 Insert Into salaryslips(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(18,'2024-01-11',25,600,600,600,20000);
 
-  
+Insert Into salaryslips(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(10,'2024-01-11',25,600,600,600,20000);
+Insert Into salaryslips(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(10,'2024-01-11',24,600,600,600,20000);
+Insert Into salaryslips(employeeid,paydate,monthlyworkingdays,deduction,tax,pf,amount) values(10,'2024-01-11',25,600,600,600,20000);
+ 
+
+
+
+
+
 INSERT INTO projects(title,startdate,enddate,description,status)VALUES('EKrushi','2023-11-03','2024-02-02','Krushi Product Management','notstarted');
 INSERT INTO projects(title,startdate,enddate,description,status)VALUES('PMSAPP','2023-11-02','2024-02-02','Project Management System App','notstarted');
 INSERT INTO projects(title,startdate,enddate,description,status)VALUES('EAgroServices','2023-11-13','2025-02-02','Farmers Goods Management','notstarted');

@@ -1,7 +1,9 @@
 export class PaySlip {
     constructor(
       public employeeId: number,
-      public monthlyBasicsalary: number,
+      public month:number,
+      public year:number,
+      public monthlyBasicSalary: number,
       public hra: number,
       public da: number,
       public lta: number,
@@ -18,6 +20,5 @@ export class PaySlip {
       public contactNumber:string,
       public birthDate:string,
       public accountNumber:string
-
     ) {}
   }

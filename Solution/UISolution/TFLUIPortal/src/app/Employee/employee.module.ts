@@ -48,6 +48,9 @@ import { SprintList } from './components/projects/sprint-list/sprint-list';
 import { ActivityList } from './components/projects/sprintactivities/activitylist';
 import { ProjectBoardComponent } from './components/projects/project-board/project-board.component';
 import { PaginationComponent } from './components/projects/pagination/pagination.component';
+import { PaySlipList } from './components/Payroll/pay-slip-list/pay-slip-list';
+import { PaySlipDetails } from './components/Payroll/pay-slip-details/pay-slip-details';
+import { PayPackage } from './components/Payroll/pay-package/pay-package';
 
 
 
@@ -108,7 +111,11 @@ const employeeRoutes: Routes = [
     LeaveUpdate,
     LeaveAllocation,
     ProjectBoardComponent,
-    PaginationComponent
+    PaginationComponent,
+
+    PaySlipList,
+    PaySlipDetails,
+    PayPackage
 
     //Leave management 
     //New Leave application
@@ -155,8 +162,10 @@ const employeeRoutes: Routes = [
     ProjectMember,
     ProjectBoardComponent,
     ProjectBacklog,
-    PaginationComponent
-
+    PaginationComponent,
+    PaySlipList,
+    PaySlipDetails,
+    PayPackage
   ],
 })
 
