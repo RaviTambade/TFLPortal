@@ -39,7 +39,8 @@ export class PayPackage implements OnInit {
           console.log(this.personalDetails.birthDate);
 
           this.bankSvc.getAccountDetails(10, this.userType).subscribe((bankres) => {
-            console.log( " Bank Details ="+ JSON.stringify(bankres));
+            console.log( " Bank Details =", JSON.stringify(bankres));
+            console.log(bankres);
             this.bankDetails= new BankDetails(bankres.accountNumber,bankres.ifscCode);
 
           });

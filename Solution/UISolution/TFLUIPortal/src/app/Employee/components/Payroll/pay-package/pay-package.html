@@ -82,7 +82,7 @@
           <tr>
              
               <td>Leave Travel Allowance</td>
-              <td>{{pay.salaryDetails}}</td>
+              <td>{{pay.salaryDetails.lta}}</td>
               <td>Deduction</td>
               <td>{{pay.taxDetails.deduction}}</td>
           </tr>
@@ -96,12 +96,13 @@
                
           </tr>
           <tr>
+            <td><b>ConsumedPaidLeaves:{{pay.consumedPaidLeaves}}</b></td>
+          </tr>
+          <tr>
               <td><strong>NET PAY</strong></td>
               <td>{{pay.totalAmount.toFixed(2)}}</td>
           </tr>
-          <tr>
-            <td><b>ConsumedPaidLeaves:{{pay.consumedPaidLeaves}}</b></td>
-          </tr>
+         
       </table>
       </div>
   </div>
