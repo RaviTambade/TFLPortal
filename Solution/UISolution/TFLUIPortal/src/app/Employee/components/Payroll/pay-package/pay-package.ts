@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BankDetails } from 'src/app/employee/Models/Payroll/BankDetails';
 import { PaySlip } from 'src/app/employee/Models/Payroll/PaySlip';
-import { PersonalDetails } from 'src/app/employee/Models/Payroll/PersonalDetails';
-import { SalaryDetails } from 'src/app/employee/Models/Payroll/SalaryDetails';
 import { BankingService } from 'src/app/employee/Services/banking.service';
 import { PayrollService } from 'src/app/employee/Services/pay-roll.service';
 import { User } from 'src/app/shared/Entities/UserMgmt/User';
@@ -45,8 +43,6 @@ export class PayPackage implements OnInit {
 
           });
         });
-
-        
       });
   }
 }
