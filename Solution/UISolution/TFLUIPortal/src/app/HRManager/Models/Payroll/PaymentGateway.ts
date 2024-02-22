@@ -1,8 +1,8 @@
 export class PaymentGateway{
-    constructor(public fromAccountNumber:string,
-                public fromIfscCode :string,
-                public toAccountNumber:string,
-                public toIfscCode :string,
+    constructor(public fromAcct:string,
+                public fromIfsc :string,
+                public toAcct:string,
+                public toIfsc :string,
                 public transactionType:string,
                 public amount :number,
     ){}

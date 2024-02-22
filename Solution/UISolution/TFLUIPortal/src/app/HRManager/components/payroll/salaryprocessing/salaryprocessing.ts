@@ -29,10 +29,6 @@ constructor(private payrollSvc: PayrollService,private memberShipSvc: Membership
     ifscCode:''
   };
 
-
-  toAcctNumber:string='';
-  toIfsc:string='';
-
  
   salary:Salary={
     Id: 0,
@@ -67,17 +63,17 @@ paySalary(employeeId: number,date:string,workingDays:number,deduction:number,tax
 
 
   let fundTransfer:PaymentGateway={
-    fromAccountNumber: '39025546601',
-    fromIfscCode: 'MAHB0000286',
-    toAccountNumber: this.bankDetails.accountNumber,
-    toIfscCode: this.bankDetails.ifscCode,
+    fromAcct: '39025546601',
+    fromIfsc: 'MAHB0000286',
+    toAcct: this.bankDetails.accountNumber,
+    toIfsc: this.bankDetails.ifscCode,
     transactionType: 'EMI',
     amount: 500
   }
 
   console.log(fundTransfer);
   this.bankSvc.fundTransfer(fundTransfer).subscribe((payTransferRes)=>{
-    console.log(payTransferRes);
+    console.log("transactionId",payTransferRes);
   })
 
   this.salary.employeeId=employeeId;
