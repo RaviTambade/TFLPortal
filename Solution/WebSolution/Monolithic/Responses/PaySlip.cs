@@ -1,6 +1,6 @@
 namespace TFLPortal.Responses;
 
-public class MonthSalary
+public class PaySlip
 {
 
   public int EmployeeId { get; set; }
@@ -13,8 +13,6 @@ public class MonthSalary
   public BankDetails BankDetails { get; set; }
   public SalaryDetails SalaryDetails { get; set; }
   public TaxDetails TaxDetails { get; set; }
-  
-
 }
 
 
