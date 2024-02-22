@@ -22,8 +22,7 @@ import { TodaysLeaveApplications } from './components/LeaveMgmt/todays-leave-app
 import { PaidEmployees } from './components/payroll/paid-employees/paid-employees';
 
  const hrRoutes: Routes = [
-      {path:'', component:HRManagerContainer},
-     
+      {path:'', component:HRManagerContainer}, 
 ];
 
 @NgModule({

@@ -10,6 +10,7 @@ import { MembershipService } from 'src/app/shared/services/Membership/membership
   selector: 'pay-package',
   templateUrl: './pay-package.html',
 })
+
 export class PayPackage implements OnInit {
   userType: string = 'I';
   pay: PaySlip | undefined;
@@ -40,9 +41,8 @@ export class PayPackage implements OnInit {
             console.log( " Bank Details =", JSON.stringify(bankres));
             console.log(bankres);
             this.bankDetails= new BankDetails(bankres.accountNumber,bankres.ifscCode);
-
           });
         });
       });
-  }
+   }
 }
