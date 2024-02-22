@@ -8,11 +8,11 @@ namespace Intranet.Controllers;
 
 [ApiController]
 [Route("/api/leaves")]
-public class LeavesManagementController : ControllerBase
+public class LeavesController : ControllerBase
 {
     private readonly ILeaveOperationsService _operationService;   
     private readonly ILeaveAnalyticsService _analyticService;  
-    public LeavesManagementController(ILeaveOperationsService operationService,ILeaveAnalyticsService analyticService)
+    public LeavesController(ILeaveOperationsService operationService,ILeaveAnalyticsService analyticService)
     {
         _operationService = operationService;
         _analyticService=analyticService;

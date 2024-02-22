@@ -39,13 +39,13 @@ public class PayrollController : ControllerBase
     [HttpGet("salaries/employees/{employeeId}")]
     public async Task<List<SalarySlip>> GetSalaries(int employeeId)   
     {
-      List<SalarySlip> salaries=await _analyticsSvc.GetSalaries(employeeId);
-      return salaries;
+      List<SalarySlip> employeeSalaries=await _analyticsSvc.GetSalaries(employeeId);
+      return employeeSalaries;
     }
 
     [Authorize(RoleTypes.HRManager,RoleTypes.ProjectManager,RoleTypes.Employee)]
     [HttpGet("employee/salary/{salaryId}")]
-    public async Task<SalarySlip> GetSalary(int salaryId)
+    public async Task<SalarySlip> GetSalarySlip(int salaryId)
     {
       SalarySlip salary=await _analyticsSvc.GetSalary(salaryId);
       return salary;
@@ -53,7 +53,7 @@ public class PayrollController : ControllerBase
 
     [Authorize(RoleTypes.HRManager)]
     [HttpPost("employees/salarystructure")]
-    public async Task<bool> AddSalaryStructure(SalaryStructure salary)
+    public async Task<bool> InsertPayPackage(SalaryStructure salary)
     {
         return await _operationsSvc.AddSalaryStructure(salary);
     }

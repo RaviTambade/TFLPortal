@@ -1,6 +1,6 @@
 namespace TFLPortal.Responses;
 
-public class MonthSalary
+public class PaySlip
 {
   public int EmployeeId { get; set; }
   public int Month { get; set; }
