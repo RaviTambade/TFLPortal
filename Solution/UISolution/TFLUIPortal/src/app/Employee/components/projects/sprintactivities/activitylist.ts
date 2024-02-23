@@ -22,7 +22,6 @@ export class ActivityList implements OnInit{
         let assignedToIds:number[]=this.empployeeWorks.map(a=>a.assignedTo);
         let assignedByIds:number[]=this.empployeeWorks.map(a=>a.assignedBy);
         let employeeIds:number[]=[...assignedToIds,...assignedByIds]
-        console.log(employeeIds);
          let employeeIdsString:string =employeeIds.join(",");
          this.membershipSvc.getUserDetails(employeeIdsString).subscribe(users=>{
           
@@ -44,9 +43,7 @@ export class ActivityList implements OnInit{
     let ids = arr.flatMap((element) => propertyNames.map((property) => element[property]));
     let distinctids=  Array.from(new Set(ids)) //converted to set to remove duplicates;
     let idString=distinctids.join(',');
-    console.log('🚀 ~ GetEmployeeIdFromArray ~ ids:', ids);
-    console.log("🚀 ~ GetEmployeeIdFromArray ~ distinctids:", distinctids);
-    console.log("🚀 ~ GetEmployeeIdFromArray ~ idString:", idString);
+
     return idString;
     // this.getEmployeeIdStringFromArray(this.empployeeWorks, ['assignedTo',"assignedBy"]);
   }

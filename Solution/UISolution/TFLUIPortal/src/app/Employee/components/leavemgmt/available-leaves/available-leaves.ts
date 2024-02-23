@@ -21,7 +21,6 @@ export class AvailableLeaves {
   ngOnInit(): void {
     this.service.getAnnualAvailableLeavesOfEmployee(this.employeeId,this.roleId,this.year).subscribe((res)=>{
       this.availableLeave=res;
-      console.log(res);
     }) 
  }
 }

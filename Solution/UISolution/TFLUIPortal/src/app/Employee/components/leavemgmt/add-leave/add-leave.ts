@@ -46,9 +46,7 @@ export class AddLeave implements OnInit {
       status: "applied",
       leaveType: this.leaveForm.get("leaveType")?.value
     }
-    console.log(leaves);
     this.service.addNewLeaveApplication(leaves).subscribe((res)=>{
-    console.log(res);    
   });
  console.log(this.leaveForm.value)
  }

@@ -18,7 +18,6 @@ export class ConsumedLeaves {
   ngOnInit(): void {
     this.svc.getAnnualConsumedLeavesOfEmployee(this.employeeId,this.year).subscribe((res)=>{
       this.consumedLeave=res;
-      console.log(res);
     }) 
   }
 }

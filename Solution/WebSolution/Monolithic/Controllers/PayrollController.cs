@@ -22,8 +22,8 @@ public class PayrollController : ControllerBase
 
     [Authorize(RoleTypes.HRManager)]
     [HttpGet("employees/{employeeId}/month/{month}/year/{year}")]
-    public async Task<MonthSalary> GetSalary(int employeeId,int month,int year){
-        MonthSalary salary= await _analyticsSvc.GetSalary(employeeId,month,year);
+    public async Task<PaySlip> GetSalary(int employeeId,int month,int year){
+        PaySlip salary= await _analyticsSvc.GetSalary(employeeId,month,year);
         return salary;
     }
 

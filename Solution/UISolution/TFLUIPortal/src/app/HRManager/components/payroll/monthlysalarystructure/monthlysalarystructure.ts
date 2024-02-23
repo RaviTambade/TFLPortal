@@ -18,7 +18,7 @@ export class Monthlysalarystructure {
   ngOnChanges(changes:SimpleChanges): void {
     console.log(changes["employeeId"].currentValue);
     this.payRollService.getEmployeeSalary(changes["employeeId"].currentValue,this.month,this.year).subscribe((res)=>{
-      this.salaryStructure=res;
+      // this.salaryStructure=res;
       console.log(res);
       console.log("🚀 ~ this.hrService.getSalaryStructure ~ res:", res);
     })

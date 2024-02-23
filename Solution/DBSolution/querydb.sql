@@ -1,4 +1,4 @@
--- Active: 1695204043273@@127.0.0.1@3306@tflportal
+-- Active: 1694968636816@@127.0.0.1@3306@tflportal
 
 
 -- LeaveManagement
@@ -260,3 +260,5 @@ INNER join sprints on sprints.id=sprinttasks.sprintid
 WHERE sprints.projectid=4 and tasks.status="inprogress";
 
 SELECT * from tasks;
+
+SELECT * from projects;

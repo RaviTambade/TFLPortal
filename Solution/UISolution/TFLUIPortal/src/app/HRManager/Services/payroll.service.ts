@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { MonthSalary } from '../Models/Payroll/MonthSalary';
 import { Salary } from '../Models/Payroll/Salary';
 import { SalaryStructure } from '../Models/Payroll/SalaryStructure';
+import { PaySlip } from '../Models/Payroll/PaySlip';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +16,10 @@ export class PayrollService {
 
   constructor(private httpClient:HttpClient) { }
 
-  getEmployeeSalary(employeeId:number,month:number,year:number):Observable<MonthSalary>{
-    let url=`${this.payrollAPI}/salaries/employee/${employeeId}/month/${month}/year/${year}`;
-    return this.httpClient.get<MonthSalary>(url);
-  }
+  getEmployeeSalary(employeeId:number,month:number,year:number):Observable<PaySlip>{
+    let url=`${this.payrollAPI}/employees/${employeeId}/month/${month}/year/${year}`;
+    return this.httpClient.get<PaySlip>(url);
+}
 
   AddSalary(salary:Salary):Observable<Salary>{
     let url=`${this.payrollAPI}/salaries`;

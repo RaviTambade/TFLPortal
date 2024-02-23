@@ -1,9 +1,91 @@
-<label>EmployeeId :</label>
+<!-- <label>EmployeeId :</label>
 <input type="number" name="employeeId" [(ngModel)]="searchString" >
 <button (click)="onSearch()" >Search</button>
 
 <monthlysalarystructure [employeeId]="employeeId"></monthlysalarystructure>
-<br>
-<div *ngIf="employeeId">
-<button (click)="paySalary(employeeId)"> Process Payment  </button>
-</div>
+<br> -->
+
+<h3>salary processing</h3>
+<div *ngIf="pay">
+    <div style="border:1px solid black">
+        <div style='margin-bottom: 20px; margin-top: 20px; text-align: center;'>
+            <img src='assets/tfl.jpeg' style='width:100px;height:100px;' />
+            <div height="100px"
+                style="background-color:white;color:black;text-align:center;font-size:24px; font-weight:600;">
+                Transflower Private Limited
+            </div>
+        </div>
+  
+        <div>
+        <table *ngIf="personalDetails">
+            <tr  >
+                <th>Contact NO:</th>
+                <td>{{personalDetails.contactNumber}}</td>
+                <th>Name :</th>
+                <td>{{personalDetails.firstName}} {{personalDetails.lastName}}</td>
+                <th>WorkingDays :</th>
+                <td>{{pay.workingDays}}</td>
+               
+            </tr>
+            <tr>
+                <th>Bank A/c No :</th>
+                <td>{{bankDetails?.accountNumber}}</td>
+                <th>IFSC :</th>
+                <td>{{bankDetails?.ifscCode}}</td>
+            </tr>
+          
+        </table>
+      </div>
+      <div>
+  
+      
+        <table>
+            <tr>
+                <th>Earnings</th>
+                <th>Amount</th>
+                <th>Deductions</th>
+                <th>Amount</th>
+            </tr>
+            <tr >
+                <td>Basic salary</td>
+                <td>{{pay.salaryDetails.monthlyBasicSalary}}</td>
+                <td>provident fund</td>
+                <td>{{pay.taxDetails.pf}}</td>
+                
+            </tr>
+            <tr>
+                <td>House Rent Allowance</td>
+                <td>{{pay.salaryDetails.hra}}</td>
+                <td>Tax</td>
+                <td>{{pay.taxDetails.tax}}</td>
+            </tr>
+            <tr>
+               
+                <td>Leave Travel Allowance</td>
+                <td>{{pay.salaryDetails.lta}}</td>
+                <td>Deduction</td>
+                <td>{{pay.taxDetails.deduction}}</td>
+            </tr>
+            <tr>
+                <td>Variable Pay</td>
+                <td>{{pay.salaryDetails.variablePay}}</td>
+            </tr>
+            <tr>
+                <td>Daily Allowance</td>
+                <td>{{pay.salaryDetails.da}}</td> 
+                 
+            </tr>
+            <tr>
+              <td><b>ConsumedPaidLeaves:{{pay.consumedPaidLeaves}}</b></td>
+            </tr>
+            <tr>
+                <td><strong>NET PAY</strong></td>
+                <td>{{pay.totalAmount.toFixed(2)}}</td>
+            </tr>
+        </table>
+        </div>
+    </div>
+
+    <div>
+        <button (click)="paySalary(pay)"> Process Payment  </button>
+    </div>

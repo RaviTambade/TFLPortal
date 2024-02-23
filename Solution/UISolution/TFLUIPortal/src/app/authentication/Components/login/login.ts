@@ -11,7 +11,7 @@ import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 ;
 
 @Component({
-  selector: 'app-login',
+  selector: 'login',
   templateUrl: './login.html',
 })
 export class Login {

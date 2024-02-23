@@ -176,9 +176,9 @@ public class PayrollAnalyticsService : IPayrollAnalyticsService
         return salary;
     }
 
-    public async Task<MonthSalary> GetSalary(int employeeId, int month, int year)
+    public async Task<PaySlip> GetSalary(int employeeId, int month, int year)
     {
-        MonthSalary salary = null;
+        PaySlip salary = null;
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
 
@@ -193,7 +193,7 @@ public class PayrollAnalyticsService : IPayrollAnalyticsService
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
-                salary = new MonthSalary()
+                salary = new PaySlip()
                 {
                     EmployeeId = employeeId,
                     Month = month,

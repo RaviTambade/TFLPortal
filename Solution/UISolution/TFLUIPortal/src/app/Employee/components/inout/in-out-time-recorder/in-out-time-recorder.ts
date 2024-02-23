@@ -20,9 +20,7 @@ export class InOutTimeRecorder {
 
 
   onSubmit(){
-    console.log(this.InOutTimeRecorder);
     this.hrSvc.addInOutTime(this.InOutTimeRecorder).subscribe((res)=>{
-      console.log(res);
     })
   }
 }

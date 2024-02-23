@@ -11,6 +11,7 @@ export const environment = {
   payrollAPI: "http://localhost:5263/api/payroll",
   HrAPI: "http://localhost:5263/api/hr/employees",
   taskAPI:"http://localhost:5263/api/tasks",
-  bankAPI:"http://localhost:5053/api"
+  bankAPI:"http://localhost:5053/api",
+  paymentGatewayAPI:" http://localhost:5001/api"
 };
 

@@ -10,6 +10,6 @@ public interface IPayrollAnalyticsService
     Task<List<SalarySlip>> GetSalaries(int employeeId);
     Task<SalarySlip> GetSalary(int salaryId);
     Task<SalaryStructure> GetSalaryStructure(int employeeId);
-    Task<MonthSalary> GetSalary(int employeeId,int month,int year);
+    Task<PaySlip> GetSalary(int employeeId,int month,int year);
   
 }   
