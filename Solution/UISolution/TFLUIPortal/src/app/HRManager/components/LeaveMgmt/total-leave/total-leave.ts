@@ -18,7 +18,6 @@ export class TotalLeave{
   ngOnInit(): void {
     this.service.getAnnualLeavesOfRole(this.roleId,this.year).subscribe((res)=>{
       this.annualLeaves=res;
-      console.log(res);
     }) 
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { AnnualLeaves } from 'src/app/hrmanager/Models/LeaveMgmt/AnnualLeaves';
 import { LeaveService } from 'src/app/hrmanager/Services/leave.service';
 
@@ -9,17 +9,15 @@ import { LeaveService } from 'src/app/hrmanager/Services/leave.service';
 })
 export class EmployeeConsumedLeaves {
 
-  @Input() employeeId:number=0;
+  employeeId:number=12;
   consumedLeave:AnnualLeaves |undefined;
   year:number=2024;
-  roleId:number=2;
-  constructor(private service:LeaveService){
-  }
+
+  constructor(private svc:LeaveService){ }
 
   ngOnInit(): void {
-      this.service.getAnnualConsumedLeavesOfEmployee(this.roleId,this.year).subscribe((res)=>{
-        this.consumedLeave=res;
-        console.log(res);
+    this.svc.getAnnualConsumedLeavesOfEmployee(this.employeeId,this.year).subscribe((res)=>{
+      this.consumedLeave=res;
     }) 
   }
 }

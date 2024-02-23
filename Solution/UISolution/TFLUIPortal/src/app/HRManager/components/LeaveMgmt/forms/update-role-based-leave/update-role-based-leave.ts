@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
 import { Role } from 'src/app/shared/Entities/UserMgmt/Role';
 import { LeaveService } from 'src/app/hrmanager/Services/leave.service';
-import { LeaveAllocation } from 'src/app/hrmanager/Models/LeaveMgmt/LeaveAllocation';
+import { RoleLeaveAllocation } from 'src/app/hrmanager/Models/LeaveMgmt/RoleLeaveAllocation';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { LeaveAllocation } from 'src/app/hrmanager/Models/LeaveMgmt/LeaveAllocat
 })
 export class UpdateRoleBasedLeave implements OnInit{
   
-  roleBasedLeave:LeaveAllocation |any;
+  roleBasedLeave:RoleLeaveAllocation |any;
   id:number=1;
   lob:string="PMS";
   roles:Role[]=[];
@@ -39,7 +39,7 @@ export class UpdateRoleBasedLeave implements OnInit{
   }
 
   onSubmit(){
-    let roleBasedLeave:LeaveAllocation={
+    let roleBasedLeave:RoleLeaveAllocation={
       id: this.id,
       roleId: this.rolebasedleaveForm.get("roleId")?.value,
       sick:this.rolebasedleaveForm.get("sick")?.value,
@@ -48,9 +48,7 @@ export class UpdateRoleBasedLeave implements OnInit{
       unpaid:this.rolebasedleaveForm.get("unpaid")?.value,
       financialYear:this.rolebasedleaveForm.get("financialYear")?.value,
     }
-    console.log(roleBasedLeave);
-    this.service.updateLeaveAllocation(roleBasedLeave).subscribe((res)=>{
-    console.log(res);    
+    this.service.updateLeaveAllocation(roleBasedLeave).subscribe((res)=>{      
   });
   }
 }

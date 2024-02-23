@@ -15,7 +15,6 @@ export class LeaveApplicationsList implements OnInit{
   leaveStatus:string="applied";
 
   ngOnInit(): void {
-  
     this.leaveSvc.getAllLeaveApplicationOfStatus(this.leaveStatus).subscribe((res)=>{
     this.leaveApplns=res;
    });
