@@ -17,8 +17,6 @@ export class ProjectMemberList implements OnInit {
   ngOnInit(): void { 
       this.projectSvc.getAllProjectMembers(this.projectId).subscribe((res)=>{
         this.members=res;
-        console.log(res);
-
         let allIds:number[] = this.members.map(o => o.employeeId);
         let strAllIds:string= allIds.join(",");
 

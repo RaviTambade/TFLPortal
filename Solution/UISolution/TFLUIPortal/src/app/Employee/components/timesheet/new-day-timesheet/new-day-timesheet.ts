@@ -63,7 +63,6 @@ export class NewDayTimesheet {
     this.SprintSvc
       .getCurrentSprint(this.selectedProjectId, '2024-01-12')
       .subscribe((res) => {
-        console.log(res);
         this.sprint = res;
         this.selectedSprintId = this.sprint.id;
         this.getTasks();
@@ -80,7 +79,6 @@ export class NewDayTimesheet {
       )
       .subscribe((res) => {
         this.tasks = res;
-        console.log("🚀 ~ .subscribe ~ tasks:", this.tasks);
         if (this.tasks.length > 0)
           this.timesheetEntry.taskId = this.tasks[0].id;
       });

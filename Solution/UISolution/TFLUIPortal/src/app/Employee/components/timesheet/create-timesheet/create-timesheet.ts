@@ -29,7 +29,6 @@ export class CreateTimesheet implements OnInit {
     };
     this.timesheetService.addTimeSheet(timesheetInsertModel).subscribe({
       next: (res) => {
-        console.log(res);
       },
     });
   }

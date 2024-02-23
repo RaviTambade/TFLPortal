@@ -16,7 +16,6 @@ export class PaySlipList implements OnInit {
   ngOnInit(): void {
     this.payrollSvc.getAllEmployeeSalaries(this.employeeId).subscribe((res) => {
       this.salaries = res;
-      console.log(this.salaries);
     });
   }
 }

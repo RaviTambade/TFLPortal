@@ -24,10 +24,8 @@ export class ProjectMember implements OnInit {
       //get each members name
       this.membershipSvc.getUser(this.memberId).subscribe((res)=>{
       this.user=res;
-      console.log(res);
       this.projectSvc.getAllProjectMember(this.projectId,this.memberId).subscribe((res)=>{
         this.member=res;
-        console.log(res);
       })
     })     
   }

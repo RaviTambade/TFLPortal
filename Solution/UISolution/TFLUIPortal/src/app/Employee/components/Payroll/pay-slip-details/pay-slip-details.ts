@@ -16,7 +16,6 @@ export class PaySlipDetails implements OnInit {
   ngOnInit(): void {
     this.payrollSvc.getEmployeeSalaryDetails(this.salaryId).subscribe((res) => {
       this.salary = res;
-      console.log(this.salary);
     });
   }
 }

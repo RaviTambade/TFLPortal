@@ -13,7 +13,6 @@ export class WorkRecord  implements OnInit {
   ngOnInit(): void {
     this.hrSvc.workRecords(this.employeeId).subscribe((res=>{
        this.workRecords=res;
-       console.log(res);
     }))
   }
 

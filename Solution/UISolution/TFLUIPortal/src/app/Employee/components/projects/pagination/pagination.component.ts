@@ -18,7 +18,6 @@ export class PaginationComponent  implements OnInit{
   ngOnInit(): void {
     this.num1 =this.num.slice(0,this.pageSize );
     this.maxpages=this.num.length /this.pageSize
-    console.log( "maxpages",Math.ceil(this.maxpages))
   }    
   
   

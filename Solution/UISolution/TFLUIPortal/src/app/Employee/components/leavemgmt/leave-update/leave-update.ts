@@ -32,15 +32,12 @@ export class LeaveUpdate {
       this.leave.fromDate=this.leave.fromDate.slice(0,10);
       this.leave.toDate=this.leave.toDate.slice(0,10);
       this.calculateDays();
-      console.log(this.leave);
     })  
   }
 
 
   onSubmit(){
-    console.log(this.leave);
     this.leaveSvc.updateLeaveApplication(this.leave).subscribe((res)=>{
-    console.log(res);    
   });
 
     //Remove existing leave from leave applications submitted
