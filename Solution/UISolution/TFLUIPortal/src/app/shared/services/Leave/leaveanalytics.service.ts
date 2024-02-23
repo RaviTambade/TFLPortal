@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LeaveApplication } from '../../Entities/Leavemgmt/LeaveApplication';
 import { MonthLeave } from '../../Entities/Leavemgmt/MonthLeave';
-import { LeavesCount } from '../../Entities/Leavemgmt/LeavesCount';
 import { AnnualLeaves } from '../../Entities/Leavemgmt/AnnualLeaves';
 import { LeaveCount } from '../../Entities/Leavemgmt/LeaveCount';
 
@@ -33,7 +32,7 @@ export class LeaveAnalyticsService {
     let url=`${this.leaveAPI}/applications/employees/${id}/status/${status}`;
     return this.http.get<LeaveApplication[]>(url);
   }
-//get all leave applications applied from date to date
+
 
   getAllLeaveApplicationOfStatus(leaveStatus:string):Observable<LeaveApplication[]>{
     let url=`${this.leaveAPI}/applications/status/${leaveStatus}`;

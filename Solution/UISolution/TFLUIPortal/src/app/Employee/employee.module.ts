@@ -157,6 +157,7 @@ const employeeRoutes: Routes = [
     LeaveApplicationList,
     LeaveApplicationDetails,
     LeaveUpdate,
+    AddLeave,
 
     ProjectMemberList,
     ProjectMember,

@@ -81,8 +81,4 @@ public class SprintsController : ControllerBase
         bool status = await _operationsSvc.Update(sprintId,sprint);
         return status;
     }
-
-
-
-
 }
