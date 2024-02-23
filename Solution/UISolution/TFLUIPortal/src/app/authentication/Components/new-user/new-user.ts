@@ -39,9 +39,7 @@ newUserForm = new FormGroup({
       createdon: new Date().toISOString().slice(0,10),
       modifiedon: new Date().toISOString().slice(0,10),
     };
-    console.log(newUser);
     this.service.addUser(newUser).subscribe((res) => {
-      console.log(res);
     });
   }
 }

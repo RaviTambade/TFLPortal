@@ -12,7 +12,6 @@ sprints:Sprint[]=[];
   constructor(private sprintSvc:SprintService){}
   ngOnInit(): void {
    this.sprintSvc.getSprints(this.projectId).subscribe((res)=>{
-  console.log(res);
   this.sprints=res;
    })
   }

@@ -14,7 +14,6 @@ export class RolesList implements OnInit{
 
   ngOnInit(): void {
     this.service.getAllRoles(this.lob).subscribe((res)=>{
-    this.roles=res;
     })
   }
 }

@@ -13,7 +13,6 @@ export class CurrentSprint implements OnInit{
   ngOnInit(): void {
     this.sprintMgmt.getCurrentSprint(this.projectId,this.todaysDate).subscribe((res)=>{
       this.sprint=res;
-      console.log(res);
      })
   }
 
