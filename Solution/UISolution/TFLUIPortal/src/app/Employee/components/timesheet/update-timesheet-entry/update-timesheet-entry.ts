@@ -114,7 +114,6 @@ export class UpdateTimesheetEntry implements OnInit {
   }
 
   onCancelClick() {
-    console.log(this.timesheetEntry)
     this.router.navigate(['../../details', this.timesheetEntry.timesheetId] ,{relativeTo:this.route});
 
   }

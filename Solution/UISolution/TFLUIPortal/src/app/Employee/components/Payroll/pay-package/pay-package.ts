@@ -31,15 +31,9 @@ export class PayPackage implements OnInit {
       .getEmployeeSalary(this.employeeId, this.month, this.year)
       .subscribe((res) => {
         this.pay = res;
-        console.log('hii' + res.consumedPaidLeaves);
-        console.log(res);
         this.memberShipSvc.getUser(res.employeeId).subscribe((res) => {
           this.personalDetails = res;
-          console.log(this.personalDetails.birthDate);
-
           this.bankSvc.getAccountDetails(10, this.userType).subscribe((bankres) => {
-            console.log( " Bank Details =", JSON.stringify(bankres));
-            console.log(bankres);
             this.bankDetails= new BankDetails(bankres.accountNumber,bankres.ifscCode);
           });
         });

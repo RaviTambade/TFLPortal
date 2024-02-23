@@ -100,7 +100,6 @@ export class TimesheetEmployeeProjectHours implements OnInit {
               this.timesheetService.randomColorPicker()
             );
           });
-          console.table(this.projectHours);
           this.chart.update();
         });
   }
