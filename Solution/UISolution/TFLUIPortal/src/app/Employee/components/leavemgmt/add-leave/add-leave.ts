@@ -33,11 +33,6 @@ export class AddLeave implements OnInit {
   onSubmit(){
     console.log(this.leave);
     this.service.addNewLeaveApplication(this.leave).subscribe((res)=>{
-      
-      // this.leave.fromDate=this.leave.fromDate.slice(0,10);
-      // this.leave.toDate=this.leave.toDate.slice(0,10);
-       this.leave.leaveType=this.leave.leaveType
-      console.log(this.leave.leaveType);
   });
  }
 

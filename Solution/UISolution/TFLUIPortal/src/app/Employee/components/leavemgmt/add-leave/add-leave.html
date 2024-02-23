@@ -3,7 +3,7 @@
 
     <div class="form-group col-md-2">
         <label for="leaveType">Leave Type:</label>
-        <select name="leaveType" class="form-control" id="leaveType" ([ngModel])="leave.leaveType" >
+        <select name="leaveType" class="form-control" id="leaveType" [(ngModel)]="leave.leaveType" >
           <option *ngFor="let leave of leaveType">{{leave}}</option>
         </select>
       </div>
