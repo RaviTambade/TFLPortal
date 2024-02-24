@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="container">
+                <div class="card" *ngIf="project">
+                    <h2>{{project.title}}</h2>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Description</th>
+                                <td>{{project.description}}</td>
+                            </tr>
+                            <tr>
+                                <th>Status:</th>
+                                <td>{{project.status}}</td>
+                            </tr>
+                            <tr>
+                                <th>StartDate</th>
+                                <td>{{project.startDate| date}}</td>
+                            </tr>
+                            <tr>
+                                <th>EndDate</th>
+                                <td>{{project.endDate| date}}</td>
+                            </tr>
+                            <tr>
+
+                                <td><a [routerLink]="['../members',project.id]">More..Details...</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

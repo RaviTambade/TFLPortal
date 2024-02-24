@@ -1,0 +1,11 @@
+<div class="d-flex align-items-center mx-3">
+    <label for="intervalSelect">Interval</label>
+    <select id="intervalSelect" class="form-control mx-2" [(ngModel)]="selectedInterval"
+        (change)="onIntervalChange()">
+        <option *ngFor="let interval of intervals" [value]="interval">{{interval}}</option>
+    </select>
+</div>
+
+<div class="col">
+    <canvas id="MyChart"></canvas>
+</div>

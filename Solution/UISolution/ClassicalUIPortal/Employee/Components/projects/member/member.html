@@ -1,0 +1,22 @@
+
+<h3>Project:Timesheet Management</h3>
+<p>Project Manager:Ravi Tambade</p>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Contact Number</th>
+        <th scope="col">Email</th>
+        <th scope="col">Role</th>
+      </tr>
+    </thead>
+    <tbody>
+            <tr *ngIf="user">
+                <td>{{user.firstName}} {{user.lastName}}</td>
+                <td>{{user.contactNumber}}</td>
+                <td>{{user.email}}</td>   
+                <td *ngIf="member">{{member.title}}</td>
+            </tr>
+    </tbody>
+  </table>
+

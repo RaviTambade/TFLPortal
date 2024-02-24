@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col-sm-6">
+      <div class="row">
+        <div class="col">
+          <div class="row">
+            <label for="date" class="col-3">Date:</label>
+            <input type="date" class="form-control col"  [(ngModel)]="date">
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-success mx-2" type="submit" (click)="onClickAdd()">Add</button>
+      <button class="btn btn-danger" (click)="onClickCancel()">Cancel</button>

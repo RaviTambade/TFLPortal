@@ -1,0 +1,26 @@
+
+<div class="container">
+    <h2>Project Scrum Board</h2>
+    <div class="row">
+        <div class="col">ToDo</div>
+        <div class="col">InProgress</div>
+        <div class="col">Completed</div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <ul class="list-group" *ngFor="let task of todotasks">
+                <li class="list-group-item">{{task.title}}</li>
+            </ul>
+        </div>
+        <div class="col">
+            <ul class="list-group" *ngFor="let task of inprogresstasks">
+                <li class="list-group-item">{{task.title}}</li>
+            </ul>
+        </div>
+        <div class="col">
+            <ul class="list-group" *ngFor="let task of completedtasks">
+                <li class="list-group-item">{{task.title}}</li>
+            </ul>
+        </div>
+    </div>
+</div>

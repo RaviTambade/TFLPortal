@@ -1,0 +1,5 @@
+<div *ngIf="OriginalArray.length > 0" class="d-flex justify-content-center my-3">
+    <button class="btn btn-primary mx-3" *ngIf="current!== 1"  (click)="onPrevious()">Previous</button>
+    <button class="btn btn-primary mx-3" *ngIf="current !== total"  (click)="onNext()">Next</button>
+  </div>
+  

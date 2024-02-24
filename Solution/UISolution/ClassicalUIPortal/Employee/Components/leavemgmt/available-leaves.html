@@ -1,0 +1,7 @@
+<h2> Leaves Available</h2>
+<div *ngIf="availableLeave" class="d-flex justify-content-start gap-3">
+   <p><label>EmployeeId :</label>{{availableLeave.employeeId}}</p> 
+   <div *ngFor="let leave of availableLeave.leaves">
+   <p><label> {{leave.leaveType}}:</label>{{leave.count}}</p>   
+</div>
+</div>

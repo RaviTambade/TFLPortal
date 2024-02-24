@@ -1,0 +1,23 @@
+<h3>Pay Slip List</h3>
+
+  <div class="container-fluid">
+    <div class="row">   
+    <div class="col-xl ">PayDate</div>
+    <div class="col-xl ">MonthlyWorkingDays</div>
+    <div class="col-xl ">Deduction</div>
+    <div class="col-xl ">Tax</div>
+    <div class="col-xl ">PF</div>
+    <div class="col-xl ">Amount</div>
+    </div>
+    </div>
+
+<div *ngFor="let salary of salaries">
+    <div class="row">
+    <div class="col-xl ">{{salary.payDate |date: 'MM/dd/yyyy'}}</div>
+    <div class="col-xl ">{{salary.monthlyWorkingDays}}</div>
+    <div class="col-xl ">{{salary.deduction}}</div>
+    <div class="col-xl ">{{salary.tax}}</div>
+    <div class="col-xl ">{{salary.pf}}</div>
+    <div class="col-xl ">{{salary.amount}}</div>
+</div>
+</div>

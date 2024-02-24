@@ -1,0 +1,27 @@
+
+<!-- <div class="container">
+    <h2>Project Backlog</h2>
+    <div class="row">
+        <div class="col">ToDo</div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="d-flex" *ngFor="let task of todotasks">
+                <label  class="mx-2">{{task.title}}</label>
+                <a href="">detalis</a>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+
+<p>pagination works!</p>
+<div class="container">
+<div *ngFor="let n of tasks">
+    {{n.title}}
+</div>
+<button (click)="onClickPrevious()" [disabled]="priviousStatus">previous</button>
+<button  (click)="onClickNext()" [disabled]="nextStatus">Next</button>
+</div>

@@ -1,0 +1,27 @@
+<div class="container">
+    <div>
+        <h3> Week Timesheets </h3>
+        <p>Jan 2024</p>
+        <p>Week 2</p>
+        <p>From {{fromDate}}--{{toDate}}</p>    
+    </div>
+    <div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Date</th> <th>Status</th><th>hours</th> <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let timesheet of weekTimesheets">
+                <tr>
+                    <td> {{timesheet.createdOn | date:'dd-MM-yyy'}}</td>
+                    <td> {{timesheet.status}}</td>
+                    <td> {{timesheet.totalHours |hourConvertor}}</td>
+                    <td><a> Details</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+       
+</div>
+ 

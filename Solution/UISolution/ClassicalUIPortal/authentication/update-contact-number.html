@@ -1,0 +1,89 @@
+<div class="row">
+    <div class="card border-0 shadow rounded-3 my-2">
+      <div class="card-body p-4 p-sm-5">
+        <h5 class="card-title text-center mb-5 fs-5">Set New Contact Number</h5>
+  
+        <form [formGroup]="changeContactNumberForm">
+
+
+            <div class="form-floating mb-2 input-group">
+                <input [type]="showNewContactNumber ? 'text' : 'contactNumber'" formControlName="newContactNumber" class="form-control "
+                  placeholder="newContactNumber"
+                  [class.is-invalid]="newContactNumber.invalid && (newContactNumber.dirty || newContactNumber.touched)">
+                <label for="newContactNumber" class="form-label">New Contact Number</label>
+                <button type="button" class="btn btn-outline-secondary" (click)="showNewContactNumber = !showNewContactNumber">
+                  <i class="bi" [ngClass]="{'bi-eye': !showNewContactNumber, 'bi-eye-slash-fill': showNewContactNumber}"></i>
+                </button>
+                <div *ngIf="newContactNumber.invalid && (newContactNumber.dirty || newContactNumber.touched)" class="invalid-feedback">
+                  <div *ngIf="newContactNumber.errors?.['required']">
+                    This field is required.
+                  </div>
+                  <div *ngIf="newContactNumber.errors?.['minlength']">
+                    contactNumber must have at least 10 digits.
+                  </div>
+                  <div *ngIf="newContactNumber.errors?.['maxlength']">
+                    Maximum 10 digits are allowed for this field .
+                  </div>
+                </div>
+              </div>
+  
+          <div class="form-floating mb-2 input-group">
+            <input [type]="showPassword? 'text' : 'showPassword'" formControlName="password" class="form-control "
+              placeholder="showPassword"
+              [class.is-invalid]="password.invalid && (password.dirty || password.touched)">
+            <label for="showPassword" class="form-label">Password</label>
+            <button type="button" class="btn btn-outline-secondary" (click)="showPassword = !showPassword">
+              <i class="bi" [ngClass]="{'bi-eye': !showPassword, 'bi-eye-slash-fill': showPassword}"></i>
+            </button>
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="invalid-feedback">
+              <div *ngIf="password.errors?.['required']">
+                This field is required.
+              </div>
+              <div *ngIf="password.errors?.['minlength']">
+                Contact Number must have at least 10 characters.
+              </div>
+              <div *ngIf="password.errors?.['maxlength']">
+                Maximum 20 characters are allowed for this field .
+              </div>
+            </div>
+          </div>
+  
+          
+  
+          <div class="form-floating mb-2 input-group">
+            <input [type]="showConfirmContactNumber ? 'text' : 'contactNumber'" formControlName="confirmContactNumber"
+              class="form-control " placeholder="ConfirmContactNumber"
+              [class.is-invalid]="confirmContactNumber.invalid && (confirmContactNumber.dirty || confirmContactNumber.touched)">
+            <label for="confirmContactNumber" class="form-label">Confirm ContactNumber</label>
+            <button type="button" class="btn btn-outline-secondary" (click)="showConfirmContactNumber = !showConfirmContactNumber">
+              <i class="bi" [ngClass]="{'bi-eye': !showConfirmContactNumber, 'bi-eye-slash-fill': showConfirmContactNumber}"></i>
+            </button>
+            <div *ngIf="confirmContactNumber.invalid && (confirmContactNumber.dirty || confirmContactNumber.touched)"
+              class="invalid-feedback">
+              <div *ngIf="confirmContactNumber.errors?.['required']">
+                This field is required.
+              </div>
+              <div *ngIf="confirmContactNumber.errors?.['maxlength']">
+                Maximum 10 digits are allowed for this field .
+              </div>
+            </div>
+          </div>
+          <div
+            *ngIf="!newContactNumber.errors?.['minlength'] && confirmContactNumber.dirty && changeContactNumberForm.hasError('ContactNumberNoMatch')"
+            class="text-danger">Passwords do not match.
+          </div>
+  
+          <div *ngIf="isInvalidCredentails"  class="text-danger">
+            Invalid Credentials Please check again
+          </div>
+  
+          <div class="d-flex justify-content-between">
+            <button class="btn btn-success fw-bold" style="color: inherit; text-decoration:none;display: block;"
+              type="submit" (click)="onUpdateContactNumber()"> Submit </button>
+            <button (click)="onCancelClick()" class="btn btn-danger fw-bold"
+              style="color: inherit; text-decoration:none;display: block;" type="reset"> Cancel </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

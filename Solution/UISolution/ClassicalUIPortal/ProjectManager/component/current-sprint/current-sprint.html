@@ -1,0 +1,12 @@
+
+<p>
+    Current Ongoing Sprints
+</p>
+<div *ngIf="sprint">
+    <p>Id : {{sprint.id}}</p>
+    <p>Title : {{sprint.title}}</p>
+    <p>Goal : {{sprint.goal}}</p>
+    <p>StartDate : {{sprint.startDate |date:'dd-MM-yyyy'}}</p>
+    <p>EndDate : {{sprint.endDate |date:'dd-MM-yyyy'}}</p>
+    <p>ProjectId : {{sprint.projectId}}</p>
+</div>
