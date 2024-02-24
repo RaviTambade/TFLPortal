@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-;
-
 
 @Component({
   selector: 'leave-allocations',
@@ -8,11 +6,7 @@ import { Component } from '@angular/core';
 })
 export class Leaveallocations {
 
- 
-
-  constructor(){
-    
-  }
+  constructor(){}
 
   ngOnInit(): void {
    

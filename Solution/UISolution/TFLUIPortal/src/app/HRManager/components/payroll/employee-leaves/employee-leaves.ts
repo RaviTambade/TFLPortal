@@ -19,7 +19,6 @@ export class EmployeeLeaves{
   ngOnChanges(changes:SimpleChanges): void {
     this.leaveSvc.getAnnualLeaveCountOfEmployee(changes["employeeId"].currentValue,this.month,this.year).subscribe((res)=>{
     this.monthLeaves=res;
-    console.log(res);
     })
   }
 }

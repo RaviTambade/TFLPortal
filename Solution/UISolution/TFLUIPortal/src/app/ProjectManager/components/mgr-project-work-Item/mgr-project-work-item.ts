@@ -18,7 +18,6 @@ export class MgrProjectworkItem implements OnInit {
     console.log(this.taskId);
     this.taskService.getTaskDetails(this.taskId).subscribe((res)=>{
       this.task=res;
-       console.log(res);
     })
   }
 }

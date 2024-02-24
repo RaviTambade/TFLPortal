@@ -22,10 +22,7 @@ export class NewRole {
       name: this.roleForm.get("name")?.value,
       lob: this.roleForm.get("lob")?.value,
     }
-    console.log(roles);
     this.service.addNewRole(roles).subscribe((res)=>{
-      console.log(res);    
     });
-    console.log(this.roleForm.value);
   }
 }

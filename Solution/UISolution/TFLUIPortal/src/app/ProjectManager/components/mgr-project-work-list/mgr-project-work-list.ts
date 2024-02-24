@@ -16,7 +16,6 @@ export class MgrProjectWorkList implements OnInit{
   ngOnInit(): void {
     this.taskService.getAllTasksOfProjectMember(this.projectId,this.empId).subscribe((res)=>{
       this.employeeworks=res;
-      console.log(res);
     })
   }
 

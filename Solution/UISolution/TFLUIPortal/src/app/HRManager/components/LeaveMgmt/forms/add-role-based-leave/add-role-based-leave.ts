@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { LeaveAllocation } from 'src/app/hrmanager/Models/LeaveMgmt/LeaveAllocation';
+import { RoleLeaveAllocation } from 'src/app/hrmanager/Models/LeaveMgmt/RoleLeaveAllocation';
 import { LeaveService } from 'src/app/hrmanager/Services/leave.service';
 
 
@@ -23,7 +23,7 @@ export class AddRoleBasedLeave {
 });
 
 onSubmit(){
-  let roleBasedLeave:LeaveAllocation={
+  let roleBasedLeave:RoleLeaveAllocation={
         id: 0,
         roleId: this.rolebasedleaveForm.get("roleId")?.value,
         sick:this.rolebasedleaveForm.get("sick")?.value,
@@ -32,9 +32,8 @@ onSubmit(){
         unpaid:this.rolebasedleaveForm.get("unpaid")?.value,
         financialYear:this.rolebasedleaveForm.get("financialYear")?.value,
       }
-      console.log(roleBasedLeave);
       this.service.addNewLeaveAllocationForRole(roleBasedLeave).subscribe((res)=>{
-      console.log(res);    
+        
     });
   }
 }

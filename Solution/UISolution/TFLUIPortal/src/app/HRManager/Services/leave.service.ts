@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { LeaveApplication } from '../Models/LeaveMgmt/LeaveApplication';
 import { AnnualLeaves } from '../Models/LeaveMgmt/AnnualLeaves';
 import { LeaveCount } from '../Models/LeaveMgmt/LeaveCount';
+import { RoleLeaveAllocation } from '../Models/LeaveMgmt/RoleLeaveAllocation';
  
 
 @Injectable({
@@ -63,27 +64,27 @@ export class LeaveService {
     return this.http.get<LeaveCount[]>(url);
   }
 
-  /*addNewLeaveAllocationForRole(leave:LeaveAllocation):Observable<boolean>{
+  addNewLeaveAllocationForRole(leave:RoleLeaveAllocation):Observable<boolean>{
     let url=`${this.leaveAPI}/leaveallocation`;
     return this.http.post<boolean>(url,leave);
   }
    
-  updateLeaveAllocation(appln:LeaveAllocation):Observable<LeaveAllocation>{
+  updateLeaveAllocation(appln:RoleLeaveAllocation):Observable<RoleLeaveAllocation>{
     let url=`${this.leaveAPI}/leaveallocation`;
-    return this.http.put<LeaveAllocation>(url,appln);
+    return this.http.put<RoleLeaveAllocation>(url,appln);
   }
 
-  getLeaveAllocationOfRole(roleId:number):Observable<LeaveAllocation>{
+  getLeaveAllocationOfRole(roleId:number):Observable<RoleLeaveAllocation>{
     let url=`${this.leaveAPI}/allocations/roles/${roleId}` ;
-    return this.http.get<LeaveAllocation>(url);
+    return this.http.get<RoleLeaveAllocation>(url);
   }
 
-  getAllLeaveAllocations():Observable<LeaveAllocation[]>{
+  getAllLeaveAllocations():Observable<RoleLeaveAllocation[]>{
     let url=`${this.leaveAPI}/allocations`;
-    return this.http.get<LeaveAllocation[]>(url);
+    return this.http.get<RoleLeaveAllocation[]>(url);
   }
 
-  */
+  
 
 
   calculateDays(from:string,to:string): number {    

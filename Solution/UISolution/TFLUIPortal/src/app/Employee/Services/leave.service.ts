@@ -16,12 +16,10 @@ export class LeaveService {
 
   constructor(private http:HttpClient) { }
 
-  
   getLeaveAllocationByRole(roleId:number):Observable<RoleLeaveAllocation>{
     let url=`${this.leaveAPI}/allocations/roles/${roleId}` ;
     return this.http.get<RoleLeaveAllocation>(url);
   }
-
  
   getAllLeaveApplications(leaveId:number):Observable<LeaveApplication[]>{
     let url=`${this.leaveAPI}/applications/employees/${leaveId}`;
@@ -72,5 +70,4 @@ export class LeaveService {
     }
     return days; 
   }
-
 }

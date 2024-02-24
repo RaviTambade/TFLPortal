@@ -28,12 +28,12 @@ export class Salaryprocessing {
     accountNumber: '',
     ifscCode: ''
   };
+
   taxDetails:TaxDetails={
     pf: 0,
     deduction: 0,
     tax: 0
   }
-
 
   salary: Salary = {
     Id: 0,
@@ -60,7 +60,6 @@ export class Salaryprocessing {
   }
 
   paySalary(pay:PaySlip) {
-    console.log(pay);
     let fundTransfer: PaymentGateway = {
       fromAcct: '39025546601',
       fromIfsc: 'MAHB0000286',
@@ -71,9 +70,7 @@ export class Salaryprocessing {
     }
 
     this.bankSvc.fundTransfer(fundTransfer).subscribe((payTransferRes) => {
-      console.log("transactionId", payTransferRes);
     
-
     this.salary.employeeId = pay.employeeId;
     this.salary.monthlyWorkingDays = pay.workingDays;
     this.salary.amount = pay.totalAmount;
@@ -83,7 +80,6 @@ export class Salaryprocessing {
     this.salary.deduction = this.taxDetails.deduction;
     
     this.payrollSvc.AddSalary(this.salary).subscribe((res) => {
-      console.log(res);
     })
   })
   }
