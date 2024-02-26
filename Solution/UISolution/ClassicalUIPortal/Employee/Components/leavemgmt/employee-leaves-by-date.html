@@ -8,25 +8,31 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-   <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-      <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <div class="container">
           <a class="navbar-brand" href="#">Transflower</a>
-          <div class="navbar-nav">
-              <a class="nav-item nav-link" href="#">Home</a>
-              <a class="nav-item nav-link" href="#">Features</a>
-              <a class="nav-item nav-link" href="#">Pricing</a>
-              <a class="nav-item nav-link" href="#">Link</a>
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Leave Mgmt</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Payroll</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Projects</a></li>
+            </ul>
           </div>
-      </div>
-    </nav>
+        </div>
+      </nav>
     <label for="date">Date</label>
-    <input type="date" id="date" name="date" class="form-control mb-3">
+    <input type="date" id="date" name="date" class="form-control mb-3" style="width: 150px;">
+    
+    
     <button class="btn btn-primary">Search</button>
     
-    <h6>Leaves Details</h6>
-    <div class="container">
-        <div class="card col-6">
-            <table class="table table-bordered text-center">
+<h6>Leaves Details</h6>
+<div class="container">
+    <div class="card col-8">
+        <div class="card-body">
+            <table class="table text-center">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -43,14 +49,19 @@
                         <td>2024-02-20</td>
                         <td>2024-02-21</td>
                         <td>2024-02-25</td>
-                        <!-- <td>Pending</td> -->
                         <td>Sick Leave</td>
                     </tr>
-                    <!-- Add more rows as needed -->
+
+                    <tr>
+                        <td>ABCD</td>
+                        <td>2024-06-26</td>
+                        <td>2024-07-21</td>
+                        <td>2024-07-25</td>
+                        <td>Paid Leave</td>
+                    </tr>
+                   
                 </tbody>
             </table>
         </div>
     </div>
-    </body>
-    </html>
-    
+</div>

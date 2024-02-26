@@ -1,27 +1,52 @@
-<h3>Leave Allocations For Role {{leave.roleId}}</h3>
-<div class="container">
-    <div class="card col-6">
-    <table class="text-center">
-            <thead>
-                <tr>
-                    <th>Role</th>
-                    <th>Sick</th>
-                    <th>Casual</th>
-                    <th>Paid</th>
-                    <th>Unpaid</th>
-                  
-                   </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{{leave.roleId}}</td>
-                    <td>{{leave.sick}}</td>
-                    <td>{{leave.casual}}</td>
-                    <td>{{leave.paid}}</td>
-                    <td>{{leave.unpaid}}</td>
-                </tr>
-            </tbody>
-    </table>
-</div> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Employee Leaves By Date</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <div class="container">
+          <a class="navbar-brand" href="#">Transflower</a>
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Leave Mgmt</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Payroll</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Projects</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
 
-
+    <h6>Leave Allocations For Role</h6>
+    <div class="container">
+        <div class="card col-6">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th>Role</th>
+                        <th>Sick</th>
+                        <th>Casual</th>
+                        <th>Paid</th>
+                        <th>Unpaid</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Sick Leave</td>
+                        <td>Casual Leave</td>
+                        <td>Paid Leave</td>
+                        <td>Unpaid Leave</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div> 
+    </body>
+    </html>
