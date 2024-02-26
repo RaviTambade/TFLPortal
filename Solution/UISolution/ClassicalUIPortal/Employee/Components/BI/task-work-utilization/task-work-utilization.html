@@ -1,11 +1,31 @@
-<div class="d-flex align-items-center mx-3">
-    <label for="intervalSelect">Interval</label>
-    <select id="intervalSelect" class="form-control mx-2" [(ngModel)]="selectedInterval"
-        (change)="onIntervalChange()">
-        <option *ngFor="let interval of intervals" [value]="interval">{{interval}}</option>
-    </select>
-</div>
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="col">
-    <canvas id="MyChart"></canvas>
-</div>
+<head>
+    <title>Task Work Utilization</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="#">Transflower</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Leave Mgmt</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Payroll</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Projects</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<body>
+
+    <h6>Timesheet Display Works!</h6>
+
+</body>
+
+</html>

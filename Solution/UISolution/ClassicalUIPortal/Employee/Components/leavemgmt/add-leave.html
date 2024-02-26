@@ -1,57 +1,67 @@
-<h4 class="text-center col-6" >Enter Leave Required </h4>
-<form [formGroup]="leaveForm" (ngSubmit)="onSubmit()">
-
-    <div class="form-group col-md-2">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Add Leave</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="#">Transflower</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Leave Mgmt</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Payroll</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Projects</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container mt-5">
+    <h4 class="text-center col-6">Enter Leave Required</h4>
+    <div class="container mt-5">
+      <div class="form-group col-md-6">
         <label for="leaveType">Leave Type:</label>
-        <select name="leaveType" class="form-control" id="leaveType" formControlName="leaveType" >
-          <option *ngFor="let leave of leaveType">{{leave}}</option>
+        <select name="leaveType" class="form-control">
+          <option value="annual">Annual Leave</option>
+          <option value="sick">Sick Leave</option>
+          <option value="maternity">Maternity Leave</option>
+          <!-- Add more options as needed -->
         </select>
       </div>
- 
-   
-    <div class="row">
-      <div class="col-6">
-        <div class="form-group">
-          <label for="fromDate"> Date:</label>
-          <input type="date" class="form-control" id="fromDate" [(ngModel)]="fromDate"   name="fromDate" formControlName="fromDate" (change)="calculateDays()">
-        </div>
-      </div>
-  
-      <div class="col-6">
-        <div class="form-group">
-          <label for="toDate">To:</label>
-          <input type="date" class="form-control" id="toDate" [(ngModel)]="toDate" name="toDate" formControlName="toDate" (change)="calculateDays()">
-      </div>
-    </div>
-   
       
-    <div  class ="col-6" *ngIf="dateDifference !== null">
-      <div class="form-group">
-        <p > <b>Leave: {{ dateDifference }} days </b></p>
+      <div class="row">
+        <div class="col-4">
+          <div class="form-group">
+            <label for="fromDate">From Date:</label>
+            <input type="date" class="form-control">
+          </div>
+        </div>
+    
+        <div class="col-4">
+          <div class="form-group">
+            <label for="toDate">To Date:</label>
+            <input type="date" class="form-control">
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Apply for Leave</button>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div>
-        <button type="submit">Apply for leave</button>
-    </div>
-
-    </div>
-
-
-
-
-      <!-- <div>
-        <label for="startDate">Start Date:</label>
-        <input type="date" id="startDate" [(ngModel)]="startDate" (change)="calculateDateDifference()">
-        </div>
-         
-        <div>
-        <label for="endDate">End Date:</label>
-        <input type="date" id="endDate" [(ngModel)]="endDate" (change)="calculateDateDifference()">
-        </div>
-         
-        <div *ngIf="dateDifference !== null">
-        <p>Date Difference: {{ dateDifference }} days</p>
-        </div> -->
+    
+ 
 
 </form>
+</body>
+</html>

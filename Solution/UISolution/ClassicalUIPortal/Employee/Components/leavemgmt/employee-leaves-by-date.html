@@ -1,30 +1,67 @@
-<label>Date</label>
-<input type="text" name="date" [(ngModel)]="date">
-<button (click)="onSearch(date)">Search</button>
-
-<h3>Leaves Details</h3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Employee Leaves By Date</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <div class="container">
+          <a class="navbar-brand" href="#">Transflower</a>
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Leave Mgmt</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Payroll</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Projects</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <label for="date">Date</label>
+    <input type="date" id="date" name="date" class="form-control mb-3" style="width: 150px;">
+    
+    
+    <button class="btn btn-primary">Search</button>
+    
+<h6>Leaves Details</h6>
 <div class="container">
-    <div class="card col-6">
-    <table class="table-bordered text-center">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Application Date</th>
-                    <th>From Date</th>
-                    <th>To Date</th>
-                    <!-- <th>Status</th> -->
-                    <th>LeaveType</th>
-                   </tr>
-            </thead>
-            <tbody *ngFor="let leave of leaveDetails">
-                <tr>
-                    <td>{{leave.fullName}}</td>
-                    <td>{{leave.createdOn |date}}</td>
-                    <td>{{leave.fromDate |date}}</td>
-                    <td>{{leave.toDate |date}}</td>
-                    <!-- <td>{{leave.status}}</td> -->
-                    <td>{{leave.leaveType}}</td>
-                </tr>
-            </tbody>   
-    </table>  
+    <div class="card col-8">
+        <div class="card-body">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Application Date</th>
+                        <th>From Date</th>
+                        <th>To Date</th>
+                        <!-- <th>Status</th> -->
+                        <th>Leave Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>2024-02-20</td>
+                        <td>2024-02-21</td>
+                        <td>2024-02-25</td>
+                        <td>Sick Leave</td>
+                    </tr>
+
+                    <tr>
+                        <td>ABCD</td>
+                        <td>2024-06-26</td>
+                        <td>2024-07-21</td>
+                        <td>2024-07-25</td>
+                        <td>Paid Leave</td>
+                    </tr>
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
