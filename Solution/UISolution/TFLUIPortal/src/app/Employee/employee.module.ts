@@ -54,11 +54,14 @@ import { PayPackage } from './components/Payroll/pay-package/pay-package';
 import { LeftSidebarComponent } from './components/container/left-sidebar/left-sidebar.component';
 import { HorizontalsidebarComponent } from './components/container/horizontalsidebar/horizontalsidebar.component';
 
-
-
 const employeeRoutes: Routes = [
-  { path: '', component:EmployeeContainer ,children:[
-  { path: 'projectMembers', component: ProjectMemberList }]},
+  { path: '', component:EmployeeContainer ,
+  children:[
+  { path: 'projects', component: ProjectList },
+  { path: 'leave', component: LeaveApplicationList},
+  { path: 'payroll', component: PaySlipList },
+  { path: 'timesheet', component: TimesheetList }, 
+  ]},
 ];
 
 

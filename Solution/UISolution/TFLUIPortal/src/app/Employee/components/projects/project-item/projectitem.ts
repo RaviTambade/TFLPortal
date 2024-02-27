@@ -7,16 +7,19 @@ import { Project } from 'src/app/projectmanager/Models/Project';
 })
 export class ProjectItem  {
  
-  //@Input() project: Project | undefined;
-  project: Project | undefined;
+  @Input() project: Project |any;
+  // project: Project | undefined;
   projectId: number = 0;
   
-  constructor(private projectSvc: ProjectService) {}
+  constructor(private projectSvc: ProjectService) {
+   
+  }
   
   ngOnInit(): void {
-    this.projectId = 10;
+    this.projectId=this.project.id;
     this.projectSvc.getProject(this.projectId).subscribe((res) => {
       this.project = res;
+      console.log(res);
     });
   }
 }
