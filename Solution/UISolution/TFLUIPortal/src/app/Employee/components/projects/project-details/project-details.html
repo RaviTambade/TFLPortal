@@ -1,0 +1,24 @@
+<br>
+<div class="card">
+    <div class="container-fluid">
+        <table class="table table-bordered">
+           <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">From-To</th>  
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="project">
+                <tr>
+                    <td >{{project.title}}</td>  
+                    <td >{{project.description}}</td>
+                    <td >{{project.startDate |date:"mm-dd-yyyy"}}-{{project.endDate |date:"mm-dd-yyyy"}}</td>
+                    <td >{{project.status}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>    
+</div>
+

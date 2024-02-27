@@ -24,7 +24,7 @@
                             </tr>
                             <tr>
 
-                                <td><a [routerLink]="['../members',project.id]">More..Details...</a>
+                                <td (click)="onClick(project.id)">More..Details...
                                 </td>
                             </tr>
                         </table>
@@ -34,3 +34,4 @@
         </div>
     </div>
 </div>
+<router-outlet></router-outlet>
