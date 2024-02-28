@@ -23,14 +23,14 @@
                                 <td>{{project.endDate| date}}</td>
                             </tr>
                             <tr>
-                                <td (click)="onClick(project.id)">More..Details...
+                                <td (click)="onClick(project.id)"><a class="link-primary">More..Details...</a>
                                 </td>
                             </tr>
                         </table>
                     </div>
-                    <router-outlet></router-outlet>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<router-outlet></router-outlet>

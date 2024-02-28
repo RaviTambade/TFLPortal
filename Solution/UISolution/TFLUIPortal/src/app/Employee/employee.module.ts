@@ -58,12 +58,10 @@ import { ProjectDetails } from './components/projects/project-details/project-de
 const employeeRoutes: Routes = [
   { path: '', component:EmployeeContainer ,
   children:[
-  { path: 'projects', component: ProjectList,
-  children:[
-    { path: 'details/:id', component: ProjectDetails},
-   ] 
-  },
+  { path: 'projects', component: ProjectList},
+  { path: 'details/:id', component: ProjectDetails},
   { path: 'leave', component: LeaveApplicationList},
+  { path: 'addleave',component: AddLeave},
   { path: 'payroll', component: PaySlipList },
   { path: 'timesheet', component: TimesheetList }, 
   ]},
