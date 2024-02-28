@@ -1,42 +1,63 @@
-<h3>Acitvity Details</h3>
-<div class=" container">
-    <div class=" d-flex gap-3">
-        <label> From : {{timesheetEntry.fromTime}}</label>
-        <label> To :{{timesheetEntry.toTime}}</label>
-    </div>
-    <div class=" d-flex gap-3">
-        <label>Project : {{timesheetEntry.projectTitle}}</label>
-        <label>Sprint : {{timesheetEntry.sprintTitle}}</label>
-    </div>
-    <p> Type : {{timesheetEntry.taskType}}</p>
-    <p> Title : {{timesheetEntry.taskTitle}}</p>
-    <p> Description :{{timesheetEntry.Description}}</p>
-    <p>Duration :{{timesheetEntry.hours |hourConvertor}}</p>
+<!DOCTYPE html>
+<html lang="en">
 
-</div>
+<head>
+  <title>Timesheet Entry</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
 
-<!-- <div>
+<body>
+  <nav class="navbar navbar-expand navbar-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#" style="color: black;">
+        <img src="../../../../img/tfl.jpeg" alt="Company Logo" style="width: 100px; height: 100px;"> Transflower
+      </a>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav ms-auto" style="background-color: #E15A1F;">
+
+          <li class="nav-item" style="margin-left: 10px;">
+            <a class="nav-link" href="../../../../authentication/login.html" style="color: black;">Login</a>
+          </li>
+          <li class="nav-item" style="margin-left: 10px;">
+            <a class="nav-link" href="./authentication/change-password.html" style="color: black;">Change
+              Password</a>
+          </li>
+          <li class="nav-item" style="margin-left: 10px;">
+            <a class="nav-link" href="new-user.html" style="color: black;">New User</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="user-list.html" style="color: black;">User-list</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <h6>Acitvity Details</h6>
+  
+
+  <div>
     <dl class="row">
-        <dt class="col-sm-3">From</dt>
-        <dd class="col-sm-9">{{timesheetEntry.fromTime}}</dd>
-      
-        <dt class="col-sm-3">To </dt>
-        <dd class="col-sm-9">
-            {{timesheetEntry.toTime}}
-        </dd>
-      
-        <dt class="col-sm-3">Project</dt>
-        <dd class="col-sm-9"> {{timesheetEntry.projectTitle}}</dd>
-      
-        <dt class="col-sm-3 text-truncate">Sprint</dt>
-        <dd class="col-sm-9">{{timesheetEntry.sprintTitle}}</dd>
-      
-        <dt class="col-sm-3">Nesting</dt>
-        <dd class="col-sm-9">
-          <dl class="row">
-            <dt class="col-sm-4">Nested definition list</dt>
-            <dd class="col-sm-8">Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc.</dd>
-          </dl>
-        </dd>
-      </dl>
-</div> -->
+      <dt class="col-sm-3">From</dt>
+      <dd class="col-sm-9">6PM</dd>
+
+      <dt class="col-sm-3">To </dt>
+      <dd class="col-sm-9"> 9AM</dd>
+
+      <dt class="col-sm-3">Project</dt>
+      <dd class="col-sm-9"> Project Title</dd>
+
+      <dt class="col-sm-3 text-truncate">Sprint</dt>
+      <dd class="col-sm-9">Sprint Title</dd>
+
+      <dt class="col-sm-3">Nesting</dt>
+      <dd class="col-sm-9">
+        <dl class="row">
+          <dt class="col-sm-4">Nested definition list</dt>
+          <dd class="col-sm-8">Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc.</dd>
+        </dl>
+      </dd>
+    </dl>
+  </div>

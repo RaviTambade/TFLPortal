@@ -1,8 +1,40 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Project Manager Container Works
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="color: black;">
+                <img src="../../../img/tfl.jpeg" alt="Company Logo" style="width: 100px; height: 100px;"> Transflower
+            </a>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav ms-auto" style="background-color: #E15A1F;">
+                    <li class="nav-item" style="margin-left: 10px;">
+                        <a class="nav-link" href="../../../../authentication/login.html" style="color: black;">Login</a>
+                    </li>
+                    <li class="nav-item" style="margin-left: 10px;">
+                        <a class="nav-link" href="./authentication/change-password.html" style="color: black;">Change Password</a>
+                    </li>
+                    <li class="nav-item" style="margin-left: 10px;">
+                        <a class="nav-link" href="new-user.html" style="color: black;">New User</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="user-list.html" style="color: black;">User-list</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
  
  <div  class="d-flex gap-4">
   
-    <div *ngFor="let project of projects" >
+    <div>
     <ul class="list-group list-group-horizontal" >
        
         <project-item [project]="project"> </project-item>
@@ -10,3 +42,5 @@
     </div>
     </div>
     <router-outlet></router-outlet>
+    </body>
+    </html>

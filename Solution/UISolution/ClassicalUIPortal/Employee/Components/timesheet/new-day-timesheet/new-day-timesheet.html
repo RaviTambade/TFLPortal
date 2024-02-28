@@ -1,87 +1,105 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>New Day Timesheet</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand navbar-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#" style="color: black;">
+            <img src="../../../../img/tfl.jpeg" alt="Company Logo" style="width: 100px; height: 100px;"> Transflower
+        </a>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav ms-auto" style="background-color: #E15A1F;">
 
-<h3> Time Sheet  : 22 Jan 2023</h3>
-<h5> In time  : 9:00 am</h5>
+                <li class="nav-item" style="margin-left: 10px;">
+                    <a class="nav-link" href="../../../../authentication/login.html" style="color: black;">Login</a>
+                </li>
+                <li class="nav-item" style="margin-left: 10px;">
+                    <a class="nav-link" href="./authentication/change-password.html" style="color: black;">Change
+                        Password</a>
+                </li>
+                <li class="nav-item" style="margin-left: 10px;">
+                    <a class="nav-link" href="new-user.html" style="color: black;">New User</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="user-list.html"
+                        style="color: black;">User-list</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<h4>Time Sheet: 22 Jan 2023</h4>
+<h5>In time: 9:00 am</h5>
+
 <div class="row">
-    <div class="col-sm-3">
-        <label class="d-block mb-2">Time In: 9:00 am</label>
-    </div>
-    <div class="col-sm-3">
-        <label class="d-block mb-2">Time In: 6:00 pm</label>
-    </div>
+  <div class="col-sm-3">
+    <label class="d-block mb-2">Time In: 9:00 am</label>
+  </div>
+  <div class="col-sm-3">
+    <label>Time In: 6:00 pm</label>
+  </div>
 </div>
-<hr/>
 
-   <div class="row">
-    <div class="col-sm-6">
-      <div class="row">
-        <div class="col">
-          <div class="row">
-            <label for="fromTime" class="col-3">From:</label>
-            <input id="fromTime" type="time" class="form-control col" name="fromTime" [(ngModel)]="timesheetEntry.fromTime"
-              (change)="getDuration()">
-          </div>
+<hr>
+
+<div class="row">
+  <div class="col-sm-5">
+    <div class="row">
+      <div class="col">
+        <div class="row">
+          <label for="fromTime" class="form-label col-3">From:</label>
+          <input id="fromTime" type="time" class="form-control col" name="fromTime">
         </div>
-        <div class="col-sm-1"></div>
-        <div class="col">
-          <div class="row">
-            <label for="toTime" class="form-label  col-3">To:</label>
-            <input id="toTime" type="time" class="form-control col" name="toTime" [(ngModel)]="timesheetEntry.toTime"
-              (change)="getDuration()">
+      </div>
+      <div class="col-sm-1"></div>
+      <div class="col">
+        <div class="row">
+          <label for="toTime" class="form-label col-3">To:</label>
+          <input id="toTime" type="time" class="form-control col" name="toTime">
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col">
+        <div class="form-group row mb-1">
+          <label for="project" class="col-3">Project:</label>
+          <div class="col-9">
+            <select class="form-control"></select>
           </div>
         </div>
       </div>
-      <br>
-      <div class="row">
-        <div class="col">
-          <div class="form-group row  mb-1">
-            <label for="project" class="col-3">Project:</label>
-            <div class="col-9">
-              <select id="project" class="form-control" [(ngModel)]="selectedProjectId" (change)="onSprintChange()">
-                <option *ngFor="let project of projects;" [value]="project.id">{{project.title | titlecase}}</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="form-group row mb-1">
-            <label for="sprint" class="col-3">Sprint:</label>
-            <div class="col-9">
-              <label *ngIf="sprint"> {{sprint.startDate|date:"dd-MM"}} | {{sprint.title|
-                titlecase}}
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <div class="form-group d-flex  flex-wrap gap-2 mb-1">
-        <ng-container *ngFor="let type of taskTypes" >
-          <input type="radio" [value]="type" [(ngModel)]="selectedTasktype" (change)="getTasks()">
-          {{ type }}
-        </ng-container>
-      </div>
-    
       <div class="form-group row mb-1">
         <label for="work" class="col-3">Work:</label>
         <div class="col-9">
-          <select id="work" class="form-control" [(ngModel)]="timesheetEntry.taskId">
-            <option *ngFor="let task of tasks" [value]="task.id"> {{task.title| titlecase}}</option>
-          </select>
+          <select class="form-control"></select>
         </div>
       </div>
-    
       <div class="form-group row mb-1">
         <label for="description" class="col-3">Description:</label>
         <div class="col-9">
-          <textarea id="description" class=" form-control" disabled>{{taskDescription}}</textarea>
+          <select class="form-control"></select>
         </div>
       </div>
-
-    
-      <p>Duration: {{timesheetEntry.hours |hourConvertor}}</p>
-    
-      <button class="btn btn-success mx-2" type="submit" (click)="onClickAdd()">Add</button>
-      <button class="btn btn-danger" (click)="onClickCancel()">Cancel</button>
-    </div>      
+      <div class="form-group row mb-1">
+        <label for="duration" class="col-3">Duration:</label>
+        <div class="col-9">
+          <select class="form-control"></select>
+          <br>
+          <button class="btn btn-success mx-3" type="submit">Add</button>
+          <button class="btn btn-danger">Cancel</button>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+
+    </body>
+    </html>

@@ -1,14 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Salary Details</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="color: black;">
+                <img src="../../../img/tfl.jpeg" alt="Company Logo" style="width: 100px; height: 100px;"> Transflower
+            </a>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav ms-auto" style="background-color: #E15A1F;">
+
+                    <li class="nav-item" style="margin-right: 10px;">
+                        <a class="nav-link" href="./authentication/login.html" style="color: black;">Login</a>
+                    </li>
+                    <li class="nav-item" style="margin-left: 10px;">
+                        <a class="nav-link" href="./authentication/change-password.html" style="color: black;">Change
+                            Password</a>
+                    </li>
+                    <li class="nav-item" style="margin-left: 10px;">
+                        <a class="nav-link" href="new-user.html" style="color: black;">New User</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="user-list.html"
+                            style="color: black;">User-list</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 <div class="container-fluid">  
-    <div *ngIf="salary">
-      <h3>Pay Slip {{salary.payDate |date: 'MMM yyyy'}}</h3>
+    <div>
+      <h6>Pay Slip |20/01/2024</h6>
       <hr/>
-    <div><b>Salary Date:</b>{{salary.payDate |date: 'MM/dd/yyyy'}}</div>
+    <div><b>Salary Date:</b>Date: 20/01/2024</div>
     <hr/>
-    <div ><b>Working Days:</b>{{salary.monthlyWorkingDays}}</div>
-    <div ><b>Amount:</b>{{salary.amount}}</div>
-    <div ><b>Provident Fund:</b>{{salary.pf}}</div>
-    <div ><b>Other Deductions:</b>{{salary.deduction}}</div>
-    <div ><b>Other Tax:</b>{{salary.tax}}</div>
+    <div ><b>Working Days:</b>25</div>
+    <div ><b>Amount:</b>25000</div>
+    <div ><b>Provident Fund:</b>5000</div>
+    <div ><b>Other Deductions:</b>2000</div>
+    <div ><b>Other Tax:</b>1200</div>
    </div>
 </div>
+</body>
+</html>
 

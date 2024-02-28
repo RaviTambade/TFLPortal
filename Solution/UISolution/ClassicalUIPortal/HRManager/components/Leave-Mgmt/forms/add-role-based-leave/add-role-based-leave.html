@@ -1,31 +1,70 @@
-<h3 class="text-center col-6" >Leave Application Form</h3>
-<form [formGroup]="rolebasedleaveForm" (ngSubmit)="onSubmit()">
-  <div class="form-group col-6">
-  </div>
-      <div class="form-group col-6">
-        <label for="roleId">Role Id:</label>
-        <input type="number" class="form-control" id="roleId"  name="roleId" formControlName="roleId" >
-      </div>
-      <div class="form-group col-6">
-        <label for="sick">Sick:</label>
-        <input type="number" class="form-control" id="sick"  name="sick" formControlName="sick">
-      </div>
-      <div class="form-group col-6">
-        <label for="casual">Casual:</label>
-        <input type="number" class="form-control" id="casual"  name="casual" formControlName="casual">
-      </div>
-      <div class="form-group col-6">
-        <label for="paid">Paid:</label>
-        <input type="number" class="form-control" id="paid"  name="paid" formControlName="paid">
-      </div>
-      <div class="form-group col-6">
-        <label for="unpaid">Unpaid:</label>
-        <input type="number" class="form-control" id="unpaid" name="unpaid" formControlName="unpaid">
-      </div>
-      <div class="form-group col-6">
-        <label for="financialYear">Unpaid:</label>
-        <input type="number" class="form-control" id="financialYear" name="financialYear" formControlName="financialYear">
-      </div>
-      <div>
-        <button type="submit">Add</button>
-      </div>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Role Based Leaves</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand navbar-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#" style="color: black;">
+            <img src="../../../../../img/tfl.jpeg" alt="Company Logo" style="width: 100px; height: 100px;"> Transflower
+        </a>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav ms-auto" style="background-color: #E15A1F;">
+
+                <li class="nav-item" style="margin-left: 10px;">
+                    <a class="nav-link" href="../../../../authentication/login.html" style="color: black;">Login</a>
+                </li>
+                <li class="nav-item" style="margin-left: 10px;">
+                    <a class="nav-link" href="./authentication/change-password.html" style="color: black;">Change
+                        Password</a>
+                </li>
+                <li class="nav-item" style="margin-left: 10px;">
+                    <a class="nav-link" href="new-user.html" style="color: black;">New User</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="user-list.html"
+                        style="color: black;">User-list</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+  <h6 class="text-center">Leave Application Form</h4>
+  <form>
+    <div class="form-group" >
+      <label for="roleId" >Role Id:</label>
+      <input type="number" class="form-control" id="roleId" name="roleId">
+    </div>
+    <div class="form-group">
+      <label for="sick">Sick:</label>
+      <input type="number" class="form-control" id="sick" name="sick">
+    </div>
+    <div class="form-group">
+      <label for="casual">Casual:</label>
+      <input type="number" class="form-control" id="casual" name="casual">
+    </div>
+    <div class="form-group">
+      <label for="paid">Paid:</label>
+      <input type="number" class="form-control" id="paid" name="paid">
+    </div>
+    <div class="form-group">
+      <label for="unpaid">Unpaid:</label>
+      <input type="number" class="form-control" id="unpaid" name="unpaid">
+    </div>
+    <div class="form-group">
+      <label for="financialYear">Financial Year:</label>
+      <input type="number" class="form-control" id="financialYear" name="financialYear">
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+  </form>
+</div>
+</body>
+</html>
+

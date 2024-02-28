@@ -1,26 +1,96 @@
-<h3> Leaves </h3>
-<input type="radio" [(ngModel)]="checkStatus" value="applied" (change)="filterLeaves()"> applied
-<input type="radio" [(ngModel)]="checkStatus" value="sanctioned" (change)="filterLeaves()"> Sanctioned
-<input type="radio" [(ngModel)]="checkStatus" value="notsanctioned" (change)="filterLeaves()"> notsanctioned
-<div>
-    <div class="card col-6">
-    <table class="table-bordered text-center">
-            <thead>
-                <tr>
-                    
-                    <!-- <th>From Date</th>
-                    <th>To Date</th> -->
-                    <th>Application Date</th>
-                    <th>Status</th>
-                    <!-- <th>Action </th> -->
-                </tr>
-            </thead>
-            <tbody *ngFor="let leave of leaves">
-                <tr>
-                    <td>{{leave.createdOn |date}}</td>
-                    <td>{{leave.status}}</td>
-                    <!-- <td style="cursor: pointer; text-decoration: underline ; color:  #0000EE;" [routerLink]="['../detail',leave.id]">details</td> -->
-                </tr>
-            </tbody>
-    </table>
-</div> 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Leaves Status</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<nav class="navbar navbar-expand navbar-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#" style="color: black;">
+            <img src="../../../img/tfl.jpeg" alt="Company Logo" style="width: 100px; height: 100px;"> Transflower
+        </a>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav ms-auto" style="background-color: #E15A1F;">
+
+                <li class="nav-item" style="margin-right: 10px;">
+                    <a class="nav-link" href="./authentication/login.html" style="color: black;">Login</a>
+                </li>
+                <li class="nav-item" style="margin-left: 10px;">
+                    <a class="nav-link" href="./authentication/change-password.html" style="color: black;">Change
+                        Password</a>
+                </li>
+                <li class="nav-item" style="margin-left: 10px;">
+                    <a class="nav-link" href="new-user.html" style="color: black;">New User</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="user-list.html"
+                        style="color: black;">User-list</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<body>
+    <div class="container">
+        <h3>Leaves</h3>
+        <form class="row g-3">
+            <div class="col-md-4">
+                <label for="applied" class="form-label">Applied:</label>
+                <input type="text" id="applied" name="applied" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label for="sanctioned" class="form-label">Sanctioned:</label>
+                <input type="text" id="sanctioned" name="sanctioned" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label for="notSanctioned" class="form-label">Not Sanctioned:</label>
+                <input type="text" id="notSanctioned" name="notSanctioned" class="form-control">
+            </div>
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+
+
+        <div class="card col-6">
+            <table class="table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th>From Date</th>
+                        <th>To Date</th>
+                        <th>Application Date</th>
+                        <th>Status</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>11/02/2024</td>
+                        <td>20/02/2024</td>
+                        <td>10/02/2024</td>
+                        <td>Sanctioned</td>
+
+                    </tr>
+                    <tr>
+                        <td>15/01/2024</td>
+                        <td>20/01/2024</td>
+                        <td>26/01/2024</td>
+                        <td>Not Sanctioned</td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

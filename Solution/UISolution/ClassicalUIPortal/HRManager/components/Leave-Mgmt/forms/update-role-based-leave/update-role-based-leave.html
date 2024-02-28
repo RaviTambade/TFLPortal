@@ -1,37 +1,72 @@
-<h3 class="text-center col-6" > Role Based Leave</h3>
-<form [formGroup]="rolebasedleaveForm" (ngSubmit)="onSubmit()">
-  <div class="form-group col-6">
-  </div>
-      <!-- <div class="form-group col-6">
-        <label for="roleId">Role Id:</label>
-        <input type="number" class="form-control" id="roleId"  name="roleId" [(ngModel)]="roleBasedLeave.roleId" formControlName="roleId" >
-      </div> -->
-      <div class="form-group col-6">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Update Role Based Leaves</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand navbar-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#" style="color: black;">
+            <img src="../../../../../img/tfl.jpeg" alt="Company Logo" style="width: 100px; height: 100px;"> Transflower
+        </a>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav ms-auto" style="background-color: #E15A1F;">
+
+                <li class="nav-item" style="margin-left: 10px;">
+                    <a class="nav-link" href="../../../../authentication/login.html" style="color: black;">Login</a>
+                </li>
+                <li class="nav-item" style="margin-left: 10px;">
+                    <a class="nav-link" href="./authentication/change-password.html" style="color: black;">Change
+                        Password</a>
+                </li>
+                <li class="nav-item" style="margin-left: 10px;">
+                    <a class="nav-link" href="new-user.html" style="color: black;">New User</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="user-list.html"
+                        style="color: black;">User-list</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<h3 class="text-center">Role Based Leave</h3>
+
+<form>
+    <div class="form-group col-md-4">
         <label for="roleId">Role:</label>
-      <select name="roleId" class="form-control" id="roleId"  formControlName="roleId" >
-        <option *ngFor="let role of roles" [value]="role.id">{{role.name}}</option>
-      </select>
-      </div>
-      <div class="form-group col-6">
+        <select name="roleId" class="form-control" id="roleId">
+            <option value="1">Role 1</option>
+            <option value="2">Role 2</option>
+            <option value="3">Role 3</option>
+        </select>
+    </div>
+    <div class="form-group col-md-4">
         <label for="sick">Sick:</label>
-        <input type="number" class="form-control" id="sick"  name="sick" [(ngModel)]="roleBasedLeave.sick" formControlName="sick">
-      </div>
-      <div class="form-group col-6">
+        <input type="number" class="form-control" id="sick" name="sick">
+    </div>
+    <div class="form-group col-md-4">
         <label for="casual">Casual:</label>
-        <input type="number" class="form-control" id="casual"  name="casual" [(ngModel)]="roleBasedLeave.casual" formControlName="casual">
-      </div>
-      <div class="form-group col-6">
+        <input type="number" class="form-control" id="casual" name="casual">
+    </div>
+    <div class="form-group col-md-4">
         <label for="paid">Paid:</label>
-        <input type="number" class="form-control" id="paid"  name="paid" [(ngModel)]="roleBasedLeave.paid" formControlName="paid">
-      </div>
-      <div class="form-group col-6">
+        <input type="number" class="form-control" id="paid" name="paid">
+    </div>
+    <div class="form-group col-md-4">
         <label for="unpaid">Unpaid:</label>
-        <input type="number" class="form-control" id="unpaid" name="unpaid" [(ngModel)]="roleBasedLeave.unpaid" formControlName="unpaid">
-      </div>
-      <div class="form-group col-6">
+        <input type="number" class="form-control" id="unpaid" name="unpaid">
+    </div>
+    <div class="form-group col-md-4">
         <label for="financialYear">Financial Year:</label>
-        <input type="number" class="form-control" id="financialYear" name="financialYear" [(ngModel)]="roleBasedLeave.financialYear" formControlName="financialYear">
-      </div>
-      <div>
-        <button type="submit">update</button>
-      </div>
+        <input type="number" class="form-control" id="financialYear" name="financialYear">
+    </div>
+    <button type="submit" class="btn btn-primary col-md-2">Update</button>
+</form>
+</body>
+</html>

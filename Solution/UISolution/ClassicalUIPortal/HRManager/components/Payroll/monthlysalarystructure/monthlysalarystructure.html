@@ -1,38 +1,72 @@
-<div *ngIf="salaryStructure">
-    <div style="border:1px solid black">
-        <div style='margin-bottom: 20px; margin-top: 20px; text-align: center;'>
-            <img src='assets/tfl.jpeg' style='width:100px;height:100px;' />
-            <div height="100px"
-                style="background-color:white;color:black;text-align:center;font-size:24px; font-weight:600;">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Monthly Salary</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand navbar-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#" style="color: black;">
+            <img src="../../../../img/tfl.jpeg" alt="Company Logo" style="width: 100px; height: 100px;"> Transflower
+        </a>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav ms-auto" style="background-color: #E15A1F;">
+
+                <li class="nav-item" style="margin-left: 10px;">
+                    <a class="nav-link" href="../../../../authentication/login.html" style="color: black;">Login</a>
+                </li>
+                <li class="nav-item" style="margin-left: 10px;">
+                    <a class="nav-link" href="./authentication/change-password.html" style="color: black;">Change
+                        Password</a>
+                </li>
+                <li class="nav-item" style="margin-left: 10px;">
+                    <a class="nav-link" href="new-user.html" style="color: black;">New User</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="user-list.html"
+                        style="color: black;">User-list</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="border border-dark p-3">
+        <div class="mb-4 text-center">
+            <img src="../../../../img/tfl.jpeg" style="width: 100px; height: 100px;" alt="Transflower Private Limited">
+            <div style="background-color: white; color: black; text-align: center; font-size: 24px; font-weight: 600;">
                 Transflower Private Limited
             </div>
         </div>
-        <table>
+        <table class="table">
             <tr>
                 <th>Contact NO:</th>
-                <td>{{salaryStructure.contactNumber}}</td>
+                <td>1234567890</td>
                 <th>Name :</th>
-                <td>{{salaryStructure.firstName}} {{salaryStructure.lastName}}</td>
+                <td>John Doe</td>
                 <th>WorkingDays :</th>
-                <td>{{salaryStructure.workingDays}}</td>
-               
+                <td>20</td>
             </tr>
             <tr>
                 <th>Bank A/c No :</th>
-                <td>{{salaryStructure.accountNumber}}</td>
+                <td>987654321</td>
                 <th>IFSC :</th>
-                <td>{{salaryStructure.ifsc}}</td>
+                <td>IFSC1234</td>
                 <th>ConsumedPaidLeaves :</th>
-                <td>{{salaryStructure.consumedPaidLeaves}}</td>
+                <td>5</td>
             </tr>
             <tr>
                 <th>DOB :</th>
-                <td>{{salaryStructure.birthDate|date}}</td>
+                <td>1990-01-01</td>
             </tr>
-            <!-- <employee-leaves [employeeId]="employeeId"></employee-leaves> -->
         </table>
-        <br />
-        <table>
+        <br>
+        <table class="table">
             <tr>
                 <th>Earnings</th>
                 <th>Amount</th>
@@ -41,36 +75,37 @@
             </tr>
             <tr>
                 <td>Basic salary</td>
-                <td>{{salaryStructure.monthlyBasicsalary}}</td>
+                <td>5000</td>
                 <td>provident fund</td>
-                <td>{{salaryStructure.pf}}</td>
-                
+                <td>200</td>
             </tr>
             <tr>
                 <td>House Rent Allowance</td>
-                <td>{{salaryStructure.hra}}</td>
+                <td>2500</td>
                 <td>Tax</td>
-                <td>{{salaryStructure.tax}}</td>
+                <td>300</td>
             </tr>
             <tr>
-               
                 <td>Leave Travel Allowance</td>
-                <td>{{salaryStructure.lta.toFixed(2)}}</td>
+                <td>1000</td>
                 <td>Deduction</td>
-                <td>{{salaryStructure.deduction}}</td>
+                <td>100</td>
             </tr>
             <tr>
                 <td>Variable Pay</td>
-                <td>{{salaryStructure.variablePay}}</td>
+                <td>1500</td>
             </tr>
             <tr>
                 <td>Daily Allowance</td>
-                <td>{{salaryStructure.da}}</td> 
-                 
+                <td>200</td> 
             </tr>
             <tr>
                 <td><strong>NET PAY</strong></td>
-                <td>{{salaryStructure.totalAmount.toFixed(2)}}</td>
+                <td>6150</td>
             </tr>
         </table>
     </div>
+</div>
+</body>
+</html>
+

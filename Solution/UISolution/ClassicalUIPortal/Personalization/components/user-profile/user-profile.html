@@ -1,37 +1,48 @@
-
-<div class="m-4 " *ngIf="user">
-    
-    <!-- <div class="d-flex ">
-        <div class="text-center"  *ngIf="!selectedImageUrl">
-        <img style=" border-radius: 250px;" [src]="imageServer +user.imageUrl" width="260" height="260">
-        <br>
-        <button class="btn btn-primary m-1" (click)="fileInput.click()">
-            <input #fileInput type="file" class="d-none" (change)="onFileSelected($event)"> Edit
-        </button>
-    </div> -->
-        <!-- <div class="text-center" *ngIf="selectedImageUrl">
-            <img style="border-radius: 250px;" [src]="selectedImageUrl" alt="Preview Image" width="260" height="260">
-            <br>
-            <button class=" btn btn-primary mx-2" (click)="confirmImage()">Confirm</button>
-            <button class="btn btn-danger" (click)="cancelImage()">Cancel</button>
-        </div> -->
-<div class="row">
-    <div class="col-3"></div>
-    <div class="col-6">
-        <div class="mx-4">
-            <h2>{{ user.firstName |titlecase }} {{ user.lastName |titlecase }}</h2>
-            <p *ngIf="member"><b>Role :</b> {{member.title }}</p>
-            <p><b>Birth Date:</b> {{ user.birthDate | date }}</p>
-            <p><b>Gender:</b> {{ user.gender |titlecase }}</p>
-            <p><b>Email:</b> {{ user.email }}</p>
-            <p><b>Contact Number:</b> {{ user.contactNumber }}</p>
-            <!-- <a (click)="onClickUpdateProfile()" style="color: blue;" >Update Profile</a> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>User Profile</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="color: black;">
+                <img src="../../../img/tfl.jpeg" alt="Company Logo" style="width: 100px; height: 100px;"> Transflower
+            </a>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav ms-auto" style="background-color: #E15A1F;">
+                    <li class="nav-item" style="margin-left: 10px;">
+                        <a class="nav-link" href="../../../../authentication/login.html" style="color: black;">Login</a>
+                    </li>
+                    <li class="nav-item" style="margin-left: 10px;">
+                        <a class="nav-link" href="./authentication/change-password.html" style="color: black;">Change Password</a>
+                    </li>
+                    <li class="nav-item" style="margin-left: 10px;">
+                        <a class="nav-link" href="new-user.html" style="color: black;">New User</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="user-list.html" style="color: black;">User-list</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <div class="col-3"></div>
+    </nav>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="mx-4">
+                <h4>Ajinkya</h4>
+                <p><b>Role : Tester</b></p>
+                <p><b>Birth Date: 21/01/2024</b></p>
+                <p><b>Gender: Male</b></p>
+                <p><b>Email:aj@gmail.com</b></p>
+                <p><b>Contact Number:8752639870</b> </p>
+                
+            </div>
+        </div>
 </div>
-
-       
-    </div>
-<!-- </div> -->
-
+</body>
+</html>
