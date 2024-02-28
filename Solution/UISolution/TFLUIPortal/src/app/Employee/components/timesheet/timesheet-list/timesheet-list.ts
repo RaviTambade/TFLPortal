@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-
 import { TimesheetService } from 'src/app/shared/services/Timesheet/timesheet.service';
-import { LocalStorageKeys } from 'src/app/shared/enums/local-storage-keys';
 import { Timesheet } from 'src/app/shared/Entities/Timesheetmgmt/timesheet';
 import { TimeSheetStatus } from 'src/app/shared/Entities/Timesheetmgmt/timesheetstatus';
 
@@ -10,7 +8,7 @@ import { TimeSheetStatus } from 'src/app/shared/Entities/Timesheetmgmt/timesheet
   templateUrl: './timesheet-list.html',
 })
 export class TimesheetList {
-  employeeId: number = 0;
+  employeeId: number = 10;
   timesheets: Timesheet[] = [];
   filteredTimesheets: Timesheet[] = [];
   pagedFilterTimesheets: Timesheet[] = [];
@@ -27,7 +25,8 @@ export class TimesheetList {
   constructor(private timesheetService: TimesheetService) {}
 
   ngOnInit(): void {
-    this.employeeId=Number(localStorage.getItem(LocalStorageKeys.employeeId))
+    // this.employeeId=Number(localStorage.getItem(LocalStorageKeys.employeeId))
+    // console.log("employeeId",this.employeeId);
     this.selectedStatus[this.timesheetStatus[0]] = true;
     this.onIntervalChange()
   }

@@ -17,6 +17,7 @@ export class ProjectList implements OnInit {
     this.employeeId = 10;
     this.projectSvc.getProjects(this.employeeId).subscribe((res) => {
       this.projects = res;
+      console.log(res);
     });
   }
 }

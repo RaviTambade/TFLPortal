@@ -1,5 +1,5 @@
 
--- Active: 1707123530557@@127.0.0.1@3306@tflportal
+-- Active: 1709025691659@@127.0.0.1@3306@tflportal
 
 -- director
 INSERT INTO employees(id,hiredon,reportingid) VALUES (1,'2013-01-01',1);
@@ -472,6 +472,7 @@ INSERT INTO timesheets(createdon,status,createdby) VALUES ('2024-01-04','Rejecte
 INSERT INTO timesheets(createdon,status,createdby) VALUES ('2024-01-05','Approved',10);
 INSERT INTO timesheets(createdon,status,createdby) VALUES ('2024-01-06','Approved',10);
 INSERT INTO timesheets(createdon,status,createdby) VALUES ('2024-01-08','Approved',10);
+INSERT INTO timesheets(createdon,status,createdby) VALUES ('2024-02-27','Approved',10);
 INSERT INTO timesheets(createdon,status,createdby) VALUES
 ('2024-01-09 ','submitted',10),
 ('2024-01-10 ','submitted',10),
@@ -582,3 +583,12 @@ VALUES
   ( "13:00:00", "16:30:00", 12,65),
   ( "16:30:00", "17:15:00", 12,100),
   ( "17:15:00", "18:00:00", 12,102);
+
+  INSERT INTO timesheetentries( fromtime, totime, timesheetid,taskid)
+VALUES
+ ( "09:00:00", "10:30:00", 8,12),
+  ( "10:30:00", "11:00:00", 8,18),
+  ( "12:00:00", "13:00:00", 8,62),
+  ( "13:00:00", "16:30:00", 8,65),
+  ( "16:30:00", "17:15:00", 8,100),
+  ( "17:15:00", "18:00:00", 8,102);

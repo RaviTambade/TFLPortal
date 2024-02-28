@@ -25,6 +25,6 @@ constructor(private leaveSvc:LeaveService,private membershipSvc:MembershipServic
       this.employees=res;
       this.name=this.employees[0].fullName;
     })
-    }
+   }
  }
 }

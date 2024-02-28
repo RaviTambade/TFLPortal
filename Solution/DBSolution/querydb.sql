@@ -4,6 +4,7 @@
 -- LeaveManagement
 show TABLES;
 
+SELECT * from projects;
 SELECT * FROM tasks ;
 DESC projectallocations;
 select * from projectallocations;

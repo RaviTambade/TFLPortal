@@ -23,8 +23,7 @@
                                 <td>{{project.endDate| date}}</td>
                             </tr>
                             <tr>
-
-                                <td><a [routerLink]="['../members',project.id]">More..Details...</a>
+                                <td (click)="onClick(project.id)"><a class="link-primary">More..Details...</a>
                                 </td>
                             </tr>
                         </table>
@@ -34,3 +33,4 @@
         </div>
     </div>
 </div>
+<router-outlet></router-outlet>
