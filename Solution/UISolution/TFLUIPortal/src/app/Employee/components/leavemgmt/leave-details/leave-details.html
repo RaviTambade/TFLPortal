@@ -1,13 +1,15 @@
 <div class="card">
-                <div *ngIf="leaveApplication">
+            <div *ngIf="leaveApplication">
                 <div class="container-fluid">
                     <div class="row">
                     <div class="col-xl ">{{leaveApplication.fromDate|date: 'MM/dd/yyyy'}}-{{leaveApplication.toDate|date: 'MM/dd/yyyy' }}</div>
                     <div class="col-xl ">{{leaveDay}}</div>  
                     <div class="col-xl ">{{leaveApplication.leaveType}}</div>
                     <div class="col-xl ">{{leaveApplication.status}}</div>
-                         
+                    <a [routerLink]="['/leavedetails/',leaveApplication.id]">details</a>
                 </div>
             </div>
-    </div>    
+        </div>    
 </div>
+<router-outlet></router-outlet>
+

@@ -54,6 +54,7 @@ import { PayPackage } from './components/Payroll/pay-package/pay-package';
 import { LeftSidebarComponent } from './components/container/left-sidebar/left-sidebar.component';
 import { HorizontalsidebarComponent } from './components/container/horizontalsidebar/horizontalsidebar.component';
 import { ProjectDetails } from './components/projects/project-details/project-details';
+import { Details } from './components/leavemgmt/details/details';
 
 const employeeRoutes: Routes = [
   { path: '', component:EmployeeContainer ,
@@ -64,6 +65,7 @@ const employeeRoutes: Routes = [
   { path: 'addleave',component: AddLeave},
   { path: 'payroll', component: PaySlipList },
   { path: 'timesheet', component: TimesheetList }, 
+  { path: 'leavedetails/:id', component: Details  }, 
   ]},
 ];
 
@@ -117,6 +119,7 @@ const employeeRoutes: Routes = [
     LeaveApplicationList,
     LeaveApplicationDetails,
     LeaveUpdate,
+    Details,
     LeaveAllocation,
     ProjectBoardComponent,
     PaginationComponent,
