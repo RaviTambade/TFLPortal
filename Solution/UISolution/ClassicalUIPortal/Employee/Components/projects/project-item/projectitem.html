@@ -1,30 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Pagenation</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="color: black;">
+                <img src="../../../../img/tfl.jpeg" alt="Company Logo" style="width: 100px; height: 100px;"> Transflower
+            </a>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav ms-auto" style="background-color: #E15A1F;">
+
+                    <li class="nav-item" style="margin-right: 10px;">
+                        <a class="nav-link" href="./authentication/login.html" style="color: black;">Login</a>
+                    </li>
+                    <li class="nav-item" style="margin-left: 10px;">
+                        <a class="nav-link" href="./authentication/change-password.html" style="color: black;">Change
+                            Password</a>
+                    </li>
+                    <li class="nav-item" style="margin-left: 10px;">
+                        <a class="nav-link" href="new-user.html" style="color: black;">New User</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="user-list.html"
+                            style="color: black;">User-list</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
             <div class="container">
-                <div class="card" *ngIf="project">
-                    <h2>{{project.title}}</h2>
+                <div class="card" >
+                    <h4>Transflower</h4>
                     <div class="card-body">
-                        <table class="table table-bordered">
+                        <table>
                             <tr>
-                                <th>Description</th>
-                                <td>{{project.description}}</td>
+                                <th>Description: </th>
+                                <td>TFLPortal </td>
                             </tr>
                             <tr>
                                 <th>Status:</th>
-                                <td>{{project.status}}</td>
+                                <td>Completed</td>
                             </tr>
                             <tr>
-                                <th>StartDate</th>
-                                <td>{{project.startDate| date}}</td>
+                                <th>Start Date:</th>
+                                <td>15/01/2024</td>
                             </tr>
                             <tr>
-                                <th>EndDate</th>
-                                <td>{{project.endDate| date}}</td>
+                                <th>End Date:</th>
+                                <td>10/02/2024</td>
                             </tr>
                             <tr>
 
-                                <td><a [routerLink]="['../members',project.id]">More..Details...</a>
+                                <td><a>More Details...</a>
                                 </td>
                             </tr>
                         </table>
@@ -34,3 +72,5 @@
         </div>
     </div>
 </div>
+</body>
+</html>

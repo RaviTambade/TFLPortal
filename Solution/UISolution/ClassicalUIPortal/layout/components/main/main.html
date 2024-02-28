@@ -1,35 +1,82 @@
-<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-secondary-subtle">
-    <a class="navbar-brand" [routerLink]="['home']">TFLPortal</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-  
-    <div class=" collapse navbar-collapse d-sm-inline-flex justify-content-end" id="navbarToggleExternalContent">
-        <ul class="navbar-nav">
-            <li class="nav-item ">
-                <a class="nav-link" [routerLink]="['home']">Home </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link">Notifications</a>
-            </li>
-            <li class="nav-item ">
-                <a *ngIf="isLoggedIn==false" class="nav-link" [routerLink]="['/auth/login']">Login</a>
-                <a *ngIf="isLoggedIn" class="nav-link" (mouseenter)="showUserLinks = true"
-                    (mouseleave)="showUserLinks = false">
-                    welcome {{userName}}
-                    <div *ngIf="showUserLinks" class="card position-absolute text-center ">
-                        <a class="nav-link text-dark" [routerLink]="['/user/profile']">Profile</a>
-                        <a class="nav-link text-dark">Orders</a>
-                        <a class="nav-link text-dark">Payment </a>
-                    </div>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a *ngIf="isLoggedIn" class="nav-link" [routerLink]="['home']" (click)="onClickLogOut()"> LogOut
-                </a>
-            </li>
-        </ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Main</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="color: black;">
+                <img src="../../../img/tfl.jpeg" alt="Company Logo" style="width: 100px; height: 100px;"> Transflower
+            </a>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav ms-auto" style="background-color: #E15A1F;">
+                    <li class="nav-item" style="margin-left: 10px;">
+                        <a class="nav-link" href="../../../../authentication/login.html" style="color: black;">Login</a>
+                    </li>
+                    <li class="nav-item" style="margin-left: 10px;">
+                        <a class="nav-link" href="./authentication/change-password.html" style="color: black;">Change Password</a>
+                    </li>
+                    <li class="nav-item" style="margin-left: 10px;">
+                        <a class="nav-link" href="new-user.html" style="color: black;">New User</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="user-list.html" style="color: black;">User-list</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="jumbotron text-center">
+        <h1 style="color: darkred;">Welcome To Transflower</h1>
+        <p>A Learning Experience</p>
     </div>
-</nav>
 
-<router-outlet></router-outlet>
+    <div class="container">
+        <div id="imageSlider" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="../../../img/1.jpg" class="d-block w-100" alt="First slide">
+                </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#imageSlider" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#imageSlider" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-sm-4">
+                <h3>Column 1</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+            </div>
+            <div class="col-sm-4">
+                <h3>Column 2</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+            </div>
+            <div class="col-sm-4">
+                <h3>Column 3</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        var carousel = document.querySelector('#imageSlider');
+        var myCarousel = new bootstrap.Carousel(carousel, {
+            interval: 3000,
+            wrap: true
+        });
+    </script>
+</body>
+</html>

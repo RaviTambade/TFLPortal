@@ -1,118 +1,65 @@
-<div *ngIf="user">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Update Profile</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="color: black;">
+                <img src="../../../img/tfl.jpeg" alt="Company Logo" style="width: 100px; height: 100px;"> Transflower
+            </a>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav ms-auto" style="background-color: #E15A1F;">
+                    <li class="nav-item" style="margin-left: 10px;">
+                        <a class="nav-link" href="../../../../authentication/login.html" style="color: black;">Login</a>
+                    </li>
+                    <li class="nav-item" style="margin-left: 10px;">
+                        <a class="nav-link" href="./authentication/change-password.html" style="color: black;">Change Password</a>
+                    </li>
+                    <li class="nav-item" style="margin-left: 10px;">
+                        <a class="nav-link" href="new-user.html" style="color: black;">New User</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="user-list.html" style="color: black;">User-list</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div class="card border-0 shadow rounded-3 my-2">
       <div class="card-body p-4 ">
-        <h5 class="card-title text-center mb-5 fs-5">Update Profile</h5>
-        <form [formGroup]="userForm">
-          <div class="mx-4 my-4">
-            <div class="row mb-3">
-              <div class="col-md-6">
-  
-                <label for="firstName" class="form-label">FirstName:</label>
-                <input type="text" formControlName="firstName" placeholder="firstname"
-                  class="form-control form-control-sm"
-                  [class.is-invalid]="firstname.invalid && (firstname.dirty || firstname.touched)">
-                <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)" class="invalid-feedback">
-                  <div *ngIf="firstname.errors?.['required']">
-                    This field is required.
+          <h5 class="card-title text-center mb-5 fs-5">Update Profile</h5>
+          <form>
+              <div class="mx-4 my-4">
+                  <div class="row mb-3">
+                      <div class="col-md-6">
+                          <label for="firstName" class="form-label">FirstName:</label>
+                          <input type="text" placeholder="firstname" class="form-control form-control-sm">
+                      </div>
+                      <div class="col-md-6">
+                          <label for="lastName" class="form-label">LastName:</label>
+                          <input type="text" placeholder="lastname" class="form-control form-control-sm">
+                      </div>
                   </div>
-                  <div *ngIf="firstname.errors?.['minlength']">
-                    Minimum 2 characters are required for this field .
+                  <div class="row mb-3">
+                      <div class="col-md-6">
+                          <label for="aadharId" class="form-label">AadharId:</label>
+                          <input type="text" placeholder="1245 5745 6789" class="form-control form-control-sm">
+                      </div>
+                      <div class="col-md-6">
+                          <label class="form-label">Date of Birth</label>
+                          <input type="date" class="form-control form-control-sm">
+                      </div>
                   </div>
-                  <div *ngIf="firstname.errors?.['maxlength']">
-                    Maximum 50 characters are allowed for this field .
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <label for="lastName" class="form-label">LastName:</label>
-                <input type="text" formControlName="lastName" placeholder="lastname" class="form-control form-control-sm"
-                  [class.is-invalid]="lastname.invalid && (lastname.dirty || lastname.touched)">
-                <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)" class="invalid-feedback">
-                  <div *ngIf="lastname.errors?.['required']">
-                    This field is required.
-                  </div>
-                  <div *ngIf="lastname.errors?.['minlength']">
-                    Minimum 2 characters are required for this field .
-                  </div>
-                  <div *ngIf="lastname.errors?.['maxlength']">
-                    Maximum 50 characters are allowed for this field .
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <label for="aadharId" class="form-label">AadharId:</label>
-                <input type="text" formControlName="aadharId" placeholder="1245 5745 6789"
-                  class="form-control form-control-sm"
-                  [class.is-invalid]="aadharId.invalid && (aadharId.dirty || aadharId.touched)">
-                <div *ngIf="aadharId.invalid && (aadharId.dirty || aadharId.touched )" class="invalid-feedback">
-                  <div *ngIf="aadharId.errors?.['required']">
-                    This field is required.
-                  </div>
-                  <div *ngIf="aadharId.errors?.['minlength']">
-                    This field must have 12 digit number.
-                  </div>
-                  <div *ngIf="aadharId.errors?.['maxlength']">
-                    This field must have 12 digit number.
-                  </div>
-                  <div
-                    *ngIf=" !aadharId.errors?.['maxlength']  && !aadharId.errors?.['minlength']&& aadharId.errors?.['pattern']">
-                    Aadhar number should be in valid format.
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Date of Birth</label>
-                <input type="date" formControlName="birthDate" class="form-control" class="form-control form-control-sm"
-                  [class.is-invalid]="dob.invalid && (dob.dirty || dob.touched)">
-                <div *ngIf="dob.invalid && (dob.dirty || dob.touched )" class="invalid-feedback">
-                  <div *ngIf="dob.errors?.['required']">
-                    This field is required.
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <label class="form-label">Gender</label>
-                <div class="form-check">
-                  <input type="radio" id="male" formControlName="gender" value="male" class="form-check-input">
-                  <label for="male" class="form-check-label">Male</label>
-                </div>
-                <div class="form-check">
-                  <input type="radio" id="female" formControlName="gender" value="female" class="form-check-input">
-                  <label for="female" class="form-check-label">Female</label>
-                </div>
-                <div class="form-check">
-                  <input type="radio" id="other" formControlName="gender" value="other" class="form-check-input">
-                  <label for="other" class="form-check-label">Other</label>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <label for="email" class="form-label">Email:</label>
-                <input type="email" formControlName="email" placeholder="your-name@provider.com"
-                  class="form-control form-control-sm"
-                  [class.is-invalid]="email.invalid && (email.dirty || email.touched)">
-                <div *ngIf="email.invalid && (email.dirty || email.touched )" class="invalid-feedback">
-                  <div *ngIf="email.errors?.['required']">
-                    This field is required.
-                  </div>
-                  <div *ngIf="email.errors?.['maxlength']">
-                    Maximum 50 characters are allowed for this field .
-                  </div>
-                  <div
-                    *ngIf="!email.errors?.['required'] && !email.errors?.['minlength'] && !email.errors?.['maxlength'] && email.errors?.['email']">
-                    Invalid email format.
-                  </div>
-                </div>
-              </div>
-  
-            </div>
-            <div class="d-flex justify-content-between">
-              <button class="btn btn-success"  (click)="updateUser()">Update</button>
-            </div>
-          </div>
-        </form>
-      </div>
+                 <div class="card border-0 shadow rounded-3 my-2">
     </div>
+    </div>
+    </form>
+    </div>
+    </div>
+    </body>
+    </html>
