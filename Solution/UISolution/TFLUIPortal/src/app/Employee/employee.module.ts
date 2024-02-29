@@ -66,6 +66,7 @@ const employeeRoutes: Routes = [
   { path: 'payroll', component: PaySlipList },
   { path: 'timesheet', component: TimesheetList }, 
   { path: 'leavedetails/:id', component: Details  }, 
+  { path: 'paydetails/:id', component: PaySlipDetails   }, 
   ]},
 ];
 
@@ -129,7 +130,8 @@ const employeeRoutes: Routes = [
     PayPackage,
     LeftSidebarComponent,
     HorizontalsidebarComponent,
-    ProjectDetails
+    ProjectDetails,
+    
 
     //Leave management 
     //New Leave application

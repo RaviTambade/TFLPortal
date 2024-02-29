@@ -8,6 +8,7 @@
     <div class="col-xl ">Tax</div>
     <div class="col-xl ">PF</div>
     <div class="col-xl ">Amount</div>
+    <div class="col-xl ">Action</div>
     </div>
     </div>
 
@@ -19,5 +20,6 @@
     <div class="col-xl ">{{salary.tax}}</div>
     <div class="col-xl ">{{salary.pf}}</div>
     <div class="col-xl ">{{salary.amount}}</div>
+    <div class="col-xl "><a [routerLink]="['/paydetails/',salary.Id]">details</a></div>
 </div>
 </div>
