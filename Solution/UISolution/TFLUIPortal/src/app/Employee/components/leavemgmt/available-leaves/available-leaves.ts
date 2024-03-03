@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { AnnualLeaves } from 'src/app/hrmanager/Models/LeaveMgmt/AnnualLeaves';
 import { LeaveService } from 'src/app/hrmanager/Services/leave.service';
 
