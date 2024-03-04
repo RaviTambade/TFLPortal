@@ -1,43 +1,33 @@
 <div class="row">
     <div class="col-sm-6">
-    <div *ngIf="leave">
-        <tr><th>Application Date:</th><td>{{leave.createdOn |date}}</td></tr>
-        <tr><th>LeaveType:</th><td>{{leave.leaveType}}</td></tr>
-        <tr><th>From Date:</th><td>{{leave.fromDate |date}}</td><th>To Date:</th><td>{{leave.toDate |date}}</td></tr>   
-        <tr><th><label>Status:</label></th><td>{{leave.status}}</td></tr> 
-    </div>
+        <div *ngIf="leave">
+            <tr>
+                <th>Application Date:</th>
+                <td>{{leave.createdOn |date}}</td>
+            </tr>
+            <tr>
+                <th>LeaveType:</th>
+                <td>{{leave.leaveType}}</td>
+            </tr>
+            <tr>
+                <th>From Date:</th>
+                <td>{{leave.fromDate |date}}</td>
+                <th>To Date:</th>
+                <td>{{leave.toDate |date}}</td>
+            </tr>
+            <tr>
+                <th><label>Status:</label></th>
+                <td>{{leave.status}}</td>
+            </tr>
+        </div>
     </div>
 
 
     <!-- <div class="col-xl "><a [routerLink]="['/availableleave']">leaves available</a></div> -->
-   <div class="col-sm-6">
-    <available-leaves></available-leaves>
-</div>
-
-</div>
-
-<div class="row">
     <div class="col-sm-6">
-    
+        <available-leaves></available-leaves>
+        <consumed-leaves></consumed-leaves>
+        <total-leave></total-leave>
     </div>
-
-
-    <!-- <div class="col-xl "><a [routerLink]="['/availableleave']">leaves available</a></div> -->
-   <div class="col-sm-6">
-    <consumed-leaves></consumed-leaves>
 </div>
 
-
-
-
-<div class="row">
-    <div class="col-sm-6">
-    
-    </div>
-
-
-    <!-- <div class="col-xl "><a [routerLink]="['/availableleave']">leaves available</a></div> -->
-   <div class="col-sm-6">
-    <total-leave></total-leave>
-</div>
-</div>
