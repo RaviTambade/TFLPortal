@@ -34,7 +34,6 @@ export class ActivityList implements OnInit{
             }
           })
          })
-
       })
   }
 

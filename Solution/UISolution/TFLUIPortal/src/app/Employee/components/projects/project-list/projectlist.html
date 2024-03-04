@@ -1,10 +1,16 @@
-<div>
-  <h1>My Projects</h1>
- 
-  <div class="d-flex gap-4 flex-wrap">
 
-    <div *ngFor="let project of projects">
+  <h1>My Projects</h1>
+      <div class="container-fluid">
+        <div class="row">   
+        <div class="col-xl ">Project Name</div>
+        <div class="col-xl ">Start Date</div>
+        <div class="col-x1 ">Status</div>
+        <div class="col-xl ">Action</div>
+        </div>
+      </div>
+       
+        <div *ngFor="let project of projects">
           <project-item [project]="project"></project-item>
-    </div>
-  </div>
-</div>
+        </div>
+  
+

@@ -13,7 +13,7 @@
     </thead>
     <tbody>
             <tr *ngFor="let member of members">
-                <td><a href="" >{{member.fullName}}</a></td>
+                <td><a [routerLink]="['/projects/members/',member.employeeId]" >{{member.fullName}}</a></td>
                 <td>{{member.title}}</td>
                 <td>{{member.assignedOn |date: 'MM/dd/yyyy'}}</td>
             </tr>

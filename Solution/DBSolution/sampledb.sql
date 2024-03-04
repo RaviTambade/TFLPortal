@@ -183,6 +183,8 @@ INSERT INTO sprints(title,startdate,enddate,goal,projectid) VALUES ('eagro sprin
 INSERT INTO sprints(title,startdate,enddate,goal,projectid) VALUES ('eagro sprint 3',"2024-01-15","2024-01-21","Refactor codebase",3);
 INSERT INTO sprints(title,startdate,enddate,goal,projectid) VALUES ('eagro sprint 4',"2024-01-22","2024-01-28","Improve project documentation",3);
 INSERT INTO sprints(title,startdate,enddate,goal,projectid) VALUES ('eagro sprint 5',"2024-01-29","2024-02-04","Integration Testing",3);
+INSERT INTO sprints(title,startdate,enddate,goal,projectid) VALUES ('eagro sprint 6',"2024-03-05","2024-03-05","Integration Testing",4);
+
 
 
 INSERT INTO tasks VALUES (1,'reset password','userstory','As a  Store Worker, I want to be able to reset my password in case I forget it.',10,7,'2024-01-06 00:00:00','2024-01-06 00:00:00','2024-01-06 00:00:00','2024-01-06 00:00:00','todo');

@@ -1,0 +1,13 @@
+
+<h3>Sprint </h3>
+<div *ngIf="sprint">
+          <p >Title:{{sprint.title}}</p>  
+          <p >From-To:{{sprint.startDate |date:"dd-MM-yyyy" }}-{{sprint.endDate |date:"dd-MM-yyyy"}}</p>
+          <a [routerLink]="['/projects/sprint/',sprint.id]">Activities</a>
+          <br>
+          <a [routerLink]="['/projects/sprints/',sprint.projectId]">Sprints</a>
+        </div>
+    
+
+
+                    

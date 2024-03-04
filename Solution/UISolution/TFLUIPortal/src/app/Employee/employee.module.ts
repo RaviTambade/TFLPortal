@@ -56,12 +56,15 @@ import { HorizontalsidebarComponent } from './components/container/horizontalsid
 import { ProjectDetails } from './components/projects/project-details/project-details';
 import { Details } from './components/leavemgmt/details/details';
 import { TotalLeave } from './components/leavemgmt/total-leave/total-leave';
+import { OngoingSprint } from './components/projects/ongoing-sprint/ongoing-sprint';
 
 const employeeRoutes: Routes = [
   { path: '', component:EmployeeContainer ,
   children:[
   { path: 'projects', component: ProjectList},
-  { path: 'details/:id', component: ProjectDetails},
+  { path: 'projects/members/:id', component: ProjectMember},
+  { path: 'projects/sprint/:id', component:ActivityList},
+  { path: 'projects/:id', component: ProjectDetails},
   { path: 'leave', component: LeaveApplicationList},
   { path: 'addleave',component: AddLeave},
   { path: 'payroll', component: PaySlipList },
@@ -69,6 +72,7 @@ const employeeRoutes: Routes = [
   { path: 'leavedetails/:id', component: Details  }, 
   { path: 'paydetails/:id', component: PaySlipDetails}, 
   { path: 'availableleave', component: AvailableLeaves}, 
+  { path: 'projects/sprints/:id', component: SprintList}, 
   ]},
 ];
 
@@ -134,6 +138,7 @@ const employeeRoutes: Routes = [
     LeftSidebarComponent,
     HorizontalsidebarComponent,
     ProjectDetails,
+    OngoingSprint,
     
 
     //Leave management 
