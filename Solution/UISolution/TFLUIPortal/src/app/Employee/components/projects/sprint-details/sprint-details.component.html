@@ -1,0 +1,12 @@
+
+<div *ngIf="sprint">
+    <div class="row">
+    <h3>{{sprint.title}}</h3>
+    <br>
+    <p class="col">StartDate:{{sprint.startDate|date:"dd-MM-yyyy"}}</p>
+    <p class="col">EndDate:{{sprint.endDate|date:"dd-MM-yyyy"}}</p>
+    <p class="col">Goal:{{sprint.goal}}</p>
+</div>
+
+    <sprint-activity-list></sprint-activity-list>
+</div>

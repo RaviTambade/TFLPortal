@@ -11,7 +11,7 @@
     <div class="row"  *ngFor="let sprint of sprints" >
         <div class="col"><p> {{sprint.startDate|date}} -{{sprint.endDate |date}}</p></div>
         <div class="col"><p> {{sprint.title}}</p></div>
-        <div class="col"><a [routerLink]=""> details</a></div>
+        <div class="col"><a [routerLink]="['/projects/sprint/details/',sprint.id]"> details</a></div>
     </div>
 </div>
 
