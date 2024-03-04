@@ -1,24 +1,12 @@
 <div class="row">
     <div class="col-sm-6">
         <div *ngIf="leave">
-            <tr>
-                <th>Application Date:</th>
-                <td>{{leave.createdOn |date}}</td>
-            </tr>
-            <tr>
-                <th>LeaveType:</th>
-                <td>{{leave.leaveType}}</td>
-            </tr>
-            <tr>
-                <th>From Date:</th>
-                <td>{{leave.fromDate |date}}</td>
-                <th>To Date:</th>
-                <td>{{leave.toDate |date}}</td>
-            </tr>
-            <tr>
-                <th><label>Status:</label></th>
-                <td>{{leave.status}}</td>
-            </tr>
+                <p>Application Date:{{leave.createdOn |date}}</p>
+                <p>LeaveType:{{leave.leaveType}}</p>
+                <p>From Date:{{leave.fromDate |date}}</p>
+                <p>To Date:{{leave.toDate |date}}</p>
+                <p>Status:{{leave.status}}</p>
+            <a [routerLink]="['/leave/addleave']">Apply leave</a>
         </div>
     </div>
 

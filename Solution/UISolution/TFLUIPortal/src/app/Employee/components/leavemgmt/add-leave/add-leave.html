@@ -1,4 +1,4 @@
-<h4 class="text-center col-6" >Enter Leave Required </h4>
+<h4 class="text-center col-4" >Enter Leave Required </h4>
 <form (ngSubmit)="onSubmit()">
 
    <div class="row">
@@ -12,20 +12,20 @@
       </div>
       
     </div>
-   
+   <br>
     <div class="row">
-        <div class="form-group col-2">
+        <div class="form-group col-1">
           <label for="fromDate"> Date:</label>
           </div>
-          <div class="col-4">
+          <div class="col-2">
             <input type="date" class="form-control" id="fromDate" [(ngModel)]="leave.fromDate"   name="fromDate" (change)="calculateDays()">
           </div>
     
   
-      <div class="form-group col-2">
+      <div class="form-group col-1">
           <label for="toDate">To:</label>
           </div>
-          <div class="col-4">
+          <div class="col-2">
           <input type="date" class="form-control" id="toDate" [(ngModel)]="leave.toDate" name="toDate" (change)="calculateDays()">
          </div>
         </div>

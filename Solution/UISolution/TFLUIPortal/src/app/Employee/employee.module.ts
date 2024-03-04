@@ -77,7 +77,7 @@ const employeeRoutes: Routes = [
   { path: 'projects/sprints/:id', component: SprintList}, 
   { path: 'projects/sprint/details/:id', component:SprintDetails}, 
   { path: 'projects/sprint/activity/:id', component:Activity}, 
-  { path: 'addleave', component:AddLeave}, 
+  { path: 'leave/addleave', component:AddLeave}, 
   
 
   ]},
