@@ -57,8 +57,8 @@ import { ProjectDetails } from './components/projects/project-details/project-de
 import { Details } from './components/leavemgmt/details/details';
 import { TotalLeave } from './components/leavemgmt/total-leave/total-leave';
 import { OngoingSprint } from './components/projects/ongoing-sprint/ongoing-sprint';
-import { SprintDetailsComponent } from './components/projects/sprint-details/sprint-details.component';
-import { ActivityComponent } from './components/projects/activity/activity.component';
+import { SprintDetails } from './components/projects/sprint-details/sprint-details';
+import { Activity } from './components/projects/activity/activity';
 
 const employeeRoutes: Routes = [
   { path: '', component:EmployeeContainer ,
@@ -75,8 +75,10 @@ const employeeRoutes: Routes = [
   { path: 'paydetails/:id', component: PaySlipDetails}, 
   { path: 'availableleave', component: AvailableLeaves}, 
   { path: 'projects/sprints/:id', component: SprintList}, 
-  { path: 'projects/sprint/details/:id', component:SprintDetailsComponent}, 
-  { path: 'projects/sprint/activity/:id', component:ActivityComponent}, 
+  { path: 'projects/sprint/details/:id', component:SprintDetails}, 
+  { path: 'projects/sprint/activity/:id', component:Activity}, 
+  { path: 'addleave', component:AddLeave}, 
+  
 
   ]},
 ];
@@ -144,8 +146,8 @@ const employeeRoutes: Routes = [
     HorizontalsidebarComponent,
     ProjectDetails,
     OngoingSprint,
-    SprintDetailsComponent,
-    ActivityComponent,
+    SprintDetails,
+    Activity,
     
 
     //Leave management 

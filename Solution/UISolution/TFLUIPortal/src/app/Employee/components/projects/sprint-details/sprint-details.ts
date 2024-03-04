@@ -3,10 +3,10 @@ import { Sprint } from 'src/app/employee/Models/ProjectMgmt/sprint';
 import { SprintService } from 'src/app/projectmanager/Services/sprint.service';
 
 @Component({
-  selector: 'app-sprint-details',
-  templateUrl: './sprint-details.component.html',
+  selector: 'sprint-details',
+  templateUrl: './sprint-details.html',
 })
-export class SprintDetailsComponent implements OnInit{
+export class SprintDetails implements OnInit{
 sprint:Sprint|undefined;
   constructor(private sprintSvc:SprintService){}
   ngOnInit(): void {

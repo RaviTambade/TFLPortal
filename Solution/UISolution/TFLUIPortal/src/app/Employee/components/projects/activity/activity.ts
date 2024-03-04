@@ -7,10 +7,10 @@ import { SprintService } from 'src/app/projectmanager/Services/sprint.service';
 import { MembershipService } from 'src/app/shared/services/Membership/membership.service';
 
 @Component({
-  selector: 'app-activity',
-  templateUrl: './activity.component.html',
+  selector: 'activity',
+  templateUrl: './activity.html',
 })
-export class ActivityComponent implements OnInit{
+export class Activity implements OnInit{
   constructor(private taskSvc:TasksManagementService){}
   
   task:Task|undefined;
