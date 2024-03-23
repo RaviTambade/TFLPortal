@@ -55,17 +55,31 @@ import { LeftSidebarComponent } from './components/container/left-sidebar/left-s
 import { HorizontalsidebarComponent } from './components/container/horizontalsidebar/horizontalsidebar.component';
 import { ProjectDetails } from './components/projects/project-details/project-details';
 import { Details } from './components/leavemgmt/details/details';
+import { TotalLeave } from './components/leavemgmt/total-leave/total-leave';
+import { OngoingSprint } from './components/projects/ongoing-sprint/ongoing-sprint';
+import { SprintDetails } from './components/projects/sprint-details/sprint-details';
+import { Activity } from './components/projects/activity/activity';
 
 const employeeRoutes: Routes = [
   { path: '', component:EmployeeContainer ,
   children:[
   { path: 'projects', component: ProjectList},
-  { path: 'details/:id', component: ProjectDetails},
+  { path: 'projects/members/:id', component: ProjectMember},
+  { path: 'projects/sprint/:id', component:ActivityList},
+  { path: 'projects/:id', component: ProjectDetails},
   { path: 'leave', component: LeaveApplicationList},
   { path: 'addleave',component: AddLeave},
   { path: 'payroll', component: PaySlipList },
   { path: 'timesheet', component: TimesheetList }, 
   { path: 'leavedetails/:id', component: Details  }, 
+  { path: 'paydetails/:id', component: PaySlipDetails}, 
+  { path: 'availableleave', component: AvailableLeaves}, 
+  { path: 'projects/sprints/:id', component: SprintList}, 
+  { path: 'projects/sprint/details/:id', component:SprintDetails}, 
+  { path: 'projects/sprint/activity/:id', component:Activity}, 
+  { path: 'leave/addleave', component:AddLeave}, 
+  { path: 'leave/update', component:LeaveUpdate},
+
   ]},
 ];
 
@@ -114,6 +128,7 @@ const employeeRoutes: Routes = [
     TaskList,
     TaskItem,
     ConsumedLeaves,
+    TotalLeave,
     AvailableLeaves,
     AddLeave,
     LeaveApplicationList,
@@ -129,7 +144,11 @@ const employeeRoutes: Routes = [
     PayPackage,
     LeftSidebarComponent,
     HorizontalsidebarComponent,
-    ProjectDetails
+    ProjectDetails,
+    OngoingSprint,
+    SprintDetails,
+    Activity,
+    
 
     //Leave management 
     //New Leave application
@@ -172,6 +191,7 @@ const employeeRoutes: Routes = [
     LeaveApplicationDetails,
     LeaveUpdate,
     AddLeave,
+    TotalLeave,
 
     ProjectMemberList,
     ProjectMember,

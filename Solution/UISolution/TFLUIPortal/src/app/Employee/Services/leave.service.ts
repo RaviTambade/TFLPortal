@@ -5,6 +5,7 @@ import { AnnualLeaves } from 'src/app/shared/Entities/Leavemgmt/AnnualLeaves';
 import { LeaveApplication } from 'src/app/shared/Entities/Leavemgmt/LeaveApplication';
 import { environment } from 'src/environments/environment';
 import { RoleLeaveAllocation } from '../Models/LeaveMgmt/LeaveAllocation';
+import { LeaveCount } from '../Models/LeaveMgmt/LeaveCount';
  
 
 @Injectable({
@@ -53,6 +54,11 @@ export class LeaveService {
   getAnnualConsumedLeavesOfEmployee(id:number,year:number):Observable<AnnualLeaves>{
     let url=`${this.leaveAPI}/annualconsumedleaves/employees/${id}/year/${year}`;
     return this.http.get<AnnualLeaves>(url);
+  }
+
+  getAnnualLeavesOfRole(id:number,year:number):Observable<LeaveCount[]>{
+    let url=`${this.leaveAPI}/annualleaves/roles/${id}/year/${year}`;
+    return this.http.get<LeaveCount[]>(url);
   }
 
   calculateDays(from:string,to:string): number {    

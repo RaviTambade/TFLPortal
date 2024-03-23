@@ -17,7 +17,7 @@ export class ActivityList implements OnInit{
     
       this.sprintSvc.getSprintsTasks(this.sprintId).subscribe((res)=>{
         this.empployeeWorks=res;
-        console.log(res);
+        console.log( "activities",res);
 
         let assignedToIds:number[]=this.empployeeWorks.map(a=>a.assignedTo);
         let assignedByIds:number[]=this.empployeeWorks.map(a=>a.assignedBy);
@@ -34,7 +34,6 @@ export class ActivityList implements OnInit{
             }
           })
          })
-
       })
   }
 

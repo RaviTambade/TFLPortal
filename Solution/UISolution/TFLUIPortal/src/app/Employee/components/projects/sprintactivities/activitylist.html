@@ -1,6 +1,6 @@
 
 <div class="container-fluid">
-    <h4>Sprint Activity List</h4>
+    <h3>Sprint Activities</h3>
     <div class="row" >
         <div class="col"><p> <b>Title</b></p></div>
         <div class="col"><p> <b>Status</b></p></div>
@@ -8,10 +8,10 @@
         <div class="col"><p> <b>Assign By</b></p></div>
     </div>
     <div class="row"  *ngFor="let employeework of empployeeWorks" >
-        <div class="col"><p> {{employeework.title}}</p></div>
+        <div class="col"><p> <a [routerLink]="['/projects/sprint/activity/',employeework.id]">{{employeework.title}}</a></p></div>
         <div class="col"><p> {{employeework.status}}</p></div>
-        <div class="col"><p> {{employeework.assignee}}</p></div>
-        <div class="col"><p> {{employeework.assignor}}</p></div>
+        <div class="col"><a [routerLink]="['/projects/members/',employeework.assignedTo]"> {{employeework.assignee}}</a></div>
+        <div class="col"><a [routerLink]="['/projects/members/',employeework.assignedBy]"> {{employeework.assignor}}</a></div>
     </div>
 </div>
 

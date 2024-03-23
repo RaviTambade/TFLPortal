@@ -1,0 +1,14 @@
+<div *ngIf="task">
+    <div class="row">
+    <h3> Title :{{task.title}}</h3>
+    <br>
+    <p class="col">assignedBy :{{task.assignedBy}}</p>
+    <p class="col">assignedTo :{{task.assignedTo}}</p>
+    <p class="col">description :{{task.description}}</p>
+    <p class="col">status :{{task.status}}</p>
+    <p class="col">taskType :{{task.taskType}}</p>
+    <p class="col">createdDate:{{task.createdOn|date:"dd-MM-yyyy"}}</p>
+    <p class="col">StartDate:{{task.startDate|date:"dd-MM-yyyy"}}</p>
+    <p class="col">EndDate:{{task.dueDate|date:"dd-MM-yyyy"}}</p>
+   
+</div>

@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <div class="row">
         <div class="col-sm-12">
             <div class="container">
@@ -32,5 +32,21 @@
             </div>
         </div>
     </div>
+</div> -->
+
+<div class="card">
+        <div class="container-fluid" *ngIf="project">
+            <div class="row">
+            <div class="col-xl ">{{project.title}}</div>  
+            <div class="col-xl ">{{project.startDate}}</div>
+            <div class="col-xl ">{{project.status}}</div>
+            <div class="col-xl "><a [routerLink]="['/projects/',project.id]">details</a></div>
+    </div>
+</div>    
 </div>
+<router-outlet></router-outlet>
+
+
+
+
 <router-outlet></router-outlet>
