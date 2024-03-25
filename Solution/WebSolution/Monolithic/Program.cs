@@ -34,28 +34,20 @@ builder.Services.AddScoped<IHRAnalyticsService,  HRAnalyticsService>();
 builder.Services.AddScoped<IHROperationsService,  HROperationsService>();
 builder.Services.AddScoped<ISprintOperationsService, SprintOperationsService>();
 builder.Services.AddScoped<ISprintAnalyticsService,  SprintAnalyticsService>();
-
-
 // builder.Services.AddScoped<IHROperationsService, HROperationsService>();
-
-
 builder.Services.AddOptions<JwtSettings>().BindConfiguration("JWT")
     .ValidateDataAnnotations()
     .ValidateOnStart();
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 app.UseHttpsRedirection();
 app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 // app.UseMiddleware<JwtMiddleware>();
