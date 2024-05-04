@@ -13,9 +13,14 @@ using TFLPortal.Services.HRMgmt.Analytics;
 using TFLPortal.Services.SprintMgmt.Analytics;
 using TFLPortal.Services.SprintMgmt.Operations;
 using TFLPortal.Services.HRMgmt.Operations;
-using TFLPortal.Repositories.LeaveMgmt.Analytics;
+
 using TFLPortal.Repositories.LeaveMgmt.Analytics;
 using TFLPortal.Repositories.LeaveMgmt.Operations;
+
+using TFLPortal.Repositories.HRMgmt.Analytics;
+using TFLPortal.Repositories.HRMgmt.Operations;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +45,8 @@ builder.Services.AddScoped<IProjectAnalyticsService,  ProjectAnalyticsService>()
 builder.Services.AddScoped<IProjectOperationsService, ProjectOperationsService>();
 builder.Services.AddScoped<IHRAnalyticsService,  HRAnalyticsService>();
 builder.Services.AddScoped<IHROperationsService,  HROperationsService>();
+builder.Services.AddScoped<IHRAnalyticsRepository,  HRAnalyticsRepository>();
+builder.Services.AddScoped<IHROperationsRepository,  HROperationsRepository>();
 builder.Services.AddScoped<ISprintOperationsService, SprintOperationsService>();
 builder.Services.AddScoped<ISprintAnalyticsService,  SprintAnalyticsService>();
 // builder.Services.AddScoped<IHROperationsService, HROperationsService>();

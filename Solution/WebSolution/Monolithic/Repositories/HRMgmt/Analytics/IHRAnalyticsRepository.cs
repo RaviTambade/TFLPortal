@@ -1,9 +1,8 @@
 using TFLPortal.Models;
-using TFLPortal.Repositories.HRMgmt.Analytics;
 
-namespace TFLPortal.Services.HRMgmt.Analytics;
+namespace TFLPortal.Repositories.HRMgmt.Analytics;
 
-public interface IHRAnalyticsService
+public interface IHRAnalyticsRepository
 {
     
     Task<Employee> GetEmployee(int employeeId); 

@@ -1,19 +1,13 @@
 using System.Text.Json;
 using TFLPortal.Helpers;
 using TFLPortal.Models;
-using TFLPortal.Repositories.HRMgmt.Operations;
+using TFLPortal.Responses;
 
-namespace TFLPortal.Services.HRMgmt.Operations;
+namespace TFLPortal.Repositories.HRMgmt.Operations;
 
-public class HROperationsService : IHROperationsService
+public class HROperationsRepository : IHROperationsRepository
 {
     private static string fileName = "inout.json";
-
-    private readonly IHROperationsRepository _repository;
-
-    public HROperationsService(IHROperationsRepository repository) {
-        _repository = repository;
-    }
 
     public void AddEntry(InOutTimeRecord timeRecord)
     {
