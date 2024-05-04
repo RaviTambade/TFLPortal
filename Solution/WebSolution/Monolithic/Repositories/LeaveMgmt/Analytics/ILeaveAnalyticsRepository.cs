@@ -1,7 +1,7 @@
 using TFLPortal.Models;
 using TFLPortal.Responses;
 
-namespace TFLPortal.Repositories.LeaveMgmt.Analytics;
+namespace TFLPortal.Repositories.LeaveMgmt.Analytics{
 
 public interface ILeaveAnalyticsRepository
 {
@@ -21,4 +21,5 @@ public interface ILeaveAnalyticsRepository
 
     Task<List<LeaveAllocation>> GetLeaveAllocations();
     Task<LeaveAllocation> GetRoleLeavesDetails(int id);
+}
 }
