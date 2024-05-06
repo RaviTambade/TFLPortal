@@ -1,22 +1,18 @@
 using MySql.Data.MySqlClient;
 using TFLPortal.Models;
 
-namespace TFLPortal.Services.SprintMgmt.Operations;
-
-public class SprintOperationsService:ISprintOperationsRepository
+namespace TFLPortal.Repositories.SprintMgmt.Operations;
+public class SprintOperationsRepository:ISprintOperationsRepository
 {
     private readonly IConfiguration _configuration;
     private readonly string _connectionString;
 
-    public SprintOperationsService(IConfiguration configuration)
+    public SprintOperationsRepository(IConfiguration configuration)
     {
         _configuration = configuration;
         _connectionString =
-            _configuration.GetConnectionString("DefaultConnection")
-            ?? throw new ArgumentNullException("connectionString");
+            _configuration.GetConnectionString("DefaultConnection")  ?? throw new ArgumentNullException("connectionString");
     }
-
-    
 
     public async Task<bool> Insert(Sprint theSprint)
     {

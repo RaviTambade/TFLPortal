@@ -1,6 +1,6 @@
 using TFLPortal.Models;
 
-namespace TFLPortal.Repository.SprintMgmt.Operations;
+namespace TFLPortal.Repositories.SprintMgmt.Operations;
 
 public interface ISprintOperationsRepository
 {
