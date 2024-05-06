@@ -20,6 +20,8 @@ using TFLPortal.Repositories.LeaveMgmt.Operations;
 using TFLPortal.Repositories.HRMgmt.Analytics;
 using TFLPortal.Repositories.HRMgmt.Operations;
 
+using TFLPortal.Repositories.PayrollMgmt.Analytics;
+using TFLPortal.Repositories.PayrollMgmt.Operations;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,12 +35,8 @@ builder.Services.AddScoped<ITimesheetAnalyticsService, TimesheetAnalyticsService
 builder.Services.AddScoped<ITimesheetOperationsService, TimesheetOperationsService>();
 builder.Services.AddScoped<ILeaveAnalyticsService, LeaveAnalyticsService>();
 builder.Services.AddScoped<ILeaveOperationsService, LeaveOperationsService>();
-
 builder.Services.AddScoped<ILeaveAnalyticsRepository, LeaveAnalyticsRepository>();
 builder.Services.AddScoped<ILeaveOperationsRepository, LeaveOperationsRepository>();
-
-
-
 builder.Services.AddScoped<IPayrollAnalyticsService, PayrollAnalyticsService>();
 builder.Services.AddScoped<IPayrollOperationsService, PayrollOperationsService>();
 builder.Services.AddScoped<IProjectAnalyticsService,  ProjectAnalyticsService>();

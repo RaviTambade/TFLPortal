@@ -20,6 +20,5 @@ public class HROperationsRepository : IHROperationsRepository
         // var searlizedData = JsonSerializer.Serialize(timeRecord);
         // File.AppendAllText(jsonFile, searlizedData);
     }
-
-   
+  
 }
