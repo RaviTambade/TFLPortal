@@ -29,6 +29,8 @@ using TFLPortal.Repositories.ProjectMgmt.Operations;
 using TFLPortal.Repositories.SprintMgmt.Analytics;
 using TFLPortal.Repositories.SprintMgmt.Operations;
 
+using TFLPortal.Repositories.TaskMgmt.Analytics;
+using TFLPortal.Repositories.TaskMgmt.Operations;
 
 var builder = WebApplication.CreateBuilder(args);
 
