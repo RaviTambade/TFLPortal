@@ -2,12 +2,10 @@ using MySql.Data.MySqlClient;
 using TFLPortal.Models;
 using ProjectTask=TFLPortal.Models.Task;
 
-
 namespace TFLPortal.Services.SprintMgmt.Analytics;
 
 public class SprintAnalyticsService:ISprintAnalyticsService
 {
-
 
     private readonly IConfiguration _configuration;
     private readonly string _connectionString;
