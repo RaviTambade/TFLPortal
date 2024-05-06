@@ -23,6 +23,10 @@ using TFLPortal.Repositories.HRMgmt.Operations;
 using TFLPortal.Repositories.PayrollMgmt.Analytics;
 using TFLPortal.Repositories.PayrollMgmt.Operations;
 
+using TFLPortal.Repositories.ProjectMgmt.Analytics;
+using TFLPortal.Repositories.ProjectMgmt.Operations;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +44,9 @@ builder.Services.AddScoped<ILeaveOperationsRepository, LeaveOperationsRepository
 builder.Services.AddScoped<IPayrollAnalyticsService, PayrollAnalyticsService>();
 builder.Services.AddScoped<IPayrollOperationsService, PayrollOperationsService>();
 builder.Services.AddScoped<IProjectAnalyticsService,  ProjectAnalyticsService>();
+
+builder.Services.AddScoped<IProjectOperationsRepository, ProjectOperationsRepository>();
+builder.Services.AddScoped<IProjectAnalyticsRepository,  ProjectAnalyticsRepository>();
 builder.Services.AddScoped<IProjectOperationsService, ProjectOperationsService>();
 builder.Services.AddScoped<IHRAnalyticsService,  HRAnalyticsService>();
 builder.Services.AddScoped<IHROperationsService,  HROperationsService>();
