@@ -7,7 +7,7 @@ namespace TFLPortal.Repositories.SprintMgmt.Analytics;
 using MySql.Data.MySqlClient;
 
 
-public class SprintAnalyticsRepository:ISprintAnalyticsRepository
+public class SprintAnalyticsRepository : ISprintAnalyticsRepository
 {
 
 
