@@ -25,6 +25,8 @@ using TFLPortal.Repositories.PayrollMgmt.Operations;
 
 using TFLPortal.Repositories.ProjectMgmt.Analytics;
 using TFLPortal.Repositories.ProjectMgmt.Operations;
+using TFLPortal.Repositories.TimesheetMgmt.Analytics;
+using TFLPortal.Repositories.TimesheetMgmt.Operations;
 
 
 
@@ -37,6 +39,9 @@ builder.Services.AddScoped<ITaskAnalyticsService, TaskAnalyticsService>();
 builder.Services.AddScoped<ITaskOperationsService, TaskOperationsService>();
 builder.Services.AddScoped<ITimesheetAnalyticsService, TimesheetAnalyticsService>();
 builder.Services.AddScoped<ITimesheetOperationsService, TimesheetOperationsService>();
+builder.Services.AddScoped<ITimesheetAnalyticsRepository, TimesheetAnalyticsRepository>();
+builder.Services.AddScoped<ITimesheetOperationsRepository, TimesheetOperationsRepository>();
+
 builder.Services.AddScoped<ILeaveAnalyticsService, LeaveAnalyticsService>();
 builder.Services.AddScoped<ILeaveOperationsService, LeaveOperationsService>();
 builder.Services.AddScoped<ILeaveAnalyticsRepository, LeaveAnalyticsRepository>();

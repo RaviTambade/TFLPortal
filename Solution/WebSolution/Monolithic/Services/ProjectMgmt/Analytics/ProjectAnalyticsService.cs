@@ -29,13 +29,13 @@ public class ProjectAnalyticsService:IProjectAnalyticsService
     } 
 
 
-     public async Task<Project> GetProject(int projectId)
+    public async Task<Project> GetProject(int projectId)
     {
        return await _repository.GetProject(projectId);
     }
 
 
-       public async Task<Sprint> GetCurrentSprint(int projectId, DateOnly date)
+    public async Task<Sprint> GetCurrentSprint(int projectId, DateOnly date)
     {
        return await _repository.GetCurrentSprint(projectId,date);
     }
@@ -50,7 +50,7 @@ public class ProjectAnalyticsService:IProjectAnalyticsService
     }
 
 
-  public async Task<List<ProjectAllocation>> GetProjectMembers(int projectId)
+    public async Task<List<ProjectAllocation>> GetProjectMembers(int projectId)
     {
        return await _repository.GetProjectMembers(projectId);
     }
