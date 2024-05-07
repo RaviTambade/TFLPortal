@@ -1,7 +1,7 @@
-using TFLPortal.Models;
-using TFLPortal.Responses;
+using  Transflower.TFLPortal.Entities.LeaveMgmt;
+using  Transflower.TFLPortal.Responses;
 
-namespace TFLPortal.Repositories.LeaveMgmt.Analytics{
+namespace Transflower.TFLPortal.Repositories.LeaveMgmt.Analytics.Interfaces{
 
 public interface ILeaveAnalyticsRepository
 {

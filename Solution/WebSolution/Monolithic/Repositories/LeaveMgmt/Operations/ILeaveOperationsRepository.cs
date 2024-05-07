@@ -1,6 +1,6 @@
-using TFLPortal.Models;
+using  Transflower.TFLPortal.Entities.LeaveMgmt;
 
-namespace TFLPortal.Repositories.LeaveMgmt.Operations;
+namespace Transflower.TFLPortal.Repositories.LeaveMgmt.Operations.Interfaces;
 public interface ILeaveOperationsRepository
 {
     Task<bool> AddNewLeaveApplication(LeaveApplication employeeLeave);

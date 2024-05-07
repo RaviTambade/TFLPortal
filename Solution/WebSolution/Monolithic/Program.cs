@@ -7,14 +7,12 @@ using TFLPortal.Services.TaskMgmt.Analytics;
 using TFLPortal.Services.TaskMgmt.Operations;
 using TFLPortal.Services.TimesheetMgmt.Analytics;
 using TFLPortal.Services.TimesheetMgmt.Operations;
-using TFLPortal.Services.LeaveMgmt.Analytics;
-using TFLPortal.Services.LeaveMgmt.Operations;
+
 
 using TFLPortal.Services.SprintMgmt.Analytics;
 using TFLPortal.Services.SprintMgmt.Operations;
 
-using TFLPortal.Repositories.LeaveMgmt.Analytics;
-using TFLPortal.Repositories.LeaveMgmt.Operations;
+
 
 using TFLPortal.Repositories.PayrollMgmt.Analytics;
 using TFLPortal.Repositories.PayrollMgmt.Operations;
@@ -36,6 +34,16 @@ using Transflower.TFLPortal.Repositories.HRMgmt.Operations.Interfaces;
 using Transflower.TFLPortal.Repositories.HRMgmt.Operations;
 using Transflower.TFLPortal.Services.HRMgmt.Operations.Interfaces;
 using Transflower.TFLPortal.Services.HRMgmt.Operations;
+
+using Transflower.TFLPortal.Repositories.LeaveMgmt.Analytics.Interfaces;
+using Transflower.TFLPortal.Repositories.LeaveMgmt.Analytics;
+using Transflower.TFLPortal.Services.LeaveMgmt.Analytics.Interfaces;
+using Transflower.TFLPortal.Services.LeaveMgmt.Analytics;
+
+using Transflower.TFLPortal.Repositories.LeaveMgmt.Operations.Interfaces;
+using Transflower.TFLPortal.Repositories.LeaveMgmt.Operations;
+using Transflower.TFLPortal.Services.LeaveMgmt.Operations.Interfaces;
+using Transflower.TFLPortal.Services.LeaveMgmt.Operations;
 
 
 

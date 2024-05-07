@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
-using TFLPortal.Responses;
-using TFLPortal.Models;
+using Transflower.TFLPortal.Responses;
+using Transflower.TFLPortal.Entities.LeaveMgmt;
 using Transflower.TFLPortal.Helpers;
-using TFLPortal.Services.LeaveMgmt.Operations;
-using TFLPortal.Services.LeaveMgmt.Analytics;
-namespace Intranet.Controllers;
+using Task = System.Threading.Tasks.Task;
+using Transflower.TFLPortal.Services.LeaveMgmt.Analytics.Interfaces;
+using Transflower.TFLPortal.Services.LeaveMgmt.Operations.Interfaces;
+namespace Transflower.TFLPortal.Intranet.Controllers.LeaveMgmt;
 
 [ApiController]
 [Route("/api/leaves")]
