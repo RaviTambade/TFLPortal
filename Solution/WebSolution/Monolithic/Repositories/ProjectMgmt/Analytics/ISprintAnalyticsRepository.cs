@@ -1,7 +1,9 @@
-using TFLPortal.Models;
-using ProjectTask = TFLPortal.Models.Task;
+using Transflower.TFLPortal.Entities.ProjectMgmt;
 
-namespace TFLPortal.Repositories.SprintMgmt.Analytics;
+using ProjectTask = Transflower.TFLPortal.Entities.ProjectMgmt.Task;
+
+
+namespace Transflower.TFLPortal.Repositories.ProjectMgmt.Analytics.Interfaces;
 
 public interface ISprintAnalyticsRepository
 {

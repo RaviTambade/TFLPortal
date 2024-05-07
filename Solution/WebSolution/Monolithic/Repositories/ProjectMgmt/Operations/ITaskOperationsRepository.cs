@@ -1,6 +1,6 @@
-using ProjectTask = TFLPortal.Models.Task;
+using ProjectTask = Transflower.TFLPortal.Entities.ProjectMgmt.Task;
 
-namespace TFLPortal.Repositories.TaskMgmt.Operations;
+namespace Transflower.TFLPortal.Repositories.ProjectMgmt.Operations.Interfaces;
 
 public interface ITaskOperationsRepository
 {

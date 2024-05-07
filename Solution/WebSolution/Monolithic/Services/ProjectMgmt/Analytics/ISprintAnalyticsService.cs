@@ -1,14 +1,8 @@
-using TFLPortal.Models;
-using ProjectTask = TFLPortal.Models.Task;
+using Transflower.TFLPortal.Repositories.ProjectMgmt.Analytics.Interfaces;
 
-namespace TFLPortal.Services.SprintMgmt.Analytics;
+namespace Transflower.TFLPortal.Services.ProjectMgmt.Analytics.Interfaces;
 
-public interface ISprintAnalyticsService
+public interface ISprintAnalyticsService:ISprintAnalyticsRepository
 {
-   Task<List<Sprint>> GetSprints(int projectId);
-    Task<Sprint> GetCurrentSprint(int projectId, DateOnly date);
-    Task<Sprint> GetSprint(int sprintId);
-    Task<List<ProjectTask>> GetSprintTasks(int sprintId);
-
-    Task<SprintTask> GetSprintOfTask(int taskId);
+   
 }

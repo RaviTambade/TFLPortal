@@ -1,8 +1,9 @@
 using MySql.Data.MySqlClient;
-using TFLPortal.Models;
-using ProjectTask=TFLPortal.Models.Task;
+using Transflower.TFLPortal.Entities.ProjectMgmt;
+using ProjectTask=Transflower.TFLPortal.Entities.ProjectMgmt.Task;
+using Transflower.TFLPortal.Repositories.ProjectMgmt.Analytics.Interfaces;
 
-namespace TFLPortal.Repositories.SprintMgmt.Analytics;
+namespace Transflower.TFLPortal.Repositories.ProjectMgmt.Analytics;
 
 public class SprintAnalyticsRepository:ISprintAnalyticsRepository
 {

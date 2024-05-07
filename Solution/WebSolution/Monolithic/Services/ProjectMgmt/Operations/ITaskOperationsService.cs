@@ -1,10 +1,8 @@
-using ProjectTask = TFLPortal.Models.Task;
+using Transflower.TFLPortal.Repositories.ProjectMgmt.Operations.Interfaces;
 
-namespace TFLPortal.Services.TaskMgmt.Operations;
+namespace Transflower.TFLPortal.Services.ProjectMgmt.Operations.Interfaces;
 
-public interface ITaskOperationsService
+public interface ITaskOperationsService:ITaskOperationsRepository
 {
-    Task<bool> AddTask(ProjectTask task);
-    Task<bool> UpdateTask(int taskId, string status);
-    Task<bool> Delete(int taskId);
+    
 }

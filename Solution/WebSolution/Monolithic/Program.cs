@@ -1,31 +1,19 @@
 using Transflower.TFLPortal.Helpers;
 using TFLPortal.Services.PayrollMgmt.Analytics;
 using TFLPortal.Services.PayrollMgmt.Operations;
-using TFLPortal.Services.ProjectMgmt.Analytics;
-using TFLPortal.Services.ProjectMgmt.Operations;
-using TFLPortal.Services.TaskMgmt.Analytics;
-using TFLPortal.Services.TaskMgmt.Operations;
 using TFLPortal.Services.TimesheetMgmt.Analytics;
 using TFLPortal.Services.TimesheetMgmt.Operations;
 using TFLPortal.Services.LeaveMgmt.Analytics;
 using TFLPortal.Services.LeaveMgmt.Operations;
-
-using TFLPortal.Services.SprintMgmt.Analytics;
-using TFLPortal.Services.SprintMgmt.Operations;
 
 using TFLPortal.Repositories.LeaveMgmt.Analytics;
 using TFLPortal.Repositories.LeaveMgmt.Operations;
 
 using TFLPortal.Repositories.PayrollMgmt.Analytics;
 using TFLPortal.Repositories.PayrollMgmt.Operations;
-using TFLPortal.Repositories.ProjectMgmt.Analytics;
-using TFLPortal.Repositories.ProjectMgmt.Operations;
+
 using TFLPortal.Repositories.TimesheetMgmt.Analytics;
 using TFLPortal.Repositories.TimesheetMgmt.Operations;
-using TFLPortal.Repositories.SprintMgmt.Analytics;
-using TFLPortal.Repositories.SprintMgmt.Operations;
-using TFLPortal.Repositories.TaskMgmt.Analytics;
-using TFLPortal.Repositories.TaskMgmt.Operations;
 
 using Transflower.TFLPortal.Repositories.HRMgmt.Analytics.Interfaces;
 using Transflower.TFLPortal.Repositories.HRMgmt.Analytics;
@@ -36,6 +24,18 @@ using Transflower.TFLPortal.Repositories.HRMgmt.Operations.Interfaces;
 using Transflower.TFLPortal.Repositories.HRMgmt.Operations;
 using Transflower.TFLPortal.Services.HRMgmt.Operations.Interfaces;
 using Transflower.TFLPortal.Services.HRMgmt.Operations;
+
+using Transflower.TFLPortal.Repositories.ProjectMgmt.Analytics.Interfaces;
+using Transflower.TFLPortal.Repositories.ProjectMgmt.Analytics;
+using Transflower.TFLPortal.Services.ProjectMgmt.Analytics.Interfaces;
+using Transflower.TFLPortal.Services.ProjectMgmt.Analytics;
+
+
+using Transflower.TFLPortal.Repositories.ProjectMgmt.Operations.Interfaces;
+using Transflower.TFLPortal.Repositories.ProjectMgmt.Operations;
+using Transflower.TFLPortal.Services.ProjectMgmt.Operations.Interfaces;
+using Transflower.TFLPortal.Services.ProjectMgmt.Operations;
+
 
 
 
@@ -58,9 +58,13 @@ builder.Services.AddScoped<ITimesheetOperationsService, TimesheetOperationsServi
 
 builder.Services.AddScoped<ITaskOperationsService, TaskOperationsService>();
 builder.Services.AddScoped<ITaskAnalyticsService, TaskAnalyticsService>();
+builder.Services.AddScoped<ITaskOperationsRepository, TaskOperationsRepository>();
+builder.Services.AddScoped<ITaskAnalyticsRepository, TaskAnalyticsRepository>();
 
 builder.Services.AddScoped<ISprintOperationsService, SprintOperationsService>();
 builder.Services.AddScoped<ISprintAnalyticsService,  SprintAnalyticsService>();
+builder.Services.AddScoped<ISprintOperationsRepository, SprintOperationsRepository>();
+builder.Services.AddScoped<ISprintAnalyticsRepository,  SprintAnalyticsRepository>();
 
 builder.Services.AddScoped<IHRAnalyticsRepository,  HRAnalyticsRepository>();
 builder.Services.AddScoped<IHROperationsRepository, HROperationsRepository>();

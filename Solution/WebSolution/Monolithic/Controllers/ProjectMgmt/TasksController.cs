@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using TFLPortal.Responses;
-using ProjectTask=TFLPortal.Models.Task;
+using ProjectTask=Transflower.TFLPortal.Entities.ProjectMgmt.Task;
 using Transflower.TFLPortal.Helpers;
-using TFLPortal.Services.TaskMgmt.Analytics;
-using TFLPortal.Services.TaskMgmt.Operations;
+using Transflower.TFLPortal.Services.ProjectMgmt.Analytics.Interfaces;
+using Transflower.TFLPortal.Services.ProjectMgmt.Operations.Interfaces;
 namespace TFLPortal.Controllers;
 
 [ApiController]

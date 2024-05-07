@@ -1,7 +1,8 @@
 using MySql.Data.MySqlClient;
-using TFLPortal.Models;
+using Transflower.TFLPortal.Entities.ProjectMgmt;
+using Transflower.TFLPortal.Repositories.ProjectMgmt.Operations.Interfaces;
 
-namespace TFLPortal.Repositories.SprintMgmt.Operations;
+namespace Transflower.TFLPortal.Repositories.ProjectMgmt.Operations;
 public class SprintOperationsRepository:ISprintOperationsRepository
 {
     private readonly IConfiguration _configuration;

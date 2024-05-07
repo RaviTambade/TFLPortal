@@ -1,7 +1,7 @@
 using TFLPortal.Responses;
-using ProjectTask = TFLPortal.Models.Task;
+using ProjectTask = Transflower.TFLPortal.Entities.ProjectMgmt.Task;
 
-namespace TFLPortal.Repositories.TaskMgmt.Analytics;
+namespace Transflower.TFLPortal.Repositories.ProjectMgmt.Analytics.Interfaces;
 
 public interface ITaskAnalyticsRepository
 {

@@ -1,10 +1,8 @@
-using TFLPortal.Models;
+using Transflower.TFLPortal.Repositories.ProjectMgmt.Operations.Interfaces;
 
-namespace TFLPortal.Services.SprintMgmt.Operations;
+namespace Transflower.TFLPortal.Services.ProjectMgmt.Operations.Interfaces;
 
-public interface ISprintOperationsService
+public interface ISprintOperationsService:ISprintOperationsRepository
 {
-    Task<bool> Insert(Sprint theSprint);
-    Task<bool> Delete(int sprintId);
-    Task<bool> Update(int sprintId, Sprint theSprint);
+    
 }

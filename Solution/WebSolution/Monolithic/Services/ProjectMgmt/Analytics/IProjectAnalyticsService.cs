@@ -1,7 +1,6 @@
-using TFLPortal.Repositories.ProjectMgmt.Analytics;
+using Transflower.TFLPortal.Repositories.ProjectMgmt.Analytics.Interfaces;
 
-
-namespace TFLPortal.Services.ProjectMgmt.Analytics;
+namespace Transflower.TFLPortal.Services.ProjectMgmt.Analytics.Interfaces;
 
 public interface IProjectAnalyticsService : IProjectAnalyticsRepository
 {

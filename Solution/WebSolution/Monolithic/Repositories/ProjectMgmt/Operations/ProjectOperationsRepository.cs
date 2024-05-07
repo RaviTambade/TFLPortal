@@ -1,7 +1,9 @@
 using MySql.Data.MySqlClient;
-using TFLPortal.Models;
+using Transflower.TFLPortal.Entities.ProjectMgmt;
+using Transflower.TFLPortal.Repositories.ProjectMgmt.Operations.Interfaces;
 
-namespace TFLPortal.Repositories.ProjectMgmt.Operations;
+
+namespace Transflower.TFLPortal.Repositories.ProjectMgmt.Operations;
 
 public class ProjectOperationsRepository:IProjectOperationsRepository
 {

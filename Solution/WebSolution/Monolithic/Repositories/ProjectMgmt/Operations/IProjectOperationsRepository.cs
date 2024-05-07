@@ -1,6 +1,6 @@
-using TFLPortal.Models;
+using Transflower.TFLPortal.Entities.ProjectMgmt;
 
-namespace TFLPortal.Repositories.ProjectMgmt.Operations;
+namespace Transflower.TFLPortal.Repositories.ProjectMgmt.Operations.Interfaces;
 
 public interface IProjectOperationsRepository
 {

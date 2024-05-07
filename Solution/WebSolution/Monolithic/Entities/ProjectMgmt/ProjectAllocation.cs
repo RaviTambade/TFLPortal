@@ -1,4 +1,5 @@
-namespace TFLPortal.Models;
+namespace Transflower.TFLPortal.Entities.ProjectMgmt;
+
 public class ProjectAllocation
 {
     public int Id { get; set; }

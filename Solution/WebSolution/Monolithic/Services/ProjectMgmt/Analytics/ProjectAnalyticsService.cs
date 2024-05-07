@@ -1,10 +1,10 @@
-using MySql.Data.MySqlClient;
-using TFLPortal.Models;
-using TFLPortal.Repositories.ProjectMgmt.Analytics;
-using ProjectTask=TFLPortal.Models.Task;
+using Transflower.TFLPortal.Entities.ProjectMgmt;
+using ProjectTask=Transflower.TFLPortal.Entities.ProjectMgmt.Task;
+using Transflower.TFLPortal.Repositories.ProjectMgmt.Analytics.Interfaces;
+using Transflower.TFLPortal.Services.ProjectMgmt.Analytics.Interfaces;
 
 
-namespace TFLPortal.Services.ProjectMgmt.Analytics;
+namespace Transflower.TFLPortal.Services.ProjectMgmt.Analytics;
 
 public class ProjectAnalyticsService:IProjectAnalyticsService
 {

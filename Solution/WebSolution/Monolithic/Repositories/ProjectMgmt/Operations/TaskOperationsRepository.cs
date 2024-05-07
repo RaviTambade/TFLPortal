@@ -1,14 +1,16 @@
 using MySql.Data.MySqlClient;
-using ProjectTask = TFLPortal.Models.Task;
+using ProjectTask = Transflower.TFLPortal.Entities.ProjectMgmt.Task;
+using Transflower.TFLPortal.Repositories.ProjectMgmt.Operations.Interfaces;
 
-namespace TFLPortal.Repositories.TaskMgmt.Operations;
 
-public class TaskOperationsRepositories : ITaskOperationsRepository
+namespace Transflower.TFLPortal.Repositories.ProjectMgmt.Operations;
+
+public class TaskOperationsRepository : ITaskOperationsRepository
 {
     private readonly IConfiguration _configuration;
     private readonly string _connectionString;
 
-    public TaskOperationsRepositories(IConfiguration configuration)
+    public TaskOperationsRepository(IConfiguration configuration)
     {
         _configuration = configuration;
         _connectionString =
