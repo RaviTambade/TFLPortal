@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 using Transflower.TFLPortal.Models;
 using Transflower.TFLPortal.Responses;
 
 namespace Transflower.TFLPortal.Repositories.LeaveMgmt.Analytics;
+=======
+using  Transflower.TFLPortal.Entities.LeaveMgmt;
+using  Transflower.TFLPortal.Responses;
+
+namespace Transflower.TFLPortal.Repositories.LeaveMgmt.Analytics.Interfaces{
+>>>>>>> 20bea552baf4f1a09b51e1a140a92fcf3f2e420d
 
 public interface ILeaveAnalyticsRepository
 {
