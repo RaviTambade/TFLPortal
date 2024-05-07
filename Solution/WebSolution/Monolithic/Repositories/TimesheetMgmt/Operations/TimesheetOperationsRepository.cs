@@ -1,8 +1,9 @@
-
 using MySql.Data.MySqlClient;
-using TFLPortal.Models;
+using Microsoft.Extensions.Configuration;
+using Transflower.TFLPortal.Entities.TimesheetMgmt;
+using Transflower.TFLPortal.Repositories.TimesheetMgmt.Operations.Interfaces;
 
-namespace TFLPortal.Repositories.TimesheetMgmt.Operations;
+namespace Transflower.TFLPortal.Repositories.TimesheetMgmt.Operations;
 
 public class TimesheetOperationsRepository:ITimesheetOperationsRepository
 {

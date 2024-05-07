@@ -1,6 +1,6 @@
-using TFLPortal.Repositories.TimesheetMgmt.Analytics;
+using Transflower.TFLPortal.Repositories.TimesheetMgmt.Analytics.Interfaces;
 
-namespace TFLPortal.Services.TimesheetMgmt.Analytics;
+namespace Transflower.TFLPortal.Services.TimesheetMgmt.Analytics.Interfaces;
 public interface ITimesheetAnalyticsService:ITimesheetAnalyticsRepository
 {
     

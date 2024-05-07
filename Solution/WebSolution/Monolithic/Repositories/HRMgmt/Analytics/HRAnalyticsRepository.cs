@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using System.Text.Json;
 using Transflower.TFLPortal.Helpers;
 using Transflower.TFLPortal.Repositories.HRMgmt.Analytics.Interfaces;
+
 namespace Transflower.TFLPortal.Repositories.HRMgmt.Analytics;
 
 public class HRAnalyticsRepository : IHRAnalyticsRepository
