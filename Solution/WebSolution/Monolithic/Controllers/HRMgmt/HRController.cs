@@ -6,7 +6,7 @@ using TFLPortal.Services.HRMgmt.Analytics;
 using Task = System.Threading.Tasks.Task;
 using TFLPortal.Services.HRMgmt.Operations;
 
-namespace Transflower.TFLPortal.Intranet.Controllers;
+namespace Transflower.TFLPortal.Intranet.Controllers.HRMgmt;
 
 [ApiController]
 [Route("/api/hr/employees")]

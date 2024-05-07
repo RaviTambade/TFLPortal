@@ -1,4 +1,4 @@
-namespace TFLPortal.Models;
+namespace Transflower.TFLPortal.Entities.HRMgmt;
 
 public class Employee
 {

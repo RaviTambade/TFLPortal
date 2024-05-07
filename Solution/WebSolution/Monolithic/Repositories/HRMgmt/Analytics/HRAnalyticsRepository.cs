@@ -1,3 +1,8 @@
+
+namespace Transflower.TFLPortal.Controllers
+namespace Transflower.TFLPortal.Entities
+
+
 using MySql.Data.MySqlClient;
 using TFLPortal.Models;
 using Microsoft.Extensions.Configuration;
