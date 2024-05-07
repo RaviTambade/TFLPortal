@@ -1,17 +1,9 @@
-using TFLPortal.Models;
-using TFLPortal.Repositories.HRMgmt.Analytics;
+using Transflower.TFLPortal.Entities.HRMgmt;
+using Transflower.TFLPortal.Repositories.HRMgmt.Analytics.Interfaces;
 
-namespace TFLPortal.Services.HRMgmt.Analytics;
+namespace Transflower.TFLPortal.Services.HRMgmt.Analytics.Interfaces;
 
-public interface IHRAnalyticsService
+public interface IHRAnalyticsService:IHRAnalyticsRepository
 {
-    
-    Task<Employee> GetEmployee(int employeeId); 
-    Task<List<Employee>> GetUnPaidSalaries(int month, int year);
-    Task<List<Employee>> GetEmployeesOnBench();
-    List<InOutTimeRecord> GetTimeRecords();
-    List<InOutTimeRecord> GetTimeRecords(int employeeId);
-
-
 
 }

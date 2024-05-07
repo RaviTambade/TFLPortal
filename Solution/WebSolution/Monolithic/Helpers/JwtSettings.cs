@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace TFLPortal.Helpers;
+namespace Transflower.TFLPortal.Helpers;
 
 public class JwtSettings
 {

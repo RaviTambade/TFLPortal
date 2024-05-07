@@ -1,5 +1,5 @@
 
-namespace TFLPortal.Models;
+namespace Transflower.TFLPortal.Entities.HRMgmt;
 [Serializable]
 public class InOutTimeRecord
 {

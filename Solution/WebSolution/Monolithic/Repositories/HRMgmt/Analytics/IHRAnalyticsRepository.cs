@@ -1,6 +1,6 @@
-using TFLPortal.Models;
+using  Transflower.TFLPortal.Entities.HRMgmt;
 
-namespace TFLPortal.Repositories.HRMgmt.Analytics;
+namespace Transflower.TFLPortal.Repositories.HRMgmt.Analytics.Interfaces;
 
 public interface IHRAnalyticsRepository
 {
@@ -10,7 +10,4 @@ public interface IHRAnalyticsRepository
     Task<List<Employee>> GetEmployeesOnBench();
     List<InOutTimeRecord> GetTimeRecords();
     List<InOutTimeRecord> GetTimeRecords(int employeeId);
-
-
-
 }

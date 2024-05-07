@@ -3,7 +3,7 @@ using System.IO;
 using System.Text.Json;
 using TFLPortal.Models;
 
-namespace TFLPortal.Helpers;
+namespace Transflower.TFLPortal.Helpers;
 
 public class JsonRepositoryManager
 {

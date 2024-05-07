@@ -1,9 +1,10 @@
 using System.Text.Json;
-using TFLPortal.Helpers;
-using TFLPortal.Models;
+using Transflower.TFLPortal.Helpers;
+using  Transflower.TFLPortal.Entities.HRMgmt;
 using TFLPortal.Responses;
+using Transflower.TFLPortal.Repositories.HRMgmt.Operations.Interfaces;
 
-namespace TFLPortal.Repositories.HRMgmt.Operations;
+namespace Transflower.TFLPortal.Repositories.HRMgmt.Operations;
 
 public class HROperationsRepository : IHROperationsRepository
 {

@@ -1,15 +1,10 @@
-
-namespace Transflower.TFLPortal.Controllers
-namespace Transflower.TFLPortal.Entities
-
-
 using MySql.Data.MySqlClient;
-using TFLPortal.Models;
+using Transflower.TFLPortal.Entities.HRMgmt;
 using Microsoft.Extensions.Configuration;
 using System.Text.Json;
-using TFLPortal.Helpers;
-
-namespace TFLPortal.Repositories.HRMgmt.Analytics;
+using Transflower.TFLPortal.Helpers;
+using Transflower.TFLPortal.Repositories.HRMgmt.Analytics.Interfaces;
+namespace Transflower.TFLPortal.Repositories.HRMgmt.Analytics;
 
 public class HRAnalyticsRepository : IHRAnalyticsRepository
 {

@@ -1,6 +1,6 @@
-using TFLPortal.Models;
+using  Transflower.TFLPortal.Entities.HRMgmt;
 
-namespace TFLPortal.Repositories.HRMgmt.Operations;
+namespace Transflower.TFLPortal.Repositories.HRMgmt.Operations.Interfaces;
 
 public interface IHROperationsRepository
 {

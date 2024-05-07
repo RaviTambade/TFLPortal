@@ -1,4 +1,4 @@
-using TFLPortal.Helpers;
+using Transflower.TFLPortal.Helpers;
 using TFLPortal.Services.PayrollMgmt.Analytics;
 using TFLPortal.Services.PayrollMgmt.Operations;
 using TFLPortal.Services.ProjectMgmt.Analytics;
@@ -9,14 +9,13 @@ using TFLPortal.Services.TimesheetMgmt.Analytics;
 using TFLPortal.Services.TimesheetMgmt.Operations;
 using TFLPortal.Services.LeaveMgmt.Analytics;
 using TFLPortal.Services.LeaveMgmt.Operations;
-using TFLPortal.Services.HRMgmt.Analytics;
+
 using TFLPortal.Services.SprintMgmt.Analytics;
 using TFLPortal.Services.SprintMgmt.Operations;
-using TFLPortal.Services.HRMgmt.Operations;
+
 using TFLPortal.Repositories.LeaveMgmt.Analytics;
 using TFLPortal.Repositories.LeaveMgmt.Operations;
-using TFLPortal.Repositories.HRMgmt.Analytics;
-using TFLPortal.Repositories.HRMgmt.Operations;
+
 using TFLPortal.Repositories.PayrollMgmt.Analytics;
 using TFLPortal.Repositories.PayrollMgmt.Operations;
 using TFLPortal.Repositories.ProjectMgmt.Analytics;
@@ -27,6 +26,17 @@ using TFLPortal.Repositories.SprintMgmt.Analytics;
 using TFLPortal.Repositories.SprintMgmt.Operations;
 using TFLPortal.Repositories.TaskMgmt.Analytics;
 using TFLPortal.Repositories.TaskMgmt.Operations;
+
+using Transflower.TFLPortal.Repositories.HRMgmt.Analytics.Interfaces;
+using Transflower.TFLPortal.Repositories.HRMgmt.Analytics;
+using Transflower.TFLPortal.Services.HRMgmt.Analytics.Interfaces;
+using Transflower.TFLPortal.Services.HRMgmt.Analytics;
+
+using Transflower.TFLPortal.Repositories.HRMgmt.Operations.Interfaces;
+using Transflower.TFLPortal.Repositories.HRMgmt.Operations;
+using Transflower.TFLPortal.Services.HRMgmt.Operations.Interfaces;
+using Transflower.TFLPortal.Services.HRMgmt.Operations;
+
 
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using TFLPortal.Responses;
-using TFLPortal.Models;
-using TFLPortal.Helpers;
-using TFLPortal.Services.HRMgmt.Analytics;
+using Transflower.TFLPortal.Entities.HRMgmt;
+using Transflower.TFLPortal.Helpers;
+using Transflower.TFLPortal.Services.HRMgmt.Analytics.Interfaces;
 using Task = System.Threading.Tasks.Task;
-using TFLPortal.Services.HRMgmt.Operations;
+using Transflower.TFLPortal.Services.HRMgmt.Operations.Interfaces;
 
 namespace Transflower.TFLPortal.Intranet.Controllers.HRMgmt;
 
