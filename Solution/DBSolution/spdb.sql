@@ -3,7 +3,7 @@
 
 DROP PROCEDURE IF EXISTS spGetWorkUtilization;
 -- get task type wise work hours of an employee 
-
+DELIMITER $$
 CREATE PROCEDURE spGetWorkUtilization(IN pempId INT,IN pfromDate DATETIME,ptoDate DATETIME,IN pProjectId INT)
 BEGIN
 
@@ -12,11 +12,8 @@ BEGIN
       FROM timesheetentries
       INNER JOIN timesheets ON timesheetentries.timesheetid=timesheets.id
       INNER JOIN tasks ON  timesheetentries.taskid=tasks.id
-      WHERE timesheets.createdby=pempId
-      AND timesheets.createdon BETWEEN pfromDate AND ptoDate
-      GROUP BY tasks.tasktype;
-
-   ELSEIF  pProjectId <> 0 THEN
+      WHERE timesheets.createdby=pempId AND timesheets.createdon BETWEEN pfromDate AND ptoDate GROUP BY tasks.tasktype ;
+	ELSEIF  pProjectId <> 0 THEN
       SELECT  tasks.tasktype,SUM(timesheetentries.hours) AS hours
       FROM timesheetentries
       INNER JOIN timesheets ON timesheetentries.timesheetid=timesheets.id
@@ -28,14 +25,15 @@ BEGIN
       AND timesheets.createdon BETWEEN pfromDate AND ptoDate
       GROUP BY tasks.tasktype ;
    END IF;
-END;
-
+END $$
+DELIMITER;
 
 CALL spGetWorkUtilization(10,'2024-01-01',"2024-02-21",0);
 
 
 DROP PROCEDURE IF EXISTS spGetHoursWorkedForEachProject;
 -- get project wise time spent by an employee
+DELIMITER $$
 CREATE procedure spGetHoursWorkedForEachProject(IN pempId INT,IN pfromDate VARCHAR (20),IN ptoDate VARCHAR (20))
  BEGIN
    SELECT projects.title AS projectname,projects.id as projectid,
@@ -49,7 +47,8 @@ CREATE procedure spGetHoursWorkedForEachProject(IN pempId INT,IN pfromDate VARCH
    WHERE timesheets.createdby=pempId 
    AND timesheets.createdon BETWEEN pfromDate AND ptoDate
    GROUP BY projects.id;
-END;
+END $$
+DELIMITER;
 
 CALL spGetHoursWorkedForEachProject(10,'2024-01-01','2024-01-24');
 

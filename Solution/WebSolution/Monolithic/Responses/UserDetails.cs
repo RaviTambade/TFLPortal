@@ -1,4 +1,4 @@
-namespace TFLPortal.Responses;
+namespace Transflower.TFLPortal.Responses;
 public class UserDetails
 {
     public int Id { get; set; }

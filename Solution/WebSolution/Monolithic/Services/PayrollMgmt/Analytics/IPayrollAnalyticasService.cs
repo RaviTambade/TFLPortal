@@ -1,7 +1,7 @@
-using TFLPortal.Models;
-using TFLPortal.Responses;
+using Transflower.TFLPortal.Entities.PayrollMgmt;
+using  Transflower.TFLPortal.Responses;
 
-namespace TFLPortal.Services.PayrollMgmt.Analytics;
+namespace Transflower.TFLPortal.Services.PayrollMgmt.Analytics.Interfaces;
 
 
 public interface IPayrollAnalyticsService

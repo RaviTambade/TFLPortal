@@ -1,4 +1,4 @@
-namespace TFLPortal.Models;
+namespace Transflower.TFLPortal.Entities.PayrollMgmt;
 
 public class SalaryStructure
 {
