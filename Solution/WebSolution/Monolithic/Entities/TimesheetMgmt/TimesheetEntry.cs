@@ -1,7 +1,6 @@
 using System;
 
-namespace TFLPortal.Models;
-
+namespace Transflower.TFLPortal.Entities.TimesheetMgmt;
 
 public class TimesheetEntry
 {

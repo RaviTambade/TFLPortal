@@ -2,9 +2,10 @@ using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Configuration;
 using System.Text.Json;
 using Transflower.TFLPortal.Helpers;
-using  Transflower.TFLPortal.Entities.HRMgmt;
+using Transflower.TFLPortal.Entities.HRMgmt;
 using Transflower.TFLPortal.Services.HRMgmt.Analytics.Interfaces;
 using Transflower.TFLPortal.Repositories.HRMgmt.Analytics.Interfaces;
+
 namespace Transflower.TFLPortal.Services.HRMgmt.Analytics;
 
 public class HRAnalyticsService : IHRAnalyticsService

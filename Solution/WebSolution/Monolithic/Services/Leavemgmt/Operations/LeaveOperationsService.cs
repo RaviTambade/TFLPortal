@@ -1,8 +1,10 @@
 using MySql.Data.MySqlClient;
-using TFLPortal.Models;
-using TFLPortal.Responses;
-using TFLPortal.Repositories.LeaveMgmt.Operations;
-namespace TFLPortal.Services.LeaveMgmt.Operations;
+using Transflower.TFLPortal.Helpers;
+using Transflower.TFLPortal.Entities.LeaveMgmt;
+using Transflower.TFLPortal.Responses;
+using Transflower.TFLPortal.Repositories.LeaveMgmt.Operations.Interfaces;
+using Transflower.TFLPortal.Services.LeaveMgmt.Operations.Interfaces;
+namespace Transflower.TFLPortal.Services.LeaveMgmt.Operations;
 
 public class LeaveOperationsService : ILeaveOperationsService
 {

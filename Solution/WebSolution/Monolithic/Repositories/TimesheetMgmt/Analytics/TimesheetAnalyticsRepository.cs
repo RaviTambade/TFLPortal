@@ -1,8 +1,11 @@
 using MySql.Data.MySqlClient;
-using TFLPortal.Models;
-using TFLPortal.Responses;
+using Microsoft.Extensions.Configuration;
+using Transflower.TFLPortal.Helpers;
+using Transflower.TFLPortal.Responses.TimesheetMgmt;
+using Transflower.TFLPortal.Entities.TimesheetMgmt;
+using Transflower.TFLPortal.Repositories.TimesheetMgmt.Analytics.Interfaces;
 
-namespace TFLPortal.Repositories.TimesheetMgmt.Analytics;
+namespace Transflower.TFLPortal.Repositories.TimesheetMgmt.Analytics;
 
 public class TimesheetAnalyticsRepository:ITimesheetAnalyticsRepository 
 { 

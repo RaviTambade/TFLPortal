@@ -1,5 +1,6 @@
-using TFLPortal.Repositories.TimesheetMgmt.Operations;
-namespace TFLPortal.Services.TimesheetMgmt.Operations;
+using Transflower.TFLPortal.Repositories.TimesheetMgmt.Operations.Interfaces;
+
+namespace Transflower.TFLPortal.Services.TimesheetMgmt.Operations.Interfaces;
 
 public interface ITimesheetOperationsService:ITimesheetOperationsRepository
 {

@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
+using Task = System.Threading.Tasks.Task;
 using Transflower.TFLPortal.Helpers;
-using TFLPortal.Models;
-using TFLPortal.Responses;
-using TFLPortal.Services.TimesheetMgmt.Analytics;
-using TFLPortal.Services.TimesheetMgmt.Operations;
+using Transflower.TFLPortal.Responses.TimesheetMgmt;
+using Transflower.TFLPortal.Entities.TimesheetMgmt;
+using Transflower.TFLPortal.Services.TimesheetMgmt.Analytics.Interfaces;
+using Transflower.TFLPortal.Services.TimesheetMgmt.Operations.Interfaces;
 
-namespace TFLPortal.Controllers;
+namespace Transflower.TFLPortal.Controllers.TimesheetMgmt;
 
 [ApiController]
 [Route("/api/timesheets")]
