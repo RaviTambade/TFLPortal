@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
-using TFLPortal.Responses;
-using TFLPortal.Models;
+using Transflower.TFLPortal.Responses;
+using Transflower.TFLPortal.Entities.PayrollMgmt;
 using Transflower.TFLPortal.Helpers;
-using TFLPortal.Services.PayrollMgmt.Analytics;
-using TFLPortal.Services.PayrollMgmt.Operations;
+using Transflower.TFLPortal.Services.PayrollMgmt.Analytics.Interfaces;
+using Transflower.TFLPortal.Services.PayrollMgmt.Operations.Interfaces;
 
-namespace TFLPortal.Controllers;
+namespace Transflower.TFLPortal.Controllers.PayrollMgmt;
 
 [ApiController]
 [Route("/api/payroll")]

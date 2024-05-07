@@ -1,4 +1,4 @@
-namespace TFLPortal.Responses;
+namespace Transflower.TFLPortal.Responses;
 
 public class SalaryDetails{
     public double MonthlyBasicSalary{get;set;}

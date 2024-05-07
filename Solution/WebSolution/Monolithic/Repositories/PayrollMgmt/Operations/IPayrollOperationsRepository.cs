@@ -1,7 +1,8 @@
 
-using TFLPortal.Models;
+using Transflower.TFLPortal.Entities.PayrollMgmt;
 
-namespace TFLPortal.Repositories.PayrollMgmt.Operations;
+namespace Transflower.TFLPortal.Repositories.PayrollMgmt.Operations.Interfaces;
+
 
 public interface IPayrollOperationsRepository
 {

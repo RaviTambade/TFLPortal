@@ -1,7 +1,6 @@
 using System.Text.Json;
 using Transflower.TFLPortal.Helpers;
-using  Transflower.TFLPortal.Entities.HRMgmt;
-using TFLPortal.Responses;
+using Transflower.TFLPortal.Entities.HRMgmt;
 using Transflower.TFLPortal.Repositories.HRMgmt.Operations.Interfaces;
 
 namespace Transflower.TFLPortal.Repositories.HRMgmt.Operations;

@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
-using TFLPortal.Responses;
+using Transflower.TFLPortal.Responses;
 using Transflower.TFLPortal.Entities.HRMgmt;
 using Transflower.TFLPortal.Helpers;
 using Transflower.TFLPortal.Services.HRMgmt.Analytics.Interfaces;
 using Task = System.Threading.Tasks.Task;
 using Transflower.TFLPortal.Services.HRMgmt.Operations.Interfaces;
 
-namespace Transflower.TFLPortal.Intranet.Controllers.HRMgmt;
+namespace Transflower.TFLPortal.Controllers.HRMgmt;
 
 [ApiController]
 [Route("/api/hr/employees")]

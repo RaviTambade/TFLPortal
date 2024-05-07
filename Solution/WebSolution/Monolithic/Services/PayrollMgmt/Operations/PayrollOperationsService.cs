@@ -1,7 +1,8 @@
 using MySql.Data.MySqlClient;
-using TFLPortal.Models;
+using Transflower.TFLPortal.Entities.PayrollMgmt;
+using Transflower.TFLPortal.Services.PayrollMgmt.Operations.Interfaces;
 
-namespace TFLPortal.Services.PayrollMgmt.Operations;
+namespace Transflower.TFLPortal.Services.PayrollMgmt.Operations;
 
 public class PayrollOperationsService : IPayrollOperationsService
 {

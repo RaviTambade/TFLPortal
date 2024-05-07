@@ -1,9 +1,9 @@
 using System.Data;
 using MySql.Data.MySqlClient;
-using TFLPortal.Models;
-using TFLPortal.Responses;
-
-namespace TFLPortal.Repositories.LeaveMgmt.Analytics;
+using  Transflower.TFLPortal.Entities.LeaveMgmt;
+using  Transflower.TFLPortal.Responses;
+using Transflower.TFLPortal.Repositories.LeaveMgmt.Analytics.Interfaces; 
+namespace Transflower.TFLPortal.Repositories.LeaveMgmt.Analytics;
 
 public class LeaveAnalyticsRepository : ILeaveAnalyticsRepository
 {

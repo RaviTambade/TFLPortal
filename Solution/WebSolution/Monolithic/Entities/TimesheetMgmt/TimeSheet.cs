@@ -1,4 +1,4 @@
-namespace TFLPortal.Models;
+namespace Transflower.TFLPortal.Entities.TimesheetMgmt;
 
 public class Timesheet
 {

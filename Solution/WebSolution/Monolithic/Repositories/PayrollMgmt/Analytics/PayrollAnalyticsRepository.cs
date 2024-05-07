@@ -1,8 +1,9 @@
 using MySql.Data.MySqlClient;
-using TFLPortal.Models;
-using TFLPortal.Responses;
+using Transflower.TFLPortal.Entities.PayrollMgmt;
+using Transflower.TFLPortal.Responses;
+using Transflower.TFLPortal.Repositories.PayrollMgmt.Analytics.Interfaces;
 
-namespace TFLPortal.Repositories.PayrollMgmt.Analytics;
+namespace  Transflower.TFLPortal.Repositories.PayrollMgmt.Analytics;
 
 public class PayrollAnalyticsRepository : IPayrollAnalyticsRepository
 {
