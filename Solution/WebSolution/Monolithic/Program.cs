@@ -94,7 +94,8 @@ builder.Services.AddScoped<ILeaveOperationsRepository, LeaveOperationsRepository
 
 builder.Services.AddScoped<IPayrollAnalyticsService, PayrollAnalyticsService>();
 builder.Services.AddScoped<IPayrollOperationsService, PayrollOperationsService>();
-
+builder.Services.AddScoped<IPayrollAnalyticsRepository, PayrollAnalyticsRepository>();
+builder.Services.AddScoped<IPayrollOperationsRepository, PayrollOperationsRepository>();
 
 // builder.Services.AddScoped<IHROperationsService, HROperationsService>();
 
