@@ -666,20 +666,18 @@ public class LeaveService : ILeaveService
             await connection.CloseAsync();
         }
         return leave;
-    }
+    }public async Task<bool> AddNewLeaveApplication(LeaveApplication leaveApplication)
+{
+    bool status = false;
 
-    public async Task<bool> AddNewLeaveApplication(LeaveApplication leaveApplication)
+    using (MySqlConnection connection = new MySqlConnection(_connectionString))
     {
-        bool status = false;
-        MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _connectionString;
-        try
+        using (MySqlCommand command = new MySqlCommand())
         {
-            MySqlCommand command = new MySqlCommand();
             command.CommandText =
-                "Insert into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(@employeeId,@createdOn,@fromDate,@toDate,@status,@leaveType)";
+                "INSERT INTO leaveapplications (employeeid, createdon, fromdate, todate, status, leavetype) " +
+                "VALUES (@employeeId, @createdOn, @fromDate, @toDate, @status, @leaveType)";
             command.Connection = connection;
-            await connection.OpenAsync();
             command.Parameters.AddWithValue("@employeeId", leaveApplication.EmployeeId);
             command.Parameters.AddWithValue("@createdOn", leaveApplication.CreatedOn);
             command.Parameters.AddWithValue("@fromDate", leaveApplication.FromDate);
@@ -687,24 +685,24 @@ public class LeaveService : ILeaveService
             command.Parameters.AddWithValue("@status", leaveApplication.Status);
             command.Parameters.AddWithValue("@leaveType", leaveApplication.LeaveType);
 
-            int rowsAffected = await command.ExecuteNonQueryAsync(); // Execute the query asynchronously
-
-            if (rowsAffected > 0)
+            try
             {
-                status = true;
+                await connection.OpenAsync();
+                int rowsAffected = await command.ExecuteNonQueryAsync();
+                status = rowsAffected > 0;
+            }
+            catch (MySqlException ex)
+            {
+                // Handle the exception (log it, rethrow it, etc.)
+                // For now, we just rethrow it
+                throw new Exception("An error occurred while adding a new leave application.", ex);
             }
         }
-        catch (Exception ee)
-        {
-            throw ee;
-        }
-        finally
-        {
-            connection.Close();
-        }
-
-        return status;
     }
+
+    return status;
+}
+
 
 
     public async Task<bool> AddNewLeaveAllocation(LeaveAllocation leaveAllocation)
