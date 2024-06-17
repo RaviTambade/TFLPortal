@@ -70,7 +70,7 @@ public class LeaveService : ILeaveService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select * from leavesallocated";
+            string query = "select * from leavesallocations";
             MySqlCommand command = new MySqlCommand(query, connection);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
