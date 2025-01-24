@@ -1,4 +1,4 @@
-### **1. Homepage Design – In-depth Exploration**
+## **Homepage Design**
 
 #### **Main Banner Section:**
 This is Transflower website’s first impression, so let’s focus on making it engaging:

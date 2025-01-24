@@ -1,4 +1,5 @@
-#Transflower  Website both user-friendly and effective to Transflower audience.
+## Transflower  Website 
+Both user-friendly and effective to Transflower audience.
 
 ### 1. **Homepage Design**  
 The homepage is Transflower digital storefront—it should immediately convey Transflower value proposition, be visually engaging, and guide users toward taking action. Let’s dive deeper into the homepage elements:
