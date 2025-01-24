@@ -14,7 +14,7 @@ public class LeaveService : ILeaveService
     public LeaveService(IConfiguration configuration)
     {
         _configuration = configuration;
-        _connectionString = _configuration.GetConnectionString("DefaultConnection")  ?? throw new ArgumentNullException("connectionString");
+        _connectionString = _configuration.GetConnectionString("DefaultConnection") ?? throw new ArgumentNullException("connectionString");
     }
 
     public async Task<List<LeaveApplication>> GetLeaveApplications()
@@ -33,7 +33,7 @@ public class LeaveService : ILeaveService
                 int id = int.Parse(reader["id"].ToString());
                 int employeeId = int.Parse(reader["employeeid"].ToString());
                 DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
-                DateTime fromDate = DateTime.Parse(reader["fromdate"].ToString());       
+                DateTime fromDate = DateTime.Parse(reader["fromdate"].ToString());
                 DateTime toDate = DateTime.Parse(reader["todate"].ToString());
                 string status = reader["status"].ToString();
                 string leaveType = reader["leavetype"].ToString();
@@ -42,7 +42,7 @@ public class LeaveService : ILeaveService
                 {
                     Id = id,
                     EmployeeId = employeeId,
-                    CreatedOn=createdOn,
+                    CreatedOn = createdOn,
                     FromDate = fromDate,
                     ToDate = toDate,
                     Status = status,
@@ -63,14 +63,14 @@ public class LeaveService : ILeaveService
         return leaveApplications;
     }
 
-     public async Task<List<LeaveAllocation>> GetLeaveAllocation()
+    public async Task<List<LeaveAllocation>> GetLeaveAllocation()
     {
         List<LeaveAllocation> leaves = new List<LeaveAllocation>();
         MySqlConnection connection = new MySqlConnection();
         connection.ConnectionString = _connectionString;
         try
         {
-            string query = "select * from leavesallocated";
+            string query = "select * from leavesallocations";
             MySqlCommand command = new MySqlCommand(query, connection);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
@@ -81,18 +81,18 @@ public class LeaveService : ILeaveService
                 int sick = int.Parse(reader["sick"].ToString());
                 int casual = int.Parse(reader["casual"].ToString());
                 int paid = int.Parse(reader["paid"].ToString());
-                int unpaid = int.Parse(reader["unpaid"].ToString()); 
+                int unpaid = int.Parse(reader["unpaid"].ToString());
                 int year = int.Parse(reader["financialyear"].ToString());
-                
+
                 LeaveAllocation leave = new LeaveAllocation()
                 {
                     Id = id,
-                    RoleId= roleId,
-                    Sick=sick,
+                    RoleId = roleId,
+                    Sick = sick,
                     Casual = casual,
                     Paid = paid,
                     Unpaid = unpaid,
-                    Year=year,
+                    Year = year,
                 };
                 leaves.Add(leave);
             }
@@ -109,7 +109,7 @@ public class LeaveService : ILeaveService
         return leaves;
     }
 
-    public async Task<List<ConsumedLeaveResponse>> GetMonthlyLeaveCount(int employeeId,int month,int year)
+    public async Task<List<ConsumedLeaveResponse>> GetMonthlyLeaveCount(int employeeId, int month, int year)
     {
         List<ConsumedLeaveResponse> leaves = new List<ConsumedLeaveResponse>();
         MySqlConnection connection = new MySqlConnection();
@@ -133,7 +133,7 @@ public class LeaveService : ILeaveService
                 ConsumedLeaveResponse leave = new ConsumedLeaveResponse()
                 {
                     LeaveType = leaveType,
-                    Count=leaveCount
+                    Count = leaveCount
                 };
                 leaves.Add(leave);
             }
@@ -167,7 +167,7 @@ public class LeaveService : ILeaveService
             {
                 int id = int.Parse(reader["id"].ToString());
                 DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
-                DateTime fromDate = DateTime.Parse(reader["fromdate"].ToString());       
+                DateTime fromDate = DateTime.Parse(reader["fromdate"].ToString());
                 DateTime toDate = DateTime.Parse(reader["todate"].ToString());
                 string status = reader["status"].ToString();
                 string leaveType = reader["leavetype"].ToString();
@@ -176,7 +176,7 @@ public class LeaveService : ILeaveService
                 {
                     Id = id,
                     EmployeeId = employeeId,
-                    CreatedOn=createdOn,
+                    CreatedOn = createdOn,
                     FromDate = fromDate,
                     ToDate = toDate,
                     Status = status,
@@ -197,7 +197,7 @@ public class LeaveService : ILeaveService
         return leaveApplications;
     }
 
-    public async Task<List<LeaveApplication>> GetLeaveApplications(int employeeId,string status)
+    public async Task<List<LeaveApplication>> GetLeaveApplications(int employeeId, string status)
     {
         List<LeaveApplication> leaveApplications = new List<LeaveApplication>();
         MySqlConnection connection = new MySqlConnection();
@@ -214,7 +214,7 @@ public class LeaveService : ILeaveService
             {
                 int id = int.Parse(reader["id"].ToString());
                 DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
-                DateTime fromDate = DateTime.Parse(reader["fromdate"].ToString());       
+                DateTime fromDate = DateTime.Parse(reader["fromdate"].ToString());
                 DateTime toDate = DateTime.Parse(reader["todate"].ToString());
                 string leaveType = reader["leavetype"].ToString();
 
@@ -222,7 +222,7 @@ public class LeaveService : ILeaveService
                 {
                     Id = id,
                     EmployeeId = employeeId,
-                    CreatedOn=createdOn,
+                    CreatedOn = createdOn,
                     FromDate = fromDate,
                     ToDate = toDate,
                     Status = status,
@@ -262,7 +262,7 @@ public class LeaveService : ILeaveService
                 int Id = int.Parse(reader["id"].ToString());
                 int employeeId = int.Parse(reader["employeeid"].ToString());
                 DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
-                DateTime fromDate = DateTime.Parse(reader["fromdate"].ToString());       
+                DateTime fromDate = DateTime.Parse(reader["fromdate"].ToString());
                 DateTime toDate = DateTime.Parse(reader["todate"].ToString());
                 string status = reader["status"].ToString();
                 string leaveType = reader["leavetype"].ToString();
@@ -271,7 +271,7 @@ public class LeaveService : ILeaveService
                 {
                     Id = Id,
                     EmployeeId = employeeId,
-                    CreatedOn=createdOn,
+                    CreatedOn = createdOn,
                     FromDate = fromDate,
                     ToDate = toDate,
                     Status = status,
@@ -304,24 +304,24 @@ public class LeaveService : ILeaveService
             command.Parameters.AddWithValue("@Id", id);
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
-            if(await reader.ReadAsync())
+            if (await reader.ReadAsync())
             {
                 int roleId = int.Parse(reader["roleid"].ToString());
                 int sick = int.Parse(reader["sick"].ToString());
                 int casual = int.Parse(reader["casual"].ToString());
                 int paid = int.Parse(reader["paid"].ToString());
-                int unpaid = int.Parse(reader["unpaid"].ToString()); 
+                int unpaid = int.Parse(reader["unpaid"].ToString());
                 int year = int.Parse(reader["financialyear"].ToString());
-                
+
                 roleLeave = new LeaveAllocation()
                 {
                     Id = id,
                     RoleId = roleId,
-                    Sick=sick,
+                    Sick = sick,
                     Casual = casual,
                     Paid = paid,
                     Unpaid = unpaid,
-                    Year=year,
+                    Year = year,
                 };
             }
             await reader.CloseAsync();
@@ -350,10 +350,10 @@ public class LeaveService : ILeaveService
             await connection.OpenAsync();
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
-            {  
+            {
                 int employeeId = int.Parse(reader["employeeid"].ToString());
                 DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
-                DateTime fromDate = DateTime.Parse(reader["fromdate"].ToString());       
+                DateTime fromDate = DateTime.Parse(reader["fromdate"].ToString());
                 DateTime toDate = DateTime.Parse(reader["todate"].ToString());
                 string status = reader["status"].ToString();
                 string leaveType = reader["leavetype"].ToString();
@@ -362,7 +362,7 @@ public class LeaveService : ILeaveService
                 {
                     Id = id,
                     EmployeeId = employeeId,
-                    CreatedOn=createdOn,
+                    CreatedOn = createdOn,
                     FromDate = fromDate,
                     ToDate = toDate,
                     Status = status,
@@ -382,7 +382,7 @@ public class LeaveService : ILeaveService
         return leaveApplication;
     }
 
-     public async Task<List<LeaveApplication>> GetLeaveApplications(string status)
+    public async Task<List<LeaveApplication>> GetLeaveApplications(string status)
     {
         List<LeaveApplication> employeeLeaves = new List<LeaveApplication>();
         MySqlConnection connection = new MySqlConnection();
@@ -396,18 +396,18 @@ public class LeaveService : ILeaveService
             MySqlDataReader reader = command.ExecuteReader();
             while (await reader.ReadAsync())
             {
-                int id= int.Parse(reader["id"].ToString());
+                int id = int.Parse(reader["id"].ToString());
                 int employeeId = int.Parse(reader["employeeid"].ToString());
                 DateTime createdOn = DateTime.Parse(reader["createdon"].ToString());
-                DateTime fromDate = DateTime.Parse(reader["fromdate"].ToString());       
+                DateTime fromDate = DateTime.Parse(reader["fromdate"].ToString());
                 DateTime toDate = DateTime.Parse(reader["todate"].ToString());
                 string leaveType = reader["leavetype"].ToString();
 
                 LeaveApplication employeeLeave = new LeaveApplication()
                 {
-                    Id=id,
+                    Id = id,
                     EmployeeId = employeeId,
-                    CreatedOn=createdOn,
+                    CreatedOn = createdOn,
                     FromDate = fromDate,
                     ToDate = toDate,
                     Status = status,
@@ -458,7 +458,7 @@ public class LeaveService : ILeaveService
                 LeaveApplication leave = new LeaveApplication()
                 {
                     EmployeeId = employeeId,
-                    CreatedOn=createdOn,
+                    CreatedOn = createdOn,
                     FromDate = fromDate,
                     ToDate = toDate,
                     Status = status,
@@ -486,8 +486,8 @@ public class LeaveService : ILeaveService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query ="SELECT leavetype,COALESCE(SUM(DATEDIFF(todate, fromdate) + 1), 0) AS consumedleaves,MONTH(fromdate) AS month FROM leaveapplications WHERE employeeId = @employeeId AND status = @status AND YEAR(fromdate) = @year GROUP BY leavetype,MONTH(fromdate)";
-    
+            string query = "SELECT leavetype,COALESCE(SUM(DATEDIFF(todate, fromdate) + 1), 0) AS consumedleaves,MONTH(fromdate) AS month FROM leaveapplications WHERE employeeId = @employeeId AND status = @status AND YEAR(fromdate) = @year GROUP BY leavetype,MONTH(fromdate)";
+
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@employeeId", employeeId);
             command.Parameters.AddWithValue("@status", "sanctioned");
@@ -502,7 +502,7 @@ public class LeaveService : ILeaveService
 
                 ConsumedLeaveResponse leave = new ConsumedLeaveResponse()
                 {
-                    LeaveType=leaveType,
+                    LeaveType = leaveType,
                     Count = consumedLeaves,
                     Month = month
                 };
@@ -633,8 +633,8 @@ public class LeaveService : ILeaveService
         connection.ConnectionString = _connectionString;
         try
         {
-            string query ="select sick,casual,paid,unpaid from leavesallocated where roleid=@roleId and financialyear=@financialYear";
-    
+            string query = "select sick,casual,paid,unpaid from leavesallocated where roleid=@roleId and financialyear=@financialYear";
+
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@roleId", roleId);
             command.Parameters.AddWithValue("@financialYear", year);
@@ -671,40 +671,40 @@ public class LeaveService : ILeaveService
     public async Task<bool> AddNewLeaveApplication(LeaveApplication leaveApplication)
     {
         bool status = false;
-        MySqlConnection connection = new MySqlConnection();
-        connection.ConnectionString = _connectionString;
-        try
+
+        using (MySqlConnection connection = new MySqlConnection(_connectionString))
         {
-            MySqlCommand command = new MySqlCommand();
-            command.CommandText =
-                "Insert into leaveapplications(employeeid,createdon,fromdate,todate,status,leavetype) values(@employeeId,@createdOn,@fromDate,@toDate,@status,@leaveType)";
-            command.Connection = connection;
-            await connection.OpenAsync();
-            command.Parameters.AddWithValue("@employeeId", leaveApplication.EmployeeId);
-            command.Parameters.AddWithValue("@createdOn", leaveApplication.CreatedOn);
-            command.Parameters.AddWithValue("@fromDate", leaveApplication.FromDate);
-            command.Parameters.AddWithValue("@toDate", leaveApplication.ToDate);
-            command.Parameters.AddWithValue("@status", leaveApplication.Status);
-            command.Parameters.AddWithValue("@leaveType", leaveApplication.LeaveType);
-
-            int rowsAffected = await command.ExecuteNonQueryAsync(); // Execute the query asynchronously
-
-            if (rowsAffected > 0)
+            using (MySqlCommand command = new MySqlCommand())
             {
-                status = true;
+                command.CommandText =
+                    "INSERT INTO leaveapplications (employeeid, createdon, fromdate, todate, status, leavetype) " +
+                    "VALUES (@employeeId, @createdOn, @fromDate, @toDate, @status, @leaveType)";
+                command.Connection = connection;
+                command.Parameters.AddWithValue("@employeeId", leaveApplication.EmployeeId);
+                command.Parameters.AddWithValue("@createdOn", leaveApplication.CreatedOn);
+                command.Parameters.AddWithValue("@fromDate", leaveApplication.FromDate);
+                command.Parameters.AddWithValue("@toDate", leaveApplication.ToDate);
+                command.Parameters.AddWithValue("@status", leaveApplication.Status);
+                command.Parameters.AddWithValue("@leaveType", leaveApplication.LeaveType);
+
+                try
+                {
+                    await connection.OpenAsync();
+                    int rowsAffected = await command.ExecuteNonQueryAsync();
+                    status = rowsAffected > 0;
+                }
+                catch (MySqlException ex)
+                {
+                    // Handle the exception (log it, rethrow it, etc.)
+                    // For now, we just rethrow it
+                    throw new Exception("An error occurred while adding a new leave application.", ex);
+                }
             }
-        }
-        catch (Exception ee)
-        {
-            throw ee;
-        }
-        finally
-        {
-            connection.Close();
         }
 
         return status;
     }
+
 
 
     public async Task<bool> AddNewLeaveAllocation(LeaveAllocation leaveAllocation)
@@ -779,7 +779,7 @@ public class LeaveService : ILeaveService
         }
         return status;
     }
-    public async Task<bool> UpdateLeaveApplication(int leaveId ,string leaveStatus)
+    public async Task<bool> UpdateLeaveApplication(int leaveId, string leaveStatus)
     {
         bool status = false;
         MySqlConnection connection = new MySqlConnection();
@@ -789,7 +789,7 @@ public class LeaveService : ILeaveService
             string query = "Update leaveapplications set status=@status where id =@Id";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@Id", leaveId);
-            cmd.Parameters.AddWithValue("@status",leaveStatus);
+            cmd.Parameters.AddWithValue("@status", leaveStatus);
             await connection.OpenAsync();
             int rowsAffected = cmd.ExecuteNonQuery();
             if (rowsAffected > 0)
@@ -855,7 +855,7 @@ public class LeaveService : ILeaveService
                 "Delete from leavesallocated where id=@id";
             command.Connection = connection;
             await connection.OpenAsync();
-            command.Parameters.AddWithValue("@id",id);
+            command.Parameters.AddWithValue("@id", id);
 
             int rowsAffected = await command.ExecuteNonQueryAsync(); // Execute the query asynchronously
 
@@ -876,7 +876,7 @@ public class LeaveService : ILeaveService
         return status;
     }
 
-    
+
 
     public async Task<bool> Delete(int leaveId)
     {
@@ -890,7 +890,7 @@ public class LeaveService : ILeaveService
                 "Delete from leaveapplications where id=@id";
             command.Connection = connection;
             await connection.OpenAsync();
-            command.Parameters.AddWithValue("@id",leaveId);
+            command.Parameters.AddWithValue("@id", leaveId);
 
             int rowsAffected = await command.ExecuteNonQueryAsync(); // Execute the query asynchronously
 
