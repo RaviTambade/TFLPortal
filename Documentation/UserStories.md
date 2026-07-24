@@ -1,107 +1,69 @@
-## Product Backlog TFL Portal
-### User Stories
+## Product Backlog - TFL Portal
+### Agile Backlog
 
-#### Project Management
+This backlog presents the core functional requirements of the TFL Portal in a professional Agile format. Each entry includes priority, user role, the user story, and simple acceptance criteria for implementation and review.
 
-<hr/>
+#### 1. Project Management
 
-##### Role: Project Member
-1. As a member of Project,I want to see a list of projects working on so that I can search more information about project form list.
-2. As a member of Project,I want to see particular project details so that I can check sprints and tasks assigned to me.
-3. As a member of Project,I want to see list of Sprints belong to current project so that I can track other memebers activities and shedule of current ongoing sprint.
-4. As a member of Project,I want to update status of activity sothat other team members can see latest infomation about task assigned by other members.
-5. As a member of Project,I want to see list of tasks assigned to me from a sprint,So that I update status of my work.
-6. As a member of Project,I want to see list of tasks assigned to others for a sprint,So that I would keep myself welinfomed about ongoing project activities.
+| ID | Priority | User Role | User Story | Acceptance Criteria |
+|---|---|---|---|---|
+| PM-01 | High | Project Member | As a project member, I want to view the list of projects I am currently working on so that I can quickly access project-related information. | The user can see a list of assigned projects with project name, status, and basic details. |
+| PM-02 | High | Project Member | As a project member, I want to view the details of a specific project so that I can review the sprints and tasks assigned to me. | Selecting a project shows the project overview, assigned sprints, and related tasks. |
+| PM-03 | Medium | Project Member | As a project member, I want to view the list of sprints associated with the current project so that I can track team activities and sprint schedules. | The project page displays all sprints with dates, status, and associated work items. |
+| PM-04 | High | Project Member | As a project member, I want to update the status of my activities so that other team members can see the latest progress of assigned tasks. | The user can update task status and the change is visible to other related users. |
+| PM-05 | High | Project Member | As a project member, I want to view the list of tasks assigned to me in a sprint so that I can update the status of my work. | The user can view only their assigned tasks for the selected sprint. |
+| PM-06 | Medium | Project Member | As a project member, I want to view the tasks assigned to other team members in a sprint so that I can stay informed about ongoing project activities. | The sprint view shows tasks owned by other team members with current status. |
+| PM-07 | High | Project Manager | As a project manager, I want to view a list of all ongoing projects with relevant details so that I can access overall project information quickly. | The manager can view all active projects with key metadata such as status and owner. |
+| PM-08 | High | Project Manager | As a project manager, I want to view detailed information about a specific project so that I can monitor project progress. | The project detail page displays progress, milestones, and current work status. |
+| PM-09 | High | Project Manager | As a project manager, I want to view the list of work assigned to employees so that I can manage workload effectively. | The manager can view workforce assignments grouped by project or sprint. |
+| PM-10 | High | Project Manager | As a project manager, I want to view detailed task information for a specific employee so that I can track progress and identify challenges. | Selecting an employee shows their assigned tasks, statuses, and pending issues. |
+| PM-11 | High | Project Manager | As a project manager, I want to view all sprints for a project so that I can monitor project progress. | The system displays all sprints belonging to the selected project. |
+| PM-12 | Medium | Project Manager | As a project manager, I want to view detailed sprint information so that I can understand the work related to that sprint. | Sprint details include planned work, current progress, and team responsibility. |
+| PM-13 | High | Project Manager | As a project manager, I want to view the work assigned to employees within a sprint so that I can allocate work efficiently. | The sprint page shows employee-wise workloads and task distribution. |
+| PM-14 | High | Project Manager | As a project manager, I want to assign specific work to employees so that I can distribute project work effectively. | The manager can assign new tasks to employees and save the assignment. |
+| PM-15 | Medium | Project Manager | As a project manager, I want to modify assigned work so that I can adapt to changing project requirements. | Existing work items can be edited with updated descriptions or deadlines. |
+| PM-16 | Medium | Project Manager | As a project manager, I want to remove assigned work from an employee so that I can reassign tasks as needed. | The manager can remove or reassign a work item without affecting unrelated tasks. |
+| PM-17 | Medium | Project Manager | As a project manager, I want to add new work items to a project so that I can introduce new tasks easily. | New work items can be created with title, description, and assignment details. |
+| PM-18 | Medium | Project Manager | As a project manager, I want to view the complete list of work items for a project so that I can review all project-related information. | The project dashboard displays the full set of work items and their statuses. |
 
-##### Role: Project Manager
-1. As a project manager, I want to see a list  all ongoing projects with information so that I can quickly access the overall project information.
-2. As a project manager, I want to access detailed project information so that I can see project progress.
-3. As a project manager, I want to view  list of work  employee so that I can effectively manage work.
-4. As a project manager, I want to access detailed task information for a specific employee so that I can see progress and challenges.
-5. As a project manager, I want to see a list of all sprints for a project so that I can track project progress .
-6. As a project manager, I want to see  information about a sprint so that I can see work releted to this sprint.
-7. As a project manager, I want to see work of employee in spint, so that I can allocate work to the employee.
-8. As a project manager, I want to assign specific work to employee so that I can  distribute project work.
-9. As a project manager, I want to modify work , so that I can adapt to changing project requirements.
-10. As a project manager, I want to remove a work of employee, so that I can reassignment new work as per requirements.
-11. As a project manager, I want  to add new work to the project so that I can easily introduce new work.
-12. As a project manager, I want to view  list of all works of  a project, so that I can see work releted all infomation of project .
- 
+#### 2. Timesheet Management
 
+| ID | Priority | User Role | User Story | Acceptance Criteria |
+|---|---|---|---|---|
+| TS-01 | High | Employee | As an employee, I want to create a timesheet so that I can record my daily work details. | The employee can create a timesheet for a selected day with task entries. |
+| TS-02 | Medium | Employee | As an employee, I want to update my timesheet so that I can modify incorrect or changed information. | Existing timesheet entries can be edited and saved successfully. |
+| TS-03 | Medium | Employee | As an employee, I want to delete timesheet details so that I can maintain accurate records. | The employee can remove incorrect timesheet entries from the record. |
+| TS-04 | Medium | Employee | As an employee, I want to view a list of my timesheets so that I can review my past work records. | The employee can view a history of submitted timesheets. |
+| TS-05 | Medium | Employee | As an employee, I want to view the details of a timesheet so that I can see the tasks I completed on a specific day. | Opening a timesheet shows the tasks entered for that day with hours worked. |
+| TS-06 | High | HR Manager | As an HR manager, I want to view the timesheet details of all employees so that I can track daily activities. | The HR manager can view all submitted timesheets for employees. |
+| TS-07 | High | HR Manager | As an HR manager, I want to approve or reject timesheets so that I can ensure employees have entered correct data. | HR can approve or reject a timesheet and record the decision. |
 
+#### 3. Leave Management
 
-#### TimeSheet
+| ID | Priority | User Role | User Story | Acceptance Criteria |
+|---|---|---|---|---|
+| LM-01 | High | Employee | As an employee, I want to apply for leave so that I can take time off for personal or professional reasons. | The employee can submit a leave request with leave type, dates, and reason. |
+| LM-02 | Medium | Employee | As an employee, I want to check the status of my leave application so that I can plan accordingly. | The employee can view the current status of each submitted leave request. |
+| LM-03 | Medium | Employee | As an employee, I want to cancel a submitted leave application so that I can withdraw my leave request if needed. | The employee can cancel a pending request and the status updates accordingly. |
+| LM-04 | Medium | Employee | As an employee, I want to update an existing leave application so that I can correct or change the details. | The employee can edit an existing leave request before it is finalized. |
+| LM-05 | Medium | Employee | As an employee, I want to view my available leave balance so that I can plan for future leave. | The employee can see current available leave days and leave type balance. |
+| LM-06 | Medium | Employee | As an employee, I want to view my consumed leave so that I can track the leave I have already used. | The user can view the total leave already consumed. |
+| LM-07 | Medium | Employee | As an employee, I want to view my total leave entitlement so that I can understand my overall leave allocation. | The employee can view the total annual leave entitlement assigned to them. |
+| LM-08 | High | HR Manager | As an HR manager, I want to approve or reject leave applications so that I can manage leave requests effectively. | HR can approve or reject a leave request and record the outcome. |
+| LM-09 | High | HR Manager | As an HR manager, I want to view a list of leave applications submitted by employees so that I can review pending and approved requests. | HR can view all leave requests with status and employee information. |
+| LM-10 | Medium | HR Manager | As an HR manager, I want to view detailed information about a specific leave application so that I can make informed decisions. | Opening a leave application shows detailed employee and request information. |
+| LM-11 | Medium | HR Manager | As an HR manager, I want to update leave allocation for a specific role so that I can adjust leave policies. | HR can change leave allocation for a selected role and save the update. |
+| LM-12 | Medium | HR Manager | As an HR manager, I want to add role-based leave rules so that I can manage leave policies effectively. | HR can create new leave rules for specific roles. |
+| LM-13 | Medium | HR Manager | As an HR manager, I want to view role-based leave details so that I can ensure fair and appropriate leave distribution. | HR can review role-based leave allocations and related policy details. |
 
-##### Role: Employee
-1. As a employee I Want to Create timesheet so that I can fill my daily timesheet.
+#### 4. Payroll Management
 
-2. As a employee I Want to update timesheet so that if any changes in timesheet details i can modify it.
-
-3. As a employee I want to Remove timesheet details so that I can maintain corrected timesheet data .
-
-4. As a employee I want to View list of timesheets  so that I can see my past timesheet Data.
-
-5. As a employee I want to View Details of  timesheet so that I can see what tasks I did on that day .
- 
-
-
-##### Role: HR Manager
- 1. As a HR Manager I want  to see timesheet details of all employees so that i can track employee daily activities.
- 2. As a HR Manager I want to Approved or reject timesheet so that i can ensure employee added right Data  in timesheet.
-
-<hr/>
-
-#### Leave Management
-
-<hr/>
-
-
-#### Payrol Management
-##### Role: Project Member
-1. As an employee, I want to apply for leave so that I can take the necessary time off 
-for personal or professional reasons.
- 
-2. As an employee, I want to check the current status of my applied leave so that
-I can plan based on the status of my request.
- 
-3. As an employee, I want to cancel a submitted leave application so that I can save my leave .
- 
-4. As an employee, I want to update details of an existing leave application so that 
-I can change updated information as needed.
- 
-5. As an employee, I want to view my current available leave so that I can plan for future leave.
- 
-6. As an employee, I want to view my consumed leave so that I can keep track of the time I have taken off and plan future leaves effectively.
- 
-7. As an employee, I want to view my total leaves so that I can have a clear understanding of my overall leave allocation.
-
-
-##### Role: HR Manager
-1. As a HrManager,I want to approve or reject leave applications so that I can manage leave requests appropriately.
-
-2. As a HrManager,I want to view a list of leave applications submitted by employees
-so that I can have an overview of pending and approved leave requests.
-
-3. As a HrManager,I want to view detailed information about a specific leave application of an employee so that I can make informed decisions and provide necessary approvals.
-
-4. As a HrManager,I want to update the number of leaves assigned for a specific role so that I can adjust leave policies.
-
-5. As a HrManager,I want to insert a new role based leave  for a particular role
-so that  I can effectively manage and tailor leave policies.
-
-6. As a HrManager,I want to view the role based leave details so that I can ensure equitable and appropriate distribution of leave allowances.
-
-#### Payrol
-
-
-#### Role Employee
-1. As an employee, I want to view a list of my payments, so that I can easily track my salary transactions.
-2. As an employee, I want to see detailed information about each payment so that I can check particular salary information.
-3. As an employee, I want to download my salary slip ,so that I can check financial history.
-
-
-##### Role: HR Manager
-<hr/>
+| ID | Priority | User Role | User Story | Acceptance Criteria |
+|---|---|---|---|---|
+| PY-01 | High | Employee | As an employee, I want to view a list of my payments so that I can track my salary transactions. | The employee can see a list of payment records for their account. |
+| PY-02 | Medium | Employee | As an employee, I want to view detailed information about each payment so that I can review salary details. | Selecting a payment shows salary details, date, and transaction information. |
+| PY-03 | Medium | Employee | As an employee, I want to download my salary slip so that I can review my financial history. | The employee can download a salary slip in a supported file format. |
+| PY-04 | Medium | HR Manager | As an HR manager, I want to manage payroll-related information so that salary processing is accurate and well organized. | HR can review and manage payroll data for employees efficiently. |
 
 
 
